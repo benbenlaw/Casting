@@ -551,7 +551,7 @@ public class ModdedTags {
     public static TagKey<Item> energeticAlloyBlockTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
             String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/energetic_alloy")))));
     public static TagKey<Item> energeticAlloyGearTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
-            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "gears/energetic_alloy")))));
+            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "gears/energized")))));
     public static TagKey<Item> energeticAlloyRodTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
             String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "rods/energetic_alloy")))));
     public static TagKey<Item> energeticAlloyPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
@@ -569,7 +569,7 @@ public class ModdedTags {
     public static TagKey<Item> vibrantAlloyBlockTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
             String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/vibrant_alloy")))));
     public static TagKey<Item> vibrantAlloyGearTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
-            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "gears/vibrant_alloy")))));
+            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "gears/vibrant")))));
     public static TagKey<Item> vibrantAlloyRodTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
             String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "rods/vibrant_alloy")))));
     public static TagKey<Item> vibrantAlloyPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(

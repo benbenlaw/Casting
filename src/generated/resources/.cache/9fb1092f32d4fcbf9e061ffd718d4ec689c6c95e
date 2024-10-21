@@ -1,4 +1,4 @@
-// 1.21	2024-10-07T10:22:49.8710256	Recipes
+// 1.21	2024-10-21T15:33:30.370786	Recipes
 d2ea4d8ce765581bcbbe977e46d4dada22629c1e data/casting/advancement/recipes/fuel/fuel/lava.json
 d42b7a6d6b1d2bf9f8135d17c5a1f3d53b083e4a data/casting/advancement/recipes/fuel/fuel/molten_coal.json
 87543abaa0e3ad2d740112dc3a783db8f6d295be data/casting/advancement/recipes/fuel/fuel/molten_ender.json
@@ -366,7 +366,7 @@ a555e1a1f70e21ee9032ef3514ee93fc9b3cf9f1 data/casting/advancement/recipes/solidi
 a6665ca079ca4d2241a7f2980e18ae68185fae12 data/casting/advancement/recipes/solidifier/solidifier/end_stone/end_stone.json
 99bc2f89e7c324ba78f052a207b510478f17dd29 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/ball.json
 45e22fdd8a499e6ed06439cb87ab523a7e1358e8 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/block.json
-80e91eaf6f0a9ca9242d7d75b7df20f6d8861cb8 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/gear.json
+d42082e133e44bbf5eb1f534af67c49500102f6b data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/gear.json
 7ca9b994f01c8235440db692764b9646b34ac826 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/ingot.json
 50e7d6146376ba6c891462fb5233521e00f60eb6 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/nugget.json
 7f7856af864c3adb07886c40ff7df8db7c35ad14 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/plate.json
@@ -502,7 +502,7 @@ b0438c04f065f9b7b3dd44e9f1747d78e600f107 data/casting/advancement/recipes/solidi
 97d808c98e44320f8b5109256d7f1b8ed790311d data/casting/advancement/recipes/solidifier/solidifier/uranium/rod.json
 06eef933baaf830ec4162c613e0c9262d4ef4868 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/ball.json
 19ee9a69121b8409d43641f31881a55aa9e9e269 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/block.json
-5b09d0c90227d119ac1489d4a7f199446584124f data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/gear.json
+fa487b4ec46c6da958080d60d84b4f9ea9ba90c8 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/gear.json
 c2165d9d5421f4c89d5f82aaf3032cdf24789a46 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/ingot.json
 5631ba4e1fb1d9a9976fa7d533bc2b8c53872831 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/nugget.json
 5d98fdb5bc187aa7de29342176223916ecbf229b data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/plate.json
@@ -879,7 +879,7 @@ b66f5ed6f9c2efb30ef1dc0d63e7cf1aeba4487d data/casting/recipe/solidifier/end_stee
 55bd7ab0ea7c6aa124d3bd511e277b83a504749e data/casting/recipe/solidifier/end_stone/end_stone.json
 e7a08397ca076b707851f5a275a6983db83c15fb data/casting/recipe/solidifier/energetic_alloy/ball.json
 9c773535fce2440670aefca2616e63bc918c7322 data/casting/recipe/solidifier/energetic_alloy/block.json
-3010fe0bef97df90d45e4005ce6020a3d8b3dda5 data/casting/recipe/solidifier/energetic_alloy/gear.json
+ec2bbaf587005ed2404a0a2726e76f7d21a95703 data/casting/recipe/solidifier/energetic_alloy/gear.json
 f3a14ee3a70de902b6776bd46cfb6446c41f4fd2 data/casting/recipe/solidifier/energetic_alloy/ingot.json
 e4c806670590a763a64fbfa74a0bd380517f9490 data/casting/recipe/solidifier/energetic_alloy/nugget.json
 804b0cf441cfd38243f80507be7f4ca35025b103 data/casting/recipe/solidifier/energetic_alloy/plate.json
@@ -1015,7 +1015,7 @@ c3f1085172b9bb2a7afe0764ec6e26c55a67b804 data/casting/recipe/solidifier/uranium/
 ea30c567f08586052dc1db8b80a3ae8ae3c564b8 data/casting/recipe/solidifier/uranium/rod.json
 73fc2474505a8e59dd7e3258ab40f31b462a1446 data/casting/recipe/solidifier/vibrant_alloy/ball.json
 eb9fd5f4ea1cef4aa7d1ba3693ee3c2d2705b7cf data/casting/recipe/solidifier/vibrant_alloy/block.json
-511d6129dfd39936bb4630e18a119d40d0b7991e data/casting/recipe/solidifier/vibrant_alloy/gear.json
+a2768498b02ba8863ab1c48facec5b514b755384 data/casting/recipe/solidifier/vibrant_alloy/gear.json
 bd311cb59f403427126bebef0d3f6989d74c7ae9 data/casting/recipe/solidifier/vibrant_alloy/ingot.json
 508d965c4a17d05ee08d27ae51372179609508b9 data/casting/recipe/solidifier/vibrant_alloy/nugget.json
 100eb48627bd36c60a1fde02282fc4f0a1f45a37 data/casting/recipe/solidifier/vibrant_alloy/plate.json

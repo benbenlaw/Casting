@@ -2,6 +2,11 @@ Changelog BBL Smelting
 
 // TODO //
 
+1.15.4
+
+Added new logo
+Fixed Energitic Alloy and Vibrant alloy gears recipes not loading
+
 1.15.3
 
 Re enabled full portable GUI support

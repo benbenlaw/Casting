@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:gears/vibrant_alloy"
+        "tag": "c:gears/vibrant"
       }
     }
   ],
@@ -13,7 +13,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#c:gears/vibrant_alloy"
+            "items": "#c:gears/vibrant"
           }
         ]
       },
