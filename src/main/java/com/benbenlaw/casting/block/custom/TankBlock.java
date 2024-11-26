@@ -3,6 +3,7 @@ package com.benbenlaw.casting.block.custom;
 import com.benbenlaw.casting.block.entity.ModBlockEntities;
 import com.benbenlaw.casting.block.entity.TankBlockEntity;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.ModItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -12,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -29,10 +31,12 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TankBlock extends BaseEntityBlock {
 
@@ -46,6 +50,53 @@ public class TankBlock extends BaseEntityBlock {
     protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+
+        if (itemStack.is(ModItems.FLUID_MOVER.asItem())) {
+            TankBlockEntity tankEntity = (TankBlockEntity) level.getBlockEntity(blockPos);
+            assert tankEntity != null;
+            Fluid tankFluid = tankEntity.getFluidStack().getFluid();
+            int tankFluidAmount = tankEntity.getFluidStack().getAmount();
+
+            if (itemStack.get(CastingDataComponents.FLUID_TYPE) != null && itemStack.get(CastingDataComponents.FLUID_AMOUNT) != null) {
+                Fluid itemFluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(Objects.requireNonNull(itemStack.get(CastingDataComponents.FLUID_TYPE))));
+                int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
+                if (tankFluid.isSame(itemFluid) || tankFluid == Fluids.EMPTY) {
+                    int space = tankEntity.FLUID_TANK.getSpace();
+                    int amountToTransfer = Math.min(space, fluidAmount); // Ensure we don't transfer more than the tank can hold
+                    tankEntity.FLUID_TANK.fill(new FluidStack(itemFluid, amountToTransfer), IFluidHandler.FluidAction.EXECUTE);
+                    itemStack.set(CastingDataComponents.FLUID_AMOUNT, fluidAmount - amountToTransfer);
+                    if (fluidAmount - amountToTransfer == 0) {
+                        itemStack.remove(CastingDataComponents.FLUID_TYPE);
+                        itemStack.remove(CastingDataComponents.FLUID_AMOUNT);
+                    }
+                    return ItemInteractionResult.SUCCESS;
+                }
+            }
+
+            if (itemStack.get(CastingDataComponents.FLUID_TYPE) == null || itemStack.get(CastingDataComponents.FLUID_AMOUNT) == null) {
+                if (tankFluid != Fluids.EMPTY) {
+                    int currentFluidAmountInItem = itemStack.get(CastingDataComponents.FLUID_AMOUNT) != null ? itemStack.get(CastingDataComponents.FLUID_AMOUNT) : 0;
+                    int remainingSpaceInItem = 8000 - currentFluidAmountInItem;
+                    int amountToExtract = Math.min(tankFluidAmount, remainingSpaceInItem);
+                    if (amountToExtract > 0) {
+                        FluidStack extractedFluid = tankEntity.FLUID_TANK.drain(amountToExtract, IFluidHandler.FluidAction.EXECUTE);
+                        itemStack.set(CastingDataComponents.FLUID_TYPE, BuiltInRegistries.FLUID.getKey(extractedFluid.getFluid()).toString());
+                        itemStack.set(CastingDataComponents.FLUID_AMOUNT, extractedFluid.getAmount());
+                        return ItemInteractionResult.SUCCESS;
+                    }
+                }
+            }
+        }
+
+        return ItemInteractionResult.FAIL;
+    }
+
+
+
+
 
     @Override
     public @NotNull InteractionResult useWithoutItem(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull Player player, @NotNull BlockHitResult hit) {

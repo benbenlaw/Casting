@@ -23,6 +23,8 @@ public class CastingItemTags extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
+        tag(Tags.Items.BRICKS).add(ModItems.BLACK_BRICK.asItem());
+
         tag(CastingTags.Items.MOLDS)
                 .add(ModItems.BLOCK_MOLD.asItem())
                 .add(ModItems.BLOCK_MOLD.asItem())

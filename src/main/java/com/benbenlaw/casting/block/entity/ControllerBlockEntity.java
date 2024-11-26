@@ -529,11 +529,41 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
     }
 
     private boolean canFitFluidInAnyTank(FluidStack output) {
-        return (TANK_1.getFluid().isEmpty() || (TANK_1.getFluid().getFluid() == output.getFluid() && (TANK_1.getCapacity() - TANK_1.getFluidAmount() >= output.getAmount())))
-                || (TANK_2.getFluid().isEmpty() || (TANK_2.getFluid().getFluid() == output.getFluid() && (TANK_2.getCapacity() - TANK_2.getFluidAmount() >= output.getAmount())))
-                || (TANK_3.getFluid().isEmpty() || (TANK_3.getFluid().getFluid() == output.getFluid() && (TANK_3.getCapacity() - TANK_3.getFluidAmount() >= output.getAmount())))
-                || (TANK_4.getFluid().isEmpty() || (TANK_4.getFluid().getFluid() == output.getFluid() && (TANK_4.getCapacity() - TANK_4.getFluidAmount() >= output.getAmount())));
+        // Check if the fluid is already in any tank
+        boolean fluidAlreadyInTank = TANK_1.getFluid().getFluid() == output.getFluid() ||
+                TANK_2.getFluid().getFluid() == output.getFluid() ||
+                TANK_3.getFluid().getFluid() == output.getFluid() ||
+                TANK_4.getFluid().getFluid() == output.getFluid();
+
+        // If the fluid is already in a tank, we must ensure no other tank takes the same fluid
+        if (fluidAlreadyInTank) {
+            return (TANK_1.getFluid().getFluid() == output.getFluid() &&
+                    (TANK_1.getCapacity() - TANK_1.getFluidAmount() >= output.getAmount())) ||
+                    (TANK_2.getFluid().getFluid() == output.getFluid() &&
+                            (TANK_2.getCapacity() - TANK_2.getFluidAmount() >= output.getAmount())) ||
+                    (TANK_3.getFluid().getFluid() == output.getFluid() &&
+                            (TANK_3.getCapacity() - TANK_3.getFluidAmount() >= output.getAmount())) ||
+                    (TANK_4.getFluid().getFluid() == output.getFluid() &&
+                            (TANK_4.getCapacity() - TANK_4.getFluidAmount() >= output.getAmount()));
+        }
+
+        // If the fluid is not in any tank, allow it to fit in any tank that can accommodate it
+        return (TANK_1.getFluid().isEmpty() ||
+                (TANK_1.getFluid().getFluid() == output.getFluid() &&
+                        (TANK_1.getCapacity() - TANK_1.getFluidAmount() >= output.getAmount())))
+                || (TANK_2.getFluid().isEmpty() ||
+                (TANK_2.getFluid().getFluid() == output.getFluid() &&
+                        (TANK_2.getCapacity() - TANK_2.getFluidAmount() >= output.getAmount())))
+                || (TANK_3.getFluid().isEmpty() ||
+                (TANK_3.getFluid().getFluid() == output.getFluid() &&
+                        (TANK_3.getCapacity() - TANK_3.getFluidAmount() >= output.getAmount())))
+                || (TANK_4.getFluid().isEmpty() ||
+                (TANK_4.getFluid().getFluid() == output.getFluid() &&
+                        (TANK_4.getCapacity() - TANK_4.getFluidAmount() >= output.getAmount())));
     }
+
+
+
 
     private void useFuel(BlockEntity entity) {
         if (entity == null) {

@@ -1,4 +1,4 @@
-// 1.21	2024-10-21T15:33:30.370786	Recipes
+// 1.21	2024-11-26T10:11:59.4376757	Recipes
 d2ea4d8ce765581bcbbe977e46d4dada22629c1e data/casting/advancement/recipes/fuel/fuel/lava.json
 d42b7a6d6b1d2bf9f8135d17c5a1f3d53b083e4a data/casting/advancement/recipes/fuel/fuel/molten_coal.json
 87543abaa0e3ad2d740112dc3a783db8f6d295be data/casting/advancement/recipes/fuel/fuel/molten_ender.json
@@ -302,6 +302,7 @@ b0b9231e3933f73c58c5605aa2ea4cd0aafd8578 data/casting/advancement/recipes/solidi
 9156c8b4d5c7fc705253d0c2693baa1bb26222b2 data/casting/advancement/recipes/solidifier/solidifier/bronze/rod.json
 9a453af41a2f46269ba06fdfdfd267fafdaa3bb8 data/casting/advancement/recipes/solidifier/solidifier/coal/block.json
 795d76a49b0425ea3e21b567652ed78efc0100f5 data/casting/advancement/recipes/solidifier/solidifier/coal/coal.json
+fe1b8567117b90cf293a07de2d4471ec1fce33b1 data/casting/advancement/recipes/solidifier/solidifier/coal/nugget.json
 dc74bae56fd7fe654032f88ca392413bcce355c8 data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/ball.json
 a87202131f59255bcb4476c9f6efaee9150ffc8f data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/block.json
 d3a4d730c2e5e32d5c7daf8ef1778b63ab448881 data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/gear.json
@@ -530,7 +531,7 @@ e99e164f2189b29cca6090e3bb5e19d4bd7710b6 data/casting/recipe/fuel/molten_uranium
 fc34f614917be2fde95e4dd708111b8036b88b82 data/casting/recipe/fuel/water.json
 f5950fde1e1105685a1944cac32ab4cb4f1205e7 data/casting/recipe/gear_mold.json
 e4e5476169b56a53839c85c491d49a5fa70696c4 data/casting/recipe/gem_mold.json
-a68632fd08efb13dfb7560db453c11ed71b75366 data/casting/recipe/ingot_mold.json
+6fa786d9dafe3533a5b7a7f9155d8c81d12771fb data/casting/recipe/ingot_mold.json
 eb6c065bc0171bc14982907fff2915fd9784036b data/casting/recipe/melting/aluminum/from_block.json
 d64c81a710471d39b04c1f5ab9d6458f29be8e89 data/casting/recipe/melting/aluminum/from_dust.json
 29aad75b2c3e87b45d6aaff5f465884d21d3f7bb data/casting/recipe/melting/aluminum/from_ingot.json
@@ -815,6 +816,7 @@ bf9321191d3122e0903e01af2e4db92d22a2ca86 data/casting/recipe/solidifier/bronze/p
 065029d94e1b8bc115e235ec5a545c2f48a27ca9 data/casting/recipe/solidifier/bronze/rod.json
 660808c2ac71911c57174f79c207c343cf827382 data/casting/recipe/solidifier/coal/block.json
 24c7d450960c2926c761d44f830faaedce7e2552 data/casting/recipe/solidifier/coal/coal.json
+416d630674755cbd8e31567baeffb16436bf5c00 data/casting/recipe/solidifier/coal/nugget.json
 84a8614561f06fbd9af01209be80e23014956bdf data/casting/recipe/solidifier/conductive_alloy/ball.json
 fc596d19c440324421d08fd0d07dd75ecfe91ee5 data/casting/recipe/solidifier/conductive_alloy/block.json
 7c9815725125629dc388bc3c1ada6e52b8181ecd data/casting/recipe/solidifier/conductive_alloy/gear.json

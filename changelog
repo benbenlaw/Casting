@@ -2,6 +2,15 @@ Changelog BBL Smelting
 
 // TODO //
 
+
+1.15.5
+
+Change ingot mold recipe to use bricks instead of ingots
+Controller now longer allows melting of an item if the fluid tank is full, this prevents the controller from filling all its output tanks with the same fluid
+Fluid mover now works on the tank in world, right click to collect and right click to add
+Mini coal added to solidifier recipes
+Controller now lights up when working as well as show a lighted texture
+
 1.15.4
 
 Added new logo

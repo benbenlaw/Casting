@@ -24,7 +24,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> CONTROLLER = registerBlock("controller",
             () -> new ControllerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
-                    .noOcclusion()));
+                    .lightLevel(litBlockEmission(15)).noOcclusion()));
     public static final DeferredBlock<Block> SOLIDIFIER = registerBlock("solidifier",
             () -> new SolidifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
                     .noOcclusion()));
@@ -44,7 +44,7 @@ public class ModBlocks {
                     .noOcclusion()));
 
     private static ToIntFunction<BlockState> litBlockEmission(int lightLevel) {
-        return (blockState) -> blockState.getValue(BlockStateProperties.LIT) ? lightLevel : 0;
+        return (blockState) -> blockState.getValue(BlockStateProperties.POWERED) ? lightLevel : 0;
     }
 
     private static <T extends Block> DeferredBlock<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {

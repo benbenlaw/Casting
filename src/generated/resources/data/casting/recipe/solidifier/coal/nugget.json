@@ -1,0 +1,15 @@
+{
+  "type": "casting:solidifier",
+  "fluid": {
+    "amount": 10,
+    "id": "casting:molten_coal"
+  },
+  "mold": {
+    "count": 1,
+    "item": "casting:nugget_mold"
+  },
+  "output": {
+    "count": 1,
+    "item": "opolisutilities:mini_coal"
+  }
+}

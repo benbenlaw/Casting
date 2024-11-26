@@ -130,7 +130,7 @@ public class CastingRecipes extends RecipeProvider {
                 .pattern("BIB")
                 .pattern(" B ")
                 .define('B', ModItems.BLACK_BRICK.get())
-                .define('I', Tags.Items.INGOTS)
+                .define('I', Tags.Items.BRICKS)
                 .unlockedBy("has_black_brick", has(ModItems.BLACK_BRICK.get()))
                 .save(consumer);
 
@@ -852,6 +852,10 @@ public class CastingRecipes extends RecipeProvider {
         SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(ModItems.GEM_MOLD, 1), new SizedIngredient(Ingredient.of(Items.COAL), 1),
                         new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 80))
                 .unlockedBy("has_item", has(Items.COAL)).save(consumer, "casting:solidifier/coal/coal");
+
+        SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(ModItems.NUGGET_MOLD, 1), new SizedIngredient(Ingredient.of(com.benbenlaw.opolisutilities.item.ModItems.MINI_COAL), 1),
+                        new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 10))
+                .unlockedBy("has_item", has(Items.COAL)).save(consumer, "casting:solidifier/coal/nugget");
 
         // Emerald Processing
 
