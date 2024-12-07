@@ -52,7 +52,7 @@ public class TankBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 
         if (itemStack.is(ModItems.FLUID_MOVER.asItem())) {
             TankBlockEntity tankEntity = (TankBlockEntity) level.getBlockEntity(blockPos);
@@ -89,35 +89,16 @@ public class TankBlock extends BaseEntityBlock {
                     }
                 }
             }
+
+        }
+        else {
+            TankBlockEntity tankBlockEntity = (TankBlockEntity) level.getBlockEntity(blockPos);
+            if (tankBlockEntity != null && tankBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
+                return ItemInteractionResult.SUCCESS;
+            }
         }
 
         return ItemInteractionResult.FAIL;
-    }
-
-
-
-
-
-    @Override
-    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull Player player, @NotNull BlockHitResult hit) {
-        if (level.isClientSide()) {
-            return InteractionResult.SUCCESS;
-        }
-
-        // Retrieve the block entity at the position
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (!(blockEntity instanceof TankBlockEntity)) {
-            return InteractionResult.FAIL;
-        }
-
-        TankBlockEntity entity = (TankBlockEntity) blockEntity;
-
-        //FILL BUCKET//
-        TankBlockEntity tankBlockEntity = (TankBlockEntity) level.getBlockEntity(blockPos);
-        if (tankBlockEntity != null && tankBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
-            return InteractionResult.SUCCESS;
-        }
-        return InteractionResult.PASS;
     }
 
     @Override

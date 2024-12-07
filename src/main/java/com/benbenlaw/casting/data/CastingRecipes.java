@@ -53,7 +53,7 @@ public class CastingRecipes extends RecipeProvider {
 
         //Black Brick
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BRICK), RecipeCategory.MISC, new ItemStack(ModItems.BLACK_BRICK.get()), 0.5f, 100)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BRICK), RecipeCategory.MISC, new ItemStack(ModItems.BLACK_BRICK.get()), 0.5f, 200)
                 .unlockedBy("has_brick", has(Items.BRICK))
                 .save(consumer);
 

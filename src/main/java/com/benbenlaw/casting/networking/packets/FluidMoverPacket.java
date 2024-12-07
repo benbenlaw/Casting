@@ -84,6 +84,7 @@ public record FluidMoverPacket() {
                     player.sendSystemMessage(Component.literal("Invalid tank number!"));
                     return;
                 }
+
             }
 
             transferFluidBetweenTankAndItem(selectedTank, carriedItem, player, isOutputTank);

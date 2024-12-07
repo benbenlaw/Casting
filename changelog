@@ -2,6 +2,10 @@ Changelog BBL Smelting
 
 // TODO //
 
+1.15.7
+
+Fixed buckets and other fluid handler not working with the tank
+Fixed smelting time not being correct on black bricks
 
 1.15.5
 

@@ -1,4 +1,4 @@
-// 1.21	2024-11-26T10:11:59.4376757	Recipes
+// 1.21	2024-11-27T07:53:11.6279185	Recipes
 d2ea4d8ce765581bcbbe977e46d4dada22629c1e data/casting/advancement/recipes/fuel/fuel/lava.json
 d42b7a6d6b1d2bf9f8135d17c5a1f3d53b083e4a data/casting/advancement/recipes/fuel/fuel/molten_coal.json
 87543abaa0e3ad2d740112dc3a783db8f6d295be data/casting/advancement/recipes/fuel/fuel/molten_ender.json
@@ -515,7 +515,7 @@ c33e41db163f498f3d9881f39b3e94925a9efd07 data/casting/advancement/recipes/solidi
 d892904a2a1fb62c15293b869ed3c7415aef34c4 data/casting/advancement/recipes/solidifier/solidifier/zinc/plate.json
 7fa09c37efee668a0992da3bafc48c760089cdba data/casting/advancement/recipes/solidifier/solidifier/zinc/rod.json
 85899953a0abc52af6ed4fd4dc5ee687c10c73ac data/casting/recipe/ball_mold.json
-0f0c4d0bb84278dde33efef27166e8fc736a7366 data/casting/recipe/black_brick.json
+07177a420d1148f2d36d532347afbd9c26446c5a data/casting/recipe/black_brick.json
 4ad4a77dc033064f8c6bf4e7ef7654819dd1d039 data/casting/recipe/black_bricks.json
 aefd70d4d03e1742f2efebc70fb206c87db13a6e data/casting/recipe/block_mold.json
 2c08b0fcaf863c6edc4a87a2540b398feda0af2c data/casting/recipe/controller.json
