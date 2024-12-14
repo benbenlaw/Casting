@@ -2,6 +2,10 @@ Changelog BBL Smelting
 
 // TODO //
 
+1.15.8
+Controller will now fill tanks which contain the same fluid before attempting to fill the first empty tank
+    Fixes the controller filling 2 different tanks with the same fluid
+
 1.15.7
 
 Fixed buckets and other fluid handler not working with the tank

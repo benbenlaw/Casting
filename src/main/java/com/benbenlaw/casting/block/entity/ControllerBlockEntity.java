@@ -514,16 +514,30 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
 
     }
     private void addFluidToTank(FluidStack output, int amount) {
-        if((TANK_1.getFluid().getFluid() == output.getFluid() && (TANK_1.getCapacity() - TANK_1.getFluidAmount() >= output.getAmount()) ) || TANK_1.getFluid().isEmpty()) {
+
+        if((TANK_1.getFluid().getFluid() == output.getFluid() && (TANK_1.getCapacity() - TANK_1.getFluidAmount() >= output.getAmount()))) {
             TANK_1.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
         }
-        else if((TANK_2.getFluid().getFluid() == output.getFluid() && (TANK_2.getCapacity() - TANK_2.getFluidAmount() >= output.getAmount()) ) || TANK_2.getFluid().isEmpty()) {
+        else if((TANK_2.getFluid().getFluid() == output.getFluid() && (TANK_2.getCapacity() - TANK_2.getFluidAmount() >= output.getAmount()))) {
             TANK_2.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
         }
-        else if((TANK_3.getFluid().getFluid() == output.getFluid() && (TANK_3.getCapacity() - TANK_3.getFluidAmount() >= output.getAmount()) ) || TANK_3.getFluid().isEmpty()) {
+        else if((TANK_3.getFluid().getFluid() == output.getFluid() && (TANK_3.getCapacity() - TANK_3.getFluidAmount() >= output.getAmount()))) {
             TANK_3.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
         }
-        else if((TANK_4.getFluid().getFluid() == output.getFluid() && (TANK_4.getCapacity() - TANK_4.getFluidAmount() >= output.getAmount()) ) || TANK_4.getFluid().isEmpty()) {
+        else if((TANK_4.getFluid().getFluid() == output.getFluid() && (TANK_4.getCapacity() - TANK_4.getFluidAmount() >= output.getAmount()))) {
+            TANK_4.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
+        }
+
+        else if(TANK_1.getFluid().isEmpty()) {
+            TANK_1.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
+        }
+        else if(TANK_2.getFluid().isEmpty()) {
+            TANK_2.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
+        }
+        else if(TANK_3.getFluid().isEmpty()) {
+            TANK_3.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
+        }
+        else if(TANK_4.getFluid().isEmpty()) {
             TANK_4.fill(new FluidStack(output.getFluid(), amount), IFluidHandler.FluidAction.EXECUTE);
         }
     }
@@ -618,14 +632,28 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
     private void transferFluidToTank(IFluidTank sourceTank, IFluidTank targetTank) {
         if (sourceTank.getFluidAmount() > 0) {
             FluidStack fluidInSource = sourceTank.getFluid();
-            if (targetTank.getFluidAmount() == 0 || isSameFluidSameComponents(targetTank.getFluid(), fluidInSource)) {
-                int drainAmount = sourceTank.getFluidAmount();
-                FluidStack drained = sourceTank.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
-                int filled = targetTank.fill(drained, IFluidHandler.FluidAction.EXECUTE);
-                sourceTank.drain(filled, IFluidHandler.FluidAction.EXECUTE);
+
+            // Check if the target tank is empty and already has a defined fluid type
+            if (targetTank.getFluidAmount() > 0) {
+                // Ensure the fluid in the target tank is the same as the source
+                if (!isSameFluidSameComponents(targetTank.getFluid(), fluidInSource)) {
+                    return; // Abort if fluids are not compatible
+                }
+            } else {
+                // Ensure the target tank can accept this type of fluid (some tanks may define specific constraints)
+                if (!targetTank.isFluidValid(fluidInSource)) {
+                    return; // Abort if target tank cannot accept this fluid type
+                }
             }
+
+            // Proceed with the transfer
+            int drainAmount = sourceTank.getFluidAmount();
+            FluidStack drained = sourceTank.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
+            int filled = targetTank.fill(drained, IFluidHandler.FluidAction.EXECUTE);
+            sourceTank.drain(filled, IFluidHandler.FluidAction.EXECUTE);
         }
     }
+
 
     private void transferFluidToMixer(IFluidTank sourceTank, MixerBlockEntity mixerBlockEntity) {
         if (sourceTank.getFluidAmount() > 0) {
