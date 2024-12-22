@@ -1,0 +1,15 @@
+{
+  "type": "casting:solidifier",
+  "fluid": {
+    "amount": 90,
+    "id": "casting:molten_diamond"
+  },
+  "mold": {
+    "count": 1,
+    "item": "casting:rod_mold"
+  },
+  "output": {
+    "count": 1,
+    "item": "minecraft:diamond"
+  }
+}

@@ -114,6 +114,18 @@ public class ModdedTags {
     public static TagKey<Item> stonePlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
             String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "plates/stone")))));
 
+    public static TagKey<Item> diamondPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
+            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "plates/diamond")))));
+
+    public static TagKey<Item> emeraldPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
+            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "plates/emerald")))));
+
+    public static TagKey<Item> lapisPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
+            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "plates/lapis")))));
+
+    public static TagKey<Item> quartzPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
+            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "plates/quartz")))));
+
 
     //Netherite Tags
 
