@@ -90,7 +90,7 @@ public class SolidifierRecipeCategory implements IRecipeCategory<SolidifierRecip
         builder.addSlot(RecipeIngredientRole.INPUT, 40, 2).addFluidStack(recipe.fluid().getFluid(), recipe.fluid().getAmount());
 
         builder.addSlot(RecipeIngredientRole.CATALYST, 4, 2).addIngredients(VanillaTypes.ITEM_STACK, Arrays.asList(recipe.mold().getItems()));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 2).addItemStacks(Arrays.asList(recipe.output().getItems()));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 2).addItemStack(recipe.output().getItems()[0]);
     }
 
     public void draw(SolidifierRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {

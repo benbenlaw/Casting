@@ -2,6 +2,9 @@ Changelog BBL Smelting
 
 // TODO //
 
+1.15.10
+Fixed JEI solidifier recipes think one recipe would produce more than one item in recipes
+
 1.15.9
 Added missing recipes for molten fluids into dusts in the Solidifier
 
