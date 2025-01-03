@@ -1084,9 +1084,9 @@ public class CastingRecipes extends RecipeProvider {
                         new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 360))
                 .unlockedBy("has_item", has(lapisGearTag)).save(consumer.withConditions(new NotCondition(new TagEmptyCondition(lapisGearTag))), "casting:solidifier/lapis/gear");
 
-        SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(ModItems.ROD_MOLD, 1), new SizedIngredient(Ingredient.of(Items.LAPIS_LAZULI), 1),
+        SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(ModItems.ROD_MOLD, 1), new SizedIngredient(Ingredient.of(lapisRodTag), 1),
                         new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 90))
-                .unlockedBy("has_item", has(Items.LAPIS_LAZULI)).save(consumer, "casting:solidifier/lapis/rod");
+                .unlockedBy("has_item", has(lapisRodTag)).save(consumer, "casting:solidifier/lapis/rod");
 
         SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(ModItems.PLATE_MOLD, 1), new SizedIngredient(Ingredient.of(lapisPlateTag), 1),
                         new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 90))
@@ -1389,7 +1389,7 @@ public class CastingRecipes extends RecipeProvider {
                 .unlockedBy("has_item", has(Tags.Items.STONES)).save(consumer, "casting:solidifier/stone/block");
 
         SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(ModItems.GEAR_MOLD, 1), new SizedIngredient(Ingredient.of(stoneGearTag), 1),
-                        new FluidStack(CastingFluids.MOLTEN_STONE.getFluid(), 360))
+                        new FluidStack(CastingFluids.MOLTEN_STONE.getFluid(), 4000))
                 .unlockedBy("has_item", has(stoneGearTag)).save(consumer.withConditions(new NotCondition(new TagEmptyCondition(stoneGearTag))), "casting:solidifier/stone/gear");
 
         SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(ModItems.ROD_MOLD, 1), new SizedIngredient(Ingredient.of(stoneRodTag), 1),

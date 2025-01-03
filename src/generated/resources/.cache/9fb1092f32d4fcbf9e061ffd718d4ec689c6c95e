@@ -1,4 +1,4 @@
-// 1.21	2024-12-16T07:09:37.6876347	Recipes
+// 1.21	2025-01-03T11:46:35.3227237	Recipes
 d2ea4d8ce765581bcbbe977e46d4dada22629c1e data/casting/advancement/recipes/fuel/fuel/lava.json
 d42b7a6d6b1d2bf9f8135d17c5a1f3d53b083e4a data/casting/advancement/recipes/fuel/fuel/molten_coal.json
 87543abaa0e3ad2d740112dc3a783db8f6d295be data/casting/advancement/recipes/fuel/fuel/molten_ender.json
@@ -425,7 +425,7 @@ dc31b3988ac3af0e5c419e005b1088a1fee99e0c data/casting/advancement/recipes/solidi
 fafbd8c780cf086f2e835378468f1cb48153b6fd data/casting/advancement/recipes/solidifier/solidifier/lapis/gear.json
 14935ad2abb81938645152cb17a65339cb5f8397 data/casting/advancement/recipes/solidifier/solidifier/lapis/lapis.json
 ebb944e7711142fea0671d3c1a3241fbc0bf7a0f data/casting/advancement/recipes/solidifier/solidifier/lapis/plate.json
-06b3799df356b89f1414ed8cb62434de9210afdb data/casting/advancement/recipes/solidifier/solidifier/lapis/rod.json
+2801fce99d3d00c9ac61b492f842933f32e705e0 data/casting/advancement/recipes/solidifier/solidifier/lapis/rod.json
 c5ac2df6778d98e0713abc169373dc41cbe6e42a data/casting/advancement/recipes/solidifier/solidifier/lead/block.json
 f1e29f57af9c266a41c2be0643f73cc2bc008e3f data/casting/advancement/recipes/solidifier/solidifier/lead/dust.json
 98b5c96aa0b712a889188fb0bc767c2d3766e1b1 data/casting/advancement/recipes/solidifier/solidifier/lead/gear.json
@@ -980,7 +980,7 @@ c0d304afcc042320345eabcb1122fb7f22c381e4 data/casting/recipe/solidifier/lapis/du
 e8fac16f77a4eeb224b3590c5473280015bc7b68 data/casting/recipe/solidifier/lapis/gear.json
 208aec71b53188f6b29f117f6f2b399781d41fb5 data/casting/recipe/solidifier/lapis/lapis.json
 6d4d6b7f3e6e14ddb21be75aac55c54f8fdf44cc data/casting/recipe/solidifier/lapis/plate.json
-03538f6cd0f373332d1ae0b4da6a5f4db091a25c data/casting/recipe/solidifier/lapis/rod.json
+50f61fedfe159f158b6427810cf949bfa3bd513e data/casting/recipe/solidifier/lapis/rod.json
 695794a37a003521c77f5a7aa6087cf0623a25e3 data/casting/recipe/solidifier/lead/block.json
 ab94e8257472299109bc497be557109a00e1154e data/casting/recipe/solidifier/lead/dust.json
 0cef9eda9675dc91acf40ecad395e568a1765967 data/casting/recipe/solidifier/lead/gear.json
@@ -1078,7 +1078,7 @@ a2dc9e3bad6211ea4ea82e2b01a362335fa12c02 data/casting/recipe/solidifier/steel/in
 04a804bb45837744da2bc60fe51b2701ad9d4e13 data/casting/recipe/solidifier/steel/plate.json
 3d9e1059c1d73580c12a6ee742e190b40056fc13 data/casting/recipe/solidifier/steel/rod.json
 7e67ca10c59025b07df74806e4cd1790dbd66b2c data/casting/recipe/solidifier/stone/block.json
-b962f10ce8688c9c69477efb40fc40873abed671 data/casting/recipe/solidifier/stone/gear.json
+d3010ec7c8f9660db62f80f081316e0a5b18f514 data/casting/recipe/solidifier/stone/gear.json
 77387a6826e6fe07af4a1e486f62f70f0b0df45a data/casting/recipe/solidifier/stone/plate.json
 ca184176d72d1f1803f4830fea42736b5a450513 data/casting/recipe/solidifier/stone/rod.json
 656b4e573f91d96981fe221d90f869ca7971acd0 data/casting/recipe/solidifier/tin/block.json

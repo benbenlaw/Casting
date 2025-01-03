@@ -123,6 +123,9 @@ public class ModdedTags {
     public static TagKey<Item> lapisPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
             String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "plates/lapis")))));
 
+    public static TagKey<Item> lapisRodTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
+            String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "rods/lapis")))));
+
     public static TagKey<Item> quartzPlateTag = ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
             String.valueOf(ResourceLocation.fromNamespaceAndPath("c", "plates/quartz")))));
 

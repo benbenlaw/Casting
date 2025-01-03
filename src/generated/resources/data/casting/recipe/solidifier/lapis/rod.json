@@ -10,6 +10,6 @@
   },
   "output": {
     "count": 1,
-    "item": "minecraft:lapis_lazuli"
+    "tag": "c:rods/lapis"
   }
 }
