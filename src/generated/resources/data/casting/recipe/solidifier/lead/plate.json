@@ -15,7 +15,7 @@
   },
   "mold": {
     "count": 1,
-    "item": "casting:plate_mold"
+    "tag": "c:molds/plate"
   },
   "output": {
     "count": 1,

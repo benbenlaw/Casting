@@ -32,7 +32,19 @@ public class CastingTags {
     public static class Items {
 
         //Smelting Item Tags
-        public static final TagKey<Item> MOLDS = tag("molds");
+        public static final TagKey<Item> MOLDS = commonTags("molds");
+        public static final TagKey<Item> INGOT_MOLD = commonTags("molds/ingot");
+        public static final TagKey<Item> NUGGET_MOLD = commonTags("molds/nugget");
+        public static final TagKey<Item> GEM_MOLD = commonTags("molds/gem");
+        public static final TagKey<Item> DUST_MOLD = commonTags("molds/dust");
+        public static final TagKey<Item> PLATE_MOLD = commonTags("molds/plate");
+        public static final TagKey<Item> GEAR_MOLD = commonTags("molds/gear");
+        public static final TagKey<Item> ROD_MOLD = commonTags("molds/rod");
+        //public static final TagKey<Item> WIRE_MOLD = commonTags("molds/wire");
+        public static final TagKey<Item> BLOCK_MOLD = commonTags("molds/block");
+        public static final TagKey<Item> BALL_MOLD = commonTags("molds/ball");
+
+
 
 
         //Common Tags

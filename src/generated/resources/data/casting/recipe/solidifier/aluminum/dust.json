@@ -15,7 +15,7 @@
   },
   "mold": {
     "count": 1,
-    "item": "casting:dust_mold"
+    "tag": "c:molds/dust"
   },
   "output": {
     "count": 1,

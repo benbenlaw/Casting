@@ -2,6 +2,10 @@ Changelog BBL Smelting
 
 // TODO //
 
+1.16.0
+Added mold tags for all type of molds using the c namespace eg (c:molds, c:molds/ingots)
+Recipes that used specific molds now use the tag instead
+Re run data gen to update all recipes to tags
 
 1.15.11
 Stone gear now uses 4000mb of stone to be accurate with the resource count it would need (4 stone is 4000mb)
