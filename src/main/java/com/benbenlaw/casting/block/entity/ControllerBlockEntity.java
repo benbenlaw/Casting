@@ -407,7 +407,7 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
             fuelInformation(level.getBlockEntity(this.worldPosition));
             sync();
 
-            boolean isPowered = false; // Flag to track if any recipe is running
+            boolean isPowered = false;
 
             // Iterate through each slot independently
             for (int i = 0; i < 15; i++) {  // Loop includes slot 14

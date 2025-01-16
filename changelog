@@ -2,6 +2,9 @@ Changelog BBL Smelting
 
 // TODO //
 
+1.16.1
+Updated the plate mold and gear mold textures to better reflect the current versions of gears and plates being used
+
 1.16.0
 Added mold tags for all type of molds using the c namespace eg (c:molds, c:molds/ingots)
 Recipes that used specific molds now use the tag instead

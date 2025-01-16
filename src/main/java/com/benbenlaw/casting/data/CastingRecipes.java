@@ -8,6 +8,7 @@ import com.benbenlaw.casting.data.recipes.SolidifierRecipeBuilder;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.ModItems;
 import com.benbenlaw.casting.util.CastingTags;
+import com.benbenlaw.opolisutilities.OpolisUtilities;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
