@@ -2,6 +2,10 @@ Changelog BBL Smelting
 
 // TODO //
 
+1.16.2
+Controller will now display the correct fuel tank information when more than one tank is connected to it showing which tank is being used
+Updated changelog to point to the casting github changelog
+
 1.16.1
 Updated the plate mold and gear mold textures to better reflect the current versions of gears and plates being used
 

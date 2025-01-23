@@ -713,10 +713,11 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
             return;
         }
         Level level = entity.getLevel();
-
         if (level != null && !level.isClientSide()) {
+            boolean foundFuel = false;
             for (Direction direction : Direction.values()) {
                 BlockEntity adjacentEntity = level.getBlockEntity(entity.getBlockPos().relative(direction));
+
                 if (adjacentEntity instanceof TankBlockEntity tankBlockEntity) {
                     List<RecipeHolder<FuelRecipe>> allFuels = level.getRecipeManager().getAllRecipesFor(FuelRecipe.Type.INSTANCE);
 
@@ -724,13 +725,23 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
                         FuelRecipe recipe = recipeHolder.value();
                         if (recipe.fluid().getFluid() == tankBlockEntity.FLUID_TANK.getFluid().getFluid()) {
                             fuelTemp = recipe.temp();
+                            foundFuel = true;
                             break;
                         }
                     }
+
+                    if (foundFuel) {
+                        break;
+                    }
                 }
+            }
+            if (!foundFuel) {
+                fuelTemp = 0;  // Set the default temperature
             }
         }
     }
+
+
     private int setNewMaxProgress(int fuelInTankTemp, int recipeTemp) {
         if (recipeTemp <= 0) {
             throw new IllegalArgumentException("recipeTemp must be greater than zero");
