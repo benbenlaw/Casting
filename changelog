@@ -1,6 +1,18 @@
 Changelog BBL Smelting
 
 // TODO //
+Scalable Controller
+Switch to core, (1.22)
+Fluid Storage, like the mixer but store molten fluids
+Make item show there contents
+fluid storage (1.22)
+tools, can be repairs using solidifier
+
+1.16.4
+Added Solidifier Locking, Simple button to prevent the solidifier from uising the last 100mb of fluid in the solidifier
+
+1.16.3
+Coal dust recipe now uses 80mb in melting and solidifying recipes
 
 1.16.2
 Controller will now display the correct fuel tank information when more than one tank is connected to it showing which tank is being used

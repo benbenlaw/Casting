@@ -1,4 +1,4 @@
-// 1.21	2025-01-07T17:55:08.6574195	Recipes
+// 1.21	2025-01-25T14:08:01.2288967	Recipes
 d2ea4d8ce765581bcbbe977e46d4dada22629c1e data/casting/advancement/recipes/fuel/fuel/lava.json
 d42b7a6d6b1d2bf9f8135d17c5a1f3d53b083e4a data/casting/advancement/recipes/fuel/fuel/molten_coal.json
 87543abaa0e3ad2d740112dc3a783db8f6d295be data/casting/advancement/recipes/fuel/fuel/molten_ender.json
@@ -860,7 +860,7 @@ e95dca02a9e6b69b9c8fa6169a065488f7eb81f6 data/casting/recipe/solidifier/bronze/n
 53adf902772f33b14aed7e560326bc14cadc7d14 data/casting/recipe/solidifier/bronze/rod.json
 5d56f09e3df2ad8d3e5ad853709651cca9a40efe data/casting/recipe/solidifier/coal/block.json
 fdaa0bedfdfcfff148311b54225f6e011341052b data/casting/recipe/solidifier/coal/coal.json
-0711b0852fc76a71a20c86480ead02a0273c32a9 data/casting/recipe/solidifier/coal/dust.json
+580c6d9cc31af02db107627b0331c00c1f7dcb03 data/casting/recipe/solidifier/coal/dust.json
 4d456ab7658d951cb91440ab893cfafd983c57d5 data/casting/recipe/solidifier/coal/nugget.json
 bfde8f810f23c3baa9fe8ce2d41a639af7b828d4 data/casting/recipe/solidifier/conductive_alloy/ball.json
 d0fcbe6bcb15afac3370bb1cf0f31d2c8f7b7de6 data/casting/recipe/solidifier/conductive_alloy/block.json

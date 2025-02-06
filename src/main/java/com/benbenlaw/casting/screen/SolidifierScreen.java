@@ -4,6 +4,7 @@ import com.benbenlaw.casting.block.entity.TankBlockEntity;
 import com.benbenlaw.casting.item.ModItems;
 import com.benbenlaw.casting.networking.payload.ClearTankPayload;
 import com.benbenlaw.casting.networking.payload.FluidMoverPayload;
+import com.benbenlaw.casting.networking.payload.LockSolidifierPayload;
 import com.benbenlaw.casting.screen.utils.FluidStackWidgetBigTank;
 import com.benbenlaw.casting.screen.utils.FuelTankFluidStackWidget;
 import com.benbenlaw.opolisutilities.screen.utils.FluidStackWidget;
@@ -110,6 +111,7 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
 
         renderWarning(guiGraphics, mouseX, mouseY);
         renderTooltip(guiGraphics, mouseX, mouseY);
+        renderFilteredFluid(guiGraphics, mouseX, mouseY);
     }
 
 
@@ -129,6 +131,8 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
         boolean handled = super.mouseClicked(mouseX, mouseY, mouseButton);
+
+
 
         ItemStack heldItem = menu.getCarried();
         boolean isHoldingBucket = heldItem.is(ModItems.FLUID_MOVER);
@@ -150,6 +154,14 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
                 PacketDistributor.sendToServer(new ClearTankPayload(menu.blockEntity.getBlockPos(), hasShiftDown, tank));
             }
         }
+
+        if (MouseUtil.isMouseOver(mouseX, mouseY, leftPos + 6, topPos + 36, 16, 16)) {
+
+            PacketDistributor.sendToServer(new LockSolidifierPayload(menu.blockEntity.getBlockPos()));
+
+        }
+
+
         return handled;
     }
     private void renderWarning(GuiGraphics guiGraphics, int mouseX, int mouseY) {
@@ -165,6 +177,18 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
         }
     }
 
+
+    private void renderFilteredFluid(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        if (MouseUtil.isMouseOver(mouseX, mouseY, leftPos + 6, topPos + 36, 16, 16)) {
+            boolean limitMode = this.menu.blockEntity.getLimitMode();
+
+            if (limitMode) {
+                guiGraphics.renderTooltip(this.font, Component.literal("Filtering Fluid! Click to toggle").withStyle(ChatFormatting.GREEN), mouseX, mouseY);
+            } else {
+                guiGraphics.renderTooltip(this.font, Component.literal("Not Filtering Fluid! Click to filter for current fluid").withStyle(ChatFormatting.RED), mouseX, mouseY);
+            }
+        }
+    }
 
     private void renderNoTank(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
         if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 107,  55, 16, 16)) {

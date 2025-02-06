@@ -891,7 +891,7 @@ public class CastingRecipes extends RecipeProvider {
                 .unlockedBy("has_item", has(Items.COAL)).save(consumer, "casting:solidifier/coal/nugget");
 
         SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(CastingTags.Items.DUST_MOLD, 1), new SizedIngredient(Ingredient.of(coalDustTag), 1),
-                        new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 90))
+                        new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 80))
                 .unlockedBy("has_item", has(coalDustTag)).save(consumer.withConditions(new NotCondition(new TagEmptyCondition(coalDustTag))), "casting:solidifier/coal/dust");
 
 

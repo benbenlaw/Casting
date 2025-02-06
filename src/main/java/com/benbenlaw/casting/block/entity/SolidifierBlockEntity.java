@@ -157,6 +157,7 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
     public int progress = 0;
     public int maxProgress;
     public int fuelTemp = 0;
+    public boolean isLimitMode = false;
     private final IItemHandler solidifierItemHandler = new InputOutputItemHandler(itemHandler,
             (i, stack) -> i == 0 ,  //
             i -> i == 1
@@ -250,6 +251,7 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
         compoundTag.putInt("maxProgress", maxProgress);
         compoundTag.put("tank", TANK.writeToNBT(provider, new CompoundTag()));
         compoundTag.putInt("fuelTemp", fuelTemp);
+        compoundTag.putBoolean("limitMode", isLimitMode);
 
     }
 
@@ -260,6 +262,7 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
         maxProgress = compoundTag.getInt("maxProgress");
         TANK.readFromNBT(provider, compoundTag.getCompound("tank"));
         fuelTemp = compoundTag.getInt("fuelTemp");
+        isLimitMode = compoundTag.getBoolean("limitMode");
         super.loadAdditional(compoundTag, provider);
     }
 
@@ -348,7 +351,11 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
 
 
     private boolean hasEnoughFluid(FluidStack output) {
-        return TANK.getFluidAmount() >= output.getAmount() && TANK.getFluid().getFluid() == output.getFluid();
+        int tankAmount = TANK.getFluidAmount();
+        if (isLimitMode) {
+            tankAmount = tankAmount - 100;
+        }
+        return tankAmount >= output.getAmount() && TANK.getFluid().getFluid() == output.getFluid();
     }
 
     private boolean isRecipeSlotsValidForTanks(SolidifierRecipe recipe) {
@@ -455,4 +462,14 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
             }
         }
     }
+
+    public boolean getLimitMode() {
+        return isLimitMode;
+    }
+
+    public boolean toggleLimitMode() {
+        isLimitMode = !isLimitMode;
+        return isLimitMode;
+    }
+
 }
