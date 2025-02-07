@@ -183,9 +183,9 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
             boolean limitMode = this.menu.blockEntity.getLimitMode();
 
             if (limitMode) {
-                guiGraphics.renderTooltip(this.font, Component.literal("Filtering Fluid! Click to toggle").withStyle(ChatFormatting.GREEN), mouseX, mouseY);
+                guiGraphics.renderTooltip(this.font, Component.literal("Locking in 100mb of Fluid! Click to toggle").withStyle(ChatFormatting.GREEN), mouseX, mouseY);
             } else {
-                guiGraphics.renderTooltip(this.font, Component.literal("Not Filtering Fluid! Click to filter for current fluid").withStyle(ChatFormatting.RED), mouseX, mouseY);
+                guiGraphics.renderTooltip(this.font, Component.literal("Not Filtering Fluid! Click to toggle").withStyle(ChatFormatting.RED), mouseX, mouseY);
             }
         }
     }

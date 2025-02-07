@@ -8,8 +8,11 @@ Make item show there contents
 fluid storage (1.22)
 tools, can be repairs using solidifier
 
+1.16.5
+Added information to jei about the lock slot on the solidifier, changed the text that displays when hovering over the slot
+
 1.16.4
-Added Solidifier Locking, Simple button to prevent the solidifier from uising the last 100mb of fluid in the solidifier
+Added Solidifier Locking, Simple button to prevent the solidifier from using the last 100mb of fluid in the solidifier
 
 1.16.3
 Coal dust recipe now uses 80mb in melting and solidifying recipes
