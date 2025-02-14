@@ -3,10 +3,13 @@ Changelog BBL Smelting
 // TODO //
 Scalable Controller
 Switch to core, (1.22)
-Fluid Storage, like the mixer but store molten fluids
-Make item show there contents
+Fluid Storage, like the mixer but store molten fluids (1.22)
+Make item show there contents (1.22)
 fluid storage (1.22)
 tools, can be repairs using solidifier
+
+1.16.6
+Solidifier now correctly updates its speed when a fuel tank goes below the minimum required amount
 
 1.16.5
 Added information to jei about the lock slot on the solidifier, changed the text that displays when hovering over the slot

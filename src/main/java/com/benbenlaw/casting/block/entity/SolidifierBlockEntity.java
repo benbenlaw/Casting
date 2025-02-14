@@ -157,6 +157,8 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
     public int progress = 0;
     public int maxProgress;
     public int fuelTemp = 0;
+    public int storedTankFluidAmount = 0;
+    public int storedTankFluidAmountUsedInRecipe = 0;
     public boolean isLimitMode = false;
     private final IItemHandler solidifierItemHandler = new InputOutputItemHandler(itemHandler,
             (i, stack) -> i == 0 ,  //
@@ -251,6 +253,8 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
         compoundTag.putInt("maxProgress", maxProgress);
         compoundTag.put("tank", TANK.writeToNBT(provider, new CompoundTag()));
         compoundTag.putInt("fuelTemp", fuelTemp);
+        compoundTag.putInt("storedTankFluidAmount", storedTankFluidAmount);
+        compoundTag.putInt("storedTankFluidAmountUsedInRecipe", storedTankFluidAmountUsedInRecipe);
         compoundTag.putBoolean("limitMode", isLimitMode);
 
     }
@@ -262,6 +266,8 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
         maxProgress = compoundTag.getInt("maxProgress");
         TANK.readFromNBT(provider, compoundTag.getCompound("tank"));
         fuelTemp = compoundTag.getInt("fuelTemp");
+        storedTankFluidAmount = compoundTag.getInt("storedTankFluidAmount");
+        storedTankFluidAmountUsedInRecipe = compoundTag.getInt("storedTankFluidAmountUsedInRecipe");
         isLimitMode = compoundTag.getBoolean("limitMode");
         super.loadAdditional(compoundTag, provider);
     }
@@ -384,24 +390,29 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
     private void updateSpeed() {
         int updatedProgress = 0;
 
-        if (fuelTemp > 1000){
-            float modifier = ((float) (fuelTemp - 1000) / 1000);
-            updatedProgress = (int) (220 / modifier);
+        if (storedTankFluidAmount >= storedTankFluidAmountUsedInRecipe) {
+
+            if (fuelTemp > 1000) {
+                float modifier = ((float) (fuelTemp - 1000) / 1000);
+                updatedProgress = (int) (220 / modifier);
+            }
+
+            if (fuelTemp < 1000) {
+                float modifier = (((float) fuelTemp / 1000));
+                updatedProgress = (int) (220 * modifier);
+
+            }
+
+            if (fuelTemp == 1000) {
+                updatedProgress = 220;
+            }
+
+            maxProgress = updatedProgress;
+
+        } else {
+            maxProgress = 220;
+
         }
-
-        if (fuelTemp < 1000) {
-            float modifier = (((float) fuelTemp / 1000));
-            updatedProgress = (int) (220 * modifier);
-
-        }
-
-        if (fuelTemp == 1000) {
-            updatedProgress = 220;
-        }
-
-        maxProgress = updatedProgress;
-
-
     }
 
 
@@ -422,6 +433,8 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
                         FuelRecipe recipe = recipeHolder.value();
                         if (recipe.fluid().getFluid() == tankBlockEntity.FLUID_TANK.getFluid().getFluid()) {
                             fuelTemp = recipe.temp();
+                            storedTankFluidAmount = tankBlockEntity.FLUID_TANK.getFluidAmount();
+                            storedTankFluidAmountUsedInRecipe = recipe.fluid().getAmount();
                             foundFuel = true;
                             break;
                         }
