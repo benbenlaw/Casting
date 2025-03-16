@@ -1088,7 +1088,7 @@ public class CastingRecipes extends RecipeProvider {
 
         SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(CastingTags.Items.ROD_MOLD, 1), new SizedIngredient(Ingredient.of(lapisRodTag), 1),
                         new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 90))
-                .unlockedBy("has_item", has(lapisRodTag)).save(consumer, "casting:solidifier/lapis/rod");
+                .unlockedBy("has_item", has(lapisRodTag)).save(consumer.withConditions(new NotCondition(new TagEmptyCondition(lapisRodTag))), "casting:solidifier/lapis/rod");
 
         SolidifierRecipeBuilder.SolidifierRecipesBuilder(SizedIngredient.of(CastingTags.Items.PLATE_MOLD, 1), new SizedIngredient(Ingredient.of(lapisPlateTag), 1),
                         new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 90))
