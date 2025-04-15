@@ -5,7 +5,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.142'
+    id 'net.neoforged.gradle.userdev' version '7.0.165'
     id 'net.darkhax.curseforgegradle' version '1.1.24'
     id "com.modrinth.minotaur" version "2.+"
 }
@@ -66,8 +66,11 @@ dependencies {
 
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    //Ender IO
+    //BBL Core
+    compileOnly "curse.maven:bbl-core-1135181:6212641"
+    runtimeOnly "curse.maven:bbl-core-1135181:6212641"
 
+    //Ender IO
     compileOnly "curse.maven:enderio-64578:5771156"
     runtimeOnly "curse.maven:enderio-64578:5771156"
 
@@ -76,21 +79,21 @@ dependencies {
     runtimeOnly "curse.maven:opolis-utilities-649644:5728507"
 
     //JEI
-    compileOnly "curse.maven:jei-238222:5606861"
-    runtimeOnly "curse.maven:jei-238222:5606861"
+    compileOnly "curse.maven:jei-238222:5846880"
+    runtimeOnly "curse.maven:jei-238222:5846880"
 
     //Mekanism
-    //compileOnly "curse.maven:mekanism-268560:5574951"
-    //runtimeOnly "curse.maven:mekanism-268560:5574951"
+    compileOnly "curse.maven:mekanism-268560:6327955"
+    runtimeOnly "curse.maven:mekanism-268560:6327955"
+
+    //Mekanism Tools
+    //compileOnly "curse.maven:mekanism-tools-268567:6327959"
+    //runtimeOnly "curse.maven:mekanism-tools-268567:6327959"
 
     //All The Ores
-    compileOnly "curse.maven:ato-405593:5553138"
-    runtimeOnly "curse.maven:ato-405593:5553138"
+    compileOnly "curse.maven:ato-405593:6118610"
+    runtimeOnly "curse.maven:ato-405593:6118610"
 
-    //EMI
-
-    compileOnly "curse.maven:emi-580555:5619579"
-    runtimeOnly "curse.maven:emi-580555:5619579"
 
 }
 

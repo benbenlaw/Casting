@@ -90,6 +90,7 @@ public class ModCreativeModTab {
                 output.accept(ModBlocks.MIXER.asItem());
                 output.accept(ModBlocks.MIXER_WHISK.asItem());
                 output.accept(ModBlocks.TANK.asItem());
+                output.accept(ModBlocks.TOOL_MODIFIER.asItem());
 
             }).build());
 

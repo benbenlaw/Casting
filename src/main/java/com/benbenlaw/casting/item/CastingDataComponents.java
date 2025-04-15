@@ -2,7 +2,10 @@ package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.Casting;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -13,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CastingDataComponents {
 
-    public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.createDataComponents(Casting.MOD_ID);
+    public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, Casting.MOD_ID);
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> FLUID_TYPE =
             COMPONENTS.register("fluid_type", () ->
@@ -93,8 +96,27 @@ public class CastingDataComponents {
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 
 
+    //Tools
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> SILK_TOUCH =
+            COMPONENTS.register("silk_touch", () ->
+                    DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EFFICIENCY =
+            COMPONENTS.register("efficiency", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FORTUNE =
+            COMPONENTS.register("fortune", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> UNBREAKING =
+            COMPONENTS.register("unbreaking", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> REPAIRING =
+            COMPONENTS.register("repairing", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 
 
 

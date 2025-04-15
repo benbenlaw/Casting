@@ -1,0 +1,8 @@
+{
+  "type": "casting:tool_modifier",
+  "effect": "fortune",
+  "upgrade_fluid": {
+    "amount": 5400,
+    "id": "casting:molten_lapis"
+  }
+}

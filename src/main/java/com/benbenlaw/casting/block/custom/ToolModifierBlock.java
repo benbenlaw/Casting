@@ -1,10 +1,9 @@
 package com.benbenlaw.casting.block.custom;
 
 import com.benbenlaw.casting.block.entity.ModBlockEntities;
-import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
-import com.benbenlaw.casting.block.entity.TankBlockEntity;
+import com.benbenlaw.casting.block.entity.ToolModifierBlockEntity;
 import com.benbenlaw.casting.item.CastingDataComponents;
-import com.benbenlaw.casting.screen.SolidifierMenu;
+import com.benbenlaw.casting.screen.ToolModifierMenu;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -41,9 +40,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SolidifierBlock extends BaseEntityBlock {
+public class ToolModifierBlock extends BaseEntityBlock {
 
-    public static final MapCodec<SolidifierBlock> CODEC = simpleCodec(SolidifierBlock::new);
+    public static final MapCodec<ToolModifierBlock> CODEC = simpleCodec(ToolModifierBlock::new);
 
     @Override
     protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
@@ -73,7 +72,7 @@ public class SolidifierBlock extends BaseEntityBlock {
         pBuilder.add(FACING);
     }
 
-    public SolidifierBlock(Properties properties) {
+    public ToolModifierBlock(Properties properties) {
         super(properties);
     }
 
@@ -86,8 +85,8 @@ public class SolidifierBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof SolidifierBlockEntity) {
-                ((SolidifierBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof ToolModifierBlockEntity) {
+                ((ToolModifierBlockEntity) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -102,22 +101,22 @@ public class SolidifierBlock extends BaseEntityBlock {
 
         if (!level.isClientSide()) {
 
-            SolidifierBlockEntity solidifierBlockEntity = (SolidifierBlockEntity) level.getBlockEntity(blockPos);
+            ToolModifierBlockEntity toolModifierBlockEntity = (ToolModifierBlockEntity) level.getBlockEntity(blockPos);
 
 
-            if (solidifierBlockEntity instanceof SolidifierBlockEntity) {
+            if (toolModifierBlockEntity instanceof ToolModifierBlockEntity) {
 
                 //Use Bucket First else open menu not both
 
-                if (solidifierBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
+                if (toolModifierBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
                     return InteractionResult.SUCCESS;
                 }
 
                 else {
-                    ContainerData data = solidifierBlockEntity.data;
+                    ContainerData data = toolModifierBlockEntity.data;
                     player.openMenu(new SimpleMenuProvider(
-                            (windowId, playerInventory, playerEntity) -> new SolidifierMenu(windowId, playerInventory, blockPos, data),
-                            Component.translatable("block.casting.solidifier")), (buf -> buf.writeBlockPos(blockPos)));
+                            (windowId, playerInventory, playerEntity) -> new ToolModifierMenu(windowId, playerInventory, blockPos, data),
+                            Component.translatable("block.casting.tool_modifier")), (buf -> buf.writeBlockPos(blockPos)));
                 }
             }
 
@@ -136,21 +135,21 @@ public class SolidifierBlock extends BaseEntityBlock {
             assert fluidAsString != null;
             Fluid fluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString));
             int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
-            SolidifierBlockEntity solidifierBlockEntity = (SolidifierBlockEntity) level.getBlockEntity(blockPos);
-            assert solidifierBlockEntity != null;
-            solidifierBlockEntity.setFluid(new FluidStack(fluid, fluidAmount));
+            ToolModifierBlockEntity toolModifierBlockEntity = (ToolModifierBlockEntity) level.getBlockEntity(blockPos);
+            assert toolModifierBlockEntity != null;
+            toolModifierBlockEntity.setFluid(new FluidStack(fluid, fluidAmount));
         }
     }
 
 
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack stack) {
-        if (entity instanceof SolidifierBlockEntity solidifierBlockEntity) {
+        if (entity instanceof ToolModifierBlockEntity toolModifierBlockEntity) {
 
-            if (solidifierBlockEntity.getFluidStack().getFluid() != Fluids.EMPTY && solidifierBlockEntity.getFluidStack().getAmount() > 0 ){
+            if (toolModifierBlockEntity.getFluidStack().getFluid() != Fluids.EMPTY && toolModifierBlockEntity.getFluidStack().getAmount() > 0 ){
                 ItemStack itemStackWithFluid = new ItemStack(this);
-                itemStackWithFluid.set(CastingDataComponents.FLUID_TYPE, solidifierBlockEntity.getFluidStack().getFluid().getFluidType().toString());
-                itemStackWithFluid.set(CastingDataComponents.FLUID_AMOUNT, solidifierBlockEntity.getFluidStack().getAmount());
+                itemStackWithFluid.set(CastingDataComponents.FLUID_TYPE, toolModifierBlockEntity.getFluidStack().getFluid().getFluidType().toString());
+                itemStackWithFluid.set(CastingDataComponents.FLUID_AMOUNT, toolModifierBlockEntity.getFluidStack().getAmount());
                 popResource(level, pos, itemStackWithFluid);
             } else {
                 popResource(level, pos, this.asItem().getDefaultInstance());
@@ -182,13 +181,13 @@ public class SolidifierBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new SolidifierBlockEntity(pos, state);
+        return new ToolModifierBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.SOLIDIFIER_BLOCK_ENTITY.get(),
+        return createTickerHelper(blockEntityType, ModBlockEntities.TOOL_MODIFIER_BLOCK_ENTITY.get(),
                 (world, blockPos, thisBlockState, blockEntity) -> blockEntity.tick());
     }
 }

@@ -1,0 +1,9 @@
+{
+    "type": "casting:tool_modifier",
+    "upgrade_item":
+    {
+        "item": "minecraft:blue_wool",
+        "count": 12
+    },
+    "effect": "fortune"
+}

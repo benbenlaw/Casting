@@ -1,9 +1,6 @@
 package com.benbenlaw.casting.networking.packets;
 
-import com.benbenlaw.casting.block.entity.ControllerBlockEntity;
-import com.benbenlaw.casting.block.entity.MixerBlockEntity;
-import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
-import com.benbenlaw.casting.block.entity.TankBlockEntity;
+import com.benbenlaw.casting.block.entity.*;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.networking.payload.FluidMoverPayload;
 import net.minecraft.core.BlockPos;
@@ -95,6 +92,19 @@ public record FluidMoverPacket() {
             boolean isOutputTank = false;
             if (tankNumber == 1) {
                 selectedTank = solidifierBlockEntity.TANK;
+            } else {
+                player.sendSystemMessage(Component.literal("Invalid tank number!"));
+                return;
+            }
+
+            transferFluidBetweenTankAndItem(selectedTank, carriedItem, player, isOutputTank);
+        }
+
+        if (blockEntity instanceof ToolModifierBlockEntity toolModifierBlockEntity) {
+            FluidTank selectedTank = null;
+            boolean isOutputTank = false;
+            if (tankNumber == 1) {
+                selectedTank = toolModifierBlockEntity.TANK;
             } else {
                 player.sendSystemMessage(Component.literal("Invalid tank number!"));
                 return;

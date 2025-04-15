@@ -2,6 +2,7 @@ package com.benbenlaw.casting;
 
 import com.benbenlaw.casting.block.ModBlocks;
 import com.benbenlaw.casting.block.entity.ModBlockEntities;
+import com.benbenlaw.casting.config.ToolModifierConfig;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.networking.CastingModMessages;
@@ -9,17 +10,17 @@ import com.benbenlaw.casting.screen.*;
 import com.benbenlaw.casting.item.ModCreativeModTab;
 import com.benbenlaw.casting.item.ModItems;
 import com.benbenlaw.casting.recipe.ModRecipes;
-import com.benbenlaw.opolisutilities.fluid.FluidDeferredRegister;
 import com.mojang.logging.LogUtils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ public class Casting {
     public static final String MOD_ID = "casting";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public Casting(IEventBus modEventBus) {
+    public Casting(IEventBus modEventBus, final ModContainer modContainer) {
 
         ModItems.register(modEventBus);
         CastingDataComponents.COMPONENTS.register(modEventBus);
@@ -46,6 +47,7 @@ public class Casting {
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
 
+        modContainer.registerConfig(ModConfig.Type.STARTUP, ToolModifierConfig.SPEC, "bbl/casting/tool_modifiers.toml");
 
         modEventBus.addListener(this::commonSetup);
 
@@ -70,6 +72,7 @@ public class Casting {
             event.register(ModMenuTypes.SMELTER_MENU.get(), SmelterScreen::new);
             event.register(ModMenuTypes.SOLIDIFIER_MENU.get(), SolidifierScreen::new);
             event.register(ModMenuTypes.MIXER_MENU.get(), MixerScreen::new);
+            event.register(ModMenuTypes.TOOL_MODIFIER_MENU.get(), ToolModifierScreen::new);
 
         }
 

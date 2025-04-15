@@ -1,0 +1,13 @@
+{
+    "type": "casting:tool_modifier",
+    "upgrade_item":
+    {
+        "item": "minecraft:white_wool",
+        "count": 12
+    },
+    "upgrade_fluid": {
+        "amount": 810,
+        "id": "casting:molten_uranium"
+    },
+    "effect": "efficiency"
+}

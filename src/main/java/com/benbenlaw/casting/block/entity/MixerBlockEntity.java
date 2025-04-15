@@ -483,6 +483,14 @@ public class MixerBlockEntity extends BlockEntity implements MenuProvider {
                 }
             }
 
+            //Drain to adjacent tool modifier
+            for (Direction direction : Direction.values()) {
+                BlockEntity entity = level.getBlockEntity(this.worldPosition.relative(direction));
+                if (entity instanceof ToolModifierBlockEntity toolModifierBlockEntity) {
+                    transferFluid(OUTPUT_TANK, toolModifierBlockEntity.TANK);
+                }
+            }
+
             //Check for Whisk
 
             whiskCheck();

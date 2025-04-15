@@ -1,0 +1,8 @@
+{
+  "type": "casting:tool_modifier",
+  "effect": "unbreaking",
+  "upgrade_fluid": {
+    "amount": 64000,
+    "id": "casting:molten_obsidian"
+  }
+}

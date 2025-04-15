@@ -4,6 +4,7 @@ import com.benbenlaw.casting.block.ModBlocks;
 import com.benbenlaw.casting.block.entity.ControllerBlockEntity;
 import com.benbenlaw.casting.block.entity.MixerBlockEntity;
 import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
+import com.benbenlaw.casting.block.entity.ToolModifierBlockEntity;
 import com.benbenlaw.casting.networking.payload.ClearTankPayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -34,6 +35,13 @@ public record ClearTankPacket() {
             if (isShiftDown) {
                 solidifierBlockEntity.TANK.getFluid().setAmount(0);
                 solidifierBlockEntity.sync();
+            }
+        }
+
+        if (blockEntity instanceof ToolModifierBlockEntity toolModifierBlockEntity) {
+            if (isShiftDown) {
+                toolModifierBlockEntity.TANK.getFluid().setAmount(0);
+                toolModifierBlockEntity.sync();
             }
         }
 

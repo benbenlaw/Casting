@@ -41,7 +41,6 @@
   "item.casting.molten_osmium_bucket": "Molten Osmium Bucket",
   "item.casting.molten_refined_obsidian_bucket": "Molten Refined Obsidian Bucket",
   "item.casting.molten_refined_glowstone_bucket": "Molten Refined Glowstone Bucket",
-  "item.casting.molten_platinum_bucket": "Molten Platinum Bucket",
   "item.casting.molten_coal_bucket": "Molten Coal Bucket",
   "item.casting.molten_redstone_bucket": "Molten Redstone Bucket",
   "item.casting.molten_lapis_bucket": "Molten Lapis Bucket",
@@ -55,11 +54,7 @@
   "item.casting.molten_zinc_bucket": "Molten Zinc Bucket",
   "item.casting.molten_glowstone_bucket": "Molten Glowstone Bucket",
   "item.casting.molten_ender_bucket": "Molten Ender Bucket",
-  "item.casting.molten_lumium_bucket": "Molten Lumium Bucket",
-  "item.casting.molten_signalum_bucket": "Molten Signalum Bucket",
-  "item.casting.molten_constantan_bucket": "Molten Constantan Bucket",
   "item.casting.molten_brass_bucket": "Molten Brass Bucket",
-  "item.casting.molten_enderium_bucket": "Molten Enderium Bucket",
   "item.casting.molten_emerald_bucket": "Molten Emerald Bucket",
   "item.casting.molten_soul_bucket": "Molten Soul Bucket",
   "item.casting.molten_dark_steel_bucket": "Molten Dark Steel Bucket",
@@ -88,10 +83,6 @@
   "block.casting.molten_bronze": "Molten Bronze",
   "block.casting.molten_electrum": "Molten Electrum",
   "block.casting.molten_invar": "Molten Invar",
-  "block.casting.molten_constantan": "Molten Constantan",
-  "block.casting.molten_signalum": "Molten Signalum",
-  "block.casting.molten_lumium": "Molten Lumium",
-  "block.casting.molten_enderium": "Molten Enderium",
   "block.casting.molten_platinum": "Molten Platinum",
   "block.casting.molten_iridium": "Molten Iridium",
   "block.casting.molten_mithril": "Molten Mithril",
@@ -99,7 +90,6 @@
   "block.casting.molten_osmium": "Molten Osmium",
   "block.casting.molten_refined_obsidian": "Molten Refined Obsidian",
   "block.casting.molten_refined_glowstone": "Molten Refined Glowstone",
-  "block.casting.molten_platinum": "Molten Platinum",
   "block.casting.molten_coal": "Molten Coal",
   "block.casting.molten_redstone": "Molten Redstone",
   "block.casting.molten_lapis": "Molten Lapis",
@@ -145,7 +135,16 @@
   "jei.casting.fluid_mover": "Used to move fluids between tanks, Holds up to 8000mb of a single fluid. \n\nClick on a tank to collect fluid and click on another tank to add!\n\nWill try to fill the selected tank before collecting fluids!",
   "jei.casting.mixer_whisk": "Used to speed up the mixer when placed above it. \n\nFor each whisk above the mixer the tick rate is decreased by 40 ticks!\n\nAdditional whisks placed after the tick rate is at its lowest (20) will have no effect!",
 
-  "itemGroup.casting": "BBL Casting"
+  "itemGroup.casting": "BBL Casting",
+
+  "tooltips.casting.tool_modifiers": "Tool Modifiers;",
+  "tooltips.casting.silk_touch": "- Silk Touch",
+  "tooltips.casting.efficiency": "- Efficiency %s",
+  "tooltips.casting.fortune": "- Fortune %s",
+  "block.casting.tool_modifier": "Tool Modifier",
+  "screen.casting.max_level": "Tool at max level for this effect",
+  "tooltips.casting.unbreaking": "- Unreaking %s",
+  "tooltips.casting.repairing": "- Repairing %s"
 
 
 }

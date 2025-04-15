@@ -8,6 +8,12 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 tools, can be repairs using solidifier
 
+1.17.0
+Added BBL Core as a dependency
+Updated to minecraft 1.21.1
+Updated a lot of internal code to latest gradle and neoforge versions
+Added Tool Modifier Block - Allows tools to be modified to have certain abilities like silk touch, fortune, unbreaking ect
+
 1.16.7
 Fixed lapis rod recipe being present if no lapis rod exists
 

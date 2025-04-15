@@ -38,9 +38,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BLACK_BRICKS = registerBlock("black_bricks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE)
                     .noOcclusion()));
-
     public static final DeferredBlock<Block> MIXER_WHISK = registerBlock("mixer_whisk",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> TOOL_MODIFIER = registerBlock("tool_modifier",
+            () -> new ToolModifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
                     .noOcclusion()));
 
     private static ToIntFunction<BlockState> litBlockEmission(int lightLevel) {

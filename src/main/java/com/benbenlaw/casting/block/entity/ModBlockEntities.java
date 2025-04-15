@@ -29,10 +29,13 @@ public class ModBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TankBlockEntity>> TANK_BLOCK_ENTITY =
             register("tank_block_entity", () ->
                     BlockEntityType.Builder.of(TankBlockEntity::new, ModBlocks.TANK.get()));
-
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MixerBlockEntity>> MIXER_BLOCK_ENTITY =
             register("mixer_block_entity", () ->
                     BlockEntityType.Builder.of(MixerBlockEntity::new, ModBlocks.MIXER.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ToolModifierBlockEntity>> TOOL_MODIFIER_BLOCK_ENTITY =
+            register("tool_modifier_block_entity", () ->
+                    BlockEntityType.Builder.of(ToolModifierBlockEntity::new, ModBlocks.TOOL_MODIFIER.get()));
 
 
 

@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "casting:tool_modifier"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:tool_modifier/unbreaking_from_molten_obsidian"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_item"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:tool_modifier/unbreaking_from_molten_obsidian"
+    ]
+  },
+  "sends_telemetry_event": true
+}
