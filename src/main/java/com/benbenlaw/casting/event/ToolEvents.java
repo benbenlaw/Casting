@@ -3,46 +3,48 @@ package com.benbenlaw.casting.event;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.util.RecipeMatcher;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
 
 public class ToolEvents {
 
     @SubscribeEvent
-
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
 
         Player player = event.getPlayer();
@@ -51,91 +53,96 @@ public class ToolEvents {
         BlockState state = event.getState();
         ItemStack tool = player.getMainHandItem();
         List<ItemStack> drops = List.of();
-
-        if (!level.isClientSide() && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.SILK_TOUCH.get()))) {
-            event.setCanceled(true);
-
-            ItemStack fakeItemStack = tool.copy();
-
-            fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
-
-
-            LootParams.Builder lootParams = new LootParams.Builder((ServerLevel) level)
-                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                    .withParameter(LootContextParams.TOOL, fakeItemStack)
-                    .withParameter(LootContextParams.BLOCK_ENTITY, null)
-                    .withParameter(LootContextParams.THIS_ENTITY, player)
-                    .withParameter(LootContextParams.BLOCK_STATE, state);
-
-            drops = state.getDrops(lootParams);
-
-
-        }
-
-        else if (!level.isClientSide() && Boolean.TRUE.equals(tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get()))) {
-            event.setCanceled(true);
-
-            ItemStack fakeItemStack = tool.copy();
-            int fortuneLevel = tool.getComponents().get(CastingDataComponents.FORTUNE.get());
-
-            fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
-
-
-            LootParams.Builder lootParams = new LootParams.Builder((ServerLevel) level)
-                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                    .withParameter(LootContextParams.TOOL, fakeItemStack)
-                    .withParameter(LootContextParams.BLOCK_ENTITY, null)
-                    .withParameter(LootContextParams.THIS_ENTITY, player)
-                    .withParameter(LootContextParams.BLOCK_STATE, state);
-
-            drops = state.getDrops(lootParams);
-
-        }
-
-        //FIXME - ALWAYS TAKES A POINT OIF DAMAGE AT THE START WHEN FULLY REPAIRED DUE TO THE EVENT TRIGGERING IN THE ITEM-STACK
-
-        if (drops.isEmpty()) {
-            LootParams.Builder lootParams = new LootParams.Builder((ServerLevel) level)
-                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                    .withParameter(LootContextParams.TOOL, tool)
-                    .withParameter(LootContextParams.BLOCK_ENTITY, null)
-                    .withParameter(LootContextParams.THIS_ENTITY, player)
-                    .withParameter(LootContextParams.BLOCK_STATE, state);
-
-            drops = state.getDrops(lootParams);
-        }
-
-        for (ItemStack drop : drops) {
-            Block.popResource(level, pos, drop);
-        }
-
-        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-
+        ItemStack fakeItemStack = tool.copy();
         boolean shouldTakeDamage = true;
 
-        if (!level.isClientSide() && tool.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get())) {
+        if (!level.isClientSide()) {
+
             event.setCanceled(true);
 
+            //Silk Touch
+            if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.SILK_TOUCH.get()))) {
+                fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
+                drops = getLootDrops(state, pos, player, fakeItemStack, level);
+            }
 
-            int unbreakingLevel = tool.get(CastingDataComponents.UNBREAKING.get());
-            shouldTakeDamage = level.getRandom().nextFloat() >= (unbreakingLevel * 0.1f);
+            //Fortune
+            else if (Boolean.TRUE.equals(tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get()))) {
+
+                int fortuneLevel = tool.getComponents().getOrDefault(CastingDataComponents.FORTUNE.get(), 0);
+                fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
+                drops = getLootDrops(state, pos, player, fakeItemStack, level);
+
+            }
+
+            //Default Drops not Silk or Fortune
+            if (drops.isEmpty()) {
+                drops = getLootDrops(state, pos, player, fakeItemStack, level);
+            }
+
+            //Auto Smelt
+            if (Boolean.TRUE.equals(tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get()))) {
+                List<ItemStack> smeltingDrops = new ArrayList<>();
+
+                for (ItemStack drop : drops) {
+
+                    SingleRecipeInput container = new SingleRecipeInput(drop);
+                    List<RecipeHolder<SmeltingRecipe>> smeltingRecipe = level.getRecipeManager().getRecipesFor(RecipeType.SMELTING, container, level);
+
+                    if (!smeltingRecipe.isEmpty()) {
+                        SmeltingRecipe recipe = smeltingRecipe.getFirst().value();
+                        ItemStack result = recipe.getResultItem(level.registryAccess());
+
+                        ItemStack smeltedStack = result.copy();
+                        smeltedStack.setCount(drop.getCount());
+                        smeltingDrops.add(smeltedStack);
+                    } else {
+                        smeltingDrops.add(drop);
+                    }
+                }
+
+                drops = smeltingDrops;
+            }
 
 
-        }
+            //Drop Resources
+            for (ItemStack drop : drops) {
+                Block.popResource(level, pos, drop);
+            }
 
-        if (shouldTakeDamage) {
-            tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+            //Remove Block
+            level.destroyBlock(pos, false, player);
 
+            //Unbreaking check
+            if (tool.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get())) {
+                int unbreakingLevel = tool.getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
+                shouldTakeDamage = level.getRandom().nextFloat() >= (unbreakingLevel * 0.1f);
+            }
+
+            //Actually damage the item
+            if (shouldTakeDamage) {
+                tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+            }
         }
     }
 
+    public static List<ItemStack> getLootDrops(BlockState state, BlockPos pos, Player player, ItemStack tool, Level level) {
+        LootParams.Builder lootParams = new LootParams.Builder((ServerLevel) level)
+                .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+                .withParameter(LootContextParams.TOOL, tool)
+                .withParameter(LootContextParams.BLOCK_ENTITY, null)
+                .withParameter(LootContextParams.THIS_ENTITY, player)
+                .withParameter(LootContextParams.BLOCK_STATE, state);
+
+        return state.getDrops(lootParams);
+    }
 
 
     @SubscribeEvent
     public static void onBreakingBlock(PlayerEvent.BreakSpeed event) {
         Player player = event.getEntity();
         Level level = player.level();
-        BlockState state = level.getBlockState(event.getPosition().get());
+        BlockState state = level.getBlockState(event.getPosition().orElse(BlockPos.ZERO));
         ItemStack tool = player.getMainHandItem();
 
         if (tool.getComponents().keySet().contains(CastingDataComponents.EFFICIENCY.get())) {
@@ -162,14 +169,16 @@ public class ToolEvents {
             if (stack.isEmpty()) continue;
 
             if (stack.getComponents().keySet().contains(CastingDataComponents.REPAIRING.get())) {
-                int repairingLevel = stack.getComponents().get(CastingDataComponents.REPAIRING.get());
+                int repairingLevel = stack.getComponents().getOrDefault(CastingDataComponents.REPAIRING.get(), 0);
                 int repairTickTime = getRepairTickTime(repairingLevel);
 
                 if (event.getEntity().tickCount % repairTickTime == 0) {
                     int currentDamage = stack.getDamageValue();
-                    int newDamage = Math.max(currentDamage - 1, 0);
 
-                    stack.setDamageValue(newDamage);
+                    if (currentDamage > 0) {
+                        int newDamage = Math.max(currentDamage - 1, 0);
+                        stack.setDamageValue(newDamage);
+                    }
                 }
             }
         }
@@ -192,6 +201,48 @@ public class ToolEvents {
         }
         return repairTickTime;
     }
+
+    @SubscribeEvent
+    public static void onRightClick(PlayerInteractEvent.RightClickBlock event) {
+
+        Level level = event.getLevel();
+        Player player = event.getEntity();
+        BlockPos pos = event.getPos();
+        InteractionHand hand = event.getHand();
+        ItemStack tool = player.getItemInHand(hand);
+
+        if (!level.isClientSide()) {
+
+            if (tool.getComponents().keySet().contains(CastingDataComponents.TORCH_PLACING.get())) {
+                Direction face = event.getFace();
+                assert face != null;
+                BlockPos placePos = pos.relative(face);
+
+                if (!level.getBlockState(placePos).canBeReplaced()) {
+                    return;
+                }
+
+                if (face == Direction.UP) {
+                    if (level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP)) {
+                        level.setBlockAndUpdate(placePos, Blocks.TORCH.defaultBlockState());
+                        tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                    }
+                } else if (face.getAxis().isHorizontal()) {
+                    if (level.getBlockState(pos).isFaceSturdy(level, pos, face)) {
+                        BlockState wallTorch = Blocks.WALL_TORCH.defaultBlockState()
+                                .setValue(WallTorchBlock.FACING, face);
+                        level.setBlockAndUpdate(placePos, wallTorch);
+                        tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
 
 
     public static Holder<Enchantment> toHolder(Level level, ResourceKey<Enchantment> enchantment) {

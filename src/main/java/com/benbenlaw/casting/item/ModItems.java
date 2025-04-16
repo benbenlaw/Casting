@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.util.ValidToolTypesForToolModifiers;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;

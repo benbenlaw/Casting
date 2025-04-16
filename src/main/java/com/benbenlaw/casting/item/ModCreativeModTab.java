@@ -5,6 +5,8 @@ import com.benbenlaw.casting.block.ModBlocks;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
@@ -17,9 +19,24 @@ public class ModCreativeModTab {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Casting.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> CASTING_TAB = CREATIVE_MODE_TABS.register("casting", () -> CreativeModeTab.builder()
+    public static final Supplier<CreativeModeTab> TOOL_MODIFIERS_TAB = CREATIVE_MODE_TABS.register("tool_modifiers", () -> CreativeModeTab.builder()
+            .icon(() -> ToolModifierItems.SILK_TOUCH.get().getDefaultInstance())
+            .title(Component.translatable("itemGroup.tool_modifiers"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
+            .displayItems((parameters, output) -> {
+                output.accept(ToolModifierItems.SILK_TOUCH);
+                output.accept(ToolModifierItems.EFFICIENCY);
+                output.accept(ToolModifierItems.FORTUNE);
+                output.accept(ToolModifierItems.UNBREAKING);
+                output.accept(ToolModifierItems.REPAIRING);
+                output.accept(ToolModifierItems.TORCH_PLACING);
+                output.accept(ToolModifierItems.AUTO_SMELT);
+
+            }).build());
+
+    public static final Supplier<CreativeModeTab> CASTING_TAB = CREATIVE_MODE_TABS.register("casting", () -> CreativeModeTab.builder()
             .icon(() -> ModItems.PLATE_MOLD.get().getDefaultInstance())
+            .withTabsBefore(CreativeModeTabs.COMBAT, ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, "tool_modifiers")))
             .title(Component.translatable("itemGroup.casting"))
             .displayItems((parameters, output) -> {
 

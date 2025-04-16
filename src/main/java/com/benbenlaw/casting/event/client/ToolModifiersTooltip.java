@@ -30,9 +30,11 @@ public class ToolModifiersTooltip {
         boolean hasFortune = tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get());
         boolean hasUnbreaking = tool.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get());
         boolean hasRepairing = tool.getComponents().keySet().contains(CastingDataComponents.REPAIRING.get());
+        boolean hasTorchPlacing = tool.getComponents().keySet().contains(CastingDataComponents.TORCH_PLACING.get());
+        boolean hasAutoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
 
 
-        if (Screen.hasShiftDown() && (hasSilkTouch || hasEfficiency || hasFortune || hasUnbreaking || hasRepairing)) {
+        if (Screen.hasShiftDown() && (hasSilkTouch || hasEfficiency || hasFortune || hasUnbreaking || hasRepairing || hasTorchPlacing || hasAutoSmelt)) {
 
             int index = 1;
             components.add(1, Component.translatable("tooltips.casting.tool_modifiers").withStyle(ChatFormatting.GOLD));
@@ -62,9 +64,17 @@ public class ToolModifiersTooltip {
                 components.add(index, Component.translatable("tooltips.casting.repairing", repairingLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
+            if (hasTorchPlacing) {
+                components.add(index, Component.translatable("tooltips.casting.torch_placing").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasAutoSmelt) {
+                components.add(index, Component.translatable("tooltips.casting.auto_smelt").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
 
         } else {
-            if (hasSilkTouch || hasEfficiency || hasFortune || hasUnbreaking || hasRepairing) {
+            if (hasSilkTouch || hasEfficiency || hasFortune || hasUnbreaking || hasRepairing || hasTorchPlacing) {
                 components.add(1, Component.translatable("tooltips.item.shift.not_held").withStyle(ChatFormatting.YELLOW));
             }
         }

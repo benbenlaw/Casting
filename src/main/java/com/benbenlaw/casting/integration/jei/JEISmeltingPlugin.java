@@ -34,6 +34,9 @@ public class JEISmeltingPlugin implements IModPlugin {
     public static RecipeType<MixingRecipe> MIXER_RECIPE =
             new RecipeType<>(MixingRecipeCatagory.UID, MixingRecipe.class);
 
+    public static RecipeType<ToolModifierRecipe> TOOL_MODIFIER_RECIPE =
+            new RecipeType<>(ToolModifierRecipeCategory.UID, ToolModifierRecipe.class);
+
     @Override
     public ResourceLocation getPluginUid() {
         return ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, "jei_plugin");
@@ -45,6 +48,7 @@ public class JEISmeltingPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.SOLIDIFIER.get()), SolidifierRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.CONTROLLER.get()), MeltingRecipeCatagory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.MIXER.get()), MixingRecipeCatagory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.TOOL_MODIFIER.get()), ToolModifierRecipeCategory.RECIPE_TYPE);
     }
 
     @Override
@@ -63,6 +67,9 @@ public class JEISmeltingPlugin implements IModPlugin {
 
         registration.addRecipeCategories(new
                 MixingRecipeCatagory(registration.getJeiHelpers().getGuiHelper()));
+
+        registration.addRecipeCategories(new
+                ToolModifierRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
 
 
 
@@ -89,6 +96,9 @@ public class JEISmeltingPlugin implements IModPlugin {
 
         registration.addRecipes(MixingRecipeCatagory.RECIPE_TYPE,
                 recipeManager.getAllRecipesFor(ModRecipes.MIXING_TYPE.get()).stream().map(RecipeHolder::value).toList());
+
+        registration.addRecipes(ToolModifierRecipeCategory.RECIPE_TYPE,
+                recipeManager.getAllRecipesFor(ModRecipes.TOOL_MODIFIER_TYPE.get()).stream().map(RecipeHolder::value).toList());
 
 
     }

@@ -101,22 +101,26 @@ public class CastingDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> SILK_TOUCH =
             COMPONENTS.register("silk_touch", () ->
                     DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EFFICIENCY =
             COMPONENTS.register("efficiency", () ->
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FORTUNE =
             COMPONENTS.register("fortune", () ->
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> UNBREAKING =
             COMPONENTS.register("unbreaking", () ->
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> REPAIRING =
             COMPONENTS.register("repairing", () ->
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> TORCH_PLACING =
+            COMPONENTS.register("torch_placing", () ->
+                    DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> AUTO_SMELT =
+            COMPONENTS.register("auto_smelt", () ->
+                    DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
+
+
 
 
 

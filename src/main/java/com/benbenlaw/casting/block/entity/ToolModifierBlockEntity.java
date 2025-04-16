@@ -49,6 +49,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
 
+import static com.benbenlaw.casting.util.ValidToolTypesForToolModifiers.*;
+
 public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider, IInventoryHandlingBlockEntity {
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
@@ -310,7 +312,7 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
             sync();
             boolean foundMatch = false;
             boolean blockedByMax = false;
-            
+
 
 
 
@@ -428,27 +430,29 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
         boolean hasSilkTouch = stack.getOrDefault(CastingDataComponents.SILK_TOUCH, false);
         int currentFortune = stack.getOrDefault(CastingDataComponents.FORTUNE, 0);
 
-        if (effect.contains("fortune")) {
+        if (effect.contains(FORTUNE)) {
             return hasSilkTouch || currentFortune >= MAX_FORTUNE_LEVEL;
         }
-
-        if (effect.contains("efficiency")) {
+        if (effect.contains(EFFICIENCY)) {
             int currentEfficiency = stack.getOrDefault(CastingDataComponents.EFFICIENCY, 0);
             return currentEfficiency >= MAX_EFFICIENCY_LEVEL;
         }
-
-        if (effect.contains("silk_touch")) {
+        if (effect.contains(SILK_TOUCH)) {
             return currentFortune > 0 || hasSilkTouch;
         }
-
-        if (effect.contains("unbreaking")) {
+        if (effect.contains(UNBREAKING)) {
             int currentUnbreaking = stack.getOrDefault(CastingDataComponents.UNBREAKING, 0);
             return currentUnbreaking >= MAX_UNBREAKING_LEVEL;
         }
-
-        if (effect.contains("repairing")) {
+        if (effect.contains(REPAIRING)) {
             int currentRepairing = stack.getOrDefault(CastingDataComponents.REPAIRING, 0);
             return currentRepairing >= MAX_REPAIRING_LEVEL;
+        }
+        if (effect.contains(TORCH_PLACING)) {
+            return stack.getOrDefault(CastingDataComponents.TORCH_PLACING, false);
+        }
+        if (effect.contains(AUTO_SMELT)) {
+            return stack.getOrDefault(CastingDataComponents.AUTO_SMELT, false);
         }
 
         return false;
@@ -457,33 +461,37 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
     public ItemStack copyAndApplyEffect(ItemStack stack, String effect) {
         ItemStack copy = stack.copy();
 
-        if (effect.contains("fortune")) {
+        if (effect.contains(FORTUNE)) {
             int currentFortune = copy.getOrDefault(CastingDataComponents.FORTUNE, 0);
             int newFortune = Math.min(currentFortune + 1, MAX_FORTUNE_LEVEL);
             copy.set(CastingDataComponents.FORTUNE, newFortune);
         }
-
-        if (effect.contains("efficiency")) {
+        if (effect.contains(EFFICIENCY)) {
             int currentEfficiency = copy.getOrDefault(CastingDataComponents.EFFICIENCY, 0);
             int newEfficiency = Math.min(currentEfficiency + 1, MAX_EFFICIENCY_LEVEL);
             copy.set(CastingDataComponents.EFFICIENCY, newEfficiency);
         }
-
-        if (effect.contains("silk_touch")) {
+        if (effect.contains(SILK_TOUCH)) {
             boolean isSilkTouch = copy.getOrDefault(CastingDataComponents.SILK_TOUCH, false);
             copy.set(CastingDataComponents.SILK_TOUCH, !isSilkTouch);
         }
-
-        if (effect.contains("unbreaking")) {
+        if (effect.contains(UNBREAKING)) {
             int currentUnbreaking = copy.getOrDefault(CastingDataComponents.UNBREAKING, 0);
             int newUnbreaking = Math.min(currentUnbreaking + 1, ToolModifierConfig.maxUnbreakingAmount.get());
             copy.set(CastingDataComponents.UNBREAKING, newUnbreaking);
         }
-
-        if (effect.contains("repairing")) {
+        if (effect.contains(REPAIRING)) {
             int currentRepairing = copy.getOrDefault(CastingDataComponents.REPAIRING, 0);
             int newRepairing = Math.min(currentRepairing + 1, ToolModifierConfig.maxRepairingAmount.get());
             copy.set(CastingDataComponents.REPAIRING, newRepairing);
+        }
+        if (effect.contains(TORCH_PLACING)) {
+            boolean isTorchPlacing = copy.getOrDefault(CastingDataComponents.TORCH_PLACING, false);
+            copy.set(CastingDataComponents.TORCH_PLACING, !isTorchPlacing);
+        }
+        if (effect.contains(AUTO_SMELT)) {
+            boolean isAutoSmelt = copy.getOrDefault(CastingDataComponents.AUTO_SMELT, false);
+            copy.set(CastingDataComponents.AUTO_SMELT, !isAutoSmelt);
         }
 
         return copy;

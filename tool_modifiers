@@ -1,0 +1,9 @@
+Tool Modifiers
+
+Add ToolModifierItems
+add translations, name of item, name of effect, effect description
+add hover stuff
+add ValidToolTypesForToolModifiers
+add to Block Entity
+add recipe, run data
+add event to required event

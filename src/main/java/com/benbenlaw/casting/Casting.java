@@ -5,6 +5,7 @@ import com.benbenlaw.casting.block.entity.ModBlockEntities;
 import com.benbenlaw.casting.config.ToolModifierConfig;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.ToolModifierItems;
 import com.benbenlaw.casting.networking.CastingModMessages;
 import com.benbenlaw.casting.screen.*;
 import com.benbenlaw.casting.item.ModCreativeModTab;
@@ -33,6 +34,7 @@ public class Casting {
     public Casting(IEventBus modEventBus, final ModContainer modContainer) {
 
         ModItems.register(modEventBus);
+        ToolModifierItems.register(modEventBus);
         CastingDataComponents.COMPONENTS.register(modEventBus);
 
         ModBlocks.register(modEventBus);

@@ -46,13 +46,14 @@ public class CastingRecipes extends RecipeProvider {
         //Tool Modifier
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 5400), "fortune");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_REDSTONE.getFluid(), 5400), "efficiency");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_EMERALD.getFluid(), 4000), "silk_touch");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_EMERALD.getFluid(), 5400), "silk_touch");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_OBSIDIAN.getFluid(), 64000), "unbreaking");
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(com.benbenlaw.opolisutilities.block.ModBlocks.ITEM_REPAIRER.get()), 4), null, "repairing");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_GLOWSTONE.getFluid(), 16000), "repairing");
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), 64), new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 5120), "torch_placing");
+        toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 16000), "auto_smelt");
 
         //Fluid Mover
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.FLUID_MOVER.get(), 1)
                 .pattern(" BB")
                 .pattern(" BB")

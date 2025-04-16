@@ -87,8 +87,8 @@ dependencies {
     runtimeOnly "curse.maven:mekanism-268560:6327955"
 
     //Mekanism Tools
-    //compileOnly "curse.maven:mekanism-tools-268567:6327959"
-    //runtimeOnly "curse.maven:mekanism-tools-268567:6327959"
+    compileOnly "curse.maven:mekanism-tools-268567:6327959"
+    runtimeOnly "curse.maven:mekanism-tools-268567:6327959"
 
     //All The Ores
     compileOnly "curse.maven:ato-405593:6118610"
