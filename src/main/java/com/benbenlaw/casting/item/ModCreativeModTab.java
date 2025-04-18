@@ -31,6 +31,13 @@ public class ModCreativeModTab {
                 output.accept(ToolModifierItems.REPAIRING);
                 output.accept(ToolModifierItems.TORCH_PLACING);
                 output.accept(ToolModifierItems.AUTO_SMELT);
+                output.accept(ToolModifierItems.LOOTING);
+                output.accept(ToolModifierItems.SHARPNESS);
+                output.accept(ToolModifierItems.BEHEADING);
+                output.accept(ToolModifierItems.LIFESTEAL);
+                output.accept(ToolModifierItems.KNOCKBACK);
+                output.accept(ToolModifierItems.IGNITE);
+                output.accept(ToolModifierItems.EXCAVATION);
 
             }).build());
 

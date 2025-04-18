@@ -5,6 +5,7 @@
     "casting:tank",
     "casting:solidifier",
     "casting:mixer",
-    "casting:mixer_whisk"
+    "casting:mixer_whisk",
+    "casting:tool_modifier"
   ]
 }

@@ -67,8 +67,8 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //BBL Core
-    compileOnly "curse.maven:bbl-core-1135181:6212641"
-    runtimeOnly "curse.maven:bbl-core-1135181:6212641"
+    compileOnly "curse.maven:bbl-core-1135181:6402454"
+    runtimeOnly "curse.maven:bbl-core-1135181:6402454"
 
     //Ender IO
     compileOnly "curse.maven:enderio-64578:5771156"
@@ -93,6 +93,14 @@ dependencies {
     //All The Ores
     compileOnly "curse.maven:ato-405593:6118610"
     runtimeOnly "curse.maven:ato-405593:6118610"
+
+    //mmmmmmmmmmmm
+    compileOnly "curse.maven:mmmmmmmmmmmm-225738:6237115"
+    runtimeOnly "curse.maven:mmmmmmmmmmmm-225738:6237115"
+
+    //selene
+    compileOnly "curse.maven:selene-499980:6391012"
+    runtimeOnly "curse.maven:selene-499980:6391012"
 
 
 }

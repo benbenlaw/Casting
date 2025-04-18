@@ -313,66 +313,81 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
             boolean foundMatch = false;
             boolean blockedByMax = false;
 
+            if (itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof TieredItem ||
+                    itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof ShearsItem) {
 
-
-
-            if (itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof TieredItem || itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof ShearsItem) {
                 ItemStack toolStack = itemHandler.getStackInSlot(TOOL_SLOT);
                 String toolType = getToolType(toolStack);
 
                 List<String> validModifiers = ValidToolTypesForToolModifiers.TOOL_TYPE_VALID_MODIFIERS.get(toolType);
 
+                ToolModifierRecipe matchedRecipe = null;
+                boolean bothRequired = false;
+                boolean itemOnly = false;
+                boolean fluidOnly = false;
+
+                // First pass: check 2-input recipes
                 for (RecipeHolder<ToolModifierRecipe> recipeHolder :
                         level.getRecipeManager().getRecipesFor(ToolModifierRecipe.Type.INSTANCE, inventory, level)) {
 
                     ToolModifierRecipe recipe = recipeHolder.value();
                     String effect = recipe.effect();
 
-                    //Valid effect for the tool type
-                    if (!validModifiers.isEmpty()) {
-                        if (!validModifiers.contains(effect)) {
-                            continue;
-                        }
+                    if (!validModifiers.isEmpty() && !validModifiers.contains(effect)) {
+                        continue;
                     }
-
-                    boolean validRecipe = false;
-                    boolean bothRequired = false;
-                    boolean fluidOnly = false;
-                    boolean itemOnly = false;
 
                     if (recipe.requiresBothItemAndFluid()) {
                         if (hasEnoughFluid(recipe.upgradeFluid()) &&
-                                itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() && recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
-                            validRecipe = true;
+                                itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() &&
+                                recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
+                            matchedRecipe = recipe;
                             bothRequired = true;
+                            break;
                         }
                     }
+                }
 
-                    if (!recipe.requiresBothItemAndFluid()) {
-                        if (itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() && recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
+                // Second pass: check 1-input recipes only if no 2-input match found
+                if (matchedRecipe == null) {
+                    for (RecipeHolder<ToolModifierRecipe> recipeHolder :
+                            level.getRecipeManager().getRecipesFor(ToolModifierRecipe.Type.INSTANCE, inventory, level)) {
 
-                            validRecipe = true;
-                            itemOnly = true;
+                        ToolModifierRecipe recipe = recipeHolder.value();
+                        String effect = recipe.effect();
+
+                        if (!validModifiers.isEmpty() && !validModifiers.contains(effect)) {
+                            continue;
                         }
-                        else if (hasEnoughFluid(recipe.upgradeFluid())) {
-                            validRecipe = true;
-                            fluidOnly = true;
-                        }
 
+                        if (!recipe.requiresBothItemAndFluid()) {
+                            if (itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() &&
+                                    recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
+                                matchedRecipe = recipe;
+                                itemOnly = true;
+                                break;
+                            } else if (hasEnoughFluid(recipe.upgradeFluid())) {
+                                matchedRecipe = recipe;
+                                fluidOnly = true;
+                                break;
+                            }
+                        }
                     }
+                }
 
-                    boolean effectMaxed = isEffectAtMax(toolStack, recipe.effect());
+                if (matchedRecipe != null) {
+                    String effect = matchedRecipe.effect();
+                    boolean effectMaxed = isEffectAtMax(toolStack, effect);
 
-                    if (validRecipe && !effectMaxed) {
+                    if (!effectMaxed) {
                         if (itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()) {
                             progress++;
                             if (progress >= maxProgress) {
                                 if (bothRequired || fluidOnly) {
-                                    extractFluid(recipe.upgradeFluid(), recipe.upgradeFluid().getAmount());
+                                    extractFluid(matchedRecipe.upgradeFluid(), matchedRecipe.upgradeFluid().getAmount());
                                 }
-
                                 if (bothRequired || itemOnly) {
-                                    itemHandler.extractItem(UPGRADE_ITEM_SLOT, recipe.upgradeItem().count(), false);
+                                    itemHandler.extractItem(UPGRADE_ITEM_SLOT, matchedRecipe.upgradeItem().count(), false);
                                 }
 
                                 itemHandler.setStackInSlot(OUTPUT_SLOT, copyAndApplyEffect(toolStack, effect));
@@ -383,7 +398,7 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
 
                         foundMatch = true;
                         errorMaxLevel = false;
-                    } else if (effectMaxed) {
+                    } else {
                         blockedByMax = true;
                     }
                 }
@@ -395,6 +410,7 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
             }
         }
     }
+
 
 
     private static Class<?> mekanismPaxelClass;
@@ -454,7 +470,33 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
         if (effect.contains(AUTO_SMELT)) {
             return stack.getOrDefault(CastingDataComponents.AUTO_SMELT, false);
         }
-
+        if (effect.contains(LOOTING)) {
+            int currentLooting = stack.getOrDefault(CastingDataComponents.LOOTING, 0);
+            return currentLooting >= ToolModifierConfig.maxLootingAmount.get();
+        }
+        if (effect.contains(SHARPNESS)) {
+            int currentSharpness = stack.getOrDefault(CastingDataComponents.SHARPNESS, 0);
+            return currentSharpness >= ToolModifierConfig.maxSharpnessAmount.get();
+        }
+        if (effect.contains(BEHEADING)) {
+            return stack.getOrDefault(CastingDataComponents.BEHEADING, false);
+        }
+        if (effect.contains(LIFESTEAL)) {
+            int currentLifesteal = stack.getOrDefault(CastingDataComponents.LIFESTEAL, 0);
+            return currentLifesteal >= ToolModifierConfig.maxLifestealAmount.get();
+        }
+        if (effect.contains(KNOCKBACK)) {
+            int currentKnockback = stack.getOrDefault(CastingDataComponents.KNOCKBACK, 0);
+            return currentKnockback >= ToolModifierConfig.maxKnockbackAmount.get();
+        }
+        if (effect.contains(IGNITE)) {
+            int currentKnockback = stack.getOrDefault(CastingDataComponents.IGNITE, 0);
+            return currentKnockback >= ToolModifierConfig.maxIgniteAmount.get();
+        }
+        if (effect.contains(EXCAVATION)) {
+            int currentKnockback = stack.getOrDefault(CastingDataComponents.EXCAVATION, 0);
+            return currentKnockback >= ToolModifierConfig.maxExcavationAmount.get();
+        }
         return false;
     }
 
@@ -493,9 +535,41 @@ public class ToolModifierBlockEntity extends BlockEntity implements MenuProvider
             boolean isAutoSmelt = copy.getOrDefault(CastingDataComponents.AUTO_SMELT, false);
             copy.set(CastingDataComponents.AUTO_SMELT, !isAutoSmelt);
         }
-
+        if (effect.contains(LOOTING)) {
+            int currentLooting = copy.getOrDefault(CastingDataComponents.LOOTING, 0);
+            int newLooting = Math.min(currentLooting + 1, ToolModifierConfig.maxLootingAmount.get());
+            copy.set(CastingDataComponents.LOOTING, newLooting);
+        }
+        if (effect.contains(SHARPNESS)) {
+            int currentSharpness = copy.getOrDefault(CastingDataComponents.SHARPNESS, 0);
+            int newSharpness = Math.min(currentSharpness + 1, ToolModifierConfig.maxSharpnessAmount.get());
+            copy.set(CastingDataComponents.SHARPNESS, newSharpness);
+        }
+        if (effect.contains(BEHEADING)) {
+            boolean isBeheading = copy.getOrDefault(CastingDataComponents.BEHEADING, false);
+            copy.set(CastingDataComponents.BEHEADING, !isBeheading);
+        }
+        if (effect.contains(LIFESTEAL)) {
+            int currentLifesteal = copy.getOrDefault(CastingDataComponents.LIFESTEAL, 0);
+            int newLifesteal = Math.min(currentLifesteal + 1, ToolModifierConfig.maxLifestealAmount.get());
+            copy.set(CastingDataComponents.LIFESTEAL, newLifesteal);
+        }
+        if (effect.contains(KNOCKBACK)) {
+            int currentKnockback = copy.getOrDefault(CastingDataComponents.KNOCKBACK, 0);
+            int newKnockback = Math.min(currentKnockback + 1, ToolModifierConfig.maxKnockbackAmount.get());
+            copy.set(CastingDataComponents.KNOCKBACK, newKnockback);
+        }
+        if (effect.contains(IGNITE)) {
+            int currentIgnite = copy.getOrDefault(CastingDataComponents.IGNITE, 0);
+            int newIgnite = Math.min(currentIgnite + 1, ToolModifierConfig.maxIgniteAmount.get());
+            copy.set(CastingDataComponents.IGNITE, newIgnite);
+        }
+        if (effect.contains(EXCAVATION)) {
+            int currentExcavation = copy.getOrDefault(CastingDataComponents.EXCAVATION, 0);
+            int newExcavation = Math.min(currentExcavation + 1, ToolModifierConfig.maxExcavationAmount.get());
+            copy.set(CastingDataComponents.EXCAVATION, newExcavation);
+        }
         return copy;
-
     }
 
     private void resetProgress() {

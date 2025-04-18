@@ -7,3 +7,15 @@ add ValidToolTypesForToolModifiers
 add to Block Entity
 add recipe, run data
 add event to required event
+
+
+
+//real looting
+Loot Context Final: net.minecraft.world.level.storage.loot.LootParams@2911fe18
+Loot: [64 minecraft:coal, 64 minecraft:coal, 3 minecraft:coal, 64 minecraft:bone, 64 minecraft:bone, 12 minecraft:bone, 1 minecraft:wither_skeleton_skull]
+Looting Level: 0
+
+//casting looting
+Loot Context Final: net.minecraft.world.level.storage.loot.LootParams@584fde70
+Loot: [1 minecraft:coal, 2 minecraft:bone]
+Looting Level: 255

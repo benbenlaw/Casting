@@ -52,6 +52,24 @@ public class CastingRecipes extends RecipeProvider {
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_GLOWSTONE.getFluid(), 16000), "repairing");
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), 64), new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 5120), "torch_placing");
         toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 16000), "auto_smelt");
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 16000), "looting");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_QUARTZ.getFluid(), 5400), "sharpness");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_ENDER.getFluid(), 2560), "beheading");
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 6480), "lifesteal");
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 8), null,"knockback");
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 16000),"ignite");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_DIAMOND.getFluid(), 5400),"excavation");
+
+        //Tool Modifier
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TOOL_MODIFIER.get(), 1)
+                .pattern("BBB")
+                .pattern("STS")
+                .pattern("BBB")
+                .define('B', ModBlocks.BLACK_BRICKS.get())
+                .define('S', ModBlocks.SOLIDIFIER.get())
+                .define('T', Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
+                .unlockedBy("has_black_brick", has(ModItems.BLACK_BRICK.get()))
+                .save(consumer);
 
         //Fluid Mover
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.FLUID_MOVER.get(), 1)

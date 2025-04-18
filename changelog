@@ -6,8 +6,21 @@ Switch to core, (1.22)
 Fluid Storage, like the mixer but store molten fluids (1.22)
 Make item show there contents (1.22)
 fluid storage (1.22)
-tools, can be repairs using solidifier
+fishing rods support for tool modifiers (1.22)
 
+1.17.1
+Changed some recipe values
+Added Looting, applies to swords and axes up to level 5, uses molten lapis and emeralds
+Added Sharpness, applies to swords and axes up to level 10, each level of sharpness increases the damage by 1, Uses molten quartz
+Added Beheading, applies to swords, uses molten ender, skull drops are added via config, vanilla and ender io are supported but more will be added.
+Added Lifesteal applies to swords, uses molten gold and golden apples, each level restores 10% of the damage dealt, up to 5 levels, config max is 10
+Added Knockback applies to swords, uses pistons, each level increases the knockback by 1 block, up to 5 levels, config can be as high as you want
+Added Ignite applies to swords, uses lava and flint and steel, each level increases the burn time by 1 second, up to 5 levels, config can be as high as you want
+Added Excavation applies to pickaxe, shovels, axes, hoes, shears and paxels, each level increases the mining area by 1 block eg level one is 3x3, level 2 is 5x5, level 3 is 7x7, up to 3, config can be as high as you want
+Restricted castings influence on all block breaking, this means casting will only provide its modifiers to the blocks if it is required
+    this fixes blocks dropping in creative mode and i few other misc interactions
+Added texture for the tool modifier block, loot table recipes and tags
+Added JEI Information for the tool modifier block
 
 
 1.17.0

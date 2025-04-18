@@ -90,6 +90,30 @@
   "item.casting.auto_smelt": "Tool Modifier: Auto Smelt",
   "casting.tooltip.auto_smelt": "Allows the tool to automatically smelt items it mines up to level %s",
 
+  "item.casting.looting": "Tool Modifier: Looting",
+  "casting.tooltip.looting": "Gives a tool Looting up to level %s",
+
+  "item.casting.sharpness": "Tool Modifier: Sharpness",
+  "casting.tooltip.sharpness": "Gives a tool Sharpness up to level %s",
+
+  "item.casting.beheading": "Tool Modifier: Beheading",
+  "casting.tooltip.beheading": "Gives a tool Beheading, drops mob heads",
+
+  "item.casting.lifesteal": "Tool Modifier: Lifesteal",
+  "casting.tooltip.lifesteal": "Gives a tool Lifesteal, restores health when damaging enemies up to level %s",
+
+  "item.casting.knockback": "Tool Modifier: Knockback",
+  "casting.tooltip.knockback": "Gives a tool Knockback up to level %s",
+
+  "item.casting.ignite": "Tool Modifier: Ignite",
+  "casting.tooltip.ignite": "Gives a tool Ignite, ignites enemies on hit up to level %s",
+
+  "item.casting.excavation": "Tool Modifier: Excavation",
+  "casting.tooltip.excavation": "Gives a tool Excavation, allows the tool to mine a bigger area up to level %s",
+
+
+
+
   "casting.tooltip.all_modifiers": "- All",
   "casting.tooltip.pickaxe_modifiers": "- Pickaxes",
   "casting.tooltip.shovel_modifiers": "- Shovels",
@@ -106,6 +130,13 @@
   "tooltips.casting.unbreaking": "- Unreaking %s",
   "tooltips.casting.repairing": "- Repairing %s",
   "tooltips.casting.torch_placing": "- Torch Placing",
+  "tooltips.casting.looting": "- Looting %s",
+  "tooltips.casting.sharpness": "- Sharpness %s (+%s Attack Damage)",
+  "tooltips.casting.beheading": "- Beheading",
+  "tooltips.casting.lifesteal": "- Lifesteal %s (Restores %s%% damage dealt)",
+  "tooltips.casting.knockback": "- Knockback %s",
+  "tooltips.casting.ignite": "- Ignite %s",
+  "tooltips.casting.excavation": "- Excavation %s (%sx%s Area)",
 
   "casting.tooltip.valid_tool_types": "Valid tools for this modifier;",
 
@@ -175,6 +206,8 @@
   "jei.casting.tank": "The Tank stores the fuel used in the Controller to melt items!\n\nCan also be used with the Solidifier colder fluids in the tank makes the Solidifier faster \n\nStores fluids when broken!",
   "jei.casting.fluid_mover": "Used to move fluids between tanks, Holds up to 8000mb of a single fluid. \n\nClick on a tank to collect fluid and click on another tank to add!\n\nWill try to fill the selected tank before collecting fluids!",
   "jei.casting.mixer_whisk": "Used to speed up the mixer when placed above it. \n\nFor each whisk above the mixer the tick rate is decreased by 40 ticks!\n\nAdditional whisks placed after the tick rate is at its lowest (20) will have no effect!",
+  "jei.casting.tool_modifier": "Used to apply modifiers to tool!, Search Tool Modifiers in JEI to view the modifiers!\n\nPlace the right items and or fluids in the Tool Modifier then add a valid tool to add that effect to the tool!\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!",
+
 
   "itemGroup.casting": "BBL Casting",
   "tooltips.casting.auto_smelt": "- Auto Smelt",

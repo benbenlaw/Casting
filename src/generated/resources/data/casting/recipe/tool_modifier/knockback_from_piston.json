@@ -1,0 +1,8 @@
+{
+  "type": "casting:tool_modifier",
+  "effect": "knockback",
+  "upgrade_item": {
+    "count": 8,
+    "item": "minecraft:piston"
+  }
+}

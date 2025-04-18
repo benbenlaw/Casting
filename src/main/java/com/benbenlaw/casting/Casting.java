@@ -2,6 +2,7 @@ package com.benbenlaw.casting;
 
 import com.benbenlaw.casting.block.ModBlocks;
 import com.benbenlaw.casting.block.entity.ModBlockEntities;
+import com.benbenlaw.casting.config.BeheadingConfig;
 import com.benbenlaw.casting.config.ToolModifierConfig;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.CastingDataComponents;
@@ -50,8 +51,11 @@ public class Casting {
         ModRecipes.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.STARTUP, ToolModifierConfig.SPEC, "bbl/casting/tool_modifiers.toml");
+        modContainer.registerConfig(ModConfig.Type.COMMON, BeheadingConfig.SPEC, "bbl/casting/beheading.toml");
 
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::beheadingSetup);
+
 
       //  ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, ConfigFile.SPEC, "smelting.toml");
 
@@ -61,8 +65,15 @@ public class Casting {
         ModBlockEntities.registerCapabilities(event);
     }
 
+    //enqueueWork is used to delay the registration of the networking until after the common setup
+    @SubscribeEvent
+    public void beheadingSetup(final FMLClientSetupEvent event) {
+        event.enqueueWork(BeheadingConfig::applyToHeadMap);
+    }
+
     public void commonSetup(RegisterPayloadHandlersEvent event) {
         CastingModMessages.registerNetworking(event);
+
     }
 
     @EventBusSubscriber(modid = Casting.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

@@ -26,6 +26,20 @@ public class ToolModifierItems {
             () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.torch_placing", 1));
     public static final DeferredItem<Item> AUTO_SMELT = ITEMS.register("auto_smelt",
             () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.auto_smelt", 1));
+    public static final DeferredItem<Item> LOOTING = ITEMS.register("looting",
+            () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.looting", ToolModifierConfig.maxLootingAmount.get()));
+    public static final DeferredItem<Item> SHARPNESS = ITEMS.register("sharpness",
+            () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.sharpness", ToolModifierConfig.maxSharpnessAmount.get()));
+    public static final DeferredItem<Item> BEHEADING = ITEMS.register("beheading",
+            () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.beheading", 1));
+    public static final DeferredItem<Item> LIFESTEAL = ITEMS.register("lifesteal",
+            () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.lifesteal", ToolModifierConfig.maxLifestealAmount.get()));
+    public static final DeferredItem<Item> KNOCKBACK = ITEMS.register("knockback",
+            () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.knockback", ToolModifierConfig.maxKnockbackAmount.get()));
+    public static final DeferredItem<Item> IGNITE = ITEMS.register("ignite",
+            () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.ignite", 1));
+    public static final DeferredItem<Item> EXCAVATION = ITEMS.register("excavation",
+            () -> new ToolModifierItem(new Item.Properties(), "casting.tooltip.excavation", ToolModifierConfig.maxExcavationAmount.get()));
 
 
 
