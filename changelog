@@ -9,7 +9,6 @@ fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
 1.17.1
-Changed some recipe values
 Added Looting, applies to swords and axes up to level 5, uses molten lapis and emeralds
 Added Sharpness, applies to swords and axes up to level 10, each level of sharpness increases the damage by 1, Uses molten quartz
 Added Beheading, applies to swords, uses molten ender, skull drops are added via config, vanilla and ender io are supported but more will be added.
@@ -21,7 +20,7 @@ Restricted castings influence on all block breaking, this means casting will onl
     this fixes blocks dropping in creative mode and i few other misc interactions
 Added texture for the tool modifier block, loot table recipes and tags
 Added JEI Information for the tool modifier block
-
+Tweaked some recipe
 
 1.17.0
 Added BBL Core as a dependency
