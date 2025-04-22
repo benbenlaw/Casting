@@ -69,47 +69,56 @@
   "item.casting.molten_copper_alloy_bucket": "Molten Copper Alloy Bucket",
   "item.casting.molten_redstone_alloy_bucket": "Molten Redstone Alloy Bucket",
 
-  "item.casting.silk_touch": "Tool Modifier: Silk Touch",
+  "item.casting.silk_touch": "Equipment Modifier: Silk Touch",
   "casting.tooltip.silk_touch": "Gives a tool Silk Touch up to level %s",
 
-  "item.casting.efficiency": "Tool Modifier: Efficiency",
+  "item.casting.efficiency": "Equipment Modifier: Efficiency",
   "casting.tooltip.efficiency": "Gives a tool Efficiency up to level %s",
 
-  "item.casting.fortune": "Tool Modifier: Fortune",
+  "item.casting.fortune": "Equipment Modifier: Fortune",
   "casting.tooltip.fortune": "Gives a tool Fortune up to level %s",
 
-  "item.casting.unbreaking": "Tool Modifier: Unbreaking",
+  "item.casting.unbreaking": "Equipment Modifier: Unbreaking",
   "casting.tooltip.unbreaking": "Gives a tool Unbreaking up to level %s",
 
-  "item.casting.repairing": "Tool Modifier: Repairing",
+  "item.casting.repairing": "Equipment Modifier: Repairing",
   "casting.tooltip.repairing": "Gives a tool Repairing up to level %s",
 
-  "item.casting.torch_placing": "Tool Modifier: Torch Placing",
+  "item.casting.torch_placing": "Equipment Modifier: Torch Placing",
   "casting.tooltip.torch_placing": "Allows the tool to place torches on right click up to level %s",
 
-  "item.casting.auto_smelt": "Tool Modifier: Auto Smelt",
+  "item.casting.auto_smelt": "Equipment Modifier: Auto Smelt",
   "casting.tooltip.auto_smelt": "Allows the tool to automatically smelt items it mines up to level %s",
 
-  "item.casting.looting": "Tool Modifier: Looting",
+  "item.casting.looting": "Equipment Modifier: Looting",
   "casting.tooltip.looting": "Gives a tool Looting up to level %s",
 
-  "item.casting.sharpness": "Tool Modifier: Sharpness",
+  "item.casting.sharpness": "Equipment Modifier: Sharpness",
   "casting.tooltip.sharpness": "Gives a tool Sharpness up to level %s",
 
-  "item.casting.beheading": "Tool Modifier: Beheading",
+  "item.casting.beheading": "Equipment Modifier: Beheading",
   "casting.tooltip.beheading": "Gives a tool Beheading, drops mob heads",
 
-  "item.casting.lifesteal": "Tool Modifier: Lifesteal",
+  "item.casting.lifesteal": "Equipment Modifier: Lifesteal",
   "casting.tooltip.lifesteal": "Gives a tool Lifesteal, restores health when damaging enemies up to level %s",
 
-  "item.casting.knockback": "Tool Modifier: Knockback",
+  "item.casting.knockback": "Equipment Modifier: Knockback",
   "casting.tooltip.knockback": "Gives a tool Knockback up to level %s",
 
-  "item.casting.ignite": "Tool Modifier: Ignite",
+  "item.casting.ignite": "Equipment Modifier: Ignite",
   "casting.tooltip.ignite": "Gives a tool Ignite, ignites enemies on hit up to level %s",
 
-  "item.casting.excavation": "Tool Modifier: Excavation",
+  "item.casting.excavation": "Equipment Modifier: Excavation",
   "casting.tooltip.excavation": "Gives a tool Excavation, allows the tool to mine a bigger area up to level %s",
+
+  "item.casting.teleporting": "Equipment Modifier: Teleporting",
+  "casting.tooltip.teleporting": "Gives a tool Teleporting, allows the tool to teleport you to far away blocks away up to level %s. Costs 5 durability per teleport.",
+
+  "item.casting.magnet": "Equipment Modifier: Magnet",
+  "casting.tooltip.magnet": "Gives armor Magnet, attracts items to the player up to level %s",
+
+  "item.casting.protection": "Equipment Modifier: Protection",
+  "casting.tooltip.protection": "Gives armor Protection up to level %s",
 
 
 
@@ -122,8 +131,12 @@
   "casting.tooltip.sword_modifiers": "- Swords",
   "casting.tooltip.shear_modifiers": "- Shears",
   "casting.tooltip.paxel_modifiers": "- Paxels",
+  "casting.tooltip.chestplate_modifiers": "- Chestplates",
+  "casting.tooltip.helmet_modifiers": "- Helmets",
+  "casting.tooltip.leggings_modifiers": "- Leggings",
+  "casting.tooltip.boots_modifiers": "- Boots",
 
-  "tooltips.casting.tool_modifiers": "Tool Modifiers;",
+  "tooltips.casting.modifiers": "Modifiers;",
   "tooltips.casting.silk_touch": "- Silk Touch",
   "tooltips.casting.efficiency": "- Efficiency %s",
   "tooltips.casting.fortune": "- Fortune %s",
@@ -137,8 +150,11 @@
   "tooltips.casting.knockback": "- Knockback %s",
   "tooltips.casting.ignite": "- Ignite %s",
   "tooltips.casting.excavation": "- Excavation %s (%sx%s Area)",
+  "tooltips.casting.teleporting": "- Teleporting %s (%s Blocks)",
+  "tooltips.casting.magnet": "- Magnet %s",
+  "tooltips.casting.protection": "- Protection %s",
 
-  "casting.tooltip.valid_tool_types": "Valid tools for this modifier;",
+  "casting.tooltip.valid_tool_types": "Valid Equipment;",
 
   "block.casting.molten_iron": "Molten Iron",
   "block.casting.molten_gold": "Molten Gold",
@@ -191,11 +207,11 @@
   "block.casting.molten_end_steel": "Molten End Steel",
   "block.casting.molten_soularium": "Molten Soularium",
   "block.casting.molten_redstone_alloy": "Molten Redstone Alloy",
-  "block.casting.tool_modifier": "Tool Modifier",
+  "block.casting.equipment_modifier": "Equipment Modifier",
 
 
   "screen.casting.warning": "Dump Fluid!",
-  "screen.casting.max_level": "Tool at max level for this effect",
+  "screen.casting.max_level": "Equipment at max level for this effect",
 
   "tooltips.blocks.with_fluid.shift": "Press SHIFT for more info",
 
@@ -206,12 +222,12 @@
   "jei.casting.tank": "The Tank stores the fuel used in the Controller to melt items!\n\nCan also be used with the Solidifier colder fluids in the tank makes the Solidifier faster \n\nStores fluids when broken!",
   "jei.casting.fluid_mover": "Used to move fluids between tanks, Holds up to 8000mb of a single fluid. \n\nClick on a tank to collect fluid and click on another tank to add!\n\nWill try to fill the selected tank before collecting fluids!",
   "jei.casting.mixer_whisk": "Used to speed up the mixer when placed above it. \n\nFor each whisk above the mixer the tick rate is decreased by 40 ticks!\n\nAdditional whisks placed after the tick rate is at its lowest (20) will have no effect!",
-  "jei.casting.tool_modifier": "Used to apply modifiers to tool!, Search Tool Modifiers in JEI to view the modifiers!\n\nPlace the right items and or fluids in the Tool Modifier then add a valid tool to add that effect to the tool!\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!",
+  "jei.casting.equipment_modifier": "Used to apply modifiers to your equipment!, Search Equipment Modifiers in JEI to view the modifiers!\n\nPlace the right items and or fluids in the Equipment Modifier then add a valid piece of Equipment to add that effect!\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!",
 
 
   "itemGroup.casting": "BBL Casting",
   "tooltips.casting.auto_smelt": "- Auto Smelt",
-  "itemGroup.tool_modifiers": "Tool Modifiers"
+  "itemGroup.equipment_modifiers": "Equipment Modifiers"
 
 
 

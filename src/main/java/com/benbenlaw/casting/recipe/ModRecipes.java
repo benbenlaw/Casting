@@ -48,11 +48,11 @@ public class ModRecipes {
             TYPES.register("fuel", () -> FuelRecipe.Type.INSTANCE);
 
     //Tool Modifier
-    public static final Supplier<RecipeSerializer<ToolModifierRecipe>> TOOL_MODIFIER_SERIALIZER =
-        SERIALIZER.register("tool_modifier", () -> ToolModifierRecipe.Serializer.INSTANCE);
+    public static final Supplier<RecipeSerializer<EquipmentModifierRecipe>> EQUIPMENT_MODIFIER_SERIALIZER =
+        SERIALIZER.register("equipment_modifier", () -> EquipmentModifierRecipe.Serializer.INSTANCE);
 
-    public static final Supplier<RecipeType<ToolModifierRecipe>> TOOL_MODIFIER_TYPE =
-            TYPES.register("tool_modifier", () -> ToolModifierRecipe.Type.INSTANCE);
+    public static final Supplier<RecipeType<EquipmentModifierRecipe>> EQUIPMENT_MODIFIER_TYPE =
+            TYPES.register("equipment_modifier", () -> EquipmentModifierRecipe.Type.INSTANCE);
 
     public static void register(IEventBus eventBus) {
         SERIALIZER.register(eventBus);

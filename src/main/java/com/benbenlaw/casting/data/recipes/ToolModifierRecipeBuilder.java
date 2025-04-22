@@ -1,8 +1,7 @@
 package com.benbenlaw.casting.data.recipes;
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.recipe.SolidifierRecipe;
-import com.benbenlaw.casting.recipe.ToolModifierRecipe;
+import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
@@ -13,7 +12,6 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
@@ -70,7 +68,7 @@ public class ToolModifierRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(builder::addCriterion);
-        ToolModifierRecipe solidifierRecipe = new ToolModifierRecipe(this.upgradeItem, this.upgradeFluid, this.effect);
+        EquipmentModifierRecipe solidifierRecipe = new EquipmentModifierRecipe(this.upgradeItem, this.upgradeFluid, this.effect);
         recipeOutput.accept(id, solidifierRecipe, builder.build(id.withPrefix("recipes/tool_modifier/")));
 
     }

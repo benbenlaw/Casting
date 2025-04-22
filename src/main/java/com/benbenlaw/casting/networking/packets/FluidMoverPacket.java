@@ -100,11 +100,11 @@ public record FluidMoverPacket() {
             transferFluidBetweenTankAndItem(selectedTank, carriedItem, player, isOutputTank);
         }
 
-        if (blockEntity instanceof ToolModifierBlockEntity toolModifierBlockEntity) {
+        if (blockEntity instanceof EquipmentModifierBlockEntity equipmentModifierBlockEntity) {
             FluidTank selectedTank = null;
             boolean isOutputTank = false;
             if (tankNumber == 1) {
-                selectedTank = toolModifierBlockEntity.TANK;
+                selectedTank = equipmentModifierBlockEntity.TANK;
             } else {
                 player.sendSystemMessage(Component.literal("Invalid tank number!"));
                 return;

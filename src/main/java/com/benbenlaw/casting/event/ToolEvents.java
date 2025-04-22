@@ -1,66 +1,53 @@
 package com.benbenlaw.casting.event;
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.config.ToolModifierConfig;
+import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.util.BeheadingHeadMap;
-import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.util.FakePlayerUtil;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.EntityTypePredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Vec3i;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
-import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.FakePlayer;
-import net.neoforged.neoforge.common.util.RecipeMatcher;
-import net.neoforged.neoforge.event.entity.EntityEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+
+import static mekanism.common.util.WorldUtils.getBlockState;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
 
@@ -270,29 +257,60 @@ public class ToolEvents {
         }
     }
     @SubscribeEvent
-    public static void onPlayerTick(PlayerTickEvent.Post event) {
-        Inventory inventory = event.getEntity().getInventory();
+    public static void onPlayerDamage(LivingDamageEvent.Pre event) {
+        Entity entity = event.getEntity();
+        if (!(entity instanceof Player player)) return;
 
-        for (int i = 0; i < inventory.getContainerSize(); i++) {
-            ItemStack stack = inventory.getItem(i);
-            if (stack.isEmpty()) continue;
+        Level level = player.level();
+        if (level.isClientSide()) return;
 
-            //Repairing
-            if (stack.getComponents().keySet().contains(CastingDataComponents.REPAIRING.get())) {
-                int repairingLevel = stack.getComponents().getOrDefault(CastingDataComponents.REPAIRING.get(), 0);
-                int repairTickTime = getRepairTickTime(repairingLevel);
+        float originalDamage = event.getOriginalDamage();
+        float totalReduction = 0f;
 
-                if (event.getEntity().tickCount % repairTickTime == 0) {
-                    int currentDamage = stack.getDamageValue();
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (slot.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
 
-                    if (currentDamage > 0) {
-                        int newDamage = Math.max(currentDamage - 1, 0);
-                        stack.setDamageValue(newDamage);
-                    }
+            ItemStack armor = player.getItemBySlot(slot);
+            if (armor.isEmpty()) continue;
+
+            if (armor.getComponents().keySet().contains(CastingDataComponents.PROTECTION.get())) {
+                int protectionLevel = armor.getComponents().getOrDefault(CastingDataComponents.PROTECTION.get(), 0);
+                totalReduction += protectionLevel * EquipmentModifierConfig.percentageOfProtectionDamagePerProtectionLevel.get();
+            }
+        }
+
+        //(max 80% reduction)
+        totalReduction = Math.min(totalReduction, 0.8f);
+        event.setNewDamage(originalDamage * (1.0f - totalReduction));
+    }
+
+    @SubscribeEvent
+    public static void onPlayerDamage(LivingDamageEvent.Post event) {
+        Entity entity = event.getEntity();
+        if (!(entity instanceof Player player)) return;
+
+        Level level = player.level();
+        if (level.isClientSide()) return;
+
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (slot.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
+
+            ItemStack armor = player.getItemBySlot(slot);
+            if (armor.isEmpty()) continue;
+
+            // --- Unbreaking ---
+            boolean isUnbreaking = armor.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get());
+            if (isUnbreaking) {
+                int unbreakingLevel = armor.getComponents().getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
+                float chance = unbreakingLevel * 0.1f;
+
+                if (level.getRandom().nextFloat() < chance) {
+                    armor.setDamageValue(armor.getDamageValue() - 1);
                 }
             }
         }
     }
+
 
     @SubscribeEvent
     public static void onPreLivingDamage(LivingDamageEvent.Pre event) {
@@ -318,7 +336,7 @@ public class ToolEvents {
                 if (sharpnessLevel <= 0) return;
 
                 // Vanilla is: 0.5 * level + 0.5
-                float bonusDamage = ToolModifierConfig.additionalMultiplierForSharpness.get() * sharpnessLevel + ToolModifierConfig.additionalAdditionForSharpness.get();
+                float bonusDamage = EquipmentModifierConfig.additionalMultiplierForSharpness.get() * sharpnessLevel + EquipmentModifierConfig.additionalAdditionForSharpness.get();
                 event.setNewDamage(event.getNewDamage() + bonusDamage);
             }
 
@@ -383,7 +401,7 @@ public class ToolEvents {
     }
 
     @SubscribeEvent
-    public static void onRightClick(PlayerInteractEvent.RightClickBlock event) {
+    public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
 
         Level level = event.getLevel();
         Player player = event.getEntity();
@@ -391,9 +409,36 @@ public class ToolEvents {
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
 
-        if (!level.isClientSide()) {
+        boolean isTeleporting = tool.getComponents().keySet().contains(CastingDataComponents.TELEPORTING.get());
 
-            if (tool.getComponents().keySet().contains(CastingDataComponents.TORCH_PLACING.get())) {
+        boolean requiresCastingOverrides = isTeleporting;
+
+        if (!level.isClientSide() && requiresCastingOverrides) {
+
+            //Teleporting
+            if (isTeleporting) {
+                doTeleportation(tool, player, level);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+
+        Level level = event.getLevel();
+        Player player = event.getEntity();
+        BlockPos pos = event.getPos();
+        InteractionHand hand = event.getHand();
+        ItemStack tool = player.getItemInHand(hand);
+
+        boolean isTorchPlacing = tool.getComponents().keySet().contains(CastingDataComponents.TORCH_PLACING.get());
+
+        boolean requiresCastingOverrides = isTorchPlacing;
+
+        if (!level.isClientSide() && requiresCastingOverrides) {
+
+            //Torch Placing
+            if (isTorchPlacing) {
                 Direction face = event.getFace();
                 assert face != null;
                 BlockPos placePos = pos.relative(face);
@@ -461,6 +506,62 @@ public class ToolEvents {
 
                 for (ItemStack itemStack : loot) {
                     popOutTheItem(level, deadEntity.blockPosition(), itemStack);
+                }
+            }
+        }
+    }
+
+    public static void doTeleportation(ItemStack tool, Player player, Level level) {
+
+        int ADDITIONAL_BLOCKS_PER_LEVEL = EquipmentModifierConfig.blocksPerLevelForTeleporting.get();
+        int range = tool.getComponents().getOrDefault(CastingDataComponents.TELEPORTING.get(), 0) * ADDITIONAL_BLOCKS_PER_LEVEL;
+        Vec3 lookVec = player.getLookAngle();
+        Vec3 start = player.getEyePosition();
+        Vec3 end = start.add(lookVec.scale(range));
+
+        BlockHitResult hit = level.clip(new ClipContext(
+                start,
+                end,
+                ClipContext.Block.OUTLINE,
+                ClipContext.Fluid.NONE,
+                player
+        ));
+
+        if (hit.getType() == HitResult.Type.BLOCK) {
+            BlockPos hitPos = hit.getBlockPos();
+            Direction hitDir = hit.getDirection();
+
+            //Adjust position based on block side hit
+            Vec3 targetPos;
+            if (hitDir == Direction.UP) {
+                targetPos = Vec3.atCenterOf(hitPos.above()).subtract(0, 0.5, 0);
+            } else if (hitDir == Direction.DOWN) {
+                targetPos = Vec3.atCenterOf(hitPos.below()).subtract(0, 0.5, 0);
+            } else {
+                Vec3 faceOffset = Vec3.atLowerCornerOf(hitDir.getNormal()).scale(1);
+                targetPos = Vec3.atCenterOf(hitPos).add(faceOffset).subtract(0, 1.5, 0);
+            }
+
+            BlockPos teleportPos = BlockPos.containing(targetPos);
+            // Check if the teleport position is air
+            Vec3 preTeleportPos = player.position();
+
+            if (level.getBlockState(teleportPos).isAir() && level.getBlockState(teleportPos.above()).isAir()) {
+                player.teleportTo(targetPos.x, targetPos.y, targetPos.z);
+                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 1.0F);
+                player.getCooldowns().addCooldown(tool.getItem(), EquipmentModifierConfig.cooldownForTeleporting.get());
+                tool.hurtAndBreak(5, player, EquipmentSlot.MAINHAND);
+
+                // Spawn particles
+                for (int i = 0; i < 32; i++) {
+                    double offsetX = (level.random.nextDouble() - 0.5);
+                    double offsetY = level.random.nextDouble() * 2.0;
+                    double offsetZ = (level.random.nextDouble() - 0.5);
+
+                    if (level instanceof ServerLevel serverLevel) {
+                        serverLevel.sendParticles(ParticleTypes.SMOKE, player.getX() + offsetX, player.getY() + offsetY, player.getZ() + offsetZ, 8, 0.0, 0.5, 0.0, 0.0);
+                        serverLevel.sendParticles(ParticleTypes.SMOKE, preTeleportPos.x + offsetX, preTeleportPos.y + offsetY, preTeleportPos.z + offsetZ, 8, 0.0, 0.5, 0.0, 0.0);
+                    }
                 }
             }
         }

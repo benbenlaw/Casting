@@ -1,10 +1,9 @@
 package com.benbenlaw.casting.networking.packets;
 
-import com.benbenlaw.casting.block.ModBlocks;
 import com.benbenlaw.casting.block.entity.ControllerBlockEntity;
+import com.benbenlaw.casting.block.entity.EquipmentModifierBlockEntity;
 import com.benbenlaw.casting.block.entity.MixerBlockEntity;
 import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
-import com.benbenlaw.casting.block.entity.ToolModifierBlockEntity;
 import com.benbenlaw.casting.networking.payload.ClearTankPayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -38,10 +37,10 @@ public record ClearTankPacket() {
             }
         }
 
-        if (blockEntity instanceof ToolModifierBlockEntity toolModifierBlockEntity) {
+        if (blockEntity instanceof EquipmentModifierBlockEntity equipmentModifierBlockEntity) {
             if (isShiftDown) {
-                toolModifierBlockEntity.TANK.getFluid().setAmount(0);
-                toolModifierBlockEntity.sync();
+                equipmentModifierBlockEntity.TANK.getFluid().setAmount(0);
+                equipmentModifierBlockEntity.sync();
             }
         }
 

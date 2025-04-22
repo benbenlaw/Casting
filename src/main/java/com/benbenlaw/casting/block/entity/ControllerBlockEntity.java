@@ -500,7 +500,7 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
         // Drain to adjacent tool modifier
         for (Direction direction : Direction.values()) {
             BlockEntity entity = level.getBlockEntity(this.worldPosition.relative(direction));
-            if (entity instanceof ToolModifierBlockEntity toolModifierBlockEntity) {
+            if (entity instanceof EquipmentModifierBlockEntity toolModifierBlockEntity) {
                 transferFluidToTank(TANK_1, toolModifierBlockEntity.TANK);
                 transferFluidToTank(TANK_2, toolModifierBlockEntity.TANK);
                 transferFluidToTank(TANK_3, toolModifierBlockEntity.TANK);

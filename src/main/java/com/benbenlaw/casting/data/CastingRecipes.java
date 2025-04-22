@@ -6,7 +6,6 @@ import com.benbenlaw.casting.data.recipes.*;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.ModItems;
 import com.benbenlaw.casting.util.CastingTags;
-import com.benbenlaw.opolisutilities.OpolisUtilities;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -16,19 +15,15 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.ItemExistsCondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
-import org.checkerframework.checker.units.qual.N;
 
-import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 import static com.benbenlaw.casting.data.ModdedTags.*;
@@ -47,21 +42,24 @@ public class CastingRecipes extends RecipeProvider {
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 5400), "fortune");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_REDSTONE.getFluid(), 5400), "efficiency");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_EMERALD.getFluid(), 2700), "silk_touch");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_OBSIDIAN.getFluid(), 64000), "unbreaking");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(com.benbenlaw.opolisutilities.block.ModBlocks.ITEM_REPAIRER.get()), 4), null, "repairing");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_OBSIDIAN.getFluid(), 32000), "unbreaking");
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(com.benbenlaw.opolisutilities.block.ModBlocks.ITEM_REPAIRER.get()), 1), null, "repairing");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_GLOWSTONE.getFluid(), 16000), "repairing");
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), 64), new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 5120), "torch_placing");
         toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 16000), "auto_smelt");
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 16000), "looting");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_QUARTZ.getFluid(), 2700), "sharpness");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_ENDER.getFluid(), 2560), "beheading");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_SOUL.getFluid(), 2560), "beheading");
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 6480), "lifesteal");
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 8), null,"knockback");
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 16000),"ignite");
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_DIAMOND.getFluid(), 900),"excavation");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_ENDER.getFluid(), 2560), "teleporting");
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.INGOTS_IRON), 12), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 1080), "magnet");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_STEEL.getFluid(), 720), "protection");
 
         //Tool Modifier
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TOOL_MODIFIER.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EQUIPMENT_MODIFIER.get(), 1)
                 .pattern("BBB")
                 .pattern("STS")
                 .pattern("BBB")
@@ -2725,25 +2723,22 @@ public class CastingRecipes extends RecipeProvider {
         String recipeFrom = "";
 
         if (ingredient == null) {
-            String fluidName = fluid.getFluid().getFluidType().toString().split(":")[1];
-            recipeFrom = "tool_modifier/" + effect + "_from_" + fluidName;
+            recipeFrom = "equipment_modifier/" + effect + "_from_fluid";
+
         }
         if (fluid == null) {
-            String itemName = Arrays.toString(ingredient.getItems()).replace("]", "") .split(":")[1];
-            recipeFrom = "tool_modifier/" + effect + "_from_" + itemName;
+            recipeFrom = "equipment_modifier/" + effect + "_from_item";
         }
 
         if (fluid != null && ingredient != null) {
-            String fluidName = fluid.getFluid().getFluidType().toString().split(":")[1];
-            String itemName = Arrays.toString(ingredient.getItems()).replace("]", "") .split(":")[1];
-            recipeFrom = "tool_modifier/" + effect + "_from_" + fluidName + "_and_" + itemName;
+            recipeFrom = "equipment_modifier/" + effect + "_from_fluid_and_item";
         }
 
         ToolModifierRecipeBuilder.ToolModifierRecipesBuilder(
                         ingredient,
                         fluid,
                         effect)
-                .unlockedBy("has_item", has(ModBlocks.TOOL_MODIFIER.get()))
+                .unlockedBy("has_item", has(ModBlocks.EQUIPMENT_MODIFIER.get()))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, recipeFrom));
     }
 }

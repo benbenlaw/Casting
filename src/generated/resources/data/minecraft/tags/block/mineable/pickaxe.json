@@ -6,6 +6,6 @@
     "casting:solidifier",
     "casting:mixer",
     "casting:mixer_whisk",
-    "casting:tool_modifier"
+    "casting:equipment_modifier"
   ]
 }

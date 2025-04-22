@@ -33,9 +33,9 @@ public class ModBlockEntities {
             register("mixer_block_entity", () ->
                     BlockEntityType.Builder.of(MixerBlockEntity::new, ModBlocks.MIXER.get()));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ToolModifierBlockEntity>> TOOL_MODIFIER_BLOCK_ENTITY =
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EquipmentModifierBlockEntity>> EQUIPMENT_MODIFIER_BLOCK_ENTITY =
             register("tool_modifier_block_entity", () ->
-                    BlockEntityType.Builder.of(ToolModifierBlockEntity::new, ModBlocks.TOOL_MODIFIER.get()));
+                    BlockEntityType.Builder.of(EquipmentModifierBlockEntity::new, ModBlocks.EQUIPMENT_MODIFIER.get()));
 
 
 

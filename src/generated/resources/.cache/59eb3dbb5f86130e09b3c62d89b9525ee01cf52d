@@ -1,8 +1,8 @@
-// 1.21.1	2025-04-18T14:11:47.7771084	Loot Tables
+// 1.21.1	2025-04-22T14:39:00.9995172	Loot Tables
 6fbf2da5bfe6af76a63d4f35c7b0a6c721c169cf data/casting/loot_table/blocks/black_bricks.json
 593876eee8aaa6af4db94e8a1b6e18d61ca2cf44 data/casting/loot_table/blocks/controller.json
+dc7efbc5a0c2345b3be46f8bd584743d128eef40 data/casting/loot_table/blocks/equipment_modifier.json
 d54bc258c0e7afaf4541139825c83876906cf664 data/casting/loot_table/blocks/mixer.json
 d660710736540058a22c2b0e81ddee7ef93e8db4 data/casting/loot_table/blocks/mixer_whisk.json
 77ee2327a834fa84b84abe2b66669e276678170f data/casting/loot_table/blocks/solidifier.json
 3619491576c069a4c23ef4b06b0c07d84242ba57 data/casting/loot_table/blocks/tank.json
-cf18661bb4070b6486c89ebb912291a5c50611f4 data/casting/loot_table/blocks/tool_modifier.json

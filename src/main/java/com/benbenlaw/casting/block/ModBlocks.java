@@ -42,8 +42,8 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
                     .noOcclusion()));
 
-    public static final DeferredBlock<Block> TOOL_MODIFIER = registerBlock("tool_modifier",
-            () -> new ToolModifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
+    public static final DeferredBlock<Block> EQUIPMENT_MODIFIER = registerBlock("equipment_modifier",
+            () -> new EquipmentlModifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
                     .noOcclusion()));
 
     private static ToIntFunction<BlockState> litBlockEmission(int lightLevel) {

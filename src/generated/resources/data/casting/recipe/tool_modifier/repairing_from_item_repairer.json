@@ -1,8 +1,0 @@
-{
-  "type": "casting:tool_modifier",
-  "effect": "repairing",
-  "upgrade_item": {
-    "count": 4,
-    "item": "opolisutilities:item_repairer"
-  }
-}

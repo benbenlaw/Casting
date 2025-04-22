@@ -31,8 +31,7 @@ public class BeheadingConfig {
                                 "minecraft:creeper=minecraft:creeper_head",
                                 "minecraft:wither_skeleton=minecraft:wither_skeleton_skull",
                                 "minecraft:player=minecraft:player_head",
-                                "minecraft:enderman=enderio:enderman_head",
-                                "mekanism:diamond=minecraft:osmium"
+                                "minecraft:enderman=enderio:enderman_head"
                         ),
                         obj -> obj instanceof String && ((String) obj).contains("=")
                 );
@@ -49,6 +48,7 @@ public class BeheadingConfig {
                 ResourceLocation itemId = ResourceLocation.parse(parts[1].trim());
 
                 Item item = BuiltInRegistries.ITEM.get(itemId);
+                //Add the item to the head map
                 BeheadingHeadMap.register(entityId, () -> item);
             } else {
                 System.err.println("[BeheadingConfig] Invalid entry: " + entry);

@@ -140,6 +140,15 @@ public class CastingDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EXCAVATION =
             COMPONENTS.register("excavation", () ->
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> TELEPORTING =
+            COMPONENTS.register("teleporting", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAGNET =
+            COMPONENTS.register("magnet", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> PROTECTION =
+            COMPONENTS.register("protection", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 
 
 

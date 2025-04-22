@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -19,25 +18,28 @@ public class ModCreativeModTab {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Casting.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> TOOL_MODIFIERS_TAB = CREATIVE_MODE_TABS.register("tool_modifiers", () -> CreativeModeTab.builder()
-            .icon(() -> ToolModifierItems.SILK_TOUCH.get().getDefaultInstance())
-            .title(Component.translatable("itemGroup.tool_modifiers"))
+    public static final Supplier<CreativeModeTab> EQUIPMENT_MODIFIERS_TAB = CREATIVE_MODE_TABS.register("equipment_modifiers", () -> CreativeModeTab.builder()
+            .icon(() -> EquipmentModifierItems.SILK_TOUCH.get().getDefaultInstance())
+            .title(Component.translatable("itemGroup.equipment_modifiers"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .displayItems((parameters, output) -> {
-                output.accept(ToolModifierItems.SILK_TOUCH);
-                output.accept(ToolModifierItems.EFFICIENCY);
-                output.accept(ToolModifierItems.FORTUNE);
-                output.accept(ToolModifierItems.UNBREAKING);
-                output.accept(ToolModifierItems.REPAIRING);
-                output.accept(ToolModifierItems.TORCH_PLACING);
-                output.accept(ToolModifierItems.AUTO_SMELT);
-                output.accept(ToolModifierItems.LOOTING);
-                output.accept(ToolModifierItems.SHARPNESS);
-                output.accept(ToolModifierItems.BEHEADING);
-                output.accept(ToolModifierItems.LIFESTEAL);
-                output.accept(ToolModifierItems.KNOCKBACK);
-                output.accept(ToolModifierItems.IGNITE);
-                output.accept(ToolModifierItems.EXCAVATION);
+                output.accept(EquipmentModifierItems.SILK_TOUCH);
+                output.accept(EquipmentModifierItems.EFFICIENCY);
+                output.accept(EquipmentModifierItems.FORTUNE);
+                output.accept(EquipmentModifierItems.UNBREAKING);
+                output.accept(EquipmentModifierItems.REPAIRING);
+                output.accept(EquipmentModifierItems.TORCH_PLACING);
+                output.accept(EquipmentModifierItems.AUTO_SMELT);
+                output.accept(EquipmentModifierItems.LOOTING);
+                output.accept(EquipmentModifierItems.SHARPNESS);
+                output.accept(EquipmentModifierItems.BEHEADING);
+                output.accept(EquipmentModifierItems.LIFESTEAL);
+                output.accept(EquipmentModifierItems.KNOCKBACK);
+                output.accept(EquipmentModifierItems.IGNITE);
+                output.accept(EquipmentModifierItems.EXCAVATION);
+                output.accept(EquipmentModifierItems.TELEPORTING);
+                output.accept(EquipmentModifierItems.MAGNET);
+                output.accept(EquipmentModifierItems.PROTECTION);
 
             }).build());
 
@@ -114,7 +116,7 @@ public class ModCreativeModTab {
                 output.accept(ModBlocks.MIXER.asItem());
                 output.accept(ModBlocks.MIXER_WHISK.asItem());
                 output.accept(ModBlocks.TANK.asItem());
-                output.accept(ModBlocks.TOOL_MODIFIER.asItem());
+                output.accept(ModBlocks.EQUIPMENT_MODIFIER.asItem());
 
             }).build());
 

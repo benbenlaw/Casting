@@ -7,6 +7,19 @@ Fluid Storage, like the mixer but store molten fluids (1.22)
 Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
+magnet
+
+1.17.2
+Tweaked recipe ids for the effects
+Renamed both internally and externally the tool modifier to the equipment modifier
+Beheading now uses molten soul instead of ender
+Improved Repairing syncing
+Added Teleporting, applies to swords, axes, pickaxes, paxels and shovels, uses molten ender and ender pearls, each level teleports the player 8 block to a block, up to 5 levels,
+    config can be as high as you want, cooldown and block amount per level can be set in the config
+Armor can now be modified, all armor gains repairing and durability and some new armor specific ones
+Added Magnet, applies to helmets, chestplates, leggings and boots, uses molten gold and iron ingots, each level increases range of the magnet by 1 block, up to 8 levels,
+    config can be as high as you want to level
+Added Protection, applies to helmets, chestplates, leggings and boots, uses molten steel, by default each level provides a 4% damage reduction, up to 5 levels, config can be as high as you want, and percentage can be changed in the config
 
 1.17.1
 Added Looting, applies to swords and axes up to level 5, uses molten lapis and emeralds

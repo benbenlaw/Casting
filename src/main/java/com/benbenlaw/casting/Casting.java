@@ -3,10 +3,10 @@ package com.benbenlaw.casting;
 import com.benbenlaw.casting.block.ModBlocks;
 import com.benbenlaw.casting.block.entity.ModBlockEntities;
 import com.benbenlaw.casting.config.BeheadingConfig;
-import com.benbenlaw.casting.config.ToolModifierConfig;
+import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.CastingDataComponents;
-import com.benbenlaw.casting.item.ToolModifierItems;
+import com.benbenlaw.casting.item.EquipmentModifierItems;
 import com.benbenlaw.casting.networking.CastingModMessages;
 import com.benbenlaw.casting.screen.*;
 import com.benbenlaw.casting.item.ModCreativeModTab;
@@ -35,7 +35,7 @@ public class Casting {
     public Casting(IEventBus modEventBus, final ModContainer modContainer) {
 
         ModItems.register(modEventBus);
-        ToolModifierItems.register(modEventBus);
+        EquipmentModifierItems.register(modEventBus);
         CastingDataComponents.COMPONENTS.register(modEventBus);
 
         ModBlocks.register(modEventBus);
@@ -50,7 +50,7 @@ public class Casting {
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.STARTUP, ToolModifierConfig.SPEC, "bbl/casting/tool_modifiers.toml");
+        modContainer.registerConfig(ModConfig.Type.STARTUP, EquipmentModifierConfig.SPEC, "bbl/casting/tool_modifiers.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, BeheadingConfig.SPEC, "bbl/casting/beheading.toml");
 
         modEventBus.addListener(this::commonSetup);
@@ -85,7 +85,7 @@ public class Casting {
             event.register(ModMenuTypes.SMELTER_MENU.get(), SmelterScreen::new);
             event.register(ModMenuTypes.SOLIDIFIER_MENU.get(), SolidifierScreen::new);
             event.register(ModMenuTypes.MIXER_MENU.get(), MixerScreen::new);
-            event.register(ModMenuTypes.TOOL_MODIFIER_MENU.get(), ToolModifierScreen::new);
+            event.register(ModMenuTypes.EQUIPMENT_MODIFIER_MENU.get(), EquipmentModifierScreen::new);
 
         }
 
