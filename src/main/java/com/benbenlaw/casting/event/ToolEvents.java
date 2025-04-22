@@ -21,6 +21,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -33,6 +34,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -44,6 +46,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.*;
 
@@ -256,60 +259,6 @@ public class ToolEvents {
             }
         }
     }
-    @SubscribeEvent
-    public static void onPlayerDamage(LivingDamageEvent.Pre event) {
-        Entity entity = event.getEntity();
-        if (!(entity instanceof Player player)) return;
-
-        Level level = player.level();
-        if (level.isClientSide()) return;
-
-        float originalDamage = event.getOriginalDamage();
-        float totalReduction = 0f;
-
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            if (slot.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
-
-            ItemStack armor = player.getItemBySlot(slot);
-            if (armor.isEmpty()) continue;
-
-            if (armor.getComponents().keySet().contains(CastingDataComponents.PROTECTION.get())) {
-                int protectionLevel = armor.getComponents().getOrDefault(CastingDataComponents.PROTECTION.get(), 0);
-                totalReduction += protectionLevel * EquipmentModifierConfig.percentageOfProtectionDamagePerProtectionLevel.get();
-            }
-        }
-
-        //(max 80% reduction)
-        totalReduction = Math.min(totalReduction, 0.8f);
-        event.setNewDamage(originalDamage * (1.0f - totalReduction));
-    }
-
-    @SubscribeEvent
-    public static void onPlayerDamage(LivingDamageEvent.Post event) {
-        Entity entity = event.getEntity();
-        if (!(entity instanceof Player player)) return;
-
-        Level level = player.level();
-        if (level.isClientSide()) return;
-
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            if (slot.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
-
-            ItemStack armor = player.getItemBySlot(slot);
-            if (armor.isEmpty()) continue;
-
-            // --- Unbreaking ---
-            boolean isUnbreaking = armor.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get());
-            if (isUnbreaking) {
-                int unbreakingLevel = armor.getComponents().getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
-                float chance = unbreakingLevel * 0.1f;
-
-                if (level.getRandom().nextFloat() < chance) {
-                    armor.setDamageValue(armor.getDamageValue() - 1);
-                }
-            }
-        }
-    }
 
 
     @SubscribeEvent
@@ -379,8 +328,68 @@ public class ToolEvents {
 
             }
         }
-
     }
+
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Post event) {
+        Inventory inventory = event.getEntity().getInventory();
+        Player player = event.getEntity();
+        Level level = player.level();
+        if (level.isClientSide()) return;
+
+
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (stack.isEmpty()) continue;
+
+            //Repairing
+            if (stack.getComponents().keySet().contains(CastingDataComponents.REPAIRING.get())) {
+                int repairingLevel = stack.getComponents().getOrDefault(CastingDataComponents.REPAIRING.get(), 0);
+                int repairTickTime = getRepairTickTime(repairingLevel);
+
+                if (event.getEntity().tickCount % repairTickTime == 0) {
+                    int currentDamage = stack.getDamageValue();
+
+                    if (currentDamage > 0) {
+                        int newDamage = Math.max(currentDamage - 1, 0);
+                        stack.setDamageValue(newDamage);
+                        inventory.setChanged();
+                    }
+                }
+            }
+        }
+
+        //Magnet
+        for (ItemStack armorItem : player.getArmorSlots()) {
+            if (armorItem.getComponents().keySet().contains(CastingDataComponents.MAGNET.get())) {
+
+                int range = armorItem.getComponents().getOrDefault(CastingDataComponents.MAGNET.get(), 0);
+
+                AABB box = player.getBoundingBox().inflate(range);
+                List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, box, item ->
+                        !item.hasPickUpDelay() && item.getItem().getCount() > 0);
+
+                for (ItemEntity itemEntity : items) {
+                    if (itemEntity.hasPickUpDelay())
+                        continue;
+
+                    ItemStack stack = itemEntity.getItem();
+
+                    boolean success = player.getInventory().add(stack);
+                    if (success || stack.isEmpty()) {
+                        itemEntity.remove(Entity.RemovalReason.DISCARDED);
+                        if (level instanceof ServerLevel serverLevel) {
+                            serverLevel.sendParticles(ParticleTypes.END_ROD, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 10, 0.1D, 0.1D, 0.1D, 0.1D);
+                        }
+                    } else {
+                        itemEntity.setItem(stack);
+                    }
+                }
+
+            }
+        }
+    }
+
 
     private static int getRepairTickTime(int repairingLevel) {
         int repairTickTime = 220;
