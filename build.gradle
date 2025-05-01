@@ -70,6 +70,10 @@ dependencies {
     compileOnly "curse.maven:bbl-core-1135181:6475957"
     runtimeOnly "curse.maven:bbl-core-1135181:6475957"
 
+    //Custom Machinery
+    compileOnly "curse.maven:custom-machinery-457017:6447865"
+    runtimeOnly "curse.maven:custom-machinery-457017:6447865"
+
     //Ender IO
     compileOnly "curse.maven:enderio-64578:5771156"
     runtimeOnly "curse.maven:enderio-64578:5771156"

@@ -80,6 +80,8 @@ public class ToolEvents {
         if (!level.isClientSide() && requiresCastingOverrides) {
             event.setCanceled(true);
 
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+
             //Excavation
             if (isExcavation) {
                 int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
@@ -90,7 +92,7 @@ public class ToolEvents {
             //Silk Touch
             if (isSilkTouch) {
                 fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
-                drops = getLootDrops(state, pos, player, fakeItemStack, level);
+                drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
             }
 
             //Fortune
@@ -98,15 +100,13 @@ public class ToolEvents {
 
                 int fortuneLevel = tool.getComponents().getOrDefault(CastingDataComponents.FORTUNE.get(), 0);
                 fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
-                drops = getLootDrops(state, pos, player, fakeItemStack, level);
+                drops = getLootDrops(state, blockEntity,pos, player, fakeItemStack, level);
 
             }
 
             //Default Drops not Silk or Fortune
-
-
             if (drops.isEmpty()) {
-                drops = getLootDrops(state, pos, player, fakeItemStack, level);
+                drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
             }
 
             //Auto Smelt
@@ -133,16 +133,13 @@ public class ToolEvents {
                 drops = smeltingDrops;
             }
 
-
             //Drop Resources
             for (ItemStack drop : drops) {
                 Block.popResource(level, pos, drop);
             }
 
-            //If drops is empty, call playerDestroy encase of special block breaking attached to a block entity
-            System.out.println("Drops: " + drops);
+            // Check drops for air and run destroy Block method
             if (drops.size() == 1 && drops.getFirst().is(Items.AIR)) {
-                BlockEntity blockEntity = level.getBlockEntity(pos);
                 state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
             }
 
@@ -164,11 +161,11 @@ public class ToolEvents {
 
 
     //Get loot drops from a block
-    public static List<ItemStack> getLootDrops(BlockState state, BlockPos pos, Player player, ItemStack tool, Level level) {
+    public static List<ItemStack> getLootDrops(BlockState state, BlockEntity entity, BlockPos pos, Player player, ItemStack tool, Level level) {
         LootParams.Builder lootParams = new LootParams.Builder((ServerLevel) level)
                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
                 .withParameter(LootContextParams.TOOL, tool)
-                .withParameter(LootContextParams.BLOCK_ENTITY, null)
+                .withParameter(LootContextParams.BLOCK_ENTITY, entity)
                 .withParameter(LootContextParams.THIS_ENTITY, player)
                 .withParameter(LootContextParams.BLOCK_STATE, state);
 
@@ -193,6 +190,7 @@ public class ToolEvents {
                     targetPos = origin.offset(dx, dy, 0);
                 }
 
+                BlockEntity blockEntity = level.getBlockEntity(targetPos);
                 BlockState targetState = level.getBlockState(targetPos);
                 if (targetState.isAir() || targetState.getDestroySpeed(level, targetPos) < 0) continue;
 
@@ -210,7 +208,7 @@ public class ToolEvents {
                     fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
                 }
 
-                drops = getLootDrops(targetState, targetPos, player, fakeItemStack, level);
+                drops = getLootDrops(targetState, blockEntity,targetPos, player, fakeItemStack, level);
 
                 if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.AUTO_SMELT.get()))) {
                     List<ItemStack> smelted = new ArrayList<>();
@@ -231,6 +229,12 @@ public class ToolEvents {
                 for (ItemStack drop : drops) {
                     Block.popResource(level, targetPos, drop);
                 }
+
+                // Check drops for air and run destroy Block method
+                if (drops.size() == 1 && drops.getFirst().is(Items.AIR)) {
+                    targetState.getBlock().playerDestroy(level, player, targetPos, targetState, blockEntity, tool);
+                }
+
 
                 level.destroyBlock(targetPos, false, player);
 
