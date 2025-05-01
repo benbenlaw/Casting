@@ -223,6 +223,7 @@
 
 
   "tooltips.blocks.with_fluid.shift": "Press SHIFT for more info",
+  "tooltips.casting.repairing_mold": "When used in the Equipment Modifier, this will allow you to repair your equipment using its molten variant!",
 
 
   "jei.casting.solidifier": "The Solidifier is used to turn your molten resource into useful item! \n\nThis can use an optional Fuel Tank adjacent to it, cooler fluids (below 1000) in the tank will make the Solidifier faster\n\nFluid can be locked to prevent another fluids from going in, click the lock button next to the fluid tank.\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!",

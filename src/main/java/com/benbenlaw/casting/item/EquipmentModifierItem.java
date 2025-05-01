@@ -52,7 +52,7 @@ public class EquipmentModifierItem extends Item {
 
 
         } else {
-            components.add(Component.translatable("tooltips.item.shift.not_held").withStyle(ChatFormatting.YELLOW));
+            components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
     }
 }

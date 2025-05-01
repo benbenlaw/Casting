@@ -9,6 +9,11 @@ fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
 1.17.6
+Updated to core 1.2.28
+Moved to new shift tool tip translation
+Added Repairing mold tool tip
+Added additional checking of drops to prevent most blocks dropping there items twice
+Block entities with no loot tables will run that blocks playerDestroy method to check for custom breaking logic implemented by some mod like casting and immersive
 
 1.17.5
 Added Textures thanks Yuki

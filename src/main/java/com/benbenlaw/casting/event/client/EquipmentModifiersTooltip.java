@@ -3,6 +3,7 @@ package com.benbenlaw.casting.event.client;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -20,6 +21,20 @@ import static com.benbenlaw.casting.util.EquipmentModifierUtils.getExperienceMod
 @EventBusSubscriber(modid = Casting.MOD_ID ,value = Dist.CLIENT)
 
 public class EquipmentModifiersTooltip {
+
+    @SubscribeEvent
+    public static void addRepairingMoldTooltip(ItemTooltipEvent event) {
+        ItemStack stack = event.getItemStack();
+        if (stack.is(ModItems.REPAIRING_MOLD.get())) {
+
+            if (Screen.hasShiftDown()) {
+
+                event.getToolTip().add(Component.translatable("tooltips.casting.repairing_mold").withStyle(ChatFormatting.YELLOW));
+            } else {
+                event.getToolTip().add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
@@ -160,7 +175,7 @@ public class EquipmentModifiersTooltip {
 
         } else {
             if (hasEffects) {
-                components.add(1, Component.translatable("tooltips.item.shift.not_held").withStyle(ChatFormatting.YELLOW));
+                components.add(1, Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
             }
         }
     }

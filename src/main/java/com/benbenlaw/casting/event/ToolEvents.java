@@ -80,9 +80,6 @@ public class ToolEvents {
         if (!level.isClientSide() && requiresCastingOverrides) {
             event.setCanceled(true);
 
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
-
             //Excavation
             if (isExcavation) {
                 int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
@@ -140,6 +137,13 @@ public class ToolEvents {
             //Drop Resources
             for (ItemStack drop : drops) {
                 Block.popResource(level, pos, drop);
+            }
+
+            //If drops is empty, call playerDestroy encase of special block breaking attached to a block entity
+            System.out.println("Drops: " + drops);
+            if (drops.size() == 1 && drops.getFirst().is(Items.AIR)) {
+                BlockEntity blockEntity = level.getBlockEntity(pos);
+                state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
             }
 
             //Remove Block
