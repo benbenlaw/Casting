@@ -1,6 +1,6 @@
 {
   "type": "casting:equipment_modifier",
-  "effect": "lifesteal",
+  "effect": "lifestyle",
   "upgrade_fluid": {
     "amount": 6480,
     "id": "casting:molten_gold"

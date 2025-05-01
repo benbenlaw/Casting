@@ -15,6 +15,8 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import java.util.List;
 import java.util.Optional;
 
+import static com.benbenlaw.casting.util.EquipmentModifierUtils.getExperienceModifierLevel;
+
 @EventBusSubscriber(modid = Casting.MOD_ID ,value = Dist.CLIENT)
 
 public class EquipmentModifiersTooltip {
@@ -26,6 +28,7 @@ public class EquipmentModifiersTooltip {
         List<Component> components = event.getToolTip();
 
         //Tool Modifiers
+        boolean hasEquipmentLevel = tool.getComponents().keySet().contains(CastingDataComponents.EQUIPMENT_LEVEL.get());
         boolean hasSilkTouch = Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.SILK_TOUCH.get()));
         boolean hasEfficiency = tool.getComponents().keySet().contains(CastingDataComponents.EFFICIENCY.get());
         boolean hasFortune = tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get());
@@ -43,15 +46,25 @@ public class EquipmentModifiersTooltip {
         boolean hasTeleporting = tool.getComponents().keySet().contains(CastingDataComponents.TELEPORTING.get());
         boolean hasMagnet = tool.getComponents().keySet().contains(CastingDataComponents.MAGNET.get());
         boolean hasProtection = tool.getComponents().keySet().contains(CastingDataComponents.PROTECTION.get());
+        boolean hasStepAssist = tool.getComponents().keySet().contains(CastingDataComponents.STEP_ASSIST.get());
 
-        boolean hasEffects = hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
+        boolean hasEffects = hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
         if (Screen.hasShiftDown() && (hasEffects)) {
 
             int index = 1;
-            components.add(1, Component.translatable("tooltips.casting.modifiers").withStyle(ChatFormatting.GOLD));
-            index++;
+            int toolLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.EQUIPMENT_LEVEL.get())).orElse(0);
 
+
+            if (hasEquipmentLevel) {
+                int currentExperience = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.EQUIPMENT_EXPERIENCE.get())).orElse(0);
+                double modifierLevel = getExperienceModifierLevel(toolLevel);
+                int totalExperienceToNextLevel = (int) (EquipmentModifierConfig.experiencePerLevelForEquipmentLevel.get() + (EquipmentModifierConfig.experiencePerLevelForEquipmentLevel.get() * modifierLevel));
+                components.add(index, Component.translatable("tooltips.casting.equipment_level", toolLevel, currentExperience, totalExperienceToNextLevel).withStyle(ChatFormatting.GOLD));
+                index++;
+            }
+            components.add(index, Component.empty());
+            index++;
             if (hasSilkTouch) {
                 components.add(index, Component.translatable("tooltips.casting.silk_touch").withStyle(ChatFormatting.BLUE));
                 index++;
@@ -137,6 +150,13 @@ public class EquipmentModifiersTooltip {
                 components.add(index, Component.translatable("tooltips.casting.protection", protectionLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
+            if (hasStepAssist) {
+                int stepAssistLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.STEP_ASSIST.get())).orElse(0);
+                components.add(index, Component.translatable("tooltips.casting.step_assist", stepAssistLevel).withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+
+            components.add(1, Component.translatable("tooltips.casting.modifiers", index - 3, toolLevel).withStyle(ChatFormatting.GOLD));
 
         } else {
             if (hasEffects) {

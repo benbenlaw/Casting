@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "casting:block/equipment_modifier",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "casting:block/equipment_modifier"
+    },
+    "facing=south": {
+      "model": "casting:block/equipment_modifier",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "casting:block/equipment_modifier",
+      "y": 270
+    }
+  }
+}

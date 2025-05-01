@@ -2,10 +2,13 @@ package com.benbenlaw.casting.block.entity;
 
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.ModItems;
 import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
+import com.benbenlaw.casting.recipe.MeltingRecipe;
 import com.benbenlaw.casting.recipe.SolidifierRecipe;
 import com.benbenlaw.casting.screen.EquipmentModifierMenu;
 import com.benbenlaw.casting.util.CastingTags;
+import com.benbenlaw.casting.util.EquipmentModifierUtils;
 import com.benbenlaw.opolisutilities.block.entity.custom.handler.InputOutputItemHandler;
 import com.benbenlaw.opolisutilities.util.inventory.IInventoryHandlingBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -29,8 +32,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeInput;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
@@ -168,7 +170,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
     public int MAX_EFFICIENCY_LEVEL = EquipmentModifierConfig.maxEfficiencyAmount.get();
     public int MAX_UNBREAKING_LEVEL = EquipmentModifierConfig.maxUnbreakingAmount.get();
     public int MAX_REPAIRING_LEVEL = EquipmentModifierConfig.maxRepairingAmount.get();
-    public boolean errorMaxLevel;
+    public String errorMessage = "";
     public boolean isLimitMode = false;
     private final IItemHandler equipmentModifierItemHandler = new InputOutputItemHandler(itemHandler,
             (i, stack) -> i == 0 ,  //
@@ -265,7 +267,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         compoundTag.putInt("fuelTemp", fuelTemp);
         compoundTag.putInt("storedTankFluidAmount", storedTankFluidAmount);
         compoundTag.putInt("storedTankFluidAmountUsedInRecipe", storedTankFluidAmountUsedInRecipe);
-        compoundTag.putBoolean("errorMaxLevel", errorMaxLevel);
+        compoundTag.putString("errorMessage", errorMessage);
 
     }
 
@@ -278,7 +280,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         fuelTemp = compoundTag.getInt("fuelTemp");
         storedTankFluidAmount = compoundTag.getInt("storedTankFluidAmount");
         storedTankFluidAmountUsedInRecipe = compoundTag.getInt("storedTankFluidAmountUsedInRecipe");
-        errorMaxLevel = compoundTag.getBoolean("errorMaxLevel");
+        errorMessage = compoundTag.getString("errorMessage");
         super.loadAdditional(compoundTag, provider);
     }
 
@@ -321,35 +323,76 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
                 List<String> validModifiers = VALID_MODIFIERS.get(toolType);
 
+                if (validModifiers == null) {
+                    validModifiers = List.of();
+                }
+
                 EquipmentModifierRecipe matchedRecipe = null;
                 boolean bothRequired = false;
                 boolean itemOnly = false;
                 boolean fluidOnly = false;
 
-                // First pass: check 2-input recipes
-                for (RecipeHolder<EquipmentModifierRecipe> recipeHolder :
-                        level.getRecipeManager().getRecipesFor(EquipmentModifierRecipe.Type.INSTANCE, inventory, level)) {
+                boolean repairMode = false;
 
-                    EquipmentModifierRecipe recipe = recipeHolder.value();
-                    String effect = recipe.effect();
+                //new
+                if (itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).is(ModItems.REPAIRING_MOLD)) {
 
-                    if (!validModifiers.isEmpty() && !validModifiers.contains(effect)) {
-                        continue;
+                    if (itemHandler.getStackInSlot(TOOL_SLOT).isEmpty()) {
+                        resetProgress();
+                        return;
                     }
 
-                    if (recipe.requiresBothItemAndFluid()) {
-                        if (hasEnoughFluid(recipe.upgradeFluid()) &&
-                                itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() &&
-                                recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
-                            matchedRecipe = recipe;
-                            bothRequired = true;
-                            break;
+                    ItemStack equipmentStack = itemHandler.getStackInSlot(TOOL_SLOT);
+
+                    Ingredient getRepairItem = null;
+
+                    if (equipmentStack.getItem() instanceof TieredItem tieredItem) {
+                        getRepairItem = tieredItem.getTier().getRepairIngredient();
+                    }
+
+                    else if (equipmentStack.getItem() instanceof ArmorItem armorItem) {
+                        getRepairItem = armorItem.getMaterial().value().repairIngredient().get();
+                    }
+
+                    assert getRepairItem != null;
+                    //System.out.println("getRepairItem: " + getRepairItem.getItems()[0]);
+
+                    if (itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()) {
+
+                        for (RecipeHolder<MeltingRecipe> recipeHolder : level.getRecipeManager().getAllRecipesFor(MeltingRecipe.Type.INSTANCE)) {
+                            MeltingRecipe recipe = recipeHolder.value();
+
+                            for (Ingredient recipeIngredient : recipe.getIngredients()) {
+                                for (ItemStack repairStack : getRepairItem.getItems()) {
+
+                                    if (recipeIngredient.test(repairStack)) {
+                                        if (recipeIngredient.test(getRepairItem.getItems()[0])) {
+                                            if (hasEnoughRepairFluid(equipmentStack, getResourceCount(equipmentStack), recipe.output())) {
+                                                progress++;
+                                                repairMode = true;
+
+                                                if (progress >= maxProgress) {
+                                                    extractFluid(recipe.output(), getFluidNeededForRepair(equipmentStack, getResourceCount(equipmentStack), recipe.output()));
+                                                    itemHandler.setStackInSlot(TOOL_SLOT, ItemStack.EMPTY);
+
+                                                    ItemStack restoredItem = equipmentStack.copy();
+                                                    restoredItem.setDamageValue(0);
+
+                                                    itemHandler.setStackInSlot(OUTPUT_SLOT, restoredItem);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                //end new
 
-                // Second pass: check 1-input recipes only if no 2-input match found
-                if (matchedRecipe == null) {
+                if (!repairMode) {
+
+                    // First pass: check 2-input recipes
                     for (RecipeHolder<EquipmentModifierRecipe> recipeHolder :
                             level.getRecipeManager().getRecipesFor(EquipmentModifierRecipe.Type.INSTANCE, inventory, level)) {
 
@@ -360,58 +403,127 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                             continue;
                         }
 
-                        if (!recipe.requiresBothItemAndFluid()) {
-                            if (itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() &&
+                        if (!EquipmentModifierUtils.hasEnoughFreeModifiers(toolStack, effect)) {
+                            errorMessage = "not_high_enough_level"; // Not enough modifiers for the effect
+                            continue; // Skip this recipe if not enough modifiers
+                        }
+
+                        if (recipe.requiresBothItemAndFluid()) {
+                            if (hasEnoughFluid(recipe.upgradeFluid()) &&
+                                    itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() &&
                                     recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
                                 matchedRecipe = recipe;
-                                itemOnly = true;
-                                break;
-                            } else if (hasEnoughFluid(recipe.upgradeFluid())) {
-                                matchedRecipe = recipe;
-                                fluidOnly = true;
+                                bothRequired = true;
                                 break;
                             }
                         }
                     }
-                }
 
-                if (matchedRecipe != null) {
-                    String effect = matchedRecipe.effect();
-                    boolean effectMaxed = isEffectAtMax(toolStack, effect);
+                    // Second pass: check 1-input recipes only if no 2-input match found
+                    if (matchedRecipe == null) {
+                        for (RecipeHolder<EquipmentModifierRecipe> recipeHolder :
+                                level.getRecipeManager().getRecipesFor(EquipmentModifierRecipe.Type.INSTANCE, inventory, level)) {
 
-                    if (!effectMaxed) {
-                        if (itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()) {
-                            progress++;
-                            if (progress >= maxProgress) {
-                                if (bothRequired || fluidOnly) {
-                                    extractFluid(matchedRecipe.upgradeFluid(), matchedRecipe.upgradeFluid().getAmount());
+                            EquipmentModifierRecipe recipe = recipeHolder.value();
+                            String effect = recipe.effect();
+
+                            if (!validModifiers.isEmpty() && !validModifiers.contains(effect)) {
+                                continue;
+                            }
+
+                            if (!EquipmentModifierUtils.hasEnoughFreeModifiers(toolStack, effect)) {
+                                errorMessage = "not_high_enough_level"; // Not enough modifiers for the effect
+                                continue; // Skip this recipe if not enough modifiers
+                            }
+
+                            if (!recipe.requiresBothItemAndFluid()) {
+                                if (itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT).getCount() >= recipe.upgradeItem().count() &&
+                                        recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
+                                    matchedRecipe = recipe;
+                                    itemOnly = true;
+                                    break;
+                                } else if (hasEnoughFluid(recipe.upgradeFluid())) {
+                                    matchedRecipe = recipe;
+                                    fluidOnly = true;
+                                    break;
                                 }
-                                if (bothRequired || itemOnly) {
-                                    itemHandler.extractItem(UPGRADE_ITEM_SLOT, matchedRecipe.upgradeItem().count(), false);
-                                }
-
-                                itemHandler.setStackInSlot(OUTPUT_SLOT, copyAndApplyEffect(toolStack, effect));
-                                itemHandler.setStackInSlot(TOOL_SLOT, ItemStack.EMPTY);
-                                resetProgress();
                             }
                         }
+                    }
 
-                        foundMatch = true;
-                        errorMaxLevel = false;
-                    } else {
-                        blockedByMax = true;
+                    if (matchedRecipe != null) {
+                        String effect = matchedRecipe.effect();
+                        boolean effectMaxed = EquipmentModifierUtils.isEffectAtMax(toolStack, effect);
+
+                        if (effectMaxed) {
+                            // Tool or effect is at max level
+                            errorMessage = "at_max_level"; // If the effect is maxed, don't apply more modifiers
+                        } else {
+                            if (itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()) {
+                                progress++;
+                                if (progress >= maxProgress) {
+                                    if (bothRequired || fluidOnly) {
+                                        extractFluid(matchedRecipe.upgradeFluid(), matchedRecipe.upgradeFluid().getAmount());
+                                    }
+                                    if (bothRequired || itemOnly) {
+                                        itemHandler.extractItem(UPGRADE_ITEM_SLOT, matchedRecipe.upgradeItem().count(), false);
+                                    }
+
+                                    itemHandler.setStackInSlot(OUTPUT_SLOT, EquipmentModifierUtils.copyAndApplyEffect(toolStack, effect));
+
+                                    // Add Tool Level to confirm the tool is modified
+                                    if (!itemHandler.getStackInSlot(OUTPUT_SLOT).has(CastingDataComponents.EQUIPMENT_LEVEL)) {
+                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set(CastingDataComponents.EQUIPMENT_LEVEL, 1);
+                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set(CastingDataComponents.EQUIPMENT_EXPERIENCE, 1);
+                                    }
+
+                                    itemHandler.setStackInSlot(TOOL_SLOT, ItemStack.EMPTY);
+
+                                    resetProgress();
+                                }
+                            }
+
+                            foundMatch = true;
+                            errorMessage = ""; // Clear the error message when a match is found and operation is in progress
+                        }
                     }
                 }
-            }
 
-            if (!foundMatch) {
-                errorMaxLevel = blockedByMax;
+                // If no valid match was found and errorMessage is still empty, set the "at_max_level" message
+                if (!foundMatch && errorMessage.isEmpty() && !repairMode) {
+                    errorMessage = "at_max_level"; // Tool has reached max level, no valid recipe found
+                    resetProgress();
+                }
+            } else {
                 resetProgress();
             }
         }
     }
 
+    private static int getResourceCount(ItemStack item) {
 
+        Item equipmentItem = item.getItem();
+
+        if (mekanismPaxelClass != null && mekanismPaxelClass.isInstance(equipmentItem)) {
+            return 7;
+        }
+
+        return switch (equipmentItem) {
+            case PickaxeItem pickaxeItem -> 3;
+            case AxeItem axeItem -> 3;
+            case ShovelItem shovelItem -> 1;
+            case HoeItem hoeItem -> 2;
+            case SwordItem swordItem -> 2;
+            case ArmorItem armorItem -> switch (armorItem.getType()) {
+                case HELMET -> 5;
+                case CHESTPLATE -> 8;
+                case LEGGINGS -> 7;
+                case BOOTS -> 4;
+                case BODY -> 10;
+            };
+            default -> 10000;
+        };
+    }
 
     private static Class<?> mekanismPaxelClass;
 
@@ -450,154 +562,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         };
     }
 
-    private boolean isEffectAtMax(ItemStack stack, String effect) {
-        boolean hasSilkTouch = stack.getOrDefault(CastingDataComponents.SILK_TOUCH, false);
-        int currentFortune = stack.getOrDefault(CastingDataComponents.FORTUNE, 0);
-
-        if (effect.contains(FORTUNE)) {
-            return hasSilkTouch || currentFortune >= MAX_FORTUNE_LEVEL;
-        }
-        if (effect.contains(EFFICIENCY)) {
-            int currentEfficiency = stack.getOrDefault(CastingDataComponents.EFFICIENCY, 0);
-            return currentEfficiency >= MAX_EFFICIENCY_LEVEL;
-        }
-        if (effect.contains(SILK_TOUCH)) {
-            return currentFortune > 0 || hasSilkTouch;
-        }
-        if (effect.contains(UNBREAKING)) {
-            int currentUnbreaking = stack.getOrDefault(CastingDataComponents.UNBREAKING, 0);
-            return currentUnbreaking >= MAX_UNBREAKING_LEVEL;
-        }
-        if (effect.contains(REPAIRING)) {
-            int currentRepairing = stack.getOrDefault(CastingDataComponents.REPAIRING, 0);
-            return currentRepairing >= MAX_REPAIRING_LEVEL;
-        }
-        if (effect.contains(TORCH_PLACING)) {
-            return stack.getOrDefault(CastingDataComponents.TORCH_PLACING, false);
-        }
-        if (effect.contains(AUTO_SMELT)) {
-            return stack.getOrDefault(CastingDataComponents.AUTO_SMELT, false);
-        }
-        if (effect.contains(LOOTING)) {
-            int currentLooting = stack.getOrDefault(CastingDataComponents.LOOTING, 0);
-            return currentLooting >= EquipmentModifierConfig.maxLootingAmount.get();
-        }
-        if (effect.contains(SHARPNESS)) {
-            int currentSharpness = stack.getOrDefault(CastingDataComponents.SHARPNESS, 0);
-            return currentSharpness >= EquipmentModifierConfig.maxSharpnessAmount.get();
-        }
-        if (effect.contains(BEHEADING)) {
-            return stack.getOrDefault(CastingDataComponents.BEHEADING, false);
-        }
-        if (effect.contains(LIFESTEAL)) {
-            int currentLifesteal = stack.getOrDefault(CastingDataComponents.LIFESTEAL, 0);
-            return currentLifesteal >= EquipmentModifierConfig.maxLifestealAmount.get();
-        }
-        if (effect.contains(KNOCKBACK)) {
-            int currentKnockback = stack.getOrDefault(CastingDataComponents.KNOCKBACK, 0);
-            return currentKnockback >= EquipmentModifierConfig.maxKnockbackAmount.get();
-        }
-        if (effect.contains(IGNITE)) {
-            int currentKnockback = stack.getOrDefault(CastingDataComponents.IGNITE, 0);
-            return currentKnockback >= EquipmentModifierConfig.maxIgniteAmount.get();
-        }
-        if (effect.contains(EXCAVATION)) {
-            int currentKnockback = stack.getOrDefault(CastingDataComponents.EXCAVATION, 0);
-            return currentKnockback >= EquipmentModifierConfig.maxExcavationAmount.get();
-        }
-        if (effect.contains(TELEPORTING)) {
-            int currentTeleporting = stack.getOrDefault(CastingDataComponents.TELEPORTING, 0);
-            return currentTeleporting >= EquipmentModifierConfig.maxTeleportationAmount.get();
-        }
-        if (effect.contains(MAGNET)) {
-            int currentTeleporting = stack.getOrDefault(CastingDataComponents.TELEPORTING, 0);
-            return currentTeleporting >= EquipmentModifierConfig.maxMagnetAmount.get();
-        }
-        return false;
-    }
-
-    public ItemStack copyAndApplyEffect(ItemStack stack, String effect) {
-        ItemStack copy = stack.copy();
-
-        if (effect.contains(FORTUNE)) {
-            int currentFortune = copy.getOrDefault(CastingDataComponents.FORTUNE, 0);
-            int newFortune = Math.min(currentFortune + 1, MAX_FORTUNE_LEVEL);
-            copy.set(CastingDataComponents.FORTUNE, newFortune);
-        }
-        if (effect.contains(EFFICIENCY)) {
-            int currentEfficiency = copy.getOrDefault(CastingDataComponents.EFFICIENCY, 0);
-            int newEfficiency = Math.min(currentEfficiency + 1, MAX_EFFICIENCY_LEVEL);
-            copy.set(CastingDataComponents.EFFICIENCY, newEfficiency);
-        }
-        if (effect.contains(SILK_TOUCH)) {
-            boolean isSilkTouch = copy.getOrDefault(CastingDataComponents.SILK_TOUCH, false);
-            copy.set(CastingDataComponents.SILK_TOUCH, !isSilkTouch);
-        }
-        if (effect.contains(UNBREAKING)) {
-            int currentUnbreaking = copy.getOrDefault(CastingDataComponents.UNBREAKING, 0);
-            int newUnbreaking = Math.min(currentUnbreaking + 1, EquipmentModifierConfig.maxUnbreakingAmount.get());
-            copy.set(CastingDataComponents.UNBREAKING, newUnbreaking);
-        }
-        if (effect.contains(REPAIRING)) {
-            int currentRepairing = copy.getOrDefault(CastingDataComponents.REPAIRING, 0);
-            int newRepairing = Math.min(currentRepairing + 1, EquipmentModifierConfig.maxRepairingAmount.get());
-            copy.set(CastingDataComponents.REPAIRING, newRepairing);
-        }
-        if (effect.contains(TORCH_PLACING)) {
-            boolean isTorchPlacing = copy.getOrDefault(CastingDataComponents.TORCH_PLACING, false);
-            copy.set(CastingDataComponents.TORCH_PLACING, !isTorchPlacing);
-        }
-        if (effect.contains(AUTO_SMELT)) {
-            boolean isAutoSmelt = copy.getOrDefault(CastingDataComponents.AUTO_SMELT, false);
-            copy.set(CastingDataComponents.AUTO_SMELT, !isAutoSmelt);
-        }
-        if (effect.contains(LOOTING)) {
-            int currentLooting = copy.getOrDefault(CastingDataComponents.LOOTING, 0);
-            int newLooting = Math.min(currentLooting + 1, EquipmentModifierConfig.maxLootingAmount.get());
-            copy.set(CastingDataComponents.LOOTING, newLooting);
-        }
-        if (effect.contains(SHARPNESS)) {
-            int currentSharpness = copy.getOrDefault(CastingDataComponents.SHARPNESS, 0);
-            int newSharpness = Math.min(currentSharpness + 1, EquipmentModifierConfig.maxSharpnessAmount.get());
-            copy.set(CastingDataComponents.SHARPNESS, newSharpness);
-        }
-        if (effect.contains(BEHEADING)) {
-            boolean isBeheading = copy.getOrDefault(CastingDataComponents.BEHEADING, false);
-            copy.set(CastingDataComponents.BEHEADING, !isBeheading);
-        }
-        if (effect.contains(LIFESTEAL)) {
-            int currentLifesteal = copy.getOrDefault(CastingDataComponents.LIFESTEAL, 0);
-            int newLifesteal = Math.min(currentLifesteal + 1, EquipmentModifierConfig.maxLifestealAmount.get());
-            copy.set(CastingDataComponents.LIFESTEAL, newLifesteal);
-        }
-        if (effect.contains(KNOCKBACK)) {
-            int currentKnockback = copy.getOrDefault(CastingDataComponents.KNOCKBACK, 0);
-            int newKnockback = Math.min(currentKnockback + 1, EquipmentModifierConfig.maxKnockbackAmount.get());
-            copy.set(CastingDataComponents.KNOCKBACK, newKnockback);
-        }
-        if (effect.contains(IGNITE)) {
-            int currentIgnite = copy.getOrDefault(CastingDataComponents.IGNITE, 0);
-            int newIgnite = Math.min(currentIgnite + 1, EquipmentModifierConfig.maxIgniteAmount.get());
-            copy.set(CastingDataComponents.IGNITE, newIgnite);
-        }
-        if (effect.contains(EXCAVATION)) {
-            int currentExcavation = copy.getOrDefault(CastingDataComponents.EXCAVATION, 0);
-            int newExcavation = Math.min(currentExcavation + 1, EquipmentModifierConfig.maxExcavationAmount.get());
-            copy.set(CastingDataComponents.EXCAVATION, newExcavation);
-        }
-        if (effect.contains(TELEPORTING)) {
-            int currentTeleporting = copy.getOrDefault(CastingDataComponents.TELEPORTING, 0);
-            int newTeleporting = Math.min(currentTeleporting + 1, EquipmentModifierConfig.maxTeleportationAmount.get());
-            copy.set(CastingDataComponents.TELEPORTING, newTeleporting);
-        }
-        if (effect.contains(MAGNET)) {
-            int currentMagnet = copy.getOrDefault(CastingDataComponents.MAGNET, 0);
-            int newMagnet = Math.min(currentMagnet + 1, EquipmentModifierConfig.maxMagnetAmount.get());
-            copy.set(CastingDataComponents.MAGNET, newMagnet);
-        }
-        return copy;
-    }
-
     private void resetProgress() {
         progress = 0;
     }
@@ -608,6 +572,47 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
             TANK.drain(amount, IFluidHandler.FluidAction.EXECUTE);
         }
     }
+
+
+    private int getFluidNeededForRepair(ItemStack equipmentStack, int resourceCount, FluidStack repairFluid) {
+        int repairAmount = equipmentStack.getDamageValue();
+        int fluidAmountPerResourceMelted = repairFluid.getAmount();
+        int totalFluidCount = fluidAmountPerResourceMelted * resourceCount;
+
+        float fluidPerDurability = (float) totalFluidCount / (float) equipmentStack.getMaxDamage();
+
+        //System.out.println("total fluid fro full repair: " + totalFluidCount);
+        //System.out.println("Fluid per durability: " + fluidPerDurability);
+        //System.out.println("Repair amount: " + repairAmount);
+        //System.out.println("Fluid needed for repair: " + (fluidPerDurability * repairAmount));
+        //System.out.println("Fluid needed for repair: " + Math.round(fluidPerDurability * repairAmount));
+
+        return Math.round(fluidPerDurability * repairAmount);
+    }
+
+    private boolean hasEnoughRepairFluid(ItemStack equipmentStack, int resourceCount, FluidStack repairFluid) {
+        int totalFluidNeeded = getFluidNeededForRepair(equipmentStack, resourceCount, repairFluid);
+
+        if (totalFluidNeeded == 0) {
+            errorMessage = "";
+            return true;
+        }
+
+        if (TANK.getFluid().getFluid() != repairFluid.getFluid()) {
+            errorMessage = "wrong_fluid";
+            return false;
+        }
+
+        if (TANK.getFluidAmount() >= totalFluidNeeded) {
+            errorMessage = "";
+            return true;
+        } else {
+            errorMessage = "not_enough_fluid";
+            return false;
+        }
+    }
+
+
 
 
     private boolean hasEnoughFluid(FluidStack output) {

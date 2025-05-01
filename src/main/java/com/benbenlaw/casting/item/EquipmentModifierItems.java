@@ -46,7 +46,8 @@ public class EquipmentModifierItems {
             () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.magnet", EquipmentModifierConfig.maxMagnetAmount.get()));
     public static final DeferredItem<Item> PROTECTION = ITEMS.register("protection",
             () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.protection", EquipmentModifierConfig.maxProtectionAmount.get()));
-
+    public static final DeferredItem<Item> STEP_ASSIST = ITEMS.register("step_assist",
+            () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.step_assist", EquipmentModifierConfig.maxStepAssistAmount.get()));
 
 
     public static void register(IEventBus eventBus) {

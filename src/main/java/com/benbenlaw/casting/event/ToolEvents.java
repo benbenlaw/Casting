@@ -29,6 +29,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -79,6 +80,9 @@ public class ToolEvents {
         if (!level.isClientSide() && requiresCastingOverrides) {
             event.setCanceled(true);
 
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
+
             //Excavation
             if (isExcavation) {
                 int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
@@ -102,6 +106,8 @@ public class ToolEvents {
             }
 
             //Default Drops not Silk or Fortune
+
+
             if (drops.isEmpty()) {
                 drops = getLootDrops(state, pos, player, fakeItemStack, level);
             }
@@ -260,7 +266,6 @@ public class ToolEvents {
         }
     }
 
-
     @SubscribeEvent
     public static void onPreLivingDamage(LivingDamageEvent.Pre event) {
         Level level = event.getEntity().level();
@@ -357,36 +362,7 @@ public class ToolEvents {
                     }
                 }
             }
-        }
 
-        //Magnet
-        for (ItemStack armorItem : player.getArmorSlots()) {
-            if (armorItem.getComponents().keySet().contains(CastingDataComponents.MAGNET.get())) {
-
-                int range = armorItem.getComponents().getOrDefault(CastingDataComponents.MAGNET.get(), 0);
-
-                AABB box = player.getBoundingBox().inflate(range);
-                List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, box, item ->
-                        !item.hasPickUpDelay() && item.getItem().getCount() > 0);
-
-                for (ItemEntity itemEntity : items) {
-                    if (itemEntity.hasPickUpDelay())
-                        continue;
-
-                    ItemStack stack = itemEntity.getItem();
-
-                    boolean success = player.getInventory().add(stack);
-                    if (success || stack.isEmpty()) {
-                        itemEntity.remove(Entity.RemovalReason.DISCARDED);
-                        if (level instanceof ServerLevel serverLevel) {
-                            serverLevel.sendParticles(ParticleTypes.END_ROD, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 10, 0.1D, 0.1D, 0.1D, 0.1D);
-                        }
-                    } else {
-                        itemEntity.setItem(stack);
-                    }
-                }
-
-            }
         }
     }
 

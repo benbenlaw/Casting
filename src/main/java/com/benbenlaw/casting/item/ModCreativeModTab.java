@@ -40,6 +40,8 @@ public class ModCreativeModTab {
                 output.accept(EquipmentModifierItems.TELEPORTING);
                 output.accept(EquipmentModifierItems.MAGNET);
                 output.accept(EquipmentModifierItems.PROTECTION);
+                output.accept(EquipmentModifierItems.STEP_ASSIST);
+
 
             }).build());
 
@@ -58,6 +60,7 @@ public class ModCreativeModTab {
                 output.accept(ModItems.GEM_MOLD);
                 output.accept(ModItems.DUST_MOLD);
                 output.accept(ModItems.BALL_MOLD);
+                output.accept(ModItems.REPAIRING_MOLD);
                 output.accept(ModItems.BLACK_BRICK);
                 output.accept(ModBlocks.BLACK_BRICKS);
                 output.accept(ModItems.FLUID_MOVER);

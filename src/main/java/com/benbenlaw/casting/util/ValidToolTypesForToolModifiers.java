@@ -1,10 +1,15 @@
 package com.benbenlaw.casting.util;
 
+import com.benbenlaw.casting.item.CastingDataComponents;
+import net.minecraft.core.component.DataComponentType;
+
 import java.util.*;
 
 public class ValidToolTypesForToolModifiers {
 
     //Effects
+    public static final String EQUIPMENT_LEVEL = "equipment_level";
+    public static final String EQUIPMENT_EXPERIENCE = "equipment_experience";
     public static final String EFFICIENCY = "efficiency";
     public static final String UNBREAKING = "unbreaking";
     public static final String FORTUNE = "fortune";
@@ -22,6 +27,7 @@ public class ValidToolTypesForToolModifiers {
     public static final String TELEPORTING = "teleporting";
     public static final String MAGNET = "magnet";
     public static final String PROTECTION = "protection";
+    public static final String STEP_ASSIST = "step_assist";
 
 
     //Tool Types
@@ -48,7 +54,7 @@ public class ValidToolTypesForToolModifiers {
         Map<String, List<String>> map = new HashMap<>();
 
         //Add all modifiers to this
-        map.put(ALL_MODIFIERS, List.of(PROTECTION, TELEPORTING, EXCAVATION, IGNITE, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT, LOOTING, SHARPNESS, BEHEADING, LIFESTEAL, KNOCKBACK));
+        map.put(ALL_MODIFIERS, List.of(STEP_ASSIST, PROTECTION, TELEPORTING, EXCAVATION, IGNITE, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT, LOOTING, SHARPNESS, BEHEADING, LIFESTEAL, KNOCKBACK));
 
         //Add specific modifiers to this
         map.put(PICKAXE_MODIFIERS, List.of(TELEPORTING, EXCAVATION, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT));
@@ -63,15 +69,73 @@ public class ValidToolTypesForToolModifiers {
         map.put(HELMET_MODIFIERS, List.of(MAGNET, REPAIRING, UNBREAKING));
         map.put(CHESTPLATE_MODIFIERS, List.of(MAGNET, REPAIRING, UNBREAKING));
         map.put(LEGGINGS_MODIFIERS, List.of(MAGNET, REPAIRING, UNBREAKING));
-        map.put(BOOTS_MODIFIERS, List.of(MAGNET, REPAIRING, UNBREAKING));
+        map.put(BOOTS_MODIFIERS, List.of(STEP_ASSIST, MAGNET, REPAIRING, UNBREAKING));
 
         //Is body animals I think it is so will leave this empty
         map.put(BODY_MODIFIERS, List.of());
 
-
         VALID_MODIFIERS = Collections.unmodifiableMap(map);
 
 
+    }
+
+    public static DataComponentType<?> getDataComponentFromString(String effect) {
+
+        if (Objects.equals(effect, FORTUNE)) {
+            return CastingDataComponents.FORTUNE.get();
+        }
+        if (Objects.equals(effect, EFFICIENCY)) {
+            return CastingDataComponents.EFFICIENCY.get();
+        }
+        if (Objects.equals(effect, UNBREAKING)) {
+            return CastingDataComponents.UNBREAKING.get();
+        }
+        if (Objects.equals(effect, REPAIRING)) {
+            return CastingDataComponents.REPAIRING.get();
+        }
+        if (Objects.equals(effect, SILK_TOUCH)) {
+            return CastingDataComponents.SILK_TOUCH.get();
+        }
+        if (Objects.equals(effect, TORCH_PLACING)) {
+            return CastingDataComponents.TORCH_PLACING.get();
+        }
+        if (Objects.equals(effect, AUTO_SMELT)) {
+            return CastingDataComponents.AUTO_SMELT.get();
+        }
+        if (Objects.equals(effect, LOOTING)) {
+            return CastingDataComponents.LOOTING.get();
+        }
+        if (Objects.equals(effect, SHARPNESS)) {
+            return CastingDataComponents.SHARPNESS.get();
+        }
+        if (Objects.equals(effect, BEHEADING)) {
+            return CastingDataComponents.BEHEADING.get();
+        }
+        if (Objects.equals(effect, LIFESTEAL)) {
+            return CastingDataComponents.LIFESTEAL.get();
+        }
+        if (Objects.equals(effect, KNOCKBACK)) {
+            return CastingDataComponents.KNOCKBACK.get();
+        }
+        if (Objects.equals(effect, IGNITE)) {
+            return CastingDataComponents.IGNITE.get();
+        }
+        if (Objects.equals(effect, EXCAVATION)) {
+            return CastingDataComponents.EXCAVATION.get();
+        }
+        if (Objects.equals(effect, TELEPORTING)) {
+            return CastingDataComponents.TELEPORTING.get();
+        }
+        if (Objects.equals(effect, MAGNET)) {
+            return CastingDataComponents.MAGNET.get();
+        }
+        if (Objects.equals(effect, PROTECTION)) {
+            return CastingDataComponents.PROTECTION.get();
+        }
+        if (Objects.equals(effect, STEP_ASSIST)) {
+            return CastingDataComponents.STEP_ASSIST.get();
+        }
+        return null;
     }
 
 

@@ -155,8 +155,8 @@ public class EquipmentModifierScreen extends AbstractContainerScreen<EquipmentMo
 
         if (MouseUtil.isMouseOver(mouseX, mouseY, leftPos + 106, topPos + 35, 27, 18)) {
 
-            if (this.menu.blockEntity.errorMaxLevel) {
-                guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting.max_level").withStyle(ChatFormatting.RED), mouseX, mouseY);
+            if (!this.menu.blockEntity.errorMessage.isEmpty()) {
+                guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting." + this.menu.blockEntity.errorMessage).withStyle(ChatFormatting.RED), mouseX, mouseY);
             }
 
             int tankX = leftPos + 27;

@@ -8,8 +8,22 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
+1.17.6
+
+1.17.5
+Added Textures thanks Yuki
+
+1.17.4
+Improved Equipment Modifier error messages
+Added Equipment Leveling, when you first add a modifier the tool gains a level and experience,
+    when experience is maxed the tool gains a level and experience is reset
+Max level, base amount for experience and experience modifier can all be changed in the config
+Equipment Modifier can now be used to repair tools and armor. Uses the molten version of the items used to craft the item
+Fixed tool modifiers not working with block entities with no loot tables
+
 1.17.3
 Re added back magnet and repairing effects
+Added Step assist, applies to boots, allows player to walk onto a block without jumping, default level is 1 block, can be increased in config
 
 1.17.2
 Tweaked recipe ids for the effects

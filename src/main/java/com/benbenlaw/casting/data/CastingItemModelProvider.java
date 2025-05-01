@@ -2,6 +2,7 @@ package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.fluid.CastingFluids;
+import com.benbenlaw.casting.item.EquipmentModifierItems;
 import com.benbenlaw.casting.item.ModItems;
 import com.benbenlaw.opolisutilities.OpolisUtilities;
 import com.benbenlaw.opolisutilities.fluid.FluidDeferredRegister;
@@ -39,7 +40,28 @@ public class CastingItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.GEM_MOLD);
         simpleItem(ModItems.DUST_MOLD);
         simpleItem(ModItems.BALL_MOLD);
+        simpleItem(ModItems.REPAIRING_MOLD);
         simpleItem(ModItems.BLACK_BRICK);
+
+        simpleItem(EquipmentModifierItems.AUTO_SMELT);
+        simpleItem(EquipmentModifierItems.BEHEADING);
+        simpleItem(EquipmentModifierItems.EFFICIENCY);
+        simpleItem(EquipmentModifierItems.EXCAVATION);
+        simpleItem(EquipmentModifierItems.FORTUNE);
+        simpleItem(EquipmentModifierItems.IGNITE);
+        simpleItem(EquipmentModifierItems.KNOCKBACK);
+        simpleItem(EquipmentModifierItems.LIFESTEAL);
+        simpleItem(EquipmentModifierItems.LOOTING);
+        simpleItem(EquipmentModifierItems.MAGNET);
+        simpleItem(EquipmentModifierItems.PROTECTION);
+        simpleItem(EquipmentModifierItems.REPAIRING);
+        simpleItem(EquipmentModifierItems.SHARPNESS);
+        simpleItem(EquipmentModifierItems.SILK_TOUCH);
+        simpleItem(EquipmentModifierItems.STEP_ASSIST);
+        simpleItem(EquipmentModifierItems.TELEPORTING);
+        simpleItem(EquipmentModifierItems.TORCH_PLACING);
+        simpleItem(EquipmentModifierItems.UNBREAKING);
+
 
         simpleItem(ModItems.FLUID_MOVER);
 

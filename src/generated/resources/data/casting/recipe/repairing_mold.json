@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "casting:black_brick"
+    },
+    "I": {
+      "item": "minecraft:anvil"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BIB",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "casting:repairing_mold"
+  }
+}

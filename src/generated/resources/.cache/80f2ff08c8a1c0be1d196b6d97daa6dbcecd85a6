@@ -1,12 +1,22 @@
-// 1.21.1	2025-04-16T10:08:15.2154167	casting Item Models
+// 1.21.1	2025-04-30T08:30:37.5207378	casting Item Models
+16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
+513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
 c458d3e96733818f13805ef73ad0ad87dcb05aa1 assets/casting/models/item/black_brick.json
 5ef57e44724fe244ce039e996866679b24b0db10 assets/casting/models/item/block_mold.json
 37b2423e087aba4168c4382dad45ac5afa40f06a assets/casting/models/item/dust_mold.json
+9f2c8e91967a48a7c07857aa4bc89a7ab5f545a6 assets/casting/models/item/efficiency.json
+6babc5b2d452774978684b33301786967327c4d7 assets/casting/models/item/excavation.json
 bdad3cc801a041d54d3b0647f7c01d4061e47dce assets/casting/models/item/fluid_mover.json
+85f7eb9f6437cc62fc286803060c5cd02890847a assets/casting/models/item/fortune.json
 549bfdb4f27483849ce359a3f7e3e2781796614e assets/casting/models/item/gear_mold.json
 cf9eae803bac38044112d744bde8b6b12c3af28c assets/casting/models/item/gem_mold.json
+652c001a660021ea397975ab0c50856a7caec587 assets/casting/models/item/ignite.json
 0b04b6b6d70bf4321f1120a56f0aa5e03818e717 assets/casting/models/item/ingot_mold.json
+ad997dc493e7cc16c8582c7e8426c2cb72d65bff assets/casting/models/item/knockback.json
+6dc5e743163b33bef8770af0fcdfd7a03821fc9c assets/casting/models/item/lifesteal.json
+906d8b2cb66782e3b2950482dfa5abfe965ec856 assets/casting/models/item/looting.json
+6fab92d6332384c0e6e9d7536485ef966dfb2ddb assets/casting/models/item/magnet.json
 8c3a964156a7993a72f5cfc632038610f0806a9d assets/casting/models/item/molten_aluminum_bucket.json
 2e939dc8f43d2162602fb00dd88484a1f947446f assets/casting/models/item/molten_brass_bucket.json
 8f60fbcfe6e5a0238eb00cb3feb44f742b94c2fa assets/casting/models/item/molten_bronze_bucket.json
@@ -56,4 +66,13 @@ c2fd008f6d2a5f6ab3dae85d072261b0487c103f assets/casting/models/item/molten_steel
 acc90a5c62f7b1b830ef519a2fa188528b2de327 assets/casting/models/item/molten_zinc_bucket.json
 49dae1412b9b8af9f0b991a06586be22e90b0e0f assets/casting/models/item/nugget_mold.json
 4f7a63852ad16a549251405c8fe6de603edb22b2 assets/casting/models/item/plate_mold.json
+32ccc845cd863f19359d1b0a891fdfd8492cb5c1 assets/casting/models/item/protection.json
+f917a1a7ccb9835011f67b6f02be6d89a1e5270d assets/casting/models/item/repairing.json
+6509a4c10f7ab518f7f3e94d386b515030c08fc7 assets/casting/models/item/repairing_mold.json
 cfd72d20c3421e3da904954307832d8c96153746 assets/casting/models/item/rod_mold.json
+9e6f89126935efd465ba77b421fdc6b3af92dce7 assets/casting/models/item/sharpness.json
+40531341edfec33b755a7e7d3c97de515c8f7876 assets/casting/models/item/silk_touch.json
+8a83c1840b21b4d00156b183be278b0c1190f76e assets/casting/models/item/step_assist.json
+45612ff2be741f11abf389b3d2b93b9e6c9b24c2 assets/casting/models/item/teleporting.json
+09ac168125c89aa8b127b2a43df710a04abe8cf0 assets/casting/models/item/torch_placing.json
+3d406c9c864009af36192bebda9ab2b7b2faf22f assets/casting/models/item/unbreaking.json

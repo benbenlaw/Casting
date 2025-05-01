@@ -2,9 +2,7 @@ package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.Casting;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -98,6 +96,12 @@ public class CastingDataComponents {
 
     //Tools
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EQUIPMENT_LEVEL =
+            COMPONENTS.register("equipment_level", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EQUIPMENT_EXPERIENCE =
+            COMPONENTS.register("equipment_experience", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> SILK_TOUCH =
             COMPONENTS.register("silk_touch", () ->
                     DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
@@ -148,6 +152,9 @@ public class CastingDataComponents {
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> PROTECTION =
             COMPONENTS.register("protection", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STEP_ASSIST =
+            COMPONENTS.register("step_assist", () ->
                     DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 
 

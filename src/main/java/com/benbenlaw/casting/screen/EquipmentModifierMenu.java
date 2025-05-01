@@ -23,7 +23,7 @@ public class EquipmentModifierMenu extends AbstractContainerMenu {
     protected BlockPos blockPos;
 
     public EquipmentModifierMenu(int containerID, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerID, inventory, extraData.readBlockPos(), new SimpleContainerData(2));
+        this(containerID, inventory, extraData.readBlockPos(), new SimpleContainerData(3));
 
     }
 
@@ -76,7 +76,7 @@ public class EquipmentModifierMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {

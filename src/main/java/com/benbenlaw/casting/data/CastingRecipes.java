@@ -27,6 +27,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import java.util.concurrent.CompletableFuture;
 
 import static com.benbenlaw.casting.data.ModdedTags.*;
+import static com.benbenlaw.casting.util.ValidToolTypesForToolModifiers.*;
 
 public class CastingRecipes extends RecipeProvider {
 
@@ -39,24 +40,25 @@ public class CastingRecipes extends RecipeProvider {
     protected void buildRecipes(RecipeOutput consumer) {
 
         //Tool Modifier
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 5400), "fortune");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_REDSTONE.getFluid(), 5400), "efficiency");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_EMERALD.getFluid(), 2700), "silk_touch");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_OBSIDIAN.getFluid(), 32000), "unbreaking");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(com.benbenlaw.opolisutilities.block.ModBlocks.ITEM_REPAIRER.get()), 1), null, "repairing");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_GLOWSTONE.getFluid(), 16000), "repairing");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), 64), new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 5120), "torch_placing");
-        toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 16000), "auto_smelt");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 16000), "looting");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_QUARTZ.getFluid(), 2700), "sharpness");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_SOUL.getFluid(), 2560), "beheading");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 6480), "lifesteal");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 8), null,"knockback");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 16000),"ignite");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_DIAMOND.getFluid(), 900),"excavation");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_ENDER.getFluid(), 2560), "teleporting");
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.INGOTS_IRON), 12), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 1080), "magnet");
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_STEEL.getFluid(), 720), "protection");
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 5400), FORTUNE);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_REDSTONE.getFluid(), 5400), EFFICIENCY);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_EMERALD.getFluid(), 2700), SILK_TOUCH);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_OBSIDIAN.getFluid(), 32000), UNBREAKING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(com.benbenlaw.opolisutilities.block.ModBlocks.ITEM_REPAIRER.get()), 1), null, REPAIRING);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_GLOWSTONE.getFluid(), 16000), REPAIRING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), 64), new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 5120), TORCH_PLACING);
+        toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 16000), AUTO_SMELT);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 16000), LOOTING);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_QUARTZ.getFluid(), 2700), SHARPNESS);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_SOUL.getFluid(), 2560), BEHEADING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 6480), LIFESTEAL);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 8), null,KNOCKBACK);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 16000),IGNITE);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_DIAMOND.getFluid(), 900),EXCAVATION);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_ENDER.getFluid(), 2560), TELEPORTING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.INGOTS_IRON), 12), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 1080), MAGNET);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_STEEL.getFluid(), 720), PROTECTION);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 6), null, STEP_ASSIST);
 
         //Tool Modifier
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EQUIPMENT_MODIFIER.get(), 1)
@@ -228,6 +230,16 @@ public class CastingRecipes extends RecipeProvider {
                 .pattern(" B ")
                 .define('B', ModItems.BLACK_BRICK.get())
                 .define('I', Items.CLAY_BALL)
+                .unlockedBy("has_black_brick", has(ModItems.BLACK_BRICK.get()))
+                .save(consumer);
+
+        // Repairing Mold
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.REPAIRING_MOLD.get(), 1)
+                .pattern(" B ")
+                .pattern("BIB")
+                .pattern(" B ")
+                .define('B', ModItems.BLACK_BRICK.get())
+                .define('I', Items.ANVIL)
                 .unlockedBy("has_black_brick", has(ModItems.BLACK_BRICK.get()))
                 .save(consumer);
 

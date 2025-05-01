@@ -38,6 +38,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> BALL_MOLD = ITEMS.register("ball_mold",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> REPAIRING_MOLD = ITEMS.register("repairing_mold",
+            () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> BLACK_BRICK = ITEMS.register("black_brick",
             () -> new Item(new Item.Properties()));

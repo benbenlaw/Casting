@@ -6,6 +6,9 @@ public class EquipmentModifierConfig {
 
     public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
     public static final ModConfigSpec SPEC;
+    public static final ModConfigSpec.ConfigValue<Integer> maxEquipmentLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> experiencePerLevelForEquipmentLevel;
+    public static final ModConfigSpec.ConfigValue<Float> experienceMultiplierPerLevel;
     public static final ModConfigSpec.ConfigValue<Integer> maxFortuneAmount;
     public static final ModConfigSpec.ConfigValue<Integer> maxEfficiencyAmount;
     public static final ModConfigSpec.ConfigValue<Integer> maxUnbreakingAmount;
@@ -24,6 +27,7 @@ public class EquipmentModifierConfig {
     public static final ModConfigSpec.ConfigValue<Integer> maxMagnetAmount;
     public static final ModConfigSpec.ConfigValue<Integer> maxProtectionAmount;
     public static final ModConfigSpec.ConfigValue<Float> percentageOfProtectionDamagePerProtectionLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> maxStepAssistAmount;
 
 
 
@@ -34,6 +38,14 @@ public class EquipmentModifierConfig {
         BUILDER.comment("Casting Startup Config")
                 .push("Casting");
 
+        maxEquipmentLevel = BUILDER.comment("The max level of tools, default = 10, 0 disables")
+                .define("Max Tool Level", 5);
+        experiencePerLevelForEquipmentLevel = BUILDER.comment("The amount of experience needed per level for equipment level, default = 220")
+                .comment("calculation (experiencePerLevelForEquipmentLevel) + (toolLevel * 0.15) = 253 for first level using 220 as the default")
+                .define("Experience Per Level for Equipment Level", 220);
+        experienceMultiplierPerLevel  = BUILDER.comment("The multiplier for experience per level, default = 0.15")
+                .comment("calculation (experiencePerLevelForEquipmentLevel) + (toolLevel * experienceMultiplierPerLevel) = 253 for first level using 220 as the default")
+                .define("Experience Multiplier Per Level", 0.15f);
         maxFortuneAmount = BUILDER.comment("The max amount of fortune levels that can be applied to tools, default = 5, 0 disables")
                 .define("Max Fortune Level", 5);
         maxEfficiencyAmount = BUILDER.comment("The max amount of efficiency levels that can be applied to tools, default = 7, 0 disables")
@@ -71,6 +83,8 @@ public class EquipmentModifierConfig {
                 .define("Max Protection Level", 5);
         percentageOfProtectionDamagePerProtectionLevel = BUILDER.comment("The percentage of protection damage per protection level, default = 0.04, this is 4% per total protection level")
                 .define("Percentage of Protection Damage Per Protection Level", 0.5f);
+        maxStepAssistAmount = BUILDER.comment("The max amount of step assist levels that can be applied to tools, default = 1, 0 disables. Each level adds an additional 1 block to the step assist height")
+                .define("Max Step Assist Level", 1);
 
 
 

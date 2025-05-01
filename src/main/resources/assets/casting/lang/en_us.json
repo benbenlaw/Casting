@@ -15,6 +15,7 @@
   "item.casting.gem_mold": "Gem Mold",
   "item.casting.dust_mold": "Dust Mold",
   "item.casting.ball_mold": "Ball Mold",
+  "item.casting.repairing_mold": "Repairing Mold",
   "item.casting.black_brick": "Black Brick",
   "item.casting.fluid_mover": "Fluid Mover",
 
@@ -120,6 +121,9 @@
   "item.casting.protection": "Equipment Modifier: Protection",
   "casting.tooltip.protection": "Gives armor Protection up to level %s",
 
+  "item.casting.step_assist": "Equipment Modifier: Step Assist",
+  "casting.tooltip.step_assist": "Gives armor Step Assist, allows the player to step up blocks up to level %s",
+
 
 
 
@@ -136,11 +140,11 @@
   "casting.tooltip.leggings_modifiers": "- Leggings",
   "casting.tooltip.boots_modifiers": "- Boots",
 
-  "tooltips.casting.modifiers": "Modifiers;",
+  "tooltips.casting.modifiers": "Modifiers - %s/%s",
   "tooltips.casting.silk_touch": "- Silk Touch",
   "tooltips.casting.efficiency": "- Efficiency %s",
   "tooltips.casting.fortune": "- Fortune %s",
-  "tooltips.casting.unbreaking": "- Unreaking %s",
+  "tooltips.casting.unbreaking": "- Unbreaking %s",
   "tooltips.casting.repairing": "- Repairing %s",
   "tooltips.casting.torch_placing": "- Torch Placing",
   "tooltips.casting.looting": "- Looting %s",
@@ -153,6 +157,7 @@
   "tooltips.casting.teleporting": "- Teleporting %s (%s Blocks)",
   "tooltips.casting.magnet": "- Magnet %s",
   "tooltips.casting.protection": "- Protection %s",
+  "tooltips.casting.step_assist": "- Step Assist %s",
 
   "casting.tooltip.valid_tool_types": "Valid Equipment;",
 
@@ -211,7 +216,11 @@
 
 
   "screen.casting.warning": "Dump Fluid!",
-  "screen.casting.max_level": "Equipment at max level for this effect",
+  "screen.casting.not_high_enough_level": "Equipment needs a spare slot, Gain XP to unlock more modifiers!",
+  "screen.casting.at_max_level": "This modifier is at Max Level!",
+  "screen.casting.not_enough_fluid": "Add more of this fluid to repair!",
+  "screen.casting.wrong_fluid": "Wrong fluid for repair!",
+
 
   "tooltips.blocks.with_fluid.shift": "Press SHIFT for more info",
 
@@ -222,12 +231,13 @@
   "jei.casting.tank": "The Tank stores the fuel used in the Controller to melt items!\n\nCan also be used with the Solidifier colder fluids in the tank makes the Solidifier faster \n\nStores fluids when broken!",
   "jei.casting.fluid_mover": "Used to move fluids between tanks, Holds up to 8000mb of a single fluid. \n\nClick on a tank to collect fluid and click on another tank to add!\n\nWill try to fill the selected tank before collecting fluids!",
   "jei.casting.mixer_whisk": "Used to speed up the mixer when placed above it. \n\nFor each whisk above the mixer the tick rate is decreased by 40 ticks!\n\nAdditional whisks placed after the tick rate is at its lowest (20) will have no effect!",
-  "jei.casting.equipment_modifier": "Used to apply modifiers to your equipment!, Search Equipment Modifiers in JEI to view the modifiers!\n\nPlace the right items and or fluids in the Equipment Modifier then add a valid piece of Equipment to add that effect!\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!",
+  "jei.casting.equipment_modifier": "Used to apply modifiers to your equipment!, Your first modifier will add Level 1 to your equipment additional modifiers require an additional level. Use your tools to Level Up and get more modifier slots.\n\nUsing a Repairing Mold will allow you to repair Equipment using its molten variants! \n\nSearch Equipment Modifiers in JEI to view the modifiers!\n\nPlace the right items and or fluids in the Equipment Modifier then add a valid piece of Equipment to add that effect!\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!",
 
 
   "itemGroup.casting": "BBL Casting",
   "tooltips.casting.auto_smelt": "- Auto Smelt",
-  "itemGroup.equipment_modifiers": "Equipment Modifiers"
+  "itemGroup.equipment_modifiers": "Equipment Modifiers",
+  "tooltips.casting.equipment_level": "Equipment Level %s XP: %s/%s"
 
 
 
