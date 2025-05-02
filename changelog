@@ -8,6 +8,9 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
+1.17.8
+Updated to core 1.2.29
+
 1.17.7
 getLootDrops now adds the block entity to the loot params fixes custom machinery machines
 
