@@ -8,6 +8,14 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
+1.17.10
+Fixed inconsistent logic checking with casting modifiers are used on block entities with empty loot tables, now checking now list of empty loot
+    and if air is in the loot table. Fixes LootJS interaction with modifiers
+
+1.17.9
+Updated to latest NeoForge 21.1.169
+Updated ItemHandler to support new stack limit system
+
 1.17.8
 Updated to core 1.2.29
 

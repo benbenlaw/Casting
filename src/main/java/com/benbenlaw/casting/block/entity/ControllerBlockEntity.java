@@ -65,6 +65,15 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
                 return 64;
             }
         }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            if (slot >= 0 && slot <= 14) {
+                return 1;
+            } else {
+                return 64;
+            }
+        }
     };
 
     public final FluidTank TANK_1 = new FluidTank(16000) {

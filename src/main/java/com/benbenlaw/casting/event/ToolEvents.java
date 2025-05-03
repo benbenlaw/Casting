@@ -138,10 +138,13 @@ public class ToolEvents {
                 Block.popResource(level, pos, drop);
             }
 
-            // Check drops for air and run destroy Block method
-            if (drops.size() == 1 && drops.getFirst().is(Items.AIR)) {
+            // Check drops if the drops are empty check the blocks player destroy method, works for non loottable blocks that have custom logic when
+            // broken like casting and immersive crate, this also parses the block entity for custom logic on breaking in the loot
+            if (drops.isEmpty() || drops.getFirst().is(Items.AIR.asItem())) {
                 state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
             }
+
+            System.out.println("Drops: " + drops);
 
             //Remove Block
             level.destroyBlock(pos, false, player);

@@ -67,8 +67,8 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //BBL Core
-    compileOnly "curse.maven:bbl-core-1135181:6486837"
-    runtimeOnly "curse.maven:bbl-core-1135181:6486837"
+    compileOnly "curse.maven:bbl-core-1135181:6487214"
+    runtimeOnly "curse.maven:bbl-core-1135181:6487214"
 
     //Custom Machinery
     compileOnly "curse.maven:custom-machinery-457017:6447865"
@@ -105,6 +105,18 @@ dependencies {
     //selene
     compileOnly "curse.maven:selene-499980:6391012"
     runtimeOnly "curse.maven:selene-499980:6391012"
+
+    //KubeJS
+    compileOnly "curse.maven:kubejs-238086:5810100"
+    runtimeOnly "curse.maven:kubejs-238086:5810100"
+
+    //Rhino
+    compileOnly "curse.maven:rhino-416294:6184623"
+    runtimeOnly "curse.maven:rhino-416294:6184623"
+
+    //Lootjs
+    compileOnly "curse.maven:lootjs-570630:6329532"
+    runtimeOnly "curse.maven:lootjs-570630:6329532"
 
 
 }
@@ -172,7 +184,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
 
     mainFile.changelog = changelog
     mainFile.addOptional("jei") // JEI
-    mainFile.addRequirement("opolis-utilities")
+    mainFile.addRequirement("bbl-core")
     mainFile.releaseType = "release"
     mainFile.gameVersions.addAll("1.21", "1.21.1")
 }
@@ -192,7 +204,7 @@ modrinth {
     changelog = project.changelog
     dependencies {
         optional.project "jei"
-        required.project "opolis-utilities"
+        required.project "bbl-core"
 
     }
 }
