@@ -28,6 +28,8 @@ public class EquipmentModifierConfig {
     public static final ModConfigSpec.ConfigValue<Integer> maxProtectionAmount;
     public static final ModConfigSpec.ConfigValue<Float> percentageOfProtectionDamagePerProtectionLevel;
     public static final ModConfigSpec.ConfigValue<Integer> maxStepAssistAmount;
+    public static final ModConfigSpec.ConfigValue<Integer> timeForDamageOnNightVision;
+    public static final ModConfigSpec.ConfigValue<Integer> timeForDamageOnWaterBreathing;
 
 
 
@@ -85,6 +87,10 @@ public class EquipmentModifierConfig {
                 .define("Percentage of Protection Damage Per Protection Level", 0.5f);
         maxStepAssistAmount = BUILDER.comment("The max amount of step assist levels that can be applied to tools, default = 1, 0 disables. Each level adds an additional 1 block to the step assist height")
                 .define("Max Step Assist Level", 1);
+        timeForDamageOnNightVision = BUILDER.comment("The time for damage on night vision, default = 600 (5 second), 20 ticks is 1 second")
+                .define("Time for Damage on Night Vision", 600);
+        timeForDamageOnWaterBreathing = BUILDER.comment("The time for damage on water breathing, default = 200 (5 second), 20 ticks is 1 second")
+                .define("Time for Damage on Water Breathing", 100);
 
 
 

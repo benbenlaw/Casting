@@ -1,5 +1,6 @@
 package com.benbenlaw.casting.item;
 
+import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -28,8 +29,15 @@ public class EquipmentModifierItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> components, TooltipFlag flag) {
 
+        boolean requireShiftToDisableTooltip = stack.is(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT);
+
         if (Screen.hasShiftDown()) {
+
             components.add(Component.translatable(tooltip, maxLevel).withStyle(ChatFormatting.YELLOW));
+
+            if (requireShiftToDisableTooltip) {
+                components.add(Component.translatable("casting.tooltip.shift_to_disable").withStyle(ChatFormatting.RED));
+            }
 
             components.add(Component.translatable("casting.tooltip.valid_tool_types").withStyle(ChatFormatting.GOLD));
 
@@ -48,7 +56,11 @@ public class EquipmentModifierItem extends Item {
 
             for (String toolType : validToolTypes) {
                 components.add(Component.translatable("casting.tooltip." + toolType).withStyle(ChatFormatting.BLUE));
+
+
             }
+
+
 
 
         } else {

@@ -73,6 +73,16 @@ public class EquipmentModifierUtils {
             int currentTeleporting = stack.getOrDefault(CastingDataComponents.TELEPORTING, 0);
             return currentTeleporting >= EquipmentModifierConfig.maxMagnetAmount.get();
         }
+        if (effect.contains(STEP_ASSIST)) {
+            int currentEfficiency = stack.getOrDefault(CastingDataComponents.STEP_ASSIST, 0);
+            return currentEfficiency >= EquipmentModifierConfig.maxStepAssistAmount.get();
+        }
+        if (effect.contains(NIGHT_VISION)) {
+            return stack.getOrDefault(CastingDataComponents.NIGHT_VISION, false);
+        }
+        if (effect.contains(WATER_BREATHING)) {
+            return stack.getOrDefault(CastingDataComponents.WATER_BREATHING, false);
+        }
         return false;
     }
 
@@ -162,6 +172,20 @@ public class EquipmentModifierUtils {
             int newMagnet = Math.min(currentMagnet + 1, EquipmentModifierConfig.maxMagnetAmount.get());
             copy.set(CastingDataComponents.MAGNET, newMagnet);
         }
+        if (effect.contains(STEP_ASSIST)) {
+            int currentStepAssist = copy.getOrDefault(CastingDataComponents.STEP_ASSIST, 0);
+            int newStepAssist = Math.min(currentStepAssist + 1, EquipmentModifierConfig.maxStepAssistAmount.get());
+            copy.set(CastingDataComponents.STEP_ASSIST, newStepAssist);
+        }
+        if (effect.contains(NIGHT_VISION)) {
+            boolean isNightVision = copy.getOrDefault(CastingDataComponents.NIGHT_VISION, false);
+            copy.set(CastingDataComponents.NIGHT_VISION, !isNightVision);
+        }
+        if (effect.contains(WATER_BREATHING)) {
+            boolean isWaterBreathing = copy.getOrDefault(CastingDataComponents.WATER_BREATHING, false);
+            copy.set(CastingDataComponents.WATER_BREATHING, !isWaterBreathing);
+        }
+
         return copy;
     }
 

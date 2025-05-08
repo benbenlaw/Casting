@@ -48,6 +48,10 @@ public class EquipmentModifierItems {
             () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.protection", EquipmentModifierConfig.maxProtectionAmount.get()));
     public static final DeferredItem<Item> STEP_ASSIST = ITEMS.register("step_assist",
             () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.step_assist", EquipmentModifierConfig.maxStepAssistAmount.get()));
+    public static final DeferredItem<Item> NIGHT_VISION = ITEMS.register("night_vision",
+            () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.night_vision", 1));
+    public static final DeferredItem<Item> WATER_BREATHING = ITEMS.register("water_breathing",
+            () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.water_breathing", 1));
 
 
     public static void register(IEventBus eventBus) {

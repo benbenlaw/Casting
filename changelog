@@ -8,6 +8,25 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
+//1.17.11
+night vision (helmet) (easy?)
+water breathing (helmet) (easy?)
+speed (boots) (easy?)
+frost walker (boots) (easy?)
+lava walker (boots) (hard? maybe i dont know)
+
+1.17.11
+Fixed Step Assist not having its effect applied in the Equipment Modifier
+Excavation changes
+- Excavation now directly uses the casting breaking event logic fixes block entities not dropping correctly
+- The direction of breaking is now based on the face of the block interacted with, this is much better than the previous system
+- Breaking a block with an excavating tool that not the correct tool for drops will now break only that block
+- Holding shift prevents excavation from being applied
+Holding shift will now stop silk touch, auto smelt and step assist from activating
+Added Night Vision applies to helmets, uses golden carrots, takes damage every 600 ticks, can be changed in config
+Added Water Breathing applies to helmets, uses pufferfish, takes damage every 100 ticks when in water, can be changed in config
+
+
 1.17.10
 Fixed inconsistent logic checking with casting modifiers are used on block entities with empty loot tables, now checking now list of empty loot
     and if air is in the loot table. Fixes LootJS interaction with modifiers

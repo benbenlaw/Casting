@@ -57,17 +57,29 @@ import static mekanism.common.util.WorldUtils.getBlockState;
 
 public class ToolEvents {
 
+    private static final Map<UUID, Direction> lastHitDirectionMap = new HashMap<>();
+
+    @SubscribeEvent
+    public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+        Direction face = event.getFace();
+
+        if (level.isClientSide()) return;
+        if (player.getMainHandItem().has(CastingDataComponents.EXCAVATION)) {
+            lastHitDirectionMap.put(player.getUUID(), face);
+            System.out.println("Direction: " + face);
+        }
+    }
+
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
-
         Player player = event.getPlayer();
+        Direction face = lastHitDirectionMap.getOrDefault(player.getUUID(), Direction.DOWN);
         Level level = player.level();
         BlockPos pos = event.getPos();
         BlockState state = event.getState();
         ItemStack tool = player.getMainHandItem();
-        List<ItemStack> drops = List.of();
-        ItemStack fakeItemStack = tool.copy();
-        boolean shouldTakeDamage = true;
 
         boolean isSilkTouch = tool.getComponents().keySet().contains(CastingDataComponents.SILK_TOUCH.get());
         boolean isFortune = tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get());
@@ -80,85 +92,94 @@ public class ToolEvents {
         if (!level.isClientSide() && requiresCastingOverrides) {
             event.setCanceled(true);
 
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-
-            //Excavation
-            if (isExcavation) {
-                int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
-                breakArea(event, player, tool, level, pos, state, excavationLevel);
+            // Excavation
+            if(!tool.isCorrectToolForDrops(state)) {
+                breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
                 return;
             }
 
-            //Silk Touch
-            if (isSilkTouch) {
-                fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
-                drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
-            }
+            if (isExcavation && !player.isShiftKeyDown()) {
+                int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
 
-            //Fortune
-            else if (isFortune) {
+                List<BlockPos> excavationPlane = getExcavationPlane(pos, face, excavationLevel);
 
-                int fortuneLevel = tool.getComponents().getOrDefault(CastingDataComponents.FORTUNE.get(), 0);
-                fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
-                drops = getLootDrops(state, blockEntity,pos, player, fakeItemStack, level);
+                for (BlockPos targetPos : excavationPlane) {
+                    if (!level.isLoaded(targetPos)) continue;
 
-            }
+                    BlockState targetState = level.getBlockState(targetPos);
+                    if (!targetState.isAir() && targetState.getDestroySpeed(level, targetPos) >= 0 && tool.isCorrectToolForDrops(targetState))
 
-            //Default Drops not Silk or Fortune
-            if (drops.isEmpty()) {
-                drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
-            }
 
-            //Auto Smelt
-            if (isAutoSmelt) {
-                List<ItemStack> smeltingDrops = new ArrayList<>();
-
-                for (ItemStack drop : drops) {
-
-                    SingleRecipeInput container = new SingleRecipeInput(drop);
-                    List<RecipeHolder<SmeltingRecipe>> smeltingRecipe = level.getRecipeManager().getRecipesFor(RecipeType.SMELTING, container, level);
-
-                    if (!smeltingRecipe.isEmpty()) {
-                        SmeltingRecipe recipe = smeltingRecipe.getFirst().value();
-                        ItemStack result = recipe.getResultItem(level.registryAccess());
-
-                        ItemStack smeltedStack = result.copy();
-                        smeltedStack.setCount(drop.getCount());
-                        smeltingDrops.add(smeltedStack);
-                    } else {
-                        smeltingDrops.add(drop);
+                    {
+                        breakBlockWithCasting(level, player, targetPos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
                     }
                 }
 
-                drops = smeltingDrops;
+                return;
             }
 
-            //Drop Resources
+            // Other casting overrides
+            breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
+        }
+    }
+
+    public static void breakBlockWithCasting(Level level, Player player, BlockPos pos, ItemStack tool, boolean isSilkTouch, boolean isFortune, boolean isAutoSmelt, boolean isUnbreaking) {
+        BlockState state = level.getBlockState(pos);
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+
+        ItemStack fakeItemStack = tool.copy();
+        List<ItemStack> drops = new ArrayList<>();
+        boolean shouldTakeDamage = true;
+
+        // Silk Touch
+        if (isSilkTouch && !player.isShiftKeyDown()) {
+            fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
+            drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
+        } else if (isFortune) {
+            int fortuneLevel = tool.getComponents().getOrDefault(CastingDataComponents.FORTUNE.get(), 0);
+            fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
+            drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
+        }
+
+        if (drops.isEmpty()) {
+            drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
+        }
+
+        // Auto Smelt
+        if (isAutoSmelt && !player.isShiftKeyDown()) {
+            List<ItemStack> smeltingDrops = new ArrayList<>();
             for (ItemStack drop : drops) {
-                Block.popResource(level, pos, drop);
+                SingleRecipeInput container = new SingleRecipeInput(drop);
+                List<RecipeHolder<SmeltingRecipe>> smeltingRecipe = level.getRecipeManager().getRecipesFor(RecipeType.SMELTING, container, level);
+                if (!smeltingRecipe.isEmpty()) {
+                    ItemStack result = smeltingRecipe.getFirst().value().getResultItem(level.registryAccess());
+                    ItemStack smeltedStack = result.copy();
+                    smeltedStack.setCount(drop.getCount());
+                    smeltingDrops.add(smeltedStack);
+                } else {
+                    smeltingDrops.add(drop);
+                }
             }
+            drops = smeltingDrops;
+        }
 
-            // Check drops if the drops are empty check the blocks player destroy method, works for non loottable blocks that have custom logic when
-            // broken like casting and immersive crate, this also parses the block entity for custom logic on breaking in the loot
-            if (drops.isEmpty() || drops.getFirst().is(Items.AIR.asItem())) {
-                state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
-            }
+        for (ItemStack drop : drops) {
+            Block.popResource(level, pos, drop);
+        }
 
-            System.out.println("Drops: " + drops);
+        if (drops.isEmpty() || drops.getFirst().is(Items.AIR)) {
+            state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
+        }
 
-            //Remove Block
-            level.destroyBlock(pos, false, player);
+        level.destroyBlock(pos, false, player);
 
-            //Unbreaking check
-            if (isUnbreaking) {
-                int unbreakingLevel = tool.getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
-                shouldTakeDamage = level.getRandom().nextFloat() >= (unbreakingLevel * 0.1f);
-            }
+        if (isUnbreaking) {
+            int unbreakingLevel = tool.getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
+            shouldTakeDamage = level.getRandom().nextFloat() >= (unbreakingLevel * 0.1f);
+        }
 
-            //Actually damage the item
-            if (shouldTakeDamage) {
-                tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-            }
+        if (shouldTakeDamage) {
+            tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
         }
     }
 
@@ -173,6 +194,44 @@ public class ToolEvents {
                 .withParameter(LootContextParams.BLOCK_STATE, state);
 
         return state.getDrops(lootParams);
+    }
+
+    public static List<BlockPos> getExcavationPlane(BlockPos origin, Direction face, int level) {
+        List<BlockPos> positions = new ArrayList<>();
+
+        Direction.Axis axis = face.getAxis();
+        Direction.Axis axis1;
+        Direction.Axis axis2;
+
+        switch (axis) {
+            case X -> {
+                axis1 = Direction.Axis.Y;
+                axis2 = Direction.Axis.Z;
+            }
+            case Y -> {
+                axis1 = Direction.Axis.X;
+                axis2 = Direction.Axis.Z;
+            }
+            case Z -> {
+                axis1 = Direction.Axis.X;
+                axis2 = Direction.Axis.Y;
+            }
+            default -> throw new IllegalStateException("Unexpected axis: " + axis);
+        }
+
+        for (int i = -level; i <= level; i++) {
+            for (int j = -level; j <= level; j++) {
+                BlockPos offset = origin;
+
+                // Apply offset based on the perpendicular axes
+                offset = offset.relative(Direction.fromAxisAndDirection(axis1, i >= 0 ? Direction.AxisDirection.POSITIVE : Direction.AxisDirection.NEGATIVE), Math.abs(i));
+                offset = offset.relative(Direction.fromAxisAndDirection(axis2, j >= 0 ? Direction.AxisDirection.POSITIVE : Direction.AxisDirection.NEGATIVE), Math.abs(j));
+
+                positions.add(offset);
+            }
+        }
+
+        return positions;
     }
 
     //Using this to break an area of blocks

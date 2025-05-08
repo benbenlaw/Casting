@@ -1,0 +1,8 @@
+{
+  "type": "casting:equipment_modifier",
+  "effect": "water_breathing",
+  "upgrade_item": {
+    "count": 6,
+    "item": "minecraft:pufferfish"
+  }
+}

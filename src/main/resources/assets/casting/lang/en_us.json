@@ -124,6 +124,14 @@
   "item.casting.step_assist": "Equipment Modifier: Step Assist",
   "casting.tooltip.step_assist": "Gives armor Step Assist, allows the player to step up blocks up to level %s",
 
+  "item.casting.night_vision": "Equipment Modifier: Night Vision",
+  "casting.tooltip.night_vision": "Gives armor Night Vision, allows the player to see in the dark",
+
+  "item.casting.water_breathing": "Equipment Modifier: Water Breathing",
+  "casting.tooltip.water_breathing": "Gives armor Water Breathing, allows the player to breathe underwater",
+
+  "casting.tooltip.shift_to_disable": "- Hold SHIFT to disable",
+
 
 
 
@@ -158,6 +166,8 @@
   "tooltips.casting.magnet": "- Magnet %s",
   "tooltips.casting.protection": "- Protection %s",
   "tooltips.casting.step_assist": "- Step Assist %s",
+  "tooltips.casting.night_vision": "- Night Vision",
+  "tooltips.casting.water_breathing": "- Water Breathing",
 
   "casting.tooltip.valid_tool_types": "Valid Equipment;",
 

@@ -2,6 +2,8 @@ package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.fluid.CastingFluids;
+import com.benbenlaw.casting.item.EquipmentModifierItem;
+import com.benbenlaw.casting.item.EquipmentModifierItems;
 import com.benbenlaw.casting.item.ModItems;
 import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.core.HolderLookup;
@@ -24,6 +26,14 @@ public class CastingItemTags extends ItemTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
         tag(Tags.Items.BRICKS).add(ModItems.BLACK_BRICK.asItem());
+
+        tag(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT)
+                .add(EquipmentModifierItems.AUTO_SMELT.asItem())
+                .add(EquipmentModifierItems.EXCAVATION.asItem())
+                .add(EquipmentModifierItems.STEP_ASSIST.asItem())
+                .add(EquipmentModifierItems.SILK_TOUCH.asItem());
+
+
 
         tag(CastingTags.Items.MOLDS)
                 .add(ModItems.BLOCK_MOLD.asItem())

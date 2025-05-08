@@ -41,6 +41,8 @@ public class ModCreativeModTab {
                 output.accept(EquipmentModifierItems.MAGNET);
                 output.accept(EquipmentModifierItems.PROTECTION);
                 output.accept(EquipmentModifierItems.STEP_ASSIST);
+                output.accept(EquipmentModifierItems.NIGHT_VISION);
+                output.accept(EquipmentModifierItems.WATER_BREATHING);
 
 
             }).build());

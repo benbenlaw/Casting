@@ -62,8 +62,10 @@ public class EquipmentModifiersTooltip {
         boolean hasMagnet = tool.getComponents().keySet().contains(CastingDataComponents.MAGNET.get());
         boolean hasProtection = tool.getComponents().keySet().contains(CastingDataComponents.PROTECTION.get());
         boolean hasStepAssist = tool.getComponents().keySet().contains(CastingDataComponents.STEP_ASSIST.get());
+        boolean hasNightVision = tool.getComponents().keySet().contains(CastingDataComponents.NIGHT_VISION.get());
+        boolean hasWaterBreathing = tool.getComponents().keySet().contains(CastingDataComponents.WATER_BREATHING.get());
 
-        boolean hasEffects = hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
+        boolean hasEffects = hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
         if (Screen.hasShiftDown() && (hasEffects)) {
 
@@ -168,6 +170,14 @@ public class EquipmentModifiersTooltip {
             if (hasStepAssist) {
                 int stepAssistLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.STEP_ASSIST.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.step_assist", stepAssistLevel).withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasNightVision) {
+                components.add(index, Component.translatable("tooltips.casting.night_vision").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasWaterBreathing) {
+                components.add(index, Component.translatable("tooltips.casting.water_breathing").withStyle(ChatFormatting.BLUE));
                 index++;
             }
 

@@ -43,7 +43,7 @@ public class CastingTags {
         //public static final TagKey<Item> WIRE_MOLD = commonTags("molds/wire");
         public static final TagKey<Item> BLOCK_MOLD = commonTags("molds/block");
         public static final TagKey<Item> BALL_MOLD = commonTags("molds/ball");
-
+        public static final TagKey<Item> CAN_BE_DISABLED_WITH_SHIFT = tag("can_be_disabled_with_shift");
 
 
 

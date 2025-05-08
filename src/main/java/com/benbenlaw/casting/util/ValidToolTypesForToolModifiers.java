@@ -28,6 +28,8 @@ public class ValidToolTypesForToolModifiers {
     public static final String MAGNET = "magnet";
     public static final String PROTECTION = "protection";
     public static final String STEP_ASSIST = "step_assist";
+    public static final String NIGHT_VISION = "night_vision";
+    public static final String WATER_BREATHING = "water_breathing";
 
 
     //Tool Types
@@ -54,7 +56,7 @@ public class ValidToolTypesForToolModifiers {
         Map<String, List<String>> map = new HashMap<>();
 
         //Add all modifiers to this
-        map.put(ALL_MODIFIERS, List.of(STEP_ASSIST, PROTECTION, TELEPORTING, EXCAVATION, IGNITE, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT, LOOTING, SHARPNESS, BEHEADING, LIFESTEAL, KNOCKBACK));
+        map.put(ALL_MODIFIERS, List.of(NIGHT_VISION, WATER_BREATHING, STEP_ASSIST, MAGNET, PROTECTION, TELEPORTING, EXCAVATION, IGNITE, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT, LOOTING, SHARPNESS, BEHEADING, LIFESTEAL, KNOCKBACK));
 
         //Add specific modifiers to this
         map.put(PICKAXE_MODIFIERS, List.of(TELEPORTING, EXCAVATION, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT));
@@ -66,7 +68,7 @@ public class ValidToolTypesForToolModifiers {
         map.put(SWORD_MODIFIERS, List.of(TELEPORTING, UNBREAKING, LOOTING, SHARPNESS, REPAIRING, BEHEADING, LIFESTEAL, KNOCKBACK, LIFESTEAL, IGNITE));
 
         //Armor
-        map.put(HELMET_MODIFIERS, List.of(MAGNET, REPAIRING, UNBREAKING));
+        map.put(HELMET_MODIFIERS, List.of(NIGHT_VISION, WATER_BREATHING, MAGNET, REPAIRING, UNBREAKING));
         map.put(CHESTPLATE_MODIFIERS, List.of(MAGNET, REPAIRING, UNBREAKING));
         map.put(LEGGINGS_MODIFIERS, List.of(MAGNET, REPAIRING, UNBREAKING));
         map.put(BOOTS_MODIFIERS, List.of(STEP_ASSIST, MAGNET, REPAIRING, UNBREAKING));

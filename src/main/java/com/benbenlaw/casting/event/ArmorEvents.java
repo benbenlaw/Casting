@@ -9,6 +9,8 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -39,18 +41,16 @@ public class ArmorEvents {
         Level level = player.level();
 
         if (level.isClientSide()) return;
-        if (player.tickCount % 20 != 0) return;
 
         boolean isStepAssist = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.STEP_ASSIST.get());
 
         //Step Assist
-        if (isStepAssist) {
+        if (isStepAssist && !player.isShiftKeyDown()) {
             int stepAssistLevel = player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(CastingDataComponents.STEP_ASSIST.get(), 0);
             Objects.requireNonNull(player.getAttribute(Attributes.STEP_HEIGHT)).setBaseValue(stepAssistLevel);
         } else {
             Objects.requireNonNull(player.getAttribute(Attributes.STEP_HEIGHT)).setBaseValue(0.6D);
         }
-
 
         //Magnet
         for (ItemStack armorItem : player.getArmorSlots()) {
@@ -78,12 +78,26 @@ public class ArmorEvents {
                         itemEntity.setItem(stack);
                     }
                 }
-
             }
         }
 
+        //Night Vision
+        boolean isNightVision = player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(CastingDataComponents.NIGHT_VISION.get());
+        if (isNightVision) {
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 22, 0, false, false));
+            if (player.tickCount % EquipmentModifierConfig.timeForDamageOnNightVision.get() == 0) {
+                player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, player, EquipmentSlot.HEAD);
+            }
+        }
 
-
+        //Water Breathing
+        boolean isWaterBreathing = player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(CastingDataComponents.WATER_BREATHING.get());
+        if (isWaterBreathing && player.isUnderWater()) {
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 22, 0, false, false));
+            if (player.tickCount % EquipmentModifierConfig.timeForDamageOnWaterBreathing.get() == 0) {
+                player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, player, EquipmentSlot.HEAD);
+            }
+        }
     }
 
 
