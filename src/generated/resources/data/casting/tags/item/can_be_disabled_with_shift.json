@@ -3,6 +3,8 @@
     "casting:auto_smelt",
     "casting:excavation",
     "casting:step_assist",
-    "casting:silk_touch"
+    "casting:silk_touch",
+    "casting:water_walker",
+    "casting:lava_walker"
   ]
 }

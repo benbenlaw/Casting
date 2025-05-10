@@ -162,6 +162,15 @@ public class CastingDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> WATER_BREATHING =
             COMPONENTS.register("water_breathing", () ->
                     DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> SPEED =
+            COMPONENTS.register("speed", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> WATER_WALKER =
+            COMPONENTS.register("water_walker", () ->
+                    DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> LAVA_WALKER =
+            COMPONENTS.register("lava_walker", () ->
+                    DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
 
 
 

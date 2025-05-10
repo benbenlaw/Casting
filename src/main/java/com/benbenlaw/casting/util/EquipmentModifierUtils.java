@@ -83,6 +83,17 @@ public class EquipmentModifierUtils {
         if (effect.contains(WATER_BREATHING)) {
             return stack.getOrDefault(CastingDataComponents.WATER_BREATHING, false);
         }
+        if (effect.contains(SPEED)) {
+            int currentTeleporting = stack.getOrDefault(CastingDataComponents.SPEED, 0);
+            return currentTeleporting >= EquipmentModifierConfig.maxSpeedAmount.get();
+        }
+        if (effect.contains(WATER_WALKER)) {
+            return stack.getOrDefault(CastingDataComponents.WATER_WALKER, false);
+        }
+        if (effect.contains(LAVA_WALKER)) {
+            return stack.getOrDefault(CastingDataComponents.LAVA_WALKER, false);
+        }
+
         return false;
     }
 
@@ -184,6 +195,19 @@ public class EquipmentModifierUtils {
         if (effect.contains(WATER_BREATHING)) {
             boolean isWaterBreathing = copy.getOrDefault(CastingDataComponents.WATER_BREATHING, false);
             copy.set(CastingDataComponents.WATER_BREATHING, !isWaterBreathing);
+        }
+        if (effect.contains(SPEED)) {
+            int currentSpeed = copy.getOrDefault(CastingDataComponents.SPEED, 0);
+            int newSpeed = Math.min(currentSpeed + 1, EquipmentModifierConfig.maxSpeedAmount.get());
+            copy.set(CastingDataComponents.SPEED, newSpeed);
+        }
+        if (effect.contains(WATER_WALKER)) {
+            boolean isWaterWalker = copy.getOrDefault(CastingDataComponents.WATER_WALKER, false);
+            copy.set(CastingDataComponents.WATER_WALKER, !isWaterWalker);
+        }
+        if (effect.contains(LAVA_WALKER)) {
+            boolean isLavaWalker = copy.getOrDefault(CastingDataComponents.LAVA_WALKER, false);
+            copy.set(CastingDataComponents.LAVA_WALKER, !isLavaWalker);
         }
 
         return copy;

@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-30T08:30:37.5207378	casting Item Models
+// 1.21.1	2025-05-10T12:16:25.4972424	casting Item Models
 16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
 513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
@@ -14,6 +14,7 @@ cf9eae803bac38044112d744bde8b6b12c3af28c assets/casting/models/item/gem_mold.jso
 652c001a660021ea397975ab0c50856a7caec587 assets/casting/models/item/ignite.json
 0b04b6b6d70bf4321f1120a56f0aa5e03818e717 assets/casting/models/item/ingot_mold.json
 ad997dc493e7cc16c8582c7e8426c2cb72d65bff assets/casting/models/item/knockback.json
+9f94d84580a0dc9089c7f074d5b3464cfac1390e assets/casting/models/item/lava_walker.json
 6dc5e743163b33bef8770af0fcdfd7a03821fc9c assets/casting/models/item/lifesteal.json
 906d8b2cb66782e3b2950482dfa5abfe965ec856 assets/casting/models/item/looting.json
 6fab92d6332384c0e6e9d7536485ef966dfb2ddb assets/casting/models/item/magnet.json
@@ -64,6 +65,7 @@ c2fd008f6d2a5f6ab3dae85d072261b0487c103f assets/casting/models/item/molten_steel
 301ec833af6b33d7818378b7b333417ec03ca997 assets/casting/models/item/molten_uranium_bucket.json
 5aab23aa73549787086b7b934737bcfce270b2ad assets/casting/models/item/molten_vibrant_alloy_bucket.json
 acc90a5c62f7b1b830ef519a2fa188528b2de327 assets/casting/models/item/molten_zinc_bucket.json
+f3ec7f7764f33039c03d3f17f1b21511d2e0adbd assets/casting/models/item/night_vision.json
 49dae1412b9b8af9f0b991a06586be22e90b0e0f assets/casting/models/item/nugget_mold.json
 4f7a63852ad16a549251405c8fe6de603edb22b2 assets/casting/models/item/plate_mold.json
 32ccc845cd863f19359d1b0a891fdfd8492cb5c1 assets/casting/models/item/protection.json
@@ -72,7 +74,10 @@ f917a1a7ccb9835011f67b6f02be6d89a1e5270d assets/casting/models/item/repairing.js
 cfd72d20c3421e3da904954307832d8c96153746 assets/casting/models/item/rod_mold.json
 9e6f89126935efd465ba77b421fdc6b3af92dce7 assets/casting/models/item/sharpness.json
 40531341edfec33b755a7e7d3c97de515c8f7876 assets/casting/models/item/silk_touch.json
+4563606bbf2654875c46c0cf35c46d5a0db907b6 assets/casting/models/item/speed.json
 8a83c1840b21b4d00156b183be278b0c1190f76e assets/casting/models/item/step_assist.json
 45612ff2be741f11abf389b3d2b93b9e6c9b24c2 assets/casting/models/item/teleporting.json
 09ac168125c89aa8b127b2a43df710a04abe8cf0 assets/casting/models/item/torch_placing.json
 3d406c9c864009af36192bebda9ab2b7b2faf22f assets/casting/models/item/unbreaking.json
+a962656baf2f6ae1b484979bc56926318b96a5af assets/casting/models/item/water_breathing.json
+5a9bcb6ecbbc8352a59ef2a8d5eb8b7671f0b7be assets/casting/models/item/water_walker.json

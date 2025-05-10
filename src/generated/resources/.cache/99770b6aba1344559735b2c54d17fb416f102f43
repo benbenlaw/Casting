@@ -1,5 +1,5 @@
-// 1.21.1	2025-05-06T10:36:18.6946206	Tags for minecraft:item mod id casting
-f0603354ae9895b93df1611ab799dc9da59da45e data/casting/tags/item/can_be_disabled_with_shift.json
+// 1.21.1	2025-05-10T12:12:03.0973653	Tags for minecraft:item mod id casting
+7aa1aa828c12e2ca0df232c98ef8b6d0a9c775e3 data/casting/tags/item/can_be_disabled_with_shift.json
 38236b67cf98b68238695adf5a39edf921a1998c data/c/tags/item/bricks.json
 7ff5e01e22c9296914d2a70b6dcdf061c72b5bf7 data/c/tags/item/buckets.json
 bceddfa28b26e1b8543ea1a34839d23de41b00c0 data/c/tags/item/molds.json

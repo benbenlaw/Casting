@@ -1,0 +1,8 @@
+{
+  "type": "casting:equipment_modifier",
+  "effect": "water_walker_modifier",
+  "upgrade_item": {
+    "count": 16,
+    "item": "minecraft:sponge"
+  }
+}

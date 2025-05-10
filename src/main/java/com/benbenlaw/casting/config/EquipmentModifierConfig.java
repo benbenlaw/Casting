@@ -30,6 +30,7 @@ public class EquipmentModifierConfig {
     public static final ModConfigSpec.ConfigValue<Integer> maxStepAssistAmount;
     public static final ModConfigSpec.ConfigValue<Integer> timeForDamageOnNightVision;
     public static final ModConfigSpec.ConfigValue<Integer> timeForDamageOnWaterBreathing;
+    public static final ModConfigSpec.ConfigValue<Integer> maxSpeedAmount;
 
 
 
@@ -91,7 +92,8 @@ public class EquipmentModifierConfig {
                 .define("Time for Damage on Night Vision", 600);
         timeForDamageOnWaterBreathing = BUILDER.comment("The time for damage on water breathing, default = 200 (5 second), 20 ticks is 1 second")
                 .define("Time for Damage on Water Breathing", 100);
-
+        maxSpeedAmount = BUILDER.comment("The max amount of speed levels that can be applied to tools, default = 5, 0 disables. Each level adds an additional level of the speed enchantment")
+                .define("Max Speed Level", 5);
 
 
 

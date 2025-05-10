@@ -64,8 +64,11 @@ public class EquipmentModifiersTooltip {
         boolean hasStepAssist = tool.getComponents().keySet().contains(CastingDataComponents.STEP_ASSIST.get());
         boolean hasNightVision = tool.getComponents().keySet().contains(CastingDataComponents.NIGHT_VISION.get());
         boolean hasWaterBreathing = tool.getComponents().keySet().contains(CastingDataComponents.WATER_BREATHING.get());
+        boolean hasWalterWalker = tool.getComponents().keySet().contains(CastingDataComponents.WATER_WALKER.get());
+        boolean hasLavaWalker = tool.getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
+        boolean hasSpeed = tool.getComponents().keySet().contains(CastingDataComponents.SPEED.get());
 
-        boolean hasEffects = hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
+        boolean hasEffects = hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
         if (Screen.hasShiftDown() && (hasEffects)) {
 
@@ -178,6 +181,19 @@ public class EquipmentModifiersTooltip {
             }
             if (hasWaterBreathing) {
                 components.add(index, Component.translatable("tooltips.casting.water_breathing").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasWalterWalker) {
+                components.add(index, Component.translatable("tooltips.casting.water_walker").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasLavaWalker) {
+                components.add(index, Component.translatable("tooltips.casting.lava_walker").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasSpeed) {
+                int speedLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.SPEED.get())).orElse(0);
+                components.add(index, Component.translatable("tooltips.casting.speed", speedLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
 

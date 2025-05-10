@@ -2,6 +2,7 @@ package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.ModBlocks;
+import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -23,26 +24,10 @@ public class ModCreativeModTab {
             .title(Component.translatable("itemGroup.equipment_modifiers"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .displayItems((parameters, output) -> {
-                output.accept(EquipmentModifierItems.SILK_TOUCH);
-                output.accept(EquipmentModifierItems.EFFICIENCY);
-                output.accept(EquipmentModifierItems.FORTUNE);
-                output.accept(EquipmentModifierItems.UNBREAKING);
-                output.accept(EquipmentModifierItems.REPAIRING);
-                output.accept(EquipmentModifierItems.TORCH_PLACING);
-                output.accept(EquipmentModifierItems.AUTO_SMELT);
-                output.accept(EquipmentModifierItems.LOOTING);
-                output.accept(EquipmentModifierItems.SHARPNESS);
-                output.accept(EquipmentModifierItems.BEHEADING);
-                output.accept(EquipmentModifierItems.LIFESTEAL);
-                output.accept(EquipmentModifierItems.KNOCKBACK);
-                output.accept(EquipmentModifierItems.IGNITE);
-                output.accept(EquipmentModifierItems.EXCAVATION);
-                output.accept(EquipmentModifierItems.TELEPORTING);
-                output.accept(EquipmentModifierItems.MAGNET);
-                output.accept(EquipmentModifierItems.PROTECTION);
-                output.accept(EquipmentModifierItems.STEP_ASSIST);
-                output.accept(EquipmentModifierItems.NIGHT_VISION);
-                output.accept(EquipmentModifierItems.WATER_BREATHING);
+
+                EquipmentModifierItems.ITEMS.getEntries().forEach(
+                        item -> output.accept(item.get())
+                );
 
 
             }).build());

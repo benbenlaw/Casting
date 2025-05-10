@@ -8,12 +8,15 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
-//1.17.11
-night vision (helmet) (easy?)
-water breathing (helmet) (easy?)
+//1.17.12
 speed (boots) (easy?)
 frost walker (boots) (easy?)
 lava walker (boots) (hard? maybe i dont know)
+
+1.17.12
+Added Water walker modifier applies to boots, allows the player to run on water
+Added Lava walker modifier applies to boots, allows the player to run on lava
+Added Speed modifier applies to boots, each level increases the players speed by 0.1, up to 5 levels, config can be as high as you want
 
 1.17.11
 Fixed Step Assist not having its effect applied in the Equipment Modifier

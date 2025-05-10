@@ -130,6 +130,16 @@
   "item.casting.water_breathing": "Equipment Modifier: Water Breathing",
   "casting.tooltip.water_breathing": "Gives armor Water Breathing, allows the player to breathe underwater",
 
+  "item.casting.lava_walker": "Equipment Modifier: Lava Walker",
+  "casting.tooltip.lava_walker": "Gives armor Lava Walker, allows the player to walk on lava up to level %s",
+
+  "item.casting.water_walker": "Equipment Modifier: Water Walker",
+  "casting.tooltip.water_walker": "Gives armor Water Walker, allows the player to walk on water up to level %s",
+
+  "item.casting.speed": "Equipment Modifier: Speed",
+  "casting.tooltip.speed": "Gives armor Speed, allows the player to move faster up to level %s",
+
+
   "casting.tooltip.shift_to_disable": "- Hold SHIFT to disable",
 
 
@@ -168,6 +178,11 @@
   "tooltips.casting.step_assist": "- Step Assist %s",
   "tooltips.casting.night_vision": "- Night Vision",
   "tooltips.casting.water_breathing": "- Water Breathing",
+  "tooltips.casting.lava_walker": "- Lava Walker",
+  "tooltips.casting.water_walker": "- Water Walker",
+  "tooltips.casting.speed": "- Speed %s",
+
+
 
   "casting.tooltip.valid_tool_types": "Valid Equipment;",
 

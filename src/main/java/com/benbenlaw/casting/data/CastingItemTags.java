@@ -31,7 +31,10 @@ public class CastingItemTags extends ItemTagsProvider {
                 .add(EquipmentModifierItems.AUTO_SMELT.asItem())
                 .add(EquipmentModifierItems.EXCAVATION.asItem())
                 .add(EquipmentModifierItems.STEP_ASSIST.asItem())
-                .add(EquipmentModifierItems.SILK_TOUCH.asItem());
+                .add(EquipmentModifierItems.SILK_TOUCH.asItem())
+                .add(EquipmentModifierItems.WATER_WALKER.asItem())
+                .add(EquipmentModifierItems.LAVA_WALKER.asItem());
+
 
 
 

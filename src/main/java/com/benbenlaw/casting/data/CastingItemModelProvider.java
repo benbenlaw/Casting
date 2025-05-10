@@ -61,6 +61,11 @@ public class CastingItemModelProvider extends ItemModelProvider {
         simpleItem(EquipmentModifierItems.TELEPORTING);
         simpleItem(EquipmentModifierItems.TORCH_PLACING);
         simpleItem(EquipmentModifierItems.UNBREAKING);
+        simpleItem(EquipmentModifierItems.WATER_WALKER);
+        simpleItem(EquipmentModifierItems.LAVA_WALKER);
+        simpleItem(EquipmentModifierItems.SPEED);
+        simpleItem(EquipmentModifierItems.WATER_BREATHING);
+        simpleItem(EquipmentModifierItems.NIGHT_VISION);
 
 
         simpleItem(ModItems.FLUID_MOVER);

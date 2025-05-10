@@ -7,8 +7,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -19,6 +21,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -43,6 +47,22 @@ public class ArmorEvents {
         if (level.isClientSide()) return;
 
         boolean isStepAssist = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.STEP_ASSIST.get());
+
+        //Speed
+
+        int totalSpeedLevel = 0;
+
+        if (player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.SPEED.get())) {
+            totalSpeedLevel += player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(CastingDataComponents.SPEED.get(), 0);
+        }
+
+        if (player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(CastingDataComponents.SPEED.get())) {
+            totalSpeedLevel += player.getItemBySlot(EquipmentSlot.LEGS).getComponents().getOrDefault(CastingDataComponents.SPEED.get(), 0);
+        }
+
+        if (totalSpeedLevel > 0) {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 22, totalSpeedLevel, false, false));
+        }
 
         //Step Assist
         if (isStepAssist && !player.isShiftKeyDown()) {
@@ -100,6 +120,69 @@ public class ArmorEvents {
         }
     }
 
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Post event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+
+        //Water Walker
+        boolean isWaterWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.WATER_WALKER.get());
+
+        float playerBob = player.bob;
+
+        if (isWaterWalker && !player.isShiftKeyDown()) {
+            BlockPos pos = player.blockPosition();
+            BlockState currentBlock = level.getBlockState(pos);
+            BlockState aboveBlock = level.getBlockState(pos.above());
+
+            boolean isAtWaterSurface = currentBlock.is(Blocks.WATER) && !aboveBlock.is(Blocks.WATER);
+
+            if (isAtWaterSurface) {
+                double surfaceY = pos.getY() + 1.0;
+                double playerY = player.getY();
+                boolean isBob = false;
+
+                double newY = playerY + (surfaceY - playerY) * 0.1; // Smoothing factor
+                player.setPos(player.getX(), newY, player.getZ());
+
+                if (newY >= surfaceY - 0.5 && newY < surfaceY) {
+                    isBob = true;
+                    player.setDeltaMovement(player.getDeltaMovement().x, 0.0, player.getDeltaMovement().z);
+                    player.setOnGround(true);
+                }
+                if (isBob) {
+                    float f = Math.min(0.1F, (float) player.getDeltaMovement().horizontalDistance());
+                    playerBob += (f - playerBob) * 0.7F;
+                    player.bob = playerBob;
+                }
+            }
+        }
+
+        // Lava Walker
+        boolean isLavaWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
+        if (isLavaWalker && !player.isShiftKeyDown()) {
+            BlockPos pos = player.blockPosition();
+            BlockState currentBlock = level.getBlockState(pos);
+            BlockState aboveBlock = level.getBlockState(pos.above());
+
+            boolean isAtLavaSurface = currentBlock.is(Blocks.LAVA) && !aboveBlock.is(Blocks.LAVA);
+
+            if (isAtLavaSurface) {
+                double surfaceY = pos.getY() + 1.0;
+                double playerY = player.getY();
+
+                //Surface Check
+                if (playerY >= surfaceY - 0.5 && playerY < surfaceY) {
+                    if (Math.abs(playerY - surfaceY) > 0.001) {
+                        player.setPos(player.getX(), surfaceY, player.getZ());
+                    }
+
+                    player.setDeltaMovement(player.getDeltaMovement().x, 0.0, player.getDeltaMovement().z);
+                    player.setOnGround(true);
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onPlayerDamage(LivingDamageEvent.Pre event) {

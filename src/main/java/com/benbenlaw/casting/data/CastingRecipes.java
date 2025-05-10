@@ -61,6 +61,9 @@ public class CastingRecipes extends RecipeProvider {
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 6), null, STEP_ASSIST);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_CARROT), 12), null, NIGHT_VISION);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PUFFERFISH), 6), null, WATER_BREATHING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SUGAR), 24), null, SPEED);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.MAGMA_BLOCK), 16), null, LAVA_WALKER);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SPONGE), 16), null, WATER_WALKER);
 
         //Tool Modifier
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EQUIPMENT_MODIFIER.get(), 1)
