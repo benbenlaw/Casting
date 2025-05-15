@@ -36,6 +36,7 @@ public class TankBlockEntity extends BlockEntity {
         }
     };
 
+
     private final IFluidHandler fluidHandler = new IFluidHandler() {
         @Override
         public int getTanks() {
@@ -43,7 +44,7 @@ public class TankBlockEntity extends BlockEntity {
         }
 
         @Override
-        public FluidStack getFluidInTank(int tank) {
+        public @NotNull FluidStack getFluidInTank(int tank) {
             return FLUID_TANK.getFluid();
         }
 

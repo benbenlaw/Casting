@@ -70,6 +70,18 @@ dependencies {
     compileOnly "curse.maven:bbl-core-1135181:6501682"
     runtimeOnly "curse.maven:bbl-core-1135181:6501682"
 
+    //observable
+    compileOnly "curse.maven:observable-509575:5733591"
+    runtimeOnly "curse.maven:observable-509575:5733591"
+
+    //arch
+    compileOnly "curse.maven:architectury-api-419699:5786327"
+    runtimeOnly "curse.maven:architectury-api-419699:5786327"
+
+    //Kotlin for Forge
+    compileOnly "curse.maven:kotlin-for-forge-351264:6497906"
+    runtimeOnly "curse.maven:kotlin-for-forge-351264:6497906"
+
     //Custom Machinery
     compileOnly "curse.maven:custom-machinery-457017:6447865"
     runtimeOnly "curse.maven:custom-machinery-457017:6447865"

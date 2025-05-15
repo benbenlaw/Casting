@@ -402,7 +402,7 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
     public void tick() {
         assert level != null;
         if (!level.isClientSide()) {
-            
+
             RecipeInput inventory = new RecipeInput() {
                 @Override
                 public ItemStack getItem(int index) {
