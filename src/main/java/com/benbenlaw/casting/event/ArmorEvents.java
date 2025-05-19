@@ -121,14 +121,14 @@ public class ArmorEvents {
         }
 
         //Flight
-        boolean isFlight = player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
-        if (isFlight && !player.isCreative() && !player.isSpectator() && !player.getAbilities().mayfly) {
-            player.getAbilities().mayfly = true;
-            player.onUpdateAbilities();
-        } else if (!isFlight && player.getAbilities().mayfly) {
-            player.getAbilities().mayfly = false;
-            player.onUpdateAbilities();
-        }
+        //boolean isFlight = player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
+        //if (isFlight && !player.isCreative() && !player.isSpectator() && !player.getAbilities().mayfly) {
+        //    player.getAbilities().mayfly = true;
+        //    player.onUpdateAbilities();
+        //} else if (!isFlight && player.getAbilities().mayfly) {
+        //    player.getAbilities().mayfly = false;
+        //    player.onUpdateAbilities();
+        //}
     }
 
     @SubscribeEvent

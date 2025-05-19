@@ -35,7 +35,6 @@ public class CastingRecipes extends RecipeProvider {
         super(output, completableFuture);
     }
 
-
     @Override
     protected void buildRecipes(RecipeOutput consumer) {
 
@@ -2759,4 +2758,5 @@ public class CastingRecipes extends RecipeProvider {
                 .unlockedBy("has_item", has(ModBlocks.EQUIPMENT_MODIFIER.get()))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, recipeFrom));
     }
+
 }

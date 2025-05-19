@@ -8,6 +8,9 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
+1.17.15
+Disabled flight
+
 1.17.14
 Reverted Equipment Modifier changes, causing the modifier to not work
 Added recipes for Water Walker, Lava Walker and Speed
