@@ -40,30 +40,31 @@ public class CastingRecipes extends RecipeProvider {
     protected void buildRecipes(RecipeOutput consumer) {
 
         //Tool Modifier
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 5400), FORTUNE);
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_REDSTONE.getFluid(), 5400), EFFICIENCY);
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_EMERALD.getFluid(), 2700), SILK_TOUCH);
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_OBSIDIAN.getFluid(), 32000), UNBREAKING);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 1350), FORTUNE);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_REDSTONE.getFluid(), 1350), EFFICIENCY);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_EMERALD.getFluid(), 720), SILK_TOUCH);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_OBSIDIAN.getFluid(), 8000), UNBREAKING);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(com.benbenlaw.opolisutilities.block.ModBlocks.ITEM_REPAIRER.get()), 1), null, REPAIRING);
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_GLOWSTONE.getFluid(), 16000), REPAIRING);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_GLOWSTONE.getFluid(), 8000), REPAIRING);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), 64), new FluidStack(CastingFluids.MOLTEN_COAL.getFluid(), 5120), TORCH_PLACING);
-        toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 16000), AUTO_SMELT);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 16000), LOOTING);
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_QUARTZ.getFluid(), 2700), SHARPNESS);
+        toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 8000), AUTO_SMELT);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), new FluidStack(CastingFluids.MOLTEN_LAPIS.getFluid(), 1350), LOOTING);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_QUARTZ.getFluid(), 1350), SHARPNESS);
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_SOUL.getFluid(), 2560), BEHEADING);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 6480), LIFESTEAL);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 8), null,KNOCKBACK);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 16000),IGNITE);
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_DIAMOND.getFluid(), 900),EXCAVATION);
-        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_ENDER.getFluid(), 2560), TELEPORTING);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.INGOTS_IRON), 12), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 1080), MAGNET);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 720), LIFESTEAL);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 4), null,KNOCKBACK);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 8000),IGNITE);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_DIAMOND.getFluid(), 360),EXCAVATION);
+        toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_ENDER.getFluid(), 640), TELEPORTING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.INGOTS_IRON), 6), new FluidStack(CastingFluids.MOLTEN_GOLD.getFluid(), 540), MAGNET);
         toolModifierRecipes(consumer, null, new FluidStack(CastingFluids.MOLTEN_STEEL.getFluid(), 720), PROTECTION);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 6), null, STEP_ASSIST);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_CARROT), 12), null, NIGHT_VISION);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PUFFERFISH), 6), null, WATER_BREATHING);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SUGAR), 24), null, SPEED);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.MAGMA_BLOCK), 16), null, LAVA_WALKER);
-        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SPONGE), 16), null, WATER_WALKER);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.STICKY_PISTON), 4), null, STEP_ASSIST);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_CARROT), 8), null, NIGHT_VISION);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PUFFERFISH), 2), null, WATER_BREATHING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SUGAR), 12), null, SPEED);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.MAGMA_BLOCK), 8), null, LAVA_WALKER);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SPONGE), 8), null, WATER_WALKER);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.NETHER_STAR), 1), null, FLIGHT);
 
         //Tool Modifier
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EQUIPMENT_MODIFIER.get(), 1)

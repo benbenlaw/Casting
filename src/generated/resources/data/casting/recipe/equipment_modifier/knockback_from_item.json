@@ -2,7 +2,7 @@
   "type": "casting:equipment_modifier",
   "effect": "knockback",
   "upgrade_item": {
-    "count": 8,
+    "count": 4,
     "item": "minecraft:piston"
   }
 }

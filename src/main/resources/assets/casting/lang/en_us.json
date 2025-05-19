@@ -139,11 +139,10 @@
   "item.casting.speed": "Equipment Modifier: Speed",
   "casting.tooltip.speed": "Gives armor Speed, allows the player to move faster up to level %s",
 
+  "item.casting.flight": "Equipment Modifier: Flight",
+  "casting.tooltip.flight": "Gives armor Flight, allows the player to fly",
 
   "casting.tooltip.shift_to_disable": "- Hold SHIFT to disable",
-
-
-
 
   "casting.tooltip.all_modifiers": "- All",
   "casting.tooltip.pickaxe_modifiers": "- Pickaxes",
@@ -181,6 +180,7 @@
   "tooltips.casting.lava_walker": "- Lava Walker",
   "tooltips.casting.water_walker": "- Water Walker",
   "tooltips.casting.speed": "- Speed %s",
+  "tooltips.casting.flight": "- Flight",
 
 
 

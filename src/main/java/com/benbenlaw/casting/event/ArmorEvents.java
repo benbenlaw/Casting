@@ -3,6 +3,7 @@ package com.benbenlaw.casting.event;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
@@ -117,6 +118,16 @@ public class ArmorEvents {
             if (player.tickCount % EquipmentModifierConfig.timeForDamageOnWaterBreathing.get() == 0) {
                 player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, player, EquipmentSlot.HEAD);
             }
+        }
+
+        //Flight
+        boolean isFlight = player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
+        if (isFlight && !player.isCreative() && !player.isSpectator() && !player.getAbilities().mayfly) {
+            player.getAbilities().mayfly = true;
+            player.onUpdateAbilities();
+        } else if (!isFlight && player.getAbilities().mayfly) {
+            player.getAbilities().mayfly = false;
+            player.onUpdateAbilities();
         }
     }
 

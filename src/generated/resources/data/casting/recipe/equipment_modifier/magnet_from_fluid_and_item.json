@@ -2,11 +2,11 @@
   "type": "casting:equipment_modifier",
   "effect": "magnet",
   "upgrade_fluid": {
-    "amount": 1080,
+    "amount": 540,
     "id": "casting:molten_gold"
   },
   "upgrade_item": {
-    "count": 12,
+    "count": 6,
     "tag": "c:ingots/iron"
   }
 }

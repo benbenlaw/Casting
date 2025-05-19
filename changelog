@@ -2,11 +2,20 @@ Changelog BBL Smelting
 
 // TODO //
 Scalable Controller
-Switch to core, (1.22)
-Fluid Storage, like the mixer but store molten fluids (1.22)
+Switch to core, (1.22) //done in casting blocks
+Fluid Storage, like the mixer but store molten fluids (1.22) //done in casting multiblocks, controller can be used as a large storage uo to 1million mb
 Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
+
+1.17.14
+Reverted Equipment Modifier changes, causing the modifier to not work
+Added recipes for Water Walker, Lava Walker and Speed
+Enabled protection for all armor
+Fixed lifesteal being named lifestyle in the valid modifiers causing it not to show the items that it is valid for
+Step assist now uses sticky pistons not normal pistons
+Re worked all costs for modifiers with most having there costs reduces by 50% making them easier to obtain
+Added Flight modifier, applies to chestplates, uses nether star
 
 1.17.13
 Improved the Equipment Modifier performance

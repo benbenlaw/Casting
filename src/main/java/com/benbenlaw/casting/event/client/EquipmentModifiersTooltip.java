@@ -67,8 +67,10 @@ public class EquipmentModifiersTooltip {
         boolean hasWalterWalker = tool.getComponents().keySet().contains(CastingDataComponents.WATER_WALKER.get());
         boolean hasLavaWalker = tool.getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
         boolean hasSpeed = tool.getComponents().keySet().contains(CastingDataComponents.SPEED.get());
+        boolean hasFlight = tool.getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
 
-        boolean hasEffects = hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
+
+        boolean hasEffects = hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
         if (Screen.hasShiftDown() && (hasEffects)) {
 
@@ -194,6 +196,10 @@ public class EquipmentModifiersTooltip {
             if (hasSpeed) {
                 int speedLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.SPEED.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.speed", speedLevel).withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasFlight) {
+                components.add(index, Component.translatable("tooltips.casting.flight").withStyle(ChatFormatting.BLUE));
                 index++;
             }
 

@@ -58,6 +58,8 @@ public class EquipmentModifierItems {
             () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.water_walker", 1));
     public static final DeferredItem<Item> LAVA_WALKER = ITEMS.register("lava_walker",
             () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.lava_walker", 1));
+    public static final DeferredItem<Item> FLIGHT = ITEMS.register("flight",
+            () -> new EquipmentModifierItem(new Item.Properties(), "casting.tooltip.flight", 1));
 
 
     public static void register(IEventBus eventBus) {

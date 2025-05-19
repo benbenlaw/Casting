@@ -53,6 +53,10 @@ public class EquipmentModifierUtils {
             int currentLifesteal = stack.getOrDefault(CastingDataComponents.LIFESTEAL, 0);
             return currentLifesteal >= EquipmentModifierConfig.maxLifestealAmount.get();
         }
+        if (effect.contains(PROTECTION)) {
+            int currentProtection = stack.getOrDefault(CastingDataComponents.PROTECTION, 0);
+            return currentProtection >= EquipmentModifierConfig.maxProtectionAmount.get();
+        }
         if (effect.contains(KNOCKBACK)) {
             int currentKnockback = stack.getOrDefault(CastingDataComponents.KNOCKBACK, 0);
             return currentKnockback >= EquipmentModifierConfig.maxKnockbackAmount.get();
@@ -158,6 +162,11 @@ public class EquipmentModifierUtils {
             int newLifesteal = Math.min(currentLifesteal + 1, EquipmentModifierConfig.maxLifestealAmount.get());
             copy.set(CastingDataComponents.LIFESTEAL, newLifesteal);
         }
+        if (effect.contains(PROTECTION)) {
+            int currentProtection = copy.getOrDefault(CastingDataComponents.PROTECTION, 0);
+            int newProtection = Math.min(currentProtection + 1, EquipmentModifierConfig.maxProtectionAmount.get());
+            copy.set(CastingDataComponents.PROTECTION, newProtection);
+        }
         if (effect.contains(KNOCKBACK)) {
             int currentKnockback = copy.getOrDefault(CastingDataComponents.KNOCKBACK, 0);
             int newKnockback = Math.min(currentKnockback + 1, EquipmentModifierConfig.maxKnockbackAmount.get());
@@ -209,6 +218,11 @@ public class EquipmentModifierUtils {
             boolean isLavaWalker = copy.getOrDefault(CastingDataComponents.LAVA_WALKER, false);
             copy.set(CastingDataComponents.LAVA_WALKER, !isLavaWalker);
         }
+        if (effect.contains(FLIGHT)) {
+            boolean isFlight = copy.getOrDefault(CastingDataComponents.FLIGHT, false);
+            copy.set(CastingDataComponents.FLIGHT, !isFlight);
+        }
+
 
         return copy;
     }

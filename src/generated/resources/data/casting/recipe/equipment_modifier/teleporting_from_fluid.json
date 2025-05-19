@@ -2,7 +2,7 @@
   "type": "casting:equipment_modifier",
   "effect": "teleporting",
   "upgrade_fluid": {
-    "amount": 2560,
+    "amount": 640,
     "id": "casting:molten_ender"
   }
 }
