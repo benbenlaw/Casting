@@ -120,21 +120,32 @@ public class ArmorEvents {
             }
         }
 
-        //Flight
-        //boolean isFlight = player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
-        //if (isFlight && !player.isCreative() && !player.isSpectator() && !player.getAbilities().mayfly) {
-        //    player.getAbilities().mayfly = true;
-        //    player.onUpdateAbilities();
-        //} else if (!isFlight && player.getAbilities().mayfly) {
-        //    player.getAbilities().mayfly = false;
-        //    player.onUpdateAbilities();
-        //}
     }
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         Level level = player.level();
+
+        if (!player.level().isClientSide()) {
+            boolean isFlight = player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
+            if (isFlight) {
+
+                if (!player.isCreative() && !player.isSpectator() && !player.getAbilities().mayfly) {
+                    player.addTag("casting_flight");
+                    player.getAbilities().mayfly = true;
+                    player.onUpdateAbilities();
+                }
+
+            } else {
+                if (!player.isCreative() && !player.isSpectator() && player.getAbilities().mayfly && player.getTags().contains("casting_flight")) {
+                    player.removeTag("casting_flight");
+                    player.getAbilities().mayfly = false;
+                    player.onUpdateAbilities();
+                }
+
+            }
+        }
 
         //Water Walker
         boolean isWaterWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.WATER_WALKER.get());

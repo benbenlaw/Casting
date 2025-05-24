@@ -8,6 +8,16 @@ Make item show there contents (1.22)
 fluid storage (1.22)
 fishing rods support for tool modifiers (1.22)
 
+1.17.18
+Dramatically improved performance of the controller
+
+1.17.17
+Flight now works correctly with other flight methods
+
+1.17.16
+Removed the test custom machine block
+Re enabled flight modifier
+
 1.17.15
 Disabled flight
 

@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-10T12:16:25.4972424	casting Item Models
+// 1.21.1	2025-05-23T09:49:02.12696	casting Item Models
 16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
 513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
@@ -7,6 +7,7 @@ c458d3e96733818f13805ef73ad0ad87dcb05aa1 assets/casting/models/item/black_brick.
 37b2423e087aba4168c4382dad45ac5afa40f06a assets/casting/models/item/dust_mold.json
 9f2c8e91967a48a7c07857aa4bc89a7ab5f545a6 assets/casting/models/item/efficiency.json
 6babc5b2d452774978684b33301786967327c4d7 assets/casting/models/item/excavation.json
+fa1e3adf48490bb1d83caccb62d60d108874a6a0 assets/casting/models/item/flight.json
 bdad3cc801a041d54d3b0647f7c01d4061e47dce assets/casting/models/item/fluid_mover.json
 85f7eb9f6437cc62fc286803060c5cd02890847a assets/casting/models/item/fortune.json
 549bfdb4f27483849ce359a3f7e3e2781796614e assets/casting/models/item/gear_mold.json

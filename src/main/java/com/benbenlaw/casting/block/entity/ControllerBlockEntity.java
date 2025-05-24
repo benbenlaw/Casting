@@ -401,96 +401,83 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
 
     public void tick() {
         assert level != null;
-        if (!level.isClientSide()) {
+        if (level.isClientSide()) return;
 
-            RecipeInput inventory = new RecipeInput() {
-                @Override
-                public ItemStack getItem(int index) {
-                    return itemHandler.getStackInSlot(index);
-                }
-
-                @Override
-                public int size() {
-                    return itemHandler.getSlots();
-                }
-            };
-
-            drainTanksIntoValidBlocks();
-            fuelInformation(level.getBlockEntity(this.worldPosition));
-            sync();
-
-            boolean isPowered = false;
-
-            // Iterate through each slot independently
-            for (int i = 0; i < 15; i++) {  // Loop includes slot 14
-                if (itemHandler.getStackInSlot(i).isEmpty()) {
-                    resetProgress(i);
-                    continue;
-                }
-
-                Optional<RecipeHolder<MeltingRecipe>> selectedRecipe = Optional.empty();
-
-                // Get the specific recipe for the current item in the slot
-                for (RecipeHolder<MeltingRecipe> recipeHolder : level.getRecipeManager().getRecipesFor(MeltingRecipe.Type.INSTANCE, inventory, level)) {
-                    if (recipeHolder.value().input().test(itemHandler.getStackInSlot(i))) {
-                        selectedRecipe = Optional.of(recipeHolder);
-                        break;
-                    }
-                }
-
-                if (selectedRecipe.isPresent()) {
-                    RecipeHolder<MeltingRecipe> match = selectedRecipe.get();
-                    FluidStack output = match.value().output();
-
-                    if (canFitFluidInAnyTank(output) && hasEnoughFuel(level.getBlockEntity(this.worldPosition), match.value().meltingTemp())) {
-
-                        maxProgress[i] = setNewMaxProgress(fuelTemp, match.value().meltingTemp());
-
-                        //System.out.println("Slot " + i + " maxProgress set to: " + maxProgress[i]);
-
-                        isPowered = true;
-                        // Progress logic for damageable items
-                        if (itemHandler.getStackInSlot(i).isDamageableItem()) {
-                            progress[i]++;
-                            level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ControllerBlock.POWERED, true));
-
-                            if (progress[i] >= maxProgress[i]) {
-                                ItemStack stack = itemHandler.getStackInSlot(i);
-                                float outputAmountModifier = (float) (stack.getMaxDamage() - stack.getDamageValue()) / (float) stack.getMaxDamage();
-                                int outputAmountModified = Math.round(output.getAmount() * outputAmountModifier);
-
-                                itemHandler.getStackInSlot(i).shrink(1);
-                                addFluidToTank(output, outputAmountModified);
-                                useFuel(this);
-                                resetProgress(i);
-                                setChanged();
-                                sync();
-                            }
-
-                        } else {
-                            // Progress logic for non-damageable items
-                            progress[i]++;
-                            level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ControllerBlock.POWERED, true));
-
-                            if (progress[i] >= maxProgress[i]) {
-                                itemHandler.getStackInSlot(i).shrink(1);
-                                addFluidToTank(output, output.getAmount());
-                                useFuel(this);
-                                resetProgress(i);
-                                setChanged();
-                                sync();
-                            }
-                        }
-                    } else {
-                        resetProgress(i);
-                    }
-                }
+        RecipeInput inventory = new RecipeInput() {
+            @Override
+            public ItemStack getItem(int index) {
+                return itemHandler.getStackInSlot(index);
             }
-            if (!isPowered) {
-                level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ControllerBlock.POWERED, false));
+
+            @Override
+            public int size() {
+                return itemHandler.getSlots();
+            }
+        };
+
+        drainTanksIntoValidBlocks();
+        fuelInformation(level.getBlockEntity(worldPosition));
+        sync();
+
+        boolean isPowered = false;
+        boolean powerStateChanged = false;
+
+        List<RecipeHolder<MeltingRecipe>> recipes =
+                level.getRecipeManager().getRecipesFor(MeltingRecipe.Type.INSTANCE, inventory, level);
+
+        for (int i = 0; i < 15; i++) {
+            ItemStack stack = itemHandler.getStackInSlot(i);
+            if (stack.isEmpty()) {
+                resetProgress(i);
+                continue;
+            }
+
+            RecipeHolder<MeltingRecipe> match = recipes.stream()
+                    .filter(r -> r.value().input().test(stack))
+                    .findFirst()
+                    .orElse(null);
+
+            if (match == null) {
+                resetProgress(i);
+                continue;
+            }
+
+            FluidStack output = match.value().output();
+
+            if (!canFitFluidInAnyTank(output) || !hasEnoughFuel(level.getBlockEntity(worldPosition), match.value().meltingTemp())) {
+                resetProgress(i);
+                continue;
+            }
+
+            isPowered = true;
+            maxProgress[i] = setNewMaxProgress(fuelTemp, match.value().meltingTemp());
+            progress[i]++;
+
+            if (progress[i] >= maxProgress[i]) {
+                int outputAmount = output.getAmount();
+
+                if (stack.isDamageableItem()) {
+                    float modifier = (float)(stack.getMaxDamage() - stack.getDamageValue()) / stack.getMaxDamage();
+                    outputAmount = Math.round(outputAmount * modifier);
+                }
+
+                stack.shrink(1);
+                addFluidToTank(output, outputAmount);
+                useFuel(this);
+                resetProgress(i);
+                setChanged();
+                sync();
             }
         }
+
+        BlockState currentState = level.getBlockState(worldPosition);
+        boolean currentPowered = currentState.getValue(ControllerBlock.POWERED);
+
+        if (currentPowered != isPowered) {
+            level.setBlockAndUpdate(worldPosition, currentState.setValue(ControllerBlock.POWERED, isPowered));
+        }
     }
+
 
     private void drainTanksIntoValidBlocks() {
 
