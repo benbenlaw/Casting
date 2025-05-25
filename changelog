@@ -34,6 +34,7 @@ Fixed End Steel recipe
 Fluid name look slighting different due to the new fluid registry system, textures will be adjusted with updated tints in the future
 Fuels now require a duration in there recipe, the duration set that duration to the controller from the multiblock fuel tank
 Added Black Brick Glass
+Most of the mod uses data generation for recipes, lang and more, tooltips are now named following vanilla standards
 
 //JEI Changes
 All JEI categories now use the correct slot texture instead of a de-saturated version
