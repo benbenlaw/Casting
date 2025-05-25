@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.function.Predicate;
 //TODO Move to core
 
+//Inspired from productive lib multiblock detector
+
 public class CoreMultiblockDetector {
 
     public static MultiblockData findMultiblock(Level level, BlockPos controllerPos, Block controllerBlock, Predicate<BlockState> wallBlocks,

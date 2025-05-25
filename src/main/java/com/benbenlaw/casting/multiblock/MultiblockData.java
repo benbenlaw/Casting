@@ -9,6 +9,7 @@ import net.neoforged.neoforge.common.util.INBTSerializable;
 
 import java.util.ArrayList;
 import java.util.List;
+//Inspired from productive lib multiblock data
 
 public final class MultiblockData implements INBTSerializable
     {
