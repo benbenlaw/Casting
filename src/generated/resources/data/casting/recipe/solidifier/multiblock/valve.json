@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "casting:multiblock_valve"
+    }
+  ],
+  "type": "casting:solidifier",
+  "fluid": {
+    "amount": 8000,
+    "id": "casting:molten_black_brick"
+  },
+  "mold": {
+    "count": 1,
+    "item": "casting:multiblock_fuel_tank"
+  },
+  "output": {
+    "count": 1,
+    "item": "casting:multiblock_valve"
+  }
+}

@@ -1,0 +1,549 @@
+package com.benbenlaw.casting.data;
+
+import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.block.CastingBlocks;
+import com.benbenlaw.casting.data.recipes.*;
+import com.benbenlaw.casting.fluid.CastingFluids;
+import com.benbenlaw.casting.fluid.FluidData;
+import com.benbenlaw.casting.item.CastingItems;
+import com.benbenlaw.casting.util.CastingTags;
+import com.benbenlaw.casting.util.MaterialMelting;
+import com.benbenlaw.core.tag.CommonTags;
+import com.benbenlaw.core.tag.ModdedTagBuilder;
+import com.benbenlaw.core.tag.ResourceNames;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ItemExistsCondition;
+import net.neoforged.neoforge.common.conditions.NotCondition;
+import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import net.neoforged.neoforge.fluids.FluidStack;
+
+import java.util.Locale;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+
+import static com.benbenlaw.casting.data.recipes.FluidStackHelper.fluidList;
+import static com.benbenlaw.casting.data.recipes.FluidStackHelper.getFluidStack;
+import static com.benbenlaw.casting.fluid.CastingFluids.FLUIDS_MAP;
+import static com.benbenlaw.casting.util.ValidToolTypesForToolModifiers.*;
+
+public class CastingRecipeProvider extends RecipeProvider {
+
+    public CastingRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+        super(output, completableFuture);
+    }
+    @Override
+    protected void buildRecipes(RecipeOutput consumer) {
+        //Smelting
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BRICK), RecipeCategory.MISC, new ItemStack(CastingItems.BLACK_BRICK.get()), 0.5f, 200)
+                .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "smelting/black_brick");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BRICKS), RecipeCategory.MISC, new ItemStack(CastingBlocks.BLACK_BRICKS.get()), 0.5f, 200)
+                .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "smelting/black_bricks");
+
+        //Multiblock Crafting
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.CONTROLLER.toStack(),
+                CastingBlocks.MULTIBLOCK_CONTROLLER,"multiblock/controller", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.TANK.toStack(),
+                CastingBlocks.MULTIBLOCK_FUEL_TANK,"multiblock/fuel_tank", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.SOLIDIFIER.toStack(),
+                CastingBlocks.MULTIBLOCK_SOLIDIFIER,"multiblock/solidifier", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.MIXER.toStack(),
+                CastingBlocks.MULTIBLOCK_MIXER,"multiblock/mixer", consumer);
+
+        //Change this in the future
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.MULTIBLOCK_FUEL_TANK.toStack(),
+                CastingBlocks.MULTIBLOCK_VALVE,"multiblock/valve", consumer);
+
+        //Change this in the future
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), Items.GLASS.getDefaultInstance(),
+                CastingBlocks.MULTIBLOCK_COOLANT_TANK,"multiblock/coolant_tank", consumer);
+
+
+        // Crafting
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.BLACK_BRICKS.get(), 1)
+                .pattern("AA")
+                .pattern("AA")
+                .define('A', CastingItems.BLACK_BRICK)
+                .unlockedBy("has_brick", has(CastingItems.BLACK_BRICK)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.BLACK_BRICK_GLASS.get(), 1)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', CastingItems.BLACK_BRICK)
+                .define('B', Tags.Items.GLASS_BLOCKS)
+                .unlockedBy("has_brick", has(CastingItems.BLACK_BRICK)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingItems.FLUID_MOVER.get(), 1)
+                .pattern(" BB")
+                .pattern(" BB")
+                .pattern("B  ")
+                .define('B', CastingItems.BLACK_BRICK.get())
+                .unlockedBy("has_black_brick", has(CastingItems.BLACK_BRICK.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.TANK.get(), 1)
+                .pattern("BBB")
+                .pattern("BGB")
+                .pattern("BBB")
+                .define('B', CastingBlocks.BLACK_BRICKS.get())
+                .define('G', Tags.Items.GLASS_BLOCKS)
+                .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.CONTROLLER.get(), 1)
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("BBB")
+                .define('B', CastingBlocks.BLACK_BRICKS.get())
+                .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.SOLIDIFIER.get(), 1)
+                .pattern("BBB")
+                .pattern("K K")
+                .pattern("BBB")
+                .define('B', CastingBlocks.BLACK_BRICKS.get())
+                .define('K', CastingItems.BLACK_BRICK.get())
+                .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.MIXER.get(), 1)
+                .pattern("BBB")
+                .pattern("T T")
+                .pattern("BBB")
+                .define('B', CastingBlocks.BLACK_BRICKS.get())
+                .define('T', CastingBlocks.TANK)
+                .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.MIXER_WHISK.get(), 1)
+                .pattern("BIB")
+                .pattern("BSB")
+                .pattern("BIB")
+                .define('B', CastingBlocks.BLACK_BRICKS.get())
+                .define('S', Tags.Items.STORAGE_BLOCKS_IRON)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.EQUIPMENT_MODIFIER.get(), 1)
+                .pattern("BBB")
+                .pattern("STS")
+                .pattern("BBB")
+                .define('B', CastingBlocks.BLACK_BRICKS.get())
+                .define('S', CastingBlocks.SOLIDIFIER.get())
+                .define('T', Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES)
+                .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
+                .save(consumer);
+
+        //Tool Modifier
+        toolModifierRecipes(consumer, null, getFluidStack("molten_lapis", 1350), FORTUNE);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_redstone", 1350), EFFICIENCY);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_emerald", 720), SILK_TOUCH);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_obsidian", 8000), UNBREAKING);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_glowstone", 8000), REPAIRING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), 64), getFluidStack("molten_coal", 5120), TORCH_PLACING);
+        toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 8000), AUTO_SMELT);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), getFluidStack("molten_lapis", 1350), LOOTING);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_quartz", 1350), SHARPNESS);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_soul", 2560), BEHEADING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), getFluidStack("molten_gold", 720), LIFESTEAL);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 4), null,KNOCKBACK);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 8000),IGNITE);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_diamond", 360),EXCAVATION);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_ender", 640), TELEPORTING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.INGOTS_IRON), 6), getFluidStack("molten_gold", 540), MAGNET);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_steel", 720), PROTECTION);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.STICKY_PISTON), 4), null, STEP_ASSIST);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_CARROT), 8), null, NIGHT_VISION);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PUFFERFISH), 2), null, WATER_BREATHING);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SUGAR), 12), null, SPEED);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.MAGMA_BLOCK), 8), null, LAVA_WALKER);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SPONGE), 8), null, WATER_WALKER);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.NETHER_STAR), 1), null, FLIGHT);
+
+        // Molds
+        createMoldRecipe(CastingItems.GEAR_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("gears"), consumer);
+        createMoldRecipe(CastingItems.PLATE_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("plates"), consumer);
+        createMoldRecipe(CastingItems.ROD_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("rods"), consumer);
+        createMoldRecipe(CastingItems.NUGGET_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("nuggets"), consumer);
+        createMoldRecipe(CastingItems.INGOT_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("ingots"), consumer);
+        createMoldRecipe(CastingItems.BLOCK_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("storage_blocks"), consumer);
+        createMoldRecipe(CastingItems.GEM_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("gems"), consumer);
+        createMoldRecipe(CastingItems.DUST_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("dusts"), consumer);
+        createMoldRecipe(CastingItems.BALL_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("balls"), consumer);
+        createMoldRecipe(CastingItems.WIRE_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("wires"), consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingItems.REPAIRING_MOLD.get(), 1)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', CastingItems.BLACK_BRICK)
+                .define('B', Items.ANVIL)
+                .unlockedBy("has_item", has(Items.ANVIL))
+                .save(consumer);
+
+        // Fuels
+        FuelRecipeBuilder.fuelRecipesBuilder(new FluidStack(Fluids.LAVA, 10), 1000, 300)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidStack("molten_coal", 8), 1200, 260)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidStack("molten_obsidian", 8), 1200, 200)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidStack("molten_uranium", 20), 1400, 100)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        // Coolants
+        CoolantRecipeBuilder.coolantRecipesBuilder(new FluidStack(Fluids.WATER, 10), 160)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_ender", 5), 100)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_glowstone", 10), 80)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_diamond", 20), 60)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        // Common Melting and Solidifier Recipes
+        for (String resource : ResourceNames.getAllResourceNames()) {
+            // Ignore coal as it has its own melting values
+            if (!resource.equals("coal")) {
+                createCommonMeltingRecipes(resource, consumer);
+                createCommonSolidifierRecipes(resource, consumer);
+            }
+        }
+
+        // Obsidian
+        createSimpleMeltingRecipe(getFluidStack("molten_obsidian", 1000), Items.OBSIDIAN, FluidData.getTempByName("molten_obsidian"),
+                "obsidian/from_block", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_obsidian", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                Items.OBSIDIAN, "obsidian/block", consumer);
+
+        // Glass
+        createSimpleMeltingRecipe(getFluidStack("molten_glass", 1000), Items.GLASS, FluidData.getTempByName("molten_glass"),
+                "glass/from_block", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_glass", 1000), ItemTags.SAND, FluidData.getTempByName("molten_glass"),
+                "glass/from_sand", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_glass", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                Items.GLASS,"glass/block", consumer);
+
+        //Debris
+        createSimpleMeltingRecipe(getFluidStack("molten_debris", 90), Items.ANCIENT_DEBRIS, FluidData.getTempByName("molten_debris"),
+                "debris/from_debris", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_debris", 90), CastingItems.INGOT_MOLD.asItem().getDefaultInstance(),
+                Items.NETHERITE_SCRAP,"debris/netherite_scrap", consumer);
+
+        //Silicon
+        createSimpleMeltingRecipe(getFluidStack("molten_silicon", 250), ModdedTagBuilder.createNeoFabricItemTag("silicon"), FluidData.getTempByName("molten_silicon"),
+                "silicon/from_silicon", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_silicon",  250), CastingItems.BALL_MOLD.asItem().getDefaultInstance(),
+                ModdedTagBuilder.createNeoFabricItemTag("silicon"), "silicon/block", consumer);
+
+        //Coal
+        createSimpleMeltingRecipe(getFluidStack("molten_coal", 80), Items.COAL, FluidData.getTempByName("molten_coals"),
+                "coal/from_coal", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_coal", 720), Items.COAL_BLOCK, FluidData.getTempByName("molten_coals"),
+                "coal/from_coal_block", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_coal", 80), CastingItems.GEM_MOLD.asItem().getDefaultInstance(),
+                Items.COAL, "coal/coal", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_coal", 720), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                Items.COAL_BLOCK, "coal/coal_block", consumer);
+
+        //Ender
+        createSimpleMeltingRecipe(getFluidStack("molten_ender", 250), Items.ENDER_PEARL, FluidData.getTempByName("molten_ender"),
+                "ender/from_ender_pearl", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_ender", 250), CastingItems.BALL_MOLD.asItem().getDefaultInstance(),
+                Items.ENDER_PEARL, "ender/ender_pearl", consumer);
+
+        //End Stone
+        createSimpleMeltingRecipe(getFluidStack("molten_end_stone", 1000), Items.END_STONE, FluidData.getTempByName("molten_end_stone"),
+                "end_stone/from_end_stone", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_end_stone", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                Items.END_STONE, "end_stone/block", consumer);
+
+        //Stone
+        createSimpleMeltingRecipe(getFluidStack("molten_stone", 1000), Tags.Items.STONES, FluidData.getTempByName("molten_stone"),
+                "stone/from_stones", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_stone", 1000), Tags.Items.COBBLESTONES, FluidData.getTempByName("molten_stone"),
+                "stone/from_cobblestones", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_stone", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                Items.STONE, "stone/block", consumer);
+
+        //Glowstone
+        createSimpleMeltingRecipe(getFluidStack("molten_glowstone", 250), Items.GLOWSTONE_DUST, FluidData.getTempByName("molten_glowstone"),
+                "glowstone/from_glowstone_dust", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_glowstone", 1000), Items.GLOWSTONE, FluidData.getTempByName("molten_glowstone"),
+                "glowstone/from_glowstone", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_glowstone", 250), CastingItems.DUST_MOLD.asItem().getDefaultInstance(),
+                Items.GLOWSTONE_DUST, "glowstone/dust", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_glowstone", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                Items.GLOWSTONE, "glowstone/block", consumer);
+
+        //Black Brick
+        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 1000), CastingBlocks.BLACK_BRICKS.get(), FluidData.getTempByName("molten_black_brick"),
+                "black_brick/from_black_bricks", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 1000), CastingItems.BLACK_BRICK.get(), FluidData.getTempByName("molten_black_brick"),
+                "black_brick/from_black_brick", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 2000), Items.BRICKS, FluidData.getTempByName("molten_black_brick"),
+                "black_brick/from_bricks", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 500), Items.BRICK, FluidData.getTempByName("molten_black_brick"),
+                "black_brick/from_brick", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                CastingBlocks.BLACK_BRICKS.get(), "black_brick/block", consumer);
+
+        //Soul
+        createSimpleMeltingRecipe(getFluidStack("molten_soul", 1000), ItemTags.SOUL_FIRE_BASE_BLOCKS, FluidData.getTempByName("molten_soul"),
+                "soul/from_soul_sand", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_soul", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+                ItemTags.SOUL_FIRE_BASE_BLOCKS, "soul/block", consumer);
+
+        //Mixer Recipes
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_copper", 270), getFluidStack("molten_tin", 90)),
+                getFluidStack("molten_bronze", 360), "bronze", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_gold", 90),getFluidStack("molten_soul", 1000)),
+                getFluidStack("molten_soularium", 90), "soularium", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_coal", 160),getFluidStack("molten_iron", 90)),
+                getFluidStack("molten_steel", 90), "steel", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_copper", 270),getFluidStack("molten_zinc", 90)),
+                getFluidStack("molten_brass", 360), "brass", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_ender", 250),getFluidStack("molten_energetic_alloy", 90)),
+                getFluidStack("molten_vibrant_alloy", 90), "vibrant_alloy", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        new FluidStack(Fluids.WATER, 1000), new FluidStack(Fluids.LAVA, 1000)),
+                getFluidStack("molten_obsidian", 1000), "obsidian", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_silicon", 250), getFluidStack("molten_redstone", 90)),
+                getFluidStack("molten_redstone_alloy", 90), "redstone_alloy", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_ender", 250), getFluidStack("molten_iron", 90)),
+                getFluidStack("molten_pulsating_alloy", 90), "pulsating_alloy", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_lead", 270), getFluidStack("molten_platinum", 90), getFluidStack("molten_ender", 500)),
+                getFluidStack("molten_enderium", 360), "enderium", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_iron", 90), getFluidStack("molten_coal", 160), getFluidStack("molten_obsidian", 1000)),
+                getFluidStack("molten_dark_steel", 90), "dark_steel", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_copper", 90), getFluidStack("molten_nickel", 90)),
+                getFluidStack("molten_constantan", 180), "constantan", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_iron", 180), getFluidStack("molten_nickel", 90)),
+                getFluidStack("molten_invar", 270), "invar", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_end_stone", 1000), getFluidStack("molten_dark_steel", 90), getFluidStack("molten_obsidian", 1000)),
+                getFluidStack("molten_end_steel", 90), "end_steel", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_copper", 270), getFluidStack("molten_silver", 90), getFluidStack("molten_redstone", 360)),
+                getFluidStack("molten_signalum", 360), "signalum", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_tin", 270), getFluidStack("molten_silver", 90), getFluidStack("molten_glowstone", 500)),
+                getFluidStack("molten_lumium", 360), "lumium", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_redstone", 90), getFluidStack("molten_iron", 90), getFluidStack("molten_copper_alloy", 1000)),
+                getFluidStack("molten_conductive_alloy", 90), "conductive_alloy", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_silicon", 500), getFluidStack("molten_copper", 90)),
+                getFluidStack("molten_copper_alloy", 90), "copper_alloy", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_gold", 90), getFluidStack("molten_silver", 90)),
+                getFluidStack("molten_electrum", 180), "electrum", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_redstone", 90), getFluidStack("molten_gold", 90), getFluidStack("molten_glowstone", 250)),
+                getFluidStack("molten_energetic_alloy", 90), "energetic_alloy", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_debris", 360), getFluidStack("molten_gold", 360)),
+                getFluidStack("molten_netherite", 90), "netherite", consumer);
+
+
+    }
+
+    public void createSimpleMixingRecipe(NonNullList<FluidStack> fluids, FluidStack output, String recipeID, RecipeOutput consumer) {
+        MixingRecipeBuilder.mixingRecipesBuilder(fluids, output)
+                .unlockedBy("has_item", has(CastingBlocks.MULTIBLOCK_MIXER))
+                .save(consumer, "casting:mixer/" + recipeID);
+    }
+
+    public void createSimpleMeltingRecipe(FluidStack output, ItemLike input, int temp, String recipeID, RecipeOutput consumer) {
+
+        MeltingRecipeBuilder.meltingRecipesBuilder(new SizedIngredient(Ingredient.of(input), 1),
+                        output, temp)
+                .unlockedBy("has_item", has(input))
+                .save(consumer.withConditions(new ItemExistsCondition(String.valueOf(input.asItem()))),
+                        "casting:melting/" + recipeID);
+    }
+
+    public void createSimpleMeltingRecipe(FluidStack output, TagKey<Item> input, int temp, String recipeID, RecipeOutput consumer) {
+
+        MeltingRecipeBuilder.meltingRecipesBuilder(new SizedIngredient(Ingredient.of(input), 1),
+                        output, temp)
+                .unlockedBy("has_item", has(input))
+                .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(input))),
+                        "casting:melting/" + recipeID);
+    }
+
+    public void createSimpleSolidifierRecipe(FluidStack output, ItemStack mold, ItemLike input, String recipeID, RecipeOutput consumer) {
+
+        SolidifierRecipeBuilder.solidifierRecipesBuilder(new SizedIngredient(Ingredient.of(mold), 1),
+                        new SizedIngredient(Ingredient.of(input), 1),
+                        output)
+                .unlockedBy("has_item", has(input))
+                .save(consumer.withConditions(new ItemExistsCondition(String.valueOf(input.asItem()))),
+                        "casting:solidifier/" + recipeID);
+    }
+
+    public void createSimpleSolidifierRecipe(FluidStack output, ItemStack mold, TagKey<Item> input, String recipeID, RecipeOutput consumer) {
+
+        SolidifierRecipeBuilder.solidifierRecipesBuilder(new SizedIngredient(Ingredient.of(mold), 1),
+                        new SizedIngredient(Ingredient.of(input), 1),
+                        output)
+                .unlockedBy("has_item", has(input))
+                .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(input))),
+                        "casting:solidifier/" + recipeID);
+    }
+    public void createCommonMeltingRecipes(String type, RecipeOutput consumer) {
+
+        int temp = FluidData.getTempByName(type);
+        Fluid fluid = FLUIDS_MAP.get("molten_" + type).getFluid();
+
+        for (CommonTags.ResourceType resourceTypes : CommonTags.ResourceType.values()) {
+            int amount = MaterialMelting.valueOf(String.valueOf(resourceTypes)).getAmount();
+            TagKey<Item> tagKey = CommonTags.getTag(type, resourceTypes);
+
+            String resourceName = resourceTypes.toString().toLowerCase(Locale.ROOT);
+            if (resourceName.endsWith("s")) {
+                resourceName = resourceName.substring(0, resourceName.length() - 1);
+            }
+
+            MeltingRecipeBuilder.meltingRecipesBuilder(new SizedIngredient(Ingredient.of(tagKey), 1),
+                            new FluidStack(fluid, amount), temp)
+                    .unlockedBy("has_item", has(tagKey))
+                    .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(tagKey))),
+                            "casting:melting/" + type + "/" + "from_" + resourceName);
+
+        }
+    }
+
+    public void createCommonSolidifierRecipes(String type, RecipeOutput consumer) {
+
+        Fluid fluid = FLUIDS_MAP.get("molten_" + type).getFluid();
+
+        for (CommonTags.ResourceType resourceTypes : CommonTags.ResourceType.values()) {
+            int amount = MaterialMelting.valueOf(String.valueOf(resourceTypes)).getAmount();
+            TagKey<Item> tagKey = CommonTags.getTag(type, resourceTypes);
+
+            String resourceName = resourceTypes.toString().toLowerCase(Locale.ROOT);
+            if (resourceName.endsWith("s")) {
+                resourceName = resourceName.substring(0, resourceName.length() - 1);
+            }
+
+            TagKey<Item> moldTag = getMoldTag(resourceTypes);
+            if (moldTag != null) {
+                SolidifierRecipeBuilder.solidifierRecipesBuilder(SizedIngredient.of(moldTag, 1),
+                                new SizedIngredient(Ingredient.of(tagKey), 1),
+                                new FluidStack(fluid, amount))
+                        .unlockedBy("has_item", has(tagKey))
+                        .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(tagKey))),
+                                "casting:solidifier/" + type + "/" + resourceName);
+            }
+
+        }
+    }
+
+    public void createMoldRecipe(ItemLike output, TagKey<Item> input, RecipeOutput consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, output, 1)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', CastingItems.BLACK_BRICK.get())
+                .define('B', input)
+                .unlockedBy("has_black_brick", has(CastingItems.BLACK_BRICK.get()))
+                .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(input))));
+
+    }
+
+    public void toolModifierRecipes(RecipeOutput consumer, SizedIngredient ingredient, FluidStack fluid, String effect) {
+
+        String recipeFrom = "";
+
+        if (ingredient == null) {
+            recipeFrom = "equipment_modifier/" + effect + "_from_fluid";
+
+        }
+        if (fluid == null) {
+            recipeFrom = "equipment_modifier/" + effect + "_from_item";
+        }
+
+        if (fluid != null && ingredient != null) {
+            recipeFrom = "equipment_modifier/" + effect + "_from_fluid_and_item";
+        }
+
+        EquipmentModifierRecipeBuilder.ToolModifierRecipesBuilder(
+                        ingredient,
+                        fluid,
+                        effect)
+                .unlockedBy("has_item", has(CastingBlocks.EQUIPMENT_MODIFIER.get()))
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, recipeFrom));
+    }
+
+
+    public TagKey<Item> getMoldTag(CommonTags.ResourceType resourceTypes) {
+        return switch (resourceTypes) {
+            case INGOTS -> CastingTags.Items.INGOT_MOLD;
+            case NUGGETS -> CastingTags.Items.NUGGET_MOLD;
+            case STORAGE_BLOCKS -> CastingTags.Items.BLOCK_MOLD;
+            case RAW_STORAGE_BLOCKS, RAW_MATERIALS, ORES -> null;
+            case PLATES -> CastingTags.Items.PLATE_MOLD;
+            case DUSTS -> CastingTags.Items.DUST_MOLD;
+            case GEARS -> CastingTags.Items.GEAR_MOLD;
+            case RODS -> CastingTags.Items.ROD_MOLD;
+            case GEMS -> CastingTags.Items.GEM_MOLD;
+            case WIRES -> CastingTags.Items.WIRE_MOLD;
+        };
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "casting:coolant",
+  "duration": 80,
+  "fluid": {
+    "amount": 10,
+    "id": "casting:molten_glowstone"
+  }
+}

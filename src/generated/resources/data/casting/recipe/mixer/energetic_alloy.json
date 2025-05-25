@@ -1,0 +1,21 @@
+{
+  "type": "casting:mixing",
+  "inputs": [
+    {
+      "amount": 90,
+      "id": "casting:molten_redstone"
+    },
+    {
+      "amount": 90,
+      "id": "casting:molten_gold"
+    },
+    {
+      "amount": 250,
+      "id": "casting:molten_glowstone"
+    }
+  ],
+  "output": {
+    "amount": 90,
+    "id": "casting:molten_energetic_alloy"
+  }
+}

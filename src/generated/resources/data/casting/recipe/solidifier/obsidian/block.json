@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:obsidian"
+    }
+  ],
+  "type": "casting:solidifier",
+  "fluid": {
+    "amount": 1000,
+    "id": "casting:molten_obsidian"
+  },
+  "mold": {
+    "count": 1,
+    "item": "casting:block_mold"
+  },
+  "output": {
+    "count": 1,
+    "item": "minecraft:obsidian"
+  }
+}

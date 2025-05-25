@@ -1,0 +1,8 @@
+{
+  "type": "casting:equipment_modifier",
+  "effect": "silk_touch",
+  "upgrade_fluid": {
+    "amount": 720,
+    "id": "casting:molten_emerald"
+  }
+}

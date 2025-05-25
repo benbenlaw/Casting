@@ -1,0 +1,42 @@
+package com.benbenlaw.casting.util;
+
+import com.benbenlaw.casting.Casting;
+import com.benbenlaw.core.util.CoreTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+
+public class CastingTags{
+    public static class Blocks extends CoreTags.Blocks {
+
+        //Blocks
+        public static final TagKey<Block> CONTROLLER_WALLS = tag(Casting.MOD_ID, "controller_walls");
+        public static final TagKey<Block> CONTROLLER_FLOORS = tag(Casting.MOD_ID, "controller_floors");
+        public static final TagKey<Block> CONTROLLER_EXTRA_BLOCKS = tag(Casting.MOD_ID, "controller_extra_blocks");
+        public static final TagKey<Block> CONTROLLER_TANKS = tag(Casting.MOD_ID, "controller_tanks");
+    }
+
+    public static class Items extends CoreTags.Items {
+        //Items
+        public static final TagKey<Item> MOLDS = tag(Casting.MOD_ID, "molds");
+        public static final TagKey<Item> CONTROLLER_WALLS = tag(Casting.MOD_ID, "controller_walls");
+        public static final TagKey<Item> CONTROLLER_FLOORS = tag(Casting.MOD_ID, "controller_floors");
+        public static final TagKey<Item> CONTROLLER_EXTRA_BLOCKS = tag(Casting.MOD_ID, "controller_extra_blocks");
+        public static final TagKey<Item> CONTROLLER_TANKS = tag(Casting.MOD_ID, "controller_tanks");
+        public static final TagKey<Item> INGOT_MOLD = commonTag("molds/ingot");
+        public static final TagKey<Item> NUGGET_MOLD = commonTag("molds/nugget");
+        public static final TagKey<Item> GEM_MOLD = commonTag("molds/gem");
+        public static final TagKey<Item> DUST_MOLD = commonTag("molds/dust");
+        public static final TagKey<Item> PLATE_MOLD = commonTag("molds/plate");
+        public static final TagKey<Item> GEAR_MOLD = commonTag("molds/gear");
+        public static final TagKey<Item> ROD_MOLD = commonTag("molds/rod");
+        public static final TagKey<Item> BALL_MOLD = commonTag("molds/ball");
+        public static final TagKey<Item> WIRE_MOLD = commonTag("molds/wire");
+        public static final TagKey<Item> BLOCK_MOLD = commonTag("molds/block");
+        public static final TagKey<Item> MELTING_OUTPUT_AMOUNT_EFFECTED = tag(Casting.MOD_ID, "melting_output_amount_effected");
+        public static final TagKey<Item> CAN_BE_DISABLED_WITH_SHIFT = tag(Casting.MOD_ID, "can_be_disabled_with_shift");
+
+    }
+
+
+}

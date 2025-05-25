@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "casting:block/multiblock_fuel_tank"
+    }
+  }
+}

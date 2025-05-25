@@ -1,0 +1,541 @@
+Changelog BBL Casting
+
+// TODO //
+Make item show there contents (1.22)
+fishing rods support for tool modifiers (1.22)
+
+2.0.3 (The Multiblock Update)
+Completely removed dependency on Opolis Utilities and fully transitioned to BBL Core
+Updated Fluid Registry to BBL Core Fluid Registry
+Added Wire Mold used to make Immersive Engineering wires
+Creative Tab now automatically collects the items in the mod instead of having to add them manually
+Combined Equipment modifiers into casting creative tab
+Renamed - Solidifier to Simple Solidifier, Controller to Simple Controller, Mixer to Simple Mixer, Tank to Simple Tank
+    Mixer Whisk to Simple Mixer Whisk and Equipment Modifier to Simple Equipment Modifier
+These "Simple" block function exactly the same as 1.17.18 and the name change is a translation not the actual block name keeping compatibility with existing worlds
+Added Coolant Recipe, this is a split from the original fuel recipes to allow for more customization of the fuel and coolant
+Solidifier now check the Coolant Recipe in adjacent tanks to determine the speed of the solidifier
+All common resource gear, rods, plates ect can now all be re melted down into molten fluid
+Added Molten Ruby, Peridot and Sapphire
+Added error messages to the controller
+Fixed fuel tank missing translation
+Progress inside the controller now reset when an item is changed
+Solidifier, valve and mixer now clear there memory when the controller is broken preventing the shared tank being used with no controller
+Valve item handler not works when world is reopened
+Solidifier can now set the FLUID when switched off
+Original casting blocks tool SHIFT tooltip now only shows when there is additional information to show
+Fluids now tagged to common "c" tag for additional compatibility with other mods
+Ender pearl now melts to 250mb instead of 80mb, recipes adjusted accordingly
+Added molten black bricks, provides a more efficient way to make black bricks
+Added bricks to black bricks smelting recipe
+Tweaked value of fuels and added coolants
+Fixed End Steel recipe
+Fluid name look slighting different due to the new fluid registry system, textures will be adjusted with updated tints in the future
+Fuels now require a duration in there recipe, the duration set that duration to the controller from the multiblock fuel tank
+Added Black Brick Glass
+
+//JEI Changes
+All JEI categories now use the correct slot texture instead of a de-saturated version
+Mixer now shows the fluid amount on the fluid stack instead of text above, has space for 12 input fluids
+melting - switched the temp and heat, added this information to the fluid stack
+
+//Multiblock Controller - BETA
+This whole multiblock system is in BETA, please report any bugs you find
+
+Added Multiblock Controller, a new controller that supports multiblock, must use black bricks/ black brick glass to build the multiblock
+Max radius is 1000 blocks with pretty much any dimensions
+Bigger internal volume the bigger the new Shared Tank will be (up to 1,000,000mb), Usable slots also increase with the size of the multiblock (up to 60)
+Multiblock Controller speed, the default is now up to 1000, note this has no effect on usage this is just a default max value if modpack devs want to make it slower
+This removes having to calculating the speed of the controller based on the fuel used, note this speed calculation is still used for the Simple Controller
+The multiblock valid blocks are tag driven allowing for basically any block you want to add, this include a wall and a floor tag if modpack dev wish to change that
+    "casting:controller_walls", "casting:controller_floor" respectively. By default black bricks can be used for both
+
+Added Multiblock Fuel Tank, this is the fuel used to melt item in the controller, uses the same fuels as the Simple Tank, must be part of the multiblock.
+    Has GUI to collect buckets and insert buckets into the tank
+
+Added Multiblock Solidifier, this Solidifier works like the original solidifier but uses fluids inside the Mulitblock Controller, must be part of the multiblock to work,
+    can be filtered to only use a certain fluid in its recipes, can be piped into and out of
+Solidifier default speed is now 300 ticks without coolant this is to encourage the use of coolants
+
+Added Multiblock Coolant Tank, this is the coolant used to cool the Solidifier, uses the same coolants as the Simple Tank, must be part of the Multiblock Controller to effect the
+    Solidifier speed. Has GUI to collect buckets and insert buckets into the tank
+
+Added Multiblock Valve, used to input and output into the sharded tank inside the multiblock, can be filtered to only allow that fluid in and out, Also can be used
+    to insert items into the controller item handler
+
+Added Multiblock mixer, this replaces the old mixer and allows for the mixing of fluids inside the multiblock, the mixer will list alloys that you can craft
+    inside the mixer, cycle through the alloys to select the one you want to craft. The mixer must be set to craft the alloy
+
+Added oreMultiplied config, changing this edits the amount of molten fluid from ores by 1.5x by default, effected recipe inputs can be added to the new
+    "casting:melting_output_amount_effected" tag, this contains ores and raw materials by default and raw storage blocks
+
+
+1.17.18
+Dramatically improved performance of the controller
+
+1.17.17
+Flight now works correctly with other flight methods
+
+1.17.16
+Removed the test custom machine block
+Re enabled flight modifier
+
+1.17.15
+Disabled flight
+
+1.17.14
+Reverted Equipment Modifier changes, causing the modifier to not work
+Added recipes for Water Walker, Lava Walker and Speed
+Enabled protection for all armor
+Fixed lifesteal being named lifestyle in the valid modifiers causing it not to show the items that it is valid for
+Step assist now uses sticky pistons not normal pistons
+Re worked all costs for modifiers with most having there costs reduces by 50% making them easier to obtain
+Added Flight modifier, applies to chestplates, uses nether star
+
+1.17.13
+Improved the Equipment Modifier performance
+
+1.17.12
+Added Water walker modifier applies to boots, allows the player to run on water
+Added Lava walker modifier applies to boots, allows the player to run on lava
+Added Speed modifier applies to boots, each level increases the players speed by 0.1, up to 5 levels, config can be as high as you want
+
+1.17.11
+Fixed Step Assist not having its effect applied in the Equipment Modifier
+Excavation changes
+- Excavation now directly uses the casting breaking event logic fixes block entities not dropping correctly
+- The direction of breaking is now based on the face of the block interacted with, this is much better than the previous system
+- Breaking a block with an excavating tool that not the correct tool for drops will now break only that block
+- Holding shift prevents excavation from being applied
+Holding shift will now stop silk touch, auto smelt and step assist from activating
+Added Night Vision applies to helmets, uses golden carrots, takes damage every 600 ticks, can be changed in config
+Added Water Breathing applies to helmets, uses pufferfish, takes damage every 100 ticks when in water, can be changed in config
+
+
+1.17.10
+Fixed inconsistent logic checking with casting modifiers are used on block entities with empty loot tables, now checking now list of empty loot
+    and if air is in the loot table. Fixes LootJS interaction with modifiers
+
+1.17.9
+Updated to latest NeoForge 21.1.169
+Updated ItemHandler to support new stack limit system
+
+1.17.8
+Updated to core 1.2.29
+
+1.17.7
+getLootDrops now adds the block entity to the loot params fixes custom machinery machines
+
+1.17.6
+Updated to core 1.2.28
+Moved to new shift tool tip translation
+Added Repairing mold tool tip
+Added additional checking of drops to prevent most blocks dropping there items twice
+Block entities with no loot tables will run that blocks playerDestroy method to check for custom breaking logic implemented by some mod like casting and immersive
+
+1.17.5
+Added Textures thanks Yuki
+
+1.17.4
+Improved Equipment Modifier error messages
+Added Equipment Leveling, when you first add a modifier the tool gains a level and experience,
+    when experience is maxed the tool gains a level and experience is reset
+Max level, base amount for experience and experience modifier can all be changed in the config
+Equipment Modifier can now be used to repair tools and armor. Uses the molten version of the items used to craft the item
+Fixed tool modifiers not working with block entities with no loot tables
+
+1.17.3
+Re added back magnet and repairing effects
+Added Step assist, applies to boots, allows player to walk onto a block without jumping, default level is 1 block, can be increased in config
+
+1.17.2
+Tweaked recipe ids for the effects
+Renamed both internally and externally the tool modifier to the equipment modifier
+Beheading now uses molten soul instead of ender
+Improved Repairing syncing
+Added Teleporting, applies to swords, axes, pickaxes, paxels and shovels, uses molten ender and ender pearls, each level teleports the player 8 block to a block, up to 5 levels,
+    config can be as high as you want, cooldown and block amount per level can be set in the config
+Armor can now be modified, all armor gains repairing and durability and some new armor specific ones
+Added Magnet, applies to helmets, chestplates, leggings and boots, uses molten gold and iron ingots, each level increases range of the magnet by 1 block, up to 8 levels,
+    config can be as high as you want to level
+Added Protection, applies to helmets, chestplates, leggings and boots, uses molten steel, by default each level provides a 4% damage reduction, up to 5 levels, config can be as high as you want, and percentage can be changed in the config
+
+1.17.1
+Added Looting, applies to swords and axes up to level 5, uses molten lapis and emeralds
+Added Sharpness, applies to swords and axes up to level 10, each level of sharpness increases the damage by 1, Uses molten quartz
+Added Beheading, applies to swords, uses molten ender, skull drops are added via config, vanilla and ender io are supported but more will be added.
+Added Lifesteal applies to swords, uses molten gold and golden apples, each level restores 10% of the damage dealt, up to 5 levels, config max is 10
+Added Knockback applies to swords, uses pistons, each level increases the knockback by 1 block, up to 5 levels, config can be as high as you want
+Added Ignite applies to swords, uses lava and flint and steel, each level increases the burn time by 1 second, up to 5 levels, config can be as high as you want
+Added Excavation applies to pickaxe, shovels, axes, hoes, shears and paxels, each level increases the mining area by 1 block eg level one is 3x3, level 2 is 5x5, level 3 is 7x7, up to 3, config can be as high as you want
+Restricted castings influence on all block breaking, this means casting will only provide its modifiers to the blocks if it is required
+    this fixes blocks dropping in creative mode and i few other misc interactions
+Added texture for the tool modifier block, loot table recipes and tags
+Added JEI Information for the tool modifier block
+Tweaked some recipe
+
+1.17.0
+Added BBL Core as a dependency
+Updated to minecraft 1.21.1
+Updated a lot of internal code to latest gradle and neoforge versions
+Added Tool Modifier Block - Allows tools to be modified to have certain abilities like silk touch, fortune, unbreaking ect
+Tool modifier uses a fluid/ item or both to apply effect to a valid tool
+Added tool modifiers creative tab, contains item forms of the upgrades to view recipes and effect, this is not how you add upgrades!
+There are missing textures
+Any modifiers you want me to add please let me know, concentrating on tools first
+
+1.16.7
+Fixed lapis rod recipe being present if no lapis rod exists
+
+1.16.6
+Solidifier now correctly updates its speed when a fuel tank goes below the minimum required amount
+
+1.16.5
+Added information to jei about the lock slot on the solidifier, changed the text that displays when hovering over the slot
+
+1.16.4
+Added Solidifier Locking, Simple button to prevent the solidifier from using the last 100mb of fluid in the solidifier
+
+1.16.3
+Coal dust recipe now uses 80mb in melting and solidifying recipes
+
+1.16.2
+Controller will now display the correct fuel tank information when more than one tank is connected to it showing which tank is being used
+Updated changelog to point to the casting github changelog
+
+1.16.1
+Updated the plate mold and gear mold textures to better reflect the current versions of gears and plates being used
+
+1.16.0
+Added mold tags for all type of molds using the c namespace eg (c:molds, c:molds/ingots)
+Recipes that used specific molds now use the tag instead
+Re run data gen to update all recipes to tags
+
+1.15.11
+Stone gear now uses 4000mb of stone to be accurate with the resource count it would need (4 stone is 4000mb)
+Fixed lapis rod recipe making lapis gem
+
+1.15.10
+Fixed JEI solidifier recipes think one recipe would produce more than one item in recipes
+
+1.15.9
+Added missing recipes for molten fluids into dusts in the Solidifier
+
+1.15.8
+Controller will now fill tanks which contain the same fluid before attempting to fill the first empty tank
+    Fixes the controller filling 2 different tanks with the same fluid
+
+1.15.7
+
+Fixed buckets and other fluid handler not working with the tank
+Fixed smelting time not being correct on black bricks
+
+1.15.5
+
+Change ingot mold recipe to use bricks instead of ingots
+Controller now longer allows melting of an item if the fluid tank is full, this prevents the controller from filling all its output tanks with the same fluid
+Fluid mover now works on the tank in world, right click to collect and right click to add
+Mini coal added to solidifier recipes
+Controller now lights up when working as well as show a lighted texture
+
+1.15.4
+
+Added new logo
+Fixed Energitic Alloy and Vibrant alloy gears recipes not loading
+
+1.15.3
+
+Re enabled full portable GUI support
+
+1.15.2
+Updated tooltips
+
+1.15.1
+
+Added JEI information
+
+1.15.0
+
+Mixer default speed now 220 ticks increased from 80
+Added Mixer Whisk, decreases time needed for the mixer to mix
+    Each whisk above the mixer decreases the ticks needed by 40
+    This means the mixer can run at a min of 20 ticks per recipe
+    Any additional whisks will not decrease the time further
+Mixer now shows tick rate in recipes
+
+1.14.1
+
+Added ball mold to the molds tag
+Added Fluid Mover to jei, emi and the creative menu
+Fixed some vanilla metals not checking for valid tags such as gear, rods, plates ect
+Updated tank information
+
+1.14.0
+
+Added Molten Copper Alloy, Vibrant Alloy, Energetic Alloy, Pulsating Alloy, Soularium, Dark Steel, End Steel, Conductive Alloy, Redstone Alloy
+    End Stone, Soul and Silicon
+Added Ball Mold
+Ender Pearl Solidifier recipe now uses ball mold
+Solidifier recipes now show the correct amount of outputs in JEI instead of one
+Added Melting, Solidifying and Mixing recipes for the new fluids (Mixing if an alloy)
+This should mean we are now compatible with Ender IO
+
+1.13.6
+
+Fixed controller spamming the log with "Slot n maxProgress set to: 240"
+Progress in the controller now scales correctly with the duration of the slot instead of the duration of the top left slot
+
+
+1.13.5
+
+
+1.13.4
+
+Controller fuel tank no longer shows tick rates
+
+1.13.3
+
+DESTROY IN WORLD CONTROLLERS BEFORE UPDATING
+
+Controller max progress now varies per slot this means that each slot can smelt at a different speed if the fluid is hotter than required
+Fixed raw storage recipes melting into the wrong amount
+Empty tanks now display air in the tank
+
+1.13.2
+
+Fixed textures (got messed up)
+Added recipe for fluid mover and texture
+
+1.13.1
+
+Made max stack size for fluid mover 1
+
+1.13.0
+
+Controller now has particles when running
+Added fluid mover, does what you think click tank to collect fluid from a tank gui and click to add to another tank
+Added JEI Information about the fluid mover
+
+1.12.1
+
+Fixed fuel tank not effecting the speed of the solidifier in certain directions
+Fixed Solidifier screen tooltips about tank
+
+1.12.0
+
+Updated to opolis utilities 4.10.0
+Buckets no longer allow the mixer to fill an additional tank with the same fluid
+The controller will no longer push fluids into the mixer if the fluid that it is
+    trying to move is already in the mixer and that tank is full
+Added missing tin block to molten tin recipe
+Solidifier no longer uses different speeds depending on mold
+Solidifier now uses a tank to change speed
+Solidifier now uses SizedIngredient instead of Ingredient (Allows for more items to be used in recipes)
+Solidifier now uses a fuel tank to determine speed (Colder fluids are faster)
+Fuel recipes have had there smeltTime value removed
+    the temperature different between the fuel and the resource to be smelted will now determine the speed of the recipe
+Controller now lowers maxProgress when a hotter fluid than required is used
+Molten Ender temp now 700
+Water now a fuel at 50 temp used in the solidifier
+Buckets now tagged to buckets tag
+Balance Changes;
+    Uranium now 2000 temp
+    Added obsidian 1400, glowstone 1600, netherite 1800 to the fuel list
+    Added water 50 and ender 700 to the fuel list
+Controller tank renamed to fuel tank
+Mixer now mixes faster (80) instead of 220
+
+1.11.4
+
+Added JEI information for the mixer, controller and tank
+
+1.11.3
+
+Mixer and Controller now store fluids when broken
+Mixer and Controller loot tables disable
+Mixer and Controller will show stored fluid in inventory
+Mixer, Controller, solidifier and tank will now have a "Shift" for more information
+    this will show the stored fluid in the block
+Mixer and Controller can now dump fluids like the solidifier
+
+
+1.11.2
+
+Solidifier now longer allows the placement of items into the output slot via player or automation
+Solidifier recipes using the block mold now 250 ticks not 300
+Solidifier recipes using the gear mold now 120 ticks not 40
+Fixed emerald buck recipe name
+Fixed fuel area in controller showing tool tip when below the slot
+Tank now renders the bottom side correctly
+Solidifier now stores fluid when broken
+Solidifier now shows stored fluid in inventory
+Solidifier loottable now removed
+
+
+1.11.1
+
+Mixing signalum recipe now uses redstone not itself in the recipe
+
+1.11.0
+
+Added Molten Signalum, Lumium, Enderium, Brass, Constantan, Glowstone and Ender
+    this includes melting, solidifying and mixing recipes
+Fixed some mixing recipes not having the correct conditions in there recipes
+
+1.10.4
+
+Changed rendering for text on fuels
+
+1.10.3
+
+Dusts can now be melted
+
+1.10.2
+
+Fixed controller not allowing for various inputs to be melted at the same time
+Moved progress bar rendering a pixel higher
+Mixer tank capacity reduced to 8000mb in inputs and 16000mb in output
+Soilidifer tank capacity reduced to 16000mb
+
+1.10.1
+
+Fixed emerald and diamond gems to molten versions not working
+
+1.10.0
+
+Changes to all JEI intergrations to support EMI slightly better
+In JEI recipes can now be book marked
+Recipe ID can now be copied in JEI and EMI
+Added opolis utilities as a dependency to the mod
+Updated to opolis utilities 4.8.0
+Fixed Zinc translations
+Swapped molten and molds in JEI
+Various vanilla iron, gold and diamond items can now be melted
+Melting Recipes;
+    If the input item in a recipe is a damageable item such as an iron chestplate the recipe will adjust the output based on the remaining durability of the item
+    These recipes show a range of fluid output in jei as "1-max amount of fluid mb"
+
+
+1.9.1
+
+Added auto updating to curseforge and modrinth
+
+1.9.0
+
+Added Molten Zinc, Platinum, Iridium and Aluminum
+Added missing nugget recipes for some ore and storage block recipes (in the controller/melting recipes)
+
+
+1.8.2
+
+Added ticks per craft to jei
+
+1.8.1
+
+Fixed version name
+removed test recipe
+
+1.8.0
+Fixed translation for creative menu
+Tank now stores fluids when broken
+Tank drops now controlled inside block entity not loottables
+Fuel recipes tweaked, now require a "smeltTime": 10
+    this allows the speed of recipes to be controlled with fuels
+
+Solidifier now varies items max progress eg recipes using the nugget mold will be quicker than recipes using the ingot mold
+Solidifier now shows it max progress as a number when hovering over the area
+
+1.7.0
+Updated to neoforge 21.0.166
+Updated to opolis utilities 4.5.4
+Updated to JEI jei-1.21-neoforge-19.8.0.97
+JEI additional information now back
+
+1.6.4
+
+Allow fluid insertion into empty tanks
+Fixed tank not rendering fluids when looked from the bottom side of the tank
+
+1.6.3
+
+More tank fixes?
+
+1.6.2
+Fixed crash when trying to extract fluid from tank
+
+1.6.1
+
+Fixed fluid handler on tank not being enabled
+
+1.6.0
+Added All the ores (internal)
+Added Rod recipes and rod mold to the casting molds tag
+Added Molten Nickel
+Added Molten Invar
+Changed recipe locations casting/recipe_type/resource/item_made
+    eg casting/recipe/solidifier/ingot/ingot.json
+This is to make it easier to find the recipes for pack devs, thanks ben
+Added plate recipes
+
+Solidifier in JEI now displays how many ingots/gems are required to make an item, still shows amount in mb
+
+1.6.0
+
+
+
+1.5.0
+
+Added gear solidifier recipes
+Added Molten Silver and Molten Electrum with there recipes
+Changed recipes ids
+
+1.4.0
+
+Name changed to BBL Casting
+Moved to the opolis utilities fluid
+Fixed log spam about fluids not having the correct fluid states
+Fluid can now be added to the mod a lot quicker and easier
+Added Molten stone, glass, netherite, debris and quartz
+Added various recipes for creating and using the new fluids
+Controller will now output to adjacent mixers
+
+1.3.0
+
+Completely changed fluid rendering system which should improve performance
+Fixed screen causing fps drops when open to long
+
+new block Mixer;
+    allows the mixing of fluids to create alloys
+    has 6 tanks
+    only allows for one type of fluid per tank so you end up with 6 tanks filled with the same fluid
+    bucket work with the mixer, empty bucket will take from the output tank first
+    filled fluid bucket will fill the input tanks in order
+
+new recipe type "smelting:mixing" this is used for the mixer, uses between 2 and 6 fluids to create a new fluid
+
+New Fluids;
+    Molten Obsidian
+    Molten Steel
+    Molten Bronze
+
+ingots gem and dust can now be melted
+
+Solidifer now allows for more than one item per stack if it is not a mold item
+mold items do not take damage
+recipes that use non mold items will be consumed when used
+
+JEI now renders full fluid blocks with the amount shown when  hovered instead of a small amount of fluid
+
+1.2.0
+
+Added tags and loot tables
+Added addition information about tank placement in controller
+
+1.1.0
+
+Changed some textures, added new molds
+Added recipes for blocks, molds and moltens
+
+1.0.0
+
+Initial Release

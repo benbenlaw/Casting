@@ -1,0 +1,19 @@
+// 1.21.1	2025-05-20T11:22:00.5850991	Tags for minecraft:item mod id casting
+8e7c5beb2a472ddc8018ff39621cdf5c000a0b48 data/casting/tags/item/controller_extra_blocks.json
+2496cb4438ebf9069c618a9e27e0eb65f90323d1 data/casting/tags/item/controller_floors.json
+8dd160564f5faf1c1f7b6ae227d6a8b596094c75 data/casting/tags/item/controller_tanks.json
+a97fcaeafae73cf3e7ca0ab6a4648d1e486b3d30 data/casting/tags/item/controller_walls.json
+cb0ed6d8265c7f470717fe4bdb90595526d5a990 data/casting/tags/item/melting_output_amount_effected.json
+da92033666b77dcdcd2ecfd54b5fcf76989db3a0 data/casting/tags/item/molds.json
+38236b67cf98b68238695adf5a39edf921a1998c data/c/tags/item/bricks.json
+c129b21359fa03002b3d2290def1a0719ac8f747 data/c/tags/item/buckets.json
+b5b443005446a7c462821af2bd14b03a5178a666 data/c/tags/item/molds/ball.json
+c5b03813e61f7b4ffd00ab3a09b1def2f4e7c5e3 data/c/tags/item/molds/block.json
+046ccfb1e090314dacdeaa4b1e6894cc1a20ebfa data/c/tags/item/molds/dust.json
+2da79381ed2f6e615ec5aff84da9a37eebc9e70a data/c/tags/item/molds/gear.json
+62f75353e81fbbe2a9e44e5ea139d8cbe4cfda9f data/c/tags/item/molds/gem.json
+1f1b073297783c5091442fffa668c74ce1b53a79 data/c/tags/item/molds/ingot.json
+a1b71944075bcc841153139d092cef8e7aac2f51 data/c/tags/item/molds/nugget.json
+0be4e41267ac11dd65be0b1e78e44a2723917fa7 data/c/tags/item/molds/plate.json
+7fdf15f53e9e4982af823382293bde7914e971c4 data/c/tags/item/molds/rod.json
+3f5fe81976ac535ee0ed76c613fa59c8552e489d data/c/tags/item/molds/wire.json

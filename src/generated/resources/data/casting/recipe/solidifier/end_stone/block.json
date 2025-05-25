@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:end_stone"
+    }
+  ],
+  "type": "casting:solidifier",
+  "fluid": {
+    "amount": 1000,
+    "id": "casting:molten_end_stone"
+  },
+  "mold": {
+    "count": 1,
+    "item": "casting:block_mold"
+  },
+  "output": {
+    "count": 1,
+    "item": "minecraft:end_stone"
+  }
+}

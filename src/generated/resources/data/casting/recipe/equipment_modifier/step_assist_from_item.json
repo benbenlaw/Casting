@@ -1,0 +1,8 @@
+{
+  "type": "casting:equipment_modifier",
+  "effect": "step_assist",
+  "upgrade_item": {
+    "count": 4,
+    "item": "minecraft:sticky_piston"
+  }
+}

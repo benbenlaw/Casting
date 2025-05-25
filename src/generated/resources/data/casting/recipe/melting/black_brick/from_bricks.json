@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:bricks"
+    }
+  ],
+  "type": "casting:melting",
+  "input": {
+    "count": 1,
+    "item": "minecraft:bricks"
+  },
+  "meltingTemp": 1000,
+  "output": {
+    "amount": 2000,
+    "id": "casting:molten_black_brick"
+  }
+}

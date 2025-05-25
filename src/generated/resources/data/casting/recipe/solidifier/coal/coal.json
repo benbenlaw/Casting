@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:coal"
+    }
+  ],
+  "type": "casting:solidifier",
+  "fluid": {
+    "amount": 80,
+    "id": "casting:molten_coal"
+  },
+  "mold": {
+    "count": 1,
+    "item": "casting:gem_mold"
+  },
+  "output": {
+    "count": 1,
+    "item": "minecraft:coal"
+  }
+}

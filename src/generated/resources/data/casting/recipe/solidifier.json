@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "casting:black_bricks"
+    },
+    "K": {
+      "item": "casting:black_brick"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "K K",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "casting:solidifier"
+  }
+}

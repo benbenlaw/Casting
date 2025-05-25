@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "casting:black_bricks"
+    },
+    "T": {
+      "item": "casting:tank"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "T T",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "casting:mixer"
+  }
+}

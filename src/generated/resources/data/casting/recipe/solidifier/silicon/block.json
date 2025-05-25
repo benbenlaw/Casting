@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:silicon"
+      }
+    }
+  ],
+  "type": "casting:solidifier",
+  "fluid": {
+    "amount": 250,
+    "id": "casting:molten_silicon"
+  },
+  "mold": {
+    "count": 1,
+    "item": "casting:ball_mold"
+  },
+  "output": {
+    "count": 1,
+    "tag": "c:silicon"
+  }
+}
