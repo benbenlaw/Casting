@@ -30,7 +30,7 @@ public class CoreMultiblockDetector {
         // 2. Validate controller state
         BlockState controllerState = level.getBlockState(controllerPos);
         if (controllerState.isAir()) {
-            System.out.println("Controller block is not valid");
+            //System.out.println("Controller block is not valid");
             return null;
         }
 
@@ -43,12 +43,12 @@ public class CoreMultiblockDetector {
                 wallBlocks, validExtraBlocks, optionalCorners, radius, extraValidBlocks);
 
         if (topCorners == null) {
-            System.out.println("topCorners is null — aborting multiblock detection.");
+            //System.out.println("topCorners is null — aborting multiblock detection.");
             return null;
         }
 
         if (floorBlocks == null) {
-            System.out.println("topCorners is null — aborting multiblock detection.");
+            //System.out.println("topCorners is null — aborting multiblock detection.");
             return null;
         }
 
@@ -67,7 +67,7 @@ public class CoreMultiblockDetector {
 
         // 6. Validate bottom layer
         if (!floorBlocks.test(level.getBlockState(bottomCorner))) {
-            System.out.println("Invalid bottom starting block at: " + bottomCorner);
+            //System.out.println("Invalid bottom starting block at: " + bottomCorner);
             return null;
         }
 
@@ -78,7 +78,7 @@ public class CoreMultiblockDetector {
                 .toList();
 
         if (!notFloorBlocks.isEmpty()) {
-            System.out.println("Invalid floor blocks found at: " + notFloorBlocks.getFirst());
+            //System.out.println("Invalid floor blocks found at: " + notFloorBlocks.getFirst());
             return null;
         }
 
@@ -90,7 +90,7 @@ public class CoreMultiblockDetector {
                         top.immutable().below(slice), wallBlocks, validExtraBlocks, optionalCorners, radius, extraValidBlocks);
 
                 if (corners == null) {
-                    System.out.println("Wall slice at level " + slice + " is invalid.");
+                    //System.out.println("Wall slice at level " + slice + " is invalid.");
                     return null;
                 }
             }
@@ -103,7 +103,7 @@ public class CoreMultiblockDetector {
                 .count();
 
         if (volume > maxVolume) {
-            System.out.println("Structure volume exceeds limit: " + volume + " > " + maxVolume);
+            //System.out.println("Structure volume exceeds limit: " + volume + " > " + maxVolume);
             return null;
         }
 
@@ -116,7 +116,7 @@ public class CoreMultiblockDetector {
                     .toList();
 
             if (!notAirBlocks.isEmpty()) {
-                System.out.println("Structure is not hollow. Block found at: " + notAirBlocks.getFirst());
+                //System.out.println("Structure is not hollow. Block found at: " + notAirBlocks.getFirst());
                 return null;
             }
         }
@@ -185,7 +185,7 @@ public class CoreMultiblockDetector {
 
             // Prevent multiple controllers in the structure
             if (targetState.is(controllerBlock) && !pointer.equals(controllerPos)) {
-                System.out.println("Multiple controllers are not allowed");
+                //System.out.println("Multiple controllers are not allowed");
                 return null;
             }
         }
@@ -195,7 +195,7 @@ public class CoreMultiblockDetector {
         }
 
 
-        System.out.println("Structure did not form a valid closed loop");
+        //System.out.println("Structure did not form a valid closed loop");
         return null;
     }
 
