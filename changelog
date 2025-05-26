@@ -5,6 +5,9 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 test change to see if this works
 
+2.0.6
+Re Run data generation to black bricks
+
 2.0.5
 Fixed Multiblock loot tables
 

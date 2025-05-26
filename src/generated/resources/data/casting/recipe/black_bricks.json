@@ -1,11 +1,15 @@
 {
-  "type": "minecraft:smelting",
-  "category": "blocks",
-  "cookingtime": 200,
-  "experience": 0.5,
-  "ingredient": {
-    "item": "minecraft:bricks"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "casting:black_brick"
+    }
   },
+  "pattern": [
+    "AA",
+    "AA"
+  ],
   "result": {
     "count": 1,
     "id": "casting:black_bricks"
