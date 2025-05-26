@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "casting:multiblock_mixer"
         }
       ],
       "rolls": 1.0

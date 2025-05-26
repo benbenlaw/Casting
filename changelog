@@ -5,6 +5,9 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 test change to see if this works
 
+2.0.5
+Fixed Multiblock loot tables
+
 2.0.4
 Disabled some debugging
 Fixed Black brick smelting being named minecraft instead of casting in its recipes id
