@@ -5,6 +5,16 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 test change to see if this works
 
+2.0.4
+Disabled some debugging
+Fixed Black brick smelting being named minecraft instead of casting in its recipes id
+Fixed Magnet modifier not preventing the recipe being applied even when magnet is at max level
+Added Molten Blaze, can be used as a fuel
+Added Chilled Water, used as a coolant
+Added Iced Water, used as a coolant
+Added Super Coolant, used as a coolant, the best coolant
+Tweaked some coolant values
+
 2.0.3 (The Multiblock Update)
 Completely removed dependency on Opolis Utilities and fully transitioned to BBL Core
 Updated Fluid Registry to BBL Core Fluid Registry

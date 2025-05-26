@@ -1,11 +1,16 @@
 {
-  "parent": "minecraft:recipes/root",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:blaze_rod"
+    }
+  ],
   "criteria": {
-    "has_brick": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:brick"
+            "items": "minecraft:blaze_rod"
           }
         ]
       },
@@ -13,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:black_bricks"
+        "recipe": "casting:solidifier/blaze/rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +26,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_brick"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "casting:black_bricks"
+      "casting:solidifier/blaze/rod"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

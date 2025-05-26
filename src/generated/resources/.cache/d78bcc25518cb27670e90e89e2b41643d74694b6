@@ -1,6 +1,9 @@
-// 1.21.1	2025-05-25T10:48:14.9652577	Tags for minecraft:fluid mod id casting
+// 1.21.1	2025-05-26T09:33:43.3661515	Tags for minecraft:fluid mod id casting
+a0180619fbf98291dcb53dfaa0e4dac895afbffd data/c/tags/fluid/chilled_water.json
+4b5f9cfc42b372d1de1abebf0a981daf6a11a2fd data/c/tags/fluid/iced_water.json
 079289e049dd083bc8a5856acb4834e538937339 data/c/tags/fluid/molten_aluminum.json
 33df9821493518a0d78d65933bfffe9f84400311 data/c/tags/fluid/molten_black_brick.json
+b73c788ef020160dc67a2cc97b9058f98ed13317 data/c/tags/fluid/molten_blaze.json
 e506a4f87256c178ff81d006531b1ac8788b826e data/c/tags/fluid/molten_brass.json
 f926520f710f287ebb9f96fc75c1843efaea8298 data/c/tags/fluid/molten_bronze.json
 fd659f563713579cd6e73de4c0034a0631fbffc0 data/c/tags/fluid/molten_coal.json
@@ -50,3 +53,4 @@ f7753ec64480619e126d5872ff1e698af15b8128 data/c/tags/fluid/molten_tin.json
 ee4e0723a012f53a699240330954604c2189d2f4 data/c/tags/fluid/molten_uranium.json
 ee44122d11104bcd370a1759f987ea17f3a39be3 data/c/tags/fluid/molten_vibrant_alloy.json
 7b3fb3c16d2ccb365f63438453e5c1262fa7e95d data/c/tags/fluid/molten_zinc.json
+2cfb571a0d0c5715ba95a27934d91af6e2320f1f data/c/tags/fluid/super_coolant.json

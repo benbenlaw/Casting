@@ -25,6 +25,10 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
             new FluidData("molten_end_stone", "block/molten_still", "block/molten_flow", 0xFFdbe3a2, 1000),
             new FluidData("molten_soul", "block/molten_still", "block/molten_flow", 0xFF413027, 1000),
             new FluidData("molten_stone", "block/molten_still", "block/molten_flow", 0xFF737373, 1000),
+            new FluidData("molten_blaze", "block/molten_still", "block/molten_flow", 0xFFf5a100, 1200),
+            new FluidData("chilled_water", "block/thin_still", "block/thin_flow", 0xFF345baa, 200),
+            new FluidData("iced_water", "block/thin_still", "block/thin_flow", 0xFF5e77a3, 200),
+            new FluidData("super_coolant", "block/thin_still", "block/thin_flow", 0xFF70c1cf, 0),
 
             //Casting
             new FluidData("molten_black_brick", "block/molten_still", "block/molten_flow", 0xFFb76e4d, 1000),

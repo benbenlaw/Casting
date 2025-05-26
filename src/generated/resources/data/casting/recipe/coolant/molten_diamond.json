@@ -1,6 +1,6 @@
 {
   "type": "casting:coolant",
-  "duration": 60,
+  "duration": 80,
   "fluid": {
     "amount": 20,
     "id": "casting:molten_diamond"

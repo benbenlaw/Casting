@@ -1,11 +1,16 @@
 {
-  "parent": "minecraft:recipes/root",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:snow_block"
+    }
+  ],
   "criteria": {
-    "has_brick": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:brick"
+            "items": "minecraft:snow_block"
           }
         ]
       },
@@ -13,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:black_bricks"
+        "recipe": "casting:melting/chilled_coolant/from_snow_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +26,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_brick"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "casting:black_bricks"
+      "casting:melting/chilled_coolant/from_snow_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

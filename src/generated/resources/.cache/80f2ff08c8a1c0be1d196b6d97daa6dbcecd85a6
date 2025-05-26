@@ -1,9 +1,10 @@
-// 1.21.1	2025-05-25T09:22:57.0428991	casting Item Models
+// 1.21.1	2025-05-26T09:33:43.361147	casting Item Models
 16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
 513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
 c458d3e96733818f13805ef73ad0ad87dcb05aa1 assets/casting/models/item/black_brick.json
 5ef57e44724fe244ce039e996866679b24b0db10 assets/casting/models/item/block_mold.json
+57ce4ecb7e62f028a76d92a03dfe080a7dd5ded1 assets/casting/models/item/chilled_water_bucket.json
 37b2423e087aba4168c4382dad45ac5afa40f06a assets/casting/models/item/dust_mold.json
 9f2c8e91967a48a7c07857aa4bc89a7ab5f545a6 assets/casting/models/item/efficiency.json
 6babc5b2d452774978684b33301786967327c4d7 assets/casting/models/item/excavation.json
@@ -12,6 +13,7 @@ bdad3cc801a041d54d3b0647f7c01d4061e47dce assets/casting/models/item/fluid_mover.
 85f7eb9f6437cc62fc286803060c5cd02890847a assets/casting/models/item/fortune.json
 549bfdb4f27483849ce359a3f7e3e2781796614e assets/casting/models/item/gear_mold.json
 cf9eae803bac38044112d744bde8b6b12c3af28c assets/casting/models/item/gem_mold.json
+549f9fdada936704267154acf438c49b90e9b7c1 assets/casting/models/item/iced_water_bucket.json
 652c001a660021ea397975ab0c50856a7caec587 assets/casting/models/item/ignite.json
 0b04b6b6d70bf4321f1120a56f0aa5e03818e717 assets/casting/models/item/ingot_mold.json
 ad997dc493e7cc16c8582c7e8426c2cb72d65bff assets/casting/models/item/knockback.json
@@ -21,6 +23,7 @@ ad997dc493e7cc16c8582c7e8426c2cb72d65bff assets/casting/models/item/knockback.js
 6fab92d6332384c0e6e9d7536485ef966dfb2ddb assets/casting/models/item/magnet.json
 8c3a964156a7993a72f5cfc632038610f0806a9d assets/casting/models/item/molten_aluminum_bucket.json
 afdfae1c4af344b25916e66c4962f1ff84c86e7e assets/casting/models/item/molten_black_brick_bucket.json
+58ea02d11862706ae424fa70387367acbba99365 assets/casting/models/item/molten_blaze_bucket.json
 2e939dc8f43d2162602fb00dd88484a1f947446f assets/casting/models/item/molten_brass_bucket.json
 8f60fbcfe6e5a0238eb00cb3feb44f742b94c2fa assets/casting/models/item/molten_bronze_bucket.json
 c642db7386524086e4c8ba3682f34a9f4c24f895 assets/casting/models/item/molten_coal_bucket.json
@@ -81,6 +84,7 @@ cfd72d20c3421e3da904954307832d8c96153746 assets/casting/models/item/rod_mold.jso
 40531341edfec33b755a7e7d3c97de515c8f7876 assets/casting/models/item/silk_touch.json
 4563606bbf2654875c46c0cf35c46d5a0db907b6 assets/casting/models/item/speed.json
 8a83c1840b21b4d00156b183be278b0c1190f76e assets/casting/models/item/step_assist.json
+f46effc8e428924e3e2b728445534c636264f101 assets/casting/models/item/super_coolant_bucket.json
 45612ff2be741f11abf389b3d2b93b9e6c9b24c2 assets/casting/models/item/teleporting.json
 09ac168125c89aa8b127b2a43df710a04abe8cf0 assets/casting/models/item/torch_placing.json
 3d406c9c864009af36192bebda9ab2b7b2faf22f assets/casting/models/item/unbreaking.json

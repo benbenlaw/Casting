@@ -74,7 +74,7 @@ public class EquipmentModifierUtils {
             return currentTeleporting >= EquipmentModifierConfig.maxTeleportationAmount.get();
         }
         if (effect.contains(MAGNET)) {
-            int currentTeleporting = stack.getOrDefault(CastingDataComponents.TELEPORTING, 0);
+            int currentTeleporting = stack.getOrDefault(CastingDataComponents.MAGNET, 0);
             return currentTeleporting >= EquipmentModifierConfig.maxMagnetAmount.get();
         }
         if (effect.contains(STEP_ASSIST)) {

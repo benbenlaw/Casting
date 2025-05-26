@@ -1,11 +1,10 @@
 {
-  "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_brick": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:brick"
+            "items": "minecraft:blaze_powder"
           }
         ]
       },
@@ -13,7 +12,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:black_bricks"
+        "recipe": "casting:fuel/molten_blaze"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +20,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_brick"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "casting:black_bricks"
+      "casting:fuel/molten_blaze"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

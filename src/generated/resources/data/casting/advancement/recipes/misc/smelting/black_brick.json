@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:black_bricks"
+        "recipe": "casting:smelting/black_brick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "casting:black_bricks"
+      "casting:smelting/black_brick"
     ]
   }
 }

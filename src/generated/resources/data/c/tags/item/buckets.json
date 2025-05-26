@@ -1,6 +1,7 @@
 {
   "values": [
     "casting:molten_diamond_bucket",
+    "casting:chilled_water_bucket",
     "casting:molten_brass_bucket",
     "casting:molten_redstone_alloy_bucket",
     "casting:molten_copper_bucket",
@@ -9,10 +10,12 @@
     "casting:molten_silver_bucket",
     "casting:molten_zinc_bucket",
     "casting:molten_coal_bucket",
+    "casting:molten_blaze_bucket",
     "casting:molten_glass_bucket",
     "casting:molten_lumium_bucket",
     "casting:molten_silicon_bucket",
     "casting:molten_iron_bucket",
+    "casting:iced_water_bucket",
     "casting:molten_quartz_bucket",
     "casting:molten_osmium_bucket",
     "casting:molten_ender_bucket",
@@ -43,6 +46,7 @@
     "casting:molten_dark_steel_bucket",
     "casting:molten_conductive_alloy_bucket",
     "casting:molten_emerald_bucket",
+    "casting:super_coolant_bucket",
     "casting:molten_black_brick_bucket",
     "casting:molten_energetic_alloy_bucket",
     "casting:molten_steel_bucket",

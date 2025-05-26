@@ -50,9 +50,9 @@ public class CastingRecipeProvider extends RecipeProvider {
     protected void buildRecipes(RecipeOutput consumer) {
         //Smelting
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BRICK), RecipeCategory.MISC, new ItemStack(CastingItems.BLACK_BRICK.get()), 0.5f, 200)
-                .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "smelting/black_brick");
+                .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "casting:smelting/black_brick");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BRICKS), RecipeCategory.MISC, new ItemStack(CastingBlocks.BLACK_BRICKS.get()), 0.5f, 200)
-                .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "smelting/black_bricks");
+                .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "casting:smelting/black_bricks");
 
         //Multiblock Crafting
         createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.CONTROLLER.toStack(),
@@ -213,6 +213,9 @@ public class CastingRecipeProvider extends RecipeProvider {
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidStack("molten_uranium", 20), 1400, 100)
                 .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
 
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidStack("molten_blaze", 1), 1400, 60)
+                .unlockedBy("has_item", has(Items.BLAZE_POWDER)).save(consumer);
+
         // Coolants
         CoolantRecipeBuilder.coolantRecipesBuilder(new FluidStack(Fluids.WATER, 10), 160)
                 .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
@@ -220,10 +223,19 @@ public class CastingRecipeProvider extends RecipeProvider {
         CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_ender", 5), 100)
                 .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
 
-        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_glowstone", 10), 80)
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_glowstone", 10), 140)
                 .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
 
-        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_diamond", 20), 60)
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("molten_diamond", 20), 80)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("chilled_water", 25), 60)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("iced_water", 25), 40)
+                .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
+
+        CoolantRecipeBuilder.coolantRecipesBuilder(getFluidStack("super_coolant", 10), 20)
                 .unlockedBy("has_item", has(Items.BUCKET)).save(consumer);
 
         // Common Melting and Solidifier Recipes
@@ -319,7 +331,36 @@ public class CastingRecipeProvider extends RecipeProvider {
         createSimpleSolidifierRecipe(getFluidStack("molten_soul", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
                 ItemTags.SOUL_FIRE_BASE_BLOCKS, "soul/block", consumer);
 
+        //Blaze
+        createSimpleMeltingRecipe(getFluidStack("molten_blaze", 90), Items.BLAZE_ROD, FluidData.getTempByName("molten_blaze"),
+                "blaze/from_blaze_rod", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_blaze", 45), Items.BLAZE_POWDER, FluidData.getTempByName("molten_blaze"),
+                "blaze/from_blaze_powder", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_blaze", 90), CastingItems.DUST_MOLD.asItem().getDefaultInstance(),
+                Items.BLAZE_POWDER, "blaze/dust", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_blaze", 90), CastingItems.ROD_MOLD.asItem().getDefaultInstance(),
+                Items.BLAZE_ROD, "blaze/rod", consumer);
+
+        //Chilled Water
+        createSimpleMeltingRecipe(getFluidStack("chilled_water", 250), Items.SNOWBALL, FluidData.getTempByName("chilled_water"),
+                "chilled_coolant/from_snow_ball", consumer);
+        createSimpleMeltingRecipe(getFluidStack("chilled_water", 1000), Items.SNOW_BLOCK, FluidData.getTempByName("chilled_water"),
+                "chilled_coolant/from_snow_block", consumer);
+
+        //Iced Water
+        createSimpleMeltingRecipe(getFluidStack("iced_water", 1000), Items.ICE, FluidData.getTempByName("iced_water"),
+                "iced_water/from_ice", consumer);
+        createSimpleMeltingRecipe(getFluidStack("iced_water", 1000 * 9), Items.PACKED_ICE, FluidData.getTempByName("iced_water"),
+                "iced_water/from_packed_ice", consumer);
+        createSimpleMeltingRecipe(getFluidStack("iced_water", 1000 * 9 * 9), Items.BLUE_ICE, FluidData.getTempByName("iced_water"),
+                "iced_water/from_blue_ice", consumer);
+
+
         //Mixer Recipes
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("iced_water", 1000), getFluidStack("chilled_water", 1000)),
+                getFluidStack("super_coolant", 2000), "super_coolant", consumer);
+
         createSimpleMixingRecipe(fluidList(
                         getFluidStack("molten_copper", 270), getFluidStack("molten_tin", 90)),
                 getFluidStack("molten_bronze", 360), "bronze", consumer);
