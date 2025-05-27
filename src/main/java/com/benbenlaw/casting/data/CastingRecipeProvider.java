@@ -278,6 +278,8 @@ public class CastingRecipeProvider extends RecipeProvider {
                 "coal/from_coal", consumer);
         createSimpleMeltingRecipe(getFluidStack("molten_coal", 720), Items.COAL_BLOCK, FluidData.getTempByName("molten_coals"),
                 "coal/from_coal_block", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_coal", 80), ModdedTagBuilder.createNeoFabricItemTag("ores/coal") , FluidData.getTempByName("molten_coals"),
+                "coal/from_coal_ore", consumer);
         createSimpleSolidifierRecipe(getFluidStack("molten_coal", 80), CastingItems.GEM_MOLD.asItem().getDefaultInstance(),
                 Items.COAL, "coal/coal", consumer);
         createSimpleSolidifierRecipe(getFluidStack("molten_coal", 720), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),

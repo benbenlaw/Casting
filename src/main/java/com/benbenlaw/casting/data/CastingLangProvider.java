@@ -59,7 +59,10 @@ public class CastingLangProvider extends LanguageProvider {
         addGUITranslation("buttons.not_hot_enough", "Current fuel not hot enough for at least one item");
         addGUITranslation("buttons.no_fuel", "No fuel found in fuel tank");
         addGUITranslation("buttons.not_enough_space", "Not enough space in main tank");
+        addGUITranslation("buttons.multiblock_not_found", "Multiblock not formed, are there gaps in the structure?");
         addGUITranslation("buttons.waiting_for_recipe", "Ready to work!");
+        addGUITranslation("buttons.filtering_disabled", "Filter: Disabled, Click to enable");
+        addGUITranslation("buttons.filtering_enabled", "Filter: Enabled, Click to disable");
 
         //Jei Translations
         addGUITranslation("jei.melting", "Melting");
@@ -70,8 +73,10 @@ public class CastingLangProvider extends LanguageProvider {
         addGUITranslation("jei.fuel_temp", "%s Fuel Temp");
         addGUITranslation("jei.fuel_speed", "%s ticks per recipe");
         addGUITranslation("jei.coolant", "Coolants");
-        addGUITranslation("jei.coolant_speed", "%s ticks per recipe")
-        ;
+        addGUITranslation("jei.coolant_speed", "%s ticks per recipe");
+        addGUITranslation("jei.multiblock_controller_output", "%smB in Multiblock Controller");
+        addGUITranslation("jei.simple_controller_output", "%smB in Simple Controller");
+
         addGUITranslation("jei.information.solidifier",   "The Solidifier is used to turn your molten resource into useful item! \n\nThis can use an optional Fuel Tank adjacent to it, cooler fluids (below 1000) in the tank will make the Solidifier faster\n\nFluid can be locked to prevent another fluids from going in, click the lock button next to the fluid tank.\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!");
         addGUITranslation("jei.information.mixer", "The Mixer can be used to mix molten fluids together! \n\nHolding Shift whilst above a certain tank and left clicking will remove the fluid from the that tank!\n\nStores fluids when broken!");
         addGUITranslation("jei.information.controller", "The Controller can be used to melt items into there molten variants! \n\nThis needs a Fuel Tank to work, the Fuel Tank must contain a Fuel that is hot enough to melt the item, Hotter fluids melt faster\n\nHolding Shift whilst above a certain tank and left clicking will remove the fluid from the that tank!\n\nStores fluids when broken!");

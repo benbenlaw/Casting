@@ -80,15 +80,30 @@ public class MeltingRecipeCategory implements IRecipeCategory<MeltingRecipe> {
 
         int amount = recipe.output().getAmount();
         if (recipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)) {
+
             amount = (int) (recipe.output().getAmount() * CastingConfig.oreMultiplier.get());
+
+            int finalAmount1 = amount;
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 2).addFluidStack(recipe.output().getFluid(), 1000)
+                    .addRichTooltipCallback((slot, tooltip) ->
+                            tooltip.add(Component.translatable("gui.casting.jei.multiblock_controller_output", finalAmount1).withStyle(ChatFormatting.GOLD)))
+                    .addRichTooltipCallback((slot, tooltip) ->
+                            tooltip.add(Component.translatable("gui.casting.jei.simple_controller_output", recipe.output().getAmount()).withStyle(ChatFormatting.GOLD)))
+                    .addRichTooltipCallback((slot, tooltip) ->
+                            tooltip.add(Component.translatable("gui.casting.jei.melting_temp", recipe.meltingTemp()).withStyle(ChatFormatting.GOLD)));
+
+
+
+        } else {
+
+            int finalAmount2 = amount;
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 2).addFluidStack(recipe.output().getFluid(), 1000)
+                    .addRichTooltipCallback((slot, tooltip) ->
+                            tooltip.add(Component.literal(finalAmount2 + "mB").withStyle(ChatFormatting.GOLD)))
+                    .addRichTooltipCallback((slot, tooltip) ->
+                            tooltip.add(Component.translatable("gui.casting.jei.melting_temp", recipe.meltingTemp()).withStyle(ChatFormatting.GOLD)));
         }
 
-        int finalAmount = amount;
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 2).addFluidStack(recipe.output().getFluid(), 1000)
-                .addRichTooltipCallback((slot, tooltip) ->
-                        tooltip.add(Component.literal(finalAmount + "mB").withStyle(ChatFormatting.GOLD)))
-                .addRichTooltipCallback((slot, tooltip) ->
-                        tooltip.add(Component.translatable("gui.casting.jei.melting_temp", recipe.meltingTemp()).withStyle(ChatFormatting.GOLD)));
 
     }
 
@@ -99,15 +114,17 @@ public class MeltingRecipeCategory implements IRecipeCategory<MeltingRecipe> {
         guiGraphics.drawString(minecraft.font.self(), Component.literal(String.valueOf(temp)), 80, 11, Color.GRAY.getRGB(), false);
 
         int amount = recipe.output().getAmount();
-        if (recipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)) {
-            amount = (int) (recipe.output().getAmount() * CastingConfig.oreMultiplier.get());
-        }
-        int finalAmount = amount;
 
         if (recipe.input().ingredient().getItems()[0].isDamageableItem()) {
-            guiGraphics.drawString(minecraft.font.self(), Component.literal("1-" + finalAmount).append("mb"), 80, 1, Color.GRAY.getRGB(), false);
-        } else {
-            guiGraphics.drawString(minecraft.font.self(), Component.literal(String.valueOf(finalAmount)).append("mb"), 80, 1, Color.GRAY.getRGB(), false);
+            guiGraphics.drawString(minecraft.font.self(), Component.literal("1-" + amount).append("mb"), 80, 1, Color.GRAY.getRGB(), false);
+        }
+
+        else {
+            if (recipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)) {
+                guiGraphics.drawString(minecraft.font.self(), Component.literal("*" + amount).append("mb"), 80, 1, Color.GRAY.getRGB(), false);
+            } else {
+                guiGraphics.drawString(minecraft.font.self(), Component.literal(String.valueOf(amount)).append("mb"), 80, 1, Color.GRAY.getRGB(), false);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import com.benbenlaw.casting.recipe.FuelRecipe;
 import com.benbenlaw.casting.recipe.MeltingRecipe;
 import com.benbenlaw.casting.screen.multiblock.MultiblockControllerMenu;
 import com.benbenlaw.casting.util.CastingTags;
+import com.benbenlaw.casting.util.FilteredItemHandler;
 import com.benbenlaw.casting.util.MultiFluidTankSharedCapacity;
 import com.benbenlaw.casting.util.SingleFluidTank;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
@@ -18,8 +19,12 @@ import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -27,6 +32,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -39,9 +45,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -49,7 +53,11 @@ import static com.benbenlaw.casting.block.multiblock.MultiblockSolidifierBlock.E
 import static com.benbenlaw.casting.block.multiblock.MultiblockSolidifierBlock.WORKING;
 
 public class MultiblockControllerBlockEntity extends SyncableBlockEntity implements MenuProvider, IInventoryHandlingBlockEntity {
-    public final ItemStackHandler itemHandler = new ItemStackHandler(60) {
+
+    public final Map<Integer, Item> allowedItems = new HashMap<>();
+
+    public final FilteredItemHandler itemHandler = new FilteredItemHandler(60, allowedItems) {
+
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -58,15 +66,27 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         }
 
         @Override
-        protected int getStackLimit(int slot, ItemStack stack) {
+        public int getSlotLimit(int slot) {
             return 1;
         }
 
         @Override
-        public int getSlotLimit(int slot) {
+        protected int getStackLimit(int slot, ItemStack stack) {
             return 1;
         }
     };
+    public void setAllowedItems(int slot, Item item) {
+        if (item == null) {
+            allowedItems.remove(slot);
+        } else {
+            allowedItems.put(slot, item);
+        }
+    }
+
+    @Nullable
+    public Item getAllowedItem(int slot) {
+        return allowedItems.get(slot);
+    }
 
     public int TOTAL_FLUID_TANK_CAPACITY = 1000000;
 
@@ -188,7 +208,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                 findValves(cachedMultiblockData);
                 findMixers(cachedMultiblockData);
                 if (fluidHandler.getTankCapacity(1) != cachedMultiblockData.volume() * 1000) {
-                    System.out.println("Fluid handler capacity changed" + cachedMultiblockData.volume() * 1000);
+                    //System.out.println("Fluid handler capacity changed" + cachedMultiblockData.volume() * 1000);
                     fluidHandler.setEnabledCapacity(cachedMultiblockData.volume() * 1000);
                 }
             }
@@ -213,6 +233,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
                 if (cachedMultiblockData == null) {
                     resetProgress(i);
+                    errorMessage = "multiblock_not_found";
                     continue;
                 }
 
@@ -493,6 +514,17 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         if (cachedMultiblockData != null) {
             compoundTag.put("multiblockData", cachedMultiblockData.serializeNBT(provider));
         }
+
+        ListTag allowedItemsList = new ListTag();
+        for(Map.Entry<Integer, Item> entry : allowedItems.entrySet()) {
+            CompoundTag entryTag = new CompoundTag();
+            entryTag.putInt("slot", entry.getKey());
+            ResourceLocation itemID = BuiltInRegistries.ITEM.getKey(entry.getValue());
+            entryTag.putString("item", itemID.toString());
+            allowedItemsList.add(entryTag);
+        }
+        compoundTag.put("allowedItems", allowedItemsList);
+
     }
 
     @Override
@@ -514,9 +546,22 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
             coolantTank.readFromNBT(provider, compoundTag.getCompound("coolantTank"));
         }
 
-        if (cachedMultiblockData != null) {
+        if (compoundTag.contains("multiblockData") && cachedMultiblockData != null) {
             cachedMultiblockData.deserializeNBT(provider, Objects.requireNonNull(compoundTag.get("multiblockData")));
         }
+
+        allowedItems.clear();
+        if (compoundTag.contains("allowedItems")) {
+            ListTag allowedItemsList = compoundTag.getList("allowedItems", Tag.TAG_COMPOUND);
+            for (int i = 0; i < allowedItemsList.size(); i++) {
+                CompoundTag entryTag = allowedItemsList.getCompound(i);
+                int slot = entryTag.getInt("slot");
+                ResourceLocation itemID = ResourceLocation.parse(entryTag.getString("item"));
+                Item item = BuiltInRegistries.ITEM.get(itemID);
+                allowedItems.put(slot, item);
+            }
+        }
+
 
         super.loadAdditional(compoundTag, provider);
     }

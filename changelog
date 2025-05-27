@@ -5,6 +5,21 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 test change to see if this works
 
+2.0.7
+Fixed Molten Black Brick color
+Added coal ore processing
+Recipes like ores that have a bonus output amount now show there non bonus amount in JEI but adds a * to show that there is a bonus output
+In these tooltips in JEI it will now show the Multiblock Controller output amount and the Simple Controller output amount if there is a difference
+Simple Controller do not get bonus output amounts only the Multiblock Controller
+Fixed disconnects happening sometimes with a multiblock is formed (maybe anyway)
+Disabled logging of fluid handler capacity
+Added multiblock not found error message
+Controller Filtering;
+Controller now has a filter button, clicking this will only allows items in the current slot to be added to the controller via automation
+This does not prevent the player placing items into the controller inside the filtered slots, if used these slots will still retain there filter
+Clicking the button again clears the filter
+Filtered slots will show grayed out icon in the GUI
+
 2.0.6
 Re Run data generation to black bricks
 

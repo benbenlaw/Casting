@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-26T09:33:43.3686867	Recipes
+// 1.21.1	2025-05-27T09:30:34.2573518	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -57,6 +57,7 @@ d164e458aaf49d13a30ca0cc9e939a090b99d363 data/casting/advancement/recipes/meltin
 4a98a1cf1c569ac15054aa5652744b4eaf198daa data/casting/advancement/recipes/melting/melting/chilled_coolant/from_snow_block.json
 74d27ddb64e566bbbba08b85faa9ce129d814a72 data/casting/advancement/recipes/melting/melting/coal/from_coal.json
 1cd86e6dc3bbb653ce4e6b0c98b40062b42722b1 data/casting/advancement/recipes/melting/melting/coal/from_coal_block.json
+84194046b7164822158b5a320dca51995eaac00c data/casting/advancement/recipes/melting/melting/coal/from_coal_ore.json
 b002d028d3d2010c58fdf1d5b618022a1db971fa data/casting/advancement/recipes/melting/melting/conductive_alloy/from_dust.json
 6fc07f1fabaf86d109d0b6d58d350a1ccdfd339b data/casting/advancement/recipes/melting/melting/conductive_alloy/from_gear.json
 3728704957018986e260f7d43ff0840641dd1546 data/casting/advancement/recipes/melting/melting/conductive_alloy/from_gem.json
@@ -1057,6 +1058,7 @@ e240955dd1c13a2d8d6db4025ec2af96cdc0bed8 data/casting/recipe/melting/chilled_coo
 33d529f1ed5512567b09086044ac34b73be65401 data/casting/recipe/melting/chilled_coolant/from_snow_block.json
 83dbd9b7d620555846a3e9b205aba8aec062a584 data/casting/recipe/melting/coal/from_coal.json
 cfd277629f6c3f366892e1c6bdd986479db41a5a data/casting/recipe/melting/coal/from_coal_block.json
+55357073b6dad1228874b277e1f02b05a3429a3f data/casting/recipe/melting/coal/from_coal_ore.json
 a6b377d0192da6510532e8e18f40fc7eecdb56df data/casting/recipe/melting/conductive_alloy/from_dust.json
 bedc73717f6715ac74cbd44d3017ea25e90c072f data/casting/recipe/melting/conductive_alloy/from_gear.json
 a4fb6c4a1b43bb961a036f4f8bba0e5e6e8cca46 data/casting/recipe/melting/conductive_alloy/from_gem.json

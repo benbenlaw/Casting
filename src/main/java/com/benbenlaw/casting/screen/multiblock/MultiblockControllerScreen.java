@@ -3,7 +3,9 @@ package com.benbenlaw.casting.screen.multiblock;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.entity.multiblock.MultiblockControllerBlockEntity;
 import com.benbenlaw.casting.block.multiblock.MultiblockControllerBlock;
+import com.benbenlaw.casting.network.payload.ControllerFilteredInventoryPayload;
 import com.benbenlaw.casting.network.payload.OnOffButtonPayload;
+import com.benbenlaw.casting.network.payload.SolidifierSelectedFluidPayload;
 import com.benbenlaw.casting.screen.util.FluidStackStackWidget;
 import com.benbenlaw.casting.screen.util.MultiFluidStackWidget;
 import com.benbenlaw.casting.util.ConditionalSlotItemHandler;
@@ -20,14 +22,21 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
 
 public class MultiblockControllerScreen extends AbstractContainerScreen<MultiblockControllerMenu> {
 
     Level level;
     MultiblockControllerBlockEntity blockEntity;
+    private boolean filteringEnabled = false;
     private static final ResourceLocation TEXTURE =
             ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, "textures/gui/multiblock_controller_gui.png");
     private static final ResourceLocation SLOT =
@@ -102,6 +111,10 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
             renderTickRate(guiGraphics, mouseX, mouseY, x, y);
         }
 
+        //Filter Button
+        guiGraphics.blit(TEXTURE, x + 41, y - 17, 177, 54, 20, 18);
+        renderFilterTooltip(guiGraphics, mouseX, mouseY, x, y);
+
         //Progress bar
         renderProgressBars(guiGraphics, x, y);
 
@@ -116,15 +129,16 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
 
         renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        renderTooltip(guiGraphics, mouseX, mouseY);
 
-        //Draw in front of menu
+        // Draw in front of menu (your grayed-out filtered items)
         for (Slot slot : menu.slots) {
             if (slot instanceof ConditionalSlotItemHandler conditionalSlotItemHandler) {
 
                 if (conditionalSlotItemHandler.getContainerSlot() >= menu.blockEntity.enabledSlots) {
                     guiGraphics.blit(SLOT_DISABLED, x + slot.x - 1, y + slot.y - 1, 18, 18, 18, 18);
                 }
+
+                renderFilterInfo(guiGraphics, x, y, slot.getContainerSlot());
             }
         }
 
@@ -134,7 +148,13 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
 
         renderProgressBars(guiGraphics, x, y);
 
+        // *** IMPORTANT: Reset shader color before rendering tooltips ***
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+        // Now render tooltips without gray shader applied
+        renderTooltip(guiGraphics, mouseX, mouseY);
     }
+
 
     private void renderProgressBars(GuiGraphics guiGraphics, int x, int y) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -161,6 +181,7 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
                             18,                          // width
                             progress                     // height
                     );
+
                 }
             }
         }
@@ -178,6 +199,27 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
                     PacketDistributor.sendToServer(new OnOffButtonPayload(this.menu.blockEntity.getBlockPos()))));
         }
 
+    }
+
+    private void renderFilterInfo(GuiGraphics guiGraphics, int x, int y, int containerSlot) {
+        Item filteredItem = menu.blockEntity.getAllowedItem(containerSlot);
+
+        if (filteredItem != null) {
+            ItemStack fakeStack = new ItemStack(filteredItem);
+
+            // Find the actual slot
+            for (Slot slot : menu.slots) {
+                // Only render filtered ghost if the slot is EMPTY
+                if (slot.getItem().isEmpty()) {
+                    if (slot instanceof ConditionalSlotItemHandler cSlot && cSlot.getContainerSlot() == containerSlot) {
+                        RenderSystem.setShaderColor(0.7f, 0.7f, 0.7f, 0.5f);
+                        guiGraphics.renderFakeItem(fakeStack, x + slot.x, y + slot.y);
+                        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Nullable
@@ -233,4 +275,67 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
             guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons." + this.menu.blockEntity.errorMessage), mouseX, mouseY);
         }
     }
+
+    private void renderFilterTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 40, -17, 19, 18)) {
+            List<Component> tooltipLines = new ArrayList<>();
+
+            if (filteringEnabled) {
+                tooltipLines.add(Component.translatable("gui.casting.buttons.filtering_enabled"));
+
+                Map<Item, Integer> itemCounts = new HashMap<>();
+
+                for (int slot = 0; slot < menu.blockEntity.enabledSlots; slot++) {
+                    Item filteredItem = menu.blockEntity.getAllowedItem(slot);
+                    if (filteredItem != null && filteredItem != Items.AIR) {
+                        int count = menu.blockEntity.itemHandler.getStackInSlot(slot).getCount();
+                        itemCounts.put(filteredItem, itemCounts.getOrDefault(filteredItem, 0) + count);
+                    }
+                }
+
+                // Add aggregated items to tooltip
+                for (Map.Entry<Item, Integer> entry : itemCounts.entrySet()) {
+                    String itemName = entry.getKey().getName(new ItemStack(entry.getKey())).getString();
+                    int totalCount = entry.getValue();
+                    tooltipLines.add(Component.literal("- " + itemName + " × " + totalCount));
+                }
+
+            } else {
+                tooltipLines.add(Component.translatable("gui.casting.buttons.filtering_disabled"));
+            }
+
+            guiGraphics.renderTooltip(this.font, tooltipLines, Optional.empty(), mouseX, mouseY);
+        }
+    }
+
+
+
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+        boolean handled = super.mouseClicked(mouseX, mouseY, mouseButton);
+
+        if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 41, topPos - 17, 0, 0, 19, 18)) {
+            if (!filteringEnabled) {
+                for (int slot = 0; slot < menu.blockEntity.enabledSlots; slot++) {
+                    ItemStack item = menu.blockEntity.itemHandler.getStackInSlot(slot);
+                    if (!item.isEmpty()) {
+                        PacketDistributor.sendToServer(new ControllerFilteredInventoryPayload(
+                                slot, item, menu.blockEntity.getBlockPos()));
+                    }
+                }
+                filteringEnabled = true;
+            } else {
+                for (int slot = 0; slot < menu.blockEntity.enabledSlots; slot++) {
+                    PacketDistributor.sendToServer(new ControllerFilteredInventoryPayload(
+                            slot, ItemStack.EMPTY, menu.blockEntity.getBlockPos()));
+                }
+                filteringEnabled = false;
+            }
+        }
+
+        return handled;
+    }
+
+
 }
