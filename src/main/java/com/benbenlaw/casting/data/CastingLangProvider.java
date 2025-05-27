@@ -99,30 +99,30 @@ public class CastingLangProvider extends LanguageProvider {
         addItemTranslation("repairing_mold", "Repairing Mold");
 
         //Equipment Modifiers
-        addItemTranslation("auto_smelt", "Auto Smelt");
-        addItemTranslation("beheading", "Beheading");
-        addItemTranslation("efficiency", "Efficiency");
-        addItemTranslation("excavation", "Excavation");
-        addItemTranslation("fortune", "Fortune");
-        addItemTranslation("ignite", "Ignite");
-        addItemTranslation("knockback", "Knockback");
-        addItemTranslation("lifesteal", "Lifesteal");
-        addItemTranslation("looting", "Looting");
-        addItemTranslation("magnet", "Magnet");
-        addItemTranslation("protection", "Protection");
-        addItemTranslation("repairing", "Repairing");
-        addItemTranslation("sharpness", "Sharpness");
-        addItemTranslation("silk_touch", "Silk Touch");
-        addItemTranslation("step_assist", "Step Assist");
-        addItemTranslation("teleporting", "Teleporting");
-        addItemTranslation("torch_placing", "Torch Placing");
-        addItemTranslation("unbreaking", "Unbreaking");
-        addItemTranslation("water_walker", "Water Walker");
-        addItemTranslation("lava_walker", "Lava Walker");
-        addItemTranslation("speed", "Speed");
-        addItemTranslation("water_breathing", "Water Breathing");
-        addItemTranslation("night_vision", "Night Vision");
-        addItemTranslation("flight", "Flight");
+        addItemTranslation("auto_smelt", "Equipment Modifier: Auto Smelt");
+        addItemTranslation("beheading", "Equipment Modifier: Beheading");
+        addItemTranslation("efficiency", "Equipment Modifier: Efficiency");
+        addItemTranslation("excavation", "Equipment Modifier: Excavation");
+        addItemTranslation("fortune", "Equipment Modifier: Fortune");
+        addItemTranslation("ignite", "Equipment Modifier: Ignite");
+        addItemTranslation("knockback", "Equipment Modifier: Knockback");
+        addItemTranslation("lifesteal", "Equipment Modifier: Lifesteal");
+        addItemTranslation("looting", "Equipment Modifier: Looting");
+        addItemTranslation("magnet", "Equipment Modifier: Magnet");
+        addItemTranslation("protection", "Equipment Modifier: Protection");
+        addItemTranslation("repairing", "Equipment Modifier: Repairing");
+        addItemTranslation("sharpness", "Equipment Modifier: Sharpness");
+        addItemTranslation("silk_touch", "Equipment Modifier: Silk Touch");
+        addItemTranslation("step_assist", "Equipment Modifier: Step Assist");
+        addItemTranslation("teleporting", "Equipment Modifier: Teleporting");
+        addItemTranslation("torch_placing", "Equipment Modifier: Torch Placing");
+        addItemTranslation("unbreaking", "Equipment Modifier: Unbreaking");
+        addItemTranslation("water_walker", "Equipment Modifier: Water Walker");
+        addItemTranslation("lava_walker", "Equipment Modifier: Lava Walker");
+        addItemTranslation("speed", "Equipment Modifier: Speed");
+        addItemTranslation("water_breathing", "Equipment Modifier: Water Breathing");
+        addItemTranslation("night_vision", "Equipment Modifier: Night Vision");
+        addItemTranslation("flight", "Equipment Modifier: Flight");
 
         //Tooltips
         addTooltipTranslation("information.repairing_mold", "When used in the Equipment Modifier, this will allow you to repair your equipment using its molten variant!");

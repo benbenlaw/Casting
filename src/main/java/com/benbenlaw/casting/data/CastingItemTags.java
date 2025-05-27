@@ -3,6 +3,7 @@ package com.benbenlaw.casting.data;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.item.CastingItems;
+import com.benbenlaw.casting.item.EquipmentModifierItems;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.tag.ModdedTagBuilder;
 import com.benbenlaw.core.tag.ResourceNames;
@@ -29,6 +30,16 @@ public class CastingItemTags extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
+        //Can be disabled with shift modifiers
+        tag(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT)
+                .add(EquipmentModifierItems.AUTO_SMELT.asItem())
+                .add(EquipmentModifierItems.EXCAVATION.asItem())
+                .add(EquipmentModifierItems.STEP_ASSIST.asItem())
+                .add(EquipmentModifierItems.SILK_TOUCH.asItem())
+                .add(EquipmentModifierItems.WATER_WALKER.asItem())
+                .add(EquipmentModifierItems.LAVA_WALKER.asItem());
+
+        //Bricks
         tag(Tags.Items.BRICKS).add(CastingItems.BLACK_BRICK.asItem());
 
         //Controller Floors

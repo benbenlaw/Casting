@@ -5,6 +5,11 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 test change to see if this works
 
+2.0.8
+Fixed equipment modifier names
+Fixed equipment modifiers that can be disabled with shift not showing its tool tip
+Fixed equipment modifier not showing the hold shift for more information tool tip
+
 2.0.7
 Fixed Molten Black Brick color
 Added coal ore processing

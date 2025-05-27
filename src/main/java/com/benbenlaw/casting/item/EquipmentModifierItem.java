@@ -63,8 +63,7 @@ public class EquipmentModifierItem extends Item {
 
 
 
-        }
-        else if (stack.has(CastingDataComponents.FLUID_TYPE)) {
+        } else {
             components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
     }

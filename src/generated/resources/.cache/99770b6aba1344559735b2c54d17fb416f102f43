@@ -1,4 +1,5 @@
-// 1.21.1	2025-05-26T09:33:43.3837295	Tags for minecraft:item mod id casting
+// 1.21.1	2025-05-27T18:39:36.0100166	Tags for minecraft:item mod id casting
+7aa1aa828c12e2ca0df232c98ef8b6d0a9c775e3 data/casting/tags/item/can_be_disabled_with_shift.json
 8e7c5beb2a472ddc8018ff39621cdf5c000a0b48 data/casting/tags/item/controller_extra_blocks.json
 2496cb4438ebf9069c618a9e27e0eb65f90323d1 data/casting/tags/item/controller_floors.json
 8dd160564f5faf1c1f7b6ae227d6a8b596094c75 data/casting/tags/item/controller_tanks.json
