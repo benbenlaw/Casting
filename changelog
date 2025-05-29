@@ -5,6 +5,19 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 test change to see if this works
 
+2.0.9
+Updated Multiblock Textures and Black Brick texture thanks @Yuki
+Fixed simple tank recipe
+Tweaked simple controller recipe
+Added back ingot mold recipe using bricks in the middle
+Fixed melting black brick item giving too much black brick
+Removed vanilla brick melting to molten black brick
+Add clay melting to molten black brick
+Added black brick item from molten black brick recipe
+Reduce the amount of molten black brick needed for multiblock recipe to 4000mb from 8000mb
+Added coal recipe to make gem mold
+Added "casting:ball_items" tag for items that can be used to create the ball mold
+
 2.0.8
 Fixed equipment modifier names
 Fixed equipment modifiers that can be disabled with shift not showing its tool tip

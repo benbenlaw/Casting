@@ -7,7 +7,7 @@
   ],
   "type": "casting:solidifier",
   "fluid": {
-    "amount": 8000,
+    "amount": 4000,
     "id": "casting:molten_black_brick"
   },
   "mold": {

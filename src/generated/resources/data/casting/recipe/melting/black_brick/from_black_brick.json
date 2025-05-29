@@ -12,7 +12,7 @@
   },
   "meltingTemp": 1000,
   "output": {
-    "amount": 1000,
+    "amount": 250,
     "id": "casting:molten_black_brick"
   }
 }

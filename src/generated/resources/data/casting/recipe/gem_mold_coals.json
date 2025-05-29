@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:ball_items"
+        "tag": "minecraft:coals"
       }
     }
   ],
@@ -15,7 +15,7 @@
       "item": "casting:black_brick"
     },
     "B": {
-      "tag": "c:ball_items"
+      "tag": "minecraft:coals"
     }
   },
   "pattern": [
@@ -25,6 +25,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "casting:ball_mold"
+    "id": "casting:gem_mold"
   }
 }

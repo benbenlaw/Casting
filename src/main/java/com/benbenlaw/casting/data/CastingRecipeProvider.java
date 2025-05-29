@@ -55,24 +55,24 @@ public class CastingRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "casting:smelting/black_bricks");
 
         //Multiblock Crafting
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.CONTROLLER.toStack(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 4000), CastingBlocks.CONTROLLER.toStack(),
                 CastingBlocks.MULTIBLOCK_CONTROLLER,"multiblock/controller", consumer);
 
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.TANK.toStack(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 4000), CastingBlocks.TANK.toStack(),
                 CastingBlocks.MULTIBLOCK_FUEL_TANK,"multiblock/fuel_tank", consumer);
 
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.SOLIDIFIER.toStack(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 4000), CastingBlocks.SOLIDIFIER.toStack(),
                 CastingBlocks.MULTIBLOCK_SOLIDIFIER,"multiblock/solidifier", consumer);
 
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.MIXER.toStack(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 4000), CastingBlocks.MIXER.toStack(),
                 CastingBlocks.MULTIBLOCK_MIXER,"multiblock/mixer", consumer);
 
         //Change this in the future
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), CastingBlocks.MULTIBLOCK_FUEL_TANK.toStack(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 4000), CastingBlocks.MULTIBLOCK_FUEL_TANK.toStack(),
                 CastingBlocks.MULTIBLOCK_VALVE,"multiblock/valve", consumer);
 
         //Change this in the future
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 8000), Items.GLASS.getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 4000), Items.GLASS.getDefaultInstance(),
                 CastingBlocks.MULTIBLOCK_COOLANT_TANK,"multiblock/coolant_tank", consumer);
 
 
@@ -103,34 +103,35 @@ public class CastingRecipeProvider extends RecipeProvider {
                 .pattern("BBB")
                 .pattern("BGB")
                 .pattern("BBB")
-                .define('B', CastingBlocks.BLACK_BRICKS.get())
+                .define('B', CastingItems.BLACK_BRICK.get())
                 .define('G', Tags.Items.GLASS_BLOCKS)
                 .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.CONTROLLER.get(), 1)
-                .pattern("BBB")
+                .pattern("ABA")
                 .pattern("B B")
-                .pattern("BBB")
+                .pattern("ABA")
+                .define('A', CastingItems.BLACK_BRICK.get())
                 .define('B', CastingBlocks.BLACK_BRICKS.get())
                 .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.SOLIDIFIER.get(), 1)
                 .pattern("BBB")
-                .pattern("K K")
+                .pattern("A A")
                 .pattern("BBB")
+                .define('A', CastingItems.BLACK_BRICK.get())
                 .define('B', CastingBlocks.BLACK_BRICKS.get())
-                .define('K', CastingItems.BLACK_BRICK.get())
                 .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.MIXER.get(), 1)
                 .pattern("BBB")
-                .pattern("T T")
+                .pattern("A A")
                 .pattern("BBB")
                 .define('B', CastingBlocks.BLACK_BRICKS.get())
-                .define('T', CastingBlocks.TANK)
+                .define('A', CastingBlocks.TANK)
                 .unlockedBy("has_black_brick", has(CastingBlocks.BLACK_BRICKS.get()))
                 .save(consumer);
 
@@ -186,10 +187,12 @@ public class CastingRecipeProvider extends RecipeProvider {
         createMoldRecipe(CastingItems.ROD_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("rods"), consumer);
         createMoldRecipe(CastingItems.NUGGET_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("nuggets"), consumer);
         createMoldRecipe(CastingItems.INGOT_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("ingots"), consumer);
+        createMoldRecipeWithID(CastingItems.INGOT_MOLD.get(), Tags.Items.BRICKS, consumer, "ingot_mold_bricks");
         createMoldRecipe(CastingItems.BLOCK_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("storage_blocks"), consumer);
         createMoldRecipe(CastingItems.GEM_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("gems"), consumer);
+        createMoldRecipeWithID(CastingItems.GEM_MOLD.get(), ItemTags.COALS, consumer, "gem_mold_coals");
         createMoldRecipe(CastingItems.DUST_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("dusts"), consumer);
-        createMoldRecipe(CastingItems.BALL_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("balls"), consumer);
+        createMoldRecipe(CastingItems.BALL_MOLD.get(), CastingTags.Items.BALL_ITEMS, consumer);
         createMoldRecipe(CastingItems.WIRE_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("wires"), consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingItems.REPAIRING_MOLD.get(), 1)
                 .pattern(" A ")
@@ -318,14 +321,17 @@ public class CastingRecipeProvider extends RecipeProvider {
         //Black Brick
         createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 1000), CastingBlocks.BLACK_BRICKS.get(), FluidData.getTempByName("molten_black_brick"),
                 "black_brick/from_black_bricks", consumer);
-        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 1000), CastingItems.BLACK_BRICK.get(), FluidData.getTempByName("molten_black_brick"),
+        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 250), CastingItems.BLACK_BRICK.get(), FluidData.getTempByName("molten_black_brick"),
                 "black_brick/from_black_brick", consumer);
-        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 2000), Items.BRICKS, FluidData.getTempByName("molten_black_brick"),
-                "black_brick/from_bricks", consumer);
-        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 500), Items.BRICK, FluidData.getTempByName("molten_black_brick"),
-                "black_brick/from_brick", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 1000), Items.CLAY, FluidData.getTempByName("molten_black_brick"),
+                "black_brick/from_clay_block", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 250), Items.CLAY_BALL, FluidData.getTempByName("molten_black_brick"),
+                "black_brick/from_clay", consumer);
+
         createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
                 CastingBlocks.BLACK_BRICKS.get(), "black_brick/block", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 250), CastingItems.INGOT_MOLD.asItem().getDefaultInstance(),
+                CastingItems.BLACK_BRICK.get(), "black_brick/black_brick", consumer);
 
         //Soul
         createSimpleMeltingRecipe(getFluidStack("molten_soul", 1000), ItemTags.SOUL_FIRE_BASE_BLOCKS, FluidData.getTempByName("molten_soul"),
@@ -547,7 +553,18 @@ public class CastingRecipeProvider extends RecipeProvider {
                 .define('B', input)
                 .unlockedBy("has_black_brick", has(CastingItems.BLACK_BRICK.get()))
                 .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(input))));
+    }
 
+    public void createMoldRecipeWithID(ItemLike output, TagKey<Item> input, RecipeOutput consumer, String id) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, output, 1)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', CastingItems.BLACK_BRICK.get())
+                .define('B', input)
+                .unlockedBy("has_black_brick", has(CastingItems.BLACK_BRICK.get()))
+                .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(input))),
+                        "casting:" + id);
     }
 
     public void toolModifierRecipes(RecipeOutput consumer, SizedIngredient ingredient, FluidStack fluid, String effect) {

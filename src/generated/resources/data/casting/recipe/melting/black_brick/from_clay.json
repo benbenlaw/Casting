@@ -2,17 +2,17 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:item_exists",
-      "item": "minecraft:brick"
+      "item": "minecraft:clay_ball"
     }
   ],
   "type": "casting:melting",
   "input": {
     "count": 1,
-    "item": "minecraft:brick"
+    "item": "minecraft:clay_ball"
   },
   "meltingTemp": 1000,
   "output": {
-    "amount": 500,
+    "amount": 250,
     "id": "casting:molten_black_brick"
   }
 }

@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "A": {
+      "item": "casting:black_brick"
+    },
     "B": {
       "item": "casting:black_bricks"
-    },
-    "K": {
-      "item": "casting:black_brick"
     }
   },
   "pattern": [
     "BBB",
-    "K K",
+    "A A",
     "BBB"
   ],
   "result": {

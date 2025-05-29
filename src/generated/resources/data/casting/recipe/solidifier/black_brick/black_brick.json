@@ -2,20 +2,20 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:item_exists",
-      "item": "casting:multiblock_controller"
+      "item": "casting:black_brick"
     }
   ],
   "type": "casting:solidifier",
   "fluid": {
-    "amount": 4000,
+    "amount": 250,
     "id": "casting:molten_black_brick"
   },
   "mold": {
     "count": 1,
-    "item": "casting:controller"
+    "item": "casting:ingot_mold"
   },
   "output": {
     "count": 1,
-    "item": "casting:multiblock_controller"
+    "item": "casting:black_brick"
   }
 }

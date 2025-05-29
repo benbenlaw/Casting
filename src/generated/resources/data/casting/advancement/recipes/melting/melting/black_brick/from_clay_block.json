@@ -1,20 +1,16 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:tag_empty",
-        "tag": "c:ball_items"
-      }
+      "type": "neoforge:item_exists",
+      "item": "minecraft:clay"
     }
   ],
-  "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_black_brick": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "casting:black_brick"
+            "items": "minecraft:clay"
           }
         ]
       },
@@ -22,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:ball_mold"
+        "recipe": "casting:melting/black_brick/from_clay_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -30,12 +26,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_black_brick"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "casting:ball_mold"
+      "casting:melting/black_brick/from_clay_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

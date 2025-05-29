@@ -39,6 +39,16 @@ public class CastingItemTags extends ItemTagsProvider {
                 .add(EquipmentModifierItems.WATER_WALKER.asItem())
                 .add(EquipmentModifierItems.LAVA_WALKER.asItem());
 
+        //Ball Items
+        tag(CastingTags.Items.BALL_ITEMS)
+                .add(Items.SNOWBALL)
+                .add(Items.SLIME_BALL)
+                .add(Items.MAGMA_CREAM)
+                .add(Items.FIRE_CHARGE)
+                .add(Items.ENDER_PEARL)
+                .add(Items.ENDER_EYE)
+                .add(Items.CLAY_BALL);
+
         //Bricks
         tag(Tags.Items.BRICKS).add(CastingItems.BLACK_BRICK.asItem());
 

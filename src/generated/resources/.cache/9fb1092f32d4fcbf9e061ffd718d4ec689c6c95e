@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-27T09:30:34.2573518	Recipes
+// 1.21.1	2025-05-29T09:10:12.608379	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -25,8 +25,8 @@ d5b5e1375c6d22c3c9d74a6c3e82dd395500919c data/casting/advancement/recipes/meltin
 55054628a3329afb0b06c8a2b1c2600005abc9db data/casting/advancement/recipes/melting/melting/aluminum/from_wire.json
 a27b6bd62f213dcd1181b28e3f6355e4a94ec87f data/casting/advancement/recipes/melting/melting/black_brick/from_black_brick.json
 fd46e5edf08119e00b05f0f144b99ab164ed2699 data/casting/advancement/recipes/melting/melting/black_brick/from_black_bricks.json
-b5c58d53844bfe046758d7cdc8cbd1778142e5d0 data/casting/advancement/recipes/melting/melting/black_brick/from_brick.json
-f98da81031f342483a522b6e0f0ba824e9f14148 data/casting/advancement/recipes/melting/melting/black_brick/from_bricks.json
+5b4f8ee27a607bd841b8e8800fdfe52244d3535a data/casting/advancement/recipes/melting/melting/black_brick/from_clay.json
+980d425e9095112f4fd50181f4365f20b498674e data/casting/advancement/recipes/melting/melting/black_brick/from_clay_block.json
 262675da23106fb8940632be59551a7745d881cb data/casting/advancement/recipes/melting/melting/blaze/from_blaze_powder.json
 4272b88028874e2422e81248db1275be53db344b data/casting/advancement/recipes/melting/melting/blaze/from_blaze_rod.json
 5613e6416618cffc03daf2f226594bf54ccc9de5 data/casting/advancement/recipes/melting/melting/brass/from_dust.json
@@ -517,7 +517,7 @@ b86bf981c47d8cb7b96c4378e53e7d519e96705f data/casting/advancement/recipes/meltin
 32b2024c5bcc93eca4ac07ee711036834f52992f data/casting/advancement/recipes/melting/melting/zinc/from_rod.json
 bc5ad82a2ab27fb80b25aecabc0946020b5a6f8f data/casting/advancement/recipes/melting/melting/zinc/from_storage_block.json
 71a7d54b6016ae2b919e71e64afffba34511b7b0 data/casting/advancement/recipes/melting/melting/zinc/from_wire.json
-007de15c98255c3c75c6607821f6cde74e7c8fdd data/casting/advancement/recipes/misc/ball_mold.json
+ff5ef2223e44ae9dc0bcf5d6d46b6abc25dd9928 data/casting/advancement/recipes/misc/ball_mold.json
 76e841a32f42d87c7f76bbca342d1d9fb043260e data/casting/advancement/recipes/misc/black_bricks.json
 15373ca772246cedcc3be1193ad17313b7550973 data/casting/advancement/recipes/misc/black_brick_glass.json
 e318cabd06587d8b062169f327d090efa10ab68d data/casting/advancement/recipes/misc/block_mold.json
@@ -527,7 +527,9 @@ e318cabd06587d8b062169f327d090efa10ab68d data/casting/advancement/recipes/misc/b
 5db24d10721aa8b1433999b4e0d13a3ac96125c9 data/casting/advancement/recipes/misc/fluid_mover.json
 95fb738102afd2057b2dc8ba602f519017cd82dd data/casting/advancement/recipes/misc/gear_mold.json
 a247af7a85c754b217732f04ae81da83a088d639 data/casting/advancement/recipes/misc/gem_mold.json
+db7364ddd0d1058eb605497bba79a16721ae0295 data/casting/advancement/recipes/misc/gem_mold_coals.json
 aa7999f97ac3dd6e52c73005bb6a6a651ad78162 data/casting/advancement/recipes/misc/ingot_mold.json
+a536d6bc49132cfa8bd9a197610974637e21f208 data/casting/advancement/recipes/misc/ingot_mold_bricks.json
 8182a5f87ee10198af833a5cd79a24e9dca87f0a data/casting/advancement/recipes/misc/mixer.json
 c5d3212e77710066d7e2b0f05da42e1563b2f94f data/casting/advancement/recipes/misc/mixer_whisk.json
 67282f7c8b5575602df7509680c8350a694152d5 data/casting/advancement/recipes/misc/nugget_mold.json
@@ -569,6 +571,7 @@ ff197d8fed4751577bed48a1ccdf022068f0a312 data/casting/advancement/recipes/solidi
 97e3fcbe66e01e3c11c81bf2c686139e7292670e data/casting/advancement/recipes/solidifier/solidifier/aluminum/rod.json
 8fcf61fd803aac7cd223326edf33cc732df3e45e data/casting/advancement/recipes/solidifier/solidifier/aluminum/storage_block.json
 62fab9aae9704620fbc0e9d3905a6f3eb813457b data/casting/advancement/recipes/solidifier/solidifier/aluminum/wire.json
+ce9ef5a78d06beff474a6f06386acd373438776a data/casting/advancement/recipes/solidifier/solidifier/black_brick/black_brick.json
 76bd7d6a7e3ba14fcda59932372637930a4dbe14 data/casting/advancement/recipes/solidifier/solidifier/black_brick/block.json
 84aae70578043e2b44d03b18846a9536ab13e460 data/casting/advancement/recipes/solidifier/solidifier/blaze/dust.json
 87062517ec5d7e92f7b159fa410faefec8b6d2eb data/casting/advancement/recipes/solidifier/solidifier/blaze/rod.json
@@ -965,11 +968,11 @@ c094d08b86ea8a75308d617cd87b9ccbb68b542a data/casting/advancement/recipes/tool_m
 7447bcdb23da6a7ca33a7154e46f5f844bddc89d data/casting/advancement/recipes/tool_modifier/equipment_modifier/unbreaking_from_fluid.json
 cadb11781ab449ec7474ba4089136c7509403594 data/casting/advancement/recipes/tool_modifier/equipment_modifier/water_breathing_from_item.json
 221b25fd8c0921af1a0a58286b965b4cf4e32fdb data/casting/advancement/recipes/tool_modifier/equipment_modifier/water_walker_from_item.json
-bef914b3d3a2c617ae322ff0d3920c3dd014d59b data/casting/recipe/ball_mold.json
+63286da65c4b5a090ce97c19837848d4998c2b9f data/casting/recipe/ball_mold.json
 282666630dc26069fa492dbb80d3d03ff71c2ed4 data/casting/recipe/black_bricks.json
 4a5339d0d92738b04ddf0c466c03c6bf69e2a09b data/casting/recipe/black_brick_glass.json
 571e3134ae660a531b3160292e2e2e566c64b427 data/casting/recipe/block_mold.json
-2c08b0fcaf863c6edc4a87a2540b398feda0af2c data/casting/recipe/controller.json
+fba40ad230d6f2d569b6b7e1125b10c757ae2386 data/casting/recipe/controller.json
 1e51bb41a9fb89285cfdb3fcba94dc58a5ae429e data/casting/recipe/coolant/chilled_water.json
 d77889d69acbe950d6b80b2bebf7c3e4b515949d data/casting/recipe/coolant/iced_water.json
 98945097b100377f778622975630d7459fd0ad06 data/casting/recipe/coolant/molten_diamond.json
@@ -1011,7 +1014,9 @@ bcc89e2e4cf42ea291c4eaa7c1369c094dfbb538 data/casting/recipe/fuel/molten_coal.js
 8ff8b57e04986f775f4062c9f42dddec38da315b data/casting/recipe/fuel/molten_uranium.json
 04a2f98e1f1a4ef5e8b5fedb5cd9ef7b832c3592 data/casting/recipe/gear_mold.json
 ea3357838b9c9cd758f8c199a4a98d5cd3b07bd2 data/casting/recipe/gem_mold.json
+7988069b5d6fe108069a2c421987c6a18296b516 data/casting/recipe/gem_mold_coals.json
 48c2c1471fe53df868001f85f673f529d58e6b54 data/casting/recipe/ingot_mold.json
+9676eb2f525cb8b4e13f03314c67d0883d54accb data/casting/recipe/ingot_mold_bricks.json
 d64c81a710471d39b04c1f5ab9d6458f29be8e89 data/casting/recipe/melting/aluminum/from_dust.json
 c01cbe376e65c489c5928e8add4a692157dc4e8e data/casting/recipe/melting/aluminum/from_gear.json
 85c9ef4db5417892d34decb4d2c31addf016c956 data/casting/recipe/melting/aluminum/from_gem.json
@@ -1024,10 +1029,10 @@ c55aca16b2634ae474e30c38a4d2e31147d799ee data/casting/recipe/melting/aluminum/fr
 ddc7016174d12fadf66c94b1fb8c313ec8f2f33c data/casting/recipe/melting/aluminum/from_rod.json
 eb6c065bc0171bc14982907fff2915fd9784036b data/casting/recipe/melting/aluminum/from_storage_block.json
 d3de5d9562cb1e4836e3bee94654fc2d9f313616 data/casting/recipe/melting/aluminum/from_wire.json
-3a1ce48207f5152be6903a16f059367424651175 data/casting/recipe/melting/black_brick/from_black_brick.json
+95765030746fd403a091ae4625a1e3d14a46bddc data/casting/recipe/melting/black_brick/from_black_brick.json
 c6434cf5e1d3d6319e7ecddc285f224bcdce16b4 data/casting/recipe/melting/black_brick/from_black_bricks.json
-db455af6ca5f9d971f562d440cdad50fd518241b data/casting/recipe/melting/black_brick/from_brick.json
-b2b29336b05c6ee428d73252c12dcbcc33ec8fcd data/casting/recipe/melting/black_brick/from_bricks.json
+58737d95ff4678c2c3b63b135be8baeb74e58816 data/casting/recipe/melting/black_brick/from_clay.json
+d81f29955f1fd3805d49269de6e3baefba6dfddb data/casting/recipe/melting/black_brick/from_clay_block.json
 c3670b08aeaae3beb6a902b887fc4ca24721ee19 data/casting/recipe/melting/blaze/from_blaze_powder.json
 774aa27969b492fd911975e96f04528f9c983a94 data/casting/recipe/melting/blaze/from_blaze_rod.json
 e7a414cee8f9d300e2db72d3f9b32829d0c87284 data/casting/recipe/melting/brass/from_dust.json
@@ -1518,7 +1523,7 @@ f7f29ba8225e02c398977d62070ac15732c4c5a9 data/casting/recipe/melting/zinc/from_r
 01fd8afdee3e2973b6735cdcc6092e7446361507 data/casting/recipe/melting/zinc/from_rod.json
 78a203d674e7fb2696441016dad446fcbb60d958 data/casting/recipe/melting/zinc/from_storage_block.json
 ed085ec51a265d05eaee9713d2e7b577a92301b9 data/casting/recipe/melting/zinc/from_wire.json
-9aa29cf1a35fdbe86706589286f6a92c2882ac6a data/casting/recipe/mixer.json
+1dde37e2d86791f842f33a5a4a3896e66873aeac data/casting/recipe/mixer.json
 7138333a8b9bd725311c28766a6a280189f7ad86 data/casting/recipe/mixer/brass.json
 e32adfd1412b14a5ccce82239c38fc81410586e6 data/casting/recipe/mixer/bronze.json
 64597436e7a01199404933b41283bc1d491103a5 data/casting/recipe/mixer/conductive_alloy.json
@@ -1547,7 +1552,7 @@ b4e01aefc173b6d5eb90c7fdb933d22bbcf49064 data/casting/recipe/plate_mold.json
 aadeb898dc5c526d8df7ac3617fc6f82661ebfab data/casting/recipe/rod_mold.json
 07177a420d1148f2d36d532347afbd9c26446c5a data/casting/recipe/smelting/black_brick.json
 876f3cd5deb80984932ca464349532a39cae626d data/casting/recipe/smelting/black_bricks.json
-d9cc4445eb934b239184dec1a9e694e208cbc565 data/casting/recipe/solidifier.json
+4338c4669a4ff7ec3574dd12d7869a40af55d055 data/casting/recipe/solidifier.json
 b31b6f053a8f83007d93577d532aac286e57cad5 data/casting/recipe/solidifier/aluminum/dust.json
 77b0c2b6e86a8815f5426a4f3468094467108a25 data/casting/recipe/solidifier/aluminum/gear.json
 e5a3ec4b1398b7ff6a57af62229da98e75d8b906 data/casting/recipe/solidifier/aluminum/gem.json
@@ -1557,6 +1562,7 @@ b273d5e47a51a3f1c923cd7b03d47bd638680962 data/casting/recipe/solidifier/aluminum
 5885d356dcf32642e976131143bc738ccea2659e data/casting/recipe/solidifier/aluminum/rod.json
 fe3ff7f7cee89c950da568c36453c9d6e24c9753 data/casting/recipe/solidifier/aluminum/storage_block.json
 63f9ff2f94572debba7d6c8506148454257bb4d0 data/casting/recipe/solidifier/aluminum/wire.json
+4d869c800afc643432e03d5ea035d59ad00b1512 data/casting/recipe/solidifier/black_brick/black_brick.json
 68e5a3eaad299b425bd0c7b05dc1da16f000f022 data/casting/recipe/solidifier/black_brick/block.json
 4cbf5761f963e25518a274f3d0f2389f197d4183 data/casting/recipe/solidifier/blaze/dust.json
 f07ba53daa0b1e31b9427c2433af99f9c0f65a3d data/casting/recipe/solidifier/blaze/rod.json
@@ -1748,12 +1754,12 @@ f87e5be9b338869fc5414e74b3f340d764b37749 data/casting/recipe/solidifier/lumium/d
 8387604435ffd81c9ec175c82922c51fb855711c data/casting/recipe/solidifier/lumium/rod.json
 652e85b1f53b07004bf7e08f1181ff6d31d314fa data/casting/recipe/solidifier/lumium/storage_block.json
 a5387b056eafd076bb471358feaf69a30d58ff2f data/casting/recipe/solidifier/lumium/wire.json
-9265b457c2a65abf6e28fe16f7508099b7cedd3b data/casting/recipe/solidifier/multiblock/controller.json
-8102e415de476cb32f24325f6b2b7cc0a9d8dbad data/casting/recipe/solidifier/multiblock/coolant_tank.json
-8d597dbb9471c3933f05338b5068440fceb1a8f1 data/casting/recipe/solidifier/multiblock/fuel_tank.json
-0bdac6b7f3c99758e2e2f6ca8b2e2053535e9711 data/casting/recipe/solidifier/multiblock/mixer.json
-6e13340689442ab86261c19f8969341500eb89d7 data/casting/recipe/solidifier/multiblock/solidifier.json
-06a1a48cb9ea6a25597d226344eecbc89efa4fec data/casting/recipe/solidifier/multiblock/valve.json
+85cd32529adc735d8b922a85d985c897a170cc40 data/casting/recipe/solidifier/multiblock/controller.json
+be9cccdc7419db58386ed0141f66916a22418cc0 data/casting/recipe/solidifier/multiblock/coolant_tank.json
+d1a480a0719f633b453e9e713cde7f60d5f015eb data/casting/recipe/solidifier/multiblock/fuel_tank.json
+1c9ec96ec006e5f6d43c281aeff7acbf05708f6b data/casting/recipe/solidifier/multiblock/mixer.json
+07e47b134ff47575ed70ad602eeea5b624b9cee5 data/casting/recipe/solidifier/multiblock/solidifier.json
+c91d61639e3ae75475ce6c6424d9c363c4a9a194 data/casting/recipe/solidifier/multiblock/valve.json
 5e37c6d958afa9298f07f1a52509c769f35480cb data/casting/recipe/solidifier/netherite/dust.json
 32dd0951b09dbfeeecd5037300cf461a905c485b data/casting/recipe/solidifier/netherite/gear.json
 3d8c3dfc15a03ab8ef4fb1ebebeff8ac0c997754 data/casting/recipe/solidifier/netherite/gem.json
@@ -1929,5 +1935,5 @@ d0cbfb3fce37d31eecb3e86adb7dcb18f212ea50 data/casting/recipe/solidifier/zinc/ing
 332495e62af2711b1e4a72a2e8b1a63f50f25c10 data/casting/recipe/solidifier/zinc/rod.json
 67283bffabbfcbe9b7616608b71d78062f9e1983 data/casting/recipe/solidifier/zinc/storage_block.json
 58c98924feebd92f17ab570c3952370544a62e7f data/casting/recipe/solidifier/zinc/wire.json
-e325ad8e59a306df1afbb465535ffb546bcbab58 data/casting/recipe/tank.json
+ffb1316023536ca8109b545623667f2f4ee2a7a6 data/casting/recipe/tank.json
 a87d0ae84b9835a882a91e1d49f6527ebdbd471f data/casting/recipe/wire_mold.json

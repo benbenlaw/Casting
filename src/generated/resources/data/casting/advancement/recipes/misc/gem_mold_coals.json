@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:ball_items"
+        "tag": "minecraft:coals"
       }
     }
   ],
@@ -22,7 +22,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:ball_mold"
+        "recipe": "casting:gem_mold_coals"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -35,7 +35,7 @@
   ],
   "rewards": {
     "recipes": [
-      "casting:ball_mold"
+      "casting:gem_mold_coals"
     ]
   }
 }
