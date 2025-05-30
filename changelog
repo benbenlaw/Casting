@@ -3,6 +3,14 @@ Changelog BBL Casting
 // TODO //
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
+- FIX VALVE BEN
+
+
+2.0.12
+Fixed some black quartz recipes
+
+2.0.11
+Performance improvements to the original casting blocks
 
 2.0.10
 Magnet now absorbs block drops if the inventory has space if not block drops as normal, updated tooltip (RUN DATA)

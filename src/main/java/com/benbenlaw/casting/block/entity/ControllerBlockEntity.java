@@ -413,9 +413,11 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
             }
         };
 
-        drainTanksIntoValidBlocks();
-        fuelInformation(level.getBlockEntity(worldPosition));
-        sync();
+
+        if (level.getGameTime() % 20 == 0) {
+            drainTanksIntoValidBlocks();
+            fuelInformation(level.getBlockEntity(worldPosition));
+        }
 
         boolean isPowered = false;
         boolean powerStateChanged = false;
@@ -473,6 +475,7 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
 
         if (currentPowered != isPowered) {
             level.setBlockAndUpdate(worldPosition, currentState.setValue(ControllerBlock.POWERED, isPowered));
+            sync();
         }
     }
 

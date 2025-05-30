@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-29T18:05:49.9032758	Recipes
+// 1.21.1	2025-05-30T10:51:46.3011247	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -574,8 +574,8 @@ ff197d8fed4751577bed48a1ccdf022068f0a312 data/casting/advancement/recipes/solidi
 ce9ef5a78d06beff474a6f06386acd373438776a data/casting/advancement/recipes/solidifier/solidifier/black_brick/black_brick.json
 76bd7d6a7e3ba14fcda59932372637930a4dbe14 data/casting/advancement/recipes/solidifier/solidifier/black_brick/block.json
 e5228ac9ce398102692ca6734c7f7fc265517155 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/block.json
-bb14aa618dd1b059a17c28002b3665d349598286 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/dust.json
-3109971661786a53559adfdc137253efbdd0ef60 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/gem.json
+21830fbff657c9aad8ccfb2302c4debf812bbaa6 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/dust.json
+34160923595672b2698fac046b00a7f7231d5c68 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/gem.json
 84aae70578043e2b44d03b18846a9536ab13e460 data/casting/advancement/recipes/solidifier/solidifier/blaze/dust.json
 87062517ec5d7e92f7b159fa410faefec8b6d2eb data/casting/advancement/recipes/solidifier/solidifier/blaze/rod.json
 4a2db4123113227ae3937bc870a1aefd9eb434b2 data/casting/advancement/recipes/solidifier/solidifier/brass/dust.json
@@ -1562,8 +1562,8 @@ fe3ff7f7cee89c950da568c36453c9d6e24c9753 data/casting/recipe/solidifier/aluminum
 139354eaea9395b76b316385db69c5e45bb5e8b7 data/casting/recipe/solidifier/black_brick/black_brick.json
 e3061e0449f32825f7e4509b828bc40f50a12b97 data/casting/recipe/solidifier/black_brick/block.json
 969385fa5ef66a1b382026af9ae977e1f767cafa data/casting/recipe/solidifier/black_quartz/block.json
-b2702269dae75140b7d581399edb9c0ae1cbb7ac data/casting/recipe/solidifier/black_quartz/dust.json
-7d0f25db3f86d6e3ecd4004423888211ebfd6f22 data/casting/recipe/solidifier/black_quartz/gem.json
+4501ae4939e93f30441f80b12db452f0a4ac5efb data/casting/recipe/solidifier/black_quartz/dust.json
+dee5ba02d3030276c335b9aeba51e4b6ae7d3342 data/casting/recipe/solidifier/black_quartz/gem.json
 b13cfc0f53195e9e330aeba974bbf74b8724d35f data/casting/recipe/solidifier/blaze/dust.json
 fdf4a0fb116225a1ab12c51b2c101b7bf86353dd data/casting/recipe/solidifier/blaze/rod.json
 894c873200637e91ee453f055911cff899587b41 data/casting/recipe/solidifier/brass/dust.json

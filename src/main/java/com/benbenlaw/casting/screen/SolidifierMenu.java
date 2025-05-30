@@ -59,6 +59,14 @@ public class SolidifierMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressBarWidth / maxProgress : 0;
     }
 
+    public int getProgress() {
+        return this.data.get(0);
+    }
+
+    public int getMaxProgress() {
+        return this.data.get(1);
+    }
+
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
     // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.

@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:gems/black_quartz"
+        "tag": "c:dusts/black_quartz"
       }
     }
   ],
@@ -13,7 +13,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#c:gems/black_quartz"
+            "items": "#c:dusts/black_quartz"
           }
         ]
       },

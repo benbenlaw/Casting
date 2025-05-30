@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:ores/black_quartz"
+        "tag": "c:gems/black_quartz"
       }
     }
   ],
@@ -19,6 +19,6 @@
   },
   "output": {
     "count": 1,
-    "tag": "c:ores/black_quartz"
+    "tag": "c:gems/black_quartz"
   }
 }

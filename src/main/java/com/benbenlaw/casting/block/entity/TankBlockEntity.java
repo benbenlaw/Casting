@@ -168,6 +168,5 @@ public class TankBlockEntity extends BlockEntity {
     }
 
     public void tick() {
-        sync();
     }
 }

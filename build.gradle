@@ -98,7 +98,17 @@ dependencies {
     compileOnly "curse.maven:selene-499980:6391012"
     runtimeOnly "curse.maven:selene-499980:6391012"
 
+    //observable
+    compileOnly "curse.maven:observable-509575:5733591"
+    runtimeOnly "curse.maven:observable-509575:5733591"
 
+    //arch
+    compileOnly "curse.maven:architectury-api-419699:5786327"
+    runtimeOnly "curse.maven:architectury-api-419699:5786327"
+
+    //Kotlin for Forge
+    compileOnly "curse.maven:kotlin-for-forge-351264:6497906"
+    runtimeOnly "curse.maven:kotlin-for-forge-351264:6497906"
 }
 
 tasks.withType(ProcessResources).configureEach {

@@ -27,6 +27,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
@@ -282,61 +283,87 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
 
     public void tick() {
         assert level != null;
-        if (!level.isClientSide()) {
-            RecipeInput inventory = new RecipeInput() {
-                @Override
-                public @NotNull ItemStack getItem(int index) {
-                    return itemHandler.getStackInSlot(index);
-                }
 
-                @Override
-                public int size() {
-                    return itemHandler.getSlots();
-                }
-            };
+        if (level.isClientSide()) return; // early exit for client side
 
-            sync();
-            fuelInformation(level.getBlockEntity(this.worldPosition));
-            //maxProgress = getMaxProgress();
-
-            if (itemHandler.getStackInSlot(0).isEmpty()) {
-                resetProgress();
-                return;
+        RecipeInput inventory = new RecipeInput() {
+            @Override
+            public @NotNull ItemStack getItem(int index) {
+                return itemHandler.getStackInSlot(index);
             }
 
-            boolean foundMatch = false;
+            @Override
+            public int size() {
+                return itemHandler.getSlots();
+            }
+        };
 
-            for (RecipeHolder<SolidifierRecipe> recipeHolder : level.getRecipeManager().getRecipesFor(SolidifierRecipe.Type.INSTANCE, inventory, level)) {
-                SolidifierRecipe recipe = recipeHolder.value();
-                if (recipe.mold().test(itemHandler.getStackInSlot(0)) && hasEnoughFluid(recipe.fluid()) && hasCorrectInputAmount(recipe.mold())) {
-                    FluidStack output = recipe.fluid();
+        // Call fuelInformation only once every 20 ticks (1 second)
+        if (level.getGameTime() % 20 == 0) {
+            fuelInformation(this);
+        }
 
-                    if (hasOutputSpaceMaking(this, recipe)) {
-                        progress++;
+        // Cache the input stack once
+        ItemStack inputStack = itemHandler.getStackInSlot(0);
+        if (inputStack.isEmpty()) {
+            resetProgress();
+            return;
+        }
 
-                        if (progress >= maxProgress) {
-                            extractFluid(output, output.getAmount());
+        boolean foundMatch = false;
 
-                            if (!itemHandler.getStackInSlot(0).is(CastingTags.Items.MOLDS)) {
-                                itemHandler.getStackInSlot(0).shrink(recipe.mold().count());
-                            }
-                            itemHandler.setStackInSlot(1, new ItemStack(recipe.output().getItems()[0].getItem(), recipe.output().count() + itemHandler.getStackInSlot(1).getCount()));
-                            setChanged();
-                            useFuel(this);
-                            resetProgress();
-                            sync();
+        // Cache output slot stack once to reduce repeated calls
+        ItemStack outputStack = itemHandler.getStackInSlot(1);
+
+        // Get all recipes once
+        List<RecipeHolder<SolidifierRecipe>> recipes = level.getRecipeManager()
+                .getRecipesFor(SolidifierRecipe.Type.INSTANCE, inventory, level);
+
+        for (RecipeHolder<SolidifierRecipe> recipeHolder : recipes) {
+            SolidifierRecipe recipe = recipeHolder.value();
+
+            // Cache recipe components for readability and perf
+            SizedIngredient mold = recipe.mold();
+            FluidStack requiredFluid = recipe.fluid();
+
+            if (mold.test(inputStack) && hasEnoughFluid(requiredFluid) && hasCorrectInputAmount(mold)) {
+                if (hasOutputSpaceMaking(this, recipe)) {
+                    progress++;
+
+                    if (progress >= maxProgress) {
+                        // Extract fluid once
+                        extractFluid(requiredFluid, requiredFluid.getAmount());
+
+                        // Shrink input stack only if not mold type
+                        if (!inputStack.is(CastingTags.Items.MOLDS)) {
+                            inputStack.shrink(mold.count());
                         }
-                        foundMatch = true;
-                        break;
-                    }
-                }
-            }
 
-            if (!foundMatch) {
-                resetProgress();
+                        // Efficiently update output stack count and item
+                        if (outputStack.isEmpty()) {
+                            itemHandler.setStackInSlot(1, recipe.output().getItems()[0]);
+                        } else {
+                            outputStack.grow(recipe.output().count());
+                            // If outputStack is not the same item, handle that case if needed (optional)
+                        }
+
+                        setChanged();
+                        useFuel(this);
+                        resetProgress();
+                        sync();
+                    }
+
+                    foundMatch = true;
+                    break; // no need to check other recipes
+                }
             }
         }
+
+        if (!foundMatch) {
+            resetProgress();
+        }
     }
+
 
     private boolean hasCorrectInputAmount(SizedIngredient mold) {
         return itemHandler.getStackInSlot(0).getCount() >= mold.count();
@@ -345,6 +372,7 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
 
     private void resetProgress() {
         progress = 0;
+        sync();
     }
 
     private void extractFluid(FluidStack output, int amount) {

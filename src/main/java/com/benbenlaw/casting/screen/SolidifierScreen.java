@@ -92,12 +92,14 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
 
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         renderProgressBars(guiGraphics);
-    //    renderTickRate(guiGraphics, mouseX, mouseY, x, y);
+        //    renderTickRate(guiGraphics, mouseX, mouseY, x, y);
 
         FluidTank fuelTank = new FluidTank(0);
         if (fuelTankEntity instanceof TankBlockEntity tankBlockEntity) {
             fuelTank = tankBlockEntity.FLUID_TANK;
         }
+
+        System.out.println("Fuel Tank Capacity: " + fuelTank.getFluid());
 
         if (fuelTank.getCapacity() == 0) {
             renderNoTank(guiGraphics, mouseX, mouseY, x, y);
@@ -120,7 +122,7 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
 
     private void renderTickRate(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
         if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 80, 36, 90, 16)) {
-            guiGraphics.drawString(this.font, this.menu.blockEntity.maxProgress + " ticks", this.leftPos + 120,
+            guiGraphics.drawString(this.font, this.menu.getMaxProgress() + " ticks", this.leftPos + 120,
                     this.topPos + 68, 0x3F3F3F, false);
         }
     }

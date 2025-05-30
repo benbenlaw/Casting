@@ -312,7 +312,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                 }
             };
 
-            sync();
             boolean foundMatch = false;
             boolean blockedByMax = false;
 
@@ -379,8 +378,9 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
                                                     ItemStack restoredItem = equipmentStack.copy();
                                                     restoredItem.setDamageValue(0);
-
                                                     itemHandler.setStackInSlot(OUTPUT_SLOT, restoredItem);
+                                                    sync();
+
                                                 }
                                             }
                                         }
@@ -416,6 +416,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                                     recipe.upgradeItem().test(itemHandler.getStackInSlot(UPGRADE_ITEM_SLOT))) {
                                 matchedRecipe = recipe;
                                 bothRequired = true;
+                                sync();
                                 break;
                             }
                         }
@@ -435,6 +436,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
                             if (!EquipmentModifierUtils.hasEnoughFreeModifiers(toolStack, effect)) {
                                 errorMessage = "not_high_enough_level"; // Not enough modifiers for the effect
+                                sync();
                                 continue; // Skip this recipe if not enough modifiers
                             }
 
@@ -460,6 +462,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                         if (effectMaxed) {
                             // Tool or effect is at max level
                             errorMessage = "at_max_level"; // If the effect is maxed, don't apply more modifiers
+                            sync();
                         } else {
                             if (itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()) {
                                 progress++;
@@ -480,13 +483,13 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                                     }
 
                                     itemHandler.setStackInSlot(TOOL_SLOT, ItemStack.EMPTY);
-
                                     resetProgress();
                                 }
                             }
 
                             foundMatch = true;
                             errorMessage = ""; // Clear the error message when a match is found and operation is in progress
+                            sync();
                         }
                     }
                 }
@@ -495,6 +498,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                 if (!foundMatch && errorMessage.isEmpty() && !repairMode) {
                     errorMessage = "at_max_level"; // Tool has reached max level, no valid recipe found
                     resetProgress();
+
                 }
             } else {
                 resetProgress();
@@ -566,6 +570,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
     private void resetProgress() {
         progress = 0;
+        sync();
     }
 
 

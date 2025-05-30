@@ -497,7 +497,6 @@ public class MixerBlockEntity extends BlockEntity implements MenuProvider {
 
             drainTanksIntoValidBlocks();
             fuelInformation(level.getBlockEntity(this.worldPosition));
-            sync();
 
             for (RecipeHolder<MixingRecipe> recipeHolder : level.getRecipeManager().getRecipesFor(MixingRecipe.Type.INSTANCE, NoInventoryRecipe.INSTANCE, level)) {
                 MixingRecipe recipe = recipeHolder.value();

@@ -300,9 +300,9 @@ public class CastingRecipeProvider extends RecipeProvider {
                 "black_quartz/from_block", consumer);
 
         createSimpleSolidifierRecipe(getFluidStack("molten_black_quartz", 250), CastingTags.Items.GEM_MOLD,
-                ModdedTagBuilder.createNeoFabricItemTag("ores/black_quartz"), "black_quartz/gem", consumer);
+                ModdedTagBuilder.createNeoFabricItemTag("gems/black_quartz"), "black_quartz/gem", consumer);
         createSimpleSolidifierRecipe(getFluidStack("molten_black_quartz", 250), CastingTags.Items.DUST_MOLD,
-                ModdedTagBuilder.createNeoFabricItemTag("gems/black_quartz"), "black_quartz/dust", consumer);
+                ModdedTagBuilder.createNeoFabricItemTag("dusts/black_quartz"), "black_quartz/dust", consumer);
         createSimpleSolidifierRecipe(getFluidStack("molten_black_quartz", 1000), CastingTags.Items.BLOCK_MOLD,
                 ModdedTagBuilder.createNeoFabricItemTag("storage_blocks/black_quartz"), "black_quartz/block", consumer);
 

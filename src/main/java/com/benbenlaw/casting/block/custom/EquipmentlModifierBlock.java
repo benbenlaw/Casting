@@ -117,6 +117,7 @@ public class EquipmentlModifierBlock extends BaseEntityBlock {
                     player.openMenu(new SimpleMenuProvider(
                             (windowId, playerInventory, playerEntity) -> new EquipmentModifierMenu(windowId, playerInventory, blockPos, data),
                             Component.translatable("block.casting.equipment_modifier")), (buf -> buf.writeBlockPos(blockPos)));
+                    equipmentModifierBlockEntity.sync();
                 }
             }
 
