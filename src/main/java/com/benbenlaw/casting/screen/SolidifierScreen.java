@@ -169,8 +169,10 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
         int tankHeight = 56;
 
         if (MouseUtil.isMouseOver(mouseX, mouseY, tankX, tankY, tankWidth, tankHeight) && SolidifierScreen.hasShiftDown()) {
-
-            guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting.warning").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+        }
+        if (MouseUtil.isMouseOver(mouseX, mouseY, tankX, tankY, tankWidth, tankHeight) && !SolidifierScreen.hasShiftDown()) {
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.shift_dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
         }
     }
 

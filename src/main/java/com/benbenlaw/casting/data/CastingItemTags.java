@@ -32,12 +32,17 @@ public class CastingItemTags extends ItemTagsProvider {
 
         //Can be disabled with shift modifiers
         tag(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT)
-                .add(EquipmentModifierItems.AUTO_SMELT.asItem())
-                .add(EquipmentModifierItems.EXCAVATION.asItem())
+
                 .add(EquipmentModifierItems.STEP_ASSIST.asItem())
-                .add(EquipmentModifierItems.SILK_TOUCH.asItem())
                 .add(EquipmentModifierItems.WATER_WALKER.asItem())
                 .add(EquipmentModifierItems.LAVA_WALKER.asItem());
+
+        //Can be toggled with shift modifiers
+        tag(CastingTags.Items.CAN_BE_TOGGLED_WITH_SHIFT)
+                .add(EquipmentModifierItems.AUTO_SMELT.asItem())
+                .add(EquipmentModifierItems.EXCAVATION.asItem())
+                .add(EquipmentModifierItems.SILK_TOUCH.asItem());
+
 
         //Ball Items
         tag(CastingTags.Items.BALL_ITEMS)

@@ -137,16 +137,6 @@ public class EquipmentModifierScreen extends AbstractContainerScreen<EquipmentMo
             }
         }
 
-        /*
-        if (MouseUtil.isMouseOver(mouseX, mouseY, leftPos + 6, topPos + 36, 16, 16)) {
-
-            PacketDistributor.sendToServer(new LockSolidifierPayload(menu.blockEntity.getBlockPos()));
-
-        }
-
-         */
-
-
         return handled;
     }
     private void renderWarning(GuiGraphics guiGraphics, int mouseX, int mouseY) {
@@ -154,18 +144,22 @@ public class EquipmentModifierScreen extends AbstractContainerScreen<EquipmentMo
         if (MouseUtil.isMouseOver(mouseX, mouseY, leftPos + 106, topPos + 35, 27, 18)) {
 
             if (!this.menu.blockEntity.errorMessage.isEmpty()) {
-                guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting." + this.menu.blockEntity.errorMessage).withStyle(ChatFormatting.RED), mouseX, mouseY);
+                guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons." + this.menu.blockEntity.errorMessage).withStyle(ChatFormatting.RED), mouseX, mouseY);
             }
 
-            int tankX = leftPos + 27;
-            int tankY = topPos + 15;
-            int tankWidth = 14;
-            int tankHeight = 56;
 
-            if (MouseUtil.isMouseOver(mouseX, mouseY, tankX, tankY, tankWidth, tankHeight) && EquipmentModifierScreen.hasShiftDown()) {
+        }
 
-                guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting.warning").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
-            }
+        int tankX = leftPos + 27;
+        int tankY = topPos + 15;
+        int tankWidth = 14;
+        int tankHeight = 56;
+
+        if (MouseUtil.isMouseOver(mouseX, mouseY, tankX, tankY, tankWidth, tankHeight) && EquipmentModifierScreen.hasShiftDown()) {
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+        }
+        if (MouseUtil.isMouseOver(mouseX, mouseY, tankX, tankY, tankWidth, tankHeight) && !EquipmentModifierScreen.hasShiftDown()) {
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.shift_dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
         }
     }
 

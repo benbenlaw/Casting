@@ -63,6 +63,12 @@ public class CastingLangProvider extends LanguageProvider {
         addGUITranslation("buttons.waiting_for_recipe", "Ready to work!");
         addGUITranslation("buttons.filtering_disabled", "Filter: Disabled, Click to enable");
         addGUITranslation("buttons.filtering_enabled", "Filter: Enabled, Click to disable");
+        addGUITranslation("buttons.dump_fluid", "Click to Dump Fluid!");
+        addGUITranslation("buttons.shift_dump_fluid", "Hold Shift to Dump Fluid!");
+        addGUITranslation("buttons.not_high_enough_level", "Equipment not high enough level to add this modifier!");
+        addGUITranslation("buttons.at_max_level", "Equipment at Max Level for this modifier!");
+        addGUITranslation("buttons.wrong_fluid", "Wrong Fluid in Tank!");
+        addGUITranslation("buttons.not_enough_fluid", "Not Enough Fluid in Tank!");
 
         //Jei Translations
         addGUITranslation("jei.melting", "Melting");
@@ -127,7 +133,8 @@ public class CastingLangProvider extends LanguageProvider {
         //Tooltips
         addTooltipTranslation("information.repairing_mold", "When used in the Equipment Modifier, this will allow you to repair your equipment using its molten variant!");
         addTooltipTranslation("information.valid_tool_types", "Valid Equipment;");
-        addTooltipTranslation("information.shift_to_disable", "- Hold SHIFT to disable");
+        addTooltipTranslation("information.shift_to_disable", "- Hold SHIFT to disable this modifier");
+        addTooltipTranslation("information.shift_to_toggle", "- Hold SHIFT and Right Click to disable or enable this modifier");
 
         addTooltipTranslation("information.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("information.equipment_level", "Equipment Level %s XP: %s/%s");
@@ -140,7 +147,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.knockback", "Gives a tool Knockback up to level %s");
         addTooltipTranslation("information.lifesteal", "Gives a tool Lifesteal, restores health when damaging enemies up to level %s");
         addTooltipTranslation("information.looting", "Gives a tool Looting up to level %s");
-        addTooltipTranslation("information.magnet", "Gives armor Magnet, attracts items to the player up to level %s");
+        addTooltipTranslation("information.magnet", "Gives armor Magnet, attracts items to the player up to level, block drops also enter the players inventory %s");
         addTooltipTranslation("information.protection", "Gives armor Protection up to level %s");
         addTooltipTranslation("information.repairing", "Gives a tool Repairing up to level %s");
         addTooltipTranslation("information.sharpness", "Gives a tool Sharpness up to level %s");
@@ -158,7 +165,7 @@ public class CastingLangProvider extends LanguageProvider {
 
         addTooltipTranslation("stats.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("stats.equipment_level", "Equipment Level %s XP: %s/%s");
-        addTooltipTranslation("stats.auto_smelt", "- Auto Smelt - %s");
+        addTooltipTranslation("stats.auto_smelt", "- Auto Smelt");
         addTooltipTranslation("stats.beheading", "- Beheading - %s%% Chance");
         addTooltipTranslation("stats.efficiency", "- Efficiency - %s");
         addTooltipTranslation("stats.excavation", "- Excavation - %s (%sx%s Area)");

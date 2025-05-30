@@ -1,8 +1,9 @@
-// 1.21.1	2025-05-26T09:33:43.3661515	Tags for minecraft:fluid mod id casting
+// 1.21.1	2025-05-29T18:05:49.9009748	Tags for minecraft:fluid mod id casting
 a0180619fbf98291dcb53dfaa0e4dac895afbffd data/c/tags/fluid/chilled_water.json
 4b5f9cfc42b372d1de1abebf0a981daf6a11a2fd data/c/tags/fluid/iced_water.json
 079289e049dd083bc8a5856acb4834e538937339 data/c/tags/fluid/molten_aluminum.json
 33df9821493518a0d78d65933bfffe9f84400311 data/c/tags/fluid/molten_black_brick.json
+5c78be8528f10368edd7e7a7c610a2b296e6f2f3 data/c/tags/fluid/molten_black_quartz.json
 b73c788ef020160dc67a2cc97b9058f98ed13317 data/c/tags/fluid/molten_blaze.json
 e506a4f87256c178ff81d006531b1ac8788b826e data/c/tags/fluid/molten_brass.json
 f926520f710f287ebb9f96fc75c1843efaea8298 data/c/tags/fluid/molten_bronze.json

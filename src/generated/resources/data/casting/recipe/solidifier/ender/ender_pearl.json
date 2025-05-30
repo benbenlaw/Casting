@@ -12,7 +12,7 @@
   },
   "mold": {
     "count": 1,
-    "item": "casting:ball_mold"
+    "tag": "c:molds/ball"
   },
   "output": {
     "count": 1,

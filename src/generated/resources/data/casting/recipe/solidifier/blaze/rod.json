@@ -12,7 +12,7 @@
   },
   "mold": {
     "count": 1,
-    "item": "casting:rod_mold"
+    "tag": "c:molds/rod"
   },
   "output": {
     "count": 1,

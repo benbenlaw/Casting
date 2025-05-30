@@ -177,6 +177,11 @@ public class CastingDataComponents {
 
 
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> TOGGLEABLE_MODIFIERS =
+            COMPONENTS.register("toggleable_modifiers", () ->
+                    DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
+
+
 
 
 

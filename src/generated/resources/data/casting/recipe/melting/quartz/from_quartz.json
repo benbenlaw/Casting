@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:quartz"
+    }
+  ],
+  "type": "casting:melting",
+  "input": {
+    "count": 1,
+    "item": "minecraft:quartz"
+  },
+  "meltingTemp": 1000,
+  "output": {
+    "amount": 250,
+    "id": "casting:molten_quartz"
+  }
+}

@@ -3,7 +3,21 @@ Changelog BBL Casting
 // TODO //
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
-test change to see if this works
+
+2.0.10
+Magnet now absorbs block drops if the inventory has space if not block drops as normal, updated tooltip (RUN DATA)
+Quartz now creates 250mb of molten quartz instead of 90mb
+Quartz block now creates 1000mb of molten quartz instead of 360mb
+All vanilla quartz can be melted down into molten quartz
+Added Molten Black Quartz, from actually additions
+Fixed original casting block dump fluid translation being missing
+Fixed Dump Fluid tooltip, tooltip now always shows when hovering over the fluid area
+Fixed equipment modifier error messages missing there translations
+Fixed auto smelt information
+Tool that could be disabled with shift now use a toggle instead. This shows inside the tool tip of the tool
+This spits the modifier that can be disabled with shift into two this and the new toggle version
+Silk touch, auto smelt and excavation are now toggleable
+These work as normal then when enabled/ disabled the tooltip will show a tick or a cross respectively
 
 2.0.9
 Updated Multiblock Textures and Black Brick texture thanks @Yuki

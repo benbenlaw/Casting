@@ -7,6 +7,9 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
 
     public static List<FluidData> FLUID_DEFINITIONS = List.of(
 
+            //Actually Additions
+            new FluidData("molten_black_quartz", "block/molten_still", "block/molten_flow", 0xFF586e75, 1000),
+
             //Vanilla
             new FluidData("molten_iron", "block/molten_still", "block/molten_flow", 0xFFd5d5d5, 1000),
             new FluidData("molten_gold", "block/molten_still", "block/molten_flow", 0xFFfaf25e, 1000),
@@ -69,6 +72,7 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
             new FluidData("molten_vibrant_alloy", "block/molten_still", "block/molten_flow", 0xFFfcfadf, 1000),
             new FluidData("molten_energetic_alloy", "block/molten_still", "block/molten_flow", 0xFFf5a84f, 1000),
             new FluidData("molten_redstone_alloy", "block/molten_still", "block/molten_flow", 0xFFfa976d, 1000)
+
 
     );
 

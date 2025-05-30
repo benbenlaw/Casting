@@ -15,7 +15,7 @@
   },
   "meltingTemp": 1000,
   "output": {
-    "amount": 90,
+    "amount": 250,
     "id": "casting:molten_quartz"
   }
 }

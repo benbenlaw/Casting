@@ -12,7 +12,7 @@
   },
   "mold": {
     "count": 1,
-    "item": "casting:block_mold"
+    "tag": "c:molds/block"
   },
   "output": {
     "count": 1,

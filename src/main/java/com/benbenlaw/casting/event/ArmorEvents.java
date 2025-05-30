@@ -258,9 +258,12 @@ public class ArmorEvents {
         }
     }
 
-
-
-
+    public static boolean isToggleableModifierActive(ItemStack tool) {
+        if (!tool.getComponents().has(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
+            return false;
+        }
+        return Boolean.TRUE.equals(tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()));
+    }
 
     //From In World Recipes // Move to BBL Core in the future
     public static void popOutTheItem(Level level, BlockPos blockPos, ItemStack itemStack) {

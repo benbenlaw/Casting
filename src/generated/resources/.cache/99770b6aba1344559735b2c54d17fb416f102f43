@@ -1,5 +1,6 @@
-// 1.21.1	2025-05-29T09:04:50.0309924	Tags for minecraft:item mod id casting
-7aa1aa828c12e2ca0df232c98ef8b6d0a9c775e3 data/casting/tags/item/can_be_disabled_with_shift.json
+// 1.21.1	2025-05-29T19:07:38.4184644	Tags for minecraft:item mod id casting
+ed847a4152445c1525cd7e5f2d7b85a35761d05a data/casting/tags/item/can_be_disabled_with_shift.json
+8ea9e44acecf92c95dca0fa3a81436e41f918c0b data/casting/tags/item/can_be_toggled_with_shift.json
 8e7c5beb2a472ddc8018ff39621cdf5c000a0b48 data/casting/tags/item/controller_extra_blocks.json
 2496cb4438ebf9069c618a9e27e0eb65f90323d1 data/casting/tags/item/controller_floors.json
 8dd160564f5faf1c1f7b6ae227d6a8b596094c75 data/casting/tags/item/controller_tanks.json
@@ -8,7 +9,7 @@ cb0ed6d8265c7f470717fe4bdb90595526d5a990 data/casting/tags/item/melting_output_a
 da92033666b77dcdcd2ecfd54b5fcf76989db3a0 data/casting/tags/item/molds.json
 523cf825e8643e793dc1a64cd6939e6cdd4adc88 data/c/tags/item/ball_items.json
 38236b67cf98b68238695adf5a39edf921a1998c data/c/tags/item/bricks.json
-af576e511d8b6aecd06f3b851f180e3b57757a17 data/c/tags/item/buckets.json
+e0c474c0ea2e6b9dde658156dc7ec56d3a65eaf3 data/c/tags/item/buckets.json
 b5b443005446a7c462821af2bd14b03a5178a666 data/c/tags/item/molds/ball.json
 c5b03813e61f7b4ffd00ab3a09b1def2f4e7c5e3 data/c/tags/item/molds/block.json
 046ccfb1e090314dacdeaa4b1e6894cc1a20ebfa data/c/tags/item/molds/dust.json

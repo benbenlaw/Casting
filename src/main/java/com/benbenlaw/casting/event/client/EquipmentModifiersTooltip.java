@@ -69,6 +69,7 @@ public class EquipmentModifiersTooltip {
         boolean hasSpeed = tool.getComponents().keySet().contains(CastingDataComponents.SPEED.get());
         boolean hasFlight = tool.getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
 
+        boolean hasToggleableModifiers = tool.getComponents().keySet().contains(CastingDataComponents.TOGGLEABLE_MODIFIERS.get());
 
         boolean hasEffects = hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
@@ -88,7 +89,19 @@ public class EquipmentModifiersTooltip {
             components.add(index, Component.empty());
             index++;
             if (hasSilkTouch) {
-                components.add(index, Component.translatable("tooltips.casting.stats.silk_touch").withStyle(ChatFormatting.BLUE));
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.silk_touch")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.silk_touch")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.silk_touch").withStyle(ChatFormatting.BLUE));
+                }
+
                 index++;
             }
             if (hasEfficiency) {
@@ -116,8 +129,22 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasAutoSmelt) {
-                components.add(index, Component.translatable("tooltips.casting.stats.auto_smelt").withStyle(ChatFormatting.BLUE));
+
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.auto_smelt")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.auto_smelt")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.auto_smelt").withStyle(ChatFormatting.BLUE));
+                }
+
                 index++;
+
             }
             if (hasLooting) {
                 int lootingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.LOOTING.get())).orElse(0);
@@ -151,10 +178,25 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasExcavation) {
+
                 int excavationLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.EXCAVATION.get())).orElse(0);
                 int excavationArea = 1 + (excavationLevel * 2);
-                components.add(index, Component.translatable("tooltips.casting.stats.excavation", excavationLevel, excavationArea, excavationArea).withStyle(ChatFormatting.BLUE));
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.excavation", excavationLevel, excavationArea, excavationArea)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.excavation", excavationLevel, excavationArea, excavationArea)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.excavation", excavationLevel, excavationArea, excavationArea).withStyle(ChatFormatting.BLUE));
+                }
+
                 index++;
+
+
             }
             if (hasTeleporting) {
                 int teleportingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.TELEPORTING.get())).orElse(0);

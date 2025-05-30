@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-26T09:33:43.361147	casting Item Models
+// 1.21.1	2025-05-29T18:05:49.897404	casting Item Models
 16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
 513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
@@ -23,6 +23,7 @@ ad997dc493e7cc16c8582c7e8426c2cb72d65bff assets/casting/models/item/knockback.js
 6fab92d6332384c0e6e9d7536485ef966dfb2ddb assets/casting/models/item/magnet.json
 8c3a964156a7993a72f5cfc632038610f0806a9d assets/casting/models/item/molten_aluminum_bucket.json
 afdfae1c4af344b25916e66c4962f1ff84c86e7e assets/casting/models/item/molten_black_brick_bucket.json
+c59590c96a74e308f8c5d3eb26d58c5546c3efef assets/casting/models/item/molten_black_quartz_bucket.json
 58ea02d11862706ae424fa70387367acbba99365 assets/casting/models/item/molten_blaze_bucket.json
 2e939dc8f43d2162602fb00dd88484a1f947446f assets/casting/models/item/molten_brass_bucket.json
 8f60fbcfe6e5a0238eb00cb3feb44f742b94c2fa assets/casting/models/item/molten_bronze_bucket.json

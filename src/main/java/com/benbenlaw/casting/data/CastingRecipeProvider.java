@@ -244,7 +244,7 @@ public class CastingRecipeProvider extends RecipeProvider {
         // Common Melting and Solidifier Recipes
         for (String resource : ResourceNames.getAllResourceNames()) {
             // Ignore coal as it has its own melting values
-            if (!resource.equals("coal")) {
+            if (!resource.equals("coal") && !resource.equals("quartz")) {
                 createCommonMeltingRecipes(resource, consumer);
                 createCommonSolidifierRecipes(resource, consumer);
             }
@@ -253,7 +253,7 @@ public class CastingRecipeProvider extends RecipeProvider {
         // Obsidian
         createSimpleMeltingRecipe(getFluidStack("molten_obsidian", 1000), Items.OBSIDIAN, FluidData.getTempByName("molten_obsidian"),
                 "obsidian/from_block", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_obsidian", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_obsidian", 1000), CastingTags.Items.BLOCK_MOLD,
                 Items.OBSIDIAN, "obsidian/block", consumer);
 
         // Glass
@@ -261,43 +261,87 @@ public class CastingRecipeProvider extends RecipeProvider {
                 "glass/from_block", consumer);
         createSimpleMeltingRecipe(getFluidStack("molten_glass", 1000), ItemTags.SAND, FluidData.getTempByName("molten_glass"),
                 "glass/from_sand", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_glass", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_glass", 1000), CastingTags.Items.BLOCK_MOLD,
                 Items.GLASS,"glass/block", consumer);
 
         //Debris
         createSimpleMeltingRecipe(getFluidStack("molten_debris", 90), Items.ANCIENT_DEBRIS, FluidData.getTempByName("molten_debris"),
                 "debris/from_debris", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_debris", 90), CastingItems.INGOT_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_debris", 90), CastingTags.Items.INGOT_MOLD,
                 Items.NETHERITE_SCRAP,"debris/netherite_scrap", consumer);
 
         //Silicon
         createSimpleMeltingRecipe(getFluidStack("molten_silicon", 250), ModdedTagBuilder.createNeoFabricItemTag("silicon"), FluidData.getTempByName("molten_silicon"),
                 "silicon/from_silicon", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_silicon",  250), CastingItems.BALL_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_silicon",  250), CastingTags.Items.BALL_MOLD,
                 ModdedTagBuilder.createNeoFabricItemTag("silicon"), "silicon/block", consumer);
 
         //Coal
         createSimpleMeltingRecipe(getFluidStack("molten_coal", 80), Items.COAL, FluidData.getTempByName("molten_coals"),
                 "coal/from_coal", consumer);
         createSimpleMeltingRecipe(getFluidStack("molten_coal", 720), Items.COAL_BLOCK, FluidData.getTempByName("molten_coals"),
-                "coal/from_coal_block", consumer);
+                "coal/from_block", consumer);
         createSimpleMeltingRecipe(getFluidStack("molten_coal", 80), ModdedTagBuilder.createNeoFabricItemTag("ores/coal") , FluidData.getTempByName("molten_coals"),
-                "coal/from_coal_ore", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_coal", 80), CastingItems.GEM_MOLD.asItem().getDefaultInstance(),
+                "coal/from_ore", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_coal", 80), CastingTags.Items.GEM_MOLD,
                 Items.COAL, "coal/coal", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_coal", 720), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_coal", 720), CastingTags.Items.BLOCK_MOLD,
                 Items.COAL_BLOCK, "coal/coal_block", consumer);
+
+        //Black Quartz
+        createSimpleMeltingRecipe(getFluidStack("molten_black_quartz", 250),  ModdedTagBuilder.createNeoFabricItemTag("ores/black_quartz"), FluidData.getTempByName("molten_black_quartz"),
+                "black_quartz/from_ore", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_quartz", 250),  ModdedTagBuilder.createNeoFabricItemTag("dusts/black_quartz"), FluidData.getTempByName("molten_black_quartz"),
+                "black_quartz/from_dust", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_quartz", 250), ModdedTagBuilder.createNeoFabricItemTag("gems/black_quartz"), FluidData.getTempByName("molten_black_quartz"),
+                "black_quartz/from_black_quartz", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_black_quartz", 1000), ModdedTagBuilder.createNeoFabricItemTag("storage_blocks/black_quartz"), FluidData.getTempByName("molten_black_quartz"),
+                "black_quartz/from_block", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_quartz", 250), CastingTags.Items.GEM_MOLD,
+                ModdedTagBuilder.createNeoFabricItemTag("ores/black_quartz"), "black_quartz/gem", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_quartz", 250), CastingTags.Items.DUST_MOLD,
+                ModdedTagBuilder.createNeoFabricItemTag("gems/black_quartz"), "black_quartz/dust", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_quartz", 1000), CastingTags.Items.BLOCK_MOLD,
+                ModdedTagBuilder.createNeoFabricItemTag("storage_blocks/black_quartz"), "black_quartz/block", consumer);
+
+        //Quartz
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 250), ModdedTagBuilder.createNeoFabricItemTag("ores/quartz"), FluidData.getTempByName("molten_quartz"),
+                "quartz/from_ore", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 250), Items.QUARTZ, FluidData.getTempByName("molten_quartz"),
+                "quartz/from_quartz", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 250), ModdedTagBuilder.createNeoFabricItemTag("dusts/quartz"), FluidData.getTempByName("molten_quartz"),
+                "quartz/from_dust", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 1000), Items.QUARTZ_BLOCK, FluidData.getTempByName("molten_quartz"),
+                "quartz/from_block", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 1000), Items.QUARTZ_BRICKS, FluidData.getTempByName("molten_quartz"),
+                "quartz/from_bricks", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 1000), Items.CHISELED_QUARTZ_BLOCK, FluidData.getTempByName("molten_quartz"),
+                "quartz/from_chiseled_block", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 1000), Items.QUARTZ_PILLAR, FluidData.getTempByName("molten_quartz"),
+                "quartz/from_pillar", consumer);
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz", 1000), Items.SMOOTH_QUARTZ, FluidData.getTempByName("molten_quartz"),
+                "quartz/from_smooth_block", consumer);
+
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_quartz", 250), CastingTags.Items.GEM_MOLD,
+                Items.QUARTZ, "quartz/gem", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_quartz", 250), CastingTags.Items.DUST_MOLD,
+                Items.QUARTZ, "quartz/dust", consumer);
+        createSimpleSolidifierRecipe(getFluidStack("molten_quartz", 1000), CastingTags.Items.BLOCK_MOLD,
+                Items.QUARTZ_BLOCK, "quartz/block", consumer);
 
         //Ender
         createSimpleMeltingRecipe(getFluidStack("molten_ender", 250), Items.ENDER_PEARL, FluidData.getTempByName("molten_ender"),
                 "ender/from_ender_pearl", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_ender", 250), CastingItems.BALL_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_ender", 250), CastingTags.Items.BALL_MOLD,
                 Items.ENDER_PEARL, "ender/ender_pearl", consumer);
 
         //End Stone
         createSimpleMeltingRecipe(getFluidStack("molten_end_stone", 1000), Items.END_STONE, FluidData.getTempByName("molten_end_stone"),
                 "end_stone/from_end_stone", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_end_stone", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_end_stone", 1000), CastingTags.Items.BLOCK_MOLD,
                 Items.END_STONE, "end_stone/block", consumer);
 
         //Stone
@@ -305,7 +349,7 @@ public class CastingRecipeProvider extends RecipeProvider {
                 "stone/from_stones", consumer);
         createSimpleMeltingRecipe(getFluidStack("molten_stone", 1000), Tags.Items.COBBLESTONES, FluidData.getTempByName("molten_stone"),
                 "stone/from_cobblestones", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_stone", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_stone", 1000), CastingTags.Items.BLOCK_MOLD,
                 Items.STONE, "stone/block", consumer);
 
         //Glowstone
@@ -313,9 +357,9 @@ public class CastingRecipeProvider extends RecipeProvider {
                 "glowstone/from_glowstone_dust", consumer);
         createSimpleMeltingRecipe(getFluidStack("molten_glowstone", 1000), Items.GLOWSTONE, FluidData.getTempByName("molten_glowstone"),
                 "glowstone/from_glowstone", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_glowstone", 250), CastingItems.DUST_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_glowstone", 250), CastingTags.Items.DUST_MOLD,
                 Items.GLOWSTONE_DUST, "glowstone/dust", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_glowstone", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_glowstone", 1000), CastingTags.Items.BLOCK_MOLD,
                 Items.GLOWSTONE, "glowstone/block", consumer);
 
         //Black Brick
@@ -328,15 +372,15 @@ public class CastingRecipeProvider extends RecipeProvider {
         createSimpleMeltingRecipe(getFluidStack("molten_black_brick", 250), Items.CLAY_BALL, FluidData.getTempByName("molten_black_brick"),
                 "black_brick/from_clay", consumer);
 
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 1000), CastingTags.Items.BLOCK_MOLD,
                 CastingBlocks.BLACK_BRICKS.get(), "black_brick/block", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 250), CastingItems.INGOT_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 250), CastingTags.Items.INGOT_MOLD,
                 CastingItems.BLACK_BRICK.get(), "black_brick/black_brick", consumer);
 
         //Soul
         createSimpleMeltingRecipe(getFluidStack("molten_soul", 1000), ItemTags.SOUL_FIRE_BASE_BLOCKS, FluidData.getTempByName("molten_soul"),
                 "soul/from_soul_sand", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_soul", 1000), CastingItems.BLOCK_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_soul", 1000), CastingTags.Items.BLOCK_MOLD,
                 ItemTags.SOUL_FIRE_BASE_BLOCKS, "soul/block", consumer);
 
         //Blaze
@@ -344,9 +388,9 @@ public class CastingRecipeProvider extends RecipeProvider {
                 "blaze/from_blaze_rod", consumer);
         createSimpleMeltingRecipe(getFluidStack("molten_blaze", 45), Items.BLAZE_POWDER, FluidData.getTempByName("molten_blaze"),
                 "blaze/from_blaze_powder", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_blaze", 90), CastingItems.DUST_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_blaze", 90), CastingTags.Items.DUST_MOLD,
                 Items.BLAZE_POWDER, "blaze/dust", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_blaze", 90), CastingItems.ROD_MOLD.asItem().getDefaultInstance(),
+        createSimpleSolidifierRecipe(getFluidStack("molten_blaze", 90), CastingTags.Items.ROD_MOLD,
                 Items.BLAZE_ROD, "blaze/rod", consumer);
 
         //Chilled Water
@@ -474,6 +518,26 @@ public class CastingRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(input))
                 .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(input))),
                         "casting:melting/" + recipeID);
+    }
+
+    public void createSimpleSolidifierRecipe(FluidStack output, TagKey<Item> mold, ItemLike input, String recipeID, RecipeOutput consumer) {
+
+        SolidifierRecipeBuilder.solidifierRecipesBuilder(new SizedIngredient(Ingredient.of(mold), 1),
+                        new SizedIngredient(Ingredient.of(input), 1),
+                        output)
+                .unlockedBy("has_item", has(input))
+                .save(consumer.withConditions(new ItemExistsCondition(String.valueOf(input.asItem()))),
+                        "casting:solidifier/" + recipeID);
+    }
+
+    public void createSimpleSolidifierRecipe(FluidStack output, TagKey<Item> mold, TagKey<Item> input, String recipeID, RecipeOutput consumer) {
+
+        SolidifierRecipeBuilder.solidifierRecipesBuilder(new SizedIngredient(Ingredient.of(mold), 1),
+                        new SizedIngredient(Ingredient.of(input), 1),
+                        output)
+                .unlockedBy("has_item", has(input))
+                .save(consumer.withConditions(new NotCondition(new TagEmptyCondition(input))),
+                        "casting:solidifier/" + recipeID);
     }
 
     public void createSimpleSolidifierRecipe(FluidStack output, ItemStack mold, ItemLike input, String recipeID, RecipeOutput consumer) {

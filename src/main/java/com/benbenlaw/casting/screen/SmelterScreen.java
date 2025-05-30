@@ -204,16 +204,29 @@ public class SmelterScreen extends AbstractContainerScreen<SmelterMenu> {
 
 
         if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_1, tankY_1, tankWidth, tankHeight) && SolidifierScreen.hasShiftDown()) {
-            guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting.warning").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
         }
         if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_2, tankY_2, tankWidth, tankHeight) && SolidifierScreen.hasShiftDown()) {
-            guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting.warning").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
         }
         if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_3, tankY_3, tankWidth, tankHeight) && SolidifierScreen.hasShiftDown()) {
-            guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting.warning").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
         }
         if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_4, tankY_4, tankWidth, tankHeight) && SolidifierScreen.hasShiftDown()) {
-            guiGraphics.renderTooltip(this.font, Component.translatable("screen.casting.warning").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+        }
+
+        if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_1, tankY_1, tankWidth, tankHeight) && !SolidifierScreen.hasShiftDown()) {
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.shift_dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+        }
+        if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_2, tankY_2, tankWidth, tankHeight) && !SolidifierScreen.hasShiftDown()) {
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.shift_dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+        }
+        if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_3, tankY_3, tankWidth, tankHeight) && !SolidifierScreen.hasShiftDown()) {
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.shift_dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
+        }
+        if (MouseUtil.isMouseOver(mouseX, mouseY, tankX_4, tankY_4, tankWidth, tankHeight) && !SolidifierScreen.hasShiftDown()) {
+            guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.shift_dump_fluid").withStyle(ChatFormatting.RED), mouseX, mouseY - 14);
         }
     }
     private int getSlotX(int slot) {

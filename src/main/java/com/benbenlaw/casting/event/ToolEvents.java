@@ -3,6 +3,7 @@ package com.benbenlaw.casting.event;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.EquipmentModifierItems;
 import com.benbenlaw.casting.util.BeheadingHeadMap;
 import com.benbenlaw.core.util.FakePlayerUtil;
 import net.minecraft.core.BlockPos;
@@ -10,6 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -90,8 +92,9 @@ public class ToolEvents {
         boolean isAutoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
         boolean isUnbreaking = tool.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get());
         boolean isExcavation = tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get());
+        boolean isMagnet = hasMagnetArmor(player);
 
-        boolean requiresCastingOverrides = isExcavation || isSilkTouch || isFortune || isAutoSmelt || isUnbreaking;
+        boolean requiresCastingOverrides = isMagnet || isExcavation || isSilkTouch || isFortune || isAutoSmelt || isUnbreaking;
 
         if (!level.isClientSide() && requiresCastingOverrides) {
             event.setCanceled(true);
@@ -102,7 +105,7 @@ public class ToolEvents {
                 return;
             }
 
-            if (isExcavation && !player.isShiftKeyDown()) {
+            if (isExcavation && isToggleableModifierActive(tool)) {
                 int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
 
                 List<BlockPos> excavationPlane = getExcavationPlane(pos, face, excavationLevel);
@@ -112,16 +115,12 @@ public class ToolEvents {
 
                     BlockState targetState = level.getBlockState(targetPos);
                     if (!targetState.isAir() && targetState.getDestroySpeed(level, targetPos) >= 0 && tool.isCorrectToolForDrops(targetState))
-
-
                     {
                         breakBlockWithCasting(level, player, targetPos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
                     }
                 }
-
                 return;
             }
-
             // Other casting overrides
             breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
         }
@@ -136,7 +135,7 @@ public class ToolEvents {
         boolean shouldTakeDamage = true;
 
         // Silk Touch
-        if (isSilkTouch && !player.isShiftKeyDown()) {
+        if (isSilkTouch && isToggleableModifierActive(tool)) {
             fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
             drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         } else if (isFortune) {
@@ -150,7 +149,7 @@ public class ToolEvents {
         }
 
         // Auto Smelt
-        if (isAutoSmelt && !player.isShiftKeyDown()) {
+        if (isAutoSmelt && isToggleableModifierActive(tool)) {
             List<ItemStack> smeltingDrops = new ArrayList<>();
             for (ItemStack drop : drops) {
                 SingleRecipeInput container = new SingleRecipeInput(drop);
@@ -167,8 +166,18 @@ public class ToolEvents {
             drops = smeltingDrops;
         }
 
+        //Deal with drops
         for (ItemStack drop : drops) {
-            Block.popResource(level, pos, drop);
+
+            //Insert into player inventory, if full drop as normal
+            if (hasMagnetArmor(player)) {
+                boolean canAddItem = player.addItem(drop.copy());
+                if (!canAddItem) {
+                    Block.popResource(level, pos, drop);
+                }
+            } else {
+                Block.popResource(level, pos, drop);
+            }
         }
 
         if (drops.isEmpty() || drops.getFirst().is(Items.AIR)) {
@@ -187,6 +196,33 @@ public class ToolEvents {
         }
     }
 
+    //Magnet Modifier Check for block drops
+
+    public static boolean isToggleableModifierActive(ItemStack tool) {
+        if (!tool.getComponents().has(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
+            return true;
+        }
+        if(tool.getComponents().keySet().contains(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
+            if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                return true;
+            }
+            if (Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                return false;
+            }
+        }
+
+        return false;
+
+    }
+
+    public static boolean hasMagnetArmor(Player player) {
+        for (ItemStack armorItem : player.getArmorSlots()) {
+            if (armorItem.getComponents().keySet().contains(CastingDataComponents.MAGNET.get())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     //Get loot drops from a block
     public static List<ItemStack> getLootDrops(BlockState state, BlockEntity entity, BlockPos pos, Player player, ItemStack tool, Level level) {
@@ -467,6 +503,33 @@ public class ToolEvents {
         BlockPos pos = event.getPos();
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
+
+        if (level.isClientSide()) return;
+
+        //Toggled Modifiers
+        boolean autoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
+        boolean excavation = tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get());
+        boolean silkTouch = tool.getComponents().keySet().contains(CastingDataComponents.SILK_TOUCH.get());
+        boolean containsToggleableModifier = autoSmelt || excavation || silkTouch;
+
+        if (containsToggleableModifier && player.isCrouching()) {
+
+            if (!tool.getComponents().has(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
+                tool.set(CastingDataComponents.TOGGLEABLE_MODIFIERS.get(), true);
+            }
+
+            else if (Boolean.TRUE.equals(tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                tool.set(CastingDataComponents.TOGGLEABLE_MODIFIERS.get(), false);
+            }
+            else if (Boolean.FALSE.equals(tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                tool.set(CastingDataComponents.TOGGLEABLE_MODIFIERS.get(), true);
+            }
+
+            player.sendSystemMessage(Component.literal("Toggled Modifiers: " + tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())));
+        }
+
+
+
 
         boolean isTeleporting = tool.getComponents().keySet().contains(CastingDataComponents.TELEPORTING.get());
 

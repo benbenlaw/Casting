@@ -1,16 +1,13 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:tag_empty",
-        "tag": "c:gems/quartz"
-      }
+      "type": "neoforge:item_exists",
+      "item": "minecraft:quartz"
     }
   ],
   "type": "casting:solidifier",
   "fluid": {
-    "amount": 90,
+    "amount": 250,
     "id": "casting:molten_quartz"
   },
   "mold": {
@@ -19,6 +16,6 @@
   },
   "output": {
     "count": 1,
-    "tag": "c:gems/quartz"
+    "item": "minecraft:quartz"
   }
 }

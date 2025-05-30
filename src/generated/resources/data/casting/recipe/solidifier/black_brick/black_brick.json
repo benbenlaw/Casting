@@ -12,7 +12,7 @@
   },
   "mold": {
     "count": 1,
-    "item": "casting:ingot_mold"
+    "tag": "c:molds/ingot"
   },
   "output": {
     "count": 1,
