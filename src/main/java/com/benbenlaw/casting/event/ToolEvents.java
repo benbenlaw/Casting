@@ -623,6 +623,7 @@ public class ToolEvents {
                 //Beheading
                 if (isBeheading) {
                     Optional<ItemStack> customHead = BeheadingHeadMap.getHeadForEntity(deadEntity);
+                    System.out.println("Custom head: " + customHead);
                     customHead.ifPresent(loot::add);
                 }
 

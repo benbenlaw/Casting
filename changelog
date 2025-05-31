@@ -6,6 +6,20 @@ fishing rods support for tool modifiers (1.22)
 - FIX VALVE BEN
 
 
+2.0.16
+Fixed quartz dust recipe
+Fixed beheading translation
+Actually enabled the beheading modifier
+
+2.0.15
+Fixed Tanks not updating on world reloads
+
+2.0.14
+Fixed Solidifier recipe outputs clearing
+
+2.0.13
+Disabled debug
+
 2.0.12
 Fixed some black quartz recipes
 

@@ -112,6 +112,7 @@ public class TankBlockEntity extends BlockEntity {
     public void onLoad() {
         super.onLoad();
         this.setChanged();
+        sync();
     }
 
     @Override
@@ -168,5 +169,9 @@ public class TankBlockEntity extends BlockEntity {
     }
 
     public void tick() {
+        assert level != null;
+        if(level.getGameTime() % 20 == 0) {
+            sync();
+        }
     }
 }

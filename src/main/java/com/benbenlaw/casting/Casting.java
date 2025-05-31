@@ -80,7 +80,7 @@ public class Casting {
     //enqueueWork is used to delay the registration of the networking until after the common setup
     @SubscribeEvent
     public void beheadingSetup(final FMLClientSetupEvent event) {
-        //event.enqueueWork(BeheadingConfig::applyToHeadMap);
+        event.enqueueWork(BeheadingConfig::applyToHeadMap);
     }
 
     public void commonSetup(RegisterPayloadHandlersEvent event) {

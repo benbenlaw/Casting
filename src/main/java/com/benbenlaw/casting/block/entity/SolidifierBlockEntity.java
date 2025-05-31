@@ -283,86 +283,61 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
 
     public void tick() {
         assert level != null;
+        if (!level.isClientSide()) {
+            RecipeInput inventory = new RecipeInput() {
+                @Override
+                public @NotNull ItemStack getItem(int index) {
+                    return itemHandler.getStackInSlot(index);
+                }
 
-        if (level.isClientSide()) return; // early exit for client side
+                @Override
+                public int size() {
+                    return itemHandler.getSlots();
+                }
+            };
 
-        RecipeInput inventory = new RecipeInput() {
-            @Override
-            public @NotNull ItemStack getItem(int index) {
-                return itemHandler.getStackInSlot(index);
+            sync();
+            fuelInformation(level.getBlockEntity(this.worldPosition));
+
+            if (itemHandler.getStackInSlot(0).isEmpty()) {
+                resetProgress();
+                return;
             }
 
-            @Override
-            public int size() {
-                return itemHandler.getSlots();
-            }
-        };
+            boolean foundMatch = false;
 
-        // Call fuelInformation only once every 20 ticks (1 second)
-        if (level.getGameTime() % 20 == 0) {
-            fuelInformation(this);
-        }
+            for (RecipeHolder<SolidifierRecipe> recipeHolder : level.getRecipeManager().getRecipesFor(SolidifierRecipe.Type.INSTANCE, inventory, level)) {
+                SolidifierRecipe recipe = recipeHolder.value();
+                if (recipe.mold().test(itemHandler.getStackInSlot(0)) && hasEnoughFluid(recipe.fluid()) && hasCorrectInputAmount(recipe.mold())) {
+                    FluidStack output = recipe.fluid();
 
-        // Cache the input stack once
-        ItemStack inputStack = itemHandler.getStackInSlot(0);
-        if (inputStack.isEmpty()) {
-            resetProgress();
-            return;
-        }
+                    if (hasOutputSpaceMaking(this, recipe)) {
+                        progress++;
 
-        boolean foundMatch = false;
+                        if (progress >= maxProgress) {
+                            extractFluid(output, output.getAmount());
 
-        // Cache output slot stack once to reduce repeated calls
-        ItemStack outputStack = itemHandler.getStackInSlot(1);
-
-        // Get all recipes once
-        List<RecipeHolder<SolidifierRecipe>> recipes = level.getRecipeManager()
-                .getRecipesFor(SolidifierRecipe.Type.INSTANCE, inventory, level);
-
-        for (RecipeHolder<SolidifierRecipe> recipeHolder : recipes) {
-            SolidifierRecipe recipe = recipeHolder.value();
-
-            // Cache recipe components for readability and perf
-            SizedIngredient mold = recipe.mold();
-            FluidStack requiredFluid = recipe.fluid();
-
-            if (mold.test(inputStack) && hasEnoughFluid(requiredFluid) && hasCorrectInputAmount(mold)) {
-                if (hasOutputSpaceMaking(this, recipe)) {
-                    progress++;
-
-                    if (progress >= maxProgress) {
-                        // Extract fluid once
-                        extractFluid(requiredFluid, requiredFluid.getAmount());
-
-                        // Shrink input stack only if not mold type
-                        if (!inputStack.is(CastingTags.Items.MOLDS)) {
-                            inputStack.shrink(mold.count());
+                            if (!itemHandler.getStackInSlot(0).is(CastingTags.Items.MOLDS)) {
+                                itemHandler.getStackInSlot(0).shrink(recipe.mold().count());
+                            }
+                            itemHandler.setStackInSlot(1, new ItemStack(recipe.output().getItems()[0].getItem(), recipe.output().count() + itemHandler.getStackInSlot(1).getCount()));
+                            setChanged();
+                            useFuel(this);
+                            resetProgress();
+                            sync();
                         }
-
-                        // Efficiently update output stack count and item
-                        if (outputStack.isEmpty()) {
-                            itemHandler.setStackInSlot(1, recipe.output().getItems()[0]);
-                        } else {
-                            outputStack.grow(recipe.output().count());
-                            // If outputStack is not the same item, handle that case if needed (optional)
-                        }
-
-                        setChanged();
-                        useFuel(this);
-                        resetProgress();
-                        sync();
+                        foundMatch = true;
+                        break;
                     }
-
-                    foundMatch = true;
-                    break; // no need to check other recipes
                 }
             }
-        }
 
-        if (!foundMatch) {
-            resetProgress();
+            if (!foundMatch) {
+                resetProgress();
+            }
         }
     }
+
 
 
     private boolean hasCorrectInputAmount(SizedIngredient mold) {

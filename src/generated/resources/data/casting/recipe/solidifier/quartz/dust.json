@@ -1,8 +1,11 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "minecraft:quartz"
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/quartz"
+      }
     }
   ],
   "type": "casting:solidifier",
@@ -16,6 +19,6 @@
   },
   "output": {
     "count": 1,
-    "item": "minecraft:quartz"
+    "tag": "c:dusts/quartz"
   }
 }

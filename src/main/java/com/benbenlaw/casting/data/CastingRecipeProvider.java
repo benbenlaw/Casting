@@ -328,7 +328,7 @@ public class CastingRecipeProvider extends RecipeProvider {
         createSimpleSolidifierRecipe(getFluidStack("molten_quartz", 250), CastingTags.Items.GEM_MOLD,
                 Items.QUARTZ, "quartz/gem", consumer);
         createSimpleSolidifierRecipe(getFluidStack("molten_quartz", 250), CastingTags.Items.DUST_MOLD,
-                Items.QUARTZ, "quartz/dust", consumer);
+                ModdedTagBuilder.createNeoFabricItemTag("dusts/quartz"), "quartz/dust", consumer);
         createSimpleSolidifierRecipe(getFluidStack("molten_quartz", 1000), CastingTags.Items.BLOCK_MOLD,
                 Items.QUARTZ_BLOCK, "quartz/block", consumer);
 

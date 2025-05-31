@@ -246,7 +246,7 @@
   "tooltips.casting.shear_modifiers": "- Shears",
   "tooltips.casting.shovel_modifiers": "- Shovels",
   "tooltips.casting.stats.auto_smelt": "- Auto Smelt",
-  "tooltips.casting.stats.beheading": "- Beheading - %s%% Chance",
+  "tooltips.casting.stats.beheading": "- Beheading",
   "tooltips.casting.stats.efficiency": "- Efficiency - %s",
   "tooltips.casting.stats.equipment_level": "Equipment Level %s XP: %s/%s",
   "tooltips.casting.stats.excavation": "- Excavation - %s (%sx%s Area)",

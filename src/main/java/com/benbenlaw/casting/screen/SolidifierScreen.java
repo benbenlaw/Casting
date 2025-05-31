@@ -99,8 +99,6 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
             fuelTank = tankBlockEntity.FLUID_TANK;
         }
 
-        System.out.println("Fuel Tank Capacity: " + fuelTank.getFluid());
-
         if (fuelTank.getCapacity() == 0) {
             renderNoTank(guiGraphics, mouseX, mouseY, x, y);
         }

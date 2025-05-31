@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-30T10:51:46.3011247	Recipes
+// 1.21.1	2025-05-31T10:31:25.4162425	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -828,7 +828,7 @@ bd96b8aa068c5b44cfe7195a7f6fa68f360937c9 data/casting/advancement/recipes/solidi
 98908768e74ba3eed201112e4ed9836d56f854fc data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/storage_block.json
 d7ebc3c9d0c2e7e5190d4241bcdaf2f1585187c4 data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/wire.json
 afc10ed8fba13e378bd0ab82dbb0300f778c3d1c data/casting/advancement/recipes/solidifier/solidifier/quartz/block.json
-86af3c27d906d31ec3942fd9d5845135c6d09bc7 data/casting/advancement/recipes/solidifier/solidifier/quartz/dust.json
+26cc0361248a184924ae98acbffa7f5361685eae data/casting/advancement/recipes/solidifier/solidifier/quartz/dust.json
 aa77f307b0036ee1ed158095a201d7661a94d1af data/casting/advancement/recipes/solidifier/solidifier/quartz/gem.json
 359674741f4307f8f246de9a78759562afc02874 data/casting/advancement/recipes/solidifier/solidifier/redstone/dust.json
 1ed04ce73636ef23348282bd519dbbb5354f8ebb data/casting/advancement/recipes/solidifier/solidifier/redstone/gear.json
@@ -1816,7 +1816,7 @@ e91b677225b9dfe169a6b569b1b31a384f12454b data/casting/recipe/solidifier/pulsatin
 bdc6ce9a432f986ab0d59133634ec95e9fe88c79 data/casting/recipe/solidifier/pulsating_alloy/storage_block.json
 c9b6eb1cd80b83355b4f728447870edb76bb7f13 data/casting/recipe/solidifier/pulsating_alloy/wire.json
 479d751b4bccf7eafd0402fb61a3453fc4dc82a6 data/casting/recipe/solidifier/quartz/block.json
-f00adead86770f1adcfd21354e17c42e32bd0bc6 data/casting/recipe/solidifier/quartz/dust.json
+26796e30433d1e9374e68c81081cba88406c642c data/casting/recipe/solidifier/quartz/dust.json
 0ae4e2227e13e552fa15cfe4d15d21ff7f443573 data/casting/recipe/solidifier/quartz/gem.json
 d8079ef95c3550046ba302222518507920a572cb data/casting/recipe/solidifier/redstone/dust.json
 776d86dd4264d224a16abeac163895b206188166 data/casting/recipe/solidifier/redstone/gear.json

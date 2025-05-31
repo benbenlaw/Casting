@@ -166,7 +166,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("stats.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("stats.equipment_level", "Equipment Level %s XP: %s/%s");
         addTooltipTranslation("stats.auto_smelt", "- Auto Smelt");
-        addTooltipTranslation("stats.beheading", "- Beheading - %s%% Chance");
+        addTooltipTranslation("stats.beheading", "- Beheading");
         addTooltipTranslation("stats.efficiency", "- Efficiency - %s");
         addTooltipTranslation("stats.excavation", "- Excavation - %s (%sx%s Area)");
         addTooltipTranslation("stats.fortune", "- Fortune - %s");
