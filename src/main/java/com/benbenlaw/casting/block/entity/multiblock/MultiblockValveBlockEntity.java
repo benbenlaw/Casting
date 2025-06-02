@@ -80,7 +80,7 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
 
         }
         assert controller != null;
-        return controller.itemHandler;
+        return controller.controllerItemHandler;
     }
 
     public IFluidHandler getFilteredFluidHandler(Direction side) {

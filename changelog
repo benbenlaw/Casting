@@ -5,6 +5,11 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 - FIX VALVE BEN
 
+2.0.17
+Removed adjacent tank rendering for the equipment modifier
+Valve is now using the controller filtered item handler correct, fixes oversending of items
+Re enabled equipment modifiers item and fluid handlers
+Allows item into the upgrade slot and can output items from the result slot
 
 2.0.16
 Fixed quartz dust recipe

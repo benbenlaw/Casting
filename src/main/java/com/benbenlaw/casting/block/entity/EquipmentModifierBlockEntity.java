@@ -175,8 +175,8 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
     public String errorMessage = "";
     public boolean isLimitMode = false;
     private final IItemHandler equipmentModifierItemHandler = new InputOutputItemHandler(itemHandler,
-            (i, stack) -> i == 0 ,  //
-            i -> i == 1
+            (i, stack) -> i == 1 ,  //
+            i -> i == 2
     );
 
     public @Nullable IItemHandler getItemHandlerCapability(@Nullable Direction side) {

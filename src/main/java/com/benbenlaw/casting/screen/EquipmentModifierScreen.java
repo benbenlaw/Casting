@@ -54,16 +54,6 @@ public class EquipmentModifierScreen extends AbstractContainerScreen<EquipmentMo
     private void addFluidWidgets() {
         addRenderableOnly(new FluidStackWidgetBigTank(this, getMenu().blockEntity.TANK, leftPos + 27, topPos + 15, 14, 56));
 
-
-        FluidTank fuelTank = new FluidTank(0);
-        if (fuelTankEntity instanceof TankBlockEntity tankBlockEntity) {
-            fuelTank = tankBlockEntity.FLUID_TANK;
-        }
-
-        if (fuelTank.getCapacity() != 0 && fuelTank.getFluidAmount() != 0) {
-            addRenderableOnly(new FuelTankFluidStackWidget(this, fuelTank, this.menu.blockEntity, this.leftPos + 107, this.topPos + 55, 16, 16));
-        }
-
     }
 
 

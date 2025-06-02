@@ -112,6 +112,14 @@ public class CastingBlockEntities {
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK,
                 CastingBlockEntities.TANK_BLOCK_ENTITY.get(), TankBlockEntity::getFluidHandlerCapability);
+
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
+                CastingBlockEntities.EQUIPMENT_MODIFIER_BLOCK_ENTITY.get(), EquipmentModifierBlockEntity::getItemHandlerCapability);
+
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK,
+                CastingBlockEntities.EQUIPMENT_MODIFIER_BLOCK_ENTITY.get(), EquipmentModifierBlockEntity::getFluidHandlerCapability);
+
+
     }
 
     public static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> register(@Nonnull String name, @Nonnull Supplier<BlockEntityType.Builder<T>> initializer) {

@@ -75,6 +75,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
             return 1;
         }
     };
+
     public void setAllowedItems(int slot, Item item) {
         if (item == null) {
             allowedItems.remove(slot);
@@ -116,7 +117,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
     public MultiblockData cachedMultiblockData = null;
     public SingleFluidTank fuelTank;
     public SingleFluidTank coolantTank;
-    private final IItemHandler controllerItemHandler = new InputOutputItemHandler(itemHandler,
+    public final IItemHandler controllerItemHandler = new InputOutputItemHandler(itemHandler,
             (i, stack) -> i < enabledSlots,
             i -> false
     );
