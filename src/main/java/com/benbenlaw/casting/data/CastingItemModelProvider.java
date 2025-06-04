@@ -70,6 +70,7 @@ public class CastingItemModelProvider extends ItemModelProvider {
         simpleItem(EquipmentModifierItems.WATER_BREATHING);
         simpleItem(EquipmentModifierItems.NIGHT_VISION);
         simpleItem(EquipmentModifierItems.FLIGHT);
+        //simpleItem(EquipmentModifierItems.FEATHER_FALLING);
 
         //Bucket Models
         for (var entry : FLUIDS_MAP.entrySet()) {

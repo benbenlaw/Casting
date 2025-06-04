@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-31T10:31:25.4162425	Recipes
+// 1.21.1	2025-06-04T19:37:51.9801116	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -532,6 +532,7 @@ aa7999f97ac3dd6e52c73005bb6a6a651ad78162 data/casting/advancement/recipes/misc/i
 a536d6bc49132cfa8bd9a197610974637e21f208 data/casting/advancement/recipes/misc/ingot_mold_bricks.json
 8182a5f87ee10198af833a5cd79a24e9dca87f0a data/casting/advancement/recipes/misc/mixer.json
 c5d3212e77710066d7e2b0f05da42e1563b2f94f data/casting/advancement/recipes/misc/mixer_whisk.json
+9f5fba804322b24ec4abdbbdbe763a114e738a6c data/casting/advancement/recipes/misc/multiblock_regulator.json
 67282f7c8b5575602df7509680c8350a694152d5 data/casting/advancement/recipes/misc/nugget_mold.json
 9ca4d9aae8e9790f2109bf86368f07af9a53a905 data/casting/advancement/recipes/misc/plate_mold.json
 4dea2217ffe346c2b2b5edc7359de0ef98fec205 data/casting/advancement/recipes/misc/repairing_mold.json
@@ -945,6 +946,7 @@ f2eeb684b1031cbffa712cd0da708b219735a4ca data/casting/advancement/recipes/solidi
 fb019f4600aaad10fae1c8793cde91b6b9b82de4 data/casting/advancement/recipes/tool_modifier/equipment_modifier/beheading_from_fluid.json
 881e222546abcd800e47bc37404f89ff18716622 data/casting/advancement/recipes/tool_modifier/equipment_modifier/efficiency_from_fluid.json
 241bfd8122f106db5356c4085ad968860f2fc399 data/casting/advancement/recipes/tool_modifier/equipment_modifier/excavation_from_fluid.json
+025ff9ca775d4122f4b8457c28cbd486cd72d161 data/casting/advancement/recipes/tool_modifier/equipment_modifier/feather_falling_from_item.json
 ccd46796b64413198becfb9698e2a99e5f39efc5 data/casting/advancement/recipes/tool_modifier/equipment_modifier/flight_from_item.json
 886d76e8ebb0bf24242cb20e10e7ec4762098049 data/casting/advancement/recipes/tool_modifier/equipment_modifier/fortune_from_fluid.json
 7898b75c9b4ddaf8d9c2652adc4d5529dce54d44 data/casting/advancement/recipes/tool_modifier/equipment_modifier/ignite_from_fluid_and_item.json
@@ -983,6 +985,7 @@ c1c8e0c7a82226b8edd043b92e265eeca50730c3 data/casting/recipe/equipment_modifier.
 41f974b0e51876ed7d01b3d20018895162ba8eb5 data/casting/recipe/equipment_modifier/beheading_from_fluid.json
 1a0d8e0f27756a6b67cc4343ceb327e4b52dcec4 data/casting/recipe/equipment_modifier/efficiency_from_fluid.json
 9bd5c776f52e72d083d5d0a52da2ead159f21fbb data/casting/recipe/equipment_modifier/excavation_from_fluid.json
+92957df60e6697cf20382ab36c09bd9545b51b47 data/casting/recipe/equipment_modifier/feather_falling_from_item.json
 cfe6b6fdd241de2a59e3bb84a0cd85b751ab6d6a data/casting/recipe/equipment_modifier/flight_from_item.json
 b3b41a14533a25c12c9f585971f9b759fabe26a4 data/casting/recipe/equipment_modifier/fortune_from_fluid.json
 1bd30adf56a84ed47d38fc21c4e3d5b509653b77 data/casting/recipe/equipment_modifier/ignite_from_fluid_and_item.json
@@ -1543,6 +1546,7 @@ aba6ba5423a1a25c68cf2d2487c51c3a73bc90e4 data/casting/recipe/mixer/steel.json
 5dfcddf7f5282a4559b5ad602bd6dbf18e6c73db data/casting/recipe/mixer/super_coolant.json
 4c4f7ea1e0bf58552f91f546c48d8b412f9ced8b data/casting/recipe/mixer/vibrant_alloy.json
 d560b4007744737e34ab5339bfb1e3485b563d15 data/casting/recipe/mixer_whisk.json
+497a777e2bfeb209e32fa44019588a297842dd18 data/casting/recipe/multiblock_regulator.json
 4bf4f51f4cc1c2031776a16d593b533ad5e40e91 data/casting/recipe/nugget_mold.json
 b4e01aefc173b6d5eb90c7fdb933d22bbcf49064 data/casting/recipe/plate_mold.json
 3268df0fcc4b3c099434f7bd0c90d6c97dcf32be data/casting/recipe/repairing_mold.json

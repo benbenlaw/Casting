@@ -1,10 +1,10 @@
-// 1.21.1	2025-05-29T19:07:38.4184644	Tags for minecraft:item mod id casting
+// 1.21.1	2025-06-04T17:48:10.5355005	Tags for minecraft:item mod id casting
 ed847a4152445c1525cd7e5f2d7b85a35761d05a data/casting/tags/item/can_be_disabled_with_shift.json
 8ea9e44acecf92c95dca0fa3a81436e41f918c0b data/casting/tags/item/can_be_toggled_with_shift.json
 8e7c5beb2a472ddc8018ff39621cdf5c000a0b48 data/casting/tags/item/controller_extra_blocks.json
 2496cb4438ebf9069c618a9e27e0eb65f90323d1 data/casting/tags/item/controller_floors.json
 8dd160564f5faf1c1f7b6ae227d6a8b596094c75 data/casting/tags/item/controller_tanks.json
-a97fcaeafae73cf3e7ca0ab6a4648d1e486b3d30 data/casting/tags/item/controller_walls.json
+61d00dfd62f773dedf60c71b94d5e4f8deca2969 data/casting/tags/item/controller_walls.json
 cb0ed6d8265c7f470717fe4bdb90595526d5a990 data/casting/tags/item/melting_output_amount_effected.json
 da92033666b77dcdcd2ecfd54b5fcf76989db3a0 data/casting/tags/item/molds.json
 523cf825e8643e793dc1a64cd6939e6cdd4adc88 data/c/tags/item/ball_items.json

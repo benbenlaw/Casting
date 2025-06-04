@@ -49,6 +49,7 @@ public class ValidToolTypesForToolModifiers {
     public static final String WATER_WALKER = "water_walker";
     public static final String LAVA_WALKER = "lava_walker";
     public static final String FLIGHT = "flight";
+    public static final String FEATHER_FALLING = "feather_falling";
 
     //Map
     public static final Map<String, List<String>> VALID_MODIFIERS;
@@ -57,7 +58,7 @@ public class ValidToolTypesForToolModifiers {
         Map<String, List<String>> map = new HashMap<>();
 
         //Add all modifiers to this
-        map.put(ALL_MODIFIERS, List.of(FLIGHT, SPEED, LAVA_WALKER, WATER_WALKER, NIGHT_VISION, WATER_BREATHING, STEP_ASSIST, MAGNET, PROTECTION, TELEPORTING, EXCAVATION, IGNITE, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT, LOOTING, SHARPNESS, BEHEADING, LIFESTEAL, KNOCKBACK));
+        map.put(ALL_MODIFIERS, List.of(FEATHER_FALLING, FLIGHT, SPEED, LAVA_WALKER, WATER_WALKER, NIGHT_VISION, WATER_BREATHING, STEP_ASSIST, MAGNET, PROTECTION, TELEPORTING, EXCAVATION, IGNITE, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT, LOOTING, SHARPNESS, BEHEADING, LIFESTEAL, KNOCKBACK));
 
         //Add specific modifiers to this
         map.put(PICKAXE_MODIFIERS, List.of(TELEPORTING, EXCAVATION, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT));
@@ -72,7 +73,7 @@ public class ValidToolTypesForToolModifiers {
         map.put(HELMET_MODIFIERS, List.of(NIGHT_VISION, WATER_BREATHING, MAGNET, REPAIRING, UNBREAKING, PROTECTION));
         map.put(CHESTPLATE_MODIFIERS, List.of(FLIGHT, MAGNET, REPAIRING, UNBREAKING, PROTECTION));
         map.put(LEGGINGS_MODIFIERS, List.of(SPEED, MAGNET, REPAIRING, UNBREAKING, PROTECTION));
-        map.put(BOOTS_MODIFIERS, List.of(SPEED, LAVA_WALKER, WATER_WALKER, STEP_ASSIST, MAGNET, REPAIRING, UNBREAKING, PROTECTION));
+        map.put(BOOTS_MODIFIERS, List.of(FEATHER_FALLING, SPEED, LAVA_WALKER, WATER_WALKER, STEP_ASSIST, MAGNET, REPAIRING, UNBREAKING, PROTECTION));
 
         //Is body animals I think it is so will leave this empty
         map.put(BODY_MODIFIERS, List.of());
@@ -155,6 +156,9 @@ public class ValidToolTypesForToolModifiers {
         }
         if (Objects.equals(effect, LAVA_WALKER)) {
             return CastingDataComponents.LAVA_WALKER.get();
+        }
+        if (Objects.equals(effect, FEATHER_FALLING)) {
+            return CastingDataComponents.FEATHER_FALLING.get();
         }
 
         return null;

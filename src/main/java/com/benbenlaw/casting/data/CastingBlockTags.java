@@ -32,6 +32,7 @@ public class CastingBlockTags extends BlockTagsProvider {
                 .add(CastingBlocks.BLACK_BRICK_GLASS.get())
                 .add(CastingBlocks.BLACK_BRICKS.get())
                 .add(CastingBlocks.MULTIBLOCK_CONTROLLER.get())
+                .add(CastingBlocks.MULTIBLOCK_REGULATOR.get())
         ;
 
         //Controller Tanks
@@ -45,6 +46,7 @@ public class CastingBlockTags extends BlockTagsProvider {
                 .add(CastingBlocks.MULTIBLOCK_SOLIDIFIER.get())
                 .add(CastingBlocks.MULTIBLOCK_VALVE.get())
                 .add(CastingBlocks.MULTIBLOCK_MIXER.get())
+                .add(CastingBlocks.MULTIBLOCK_REGULATOR.get())
         ;
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE)

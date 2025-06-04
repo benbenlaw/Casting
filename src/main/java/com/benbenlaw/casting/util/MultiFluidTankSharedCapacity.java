@@ -21,6 +21,8 @@ public class MultiFluidTankSharedCapacity implements IFluidHandler {
     public final List<FluidStack> fluids = new ArrayList<>();
     private final int maxCapacity;
     private int enabledCapacity;
+    private int maxFluidTypes = 1;
+    private boolean regulationEnabled = false;
 
     public MultiFluidTankSharedCapacity(int maxCapacity) {
         this.maxCapacity = maxCapacity;
@@ -57,6 +59,25 @@ public class MultiFluidTankSharedCapacity implements IFluidHandler {
         return tank >= 0 && tank < fluids.size() ? fluids.get(tank) : FluidStack.EMPTY;
     }
 
+    public void setMaxFluidTypes(int maxFluidTypes) {
+        this.maxFluidTypes = Math.max(1, maxFluidTypes);
+        //removeExcessFluids();
+    }
+
+    public void setRegulationEnabled(boolean enabled) {
+        this.regulationEnabled = enabled;
+    }
+
+    private void removeExcessFluids() {
+        while (fluids.size() > maxFluidTypes) {
+            fluids.removeLast();
+        }
+    }
+
+    private int getCapacityPerFluid() {
+        return (maxFluidTypes == 2) ? enabledCapacity : enabledCapacity/maxFluidTypes;
+    }
+
     @Override
     public int getTankCapacity(int tank) {
         return enabledCapacity;
@@ -71,12 +92,45 @@ public class MultiFluidTankSharedCapacity implements IFluidHandler {
     public int fill(FluidStack resource, @NotNull FluidAction action) {
         if (resource.isEmpty() || resource.getAmount() <= 0) return 0;
 
-        int spaceLeft = getRemainingSpace();
+        if (!regulationEnabled) {
+            // Unregulated mode: treat as one big tank
+            int spaceLeft = getRemainingSpace();
+            if (spaceLeft <= 0) return 0;
+
+            for (FluidStack stored : fluids) {
+                if (FluidStack.isSameFluidSameComponents(resource, stored)) {
+                    int fillAmount = Math.min(spaceLeft, resource.getAmount());
+                    if (fillAmount > 0 && action.execute()) {
+                        stored.grow(fillAmount);
+                        onContentsChanged();
+                    }
+                    return fillAmount;
+                }
+            }
+
+            int fillAmount = Math.min(spaceLeft, resource.getAmount());
+            if (fillAmount > 0 && action.execute()) {
+                FluidStack toAdd = resource.copy();
+                toAdd.setAmount(fillAmount);
+                fluids.add(toAdd);
+                onContentsChanged();
+            }
+            return fillAmount;
+        }
+
+        // Regulated mode
+        int maxPerFluid = enabledCapacity / Math.max(1, maxFluidTypes);
+        int totalUsed = getTotalFluidAmount();
+        int spaceLeft = enabledCapacity - totalUsed;
         if (spaceLeft <= 0) return 0;
 
+        // Try adding to existing fluid
         for (FluidStack stored : fluids) {
             if (FluidStack.isSameFluidSameComponents(resource, stored)) {
-                int fillAmount = Math.min(spaceLeft, resource.getAmount());
+                int alreadyStored = stored.getAmount();
+                int fluidRoom = Math.max(0, maxPerFluid - alreadyStored);
+                int fillAmount = Math.min(Math.min(resource.getAmount(), fluidRoom), spaceLeft);
+
                 if (fillAmount > 0 && action.execute()) {
                     stored.grow(fillAmount);
                     onContentsChanged();
@@ -85,15 +139,22 @@ public class MultiFluidTankSharedCapacity implements IFluidHandler {
             }
         }
 
-        int fillAmount = Math.min(spaceLeft, resource.getAmount());
+        // New fluid type
+        if (fluids.size() >= maxFluidTypes) return 0;
+
+        int fillAmount = Math.min(Math.min(resource.getAmount(), maxPerFluid), spaceLeft);
         if (fillAmount > 0 && action.execute()) {
             FluidStack toAdd = resource.copy();
+            toAdd.setAmount(fillAmount);
             fluids.add(toAdd);
             onContentsChanged();
         }
-
         return fillAmount;
     }
+
+
+
+
 
     @Override
     public @NotNull FluidStack drain(FluidStack resource, @NotNull FluidAction action) {

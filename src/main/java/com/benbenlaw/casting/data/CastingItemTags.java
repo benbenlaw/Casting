@@ -68,6 +68,7 @@ public class CastingItemTags extends ItemTagsProvider {
                 .add(CastingBlocks.BLACK_BRICK_GLASS.get().asItem())
                 .add(CastingBlocks.BLACK_BRICKS.get().asItem())
                 .add(CastingBlocks.MULTIBLOCK_CONTROLLER.get().asItem())
+                .add(CastingBlocks.MULTIBLOCK_REGULATOR.get().asItem())
         ;
 
         //Controller Tanks

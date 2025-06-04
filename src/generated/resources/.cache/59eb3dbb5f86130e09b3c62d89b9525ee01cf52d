@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-26T13:54:30.3141708	Loot Tables
+// 1.21.1	2025-06-04T17:48:10.5314166	Loot Tables
 6fbf2da5bfe6af76a63d4f35c7b0a6c721c169cf data/casting/loot_table/blocks/black_bricks.json
 2aa5f2e33e7de4edacfa786a0d57407418349609 data/casting/loot_table/blocks/black_brick_glass.json
 593876eee8aaa6af4db94e8a1b6e18d61ca2cf44 data/casting/loot_table/blocks/controller.json
@@ -9,6 +9,7 @@ d660710736540058a22c2b0e81ddee7ef93e8db4 data/casting/loot_table/blocks/mixer_wh
 5b07d326f67b5916a0763797c68bba2d4fd09894 data/casting/loot_table/blocks/multiblock_coolant_tank.json
 24322759819e8499c330cfcf3763d30542c971fb data/casting/loot_table/blocks/multiblock_fuel_tank.json
 a1c572ea4861562dac1938cf3fd656bfbf4fa730 data/casting/loot_table/blocks/multiblock_mixer.json
+d01462a6569732cb162771cf645da23b156ddf84 data/casting/loot_table/blocks/multiblock_regulator.json
 19d7d4baa048e078d1d87f0d8d911adb408b53b4 data/casting/loot_table/blocks/multiblock_solidifier.json
 9a46f47a2c23ec97925cc389f53174e15246cedf data/casting/loot_table/blocks/multiblock_valve.json
 77ee2327a834fa84b84abe2b66669e276678170f data/casting/loot_table/blocks/solidifier.json

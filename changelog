@@ -3,7 +3,15 @@ Changelog BBL Casting
 // TODO //
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
-- FIX VALVE BEN
+
+2.0.18
+Added Multiblock Regulator, when more than 1 is added to a multiblock controller will reserver space in the output tank for a set amount of fluids
+EG if there is 4 regulators in the structure the shared fluid tank will reserver 1/4 of the total tank size for each of the fluids
+This should allow for even more efficiency and control over the controller
+Block has no GUI
+Having one or none keeps the original behavior of the shared tank to smelt everything it can
+Added Feather Falling modifier applies to boots, uses feathers, increase amount of percentage of damage by 10% per level, up to 5 levels,
+    config up to 8, 80% cap of damage, each level deals an addition damage on the boots when landing
 
 2.0.17
 Removed adjacent tank rendering for the equipment modifier

@@ -9,6 +9,10 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -214,6 +218,7 @@ public class ArmorEvents {
         float originalDamage = event.getOriginalDamage();
         float totalReduction = 0f;
 
+        // General protection reduction from armor
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             if (slot.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
 
@@ -226,9 +231,28 @@ public class ArmorEvents {
             }
         }
 
-        //(max 80% reduction)
+        // Cap reduction to 80%
         totalReduction = Math.min(totalReduction, 0.8f);
-        event.setNewDamage(originalDamage * (1.0f - totalReduction));
+
+        // Apply general damage reduction
+        float reducedDamage = originalDamage * (1.0f - totalReduction);
+
+        // --- Feather Falling ---
+        if (event.getSource().is(DamageTypes.FALL)) {
+            ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
+            if (!boots.isEmpty() && boots.getComponents().keySet().contains(CastingDataComponents.FEATHER_FALLING.get())) {
+                int featherFallingLevel = boots.getComponents().getOrDefault(CastingDataComponents.FEATHER_FALLING.get(), 0);
+                float fallReduction = featherFallingLevel * 10;
+
+                player.getItemBySlot(EquipmentSlot.FEET).hurtAndBreak(featherFallingLevel, player, EquipmentSlot.FEET);
+
+                // Cap reduction to 80%
+                fallReduction = Math.min(fallReduction, 0.8f);
+                reducedDamage *= (1.0f - fallReduction);
+            }
+        }
+
+        event.setNewDamage(reducedDamage);
     }
 
     @SubscribeEvent

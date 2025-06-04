@@ -41,9 +41,10 @@ public class CastingBlocks {
             () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(SoundType.GLASS).noOcclusion()));
     public static final DeferredBlock<Block> MULTIBLOCK_VALVE = registerBlock("multiblock_valve",
             () -> new MultiblockValveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE).noOcclusion()));
-
     public static final DeferredBlock<Block> MULTIBLOCK_MIXER = registerBlock("multiblock_mixer",
             () -> new MultiblockMixerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<Block> MULTIBLOCK_REGULATOR = registerBlock("multiblock_regulator",
+            () -> new MultiblockRegulatorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE).noOcclusion()));
 
     //OG Casting
     public static final DeferredBlock<Block> CONTROLLER = registerBlock("controller",

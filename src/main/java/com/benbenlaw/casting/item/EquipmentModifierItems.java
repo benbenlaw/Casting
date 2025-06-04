@@ -59,6 +59,8 @@ public class EquipmentModifierItems {
             () -> new EquipmentModifierItem(new Item.Properties(), "tooltips.casting.information.lava_walker", 1));
     public static final DeferredItem<Item> FLIGHT = ITEMS.register("flight",
             () -> new EquipmentModifierItem(new Item.Properties(), "tooltips.casting.information.flight", 1));
+    public static final DeferredItem<Item> FEATHER_FALLING = ITEMS.register("feather_falling",
+            () -> new EquipmentModifierItem(new Item.Properties(), "tooltips.casting.information.feather_falling", EquipmentModifierConfig.maxFeatherFallingAmount.get()));
 
 
     public static void register(IEventBus eventBus) {

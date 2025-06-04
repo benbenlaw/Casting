@@ -33,6 +33,7 @@ public class CastingLangProvider extends LanguageProvider {
         addBlockTranslation("black_brick_glass", "Black Brick Glass (BETA)");
         addBlockTranslation("multiblock_valve", "Multiblock Valve (BETA)");
         addBlockTranslation("multiblock_mixer", "Multiblock Mixer  (BETA)");
+        addBlockTranslation("multiblock_regulator", "Multiblock Regulator (BETA)");
 
         //OG Casting
         addBlockTranslation("controller", "Simple Controller");
@@ -69,6 +70,8 @@ public class CastingLangProvider extends LanguageProvider {
         addGUITranslation("buttons.at_max_level", "Equipment at Max Level for this modifier!");
         addGUITranslation("buttons.wrong_fluid", "Wrong Fluid in Tank!");
         addGUITranslation("buttons.not_enough_fluid", "Not Enough Fluid in Tank!");
+        addGUITranslation("buttons.no_regulators", "No Regulators detected, add for reserving space!");
+        addGUITranslation("buttons.regulator_count", "Tank Partitioned: %smb for %s fluids");
 
         //Jei Translations
         addGUITranslation("jei.melting", "Melting");
@@ -129,6 +132,7 @@ public class CastingLangProvider extends LanguageProvider {
         addItemTranslation("water_breathing", "Equipment Modifier: Water Breathing");
         addItemTranslation("night_vision", "Equipment Modifier: Night Vision");
         addItemTranslation("flight", "Equipment Modifier: Flight");
+        addItemTranslation("feather_falling", "Equipment Modifier: Feather Falling");
 
         //Tooltips
         addTooltipTranslation("information.repairing_mold", "When used in the Equipment Modifier, this will allow you to repair your equipment using its molten variant!");
@@ -162,6 +166,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.water_breathing", "Gives armor Water Breathing, allows the player to breathe underwater");
         addTooltipTranslation("information.night_vision", "Gives armor Night Vision, allows the player to see in the dark");
         addTooltipTranslation("information.flight", "Gives armor Flight, allows the player to fly");
+        addTooltipTranslation("information.feather_falling", "Gives armor Feather Falling, each level adds 10%% damage reduction from falling up to level %s");
 
         addTooltipTranslation("stats.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("stats.equipment_level", "Equipment Level %s XP: %s/%s");
@@ -189,6 +194,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("stats.water_breathing", "- Water Breathing");
         addTooltipTranslation("stats.night_vision", "- Night Vision");
         addTooltipTranslation("stats.flight", "- Flight");
+        addTooltipTranslation("stats.feather_falling", "- Feather Falling - %s");
 
         addTooltipTranslation("all_modifiers", "- All");
         addTooltipTranslation("pickaxe_modifiers", "- Pickaxes");

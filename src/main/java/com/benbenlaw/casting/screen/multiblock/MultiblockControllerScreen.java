@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.screen.multiblock;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.multiblock.MultiblockControllerBlockEntity;
 import com.benbenlaw.casting.block.multiblock.MultiblockControllerBlock;
 import com.benbenlaw.casting.network.payload.ControllerFilteredInventoryPayload;
@@ -114,6 +115,12 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
         //Filter Button
         guiGraphics.blit(TEXTURE, x + 41, y - 17, 177, 54, 20, 18);
         renderFilterTooltip(guiGraphics, mouseX, mouseY, x, y);
+
+        //Regulator Button
+
+        guiGraphics.blit(TEXTURE, x + 61, y - 17, 177, 72, 20, 18);
+        renderRegularTooltip(guiGraphics, mouseX, mouseY, x, y);
+
 
         //Progress bar
         renderProgressBars(guiGraphics, x, y);
@@ -308,6 +315,26 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
         }
     }
 
+    private void renderRegularTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 60, -17, 19, 18)) {
+
+            int regulatorCount = menu.blockEntity.regulatorCount;
+
+            if (regulatorCount == 0) {
+                guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.no_regulators").withStyle(ChatFormatting.RED), mouseX, mouseY);
+            }
+            else {
+                int space = menu.blockEntity.fluidHandler.getEnabledCapacity() / regulatorCount;
+
+                guiGraphics.renderTooltip(this.font,
+                        Component.translatable("gui.casting.buttons.regulator_count", space, regulatorCount),
+                        mouseX, mouseY);
+            }
+        }
+
+        guiGraphics.renderItem(new ItemStack(CastingBlocks.MULTIBLOCK_REGULATOR.asItem()), x + 62, y - 16);;
+
+    }
 
 
 

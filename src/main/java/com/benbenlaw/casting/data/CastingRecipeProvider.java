@@ -91,6 +91,14 @@ public class CastingRecipeProvider extends RecipeProvider {
                 .define('B', Tags.Items.GLASS_BLOCKS)
                 .unlockedBy("has_brick", has(CastingItems.BLACK_BRICK)).save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingBlocks.MULTIBLOCK_REGULATOR.get(), 1)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', CastingItems.BLACK_BRICK)
+                .define('B', CastingBlocks.BLACK_BRICKS)
+                .unlockedBy("has_brick", has(CastingItems.BLACK_BRICK)).save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CastingItems.FLUID_MOVER.get(), 1)
                 .pattern(" BB")
                 .pattern(" BB")
@@ -180,6 +188,7 @@ public class CastingRecipeProvider extends RecipeProvider {
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.MAGMA_BLOCK), 8), null, LAVA_WALKER);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SPONGE), 8), null, WATER_WALKER);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.NETHER_STAR), 1), null, FLIGHT);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FEATHER), 4), null, FEATHER_FALLING);
 
         // Molds
         createMoldRecipe(CastingItems.GEAR_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("gears"), consumer);

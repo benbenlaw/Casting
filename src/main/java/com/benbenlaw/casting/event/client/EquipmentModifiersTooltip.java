@@ -68,10 +68,11 @@ public class EquipmentModifiersTooltip {
         boolean hasLavaWalker = tool.getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
         boolean hasSpeed = tool.getComponents().keySet().contains(CastingDataComponents.SPEED.get());
         boolean hasFlight = tool.getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
+        boolean hasFeatherFalling = tool.getComponents().keySet().contains(CastingDataComponents.FEATHER_FALLING.get());
 
         boolean hasToggleableModifiers = tool.getComponents().keySet().contains(CastingDataComponents.TOGGLEABLE_MODIFIERS.get());
 
-        boolean hasEffects = hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
+        boolean hasEffects = hasFeatherFalling || hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
         if (Screen.hasShiftDown() && (hasEffects)) {
 
@@ -242,6 +243,11 @@ public class EquipmentModifiersTooltip {
             }
             if (hasFlight) {
                 components.add(index, Component.translatable("tooltips.casting.stats.flight").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasFeatherFalling) {
+                int featherFallingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.FEATHER_FALLING.get())).orElse(0);
+                components.add(index, Component.translatable("tooltips.casting.stats.feather_falling", featherFallingLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
 

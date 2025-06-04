@@ -31,6 +31,7 @@ public class CastingBlockStatesProvider extends BlockStateProvider {
         addMultiFaceBlockWithPoweredState(CastingBlocks.MULTIBLOCK_SOLIDIFIER.get());
         addMultiFaceBlockWithPoweredState(CastingBlocks.MULTIBLOCK_VALVE.get());
         addMultiFaceBlockWithPoweredState(CastingBlocks.MULTIBLOCK_MIXER.get());
+        blockWithItem(CastingBlocks.MULTIBLOCK_REGULATOR);
 
         addMultiFaceBlockController(CastingBlocks.CONTROLLER.get());
         addMultiFaceBlock(CastingBlocks.SOLIDIFIER.get());

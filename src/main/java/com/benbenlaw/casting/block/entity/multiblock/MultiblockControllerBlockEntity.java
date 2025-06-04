@@ -108,7 +108,6 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
     public int[] maxProgress = new int[60];
     public int CONTROLLER_MAX_PROGRESS = 1000;
     public String errorMessage = "";
-
     public int enabledSlots;
     private int tickCounter = 0;
     private int fuelTemp = 0;
@@ -117,6 +116,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
     public MultiblockData cachedMultiblockData = null;
     public SingleFluidTank fuelTank;
     public SingleFluidTank coolantTank;
+    public int regulatorCount = 0;
     public final IItemHandler controllerItemHandler = new InputOutputItemHandler(itemHandler,
             (i, stack) -> i < enabledSlots,
             i -> false
@@ -208,9 +208,16 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                 findSolidifiers(cachedMultiblockData);
                 findValves(cachedMultiblockData);
                 findMixers(cachedMultiblockData);
+                findRegulators(cachedMultiblockData);
+
+                fluidHandler.setMaxFluidTypes(regulatorCount);
+                fluidHandler.setRegulationEnabled(regulatorCount > 0);
+                //System.out.println("Regulator count: " + regulatorCount);
+
                 if (fluidHandler.getTankCapacity(1) != cachedMultiblockData.volume() * 1000) {
                     //System.out.println("Fluid handler capacity changed" + cachedMultiblockData.volume() * 1000);
                     fluidHandler.setEnabledCapacity(cachedMultiblockData.volume() * 1000);
+
                 }
             }
         }
@@ -426,8 +433,6 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                     entityConsumer.accept(entity);
                 }
 
-            } else {
-                System.out.println("Block entity is null at: " + pos);
             }
         });
 
@@ -460,6 +465,16 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                         mixer.setControllerBlockEntity(this);
                         mixer.setControllerPos(this.worldPosition);
                     }
+                });
+    }
+    public void findRegulators(MultiblockData cachedMultiblockData) {
+
+        regulatorCount = 0;
+
+        cachedMultiblockData.extraBlocks().stream()
+                .filter(pos -> level.getBlockState(pos).is(CastingBlocks.MULTIBLOCK_REGULATOR.get()))
+                .forEach(pos -> {
+                    regulatorCount += 1;
                 });
     }
 
@@ -501,6 +516,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         compoundTag.putInt("enabledSlots", enabledSlots);
         compoundTag.put("fluidTank", fluidHandler.writeToNBT(provider));
         compoundTag.putString("errorMessage", errorMessage);
+        compoundTag.putInt("regulatorCount", regulatorCount);
 
 
         if (fuelTank != null) {
@@ -537,6 +553,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         enabledSlots = compoundTag.getInt("enabledSlots");
         fluidHandler.readFromNBT(provider, compoundTag.get("fluidTank"));
         errorMessage = compoundTag.getString("errorMessage");
+        regulatorCount = compoundTag.getInt("regulatorCount");
 
         if (compoundTag.contains("fuelTank") && fuelTank != null) {
             fuelTank.readFromNBT(provider, compoundTag.getCompound("fuelTank"));

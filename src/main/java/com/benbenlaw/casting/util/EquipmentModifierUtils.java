@@ -97,6 +97,10 @@ public class EquipmentModifierUtils {
         if (effect.contains(LAVA_WALKER)) {
             return stack.getOrDefault(CastingDataComponents.LAVA_WALKER, false);
         }
+        if (effect.contains(FEATHER_FALLING)) {
+            int currentFeatherFalling = stack.getOrDefault(CastingDataComponents.FEATHER_FALLING, 0);
+            return currentFeatherFalling >= EquipmentModifierConfig.maxFeatherFallingAmount.get();
+        }
 
         return false;
     }
@@ -221,6 +225,11 @@ public class EquipmentModifierUtils {
         if (effect.contains(FLIGHT)) {
             boolean isFlight = copy.getOrDefault(CastingDataComponents.FLIGHT, false);
             copy.set(CastingDataComponents.FLIGHT, !isFlight);
+        }
+        if (effect.contains(FEATHER_FALLING)) {
+            int currentSpeed = copy.getOrDefault(CastingDataComponents.FEATHER_FALLING, 0);
+            int newFeatherFalling = Math.min(currentSpeed + 1, EquipmentModifierConfig.maxFeatherFallingAmount.get());
+            copy.set(CastingDataComponents.FEATHER_FALLING, newFeatherFalling);
         }
 
 

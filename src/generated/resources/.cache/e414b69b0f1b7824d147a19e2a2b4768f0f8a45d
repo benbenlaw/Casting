@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-29T18:05:49.918339	casting Block States
+// 1.21.1	2025-06-04T17:48:10.5355005	casting Block States
 2aa30e731299e20bfaeb5903cc0ebf7ed84c6ab3 assets/casting/blockstates/black_bricks.json
 b350b2f7bb3df5e34993e7791e783a609025c622 assets/casting/blockstates/black_brick_glass.json
 00b59f80b2429da68323b4afd6eb72c565bfb9f9 assets/casting/blockstates/chilled_water.json
@@ -64,6 +64,7 @@ f0b378102df47e4bf23f4b7f74714040ecbf6433 assets/casting/blockstates/molten_vibra
 95c2be822cf5170003d7e502e95d392d271f784a assets/casting/blockstates/multiblock_coolant_tank.json
 aa8cc93dda03615fbbe4494866d55d1949713c65 assets/casting/blockstates/multiblock_fuel_tank.json
 1dc5b40eda64268ab81bdf5fecc956c7d7a57aeb assets/casting/blockstates/multiblock_mixer.json
+162f241c8dec16a7972e886b55c4f4928099e5f8 assets/casting/blockstates/multiblock_regulator.json
 3f5ef242e8d1e06c56c49861f4564c54168f3056 assets/casting/blockstates/multiblock_solidifier.json
 7733f40b52f51dbbdbf4d699fad61d94d94a64f5 assets/casting/blockstates/multiblock_valve.json
 220832ba9052112b15335e6fef60a27ae63cec3d assets/casting/blockstates/solidifier.json
@@ -139,6 +140,7 @@ c9e67a0271ee6c2380ff93bbf6448b09d43484cc assets/casting/models/block/multiblock_
 f08278a6d03d860be1f5733ccf3423af9eae447c assets/casting/models/block/multiblock_fuel_tank.json
 a2894967cb4f824e6493dbe3fe0d4f26c48dc263 assets/casting/models/block/multiblock_mixer_off.json
 53c86b28e7da0523121242e82e0b033ba6c34cbb assets/casting/models/block/multiblock_mixer_on.json
+c0de61ef848a7de7b161b89e92fa7b674e0c8690 assets/casting/models/block/multiblock_regulator.json
 f2905cdbb9f19d86cbb1d580d989acef381b24e4 assets/casting/models/block/multiblock_solidifier_off.json
 9ec5d818af6a90e59b4798dd1a73e7305443d6c8 assets/casting/models/block/multiblock_solidifier_on.json
 16cc869d283496f0009c37dbfaa82880c9128f5f assets/casting/models/block/multiblock_valve_off.json
@@ -157,6 +159,7 @@ fe41d9347a915f69b564106739051fd09f1a0c3a assets/casting/models/item/mixer.json
 6e19c6ff8ef17ebc4813304b3b95e2c2f9588188 assets/casting/models/item/multiblock_coolant_tank.json
 2482a0f44dfb6c4fae5283b580d662f56b0615aa assets/casting/models/item/multiblock_fuel_tank.json
 c18a3fc448eddaa79b63c527667f7395f4aa732b assets/casting/models/item/multiblock_mixer.json
+83f443979d5c90e32e26a6145aa34a290ef3f290 assets/casting/models/item/multiblock_regulator.json
 95eddbcf235efa4af3c8014fedcbd70e86982b89 assets/casting/models/item/multiblock_solidifier.json
 b65c16f07211ddae4362b505d939b37c97b410e9 assets/casting/models/item/multiblock_valve.json
 50505a0402ffe27f603ac53a814b4291a278e6d4 assets/casting/models/item/solidifier.json

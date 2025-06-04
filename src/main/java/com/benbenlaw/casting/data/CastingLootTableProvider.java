@@ -27,6 +27,7 @@ public class CastingLootTableProvider extends VanillaBlockLoot {
         this.dropSelf(CastingBlocks.MULTIBLOCK_VALVE.get());
         this.dropSelf(CastingBlocks.MULTIBLOCK_MIXER.get());
         this.dropSelf(CastingBlocks.BLACK_BRICK_GLASS.get());
+        this.dropSelf(CastingBlocks.MULTIBLOCK_REGULATOR.get());
 
         //OG Casting
         this.dropOther(CastingBlocks.CONTROLLER.get(), Items.AIR);
