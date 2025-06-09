@@ -66,30 +66,38 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
     public ItemStackHandler getItemStackHandler() {
 
         if (controller == null) {
-            assert level != null;
-            controller = (MultiblockControllerBlockEntity) level.getBlockEntity(controllerPos);
-
+            if (controllerPos != null && level != null) {
+                controller = (MultiblockControllerBlockEntity) level.getBlockEntity(controllerPos);
+            }
         }
         assert controller != null;
         return controller.itemHandler;
     }
     public @Nullable IItemHandler getItemHandlerCapability(@Nullable Direction side) {
-        if (controller == null) {
-            assert level != null;
-            controller = (MultiblockControllerBlockEntity) level.getBlockEntity(controllerPos);
-
+        if (controller == null && controllerPos != null && level != null) {
+            BlockEntity be = level.getBlockEntity(controllerPos);
+            if (be instanceof MultiblockControllerBlockEntity controllerEntity) {
+                controller = controllerEntity;
+            }
         }
-        assert controller != null;
-        return controller.controllerItemHandler;
+
+        if (controller != null) {
+            return controller.controllerItemHandler;
+        } else {
+            return null;
+        }
     }
 
     public IFluidHandler getFilteredFluidHandler(Direction side) {
         if (controller == null) {
-            if (controllerPos == null || level == null) {
-                return null;
-            }
-            controller = (MultiblockControllerBlockEntity) level.getBlockEntity(controllerPos);
-            if (controller == null) {
+            if (controllerPos != null && level != null) {
+                BlockEntity be = level.getBlockEntity(controllerPos);
+                if (be instanceof MultiblockControllerBlockEntity controllerEntity) {
+                    controller = controllerEntity;
+                } else {
+                    return null;
+                }
+            } else {
                 return null;
             }
         }
@@ -288,8 +296,7 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
     public boolean onPlayerUse(Player player, InteractionHand hand) {
         if (controller != null) {
             return FluidUtil.interactWithFluidHandler(player, hand, controller.fluidHandler);
-        } else {
-            return false;
         }
+        return false;
     }
 }

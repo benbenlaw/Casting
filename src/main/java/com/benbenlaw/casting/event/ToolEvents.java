@@ -623,7 +623,7 @@ public class ToolEvents {
                 //Beheading
                 if (isBeheading) {
                     Optional<ItemStack> customHead = BeheadingHeadMap.getHeadForEntity(deadEntity);
-                    System.out.println("Custom head: " + customHead);
+                    //System.out.println("Custom head: " + customHead);
                     customHead.ifPresent(loot::add);
                 }
 
@@ -700,6 +700,7 @@ public class ToolEvents {
                 .withParameter(LootContextParams.THIS_ENTITY, deadEntity)
                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(deadEntity.getOnPos()))
                 .withParameter(LootContextParams.DAMAGE_SOURCE, damageSource)
+                .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, player)
                 .withParameter(LootContextParams.ATTACKING_ENTITY, fakePlayer);
 
         LootParams lootParamsFinal = lootParams.create(LootContextParamSets.ENTITY);

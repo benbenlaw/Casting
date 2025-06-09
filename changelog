@@ -4,6 +4,15 @@ Changelog BBL Casting
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 
+2.0.20
+Looting modifier now parses the player correctly enabling for player only drops working like blaze rods
+Fixed beheading modifier not being read on the server side leading to missing head drops
+Disabled log for head drops
+
+2.0.19
+Fixed Valves crashing when trying to connect to item or fluid handlers when the controller is not present
+Updated textures thanks @Yuki
+
 2.0.18
 Added Multiblock Regulator, when more than 1 is added to a multiblock controller will reserver space in the output tank for a set amount of fluids
 EG if there is 4 regulators in the structure the shared fluid tank will reserver 1/4 of the total tank size for each of the fluids
