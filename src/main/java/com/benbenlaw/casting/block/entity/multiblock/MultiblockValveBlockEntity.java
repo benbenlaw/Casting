@@ -89,37 +89,32 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
     }
 
     public IFluidHandler getFilteredFluidHandler(Direction side) {
-        if (controller == null) {
-            if (controllerPos != null && level != null) {
-                BlockEntity be = level.getBlockEntity(controllerPos);
-                if (be instanceof MultiblockControllerBlockEntity controllerEntity) {
-                    controller = controllerEntity;
-                } else {
-                    return null;
-                }
-            } else {
-                return null;
-            }
-        }
-
-        // safe to use controller here
-        IFluidHandler originalHandler = controller.fluidHandler;
-        if (originalHandler == null) return null;
-
         return new IFluidHandler() {
+            private MultiblockControllerBlockEntity getCurrentController() {
+                return getController();
+            }
+
+            private IFluidHandler getOriginalHandler() {
+                MultiblockControllerBlockEntity controller = getCurrentController();
+                return controller != null ? controller.fluidHandler : null;
+            }
+
             @Override
             public int getTanks() {
-                return originalHandler.getTanks();
+                IFluidHandler handler = getOriginalHandler();
+                return handler != null ? handler.getTanks() : 0;
             }
 
             @Override
             public @NotNull FluidStack getFluidInTank(int tank) {
-                return originalHandler.getFluidInTank(tank);
+                IFluidHandler handler = getOriginalHandler();
+                return handler != null ? handler.getFluidInTank(tank) : FluidStack.EMPTY;
             }
 
             @Override
             public int getTankCapacity(int tank) {
-                return originalHandler.getTankCapacity(tank);
+                IFluidHandler handler = getOriginalHandler();
+                return handler != null ? handler.getTankCapacity(tank) : 0;
             }
 
             private boolean isFiltering() {
@@ -138,7 +133,6 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
                 return isSelectedFluid(stack);
             }
 
-
             private void setWorkingState() {
                 BlockState state = getBlockState();
                 if (!state.getValue(MultiblockValveBlock.WORKING)) {
@@ -154,10 +148,10 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
 
             @Override
             public int fill(@NotNull FluidStack resource, @NotNull FluidAction action) {
-                if (!isEnabled()) return 0; // don't fill if not enabled
-                if (resource.isEmpty()) return 0;
-                if (!isSelectedFluid(resource)) return 0;
-                int filled = originalHandler.fill(resource, action);
+                if (!isEnabled() || resource.isEmpty() || !isSelectedFluid(resource)) return 0;
+                IFluidHandler handler = getOriginalHandler();
+                if (handler == null) return 0;
+                int filled = handler.fill(resource, action);
                 if (filled > 0) {
                     setWorkingState();
                 }
@@ -166,10 +160,10 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
 
             @Override
             public @NotNull FluidStack drain(@NotNull FluidStack resource, @NotNull FluidAction action) {
-                if (!isEnabled()) return FluidStack.EMPTY; // don't drain if not enabled
-                if (resource.isEmpty()) return FluidStack.EMPTY;
-                if (!isSelectedFluid(resource)) return FluidStack.EMPTY;
-                FluidStack drained = originalHandler.drain(resource, action);
+                if (!isEnabled() || resource.isEmpty() || !isSelectedFluid(resource)) return FluidStack.EMPTY;
+                IFluidHandler handler = getOriginalHandler();
+                if (handler == null) return FluidStack.EMPTY;
+                FluidStack drained = handler.drain(resource, action);
                 if (!drained.isEmpty()) {
                     setWorkingState();
                 }
@@ -179,16 +173,18 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
             @Override
             public @NotNull FluidStack drain(int maxDrain, @NotNull FluidAction action) {
                 if (!isEnabled()) return FluidStack.EMPTY;
+                IFluidHandler handler = getOriginalHandler();
+                if (handler == null) return FluidStack.EMPTY;
 
-                if (!isFiltering()) {  // no filter -> drain any fluid
-                    FluidStack drained = originalHandler.drain(maxDrain, action);
+                if (!isFiltering()) {
+                    FluidStack drained = handler.drain(maxDrain, action);
                     if (!drained.isEmpty()) {
                         setWorkingState();
                     }
                     return drained;
                 }
 
-                if (originalHandler instanceof MultiFluidTankSharedCapacity multiTank) {
+                if (handler instanceof MultiFluidTankSharedCapacity multiTank) {
                     for (int tank = 0; tank < multiTank.getTanks(); tank++) {
                         FluidStack stackInTank = multiTank.getFluidInTank(tank);
                         if (isSelectedFluid(stackInTank)) {
@@ -204,8 +200,6 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
             }
         };
     }
-
-
 
     @Override
     public @NotNull Component getDisplayName() {
@@ -245,10 +239,42 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
 
     public void setControllerPos(BlockPos controllerPos) {
         this.controllerPos = controllerPos;
+        this.controller = null;
+
+        if (level != null) {
+            setChanged();
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+        }
     }
 
     public void setSelectedFluid(String fluid) {
         selectedFluidString = fluid;
+    }
+
+    private MultiblockControllerBlockEntity getController() {
+        if (controller != null && controller.isRemoved()) {
+            controller = null;
+        }
+
+        if (controller == null && controllerPos != null && level != null) {
+            BlockEntity be = level.getBlockEntity(controllerPos);
+            if (be instanceof MultiblockControllerBlockEntity controllerEntity) {
+                controller = controllerEntity;
+            }
+        }
+
+        return controller;
+    }
+
+    public void refreshController() {
+        if (level != null && controllerPos != null) {
+            BlockEntity be = level.getBlockEntity(controllerPos);
+            if (be instanceof MultiblockControllerBlockEntity controllerEntity) {
+                this.controller = controllerEntity;
+            } else {
+                this.controller = null;
+            }
+        }
     }
 
     @Override

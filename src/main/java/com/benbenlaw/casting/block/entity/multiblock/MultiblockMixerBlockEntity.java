@@ -158,13 +158,18 @@ public class MultiblockMixerBlockEntity extends SyncableBlockEntity implements M
                 }
 
                 if (canCraft) {
-                    for (FluidStack requiredFluid : recipeFluids) {
-                        controller.fluidHandler.drain(requiredFluid, IFluidHandler.FluidAction.EXECUTE);
-                    }
-                    controller.fluidHandler.fill(recipe.outputFluid(), IFluidHandler.FluidAction.EXECUTE);
 
-                    didCraft = true;
-                    break;
+                    int filledAmount = controller.fluidHandler.fill(recipe.outputFluid(), IFluidHandler.FluidAction.SIMULATE);
+                    if (filledAmount >= recipe.outputFluid().getAmount()) {
+
+                        for (FluidStack requiredFluid : recipeFluids) {
+                            controller.fluidHandler.drain(requiredFluid, IFluidHandler.FluidAction.EXECUTE);
+                        }
+                        controller.fluidHandler.fill(recipe.outputFluid(), IFluidHandler.FluidAction.EXECUTE);
+
+                        didCraft = true;
+                        break;
+                    }
                 }
             }
         }

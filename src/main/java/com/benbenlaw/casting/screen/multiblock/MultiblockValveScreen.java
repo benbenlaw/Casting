@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.screen.multiblock;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.block.entity.multiblock.MultiblockControllerBlockEntity;
 import com.benbenlaw.casting.block.multiblock.MultiblockValveBlock;
 import com.benbenlaw.casting.network.payload.OnOffButtonPayload;
 import com.benbenlaw.casting.network.payload.ValveSelectedFluidPayload;
@@ -102,12 +103,18 @@ public class MultiblockValveScreen extends AbstractContainerScreen<MultiblockVal
     }
 
     private void renderNoControllerTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
-        if (menu.blockEntity.controller == null) {
-            if (MouseUtil.isMouseAboveArea(mouseX, mouseY, this.leftPos + 71, this.topPos + 21, 0, -1, 34, 45)) {
-                guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.multiblock_controller.no_controller"), mouseX, mouseY);
+        if (MouseUtil.isMouseAboveArea(mouseX, mouseY, this.leftPos + 71, this.topPos + 21, 0, 0, 34, 45)) {
+            if (menu.blockEntity.controllerPos != null) {
+                BlockEntity be = menu.blockEntity.getLevel().getBlockEntity(menu.blockEntity.controllerPos);
+                if (!(be instanceof MultiblockControllerBlockEntity)) {
+                    guiGraphics.renderTooltip(this.font,
+                            Component.translatable("gui.casting.multiblock_controller.no_controller"),
+                            mouseX, mouseY);
+                }
             }
         }
     }
+
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {

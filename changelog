@@ -4,6 +4,14 @@ Changelog BBL Casting
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 
+2.0.21
+Fixed Valve crashing when shift clicking items (there is no item handler for players to access in teh valve)
+Multiblock mixer no longer processes a recipe when the output tank is too full
+Multi Tank now saves regulator information, this means that valves no longer ignore regulation upon world reloads
+Valve fluid handler now updates correctly when the controller is moved / replaced
+Added all equipment modifier to the "casting:equipment_modifiers" tag
+Fixed missing model files for feather falling
+
 2.0.20
 Looting modifier now parses the player correctly enabling for player only drops working like blaze rods
 Fixed beheading modifier not being read on the server side leading to missing head drops

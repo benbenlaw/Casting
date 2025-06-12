@@ -242,12 +242,30 @@ public class MultiFluidTankSharedCapacity implements IFluidHandler {
     }
 
     public void readFromNBT(HolderLookup.Provider provider, Tag nbt) {
-        if (nbt instanceof ListTag listTag) {
+        if (nbt instanceof CompoundTag compoundTag) {
             this.fluids.clear();
-            for (int i = 0; i < listTag.size(); i++) {
-                CompoundTag tag = listTag.getCompound(i);
-                this.fluids.add(FluidStack.parseOptional(provider, tag));
+
+            if (compoundTag.contains("Fluids", Tag.TAG_LIST)) {
+                ListTag listTag = compoundTag.getList("Fluids", Tag.TAG_COMPOUND);
+                for (int i = 0; i < listTag.size(); i++) {
+                    CompoundTag tag = listTag.getCompound(i);
+                    this.fluids.add(FluidStack.parseOptional(provider, tag));
+                }
             }
+
+            if (compoundTag.contains("EnabledCapacity")) {
+                this.enabledCapacity = compoundTag.getInt("EnabledCapacity");
+            }
+
+            if (compoundTag.contains("MaxFluidTypes")) {
+                this.maxFluidTypes = compoundTag.getInt("MaxFluidTypes");
+            }
+
+            if (compoundTag.contains("RegulationEnabled")) {
+                this.regulationEnabled = compoundTag.getBoolean("RegulationEnabled");
+            }
+
+            reduceToCapacity();
         }
     }
 
@@ -258,6 +276,13 @@ public class MultiFluidTankSharedCapacity implements IFluidHandler {
                 fluidList.add(fluid.save(provider));
             }
         }
-        return fluidList;
+
+        CompoundTag tag = new CompoundTag();
+        tag.put("Fluids", fluidList);
+        tag.putInt("EnabledCapacity", enabledCapacity);
+        tag.putInt("MaxFluidTypes", maxFluidTypes);
+        tag.putBoolean("RegulationEnabled", regulationEnabled);
+
+        return tag;
     }
 }

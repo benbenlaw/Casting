@@ -10,10 +10,13 @@ import com.benbenlaw.core.tag.ResourceNames;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
@@ -29,6 +32,11 @@ public class CastingItemTags extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
+
+        //All Equipment Modifiers
+        for (DeferredHolder<Item, ? extends Item> item : EquipmentModifierItems.ITEMS.getEntries()) {
+            tag(CastingTags.Items.EQUIPMENT_MODIFIERS).add(item.get());
+        }
 
         //Can be disabled with shift modifiers
         tag(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT)

@@ -43,7 +43,7 @@ public class MultiblockValveMenu extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player p_38941_, int p_38942_) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
