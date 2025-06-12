@@ -4,6 +4,9 @@ Changelog BBL Casting
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 
+2.0.22
+Fixed Regulator not having a tool asigned to it
+
 2.0.21
 Fixed Valve crashing when shift clicking items (there is no item handler for players to access in teh valve)
 Multiblock mixer no longer processes a recipe when the output tank is too full

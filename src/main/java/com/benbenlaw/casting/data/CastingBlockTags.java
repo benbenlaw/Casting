@@ -58,6 +58,7 @@ public class CastingBlockTags extends BlockTagsProvider {
                 .add(CastingBlocks.MULTIBLOCK_SOLIDIFIER.get())
                 .add(CastingBlocks.MULTIBLOCK_VALVE.get())
                 .add(CastingBlocks.MULTIBLOCK_MIXER.get())
+                .add(CastingBlocks.MULTIBLOCK_REGULATOR.get())
 
                 //OG Casting
                 .add(CastingBlocks.TANK.get())
