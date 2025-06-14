@@ -1,11 +1,10 @@
 {
-  "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_brick": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "casting:black_brick"
+            "items": "casting:equipment_modifier"
           }
         ]
       },
@@ -13,7 +12,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:black_bricks"
+        "recipe": "casting:equipment_modifier/equipment_level_from_fluid"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +20,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_brick"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "casting:black_bricks"
+      "casting:equipment_modifier/equipment_level_from_fluid"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

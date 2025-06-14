@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-12T17:03:06.0867261	casting Item Models
+// 1.21.1	2025-06-14T11:48:18.605328	casting Item Models
 16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
 513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
@@ -43,6 +43,7 @@ b19b5c25cd064678014088beaef97ee0c1f8b42c assets/casting/models/item/molten_emera
 407f77d5f33a1258b52a8f27aa50b9158b710a15 assets/casting/models/item/molten_end_steel_bucket.json
 2fbf7eb6953434deceb9f96661eef528213761a7 assets/casting/models/item/molten_end_stone_bucket.json
 0cc970f1993846f0a1978479afd46388387a5e03 assets/casting/models/item/molten_energetic_alloy_bucket.json
+8823e20df7bee4a68131930112f781a63825417a assets/casting/models/item/molten_experience_bucket.json
 a2e2093f90ad247a5e57271f9089fe285323f11f assets/casting/models/item/molten_glass_bucket.json
 5e68511c45ae0ff832dcec11cb43d2ff481ac4ce assets/casting/models/item/molten_glowstone_bucket.json
 8e4ef642c16dc1fe0f3a456849ea3b0d719775f9 assets/casting/models/item/molten_gold_bucket.json

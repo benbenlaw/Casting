@@ -129,6 +129,13 @@ public class CastingItemTags extends ItemTagsProvider {
                 .add(Items.ANCIENT_DEBRIS)
         ;
 
+        //Melting Produces Experience
+        tag(CastingTags.Items.MELTING_PRODUCES_EXPERIENCE)
+                .addTag(ModdedTagBuilder.createNeoFabricItemTag("ores"))
+                .addTag(ModdedTagBuilder.createNeoFabricItemTag("raw_materials"))
+                .add(Items.ANCIENT_DEBRIS)
+        ;
+
         for (String resource : ResourceNames.getAllResourceNames()) {
             String rawStorageBlock = "storage_blocks/raw_" + resource.toLowerCase(Locale.ROOT);
             tag(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED).addOptionalTag(ModdedTagBuilder.createNeoFabricItemTag(rawStorageBlock));

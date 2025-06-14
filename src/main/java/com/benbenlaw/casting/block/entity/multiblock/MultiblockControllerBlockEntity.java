@@ -4,6 +4,7 @@ import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.multiblock.MultiblockControllerBlock;
 import com.benbenlaw.casting.config.CastingConfig;
+import com.benbenlaw.casting.fluid.FluidData;
 import com.benbenlaw.casting.multiblock.CoreMultiblockDetector;
 import com.benbenlaw.casting.multiblock.MultiblockData;
 import com.benbenlaw.casting.recipe.FuelRecipe;
@@ -51,10 +52,12 @@ import java.util.function.Predicate;
 
 import static com.benbenlaw.casting.block.multiblock.MultiblockSolidifierBlock.ENABLED;
 import static com.benbenlaw.casting.block.multiblock.MultiblockSolidifierBlock.WORKING;
+import static com.benbenlaw.casting.data.recipes.FluidStackHelper.getFluidStack;
 
 public class MultiblockControllerBlockEntity extends SyncableBlockEntity implements MenuProvider, IInventoryHandlingBlockEntity {
 
     public final Map<Integer, Item> allowedItems = new HashMap<>();
+    public final int EXPERIENCE_CREATED = CastingConfig.experienceGivenWhenMeltingAValidOre.get();
 
     public final FilteredItemHandler itemHandler = new FilteredItemHandler(60, allowedItems) {
 
@@ -317,12 +320,21 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                 .findFirst();
 
         if (selectedRecipe.isPresent()) {
-            int fillAmount = selectedRecipe.get().value().output().getAmount();
+            MeltingRecipe recipe = selectedRecipe.get().value();
+            int fillAmount = recipe.output().getAmount();
+
+            boolean producesExperience = recipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_PRODUCES_EXPERIENCE);
+
+            if (producesExperience) {
+                fillAmount += EXPERIENCE_CREATED;
+            }
+
             if (selectedRecipe.get().value().input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)) {
                 fillAmount = (int) (fillAmount * CastingConfig.oreMultiplier.get());
             }
 
             FluidStack fluidStack = new FluidStack(selectedRecipe.get().value().output().getFluid(), fillAmount);
+            FluidStack experienceFluidStack = getFluidStack("molten_experience", EXPERIENCE_CREATED);
 
             if (fluidHandler.fill(fluidStack, IFluidHandler.FluidAction.SIMULATE) < fillAmount) {
                 resetProgress(slotIndex);
@@ -339,6 +351,11 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                 if (progress[slotIndex] >= maxProgress[slotIndex]) {
                     resetProgress(slotIndex);
                     fluidHandler.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+
+                    if (producesExperience) {
+                        fluidHandler.fill(experienceFluidStack, IFluidHandler.FluidAction.EXECUTE);
+                    }
+
                     itemHandler.extractItem(slotIndex, 1, false);
                     useFuel();
                     setChanged();

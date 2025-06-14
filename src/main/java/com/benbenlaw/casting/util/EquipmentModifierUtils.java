@@ -101,6 +101,10 @@ public class EquipmentModifierUtils {
             int currentFeatherFalling = stack.getOrDefault(CastingDataComponents.FEATHER_FALLING, 0);
             return currentFeatherFalling >= EquipmentModifierConfig.maxFeatherFallingAmount.get();
         }
+        if (effect.contains(EQUIPMENT_LEVEL)) {
+            int currentEfficiency = stack.getOrDefault(CastingDataComponents.EQUIPMENT_LEVEL, 0);
+            return currentEfficiency >= EquipmentModifierConfig.maxEquipmentLevel.get();
+        }
 
         return false;
     }
@@ -114,6 +118,10 @@ public class EquipmentModifierUtils {
             int currentEfficiency = copy.getOrDefault(CastingDataComponents.EQUIPMENT_LEVEL, 0);
             int newToolLevel = Math.min(currentEfficiency + 1, EquipmentModifierConfig.maxEquipmentLevel.get());
             copy.set(CastingDataComponents.EQUIPMENT_LEVEL, newToolLevel);
+
+            if (!stack.has(CastingDataComponents.EQUIPMENT_EXPERIENCE)) {
+                copy.set(CastingDataComponents.EQUIPMENT_EXPERIENCE, 0);
+            }
         }
         if (effect.contains(FORTUNE)) {
             int currentFortune = copy.getOrDefault(CastingDataComponents.FORTUNE, 0);
@@ -231,8 +239,6 @@ public class EquipmentModifierUtils {
             int newFeatherFalling = Math.min(currentSpeed + 1, EquipmentModifierConfig.maxFeatherFallingAmount.get());
             copy.set(CastingDataComponents.FEATHER_FALLING, newFeatherFalling);
         }
-
-
         return copy;
     }
 

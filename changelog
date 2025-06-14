@@ -3,6 +3,19 @@ Changelog BBL Casting
 // TODO //
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
+Add experience to melting recipe (1.22), maybe even expand melting to allow multiple fluids from a single item
+
+2.0.24
+Added Molten Experience
+This is obtained when smelting certain items such as ores and raw materials inside the multiblock controller
+This is currently controlled by adding the items to the "casting:melting_produces_experience" tag
+The amount given is inside the casting config, default is 25
+Molten Experience can be used to make Bottle o' Enchanting in the Solidifier
+Molten Experience can be used to increase a tools level by 1, this works like other modifiers but doesn't require a free slot to use,
+    the tools experience is preserved the tool simply gains a level up to the max
+
+2.0.23
+Added missing repair mold translation
 
 2.0.22
 Fixed Regulator not having a tool asigned to it

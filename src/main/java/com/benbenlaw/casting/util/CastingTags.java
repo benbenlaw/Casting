@@ -35,6 +35,7 @@ public class CastingTags{
         public static final TagKey<Item> BLOCK_MOLD = commonTag("molds/block");
         public static final TagKey<Item> BALL_ITEMS = commonTag("ball_items");
         public static final TagKey<Item> MELTING_OUTPUT_AMOUNT_EFFECTED = tag(Casting.MOD_ID, "melting_output_amount_effected");
+        public static final TagKey<Item> MELTING_PRODUCES_EXPERIENCE = tag(Casting.MOD_ID, "melting_produces_experience");
         public static final TagKey<Item> CAN_BE_DISABLED_WITH_SHIFT = tag(Casting.MOD_ID, "can_be_disabled_with_shift");
         public static final TagKey<Item> CAN_BE_TOGGLED_WITH_SHIFT = tag(Casting.MOD_ID, "can_be_toggled_with_shift");
         public static final TagKey<Item> EQUIPMENT_MODIFIERS = tag(Casting.MOD_ID, "equipment_modifiers");

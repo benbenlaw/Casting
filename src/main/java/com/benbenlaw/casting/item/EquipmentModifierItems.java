@@ -61,7 +61,8 @@ public class EquipmentModifierItems {
             () -> new EquipmentModifierItem(new Item.Properties(), "tooltips.casting.information.flight", 1));
     public static final DeferredItem<Item> FEATHER_FALLING = ITEMS.register("feather_falling",
             () -> new EquipmentModifierItem(new Item.Properties(), "tooltips.casting.information.feather_falling", EquipmentModifierConfig.maxFeatherFallingAmount.get()));
-
+    public static final DeferredItem<Item> EQUIPMENT_LEVEL = ITEMS.register("equipment_level",
+            () -> new EquipmentModifierItem(new Item.Properties(), "tooltips.casting.information.equipment_level_item", EquipmentModifierConfig.maxEquipmentLevel.get()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

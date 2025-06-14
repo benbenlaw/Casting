@@ -189,6 +189,7 @@ public class CastingRecipeProvider extends RecipeProvider {
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.SPONGE), 8), null, WATER_WALKER);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.NETHER_STAR), 1), null, FLIGHT);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FEATHER), 4), null, FEATHER_FALLING);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_experience", 500), EQUIPMENT_LEVEL);
 
         // Molds
         createMoldRecipe(CastingItems.GEAR_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("gears"), consumer);
@@ -258,6 +259,10 @@ public class CastingRecipeProvider extends RecipeProvider {
                 createCommonSolidifierRecipes(resource, consumer);
             }
         }
+
+        // Experience
+        createSimpleSolidifierRecipe(getFluidStack("molten_experience", 100), Items.GLASS_BOTTLE.getDefaultInstance(),
+                Items.EXPERIENCE_BOTTLE, "experience/bottle", consumer);;
 
         // Obsidian
         createSimpleMeltingRecipe(getFluidStack("molten_obsidian", 1000), Items.OBSIDIAN, FluidData.getTempByName("molten_obsidian"),

@@ -24,6 +24,7 @@
     "casting:water_walker",
     "casting:lava_walker",
     "casting:flight",
-    "casting:feather_falling"
+    "casting:feather_falling",
+    "casting:equipment_level"
   ]
 }

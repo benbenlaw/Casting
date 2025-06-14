@@ -35,6 +35,7 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
 
             //Casting
             new FluidData("molten_black_brick", "block/molten_still", "block/molten_flow", 0xFF646565, 1000),
+            new FluidData("molten_experience", "block/molten_still", "block/molten_flow", 0xFF7cee4b, 1000),
 
             //Common
             new FluidData("molten_ruby", "block/molten_still", "block/molten_flow", 0xFFf57fa8, 1000),

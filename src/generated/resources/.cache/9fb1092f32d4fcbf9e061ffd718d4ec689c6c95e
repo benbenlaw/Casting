@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-04T19:37:51.9801116	Recipes
+// 1.21.1	2025-06-14T11:51:24.5463419	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -701,6 +701,7 @@ b049f4524f971fead33dbd2aa3bac94c3396d37b data/casting/advancement/recipes/solidi
 d37b24fc3704e08e93ecd98ada7034b52c85988d data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/rod.json
 314811c9b776f49576d5753f1936f35cf38768f1 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/storage_block.json
 980ba76c508adbed05bb6bc56894c0fd8a570a87 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/wire.json
+e5f3cc3da7e7804c90ba8421f0af4c4f0af8ac9b data/casting/advancement/recipes/solidifier/solidifier/experience/bottle.json
 84dfe2b54230fa04cfa54e7212bf5a17cbba6249 data/casting/advancement/recipes/solidifier/solidifier/glass/block.json
 272739edea240275c2bbb488bdce704edb303296 data/casting/advancement/recipes/solidifier/solidifier/glowstone/block.json
 ade9982388a65c4d4658ed7f1a7a52733b4ed880 data/casting/advancement/recipes/solidifier/solidifier/glowstone/dust.json
@@ -945,6 +946,7 @@ f2eeb684b1031cbffa712cd0da708b219735a4ca data/casting/advancement/recipes/solidi
 131f737387e765c172a36b3132eabb0ce13cbe4d data/casting/advancement/recipes/tool_modifier/equipment_modifier/auto_smelt_from_fluid.json
 fb019f4600aaad10fae1c8793cde91b6b9b82de4 data/casting/advancement/recipes/tool_modifier/equipment_modifier/beheading_from_fluid.json
 881e222546abcd800e47bc37404f89ff18716622 data/casting/advancement/recipes/tool_modifier/equipment_modifier/efficiency_from_fluid.json
+f81025a3ec9373df835241174f218004076adb00 data/casting/advancement/recipes/tool_modifier/equipment_modifier/equipment_level_from_fluid.json
 241bfd8122f106db5356c4085ad968860f2fc399 data/casting/advancement/recipes/tool_modifier/equipment_modifier/excavation_from_fluid.json
 025ff9ca775d4122f4b8457c28cbd486cd72d161 data/casting/advancement/recipes/tool_modifier/equipment_modifier/feather_falling_from_item.json
 ccd46796b64413198becfb9698e2a99e5f39efc5 data/casting/advancement/recipes/tool_modifier/equipment_modifier/flight_from_item.json
@@ -984,6 +986,7 @@ c1c8e0c7a82226b8edd043b92e265eeca50730c3 data/casting/recipe/equipment_modifier.
 735817e34abbd280f13f0e48e9bed77ea66f87a2 data/casting/recipe/equipment_modifier/auto_smelt_from_fluid.json
 41f974b0e51876ed7d01b3d20018895162ba8eb5 data/casting/recipe/equipment_modifier/beheading_from_fluid.json
 1a0d8e0f27756a6b67cc4343ceb327e4b52dcec4 data/casting/recipe/equipment_modifier/efficiency_from_fluid.json
+043754b38b24bf1ddf7a4685d4ac35b4421e6983 data/casting/recipe/equipment_modifier/equipment_level_from_fluid.json
 9bd5c776f52e72d083d5d0a52da2ead159f21fbb data/casting/recipe/equipment_modifier/excavation_from_fluid.json
 92957df60e6697cf20382ab36c09bd9545b51b47 data/casting/recipe/equipment_modifier/feather_falling_from_item.json
 cfe6b6fdd241de2a59e3bb84a0cd85b751ab6d6a data/casting/recipe/equipment_modifier/flight_from_item.json
@@ -1692,6 +1695,7 @@ b3159de4776bca5beccd87d2ddd02b622c86649a data/casting/recipe/solidifier/energeti
 416d51f97bc35562341add4bc8b6371aa536bfc7 data/casting/recipe/solidifier/energetic_alloy/rod.json
 2b7846fead15be6904601e0bce501bf8c75d2d86 data/casting/recipe/solidifier/energetic_alloy/storage_block.json
 168c0f71b9a016237ab7b5af338e09754093c978 data/casting/recipe/solidifier/energetic_alloy/wire.json
+b93ba478737414bbc51ad9aa2e471a604fcbb68e data/casting/recipe/solidifier/experience/bottle.json
 8f7aeaa939c693d8ea38824940fff5cd9ae46f99 data/casting/recipe/solidifier/glass/block.json
 a82b6c003802217c189af7e080b7b74d380f47a0 data/casting/recipe/solidifier/glowstone/block.json
 7345d2b5a408c54e34d705b0d8f9af1dd04efd25 data/casting/recipe/solidifier/glowstone/dust.json

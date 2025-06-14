@@ -133,6 +133,7 @@ public class CastingLangProvider extends LanguageProvider {
         addItemTranslation("night_vision", "Equipment Modifier: Night Vision");
         addItemTranslation("flight", "Equipment Modifier: Flight");
         addItemTranslation("feather_falling", "Equipment Modifier: Feather Falling");
+        addItemTranslation("equipment_level", "Equipment Modifier: Level Up");
 
         //Tooltips
         addTooltipTranslation("information.repairing_mold", "When used in the Equipment Modifier, this will allow you to repair your equipment using its molten variant!");
@@ -142,6 +143,7 @@ public class CastingLangProvider extends LanguageProvider {
 
         addTooltipTranslation("information.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("information.equipment_level", "Equipment Level %s XP: %s/%s");
+        addTooltipTranslation("information.equipment_level_item", "Gives your equipment a level, each level adds an additional modifier slot, up to %s levels");
         addTooltipTranslation("information.auto_smelt", "Allows the tool to automatically smelt items it mines up to level %s");
         addTooltipTranslation("information.beheading", "Gives a tool Beheading, drops mob heads");
         addTooltipTranslation("information.efficiency", "Gives a tool Efficiency up to level %s");
@@ -170,6 +172,7 @@ public class CastingLangProvider extends LanguageProvider {
 
         addTooltipTranslation("stats.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("stats.equipment_level", "Equipment Level %s XP: %s/%s");
+        addTooltipTranslation("stats.repairing_mold", "When inside the Equipment Modifier, this will allow you to repair your equipment using its molten variant!");
         addTooltipTranslation("stats.auto_smelt", "- Auto Smelt");
         addTooltipTranslation("stats.beheading", "- Beheading");
         addTooltipTranslation("stats.efficiency", "- Efficiency - %s");

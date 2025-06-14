@@ -479,7 +479,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                                     // Add Tool Level to confirm the tool is modified
                                     if (!itemHandler.getStackInSlot(OUTPUT_SLOT).has(CastingDataComponents.EQUIPMENT_LEVEL)) {
                                         itemHandler.getStackInSlot(OUTPUT_SLOT).set(CastingDataComponents.EQUIPMENT_LEVEL, 1);
-                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set(CastingDataComponents.EQUIPMENT_EXPERIENCE, 1);
+                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set(CastingDataComponents.EQUIPMENT_EXPERIENCE, 0);
                                     }
 
                                     itemHandler.setStackInSlot(TOOL_SLOT, ItemStack.EMPTY);
