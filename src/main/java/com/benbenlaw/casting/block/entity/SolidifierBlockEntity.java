@@ -403,7 +403,8 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
 
                     for (RecipeHolder<CoolantRecipe> recipeHolder : allFuels) {
                         CoolantRecipe recipe = recipeHolder.value();
-                        if (recipe.fluid().getFluid() == tankBlockEntity.FLUID_TANK.getFluid().getFluid()) {
+                        if (recipe.fluid().getFluid() == tankBlockEntity.FLUID_TANK.getFluid().getFluid() &&
+                                tankBlockEntity.FLUID_TANK.getFluidAmount() >= recipe.fluid().getAmount()) {
                             maxProgress = recipe.duration();
                             storedTankFluidAmount = tankBlockEntity.FLUID_TANK.getFluidAmount();
                             storedTankFluidAmountUsedInRecipe = recipe.fluid().getAmount();

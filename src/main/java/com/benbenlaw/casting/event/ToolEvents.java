@@ -18,9 +18,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Inventory;
@@ -37,6 +36,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -74,7 +74,7 @@ public class ToolEvents {
         if (level.isClientSide()) return;
         if (player.getMainHandItem().has(CastingDataComponents.EXCAVATION)) {
             lastHitDirectionMap.put(player.getUUID(), face);
-            System.out.println("Direction: " + face);
+            //System.out.println("Direction: " + face);
         }
     }
 
@@ -90,18 +90,17 @@ public class ToolEvents {
         boolean isSilkTouch = tool.getComponents().keySet().contains(CastingDataComponents.SILK_TOUCH.get());
         boolean isFortune = tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get());
         boolean isAutoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
-        boolean isUnbreaking = tool.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get());
         boolean isExcavation = tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get());
         boolean isMagnet = hasMagnetArmor(player);
 
-        boolean requiresCastingOverrides = isMagnet || isExcavation || isSilkTouch || isFortune || isAutoSmelt || isUnbreaking;
+        boolean requiresCastingOverrides = isMagnet || isExcavation || isSilkTouch || isFortune || isAutoSmelt;
 
         if (!level.isClientSide() && requiresCastingOverrides) {
             event.setCanceled(true);
 
             // Excavation
             if(!tool.isCorrectToolForDrops(state)) {
-                breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
+                breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt);
                 return;
             }
 
@@ -116,23 +115,29 @@ public class ToolEvents {
                     BlockState targetState = level.getBlockState(targetPos);
                     if (!targetState.isAir() && targetState.getDestroySpeed(level, targetPos) >= 0 && tool.isCorrectToolForDrops(targetState))
                     {
-                        breakBlockWithCasting(level, player, targetPos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
+                        breakBlockWithCasting(level, player, targetPos, tool, isSilkTouch, isFortune, isAutoSmelt);
                     }
                 }
                 return;
             }
             // Other casting overrides
-            breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt, isUnbreaking);
+            breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt);
         }
     }
 
-    public static void breakBlockWithCasting(Level level, Player player, BlockPos pos, ItemStack tool, boolean isSilkTouch, boolean isFortune, boolean isAutoSmelt, boolean isUnbreaking) {
+    public static void breakBlockWithCasting(Level level, Player player, BlockPos pos, ItemStack tool, boolean isSilkTouch, boolean isFortune, boolean isAutoSmelt) {
         BlockState state = level.getBlockState(pos);
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
         ItemStack fakeItemStack = tool.copy();
         List<ItemStack> drops = new ArrayList<>();
-        boolean shouldTakeDamage = true;
+
+        int blockExperience = 0;
+        if (state.getBlock() instanceof DropExperienceBlock experienceBlock) {
+            blockExperience = experienceBlock.getExpDrop(state, level, pos, blockEntity, player, tool);
+        }
+
+        // Requires Experience to be dropped
 
         // Silk Touch
         if (isSilkTouch && isToggleableModifierActive(tool)) {
@@ -186,13 +191,10 @@ public class ToolEvents {
 
         level.destroyBlock(pos, false, player);
 
-        if (isUnbreaking) {
-            int unbreakingLevel = tool.getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
-            shouldTakeDamage = level.getRandom().nextFloat() >= (unbreakingLevel * 0.1f);
-        }
-
-        if (shouldTakeDamage) {
-            tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+        //Drop Experience
+        if (blockExperience > 0) {
+            ExperienceOrb experienceOrb = new ExperienceOrb(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, blockExperience);
+            level.addFreshEntity(experienceOrb);
         }
     }
 
@@ -273,87 +275,6 @@ public class ToolEvents {
 
         return positions;
     }
-
-    //Using this to break an area of blocks
-    public static void breakArea(BlockEvent.BreakEvent event, Player player, ItemStack tool, Level level, BlockPos origin, BlockState originalState, int excavationLevel) {
-        int radius = excavationLevel;
-        Vec3 lookVec = player.getLookAngle();
-        Direction face = Direction.getNearest(lookVec.x, lookVec.y, lookVec.z);
-
-        for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -radius; dy <= radius; dy++) {
-                BlockPos targetPos;
-
-                if (face.getAxis() == Direction.Axis.Y) {
-                    targetPos = origin.offset(dx, 0, dy);
-                } else if (face.getAxis() == Direction.Axis.X) {
-                    targetPos = origin.offset(0, dx, dy);
-                } else {
-                    targetPos = origin.offset(dx, dy, 0);
-                }
-
-                BlockEntity blockEntity = level.getBlockEntity(targetPos);
-                BlockState targetState = level.getBlockState(targetPos);
-                if (targetState.isAir() || targetState.getDestroySpeed(level, targetPos) < 0) continue;
-
-                if (!tool.isCorrectToolForDrops(targetState)) {
-                    continue;
-                }
-
-                ItemStack fakeItemStack = tool.copy();
-                List<ItemStack> drops;
-
-                if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.SILK_TOUCH.get()))) {
-                    fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
-                } else if (tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get())) {
-                    int fortuneLevel = tool.getOrDefault(CastingDataComponents.FORTUNE.get(), 0);
-                    fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
-                }
-
-                drops = getLootDrops(targetState, blockEntity,targetPos, player, fakeItemStack, level);
-
-                if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.AUTO_SMELT.get()))) {
-                    List<ItemStack> smelted = new ArrayList<>();
-                    for (ItemStack drop : drops) {
-                        SingleRecipeInput container = new SingleRecipeInput(drop);
-                        List<RecipeHolder<SmeltingRecipe>> recipes = level.getRecipeManager().getRecipesFor(RecipeType.SMELTING, container, level);
-                        if (!recipes.isEmpty()) {
-                            ItemStack result = recipes.getFirst().value().getResultItem(level.registryAccess()).copy();
-                            result.setCount(drop.getCount());
-                            smelted.add(result);
-                        } else {
-                            smelted.add(drop);
-                        }
-                    }
-                    drops = smelted;
-                }
-
-                for (ItemStack drop : drops) {
-                    Block.popResource(level, targetPos, drop);
-                }
-
-                // Check drops for air and run destroy Block method
-                if (drops.size() == 1 && drops.getFirst().is(Items.AIR)) {
-                    targetState.getBlock().playerDestroy(level, player, targetPos, targetState, blockEntity, tool);
-                }
-
-
-                level.destroyBlock(targetPos, false, player);
-
-                boolean shouldTakeDamage = true;
-                if (tool.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get())) {
-                    int unbreakingLevel = tool.getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
-                    shouldTakeDamage = level.getRandom().nextFloat() >= (unbreakingLevel * 0.1f);
-                }
-
-                if (shouldTakeDamage) {
-                    tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-                }
-            }
-        }
-    }
-
-
 
     @SubscribeEvent
     public static void onBreakingBlock(PlayerEvent.BreakSpeed event) {
@@ -528,9 +449,6 @@ public class ToolEvents {
             player.sendSystemMessage(Component.literal("Toggled Modifiers: " + tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())));
         }
 
-
-
-
         boolean isTeleporting = tool.getComponents().keySet().contains(CastingDataComponents.TELEPORTING.get());
 
         boolean requiresCastingOverrides = isTeleporting;
@@ -611,6 +529,9 @@ public class ToolEvents {
 
                 //Looting
                 if (isLooting) {
+
+                    if (deadEntity instanceof WitherBoss) return;
+
                     event.setCanceled(true);
                     LootTable lootTable = Objects.requireNonNull(level.getServer()).reloadableRegistries().getLootTable(deadEntity.getLootTable());
                     int lootingLevel = stack.getComponents().getOrDefault(CastingDataComponents.LOOTING.get(), 0);

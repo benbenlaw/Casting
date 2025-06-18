@@ -325,10 +325,6 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
             boolean producesExperience = recipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_PRODUCES_EXPERIENCE);
 
-            if (producesExperience) {
-                fillAmount += EXPERIENCE_CREATED;
-            }
-
             if (selectedRecipe.get().value().input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)) {
                 fillAmount = (int) (fillAmount * CastingConfig.oreMultiplier.get());
             }
@@ -361,6 +357,8 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                     setChanged();
                     sync();
                 }
+            } else {
+                resetProgress(slotIndex);
             }
         } else {
             resetProgress(slotIndex);
@@ -381,7 +379,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
             for (RecipeHolder<FuelRecipe> recipeHolder : allFuels) {
                 FuelRecipe recipe = recipeHolder.value();
-                if (recipe.fluid().getFluid() == fuelTank.getFluid().getFluid()) {
+                if (recipe.fluid().getFluid() == fuelTank.getFluid().getFluid() && fuelTank.getFluidAmount() >= recipe.fluid().getAmount()) {
                     if (recipe.temp() >= temp) {
                         fuelTemp = recipe.temp();
                         return true;

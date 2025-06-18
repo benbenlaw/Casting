@@ -3,6 +3,7 @@ package com.benbenlaw.casting.screen.multiblock;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.multiblock.MultiblockSolidifierBlockEntity;
 import com.benbenlaw.casting.screen.CastingMenuTypes;
+import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.screen.util.slot.ResultSlot;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -39,7 +40,19 @@ public class MultiblockSolidifierMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(blockEntity.getItemStackHandler(), 0, 98, 36));
+        this.addSlot(new SlotItemHandler(blockEntity.getItemStackHandler(), 0, 98, 36) {
+
+            @Override
+            public int getMaxStackSize(ItemStack stack) {
+                int maxStackSize = 64;
+                if (stack.is(CastingTags.Items.MOLDS)) {
+                    maxStackSize = 1;
+                }
+                return maxStackSize;
+            }
+
+        });
+
         this.addSlot(new ResultSlot(blockEntity.getItemStackHandler(), 1, 151, 36, 64));
 
         addDataSlots(data);

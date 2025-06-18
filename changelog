@@ -5,6 +5,32 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 Add experience to melting recipe (1.22), maybe even expand melting to allow multiple fluids from a single item
 
+
+
+2.0.26
+Controllers now actually check the amount of fuel in the tank before processing a recipe,
+    fixes issues with recipe being processed and no fuel being used when the fuel level is below the minimum needed
+Solidifiers now actually check the amount of coolant in the tank before processing a recipe,
+    fixes issues with recipe speeds not being reset back to there original if the fluid tank contained a below minimum coolant amount
+Player places molds in the Solidifier now only stack to 1
+Blocks that drop experience when broken now drop experience when broken with tools with casting modifier, except for silk touch
+Disabled log for direction when using excavation modifier
+Completely reworked the unbreaking modifier, this now uses a mixin instead of checking for specific event like block breaking and armor damage.
+This means that any tool or armor that has the unbreaking modifier will now have the chance of no damage across all events both nin vanilla, casting and other mods
+Example 1, Night Vision helmet with unbreaking 10 will never take damage from the night vision effect
+Stuff confirmed to now work with the unbreaking modifier;
+    Hoeing crops
+    Stripping logs
+    Swords dealing damage to mobs
+    Other Casting Modifiers that deal damage to a tool on use
+Fixed non modified armour not having its armor values applied when taking damage
+Looting modifier will no be triggered on the Wither Boss, for whatever reason this mob doesnt have a loot table so casting creates an empty one which
+    clears all drops, now casting will not create the loot table and full back to vanilla dropCustom method, this should also fix the cognizant drop from
+    Mystical Agriculture
+
+2.0.25
+Fixed experience having effect on the main output of the recipe
+
 2.0.24
 Added Molten Experience
 This is obtained when smelting certain items such as ores and raw materials inside the multiblock controller

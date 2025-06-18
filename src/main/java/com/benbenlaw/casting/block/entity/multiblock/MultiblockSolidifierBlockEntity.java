@@ -254,7 +254,7 @@ public class MultiblockSolidifierBlockEntity extends SyncableBlockEntity impleme
 
         for (RecipeHolder<CoolantRecipe> recipeHolder : allFuels) {
             CoolantRecipe recipe = recipeHolder.value();
-            if (recipe.fluid().getFluid() == coolantTank.getFluid().getFluid()) {
+            if (recipe.fluid().getFluid() == coolantTank.getFluid().getFluid() && coolantTank.getFluidAmount() >= recipe.fluid().getAmount()) {
                 maxProgress = Math.max(recipe.duration(), 10);
                 coolantFluidStack = recipe.fluid();
             }

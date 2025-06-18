@@ -628,7 +628,7 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
 
                     for (RecipeHolder<FuelRecipe> recipeHolder : allFuels) {
                         FuelRecipe recipe = recipeHolder.value();
-                        if (recipe.fluid().getFluid() == tankBlockEntity.FLUID_TANK.getFluid().getFluid()) {
+                        if (recipe.fluid().getFluid() == tankBlockEntity.FLUID_TANK.getFluid().getFluid() && tankBlockEntity.FLUID_TANK.getFluid().getAmount() >= recipe.fluid().getAmount()) {
                             if (recipe.temp() >= temp) {
                                 return true;
                             }
