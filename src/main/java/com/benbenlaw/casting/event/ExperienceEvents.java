@@ -21,7 +21,6 @@ import static com.benbenlaw.casting.util.EquipmentModifierUtils.getExperienceMod
 
 public class ExperienceEvents {
 
-
     @SubscribeEvent
     public static void onPlayerTick(PlayerXpEvent.PickupXp event) {
         //System.out.println("XP Picked Up: " + event.getOrb().getValue());
