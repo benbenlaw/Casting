@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-21T09:54:28.2394082	Recipes
+// 1.21.1	2025-06-21T10:31:45.4099064	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -369,7 +369,6 @@ f0fb056d9d65d75efde4a205dbdb0d849bbfe24b data/casting/advancement/recipes/meltin
 56bb7d3262512b82b484d65b09cb275c17935d83 data/casting/advancement/recipes/melting/melting/quartz/from_pillar.json
 3bf155a9dd0f275873b40e9d9c8002dc4ad69f93 data/casting/advancement/recipes/melting/melting/quartz/from_quartz.json
 b3b7fe7879f168ee772eae4134f7c65eae4debc9 data/casting/advancement/recipes/melting/melting/quartz/from_smooth_block.json
-766335f04fc95c93fff75b0d13b5b3cd5f297919 data/casting/advancement/recipes/melting/melting/quartz_enriched_iron/from_block.json
 5d40b5f4c94b484dbec616893811dc1d904057ab data/casting/advancement/recipes/melting/melting/quartz_enriched_iron/from_ingot.json
 2acf7f7b7e8e738513d812acf7c50dbf06761e45 data/casting/advancement/recipes/melting/melting/redstone/from_dust.json
 21116daf2c4db86fa5c96683f6445031cd6e5bf3 data/casting/advancement/recipes/melting/melting/redstone/from_gear.json
@@ -835,8 +834,7 @@ d7ebc3c9d0c2e7e5190d4241bcdaf2f1585187c4 data/casting/advancement/recipes/solidi
 afc10ed8fba13e378bd0ab82dbb0300f778c3d1c data/casting/advancement/recipes/solidifier/solidifier/quartz/block.json
 26cc0361248a184924ae98acbffa7f5361685eae data/casting/advancement/recipes/solidifier/solidifier/quartz/dust.json
 aa77f307b0036ee1ed158095a201d7661a94d1af data/casting/advancement/recipes/solidifier/solidifier/quartz/gem.json
-30ab9db94ca9bc3fe2f3cc8b6080874404b1d255 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/block.json
-bc939928ba40b6e94a7edc97b30002cf39b6612b data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/ingot.json
+70e7d27ce1e3f3b0dd2d2056ecc3b6206d75a8ee data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/ingot.json
 359674741f4307f8f246de9a78759562afc02874 data/casting/advancement/recipes/solidifier/solidifier/redstone/dust.json
 1ed04ce73636ef23348282bd519dbbb5354f8ebb data/casting/advancement/recipes/solidifier/solidifier/redstone/gear.json
 18229a136373d39825d16e50c3696db831a3114f data/casting/advancement/recipes/solidifier/solidifier/redstone/gem.json
@@ -1383,7 +1381,6 @@ be8461c40f1c55c57a8fcfb5b396e60ccb7e2b4c data/casting/recipe/melting/quartz/from
 dff66a2f51b42aa5ef66c1894768a123012970d7 data/casting/recipe/melting/quartz/from_pillar.json
 d3a4f43de20e61280d27125bce48785f653f60a4 data/casting/recipe/melting/quartz/from_quartz.json
 32e451bb9cf4167537702c96f5c164cfbceb3733 data/casting/recipe/melting/quartz/from_smooth_block.json
-e1235a7963da4e3b86bb6a9d519f306a128ce681 data/casting/recipe/melting/quartz_enriched_iron/from_block.json
 f86578eea6f5881d7dd42c06bbdd4f3e339473fb data/casting/recipe/melting/quartz_enriched_iron/from_ingot.json
 bcde852565e63d78d27881775db5535292137181 data/casting/recipe/melting/redstone/from_dust.json
 8935fb6ffe34ee4d11bda993a4e3f006e0020910 data/casting/recipe/melting/redstone/from_gear.json
@@ -1834,8 +1831,7 @@ c9b6eb1cd80b83355b4f728447870edb76bb7f13 data/casting/recipe/solidifier/pulsatin
 479d751b4bccf7eafd0402fb61a3453fc4dc82a6 data/casting/recipe/solidifier/quartz/block.json
 26796e30433d1e9374e68c81081cba88406c642c data/casting/recipe/solidifier/quartz/dust.json
 0ae4e2227e13e552fa15cfe4d15d21ff7f443573 data/casting/recipe/solidifier/quartz/gem.json
-9380ad57c8e51fc14321d60ea000ae38152caeae data/casting/recipe/solidifier/quartz_enriched_iron/block.json
-aa5762739b496996e311c9183445d0f9585aa327 data/casting/recipe/solidifier/quartz_enriched_iron/ingot.json
+9b21ad70d1550b020dd97c0ed8c463ff78deb7ea data/casting/recipe/solidifier/quartz_enriched_iron/ingot.json
 d8079ef95c3550046ba302222518507920a572cb data/casting/recipe/solidifier/redstone/dust.json
 776d86dd4264d224a16abeac163895b206188166 data/casting/recipe/solidifier/redstone/gear.json
 e8d2a1d3da65a1e7afd03c4805350573ff3f8be5 data/casting/recipe/solidifier/redstone/gem.json

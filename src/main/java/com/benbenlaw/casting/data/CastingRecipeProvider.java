@@ -263,14 +263,10 @@ public class CastingRecipeProvider extends RecipeProvider {
         // Quartz enriched iron (Refined Storage)
         createSimpleMeltingRecipe(getFluidStack("molten_quartz_enriched_iron", 90), ModdedTagBuilder.createNeoFabricItemTag("ingots/quartz_enriched_iron"),
                 FluidData.getTempByName("molten_quartz_enriched_iron"), "quartz_enriched_iron/from_ingot", consumer);
-        createSimpleMeltingRecipe(getFluidStack("molten_quartz_enriched_iron", 810), ModdedTagBuilder.createNeoFabricItemTag("storage_blocks/quartz_enriched_iron"),
-                FluidData.getTempByName("molten_quartz_enriched_iron"), "quartz_enriched_iron/from_block", consumer);
-
 
         createSimpleSolidifierRecipe(getFluidStack("molten_quartz_enriched_iron", 90), CastingTags.Items.INGOT_MOLD,
-                ModdedTagBuilder.createNeoFabricItemTag("ingot/quartz_enriched_iron"), "quartz_enriched_iron/ingot", consumer);
-        createSimpleSolidifierRecipe(getFluidStack("molten_quartz_enriched_iron", 810), CastingTags.Items.BLOCK_MOLD,
-                ModdedTagBuilder.createNeoFabricItemTag("block/quartz_enriched_iron"), "quartz_enriched_iron/block", consumer);
+                ModdedTagBuilder.createNeoFabricItemTag("ingots/quartz_enriched_iron"), "quartz_enriched_iron/ingot", consumer);
+
 
         createSimpleMixingRecipe(fluidList(
                         getFluidStack("molten_iron", 270), getFluidStack("molten_quartz", 250)),
