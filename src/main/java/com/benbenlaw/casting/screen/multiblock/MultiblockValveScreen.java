@@ -140,7 +140,7 @@ public class MultiblockValveScreen extends AbstractContainerScreen<MultiblockVal
 
                     if (mouseY >= top && mouseY <= yOffset) {
                         PacketDistributor.sendToServer(new ValveSelectedFluidPayload(fluid.getFluid().toString(), menu.blockEntity.getBlockPos()));
-                        System.out.println("Selected fluid: " + fluid.getFluid());
+                        //System.out.println("Selected fluid: " + fluid.getFluid());
                         handled = true;
                         break;
                     }
@@ -150,7 +150,7 @@ public class MultiblockValveScreen extends AbstractContainerScreen<MultiblockVal
         }
 
         if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 20, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
-            System.out.println("fluid area");
+            //System.out.println("fluid area");
             PacketDistributor.sendToServer(new ValveSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
         }
 

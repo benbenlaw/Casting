@@ -6,6 +6,7 @@ import com.benbenlaw.core.fluid.FluidRegistryObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class CastingFluids {
     static {
 
         for (FluidData data : FluidData.FLUID_DEFINITIONS) {
+
             var fluid = FLUIDS.register(data.name(), (renderProperties) ->
                     renderProperties.texture(
                             ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, data.stillTexture()),

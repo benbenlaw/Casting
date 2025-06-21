@@ -159,7 +159,7 @@ public class MultiblockSolidifierScreen extends AbstractContainerScreen<Multiblo
         }
 
         if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 41, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
-            System.out.println("fluid area");
+            //System.out.println("fluid area");
             PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
         }
 

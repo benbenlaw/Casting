@@ -33,21 +33,5 @@ public class CastingFluidTags extends FluidTagsProvider {
             tag(tag).add(entry.getValue().getFluid());
             tag(tag).add(entry.getValue().getFlowingFluid());
         }
-
-        /*
-        tag(CastingTags.Items.INGOT_MOLD).add(ModItems.INGOT_MOLD.asItem());
-        tag(CastingTags.Items.NUGGET_MOLD).add(ModItems.NUGGET_MOLD.asItem());
-        tag(CastingTags.Items.GEM_MOLD).add(ModItems.GEM_MOLD.asItem());
-        tag(CastingTags.Items.DUST_MOLD).add(ModItems.DUST_MOLD.asItem());
-        tag(CastingTags.Items.PLATE_MOLD).add(ModItems.PLATE_MOLD.asItem());
-        tag(CastingTags.Items.GEAR_MOLD).add(ModItems.GEAR_MOLD.asItem());
-        tag(CastingTags.Items.ROD_MOLD).add(ModItems.ROD_MOLD.asItem());
-        tag(CastingTags.Items.BLOCK_MOLD).add(ModItems.BLOCK_MOLD.asItem());
-        tag(CastingTags.Items.BALL_MOLD).add(ModItems.BALL_MOLD.asItem());
-
-         */
-
-
-
     }
 }

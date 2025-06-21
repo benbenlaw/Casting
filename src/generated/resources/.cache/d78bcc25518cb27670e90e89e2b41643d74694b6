@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-14T11:48:18.608895	Tags for minecraft:fluid mod id casting
+// 1.21.1	2025-06-21T09:45:13.8359944	Tags for minecraft:fluid mod id casting
 a0180619fbf98291dcb53dfaa0e4dac895afbffd data/c/tags/fluid/chilled_water.json
 4b5f9cfc42b372d1de1abebf0a981daf6a11a2fd data/c/tags/fluid/iced_water.json
 079289e049dd083bc8a5856acb4834e538937339 data/c/tags/fluid/molten_aluminum.json
@@ -40,6 +40,7 @@ a44441aae02947764f69a849e027770e28662ed8 data/c/tags/fluid/molten_peridot.json
 7ce9fb81ce073ad035dc653dc2ba7fc26c43a2cd data/c/tags/fluid/molten_platinum.json
 69f78642304b3a74324a7ce6ce3fc6137354d1c2 data/c/tags/fluid/molten_pulsating_alloy.json
 c034f068ac8915c2c045aab649d1e0825662d051 data/c/tags/fluid/molten_quartz.json
+2b9c585814c5126dda6cb097a295adb5725b1014 data/c/tags/fluid/molten_quartz_enriched_iron.json
 417fd040173e1c45f8e1e1a699b9171a0682c953 data/c/tags/fluid/molten_redstone.json
 ab953512fbf6c291d4d0014d231786b06b8eb9f0 data/c/tags/fluid/molten_redstone_alloy.json
 7fb57327b9053883bcad3db605d1051dcc6ba802 data/c/tags/fluid/molten_ruby.json

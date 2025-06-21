@@ -77,12 +77,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, MixingRecipe recipe, @NotNull IFocusGroup focusGroup) {
 
         Level level = Minecraft.getInstance().level;
-        System.out.println("Recipe: " + recipe.fluids().size());
         List<RecipeHolder<MixingRecipe>> recipeHolder = level.getRecipeManager().getRecipesFor(MixingRecipe.Type.INSTANCE, NoInventoryRecipe.INSTANCE, level);
-
-        if (recipeHolder.getFirst().value().outputFluid() == recipe.outputFluid()) {
-            System.out.println("Recipe Holder: " + recipeHolder.getFirst().value().getAllFluids().size());
-        }
 
         int size = recipe.fluids().size();
         int centerX = size > 0 ? 1 : 10;
