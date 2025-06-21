@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:quartz_enriched_iron/ingot"
+        "tag": "c:ingot/quartz_enriched_iron"
       }
     }
   ],
@@ -19,6 +19,6 @@
   },
   "output": {
     "count": 1,
-    "tag": "c:quartz_enriched_iron/ingot"
+    "tag": "c:ingot/quartz_enriched_iron"
   }
 }

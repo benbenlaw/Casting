@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:quartz_enriched_iron/block"
+        "tag": "c:block/quartz_enriched_iron"
       }
     }
   ],
@@ -13,7 +13,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#c:quartz_enriched_iron/block"
+            "items": "#c:block/quartz_enriched_iron"
           }
         ]
       },
