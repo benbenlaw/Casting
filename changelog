@@ -5,7 +5,8 @@ Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 Add experience to melting recipe (1.22), maybe even expand melting to allow multiple fluids from a single item
 
-
+2.0.27
+Fixed modified pickaxes and swords not taking damage when used regardless of the unbreaking modifier
 
 2.0.26
 Controllers now actually check the amount of fuel in the tank before processing a recipe,

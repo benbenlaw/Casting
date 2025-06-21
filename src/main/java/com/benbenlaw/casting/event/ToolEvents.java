@@ -196,6 +196,9 @@ public class ToolEvents {
             ExperienceOrb experienceOrb = new ExperienceOrb(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, blockExperience);
             level.addFreshEntity(experienceOrb);
         }
+
+        //Damage Tool
+        tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
     }
 
     //Magnet Modifier Check for block drops
@@ -363,6 +366,9 @@ public class ToolEvents {
                 target.igniteForSeconds(1 + igniteLevel);
 
             }
+
+            // Damage Item
+            weapon.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
         }
     }
 
