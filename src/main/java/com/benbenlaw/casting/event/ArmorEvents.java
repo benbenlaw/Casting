@@ -145,7 +145,7 @@ public class ArmorEvents {
             }
         }
 
-        //Water Walker
+        // Water Walker
         boolean isWaterWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.WATER_WALKER.get());
 
         float playerBob = player.bob;
@@ -160,16 +160,40 @@ public class ArmorEvents {
             if (isAtWaterSurface) {
                 double surfaceY = pos.getY() + 1.0;
                 double playerY = player.getY();
+                double desiredNewY = playerY + (surfaceY - playerY) * 0.1;
+                AABB futureBox = player.getBoundingBox().move(0, desiredNewY - playerY, 0);
+
+                if (!level.noCollision(futureBox)) {
+                    double step = 0.05;
+                    double maxSafeY = playerY;
+                    for (double testY = playerY; testY <= surfaceY; testY += step) {
+                        AABB testBox = player.getBoundingBox().move(0, testY - playerY, 0);
+                        if (level.noCollision(testBox)) {
+                            maxSafeY = testY;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    player.setPos(player.getX(), maxSafeY, player.getZ());
+                    player.setDeltaMovement(player.getDeltaMovement().x, 0.0, player.getDeltaMovement().z);
+
+                    if (maxSafeY >= surfaceY - 0.5) {
+                        player.setOnGround(true);
+                    }
+                    return;
+                }
+
+                player.setPos(player.getX(), desiredNewY, player.getZ());
+
                 boolean isBob = false;
 
-                double newY = playerY + (surfaceY - playerY) * 0.1; // Smoothing factor
-                player.setPos(player.getX(), newY, player.getZ());
-
-                if (newY >= surfaceY - 0.5 && newY < surfaceY) {
+                if (desiredNewY >= surfaceY - 0.5 && desiredNewY < surfaceY) {
                     isBob = true;
                     player.setDeltaMovement(player.getDeltaMovement().x, 0.0, player.getDeltaMovement().z);
                     player.setOnGround(true);
                 }
+
                 if (isBob) {
                     float f = Math.min(0.1F, (float) player.getDeltaMovement().horizontalDistance());
                     playerBob += (f - playerBob) * 0.7F;
@@ -180,6 +204,7 @@ public class ArmorEvents {
 
         // Lava Walker
         boolean isLavaWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
+
         if (isLavaWalker && !player.isShiftKeyDown()) {
             BlockPos pos = player.blockPosition();
             BlockState currentBlock = level.getBlockState(pos);
@@ -190,18 +215,44 @@ public class ArmorEvents {
             if (isAtLavaSurface) {
                 double surfaceY = pos.getY() + 1.0;
                 double playerY = player.getY();
+                double desiredNewY = playerY + (surfaceY - playerY) * 0.1;
+                AABB futureBox = player.getBoundingBox().move(0, desiredNewY - playerY, 0);
 
-                //Surface Check
-                if (playerY >= surfaceY - 0.5 && playerY < surfaceY) {
-                    if (Math.abs(playerY - surfaceY) > 0.001) {
-                        player.setPos(player.getX(), surfaceY, player.getZ());
+                if (!level.noCollision(futureBox)) {
+                    double step = 0.05;
+                    double maxSafeY = playerY;
+
+                    for (double testY = playerY; testY <= surfaceY; testY += step) {
+                        AABB testBox = player.getBoundingBox().move(0, testY - playerY, 0);
+                        if (level.noCollision(testBox)) {
+                            maxSafeY = testY;
+                        } else {
+                            break;
+                        }
                     }
 
+                    player.setPos(player.getX(), maxSafeY, player.getZ());
+                    player.setDeltaMovement(player.getDeltaMovement().x, 0.0, player.getDeltaMovement().z);
+
+                    if (maxSafeY >= surfaceY - 0.5) {
+                        player.setOnGround(true);
+                    }
+
+                    return;
+                }
+
+                player.setPos(player.getX(), desiredNewY, player.getZ());
+
+                if (desiredNewY >= surfaceY - 0.5 && desiredNewY < surfaceY) {
+                    if (Math.abs(desiredNewY - surfaceY) > 0.001) {
+                        player.setPos(player.getX(), surfaceY, player.getZ());
+                    }
                     player.setDeltaMovement(player.getDeltaMovement().x, 0.0, player.getDeltaMovement().z);
                     player.setOnGround(true);
                 }
             }
         }
+
     }
 
     @SubscribeEvent
