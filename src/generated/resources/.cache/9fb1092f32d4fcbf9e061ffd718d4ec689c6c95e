@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-21T10:31:45.4099064	Recipes
+// 1.21.1	2025-06-30T09:59:38.4407483	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -1543,7 +1543,7 @@ a8fb9ab69707202d8a27626dab5d2eb634b94cbb data/casting/recipe/mixer/enderium.json
 cb8ce27d209ae7d3ed7c4f8dadeccbcdbee21962 data/casting/recipe/mixer/energetic_alloy.json
 9752e350e8a1e54fa602fa34a7dcadea985cd808 data/casting/recipe/mixer/invar.json
 077394bbd425d66d6f5869d335ac016c79027659 data/casting/recipe/mixer/lumium.json
-bf8c42e251239d39203d411529f907407a795c52 data/casting/recipe/mixer/molten_quartz_enriched_iron.json
+ac84012bf70cb16e0829658bac858dfc11b1b19a data/casting/recipe/mixer/molten_quartz_enriched_iron.json
 c58f37c1a7b08c5983856ede0e5b8d95dc280adb data/casting/recipe/mixer/netherite.json
 93fea06bfbd45e56a430214dbf9f5d3d20e08c36 data/casting/recipe/mixer/obsidian.json
 cceda13fe644fe62cd414d6c9b5094e1a3ba8757 data/casting/recipe/mixer/pulsating_alloy.json

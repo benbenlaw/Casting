@@ -270,7 +270,7 @@ public class CastingRecipeProvider extends RecipeProvider {
 
         createSimpleMixingRecipe(fluidList(
                         getFluidStack("molten_iron", 270), getFluidStack("molten_quartz", 250)),
-                getFluidStack("molten_quartz_enriched_iron", 90), "molten_quartz_enriched_iron", consumer);
+                getFluidStack("molten_quartz_enriched_iron", 360), "molten_quartz_enriched_iron", consumer);
 
         // Experience
         createSimpleSolidifierRecipe(getFluidStack("molten_experience", 100), Items.GLASS_BOTTLE.getDefaultInstance(),
