@@ -115,6 +115,10 @@ dependencies {
     //Kotlin for Forge
     compileOnly "curse.maven:kotlin-for-forge-351264:6497906"
     runtimeOnly "curse.maven:kotlin-for-forge-351264:6497906"
+
+    compileOnly "org.appliedenergistics:guideme:${project.guideme_version}:api"
+    runtimeOnly "org.appliedenergistics:guideme:${project.guideme_version}"
+
 }
 
 tasks.withType(ProcessResources).configureEach {

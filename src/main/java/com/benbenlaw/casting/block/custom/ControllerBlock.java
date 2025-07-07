@@ -106,6 +106,8 @@ public class ControllerBlock extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         }
 
+
+
         if (!level.isClientSide()) {
 
             ControllerBlockEntity controllerBlockEntity = (ControllerBlockEntity) level.getBlockEntity(blockPos);

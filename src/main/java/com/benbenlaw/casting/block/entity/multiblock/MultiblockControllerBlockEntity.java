@@ -59,7 +59,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
     public final Map<Integer, Item> allowedItems = new HashMap<>();
     public final int EXPERIENCE_CREATED = CastingConfig.experienceGivenWhenMeltingAValidOre.get();
 
-    public final FilteredItemHandler itemHandler = new FilteredItemHandler(60, allowedItems) {
+    public final FilteredItemHandler itemHandler = new FilteredItemHandler(CastingConfig.maxMultiblockControllerHeldItems.get(), allowedItems) {
 
         @Override
         protected void onContentsChanged(int slot) {

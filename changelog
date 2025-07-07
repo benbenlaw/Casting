@@ -4,6 +4,15 @@ Changelog BBL Casting
 Make item show there contents (1.22)
 fishing rods support for tool modifiers (1.22)
 Add experience to melting recipe (1.22), maybe even expand melting to allow multiple fluids from a single item
+Update melting recipes to have more than one output (1.22)
+Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
+
+2.1.0
+The max amount of items in the multiblock controller is now config based
+The max Fluid amount in the multiblock controller is now config based
+Both of these changes are with the intention of allowing for more slots in the multiblock controller in the future
+Added direct guide me support for multiblocks, basic casting stuff and the equipment modifier
+    This is a work in progress and will be expanded in the future any help with this is appreciated
 
 2.0.32
 Fixed enriched iron recipe not producing the correct amount of molten enriched iron
