@@ -40,8 +40,6 @@ public class CastingItemTags extends ItemTagsProvider {
 
         //Can be disabled with shift modifiers
         tag(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT)
-
-                .add(EquipmentModifierItems.STEP_ASSIST.asItem())
                 .add(EquipmentModifierItems.WATER_WALKER.asItem())
                 .add(EquipmentModifierItems.LAVA_WALKER.asItem());
 
@@ -50,6 +48,16 @@ public class CastingItemTags extends ItemTagsProvider {
                 .add(EquipmentModifierItems.AUTO_SMELT.asItem())
                 .add(EquipmentModifierItems.EXCAVATION.asItem())
                 .add(EquipmentModifierItems.SILK_TOUCH.asItem());
+
+        tag(CastingTags.Items.CAN_BE_TOGGLED_WITH_KEYBIND)
+                .add(EquipmentModifierItems.NIGHT_VISION.asItem())
+                .add(EquipmentModifierItems.FLIGHT.asItem())
+                .add(EquipmentModifierItems.STEP_ASSIST.asItem())
+                .add(EquipmentModifierItems.WATER_WALKER.asItem())
+                .add(EquipmentModifierItems.LAVA_WALKER.asItem())
+                .add(EquipmentModifierItems.SPEED.asItem())
+                .add(EquipmentModifierItems.MAGNET.asItem());
+
 
 
         //Ball Items

@@ -31,6 +31,7 @@ public class EquipmentModifierItem extends Item {
 
         boolean requireShiftToDisableTooltip = stack.is(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT);
         boolean requireShiftToToggleTooltip = stack.is(CastingTags.Items.CAN_BE_TOGGLED_WITH_SHIFT);
+        boolean keybindToToggle = stack.is(CastingTags.Items.CAN_BE_TOGGLED_WITH_KEYBIND);
 
         if (Screen.hasShiftDown()) {
 
@@ -40,8 +41,12 @@ public class EquipmentModifierItem extends Item {
                 components.add(Component.translatable("tooltips.casting.information.shift_to_disable").withStyle(ChatFormatting.RED));
             }
 
-            if (requireShiftToDisableTooltip) {
+            if (requireShiftToToggleTooltip) {
                 components.add(Component.translatable("tooltips.casting.information.shift_to_toggle").withStyle(ChatFormatting.RED));
+            }
+
+           if (keybindToToggle) {
+                components.add(Component.translatable("tooltips.casting.information.keybind_to_toggle").withStyle(ChatFormatting.RED));
             }
 
             components.add(Component.translatable("tooltips.casting.information.valid_tool_types").withStyle(ChatFormatting.GOLD));

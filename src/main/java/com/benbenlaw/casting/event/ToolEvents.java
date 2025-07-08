@@ -49,6 +49,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderHighlightEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
@@ -63,7 +64,7 @@ import java.util.*;
 
 public class ToolEvents {
 
-    private static final Map<UUID, Direction> lastHitDirectionMap = new HashMap<>();
+    public static final Map<UUID, Direction> lastHitDirectionMap = new HashMap<>();
 
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
@@ -109,7 +110,12 @@ public class ToolEvents {
 
                 List<BlockPos> excavationPlane = getExcavationPlane(pos, face, excavationLevel);
 
+                // Break the original block first (once)
+                breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt);
+
                 for (BlockPos targetPos : excavationPlane) {
+                    if (targetPos.equals(pos)) continue; // Skip original block
+
                     if (!level.isLoaded(targetPos)) continue;
 
                     BlockState targetState = level.getBlockState(targetPos);
@@ -189,7 +195,10 @@ public class ToolEvents {
             state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
         }
 
-        level.destroyBlock(pos, false, player);
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+
+        //This is causing double sounds above line prevents it but i dont know the side effects of this good luck
+        level.destroyBlock(pos, true, player);
 
         //Drop Experience
         if (blockExperience > 0) {
@@ -215,9 +224,7 @@ public class ToolEvents {
                 return false;
             }
         }
-
         return false;
-
     }
 
     public static boolean hasMagnetArmor(Player player) {
@@ -283,22 +290,39 @@ public class ToolEvents {
     public static void onBreakingBlock(PlayerEvent.BreakSpeed event) {
         Player player = event.getEntity();
         Level level = player.level();
-        BlockState state = level.getBlockState(event.getPosition().orElse(BlockPos.ZERO));
+        BlockPos pos = event.getPosition().orElse(BlockPos.ZERO);
+        BlockState state = level.getBlockState(pos);
         ItemStack tool = player.getMainHandItem();
 
+        float baseSpeed = event.getOriginalSpeed();
+
+        // Efficiency still increases speed
         if (tool.getComponents().keySet().contains(CastingDataComponents.EFFICIENCY.get())) {
             Integer efficiencyLevel = tool.getComponents().get(CastingDataComponents.EFFICIENCY.get());
-
             if (efficiencyLevel != null && efficiencyLevel > 0) {
-                // Check if the tool is effective on this block
                 if (tool.isCorrectToolForDrops(state)) {
-                    float baseSpeed = event.getOriginalSpeed();
                     float bonus = efficiencyLevel * efficiencyLevel + 1;
-                    event.setNewSpeed(baseSpeed + bonus);
+                    baseSpeed += bonus;
                 }
             }
         }
+
+        // Excavation decreases speed
+        if (tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get()) && isToggleableModifierActive(tool)) {
+            Integer excavationLevel = tool.getComponents().get(CastingDataComponents.EXCAVATION.get());
+            if (excavationLevel != null && excavationLevel > 0) {
+                if (tool.isCorrectToolForDrops(state)) {
+
+                    float slowAmount = excavationLevel + (event.getOriginalSpeed() / 4);
+                    baseSpeed -= slowAmount;
+                    baseSpeed = Math.max(baseSpeed, 0.1f);
+                }
+            }
+        }
+
+        event.setNewSpeed(baseSpeed);
     }
+
 
     @SubscribeEvent
     public static void onPreLivingDamage(LivingDamageEvent.Pre event) {

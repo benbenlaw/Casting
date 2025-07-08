@@ -7,6 +7,16 @@ Add experience to melting recipe (1.22), maybe even expand melting to allow mult
 Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 
+2.1.1
+Fixed Multiblock Mixer crashing when trying to shift click items into it, now returns empty item stack not null
+Night Vision, Flight, Step Assist, Water Walker, Lava Walker, Speed and Magnet modifiers can no be enabled/ disabled. This works differently to the tools. Each
+    armor slot has a keybind (not set by default) that can be used to toggle the modifier on and off whilst equipped. The keybind works in game and inside screens
+    allows for more user friendliness. These modifier now have a tooltip to show it can be disabled
+Excavation Modifier Changes;
+    Now shows outline of blocks that will be broken when excavation is used
+    Now mines slower depending on the level, reduce based on this calculation ( excavationLevel + (event.getOriginalSpeed() / 4) )
+Maybe fixed double sounds when using casting tools
+
 2.1.0
 The max amount of items in the multiblock controller is now config based
 The max Fluid amount in the multiblock controller is now config based

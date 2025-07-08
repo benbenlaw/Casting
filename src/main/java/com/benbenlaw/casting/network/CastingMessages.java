@@ -18,6 +18,7 @@ public class CastingMessages {
         registrar.playToServer(MixerSelectedFluidPayload.TYPE, MixerSelectedFluidPayload.STREAM_CODEC, MixerSelectedFluidPacket.get()::handle);
         registrar.playToServer(OnOffButtonPayload.TYPE, OnOffButtonPayload.STREAM_CODEC, OnOffButtonPacket.get()::handle);
         registrar.playToServer(ControllerFilteredInventoryPayload.TYPE, ControllerFilteredInventoryPayload.STREAM_CODEC, ControllerFilteredInventoryPacket.get()::handle);
+        registrar.playToServer(ToggleArmorModifiersPayload.TYPE, ToggleArmorModifiersPayload.STREAM_CODEC, ToggleArmorModifiersPacket.get()::handle);
 
         //OG Casting
         //To Server From Client

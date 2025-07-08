@@ -1,5 +1,6 @@
-// 1.21.1	2025-06-21T09:26:07.1306179	Tags for minecraft:item mod id casting
-ed847a4152445c1525cd7e5f2d7b85a35761d05a data/casting/tags/item/can_be_disabled_with_shift.json
+// 1.21.1	2025-07-08T10:44:07.5235246	Tags for minecraft:item mod id casting
+30fc97067c3b88099596b818f5fabb187f3560a9 data/casting/tags/item/can_be_disabled_with_shift.json
+319032c4dc296ccf175d637c59a498b69100f088 data/casting/tags/item/can_be_toggled_with_keybind.json
 8ea9e44acecf92c95dca0fa3a81436e41f918c0b data/casting/tags/item/can_be_toggled_with_shift.json
 8e7c5beb2a472ddc8018ff39621cdf5c000a0b48 data/casting/tags/item/controller_extra_blocks.json
 2496cb4438ebf9069c618a9e27e0eb65f90323d1 data/casting/tags/item/controller_floors.json

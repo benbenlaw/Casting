@@ -38,6 +38,7 @@ public class CastingTags{
         public static final TagKey<Item> MELTING_PRODUCES_EXPERIENCE = tag(Casting.MOD_ID, "melting_produces_experience");
         public static final TagKey<Item> CAN_BE_DISABLED_WITH_SHIFT = tag(Casting.MOD_ID, "can_be_disabled_with_shift");
         public static final TagKey<Item> CAN_BE_TOGGLED_WITH_SHIFT = tag(Casting.MOD_ID, "can_be_toggled_with_shift");
+        public static final TagKey<Item> CAN_BE_TOGGLED_WITH_KEYBIND = tag(Casting.MOD_ID, "can_be_toggled_with_keybind");
         public static final TagKey<Item> EQUIPMENT_MODIFIERS = tag(Casting.MOD_ID, "equipment_modifiers");
 
     }

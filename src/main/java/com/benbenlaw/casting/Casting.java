@@ -18,6 +18,7 @@ import com.benbenlaw.casting.recipe.CastingRecipes;
 import com.benbenlaw.casting.screen.*;
 import com.benbenlaw.casting.screen.multiblock.*;
 import com.benbenlaw.casting.util.CastingColorHandler;
+import com.benbenlaw.casting.util.KeyBinds;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -30,6 +31,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -143,6 +145,14 @@ public class Casting {
 
 
             });
+        }
+
+        @SubscribeEvent
+        public static void onKeyInput(RegisterKeyMappingsEvent event) {
+            event.register(KeyBinds.HELMET_HOTKEY);
+            event.register(KeyBinds.CHESTPLATE_HOTKEY);
+            event.register(KeyBinds.LEGGINGS_HOTKEY);
+            event.register(KeyBinds.BOOTS_HOTKEY);
         }
     }
 }

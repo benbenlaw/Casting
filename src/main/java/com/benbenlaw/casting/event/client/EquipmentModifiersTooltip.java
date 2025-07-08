@@ -207,7 +207,19 @@ public class EquipmentModifiersTooltip {
             }
             if (hasMagnet) {
                 int magnetLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.MAGNET.get())).orElse(0);
-                components.add(index, Component.translatable("tooltips.casting.stats.magnet", magnetLevel).withStyle(ChatFormatting.BLUE));
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.magnet", magnetLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.magnet", magnetLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.magnet", magnetLevel).withStyle(ChatFormatting.BLUE));
+                }
+
                 index++;
             }
             if (hasProtection) {
@@ -216,12 +228,36 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasStepAssist) {
+
                 int stepAssistLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.STEP_ASSIST.get())).orElse(0);
-                components.add(index, Component.translatable("tooltips.casting.stats.step_assist", stepAssistLevel).withStyle(ChatFormatting.BLUE));
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.step_assist", stepAssistLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.step_assist", stepAssistLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.step_assist", stepAssistLevel).withStyle(ChatFormatting.BLUE));
+                }
+
                 index++;
             }
             if (hasNightVision) {
-                components.add(index, Component.translatable("tooltips.casting.stats.night_vision").withStyle(ChatFormatting.BLUE));
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.night_vision")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.night_vision")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.night_vision").withStyle(ChatFormatting.BLUE));
+                }
                 index++;
             }
             if (hasWaterBreathing) {
@@ -229,20 +265,61 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasWalterWalker) {
-                components.add(index, Component.translatable("tooltips.casting.stats.water_walker").withStyle(ChatFormatting.BLUE));
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.water_walker")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.water_walker")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.water_walker").withStyle(ChatFormatting.BLUE));
+                }
                 index++;
             }
             if (hasLavaWalker) {
-                components.add(index, Component.translatable("tooltips.casting.stats.lava_walker").withStyle(ChatFormatting.BLUE));
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.lava_walker")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.lava_walker")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.lava_walker").withStyle(ChatFormatting.BLUE));
+                }
                 index++;
             }
             if (hasSpeed) {
                 int speedLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.SPEED.get())).orElse(0);
-                components.add(index, Component.translatable("tooltips.casting.stats.speed", speedLevel).withStyle(ChatFormatting.BLUE));
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.speed", speedLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.speed", speedLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.speed", speedLevel).withStyle(ChatFormatting.BLUE));
+                }
                 index++;
             }
             if (hasFlight) {
-                components.add(index, Component.translatable("tooltips.casting.stats.flight").withStyle(ChatFormatting.BLUE));
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.flight")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.flight")
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.flight").withStyle(ChatFormatting.BLUE));
+                }
                 index++;
             }
             if (hasFeatherFalling) {

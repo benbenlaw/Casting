@@ -51,11 +51,11 @@ public class ArmorEvents {
 
         int totalSpeedLevel = 0;
 
-        if (player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.SPEED.get())) {
+        if (player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.SPEED.get())  && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
             totalSpeedLevel += player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(CastingDataComponents.SPEED.get(), 0);
         }
 
-        if (player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(CastingDataComponents.SPEED.get())) {
+        if (player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(CastingDataComponents.SPEED.get()) && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.LEGS))) {
             totalSpeedLevel += player.getItemBySlot(EquipmentSlot.LEGS).getComponents().getOrDefault(CastingDataComponents.SPEED.get(), 0);
         }
 
@@ -64,7 +64,7 @@ public class ArmorEvents {
         }
 
         //Step Assist
-        if (isStepAssist && !player.isShiftKeyDown()) {
+        if (isStepAssist && !player.isShiftKeyDown() && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
             int stepAssistLevel = player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(CastingDataComponents.STEP_ASSIST.get(), 0);
             Objects.requireNonNull(player.getAttribute(Attributes.STEP_HEIGHT)).setBaseValue(stepAssistLevel);
         } else {
@@ -73,7 +73,7 @@ public class ArmorEvents {
 
         //Magnet
         for (ItemStack armorItem : player.getArmorSlots()) {
-            if (armorItem.getComponents().keySet().contains(CastingDataComponents.MAGNET.get())) {
+            if (armorItem.getComponents().keySet().contains(CastingDataComponents.MAGNET.get()) && isToggleableModifierActive(armorItem)) {
 
                 int range = armorItem.getComponents().getOrDefault(CastingDataComponents.MAGNET.get(), 0);
 
@@ -102,7 +102,7 @@ public class ArmorEvents {
 
         //Night Vision
         boolean isNightVision = player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(CastingDataComponents.NIGHT_VISION.get());
-        if (isNightVision) {
+        if (isNightVision && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.HEAD))) {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 22, 0, false, false));
             if (player.tickCount % EquipmentModifierConfig.timeForDamageOnNightVision.get() == 0) {
                 player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, player, EquipmentSlot.HEAD);
@@ -127,7 +127,7 @@ public class ArmorEvents {
 
         if (!player.level().isClientSide()) {
             boolean isFlight = player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
-            if (isFlight) {
+            if (isFlight && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.CHEST))) {
 
                 if (!player.isCreative() && !player.isSpectator() && !player.getAbilities().mayfly) {
                     player.addTag("casting_flight");
@@ -150,7 +150,7 @@ public class ArmorEvents {
 
         float playerBob = player.bob;
 
-        if (isWaterWalker && !player.isShiftKeyDown()) {
+        if (isWaterWalker && !player.isShiftKeyDown() && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
             BlockPos pos = player.blockPosition();
             BlockState currentBlock = level.getBlockState(pos);
             BlockState aboveBlock = level.getBlockState(pos.above());
@@ -205,7 +205,7 @@ public class ArmorEvents {
         // Lava Walker
         boolean isLavaWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
 
-        if (isLavaWalker && !player.isShiftKeyDown()) {
+        if (isLavaWalker && !player.isShiftKeyDown() && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
             BlockPos pos = player.blockPosition();
             BlockState currentBlock = level.getBlockState(pos);
             BlockState aboveBlock = level.getBlockState(pos.above());
@@ -304,9 +304,17 @@ public class ArmorEvents {
 
     public static boolean isToggleableModifierActive(ItemStack tool) {
         if (!tool.getComponents().has(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
-            return false;
+            return true;
         }
-        return Boolean.TRUE.equals(tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()));
+        if (tool.getComponents().keySet().contains(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
+            if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                return true;
+            }
+            if (Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                return false;
+            }
+        }
+        return false;
     }
 
     //From In World Recipes // Move to BBL Core in the future

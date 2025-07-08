@@ -20,6 +20,13 @@ public class CastingLangProvider extends LanguageProvider {
         //Creative Tab
         add("itemGroup.casting", "Casting");
 
+        //Keys
+        addKeyTranslation("category", "Casting");
+        addKeyTranslation("helmet_hotkey", "Toggle Helmet Modifiers");
+        addKeyTranslation("chestplate_hotkey", "Toggle Chestplate Modifiers");
+        addKeyTranslation("leggings_hotkey", "Toggle Leggings Modifiers");
+        addKeyTranslation("boots_hotkey", "Toggle Boots Modifiers");
+
         //Misc Items
         addItemTranslation("black_brick", "Black Brick");
         addItemTranslation("fluid_mover", "Fluid Mover");
@@ -47,6 +54,12 @@ public class CastingLangProvider extends LanguageProvider {
         addChatTranslation("multiblock_controller.no_valid_block", "No valid blocks found, must be exactly 2");
         addChatTranslation("multiblock_controller.only_one_valid_block", "Only one valid block found, must be exactly 2");
         addChatTranslation("multiblock_controller.too_many_valid_blocks", "Too many valid blocks found, must be exactly 2");
+
+        //Toggle Armor Modifiers
+        addChatTranslation("information.helmet_toggle", "- Toggling Helmet Modifiers");
+        addChatTranslation("information.chestplate_toggle", "- Toggling Chestplate Modifiers");
+        addChatTranslation("information.leggings_toggle", "- Toggling Leggings Modifiers");
+        addChatTranslation("information.boots_toggle", "- Toggling Boots Modifiers");
 
         //Gui Translations
         addGUITranslation("multiblock_controller.no_fuel_tank", "No Fuel Tank Found!");
@@ -140,6 +153,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.valid_tool_types", "Valid Equipment;");
         addTooltipTranslation("information.shift_to_disable", "- Hold SHIFT to disable this modifier");
         addTooltipTranslation("information.shift_to_toggle", "- Hold SHIFT and Right Click to disable or enable this modifier");
+        addTooltipTranslation("information.keybind_to_toggle", "- Press chosen keybind (see controls) to disable or enable this modifier");
 
         addTooltipTranslation("information.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("information.equipment_level", "Equipment Level %s XP: %s/%s");
@@ -242,9 +256,11 @@ public class CastingLangProvider extends LanguageProvider {
     private void addGUITranslation(String name, String translation) {
         add("gui." + Casting.MOD_ID + "." + name, translation);
     }
-
     private void addTooltipTranslation(String name, String translation) {
         add("tooltips." + Casting.MOD_ID + "." + name, translation);
+    }
+    private void addKeyTranslation(String name, String translation) {
+        add("key." + Casting.MOD_ID + "." + name, translation);
     }
 
 
