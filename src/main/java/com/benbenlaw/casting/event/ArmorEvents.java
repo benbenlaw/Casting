@@ -88,7 +88,7 @@ public class ArmorEvents {
                     ItemStack stack = itemEntity.getItem();
 
                     boolean success = player.getInventory().add(stack);
-                    if (success || stack.isEmpty()) {
+                    if (success) {
                         itemEntity.remove(Entity.RemovalReason.DISCARDED);
                         if (level instanceof ServerLevel serverLevel) {
                             serverLevel.sendParticles(ParticleTypes.END_ROD, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 10, 0.1D, 0.1D, 0.1D, 0.1D);

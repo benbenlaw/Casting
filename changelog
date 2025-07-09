@@ -7,6 +7,11 @@ Add experience to melting recipe (1.22), maybe even expand melting to allow mult
 Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 
+2.1.2
+Magnet modifier now only places broken blocks into the players inventory if the block is broken with a TieredTool eg pickaxe, axe, shovel, hoe, paxel ore sword
+This should fix a bunch of issue with custom items using there own block breaking logic that the magnet modifier was overriding
+Confirm fixes Mekanism Cardboard Box, Construction Sticks (Replacing) and Building Gadgets (Exchanging) but this should fix 99% of the issues with the magnet modifier
+
 2.1.1
 Fixed Multiblock Mixer crashing when trying to shift click items into it, now returns empty item stack not null
 Night Vision, Flight, Step Assist, Water Walker, Lava Walker, Speed and Magnet modifiers can no be enabled/ disabled. This works differently to the tools. Each

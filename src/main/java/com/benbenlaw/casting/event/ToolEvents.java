@@ -24,8 +24,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
@@ -48,6 +47,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderHighlightEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
@@ -92,12 +92,12 @@ public class ToolEvents {
         boolean isFortune = tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get());
         boolean isAutoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
         boolean isExcavation = tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get());
-        boolean isMagnet = hasMagnetArmor(player);
+        boolean isMagnet = hasMagnetArmor(player) && hasMiningItem(tool);
 
         boolean requiresCastingOverrides = isMagnet || isExcavation || isSilkTouch || isFortune || isAutoSmelt;
 
         if (!level.isClientSide() && requiresCastingOverrides) {
-            event.setCanceled(true);
+            //event.setCanceled(true);
 
             // Excavation
             if(!tool.isCorrectToolForDrops(state)) {
@@ -180,8 +180,8 @@ public class ToolEvents {
         //Deal with drops
         for (ItemStack drop : drops) {
 
-            //Insert into player inventory, if full drop as normal
-            if (hasMagnetArmor(player)) {
+            //Insert into player inventory only if mining, if full drop as normal
+            if (hasMagnetArmor(player) && hasMiningItem(tool)) {
                 boolean canAddItem = player.addItem(drop.copy());
                 if (!canAddItem) {
                     Block.popResource(level, pos, drop);
@@ -234,6 +234,10 @@ public class ToolEvents {
             }
         }
         return false;
+    }
+
+    public static boolean hasMiningItem(ItemStack tool) {
+        return tool.getItem() instanceof TieredItem;
     }
 
     //Get loot drops from a block

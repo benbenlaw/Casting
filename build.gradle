@@ -76,6 +76,14 @@ dependencies {
     compileOnly "curse.maven:bbl-core-1135181:6547046"
     runtimeOnly "curse.maven:bbl-core-1135181:6547046"
 
+    //Construction Sticks
+    compileOnly "curse.maven:construction-sticks-1156098:6641229"
+    runtimeOnly "curse.maven:construction-sticks-1156098:6641229"
+
+    //Building Gadgets
+    compileOnly "curse.maven:building-gadgets-298187:5968587"
+    runtimeOnly "curse.maven:building-gadgets-298187:5968587"
+
     //Ender IO
     compileOnly "curse.maven:enderio-64578:5771156"
     runtimeOnly "curse.maven:enderio-64578:5771156"
