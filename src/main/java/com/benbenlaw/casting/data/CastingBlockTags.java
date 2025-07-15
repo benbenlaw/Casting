@@ -5,7 +5,9 @@ import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +22,20 @@ public class CastingBlockTags extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
+
+        //Lava Walker
+        tag(CastingTags.Blocks.EFFECTED_BY_LAVA_WALKER)
+                .add(Blocks.LAVA)
+                .addOptional(ResourceLocation.parse("netherdepthsupgrade:warped_seagrass"))
+                .addOptional(ResourceLocation.parse("netherdepthsupgrade:tall_warped_seagrass"))
+                .addOptional(ResourceLocation.parse("netherdepthsupgrade:warped_kelp_plant"))
+                .addOptional(ResourceLocation.parse("netherdepthsupgrade:crimson_seagrass"))
+                .addOptional(ResourceLocation.parse("netherdepthsupgrade:tall_crimson_seagrass"))
+                .addOptional(ResourceLocation.parse("netherdepthsupgrade:crimson_kelp_plant"));
+
+        //Water Walker
+        tag(CastingTags.Blocks.EFFECTED_BY_WATER_WALKER)
+                .add(Blocks.WATER);
 
         //Controller Floors
         tag(CastingTags.Blocks.CONTROLLER_FLOORS)

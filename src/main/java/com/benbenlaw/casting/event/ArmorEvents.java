@@ -3,6 +3,7 @@ package com.benbenlaw.casting.event;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
@@ -155,7 +156,7 @@ public class ArmorEvents {
             BlockState currentBlock = level.getBlockState(pos);
             BlockState aboveBlock = level.getBlockState(pos.above());
 
-            boolean isAtWaterSurface = currentBlock.is(Blocks.WATER) && !aboveBlock.is(Blocks.WATER);
+            boolean isAtWaterSurface = currentBlock.is(CastingTags.Blocks.EFFECTED_BY_WATER_WALKER) && !aboveBlock.is(CastingTags.Blocks.EFFECTED_BY_WATER_WALKER);
 
             if (isAtWaterSurface) {
                 double surfaceY = pos.getY() + 1.0;
@@ -210,7 +211,7 @@ public class ArmorEvents {
             BlockState currentBlock = level.getBlockState(pos);
             BlockState aboveBlock = level.getBlockState(pos.above());
 
-            boolean isAtLavaSurface = currentBlock.is(Blocks.LAVA) && !aboveBlock.is(Blocks.LAVA);
+            boolean isAtLavaSurface = currentBlock.is(CastingTags.Blocks.EFFECTED_BY_LAVA_WALKER) && !aboveBlock.is(CastingTags.Blocks.EFFECTED_BY_LAVA_WALKER);
 
             if (isAtLavaSurface) {
                 double surfaceY = pos.getY() + 1.0;
@@ -243,12 +244,18 @@ public class ArmorEvents {
 
                 player.setPos(player.getX(), desiredNewY, player.getZ());
 
+                boolean isBob = false;
+
                 if (desiredNewY >= surfaceY - 0.5 && desiredNewY < surfaceY) {
-                    if (Math.abs(desiredNewY - surfaceY) > 0.001) {
-                        player.setPos(player.getX(), surfaceY, player.getZ());
-                    }
+                    isBob = true;
                     player.setDeltaMovement(player.getDeltaMovement().x, 0.0, player.getDeltaMovement().z);
                     player.setOnGround(true);
+                }
+
+                if (isBob) {
+                    float f = Math.min(0.1F, (float) player.getDeltaMovement().horizontalDistance());
+                    playerBob += (f - playerBob) * 0.7F;
+                    player.bob = playerBob;
                 }
             }
         }

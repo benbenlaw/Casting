@@ -14,6 +14,9 @@ public class CastingTags{
         public static final TagKey<Block> CONTROLLER_FLOORS = tag(Casting.MOD_ID, "controller_floors");
         public static final TagKey<Block> CONTROLLER_EXTRA_BLOCKS = tag(Casting.MOD_ID, "controller_extra_blocks");
         public static final TagKey<Block> CONTROLLER_TANKS = tag(Casting.MOD_ID, "controller_tanks");
+
+        public static final TagKey<Block> EFFECTED_BY_LAVA_WALKER = tag(Casting.MOD_ID, "effected_by_lava_walker");
+        public static final TagKey<Block> EFFECTED_BY_WATER_WALKER = tag(Casting.MOD_ID, "effected_by_water_walker");
     }
 
     public static class Items extends CoreTags.Items {
