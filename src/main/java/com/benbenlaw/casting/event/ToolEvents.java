@@ -2,8 +2,6 @@ package com.benbenlaw.casting.event;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
-import com.benbenlaw.casting.item.CastingDataComponents;
-import com.benbenlaw.casting.item.EquipmentModifierItems;
 import com.benbenlaw.casting.util.BeheadingHeadMap;
 import com.benbenlaw.core.util.FakePlayerUtil;
 import net.minecraft.core.BlockPos;
@@ -47,9 +45,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RenderHighlightEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
@@ -59,6 +55,8 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.*;
+
+import static com.benbenlaw.casting.item.EquipmentModifier.*;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
 
@@ -73,7 +71,7 @@ public class ToolEvents {
         Direction face = event.getFace();
 
         if (level.isClientSide()) return;
-        if (player.getMainHandItem().has(CastingDataComponents.EXCAVATION)) {
+        if (player.getMainHandItem().has(EXCAVATION.dataComponent.get())) {
             lastHitDirectionMap.put(player.getUUID(), face);
             //System.out.println("Direction: " + face);
         }
@@ -88,10 +86,10 @@ public class ToolEvents {
         BlockState state = event.getState();
         ItemStack tool = player.getMainHandItem();
 
-        boolean isSilkTouch = tool.getComponents().keySet().contains(CastingDataComponents.SILK_TOUCH.get());
-        boolean isFortune = tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get());
-        boolean isAutoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
-        boolean isExcavation = tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get());
+        boolean isSilkTouch = tool.getComponents().keySet().contains(SILK_TOUCH.dataComponent.get());
+        boolean isFortune = tool.getComponents().keySet().contains(FORTUNE.dataComponent.get());
+        boolean isAutoSmelt = tool.getComponents().keySet().contains(AUTO_SMELT.dataComponent.get());
+        boolean isExcavation = tool.getComponents().keySet().contains(EXCAVATION.dataComponent.get());
         boolean isMagnet = hasMagnetArmor(player) && hasMiningItem(tool);
 
         boolean requiresCastingOverrides = isMagnet || isExcavation || isSilkTouch || isFortune || isAutoSmelt;
@@ -106,7 +104,7 @@ public class ToolEvents {
             }
 
             if (isExcavation && isToggleableModifierActive(tool)) {
-                int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
+                int excavationLevel = (int) tool.getComponents().getOrDefault(EXCAVATION.dataComponent.get(), 0);
 
                 List<BlockPos> excavationPlane = getExcavationPlane(pos, face, excavationLevel);
 
@@ -150,7 +148,7 @@ public class ToolEvents {
             fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
             drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         } else if (isFortune) {
-            int fortuneLevel = tool.getComponents().getOrDefault(CastingDataComponents.FORTUNE.get(), 0);
+            int fortuneLevel = (int) tool.getComponents().getOrDefault(FORTUNE.dataComponent.get(), 0);
             fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
             drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         }
@@ -213,14 +211,14 @@ public class ToolEvents {
     //Magnet Modifier Check for block drops
 
     public static boolean isToggleableModifierActive(ItemStack tool) {
-        if (!tool.getComponents().has(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
+        if (!tool.getComponents().has(TOGGLEABLE_MODIFIERS.get())) {
             return true;
         }
-        if(tool.getComponents().keySet().contains(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
-            if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+        if(tool.getComponents().keySet().contains(TOGGLEABLE_MODIFIERS.get())) {
+            if (Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                 return true;
             }
-            if (Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+            if (Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                 return false;
             }
         }
@@ -229,7 +227,7 @@ public class ToolEvents {
 
     public static boolean hasMagnetArmor(Player player) {
         for (ItemStack armorItem : player.getArmorSlots()) {
-            if (armorItem.getComponents().keySet().contains(CastingDataComponents.MAGNET.get())) {
+            if (armorItem.getComponents().keySet().contains(MAGNET.dataComponent.get())) {
                 return true;
             }
         }
@@ -301,8 +299,8 @@ public class ToolEvents {
         float baseSpeed = event.getOriginalSpeed();
 
         // Efficiency still increases speed
-        if (tool.getComponents().keySet().contains(CastingDataComponents.EFFICIENCY.get())) {
-            Integer efficiencyLevel = tool.getComponents().get(CastingDataComponents.EFFICIENCY.get());
+        if (tool.getComponents().keySet().contains(EFFICIENCY.dataComponent.get())) {
+            Integer efficiencyLevel = (Integer) tool.getComponents().get(EFFICIENCY.dataComponent.get());
             if (efficiencyLevel != null && efficiencyLevel > 0) {
                 if (tool.isCorrectToolForDrops(state)) {
                     float bonus = efficiencyLevel * efficiencyLevel + 1;
@@ -312,8 +310,8 @@ public class ToolEvents {
         }
 
         // Excavation decreases speed
-        if (tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get()) && isToggleableModifierActive(tool)) {
-            Integer excavationLevel = tool.getComponents().get(CastingDataComponents.EXCAVATION.get());
+        if (tool.getComponents().keySet().contains(EXCAVATION.dataComponent.get()) && isToggleableModifierActive(tool)) {
+            Integer excavationLevel = (Integer) tool.getComponents().get(EXCAVATION.dataComponent.get());
             if (excavationLevel != null && excavationLevel > 0) {
                 if (tool.isCorrectToolForDrops(state)) {
 
@@ -337,10 +335,10 @@ public class ToolEvents {
         ItemStack weapon = attacker.getMainHandItem();
         if (weapon.isEmpty()) return;
 
-        boolean isSharpness = weapon.getComponents().keySet().contains(CastingDataComponents.SHARPNESS.get());
-        boolean isLifesteal = weapon.getComponents().keySet().contains(CastingDataComponents.LIFESTEAL.get());
-        boolean isKnockback = weapon.getComponents().keySet().contains(CastingDataComponents.KNOCKBACK.get());
-        boolean isIgnite = weapon.getComponents().keySet().contains(CastingDataComponents.IGNITE.get());
+        boolean isSharpness = weapon.getComponents().keySet().contains(SHARPNESS.dataComponent.get());
+        boolean isLifesteal = weapon.getComponents().keySet().contains(LIFESTEAL.dataComponent.get());
+        boolean isKnockback = weapon.getComponents().keySet().contains(KNOCKBACK.dataComponent.get());
+        boolean isIgnite = weapon.getComponents().keySet().contains(IGNITE.dataComponent.get());
 
         boolean requiresCastingOverrides = isIgnite || isSharpness || isLifesteal || isKnockback;
 
@@ -348,7 +346,7 @@ public class ToolEvents {
 
             //Sharpness
             if (isSharpness) {
-                int sharpnessLevel = weapon.getComponents().getOrDefault(CastingDataComponents.SHARPNESS.get(), 0);
+                int sharpnessLevel = (int) weapon.getComponents().getOrDefault(SHARPNESS.dataComponent.get(), 0);
                 if (sharpnessLevel <= 0) return;
 
                 // Vanilla is: 0.5 * level + 0.5
@@ -362,7 +360,7 @@ public class ToolEvents {
                 if (target.isInvulnerable()) return;
 
                 if (target instanceof Enemy) {
-                    int lifestealLevel = weapon.getComponents().getOrDefault(CastingDataComponents.LIFESTEAL.get(), 0);
+                    int lifestealLevel = (int) weapon.getComponents().getOrDefault(LIFESTEAL.dataComponent.get(), 0);
                     int healingAmount = (int) (event.getNewDamage() * 0.1f * lifestealLevel);
                     if (healingAmount > 0) {
                         attacker.heal(healingAmount);
@@ -372,7 +370,7 @@ public class ToolEvents {
 
             //Knockback
             if (isKnockback) {
-                int knockbackLevel = weapon.getComponents().getOrDefault(CastingDataComponents.KNOCKBACK.get(), 0);
+                int knockbackLevel = (int) weapon.getComponents().getOrDefault(KNOCKBACK.dataComponent.get(), 0);
                 if (knockbackLevel > 0) {
                     double dx = target.getX() - attacker.getX();
                     double dz = target.getZ() - attacker.getZ();
@@ -390,7 +388,7 @@ public class ToolEvents {
 
             //Ignite
             if (isIgnite) {
-                int igniteLevel = weapon.getComponents().getOrDefault(CastingDataComponents.IGNITE.get(), 0);
+                int igniteLevel = (int) weapon.getComponents().getOrDefault(IGNITE.dataComponent.get(), 0);
                 target.igniteForSeconds(1 + igniteLevel);
 
             }
@@ -413,8 +411,8 @@ public class ToolEvents {
             if (stack.isEmpty()) continue;
 
             //Repairing
-            if (stack.getComponents().keySet().contains(CastingDataComponents.REPAIRING.get())) {
-                int repairingLevel = stack.getComponents().getOrDefault(CastingDataComponents.REPAIRING.get(), 0);
+            if (stack.getComponents().keySet().contains(REPAIRING.dataComponent.get())) {
+                int repairingLevel = (int) stack.getComponents().getOrDefault(REPAIRING.dataComponent.get(), 0);
                 int repairTickTime = getRepairTickTime(repairingLevel);
 
                 if (event.getEntity().tickCount % repairTickTime == 0) {
@@ -462,28 +460,28 @@ public class ToolEvents {
         if (level.isClientSide()) return;
 
         //Toggled Modifiers
-        boolean autoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
-        boolean excavation = tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get());
-        boolean silkTouch = tool.getComponents().keySet().contains(CastingDataComponents.SILK_TOUCH.get());
+        boolean autoSmelt = tool.getComponents().keySet().contains(AUTO_SMELT.dataComponent.get());
+        boolean excavation = tool.getComponents().keySet().contains(EXCAVATION.dataComponent.get());
+        boolean silkTouch = tool.getComponents().keySet().contains(SILK_TOUCH.dataComponent.get());
         boolean containsToggleableModifier = autoSmelt || excavation || silkTouch;
 
         if (containsToggleableModifier && player.isCrouching()) {
 
-            if (!tool.getComponents().has(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
-                tool.set(CastingDataComponents.TOGGLEABLE_MODIFIERS.get(), true);
+            if (!tool.getComponents().has(TOGGLEABLE_MODIFIERS.get())) {
+                tool.set(TOGGLEABLE_MODIFIERS.get(), true);
             }
 
-            else if (Boolean.TRUE.equals(tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
-                tool.set(CastingDataComponents.TOGGLEABLE_MODIFIERS.get(), false);
+            else if (Boolean.TRUE.equals(tool.get(TOGGLEABLE_MODIFIERS.get()))) {
+                tool.set(TOGGLEABLE_MODIFIERS.get(), false);
             }
-            else if (Boolean.FALSE.equals(tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
-                tool.set(CastingDataComponents.TOGGLEABLE_MODIFIERS.get(), true);
+            else if (Boolean.FALSE.equals(tool.get(TOGGLEABLE_MODIFIERS.get()))) {
+                tool.set(TOGGLEABLE_MODIFIERS.get(), true);
             }
 
-            player.sendSystemMessage(Component.literal("Toggled Modifiers: " + tool.get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())));
+            player.sendSystemMessage(Component.literal("Toggled Modifiers: " + tool.get(TOGGLEABLE_MODIFIERS.get())));
         }
 
-        boolean isTeleporting = tool.getComponents().keySet().contains(CastingDataComponents.TELEPORTING.get());
+        boolean isTeleporting = tool.getComponents().keySet().contains(TELEPORTING.dataComponent.get());
 
         boolean requiresCastingOverrides = isTeleporting;
 
@@ -505,7 +503,7 @@ public class ToolEvents {
         InteractionHand hand = event.getHand();
         ItemStack tool = player.getItemInHand(hand);
 
-        boolean isTorchPlacing = tool.getComponents().keySet().contains(CastingDataComponents.TORCH_PLACING.get());
+        boolean isTorchPlacing = tool.getComponents().keySet().contains(TORCH_PLACING.dataComponent.get());
 
         boolean requiresCastingOverrides = isTorchPlacing;
 
@@ -554,8 +552,8 @@ public class ToolEvents {
 
             List<ItemStack> loot = new ArrayList<>();
 
-            boolean isLooting = stack.getComponents().keySet().contains(CastingDataComponents.LOOTING.get());
-            boolean isBeheading = stack.getComponents().keySet().contains(CastingDataComponents.BEHEADING.get());
+            boolean isLooting = stack.getComponents().keySet().contains(LOOTING.dataComponent.get());
+            boolean isBeheading = stack.getComponents().keySet().contains(BEHEADING.dataComponent.get());
 
             boolean requiresCastingOverrides = isLooting || isBeheading;
 
@@ -568,7 +566,7 @@ public class ToolEvents {
 
                     event.setCanceled(true);
                     LootTable lootTable = Objects.requireNonNull(level.getServer()).reloadableRegistries().getLootTable(deadEntity.getLootTable());
-                    int lootingLevel = stack.getComponents().getOrDefault(CastingDataComponents.LOOTING.get(), 0);
+                    int lootingLevel = (int) stack.getComponents().getOrDefault(LOOTING.dataComponent.get(), 0);
                     ItemStack fakeItemStack = stack.copy();
                     fakeItemStack.enchant(toHolder(level, Enchantments.LOOTING), lootingLevel);
 
@@ -592,7 +590,7 @@ public class ToolEvents {
     public static void doTeleportation(ItemStack tool, Player player, Level level) {
 
         int ADDITIONAL_BLOCKS_PER_LEVEL = EquipmentModifierConfig.blocksPerLevelForTeleporting.get();
-        int range = tool.getComponents().getOrDefault(CastingDataComponents.TELEPORTING.get(), 0) * ADDITIONAL_BLOCKS_PER_LEVEL;
+        int range = (int) tool.getComponents().getOrDefault(TELEPORTING.dataComponent.get(), 0) * ADDITIONAL_BLOCKS_PER_LEVEL;
         Vec3 lookVec = player.getLookAngle();
         Vec3 start = player.getEyePosition();
         Vec3 end = start.add(lookVec.scale(range));

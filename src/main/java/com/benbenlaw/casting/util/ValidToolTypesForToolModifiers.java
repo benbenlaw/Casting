@@ -1,9 +1,10 @@
 package com.benbenlaw.casting.util;
 
-import com.benbenlaw.casting.item.CastingDataComponents;
-import net.minecraft.core.component.DataComponentType;
+import com.benbenlaw.casting.item.EquipmentModifier;
 
 import java.util.*;
+
+import static com.benbenlaw.casting.item.EquipmentModifier.*;
 
 public class ValidToolTypesForToolModifiers {
 
@@ -22,40 +23,11 @@ public class ValidToolTypesForToolModifiers {
     public static final String BOOTS_MODIFIERS = "boots_modifiers";
     public static final String BODY_MODIFIERS = "body_modifiers";
 
-    //Effects
-    public static final String EQUIPMENT_LEVEL = "equipment_level";
-    public static final String EQUIPMENT_EXPERIENCE = "equipment_experience";
-    public static final String EFFICIENCY = "efficiency";
-    public static final String UNBREAKING = "unbreaking";
-    public static final String FORTUNE = "fortune";
-    public static final String REPAIRING = "repairing";
-    public static final String SILK_TOUCH = "silk_touch";
-    public static final String TORCH_PLACING = "torch_placing";
-    public static final String AUTO_SMELT = "auto_smelt";
-    public static final String LOOTING = "looting";
-    public static final String SHARPNESS = "sharpness";
-    public static final String BEHEADING = "beheading";
-    public static final String LIFESTEAL = "lifesteal";
-    public static final String KNOCKBACK = "knockback";
-    public static final String IGNITE = "ignite";
-    public static final String EXCAVATION = "excavation";
-    public static final String TELEPORTING = "teleporting";
-    public static final String MAGNET = "magnet";
-    public static final String PROTECTION = "protection";
-    public static final String STEP_ASSIST = "step_assist";
-    public static final String NIGHT_VISION = "night_vision";
-    public static final String WATER_BREATHING = "water_breathing";
-    public static final String SPEED = "speed";
-    public static final String WATER_WALKER = "water_walker";
-    public static final String LAVA_WALKER = "lava_walker";
-    public static final String FLIGHT = "flight";
-    public static final String FEATHER_FALLING = "feather_falling";
-
     //Map
-    public static final Map<String, List<String>> VALID_MODIFIERS;
+    public static final Map<String, List<EquipmentModifier>> VALID_MODIFIERS;
 
     static {
-        Map<String, List<String>> map = new HashMap<>();
+        Map<String, List<EquipmentModifier>> map = new HashMap<>();
 
         //Add all modifiers to this
         map.put(ALL_MODIFIERS, List.of(FEATHER_FALLING, FLIGHT, SPEED, LAVA_WALKER, WATER_WALKER, NIGHT_VISION, WATER_BREATHING, STEP_ASSIST, MAGNET, PROTECTION, TELEPORTING, EXCAVATION, IGNITE, EFFICIENCY, UNBREAKING, FORTUNE, REPAIRING, SILK_TOUCH, TORCH_PLACING, AUTO_SMELT, LOOTING, SHARPNESS, BEHEADING, LIFESTEAL, KNOCKBACK));
@@ -83,6 +55,8 @@ public class ValidToolTypesForToolModifiers {
 
     }
 
+    /*  maybe we dont need this anymore
+
     public static DataComponentType<?> getDataComponentFromString(String effect) {
 
         if (Objects.equals(effect, FLIGHT)) {
@@ -91,7 +65,7 @@ public class ValidToolTypesForToolModifiers {
         if (Objects.equals(effect, FORTUNE)) {
             return CastingDataComponents.FORTUNE.get();
         }
-        if (Objects.equals(effect, EFFICIENCY)) {
+        if (Objects.equals(effect, EquipmentModifiers.EFFICIENCY)) {
             return CastingDataComponents.EFFICIENCY.get();
         }
         if (Objects.equals(effect, UNBREAKING)) {
@@ -167,6 +141,8 @@ public class ValidToolTypesForToolModifiers {
         return null;
     }
 
+
+     */
 
 
 

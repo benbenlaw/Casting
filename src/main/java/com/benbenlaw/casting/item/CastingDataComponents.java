@@ -95,6 +95,7 @@ public class CastingDataComponents {
 
 
     //Tools
+    /*
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EQUIPMENT_LEVEL =
             COMPONENTS.register("equipment_level", () ->
@@ -184,6 +185,8 @@ public class CastingDataComponents {
             COMPONENTS.register("toggleable_modifiers", () ->
                     DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
 
+
+     */
 
 
 

@@ -2,7 +2,7 @@ package com.benbenlaw.casting.event;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
-import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.EquipmentModifier;
 import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -21,7 +21,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -32,6 +31,8 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.List;
 import java.util.Objects;
+
+import static com.benbenlaw.casting.item.EquipmentModifier.*;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
 
@@ -46,18 +47,18 @@ public class ArmorEvents {
 
         if (level.isClientSide()) return;
 
-        boolean isStepAssist = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.STEP_ASSIST.get());
+        boolean isStepAssist = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(STEP_ASSIST.dataComponent.get());
 
         //Speed
 
         int totalSpeedLevel = 0;
 
-        if (player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.SPEED.get())  && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
-            totalSpeedLevel += player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(CastingDataComponents.SPEED.get(), 0);
+        if (player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(SPEED.dataComponent.get())  && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
+            totalSpeedLevel += (int) player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(SPEED.dataComponent.get(), 0);
         }
 
-        if (player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(CastingDataComponents.SPEED.get()) && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.LEGS))) {
-            totalSpeedLevel += player.getItemBySlot(EquipmentSlot.LEGS).getComponents().getOrDefault(CastingDataComponents.SPEED.get(), 0);
+        if (player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(SPEED.dataComponent.get()) && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.LEGS))) {
+            totalSpeedLevel += (int) player.getItemBySlot(EquipmentSlot.LEGS).getComponents().getOrDefault(SPEED.dataComponent.get(), 0);
         }
 
         if (totalSpeedLevel > 0) {
@@ -66,7 +67,7 @@ public class ArmorEvents {
 
         //Step Assist
         if (isStepAssist && !player.isShiftKeyDown() && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
-            int stepAssistLevel = player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(CastingDataComponents.STEP_ASSIST.get(), 0);
+            int stepAssistLevel = (int) player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault(STEP_ASSIST.dataComponent.get(), 0);
             Objects.requireNonNull(player.getAttribute(Attributes.STEP_HEIGHT)).setBaseValue(stepAssistLevel);
         } else {
             Objects.requireNonNull(player.getAttribute(Attributes.STEP_HEIGHT)).setBaseValue(0.6D);
@@ -74,9 +75,9 @@ public class ArmorEvents {
 
         //Magnet
         for (ItemStack armorItem : player.getArmorSlots()) {
-            if (armorItem.getComponents().keySet().contains(CastingDataComponents.MAGNET.get()) && isToggleableModifierActive(armorItem)) {
+            if (armorItem.getComponents().keySet().contains(MAGNET.dataComponent.get()) && isToggleableModifierActive(armorItem)) {
 
-                int range = armorItem.getComponents().getOrDefault(CastingDataComponents.MAGNET.get(), 0);
+                int range = (int) armorItem.getComponents().getOrDefault(MAGNET.dataComponent.get(), 0);
 
                 AABB box = player.getBoundingBox().inflate(range);
                 List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, box, item ->
@@ -102,7 +103,7 @@ public class ArmorEvents {
         }
 
         //Night Vision
-        boolean isNightVision = player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(CastingDataComponents.NIGHT_VISION.get());
+        boolean isNightVision = (boolean) player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(NIGHT_VISION.dataComponent.get(), false);
         if (isNightVision && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.HEAD))) {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 22, 0, false, false));
             if (player.tickCount % EquipmentModifierConfig.timeForDamageOnNightVision.get() == 0) {
@@ -111,7 +112,7 @@ public class ArmorEvents {
         }
 
         //Water Breathing
-        boolean isWaterBreathing = player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(CastingDataComponents.WATER_BREATHING.get());
+        boolean isWaterBreathing = (boolean) player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(WATER_BREATHING.dataComponent.get(), false);
         if (isWaterBreathing && player.isUnderWater()) {
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 22, 0, false, false));
             if (player.tickCount % EquipmentModifierConfig.timeForDamageOnWaterBreathing.get() == 0) {
@@ -127,7 +128,7 @@ public class ArmorEvents {
         Level level = player.level();
 
         if (!player.level().isClientSide()) {
-            boolean isFlight = player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
+            boolean isFlight = (boolean) player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(FLIGHT.dataComponent.get(), false);
             if (isFlight && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.CHEST))) {
 
                 if (!player.isCreative() && !player.isSpectator() && !player.getAbilities().mayfly) {
@@ -147,7 +148,7 @@ public class ArmorEvents {
         }
 
         // Water Walker
-        boolean isWaterWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.WATER_WALKER.get());
+        boolean isWaterWalker = (boolean) player.getItemBySlot(EquipmentSlot.FEET).get(EquipmentModifier.WATER_WALKER.dataComponent.get());
 
         float playerBob = player.bob;
 
@@ -204,7 +205,7 @@ public class ArmorEvents {
         }
 
         // Lava Walker
-        boolean isLavaWalker = player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
+        boolean isLavaWalker = (boolean) player.getItemBySlot(EquipmentSlot.FEET).get(EquipmentModifier.LAVA_WALKER.dataComponent.get());
 
         if (isLavaWalker && !player.isShiftKeyDown() && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
             BlockPos pos = player.blockPosition();
@@ -282,8 +283,8 @@ public class ArmorEvents {
             ItemStack armor = player.getItemBySlot(slot);
             if (armor.isEmpty()) continue;
 
-            if (armor.getComponents().keySet().contains(CastingDataComponents.PROTECTION.get())) {
-                int protectionLevel = armor.getComponents().getOrDefault(CastingDataComponents.PROTECTION.get(), 0);
+            if ((boolean) armor.get(PROTECTION.dataComponent.get())) {
+                int protectionLevel = (int) armor.getComponents().getOrDefault(PROTECTION.dataComponent.get(), 0);
                 totalCustomReduction += protectionLevel * EquipmentModifierConfig.percentageOfProtectionDamagePerProtectionLevel.get();
             }
         }
@@ -294,8 +295,8 @@ public class ArmorEvents {
 
         if (event.getSource().is(DamageTypes.FALL)) {
             ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-            if (!boots.isEmpty() && boots.getComponents().keySet().contains(CastingDataComponents.FEATHER_FALLING.get())) {
-                int featherFallingLevel = boots.getComponents().getOrDefault(CastingDataComponents.FEATHER_FALLING.get(), 0);
+            if (!boots.isEmpty() && boots.getComponents().keySet().contains(FEATHER_FALLING.dataComponent.get())) {
+                int featherFallingLevel = (int) boots.getComponents().getOrDefault(FEATHER_FALLING.dataComponent.get(), 0);
                 float fallReduction = featherFallingLevel * 0.1f;
 
                 fallReduction = Math.min(fallReduction, 0.8f);
@@ -310,14 +311,14 @@ public class ArmorEvents {
 
 
     public static boolean isToggleableModifierActive(ItemStack tool) {
-        if (!tool.getComponents().has(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
+        if (!tool.getComponents().has(EquipmentModifier.TOGGLEABLE_MODIFIERS.get())) {
             return true;
         }
-        if (tool.getComponents().keySet().contains(CastingDataComponents.TOGGLEABLE_MODIFIERS.get())) {
-            if (Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+        if (tool.getComponents().keySet().contains(TOGGLEABLE_MODIFIERS.get())) {
+            if (Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                 return true;
             }
-            if (Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+            if (Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                 return false;
             }
         }

@@ -9,10 +9,7 @@ import com.benbenlaw.casting.config.BeheadingConfig;
 import com.benbenlaw.casting.config.CastingConfig;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.fluid.CastingFluids;
-import com.benbenlaw.casting.item.CastingCreativeModeTab;
-import com.benbenlaw.casting.item.CastingDataComponents;
-import com.benbenlaw.casting.item.CastingItems;
-import com.benbenlaw.casting.item.EquipmentModifierItems;
+import com.benbenlaw.casting.item.*;
 import com.benbenlaw.casting.network.CastingMessages;
 import com.benbenlaw.casting.recipe.CastingRecipes;
 import com.benbenlaw.casting.screen.*;
@@ -42,9 +39,16 @@ public class Casting {
 
     public Casting(IEventBus modEventBus, final ModContainer modContainer) {
 
+        //Equipment Modifiers
+        EquipmentModifier.registerAllDataComponents();
+        EquipmentModifier.COMPONENTS.register(modEventBus);
+        EquipmentModifier.registerAllItemModifiers();
+        EquipmentModifier.ITEMS.register(modEventBus);
+
+
         CastingItems.ITEMS.register(modEventBus);
         CastingCreativeModeTab.CREATIVE_MODE_TABS.register(modEventBus);
-        EquipmentModifierItems.ITEMS.register(modEventBus);
+        //EquipmentModifierItems.ITEMS.register(modEventBus);
         CastingDataComponents.COMPONENTS.register(modEventBus);
 
         CastingBlocks.BLOCKS.register(modEventBus);

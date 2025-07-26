@@ -56,15 +56,16 @@ The fluid mover allows you to move fluids around from inside a machines GUI. The
 Molds are used in the Solidifier to create various different resources including; gems, nugget, ingots, dust and more!
 
 <Row>
-  <ItemImage id="casting:ball_mold"  scale="3" />
-  <ItemImage id="casting:gear_mold"  scale="3" />
-  <ItemImage id="casting:plate_mold"  scale="3" />
-  <ItemImage id="casting:ingot_mold"  scale="3" />
-  <ItemImage id="casting:nugget_mold"  scale="3" />
-  <ItemImage id="casting:rod_mold"  scale="3" />
-  <ItemImage id="casting:gem_mold"  scale="3" />
-  <ItemImage id="casting:gear_mold"  scale="3" />
-  <ItemImage id="casting:dust_mold"  scale="3" />
+  <ItemImage id="casting:ball_mold"  scale="2" />
+  <ItemImage id="casting:gear_mold"  scale="2" />
+  <ItemImage id="casting:plate_mold"  scale="2" />
+  <ItemImage id="casting:ingot_mold"  scale="2" />
+  <ItemImage id="casting:nugget_mold"  scale="2" />
+  <ItemImage id="casting:rod_mold"  scale="2" />
+  <ItemImage id="casting:gem_mold"  scale="2" />
+  <ItemImage id="casting:gear_mold"  scale="2" />
+  <ItemImage id="casting:dust_mold"  scale="2" />
+  <ItemImage id="casting:wire_mold"  scale="2" />
 </Row>
 
 # Automation
@@ -73,5 +74,5 @@ The Controller will automatically eject its fluids to adjacent Solidifers and Mi
 The Mixers will automatically eject its fluids into the Solidifer
 
 <GameScene zoom="3" interactive={true}>
-  <ImportStructure src="./assets/structures/scenes/casting.nbt" />
+  <ImportStructure src="./assets/casting.nbt" />
 </GameScene>

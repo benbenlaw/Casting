@@ -1,6 +1,5 @@
 package com.benbenlaw.casting.mixin;
 
-import com.benbenlaw.casting.item.CastingDataComponents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,6 +8,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import static com.benbenlaw.casting.item.EquipmentModifier.UNBREAKING;
 
 @Mixin(ItemStack.class)
 public class ItemStackMixin {
@@ -28,8 +29,8 @@ public class ItemStackMixin {
 
         if (!self.isDamageableItem()) return;
 
-        if (self.getComponents().has(CastingDataComponents.UNBREAKING.get())) {
-            int level = self.getOrDefault(CastingDataComponents.UNBREAKING.get(), 0);
+        if (self.getComponents().has(UNBREAKING.dataComponent.get())) {
+            int level = (int) self.getOrDefault(UNBREAKING.dataComponent.get(), 0);
             float chance = level * 0.1f;
 
             RandomSource random = (entity != null) ? entity.getRandom() : RandomSource.create();

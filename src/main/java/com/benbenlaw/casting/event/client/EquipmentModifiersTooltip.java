@@ -2,7 +2,6 @@ package com.benbenlaw.casting.event.client;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
-import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.CastingItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -16,6 +15,7 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import java.util.List;
 import java.util.Optional;
 
+import static com.benbenlaw.casting.item.EquipmentModifier.*;
 import static com.benbenlaw.casting.util.EquipmentModifierUtils.getExperienceModifierLevel;
 
 @EventBusSubscriber(modid = Casting.MOD_ID ,value = Dist.CLIENT)
@@ -43,45 +43,44 @@ public class EquipmentModifiersTooltip {
         List<Component> components = event.getToolTip();
 
         //Tool Modifiers
-        boolean hasEquipmentLevel = tool.getComponents().keySet().contains(CastingDataComponents.EQUIPMENT_LEVEL.get());
-        boolean hasSilkTouch = Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.SILK_TOUCH.get()));
-        boolean hasEfficiency = tool.getComponents().keySet().contains(CastingDataComponents.EFFICIENCY.get());
-        boolean hasFortune = tool.getComponents().keySet().contains(CastingDataComponents.FORTUNE.get());
-        boolean hasUnbreaking = tool.getComponents().keySet().contains(CastingDataComponents.UNBREAKING.get());
-        boolean hasRepairing = tool.getComponents().keySet().contains(CastingDataComponents.REPAIRING.get());
-        boolean hasTorchPlacing = tool.getComponents().keySet().contains(CastingDataComponents.TORCH_PLACING.get());
-        boolean hasAutoSmelt = tool.getComponents().keySet().contains(CastingDataComponents.AUTO_SMELT.get());
-        boolean hasLooting = tool.getComponents().keySet().contains(CastingDataComponents.LOOTING.get());
-        boolean hasSharpness = tool.getComponents().keySet().contains(CastingDataComponents.SHARPNESS.get());
-        boolean hasBeheading = tool.getComponents().keySet().contains(CastingDataComponents.BEHEADING.get());
-        boolean hasLifesteal = tool.getComponents().keySet().contains(CastingDataComponents.LIFESTEAL.get());
-        boolean hasKnockback = tool.getComponents().keySet().contains(CastingDataComponents.KNOCKBACK.get());
-        boolean hasIgnite = tool.getComponents().keySet().contains(CastingDataComponents.IGNITE.get());
-        boolean hasExcavation = tool.getComponents().keySet().contains(CastingDataComponents.EXCAVATION.get());
-        boolean hasTeleporting = tool.getComponents().keySet().contains(CastingDataComponents.TELEPORTING.get());
-        boolean hasMagnet = tool.getComponents().keySet().contains(CastingDataComponents.MAGNET.get());
-        boolean hasProtection = tool.getComponents().keySet().contains(CastingDataComponents.PROTECTION.get());
-        boolean hasStepAssist = tool.getComponents().keySet().contains(CastingDataComponents.STEP_ASSIST.get());
-        boolean hasNightVision = tool.getComponents().keySet().contains(CastingDataComponents.NIGHT_VISION.get());
-        boolean hasWaterBreathing = tool.getComponents().keySet().contains(CastingDataComponents.WATER_BREATHING.get());
-        boolean hasWalterWalker = tool.getComponents().keySet().contains(CastingDataComponents.WATER_WALKER.get());
-        boolean hasLavaWalker = tool.getComponents().keySet().contains(CastingDataComponents.LAVA_WALKER.get());
-        boolean hasSpeed = tool.getComponents().keySet().contains(CastingDataComponents.SPEED.get());
-        boolean hasFlight = tool.getComponents().keySet().contains(CastingDataComponents.FLIGHT.get());
-        boolean hasFeatherFalling = tool.getComponents().keySet().contains(CastingDataComponents.FEATHER_FALLING.get());
+        boolean hasEquipmentLevel = tool.getComponents().keySet().contains(EQUIPMENT_LEVEL.dataComponent.get());
+        boolean hasSilkTouch = tool.getComponents().keySet().contains(SILK_TOUCH.dataComponent.get());
+        boolean hasEfficiency = tool.getComponents().keySet().contains(EFFICIENCY.dataComponent.get());
+        boolean hasFortune = tool.getComponents().keySet().contains(FORTUNE.dataComponent.get());
+        boolean hasUnbreaking = tool.getComponents().keySet().contains(UNBREAKING.dataComponent.get());
+        boolean hasRepairing = tool.getComponents().keySet().contains(REPAIRING.dataComponent.get());
+        boolean hasTorchPlacing = tool.getComponents().keySet().contains(TORCH_PLACING.dataComponent.get());
+        boolean hasAutoSmelt = tool.getComponents().keySet().contains(AUTO_SMELT.dataComponent.get());
+        boolean hasLooting = tool.getComponents().keySet().contains(LOOTING.dataComponent.get());
+        boolean hasSharpness = tool.getComponents().keySet().contains(SHARPNESS.dataComponent.get());
+        boolean hasBeheading = tool.getComponents().keySet().contains(BEHEADING.dataComponent.get());
+        boolean hasLifesteal = tool.getComponents().keySet().contains(LIFESTEAL.dataComponent.get());
+        boolean hasKnockback = tool.getComponents().keySet().contains(KNOCKBACK.dataComponent.get());
+        boolean hasIgnite = tool.getComponents().keySet().contains(IGNITE.dataComponent.get());
+        boolean hasExcavation = tool.getComponents().keySet().contains(EXCAVATION.dataComponent.get());
+        boolean hasTeleporting = tool.getComponents().keySet().contains(TELEPORTING.dataComponent.get());
+        boolean hasMagnet = tool.getComponents().keySet().contains(MAGNET.dataComponent.get());
+        boolean hasProtection = tool.getComponents().keySet().contains(PROTECTION.dataComponent.get());
+        boolean hasStepAssist = tool.getComponents().keySet().contains(STEP_ASSIST.dataComponent.get());
+        boolean hasNightVision = tool.getComponents().keySet().contains(NIGHT_VISION.dataComponent.get());
+        boolean hasWaterBreathing = tool.getComponents().keySet().contains(WATER_BREATHING.dataComponent.get());
+        boolean hasWalterWalker = tool.getComponents().keySet().contains(WATER_WALKER.dataComponent.get());
+        boolean hasLavaWalker = tool.getComponents().keySet().contains(LAVA_WALKER.dataComponent.get());
+        boolean hasSpeed = tool.getComponents().keySet().contains(SPEED.dataComponent.get());
+        boolean hasFlight = tool.getComponents().keySet().contains(FLIGHT.dataComponent.get());
+        boolean hasFeatherFalling = tool.getComponents().keySet().contains(FEATHER_FALLING.dataComponent.get());
 
-        boolean hasToggleableModifiers = tool.getComponents().keySet().contains(CastingDataComponents.TOGGLEABLE_MODIFIERS.get());
+        boolean hasToggleableModifiers = tool.getComponents().keySet().contains(TOGGLEABLE_MODIFIERS.get());
 
         boolean hasEffects = hasFeatherFalling || hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
         if (Screen.hasShiftDown() && (hasEffects)) {
 
             int index = 1;
-            int toolLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.EQUIPMENT_LEVEL.get())).orElse(0);
-
+            int toolLevel = (int) tool.getComponents().getOrDefault(EQUIPMENT_LEVEL.dataComponent.get(), 0);
 
             if (hasEquipmentLevel) {
-                int currentExperience = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.EQUIPMENT_EXPERIENCE.get())).orElse(0);
+                int currentExperience = Optional.ofNullable(tool.getComponents().get(EQUIPMENT_EXPERIENCE.get())).orElse(0);
                 double modifierLevel = getExperienceModifierLevel(toolLevel);
                 int totalExperienceToNextLevel = (int) (EquipmentModifierConfig.experiencePerLevelForEquipmentLevel.get() + (EquipmentModifierConfig.experiencePerLevelForEquipmentLevel.get() * modifierLevel));
                 components.add(index, Component.translatable("tooltips.casting.stats.equipment_level", toolLevel, currentExperience, totalExperienceToNextLevel).withStyle(ChatFormatting.GOLD));
@@ -91,11 +90,11 @@ public class EquipmentModifiersTooltip {
             index++;
             if (hasSilkTouch) {
 
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.silk_touch")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.silk_touch")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -106,22 +105,22 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasEfficiency) {
-                int efficiencyLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.EFFICIENCY.get())).orElse(0);
+                int efficiencyLevel = Optional.ofNullable((int) tool.getComponents().get(EFFICIENCY.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.efficiency", efficiencyLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasFortune) {
-                int fortuneLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.FORTUNE.get())).orElse(0);
+                int fortuneLevel = Optional.ofNullable((int) tool.getComponents().get(FORTUNE.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.fortune", fortuneLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasUnbreaking) {
-                int unbreakingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.UNBREAKING.get())).orElse(0);
+                int unbreakingLevel = Optional.ofNullable((int) tool.getComponents().get(UNBREAKING.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.unbreaking", unbreakingLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasRepairing) {
-                int repairingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.REPAIRING.get())).orElse(0);
+                int repairingLevel = Optional.ofNullable((int) tool.getComponents().get(REPAIRING.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.repairing", repairingLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
@@ -132,11 +131,11 @@ public class EquipmentModifiersTooltip {
             if (hasAutoSmelt) {
 
 
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.auto_smelt")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.auto_smelt")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -148,12 +147,12 @@ public class EquipmentModifiersTooltip {
 
             }
             if (hasLooting) {
-                int lootingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.LOOTING.get())).orElse(0);
+                int lootingLevel = Optional.ofNullable((int) tool.getComponents().get(LOOTING.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.looting", lootingLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasSharpness) {
-                int sharpnessLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.SHARPNESS.get())).orElse(0);
+                int sharpnessLevel = Optional.ofNullable((int) tool.getComponents().get(SHARPNESS.dataComponent.get())).orElse(0);
                 int totalAdditionalDamage = (int) (EquipmentModifierConfig.additionalMultiplierForSharpness.get() * sharpnessLevel + EquipmentModifierConfig.additionalAdditionForSharpness.get());
                 components.add(index, Component.translatable("tooltips.casting.stats.sharpness", sharpnessLevel, totalAdditionalDamage).withStyle(ChatFormatting.BLUE));
                 index++;
@@ -163,31 +162,31 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasLifesteal) {
-                int lifestealLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.LIFESTEAL.get())).orElse(0);
+                int lifestealLevel = Optional.ofNullable((int) tool.getComponents().get(LIFESTEAL.dataComponent.get())).orElse(0);
                 int percentageRestored = 10 * lifestealLevel;
                 components.add(index, Component.translatable("tooltips.casting.stats.lifesteal", lifestealLevel, percentageRestored).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasKnockback) {
-                int knockbackLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.KNOCKBACK.get())).orElse(0);
+                int knockbackLevel = Optional.ofNullable((int) tool.getComponents().get(KNOCKBACK.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.knockback", knockbackLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasIgnite) {
-                int igniteLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.IGNITE.get())).orElse(0);
+                int igniteLevel = Optional.ofNullable((int) tool.getComponents().get(IGNITE.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.ignite", igniteLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasExcavation) {
 
-                int excavationLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.EXCAVATION.get())).orElse(0);
+                int excavationLevel = Optional.ofNullable((int) tool.getComponents().get(EXCAVATION.dataComponent.get())).orElse(0);
                 int excavationArea = 1 + (excavationLevel * 2);
 
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.excavation", excavationLevel, excavationArea, excavationArea)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.excavation", excavationLevel, excavationArea, excavationArea)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -200,19 +199,19 @@ public class EquipmentModifiersTooltip {
 
             }
             if (hasTeleporting) {
-                int teleportingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.TELEPORTING.get())).orElse(0);
+                int teleportingLevel = Optional.ofNullable((int) tool.getComponents().get(TELEPORTING.dataComponent.get())).orElse(0);
                 int blockAmount = EquipmentModifierConfig.blocksPerLevelForTeleporting.get() * teleportingLevel;
                 components.add(index, Component.translatable("tooltips.casting.stats.teleporting", teleportingLevel, blockAmount).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasMagnet) {
-                int magnetLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.MAGNET.get())).orElse(0);
+                int magnetLevel = Optional.ofNullable((int) tool.getComponents().get(MAGNET.dataComponent.get())).orElse(0);
 
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.magnet", magnetLevel)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.magnet", magnetLevel)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -223,19 +222,19 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasProtection) {
-                int protectionLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.PROTECTION.get())).orElse(0);
+                int protectionLevel = Optional.ofNullable((int) tool.getComponents().get(PROTECTION.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.protection", protectionLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
             if (hasStepAssist) {
 
-                int stepAssistLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.STEP_ASSIST.get())).orElse(0);
+                int stepAssistLevel = Optional.ofNullable((int) tool.getComponents().get(STEP_ASSIST.dataComponent.get())).orElse(0);
 
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.step_assist", stepAssistLevel)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.step_assist", stepAssistLevel)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -247,11 +246,11 @@ public class EquipmentModifiersTooltip {
             }
             if (hasNightVision) {
 
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.night_vision")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.night_vision")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -265,11 +264,11 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasWalterWalker) {
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.water_walker")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.water_walker")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -279,11 +278,11 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasLavaWalker) {
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.lava_walker")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.lava_walker")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -293,13 +292,13 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasSpeed) {
-                int speedLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.SPEED.get())).orElse(0);
+                int speedLevel = Optional.ofNullable((int) tool.getComponents().get(SPEED.dataComponent.get())).orElse(0);
 
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.speed", speedLevel)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.speed", speedLevel)
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -309,11 +308,11 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasFlight) {
-                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.flight")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
                 }
-                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(CastingDataComponents.TOGGLEABLE_MODIFIERS.get()))) {
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
                     components.add(index, Component.translatable("tooltips.casting.stats.flight")
                             .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
                 }
@@ -323,7 +322,7 @@ public class EquipmentModifiersTooltip {
                 index++;
             }
             if (hasFeatherFalling) {
-                int featherFallingLevel = Optional.ofNullable(tool.getComponents().get(CastingDataComponents.FEATHER_FALLING.get())).orElse(0);
+                int featherFallingLevel = Optional.ofNullable((int) tool.getComponents().get(FEATHER_FALLING.dataComponent.get())).orElse(0);
                 components.add(index, Component.translatable("tooltips.casting.stats.feather_falling", featherFallingLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }

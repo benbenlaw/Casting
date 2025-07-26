@@ -32,7 +32,7 @@ public class CastingCreativeModeTab {
                 });
 
                 //Equipment Modifier Items
-                EquipmentModifierItems.ITEMS.getEntries().forEach(item -> {
+                EquipmentModifier.ITEMS.getEntries().forEach(item -> {
                     output.accept(item.get());
                 });
 

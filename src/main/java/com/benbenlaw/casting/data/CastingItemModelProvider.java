@@ -2,8 +2,7 @@ package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.item.CastingItems;
-import com.benbenlaw.casting.item.EquipmentModifierItems;
-import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
+import com.benbenlaw.casting.item.EquipmentModifier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -15,6 +14,7 @@ import net.neoforged.neoforge.client.model.generators.loaders.DynamicFluidContai
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import static com.benbenlaw.casting.fluid.CastingFluids.FLUIDS_MAP;
@@ -46,31 +46,9 @@ public class CastingItemModelProvider extends ItemModelProvider {
         simpleItem(CastingItems.REPAIRING_MOLD);
 
         //Equipment Modifier Items
-        simpleItem(EquipmentModifierItems.AUTO_SMELT);
-        simpleItem(EquipmentModifierItems.BEHEADING);
-        simpleItem(EquipmentModifierItems.EFFICIENCY);
-        simpleItem(EquipmentModifierItems.EXCAVATION);
-        simpleItem(EquipmentModifierItems.FORTUNE);
-        simpleItem(EquipmentModifierItems.IGNITE);
-        simpleItem(EquipmentModifierItems.KNOCKBACK);
-        simpleItem(EquipmentModifierItems.LIFESTEAL);
-        simpleItem(EquipmentModifierItems.LOOTING);
-        simpleItem(EquipmentModifierItems.MAGNET);
-        simpleItem(EquipmentModifierItems.PROTECTION);
-        simpleItem(EquipmentModifierItems.REPAIRING);
-        simpleItem(EquipmentModifierItems.SHARPNESS);
-        simpleItem(EquipmentModifierItems.SILK_TOUCH);
-        simpleItem(EquipmentModifierItems.STEP_ASSIST);
-        simpleItem(EquipmentModifierItems.TELEPORTING);
-        simpleItem(EquipmentModifierItems.TORCH_PLACING);
-        simpleItem(EquipmentModifierItems.UNBREAKING);
-        simpleItem(EquipmentModifierItems.WATER_WALKER);
-        simpleItem(EquipmentModifierItems.LAVA_WALKER);
-        simpleItem(EquipmentModifierItems.SPEED);
-        simpleItem(EquipmentModifierItems.WATER_BREATHING);
-        simpleItem(EquipmentModifierItems.NIGHT_VISION);
-        simpleItem(EquipmentModifierItems.FLIGHT);
-        simpleItem(EquipmentModifierItems.FEATHER_FALLING);
+        for (EquipmentModifier modifier : EquipmentModifier.values()) {
+            simpleItem(modifier.item);
+        }
 
         //Bucket Models
         for (var entry : FLUIDS_MAP.entrySet()) {
@@ -92,6 +70,11 @@ public class CastingItemModelProvider extends ItemModelProvider {
         withExistingParent(item.getId().getPath(),
                 ResourceLocation.withDefaultNamespace("item/generated")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, "item/" + item.getId().getPath()));
+    }
+
+    public void simpleItem(DeferredHolder<Item, ?> item) {
+        withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder simpleBlockItem(DeferredBlock<Block> item) {

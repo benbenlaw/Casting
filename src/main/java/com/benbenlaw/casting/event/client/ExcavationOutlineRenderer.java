@@ -2,21 +2,14 @@ package com.benbenlaw.casting.event.client;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.event.ToolEvents;
-import com.benbenlaw.casting.item.CastingDataComponents;
-import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -27,14 +20,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderHighlightEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import static com.benbenlaw.casting.event.ToolEvents.isToggleableModifierActive;
-import static com.benbenlaw.casting.event.ToolEvents.lastHitDirectionMap;
+import static com.benbenlaw.casting.item.EquipmentModifier.EXCAVATION;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = Casting.MOD_ID ,value = Dist.CLIENT)
@@ -53,7 +43,7 @@ public class ExcavationOutlineRenderer {
 
         BlockPos origin = blockHit.getBlockPos();
         Direction face = blockHit.getDirection();
-        int excavationLevel = tool.getComponents().getOrDefault(CastingDataComponents.EXCAVATION.get(), 0);
+        int excavationLevel = (int) tool.getComponents().getOrDefault(EXCAVATION.dataComponent.get(), 0);
 
         List<BlockPos> excavationPlane = ToolEvents.getExcavationPlane(origin, face, excavationLevel);
 
@@ -80,7 +70,7 @@ public class ExcavationOutlineRenderer {
         event.setCanceled(true);
     }
     private static boolean isExcavationTool(ItemStack stack) {
-        return stack.getComponents().has(CastingDataComponents.EXCAVATION.get()) && isToggleableModifierActive(stack);
+        return stack.getComponents().has(EXCAVATION.dataComponent.get()) && isToggleableModifierActive(stack);
     }
 
 

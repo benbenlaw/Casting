@@ -1,7 +1,6 @@
 package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.item.EquipmentModifierItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -156,7 +155,8 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.keybind_to_toggle", "- Press chosen keybind (see controls) to disable or enable this modifier");
 
         addTooltipTranslation("information.modifiers", "Modifiers - %s/%s");
-        addTooltipTranslation("information.equipment_level", "Equipment Level %s XP: %s/%s");
+        //addTooltipTranslation("information.equipment_level", "Equipment Level %s XP: %s/%s");
+        addTooltipTranslation("information.equipment_level", "Level up a piece of Equipment to add a new modifier slot up to level %s");
         addTooltipTranslation("information.equipment_level_item", "Gives your equipment a level, each level adds an additional modifier slot, up to %s levels");
         addTooltipTranslation("information.auto_smelt", "Allows the tool to automatically smelt items it mines up to level %s");
         addTooltipTranslation("information.beheading", "Gives a tool Beheading, drops mob heads");

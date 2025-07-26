@@ -3,7 +3,7 @@ package com.benbenlaw.casting.data;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.item.CastingItems;
-import com.benbenlaw.casting.item.EquipmentModifierItems;
+import com.benbenlaw.casting.item.EquipmentModifier;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.tag.ModdedTagBuilder;
 import com.benbenlaw.core.tag.ResourceNames;
@@ -16,7 +16,6 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
@@ -34,29 +33,29 @@ public class CastingItemTags extends ItemTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
         //All Equipment Modifiers
-        for (DeferredHolder<Item, ? extends Item> item : EquipmentModifierItems.ITEMS.getEntries()) {
+        for (DeferredHolder<Item, ? extends Item> item : EquipmentModifier.ITEMS.getEntries()) {
             tag(CastingTags.Items.EQUIPMENT_MODIFIERS).add(item.get());
         }
 
         //Can be disabled with shift modifiers
         tag(CastingTags.Items.CAN_BE_DISABLED_WITH_SHIFT)
-                .add(EquipmentModifierItems.WATER_WALKER.asItem())
-                .add(EquipmentModifierItems.LAVA_WALKER.asItem());
+                .add(EquipmentModifier.WATER_WALKER.item.get())
+                .add(EquipmentModifier.LAVA_WALKER.item.get());
 
         //Can be toggled with shift modifiers
         tag(CastingTags.Items.CAN_BE_TOGGLED_WITH_SHIFT)
-                .add(EquipmentModifierItems.AUTO_SMELT.asItem())
-                .add(EquipmentModifierItems.EXCAVATION.asItem())
-                .add(EquipmentModifierItems.SILK_TOUCH.asItem());
+                .add(EquipmentModifier.AUTO_SMELT.item.get())
+                .add(EquipmentModifier.EXCAVATION.item.get())
+                .add(EquipmentModifier.SILK_TOUCH.item.get());
 
         tag(CastingTags.Items.CAN_BE_TOGGLED_WITH_KEYBIND)
-                .add(EquipmentModifierItems.NIGHT_VISION.asItem())
-                .add(EquipmentModifierItems.FLIGHT.asItem())
-                .add(EquipmentModifierItems.STEP_ASSIST.asItem())
-                .add(EquipmentModifierItems.WATER_WALKER.asItem())
-                .add(EquipmentModifierItems.LAVA_WALKER.asItem())
-                .add(EquipmentModifierItems.SPEED.asItem())
-                .add(EquipmentModifierItems.MAGNET.asItem());
+                .add(EquipmentModifier.NIGHT_VISION.item.get())
+                .add(EquipmentModifier.FLIGHT.item.get())
+                .add(EquipmentModifier.STEP_ASSIST.item.get())
+                .add(EquipmentModifier.WATER_WALKER.item.get())
+                .add(EquipmentModifier.LAVA_WALKER.item.get())
+                .add(EquipmentModifier.SPEED.item.get())
+                .add(EquipmentModifier.MAGNET.item.get());
 
 
 

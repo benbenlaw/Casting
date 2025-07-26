@@ -1,11 +1,9 @@
 package com.benbenlaw.casting.block.entity;
 
-import com.benbenlaw.casting.config.EquipmentModifierConfig;
-import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.CastingItems;
+import com.benbenlaw.casting.item.EquipmentModifier;
 import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
 import com.benbenlaw.casting.recipe.MeltingRecipe;
-import com.benbenlaw.casting.recipe.SolidifierRecipe;
 import com.benbenlaw.casting.screen.EquipmentModifierMenu;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.casting.util.EquipmentModifierUtils;
@@ -14,6 +12,7 @@ import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -39,7 +38,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.fml.ModList;
-import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -50,8 +48,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
+import static com.benbenlaw.casting.item.EquipmentModifier.EQUIPMENT_EXPERIENCE;
+import static com.benbenlaw.casting.item.EquipmentModifier.EQUIPMENT_LEVEL;
 import static com.benbenlaw.casting.util.ValidToolTypesForToolModifiers.*;
 
 public class EquipmentModifierBlockEntity extends BlockEntity implements MenuProvider, IInventoryHandlingBlockEntity {
@@ -87,7 +88,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         }
 
         @Override
-        public FluidStack getFluidInTank(int tank) {
+        public @NotNull FluidStack getFluidInTank(int tank) {
             return TANK.getFluid();
         }
 
@@ -111,7 +112,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         }
 
         @Override
-        public FluidStack drain(FluidStack resource, FluidAction action) {
+        public @NotNull FluidStack drain(FluidStack resource, FluidAction action) {
             if (resource.getFluid() == TANK.getFluid().getFluid()) {
                 return TANK.drain(resource.getAmount(), action);
             }
@@ -119,7 +120,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         }
 
         @Override
-        public FluidStack drain(int maxDrain, FluidAction action) {
+        public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
             if (TANK.getFluidAmount() > 0) {
                 return TANK.drain(maxDrain, action);
             }
@@ -168,10 +169,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
     public int TOOL_SLOT = 0;
     public int UPGRADE_ITEM_SLOT = 1;
     public int OUTPUT_SLOT = 2;
-    public int MAX_FORTUNE_LEVEL = EquipmentModifierConfig.maxFortuneAmount.get();
-    public int MAX_EFFICIENCY_LEVEL = EquipmentModifierConfig.maxEfficiencyAmount.get();
-    public int MAX_UNBREAKING_LEVEL = EquipmentModifierConfig.maxUnbreakingAmount.get();
-    public int MAX_REPAIRING_LEVEL = EquipmentModifierConfig.maxRepairingAmount.get();
     public String errorMessage = "";
     public boolean isLimitMode = false;
     private final IItemHandler equipmentModifierItemHandler = new InputOutputItemHandler(itemHandler,
@@ -219,7 +216,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("block.casting.equipment_modifier");
     }
 
@@ -313,7 +310,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
             };
 
             boolean foundMatch = false;
-            boolean blockedByMax = false;
 
             if (itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof TieredItem ||
                     itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof ShearsItem ||
@@ -322,7 +318,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                 ItemStack toolStack = itemHandler.getStackInSlot(TOOL_SLOT);
                 String toolType = getToolType(toolStack);
 
-                List<String> validModifiers = VALID_MODIFIERS.get(toolType);
+                List<EquipmentModifier> validModifiers = VALID_MODIFIERS.get(toolType);
 
                 if (validModifiers == null) {
                     validModifiers = List.of();
@@ -356,7 +352,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                     }
 
                     assert getRepairItem != null;
-                    //System.out.println("getRepairItem: " + getRepairItem.getItems()[0]);
 
                     if (itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()) {
 
@@ -399,13 +394,14 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                             level.getRecipeManager().getRecipesFor(EquipmentModifierRecipe.Type.INSTANCE, inventory, level)) {
 
                         EquipmentModifierRecipe recipe = recipeHolder.value();
-                        String effect = recipe.effect();
+                        EquipmentModifier modifier = EquipmentModifier.valueOf(recipe.effect().toUpperCase(Locale.ROOT));
 
-                        if (!validModifiers.isEmpty() && !validModifiers.contains(effect)) {
+
+                        if (!validModifiers.isEmpty() && !validModifiers.contains(modifier)) {
                             continue;
                         }
 
-                        if (!EquipmentModifierUtils.hasEnoughFreeModifiers(toolStack, effect)) {
+                        if (!EquipmentModifierUtils.hasEnoughFreeModifiers(toolStack, modifier)) {
                             errorMessage = "not_high_enough_level"; // Not enough modifiers for the effect
                             continue; // Skip this recipe if not enough modifiers
                         }
@@ -428,13 +424,13 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                                 level.getRecipeManager().getRecipesFor(EquipmentModifierRecipe.Type.INSTANCE, inventory, level)) {
 
                             EquipmentModifierRecipe recipe = recipeHolder.value();
-                            String effect = recipe.effect();
+                            EquipmentModifier modifier = EquipmentModifier.valueOf(recipe.effect().toUpperCase(Locale.ROOT));
 
-                            if (!validModifiers.isEmpty() && !validModifiers.contains(effect)) {
+                            if (!validModifiers.isEmpty() && !validModifiers.contains(modifier)) {
                                 continue;
                             }
 
-                            if (!EquipmentModifierUtils.hasEnoughFreeModifiers(toolStack, effect)) {
+                            if (!EquipmentModifierUtils.hasEnoughFreeModifiers(toolStack, modifier)) {
                                 errorMessage = "not_high_enough_level"; // Not enough modifiers for the effect
                                 sync();
                                 continue; // Skip this recipe if not enough modifiers
@@ -456,8 +452,8 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                     }
 
                     if (matchedRecipe != null) {
-                        String effect = matchedRecipe.effect();
-                        boolean effectMaxed = EquipmentModifierUtils.isEffectAtMax(toolStack, effect);
+                        EquipmentModifier modifier = EquipmentModifier.valueOf(matchedRecipe.effect().toUpperCase(Locale.ROOT));
+                        boolean effectMaxed = EquipmentModifierUtils.isEffectAtMax(toolStack, modifier);
 
                         if (effectMaxed) {
                             // Tool or effect is at max level
@@ -474,12 +470,12 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                                         itemHandler.extractItem(UPGRADE_ITEM_SLOT, matchedRecipe.upgradeItem().count(), false);
                                     }
 
-                                    itemHandler.setStackInSlot(OUTPUT_SLOT, EquipmentModifierUtils.copyAndApplyEffect(toolStack, effect));
+                                    itemHandler.setStackInSlot(OUTPUT_SLOT, EquipmentModifierUtils.copyAndApplyEffect(toolStack, modifier));
 
                                     // Add Tool Level to confirm the tool is modified
-                                    if (!itemHandler.getStackInSlot(OUTPUT_SLOT).has(CastingDataComponents.EQUIPMENT_LEVEL)) {
-                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set(CastingDataComponents.EQUIPMENT_LEVEL, 1);
-                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set(CastingDataComponents.EQUIPMENT_EXPERIENCE, 0);
+                                    if (!itemHandler.getStackInSlot(OUTPUT_SLOT).has(EQUIPMENT_LEVEL.dataComponent.get())) {
+                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set((DataComponentType<Integer>) EQUIPMENT_LEVEL.dataComponent.value(), 1);
+                                        itemHandler.getStackInSlot(OUTPUT_SLOT).set(EQUIPMENT_EXPERIENCE, 0);
                                     }
 
                                     itemHandler.setStackInSlot(TOOL_SLOT, ItemStack.EMPTY);
@@ -515,11 +511,11 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         }
 
         return switch (equipmentItem) {
-            case PickaxeItem pickaxeItem -> 3;
-            case AxeItem axeItem -> 3;
-            case ShovelItem shovelItem -> 1;
-            case HoeItem hoeItem -> 2;
-            case SwordItem swordItem -> 2;
+            case PickaxeItem ignored -> 3;
+            case AxeItem ignored -> 3;
+            case ShovelItem ignored -> 1;
+            case HoeItem ignored -> 2;
+            case SwordItem ignored -> 2;
             case ArmorItem armorItem -> switch (armorItem.getType()) {
                 case HELMET -> 5;
                 case CHESTPLATE -> 8;
@@ -550,12 +546,12 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         }
 
         return switch (item) {
-            case PickaxeItem pickaxeItem -> PICKAXE_MODIFIERS;
-            case AxeItem axeItem -> AXE_MODIFIERS;
-            case ShovelItem shovelItem -> SHOVEL_MODIFIERS;
-            case HoeItem hoeItem -> HOE_MODIFIERS;
-            case SwordItem swordItem -> SWORD_MODIFIERS;
-            case ShearsItem shearItem -> SHEAR_MODIFIERS;
+            case PickaxeItem ignored -> PICKAXE_MODIFIERS;
+            case AxeItem ignored -> AXE_MODIFIERS;
+            case ShovelItem ignored -> SHOVEL_MODIFIERS;
+            case HoeItem ignored -> HOE_MODIFIERS;
+            case SwordItem ignored -> SWORD_MODIFIERS;
+            case ShearsItem ignored -> SHEAR_MODIFIERS;
             case ArmorItem armorItem -> switch (armorItem.getType()) {
                 case HELMET -> HELMET_MODIFIERS;
                 case CHESTPLATE -> CHESTPLATE_MODIFIERS;
@@ -587,12 +583,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         int totalFluidCount = fluidAmountPerResourceMelted * resourceCount;
 
         float fluidPerDurability = (float) totalFluidCount / (float) equipmentStack.getMaxDamage();
-
-        //System.out.println("total fluid fro full repair: " + totalFluidCount);
-        //System.out.println("Fluid per durability: " + fluidPerDurability);
-        //System.out.println("Repair amount: " + repairAmount);
-        //System.out.println("Fluid needed for repair: " + (fluidPerDurability * repairAmount));
-        //System.out.println("Fluid needed for repair: " + Math.round(fluidPerDurability * repairAmount));
 
         return Math.round(fluidPerDurability * repairAmount);
     }
@@ -634,30 +624,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
         return tankAmount >= output.getAmount() &&
                 TANK.getFluid().getFluid() == output.getFluid();
-    }
-
-
-    private boolean isRecipeSlotsValidForTanks(SolidifierRecipe recipe) {
-        FluidStack recipeFluid = recipe.fluid();
-        return TANK.getFluid().is(recipeFluid.getFluidType()) && (tankIsValidForSlot(recipeFluid, 0) || tankIsValidForSlot(recipeFluid, 1));
-    }
-
-    private boolean tankIsValidForSlot(FluidStack stack, int slot) {
-
-        return stack.getFluid() == TANK.getFluid().getFluid();
-    }
-
-    private boolean hasOutputSpaceMaking(EquipmentModifierBlockEntity entity, SolidifierRecipe recipe) {
-        ItemStack outputSlotStack = entity.itemHandler.getStackInSlot(1);
-        SizedIngredient resultStack = recipe.output();
-
-        if (outputSlotStack.isEmpty()) {
-            return  recipe.output().count() <= resultStack.getItems()[0].getItem().getDefaultMaxStackSize();
-        } else if (outputSlotStack.getItem() == resultStack.getItems()[0].getItem()) {
-            return outputSlotStack.getCount() + recipe.output().count() <= outputSlotStack.getMaxStackSize();
-        } else {
-            return false;
-        }
     }
 
 }
