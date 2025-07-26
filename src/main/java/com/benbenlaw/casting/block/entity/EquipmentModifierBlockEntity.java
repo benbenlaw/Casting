@@ -1,5 +1,6 @@
 package com.benbenlaw.casting.block.entity;
 
+import com.benbenlaw.casting.config.ModifierSetsConfig;
 import com.benbenlaw.casting.item.CastingItems;
 import com.benbenlaw.casting.item.EquipmentModifier;
 import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
@@ -12,16 +13,22 @@ import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.MenuProvider;
@@ -38,6 +45,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -49,6 +57,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 import static com.benbenlaw.casting.item.EquipmentModifier.EQUIPMENT_EXPERIENCE;
@@ -65,8 +74,16 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         }
 
         @Override
+        public int getSlotLimit(int slot) {
+            return slot == 1 ? 1 : super.getSlotLimit(slot);
+        }
+
+        @Override
         protected int getStackLimit(int slot, ItemStack stack) {
-            if(slot == 0 && stack.is(CastingTags.Items.MOLDS)) {
+            if(slot == 1 && stack.is(CastingTags.Items.MOLDS)) {
+                return 1;
+            }
+            if(slot == 0 ) {
                 return 1;
             }
             return 64;
@@ -311,12 +328,15 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
             boolean foundMatch = false;
 
-            if (itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof TieredItem ||
-                    itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof ShearsItem ||
-                    itemHandler.getStackInSlot(TOOL_SLOT).getItem() instanceof ArmorItem) {
+            ItemStack toolStack = itemHandler.getStackInSlot(TOOL_SLOT);
+            if (!toolStack.isEmpty()) {
 
-                ItemStack toolStack = itemHandler.getStackInSlot(TOOL_SLOT);
                 String toolType = getToolType(toolStack);
+
+                if (toolType.isEmpty() || !VALID_MODIFIERS.containsKey(toolType)) {
+                    resetProgress();
+                    return;
+                }
 
                 List<EquipmentModifier> validModifiers = VALID_MODIFIERS.get(toolType);
 
@@ -529,7 +549,33 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
     private static Class<?> mekanismPaxelClass;
 
-    private String getToolType(ItemStack stack){
+    private String getToolType(ItemStack stack) {
+        Item item = stack.getItem();
+
+        for (Map.Entry<String, List<String>> entry : ModifierSetsConfig.GROUP_ITEMS_OR_TAGS.entrySet()) {
+            String groupKey = entry.getKey();
+            List<String> itemOrTagIds = entry.getValue();
+
+            for (String id : itemOrTagIds) {
+                if (id.startsWith("#")) {
+                    // It's a tag
+                    String tagId = id.substring(1); // remove '#' prefix
+                    TagKey<Item> tag = TagKey.create(Registries.ITEM, ResourceLocation.parse(tagId));
+                    if (stack.is(tag)) {
+                        System.out.println("Matched tag: " + tagId + " for " + groupKey);
+                        return groupKey;
+                    }
+                } else {
+                    // It's an item ID
+                    ResourceLocation itemId = ResourceLocation.parse(id);
+                    Item configItem = BuiltInRegistries.ITEM.get(itemId);
+                    if (configItem == item) {
+                        System.out.println("Matched item: " + configItem + " for " + groupKey);
+                        return groupKey;
+                    }
+                }
+            }
+        }
 
         if (ModList.get().isLoaded("mekanismtools") && mekanismPaxelClass == null) {
             try {
@@ -539,12 +585,11 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
             }
         }
 
-        Item item = stack.getItem();
-
         if (mekanismPaxelClass != null && mekanismPaxelClass.isInstance(item)) {
             return PAXEL_MODIFIERS;
         }
 
+        // fallback switch
         return switch (item) {
             case PickaxeItem ignored -> PICKAXE_MODIFIERS;
             case AxeItem ignored -> AXE_MODIFIERS;
@@ -559,10 +604,10 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                 case BOOTS -> BOOTS_MODIFIERS;
                 case BODY -> BODY_MODIFIERS;
             };
-
             default -> "";
         };
     }
+
 
     private void resetProgress() {
         progress = 0;

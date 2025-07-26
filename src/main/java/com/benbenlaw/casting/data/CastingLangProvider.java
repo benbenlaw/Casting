@@ -192,7 +192,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("stats.efficiency", "- Efficiency - %s");
         addTooltipTranslation("stats.excavation", "- Excavation - %s (%sx%s Area)");
         addTooltipTranslation("stats.fortune", "- Fortune - %s");
-        addTooltipTranslation("stats.ignite", "- Ignite - %s%% Chance");
+        addTooltipTranslation("stats.ignite", "- Ignite - Burn for %s Second(s)");
         addTooltipTranslation("stats.knockback", "- Knockback - %s");
         addTooltipTranslation("stats.lifesteal", "- Lifesteal - %s%% Damage Restored");
         addTooltipTranslation("stats.looting", "- Looting - %s");

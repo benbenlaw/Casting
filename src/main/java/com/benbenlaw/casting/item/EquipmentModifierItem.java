@@ -1,6 +1,8 @@
 package com.benbenlaw.casting.item;
 
+import com.benbenlaw.casting.config.ModifierSetsConfig;
 import com.benbenlaw.casting.util.CastingTags;
+import com.benbenlaw.casting.util.ValidToolTypesForToolModifiers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -62,19 +64,30 @@ public class EquipmentModifierItem extends Item {
             String itemPath = BuiltInRegistries.ITEM.getKey(this).getPath();
             EquipmentModifier modifier = EquipmentModifier.valueOf(itemPath.toUpperCase());
 
-            List<String> validToolTypes = VALID_MODIFIERS.entrySet().stream()
+            List<String> validToolTypes = ValidToolTypesForToolModifiers.VALID_MODIFIERS.entrySet().stream()
                     .filter(entry -> {
                         String key = entry.getKey();
-                        if (key.equals(ALL_MODIFIERS)) return false;
-                        if (key.equals(PAXEL_MODIFIERS) && !ModList.get().isLoaded("mekanismtools")) return false;
-                        return entry.getValue().contains(modifier); // Make sure this is EquipmentModifierItems
+                        if (key.equals(ValidToolTypesForToolModifiers.ALL_MODIFIERS)) return false;
+                        if (key.equals(ValidToolTypesForToolModifiers.PAXEL_MODIFIERS) && !ModList.get().isLoaded("mekanismtools")) return false;
+                        return entry.getValue().contains(modifier);
                     })
                     .map(Map.Entry::getKey)
                     .toList();
 
             for (String toolType : validToolTypes) {
-                components.add(Component.translatable("tooltips.casting." + toolType).withStyle(ChatFormatting.BLUE));
+                boolean isDefault = ValidToolTypesForToolModifiers.DEFAULT_MODIFIERS.containsKey(toolType);
+                ChatFormatting color = isDefault ? ChatFormatting.BLUE : ChatFormatting.AQUA;
+
+                String displayName;
+                if (isDefault) {
+                    displayName = Component.translatable("tooltips.casting." + toolType).getString();
+                } else {
+                    displayName = "- " + ModifierSetsConfig.getDisplayNameForGroup(toolType);
+                }
+
+                components.add(Component.literal(displayName).withStyle(color));
             }
+
 
         } else {
             components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));

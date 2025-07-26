@@ -8,12 +8,20 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 
 config for adding tools to a tier of tools
-improve adding of new casting modifiers
 look at performance
 multiblock blocks not saving contents when broken
 
+UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
+
+
+2.2.1
+Fixed ignite tooltip being wrong and data component using boolean instead of int
+
 2.2.0
 Major refactor of equipment modifiers, changes to how modifiers are added into the mod, this should allow for easier addition of new modifiers in the future
+Equipment modifier now only allows a single item in the tool and output slot
+Added new config, custom_modifier_sets, this allows you to create a custom set of modifiers that can be added to tools and armor see custom_modifier_sets.json
+    for more information
 
 2.1.4
 Fixed Casting scene not loading in guide me

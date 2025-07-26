@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-21T09:26:07.1018613	casting Item Models
+// 1.21.1	2025-07-26T12:34:47.1302449	casting Item Models
 16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
 513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
@@ -7,6 +7,7 @@ c458d3e96733818f13805ef73ad0ad87dcb05aa1 assets/casting/models/item/black_brick.
 57ce4ecb7e62f028a76d92a03dfe080a7dd5ded1 assets/casting/models/item/chilled_water_bucket.json
 37b2423e087aba4168c4382dad45ac5afa40f06a assets/casting/models/item/dust_mold.json
 9f2c8e91967a48a7c07857aa4bc89a7ab5f545a6 assets/casting/models/item/efficiency.json
+e35432dd3b16f1f13be4c2635d47addbb1c8ea9b assets/casting/models/item/equipment_level.json
 6babc5b2d452774978684b33301786967327c4d7 assets/casting/models/item/excavation.json
 c2f2fcc473cd26d33a187576d3f6d826871009a0 assets/casting/models/item/feather_falling.json
 fa1e3adf48490bb1d83caccb62d60d108874a6a0 assets/casting/models/item/flight.json

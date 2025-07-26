@@ -8,6 +8,7 @@ import com.benbenlaw.casting.block.entity.client.TankBlockEntityRenderer;
 import com.benbenlaw.casting.config.BeheadingConfig;
 import com.benbenlaw.casting.config.CastingConfig;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
+import com.benbenlaw.casting.config.ModifierSetsConfig;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.*;
 import com.benbenlaw.casting.network.CastingMessages;
@@ -63,9 +64,11 @@ public class Casting {
         CastingRecipes.TYPES.register(modEventBus);
         CastingRecipes.SERIALIZER.register(modEventBus);
 
+        //Configs
         modContainer.registerConfig(ModConfig.Type.STARTUP, EquipmentModifierConfig.SPEC, "bbl/casting/tool_modifiers.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, BeheadingConfig.SPEC, "bbl/casting/beheading.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, CastingConfig.SPEC, "bbl/casting/common.toml");
+        modContainer.registerConfig(ModConfig.Type.COMMON, ModifierSetsConfig.SPEC, "bbl/casting/custom_modifiers_sets.toml");
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.register(new CastingColorHandler());

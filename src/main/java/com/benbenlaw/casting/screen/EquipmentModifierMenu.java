@@ -2,6 +2,7 @@ package com.benbenlaw.casting.screen;
 
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.EquipmentModifierBlockEntity;
+import com.benbenlaw.casting.util.SingleItemSlot;
 import com.benbenlaw.core.screen.util.slot.ResultSlot;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -38,7 +39,7 @@ public class EquipmentModifierMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(blockEntity.getItemStackHandler(), 0, 89, 36)); //tool
+        this.addSlot(new SingleItemSlot(blockEntity.getItemStackHandler(), 0, 89, 36)); //tool
         this.addSlot(new SlotItemHandler(blockEntity.getItemStackHandler(), 1, 47, 36)); //upgrades
         this.addSlot(new ResultSlot(blockEntity.getItemStackHandler(), 2, 134, 36, 64));
 

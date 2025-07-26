@@ -28,7 +28,7 @@ public enum EquipmentModifier {
     BEHEADING("beheading", Codec.BOOL, ByteBufCodecs.BOOL, () -> 1),
     LIFESTEAL("lifesteal", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxLifestealAmount),
     KNOCKBACK("knockback", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxKnockbackAmount),
-    IGNITE("ignite", Codec.BOOL, ByteBufCodecs.BOOL, () -> 1),
+    IGNITE("ignite", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxIgniteAmount),
     EXCAVATION("excavation", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxExcavationAmount),
     TELEPORTING("teleporting", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxTeleportationAmount),
     MAGNET("magnet", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxMagnetAmount),
