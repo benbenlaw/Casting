@@ -1,8 +1,8 @@
 {
   "type": "casting:equipment_modifier",
-  "effect": "beheading",
+  "effect": "soulbound",
   "upgrade_fluid": {
-    "amount": 2560,
+    "amount": 3200,
     "id": "casting:molten_soul"
   }
 }

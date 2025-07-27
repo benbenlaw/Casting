@@ -41,6 +41,10 @@ public enum EquipmentModifier {
     LAVA_WALKER("lava_walker", Codec.BOOL, ByteBufCodecs.BOOL, () -> 1),
     FLIGHT("flight", Codec.BOOL, ByteBufCodecs.BOOL, () -> 1),
     FEATHER_FALLING("feather_falling", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxFeatherFallingAmount),
+    SOULBOUND("soulbound", Codec.BOOL, ByteBufCodecs.BOOL, () -> 1),
+    JETS("jets", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxJetsAmount),
+
+
     EQUIPMENT_LEVEL("equipment_level", Codec.INT, ByteBufCodecs.INT, EquipmentModifierConfig.maxEquipmentLevel);
 
     public final String id;

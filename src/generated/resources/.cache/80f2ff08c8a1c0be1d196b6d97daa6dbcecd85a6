@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-26T12:34:47.1302449	casting Item Models
+// 1.21.1	2025-07-27T12:58:09.0100839	casting Item Models
 16d488df5ec4d34b0d1a8441c17055093e1ec2cf assets/casting/models/item/auto_smelt.json
 410556918b1bcbb156949e41fe7a5776f1169578 assets/casting/models/item/ball_mold.json
 513a81cc9506bd65488ff6334a7957d4fd88398f assets/casting/models/item/beheading.json
@@ -18,6 +18,7 @@ cf9eae803bac38044112d744bde8b6b12c3af28c assets/casting/models/item/gem_mold.jso
 549f9fdada936704267154acf438c49b90e9b7c1 assets/casting/models/item/iced_water_bucket.json
 652c001a660021ea397975ab0c50856a7caec587 assets/casting/models/item/ignite.json
 0b04b6b6d70bf4321f1120a56f0aa5e03818e717 assets/casting/models/item/ingot_mold.json
+cf939ec571af0ffe26e4e9e901268bbec516fcad assets/casting/models/item/jets.json
 ad997dc493e7cc16c8582c7e8426c2cb72d65bff assets/casting/models/item/knockback.json
 9f94d84580a0dc9089c7f074d5b3464cfac1390e assets/casting/models/item/lava_walker.json
 6dc5e743163b33bef8770af0fcdfd7a03821fc9c assets/casting/models/item/lifesteal.json
@@ -87,6 +88,7 @@ f917a1a7ccb9835011f67b6f02be6d89a1e5270d assets/casting/models/item/repairing.js
 cfd72d20c3421e3da904954307832d8c96153746 assets/casting/models/item/rod_mold.json
 9e6f89126935efd465ba77b421fdc6b3af92dce7 assets/casting/models/item/sharpness.json
 40531341edfec33b755a7e7d3c97de515c8f7876 assets/casting/models/item/silk_touch.json
+139567adc7d433e5d94f07573050e2e3a9fbdc94 assets/casting/models/item/soulbound.json
 4563606bbf2654875c46c0cf35c46d5a0db907b6 assets/casting/models/item/speed.json
 8a83c1840b21b4d00156b183be278b0c1190f76e assets/casting/models/item/step_assist.json
 f46effc8e428924e3e2b728445534c636264f101 assets/casting/models/item/super_coolant_bucket.json

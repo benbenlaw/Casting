@@ -145,6 +145,9 @@ public class CastingLangProvider extends LanguageProvider {
         addItemTranslation("night_vision", "Equipment Modifier: Night Vision");
         addItemTranslation("flight", "Equipment Modifier: Flight");
         addItemTranslation("feather_falling", "Equipment Modifier: Feather Falling");
+        addItemTranslation("soulbound", "Equipment Modifier: Soulbound");
+        addItemTranslation("jets", "Equipment Modifier: Jets");
+
         addItemTranslation("equipment_level", "Equipment Modifier: Level Up");
 
         //Tooltips
@@ -181,8 +184,10 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.speed", "Gives armor Speed, allows the player to move faster up to level %s");
         addTooltipTranslation("information.water_breathing", "Gives armor Water Breathing, allows the player to breathe underwater");
         addTooltipTranslation("information.night_vision", "Gives armor Night Vision, allows the player to see in the dark");
-        addTooltipTranslation("information.flight", "Gives armor Flight, allows the player to fly");
+        addTooltipTranslation("information.flight", "Gives armor Flight, allows the player to as if in creative");
         addTooltipTranslation("information.feather_falling", "Gives armor Feather Falling, each level adds 10%% damage reduction from falling up to level %s");
+        addTooltipTranslation("information.soulbound", "Returns the item to the player after death");
+        addTooltipTranslation("information.jets", "Gives armor Jets, allows the player to jet up in the air, each level increases upwards speed");
 
         addTooltipTranslation("stats.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("stats.equipment_level", "Equipment Level %s XP: %s/%s");
@@ -212,6 +217,8 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("stats.night_vision", "- Night Vision");
         addTooltipTranslation("stats.flight", "- Flight");
         addTooltipTranslation("stats.feather_falling", "- Feather Falling - %s");
+        addTooltipTranslation("stats.soulbound", "- Soulbound");
+        addTooltipTranslation("stats.jets", "- Jets - %s");
 
         addTooltipTranslation("all_modifiers", "- All");
         addTooltipTranslation("pickaxe_modifiers", "- Pickaxes");

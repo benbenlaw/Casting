@@ -25,6 +25,8 @@
     "casting:lava_walker",
     "casting:flight",
     "casting:feather_falling",
+    "casting:soulbound",
+    "casting:jets",
     "casting:equipment_level"
   ]
 }

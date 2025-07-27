@@ -55,7 +55,8 @@ public class CastingItemTags extends ItemTagsProvider {
                 .add(EquipmentModifier.WATER_WALKER.item.get())
                 .add(EquipmentModifier.LAVA_WALKER.item.get())
                 .add(EquipmentModifier.SPEED.item.get())
-                .add(EquipmentModifier.MAGNET.item.get());
+                .add(EquipmentModifier.MAGNET.item.get())
+                .add(EquipmentModifier.JETS.item.get());
 
 
 

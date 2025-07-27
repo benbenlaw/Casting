@@ -29,6 +29,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +38,6 @@ import static com.benbenlaw.casting.item.EquipmentModifier.*;
 @EventBusSubscriber(modid = Casting.MOD_ID)
 
 public class ArmorEvents {
-
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Pre event) {
@@ -119,7 +119,6 @@ public class ArmorEvents {
                 player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, player, EquipmentSlot.HEAD);
             }
         }
-
     }
 
     @SubscribeEvent
@@ -148,7 +147,8 @@ public class ArmorEvents {
         }
 
         // Water Walker
-        boolean isWaterWalker = (boolean) player.getItemBySlot(EquipmentSlot.FEET).get(EquipmentModifier.WATER_WALKER.dataComponent.get());
+        boolean isWaterWalker = (boolean) player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault
+                (EquipmentModifier.WATER_WALKER.dataComponent.get(), false);
 
         float playerBob = player.bob;
 
@@ -205,7 +205,8 @@ public class ArmorEvents {
         }
 
         // Lava Walker
-        boolean isLavaWalker = (boolean) player.getItemBySlot(EquipmentSlot.FEET).get(EquipmentModifier.LAVA_WALKER.dataComponent.get());
+        boolean isLavaWalker = (boolean) player.getItemBySlot(EquipmentSlot.FEET).getComponents()
+                .getOrDefault(LAVA_WALKER.dataComponent.get(), false);
 
         if (isLavaWalker && !player.isShiftKeyDown() && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
             BlockPos pos = player.blockPosition();
@@ -261,6 +262,46 @@ public class ArmorEvents {
             }
         }
 
+        //Jets
+        int totalJetLevel = 0;
+
+        for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
+            ItemStack armorPiece = player.getItemBySlot(slot);
+
+            if (armorPiece.getComponents().has(JETS.dataComponent.get()) && isToggleableModifierActive(armorPiece)) {
+                totalJetLevel += (int) armorPiece.getComponents().getOrDefault(JETS.dataComponent.get(), 0);
+            }
+        }
+
+        boolean jumpHeld = player.getPersistentData().getBoolean("casting_is_jumping");
+
+        if (totalJetLevel > 0 && jumpHeld && !player.isInWaterOrBubble()) {
+            player.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 1, totalJetLevel, false, false));
+            player.setOnGround(false);
+            player.fallDistance = 0;
+
+            if (level instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(ParticleTypes.FLAME, player.getX(), player.getY() + 0.25, player.getZ(),
+                        5, 0.2, 0.2, 0.2, 0.001);
+            }
+
+            if (player.tickCount % 100 == 0) {
+                List<EquipmentSlot> damagedSlots = new ArrayList<>();
+
+                for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
+                    ItemStack armorPiece = player.getItemBySlot(slot);
+                    if (armorPiece.getComponents().has(JETS.dataComponent.get()) && isToggleableModifierActive(armorPiece)) {
+                        damagedSlots.add(slot);
+                    }
+                }
+
+                if (!damagedSlots.isEmpty()) {
+                    EquipmentSlot slotToDamage = damagedSlots.get(player.getRandom().nextInt(damagedSlots.size()));
+                    ItemStack armorPiece = player.getItemBySlot(slotToDamage);
+                    armorPiece.hurtAndBreak(1, player, slotToDamage);
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -283,7 +324,7 @@ public class ArmorEvents {
             ItemStack armor = player.getItemBySlot(slot);
             if (armor.isEmpty()) continue;
 
-            if ((boolean) armor.get(PROTECTION.dataComponent.get())) {
+            if ((boolean) armor.getComponents().getOrDefault(PROTECTION.dataComponent.get(), false)) {
                 int protectionLevel = (int) armor.getComponents().getOrDefault(PROTECTION.dataComponent.get(), 0);
                 totalCustomReduction += protectionLevel * EquipmentModifierConfig.percentageOfProtectionDamagePerProtectionLevel.get();
             }
@@ -324,20 +365,4 @@ public class ArmorEvents {
         }
         return false;
     }
-
-    //From In World Recipes // Move to BBL Core in the future
-    public static void popOutTheItem(Level level, BlockPos blockPos, ItemStack itemStack) {
-
-        Vec3 vec3 = Vec3.atLowerCornerWithOffset(blockPos, 0.5, 1.1, 0.5).offsetRandom(level.random, 0.7F);
-        ItemStack itemstack1 = itemStack.copy();
-        ItemEntity itementity = new ItemEntity(level, vec3.x(), vec3.y(), vec3.z(), itemstack1);
-        itementity.setDefaultPickUpDelay();
-        level.addFreshEntity(itementity);
-    }
-
-
-    public static Holder<Enchantment> toHolder(Level level, ResourceKey<Enchantment> enchantment) {
-        return level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(enchantment);
-    }
-
 }

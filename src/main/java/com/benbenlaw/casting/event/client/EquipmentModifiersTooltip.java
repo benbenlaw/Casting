@@ -69,10 +69,12 @@ public class EquipmentModifiersTooltip {
         boolean hasSpeed = tool.getComponents().keySet().contains(SPEED.dataComponent.get());
         boolean hasFlight = tool.getComponents().keySet().contains(FLIGHT.dataComponent.get());
         boolean hasFeatherFalling = tool.getComponents().keySet().contains(FEATHER_FALLING.dataComponent.get());
+        boolean hasSoulbound = tool.getComponents().keySet().contains(SOULBOUND.dataComponent.get());
+        boolean hasJets = tool.getComponents().keySet().contains(JETS.dataComponent.get());
 
         boolean hasToggleableModifiers = tool.getComponents().keySet().contains(TOGGLEABLE_MODIFIERS.get());
 
-        boolean hasEffects = hasFeatherFalling || hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
+        boolean hasEffects = hasJets || hasSoulbound || hasFeatherFalling || hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
         if (Screen.hasShiftDown() && (hasEffects)) {
 
@@ -195,8 +197,6 @@ public class EquipmentModifiersTooltip {
                 }
 
                 index++;
-
-
             }
             if (hasTeleporting) {
                 int teleportingLevel = Optional.ofNullable((int) tool.getComponents().get(TELEPORTING.dataComponent.get())).orElse(0);
@@ -326,8 +326,32 @@ public class EquipmentModifiersTooltip {
                 components.add(index, Component.translatable("tooltips.casting.stats.feather_falling", featherFallingLevel).withStyle(ChatFormatting.BLUE));
                 index++;
             }
+            if (hasSoulbound) {
+                components.add(index, Component.translatable("tooltips.casting.stats.soulbound").withStyle(ChatFormatting.BLUE));
+                index++;
+            }
+            if (hasJets) {
+
+                int jetsLevel = Optional.ofNullable((int) tool.getComponents().get(JETS.dataComponent.get())).orElse(0);
+
+                if (hasToggleableModifiers && Boolean.TRUE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.jets", jetsLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (✔)").withStyle(ChatFormatting.GREEN)));
+                }
+                else if (hasToggleableModifiers && Boolean.FALSE.equals(tool.getComponents().get(TOGGLEABLE_MODIFIERS.get()))) {
+                    components.add(index, Component.translatable("tooltips.casting.stats.jets", jetsLevel)
+                            .withStyle(ChatFormatting.BLUE).append(Component.literal(" (❌)").withStyle(ChatFormatting.RED)));
+                }
+                else {
+                    components.add(index, Component.translatable("tooltips.casting.stats.jets", jetsLevel).withStyle(ChatFormatting.BLUE));
+                }
+
+                index++;
+            }
 
             components.add(1, Component.translatable("tooltips.casting.stats.modifiers", index - 3, toolLevel).withStyle(ChatFormatting.GOLD));
+
+
 
         } else {
             if (hasEffects) {

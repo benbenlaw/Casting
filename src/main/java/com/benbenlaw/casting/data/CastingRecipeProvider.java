@@ -171,7 +171,8 @@ public class CastingRecipeProvider extends RecipeProvider {
         toolModifierRecipes(consumer, null, new FluidStack(Fluids.LAVA, 8000), AUTO_SMELT.id);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Tags.Items.GEMS_EMERALD), 8), getFluidStack("molten_lapis", 1350), LOOTING.id);
         toolModifierRecipes(consumer, null, getFluidStack("molten_quartz", 1350), SHARPNESS.id);
-        toolModifierRecipes(consumer, null, getFluidStack("molten_soul", 2560), BEHEADING.id);
+        toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(ItemTags.SKULLS), 1), null, BEHEADING.id);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_soul", 3200), SOULBOUND.id);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.GOLDEN_APPLE), 1), getFluidStack("molten_gold", 720), LIFESTEAL.id);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.PISTON), 4), null,KNOCKBACK.id);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FLINT_AND_STEEL), 1), new FluidStack(Fluids.LAVA, 8000),IGNITE.id);
@@ -188,6 +189,7 @@ public class CastingRecipeProvider extends RecipeProvider {
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.NETHER_STAR), 1), null, FLIGHT.id);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FEATHER), 4), null, FEATHER_FALLING.id);
         toolModifierRecipes(consumer, null, getFluidStack("molten_experience", 500), EQUIPMENT_LEVEL.id);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_blaze", 8000), JETS.id);
 
         // Molds
         createMoldRecipe(CastingItems.GEAR_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("gears"), consumer);

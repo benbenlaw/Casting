@@ -32,6 +32,7 @@ public class EquipmentModifierConfig {
     public static final ModConfigSpec.ConfigValue<Integer> timeForDamageOnWaterBreathing;
     public static final ModConfigSpec.ConfigValue<Integer> maxSpeedAmount;
     public static final ModConfigSpec.ConfigValue<Integer> maxFeatherFallingAmount;
+    public static final ModConfigSpec.ConfigValue<Integer> maxJetsAmount;
 
 
 
@@ -97,6 +98,8 @@ public class EquipmentModifierConfig {
                 .define("Max Speed Level", 5);
         maxFeatherFallingAmount = BUILDER.comment("The max amount of feather falling levels that can be applied to tools, default = 5, 0 disables. Each level adds an additional level of the feather falling enchantment")
                 .define("Max Feather Falling Level", 5);
+        maxJetsAmount = BUILDER.comment("The max amount of jets levels that can be applied to armor, default = 5, 0 disables. Each level increases speed")
+                .define("Max Jets Level", 5);
 
 
 

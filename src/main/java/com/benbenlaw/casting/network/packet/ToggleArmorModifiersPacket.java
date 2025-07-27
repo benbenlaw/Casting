@@ -26,7 +26,9 @@ public class ToggleArmorModifiersPacket {
         if (armorSlot == 1) {
             boolean nightVision =  player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(NIGHT_VISION.dataComponent.get());
             boolean magnet =  player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(MAGNET.dataComponent.get());
-            boolean containsToggleableModifier = nightVision || magnet;
+            boolean jets =  player.getItemBySlot(EquipmentSlot.HEAD).getComponents().keySet().contains(JETS.dataComponent.get());
+
+            boolean containsToggleableModifier = jets || nightVision || magnet;
             ItemStack armor = player.getItemBySlot(EquipmentSlot.HEAD);
 
             if (containsToggleableModifier) {
@@ -47,7 +49,8 @@ public class ToggleArmorModifiersPacket {
         if (armorSlot == 2) {
             boolean magnet =  player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(MAGNET.dataComponent.get());
             boolean flight =  player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(FLIGHT.dataComponent.get());
-            boolean containsToggleableModifier = flight || magnet;
+            boolean jets =  player.getItemBySlot(EquipmentSlot.CHEST).getComponents().keySet().contains(JETS.dataComponent.get());
+            boolean containsToggleableModifier = jets || flight || magnet;
             ItemStack armor = player.getItemBySlot(EquipmentSlot.CHEST);
 
             if (containsToggleableModifier) {
@@ -69,7 +72,8 @@ public class ToggleArmorModifiersPacket {
         if (armorSlot == 3) {
             boolean magnet =  player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(MAGNET.dataComponent.get());
             boolean speed =  player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(SPEED.dataComponent.get());
-            boolean containsToggleableModifier = speed || magnet;
+            boolean jets =  player.getItemBySlot(EquipmentSlot.LEGS).getComponents().keySet().contains(JETS.dataComponent.get());
+            boolean containsToggleableModifier = jets || speed || magnet;
             ItemStack armor = player.getItemBySlot(EquipmentSlot.LEGS);
 
             if (containsToggleableModifier) {
@@ -94,7 +98,8 @@ public class ToggleArmorModifiersPacket {
             boolean stepAssist =  player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(STEP_ASSIST.dataComponent.get());
             boolean waterWalker =  player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(WATER_WALKER.dataComponent.get());
             boolean lavaWalker =  player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(LAVA_WALKER.dataComponent.get());
-            boolean containsToggleableModifier = speed || magnet || stepAssist || waterWalker || lavaWalker;
+            boolean jets =  player.getItemBySlot(EquipmentSlot.FEET).getComponents().keySet().contains(JETS.dataComponent.get());
+            boolean containsToggleableModifier = jets || speed || magnet || stepAssist || waterWalker || lavaWalker;
             ItemStack armor = player.getItemBySlot(EquipmentSlot.FEET);
 
             if (containsToggleableModifier) {

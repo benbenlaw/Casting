@@ -19,6 +19,7 @@ public class CastingMessages {
         registrar.playToServer(OnOffButtonPayload.TYPE, OnOffButtonPayload.STREAM_CODEC, OnOffButtonPacket.get()::handle);
         registrar.playToServer(ControllerFilteredInventoryPayload.TYPE, ControllerFilteredInventoryPayload.STREAM_CODEC, ControllerFilteredInventoryPacket.get()::handle);
         registrar.playToServer(ToggleArmorModifiersPayload.TYPE, ToggleArmorModifiersPayload.STREAM_CODEC, ToggleArmorModifiersPacket.get()::handle);
+        registrar.playToServer(JetJumpPacket.TYPE, JetJumpPacket.STREAM_CODEC, JetJumpPacket.HANDLER);
 
         //OG Casting
         //To Server From Client
