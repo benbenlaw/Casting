@@ -33,6 +33,7 @@ public class DeathEvents {
                 ItemStack stack = main.get(i);
                 if (!stack.isEmpty() && stack.getComponents().has(SOULBOUND.dataComponent.get())) {
                     soulboundItems.put(stack.copy(), i);
+                    stack.setCount(0);
                 }
             }
 
@@ -41,6 +42,7 @@ public class DeathEvents {
                 ItemStack stack = armor.get(i);
                 if (!stack.isEmpty() && stack.getComponents().has(SOULBOUND.dataComponent.get())) {
                     soulboundItems.put(stack.copy(), 36 + i);
+                    stack.setCount(0);
                 }
             }
 
@@ -49,6 +51,7 @@ public class DeathEvents {
                 ItemStack stack = offhand.get(i);
                 if (!stack.isEmpty() && stack.getComponents().has(SOULBOUND.dataComponent.get())) {
                     soulboundItems.put(stack.copy(), 40 + i);
+                    stack.setCount(0);
                 }
             }
         }

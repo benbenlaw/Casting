@@ -13,6 +13,9 @@ multiblock blocks not saving contents when broken
 
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
 
+2.2.3
+Fixed soulbound not removing the items from the deaths
+
 2.2.2
 Fixed protection, lavawalker and waterwalker crashing the game when modifier is on
 Potentially fixed other modifiers that may have had the same issue
