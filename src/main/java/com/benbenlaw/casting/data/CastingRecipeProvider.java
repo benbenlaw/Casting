@@ -189,7 +189,7 @@ public class CastingRecipeProvider extends RecipeProvider {
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.NETHER_STAR), 1), null, FLIGHT.id);
         toolModifierRecipes(consumer, new SizedIngredient(Ingredient.of(Items.FEATHER), 4), null, FEATHER_FALLING.id);
         toolModifierRecipes(consumer, null, getFluidStack("molten_experience", 500), EQUIPMENT_LEVEL.id);
-        toolModifierRecipes(consumer, null, getFluidStack("molten_blaze", 8000), JETS.id);
+        toolModifierRecipes(consumer, null, getFluidStack("molten_blaze", 720), JETS.id);
 
         // Molds
         createMoldRecipe(CastingItems.GEAR_MOLD.get(), ModdedTagBuilder.createNeoFabricItemTag("gears"), consumer);

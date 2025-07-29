@@ -240,7 +240,7 @@
   "tooltips.casting.information.flight": "Gives armor Flight, allows the player to as if in creative",
   "tooltips.casting.information.fortune": "Gives a tool Fortune up to level %s",
   "tooltips.casting.information.ignite": "Gives a tool Ignite, ignites enemies on hit up to level %s",
-  "tooltips.casting.information.jets": "Gives armor Jets, allows the player to jet up in the air, each level increase upwards speed",
+  "tooltips.casting.information.jets": "Gives armor Jets, allows the player to jet up in the air, up to level %s",
   "tooltips.casting.information.keybind_to_toggle": "- Press chosen keybind (see controls) to disable or enable this modifier",
   "tooltips.casting.information.knockback": "Gives a tool Knockback up to level %s",
   "tooltips.casting.information.lava_walker": "Gives armor Lava Walker, allows the player to walk on lava up to level %s",

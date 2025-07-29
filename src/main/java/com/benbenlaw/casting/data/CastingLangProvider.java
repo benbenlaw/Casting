@@ -187,7 +187,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.flight", "Gives armor Flight, allows the player to as if in creative");
         addTooltipTranslation("information.feather_falling", "Gives armor Feather Falling, each level adds 10%% damage reduction from falling up to level %s");
         addTooltipTranslation("information.soulbound", "Returns the item to the player after death");
-        addTooltipTranslation("information.jets", "Gives armor Jets, allows the player to jet up in the air, each level increases upwards speed");
+        addTooltipTranslation("information.jets", "Gives armor Jets, allows the player to jet up in the air, up to level %s");
 
         addTooltipTranslation("stats.modifiers", "Modifiers - %s/%s");
         addTooltipTranslation("stats.equipment_level", "Equipment Level %s XP: %s/%s");

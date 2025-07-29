@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-27T12:59:29.72901	Recipes
+// 1.21.1	2025-07-29T14:36:02.173011	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -997,7 +997,7 @@ c1c8e0c7a82226b8edd043b92e265eeca50730c3 data/casting/recipe/equipment_modifier.
 cfe6b6fdd241de2a59e3bb84a0cd85b751ab6d6a data/casting/recipe/equipment_modifier/flight_from_item.json
 b3b41a14533a25c12c9f585971f9b759fabe26a4 data/casting/recipe/equipment_modifier/fortune_from_fluid.json
 1bd30adf56a84ed47d38fc21c4e3d5b509653b77 data/casting/recipe/equipment_modifier/ignite_from_fluid_and_item.json
-9df48d78360d79a87e6045b946d621684467e277 data/casting/recipe/equipment_modifier/jets_from_fluid.json
+e773a0156129c10ea2f8c14b8c611b940b197e08 data/casting/recipe/equipment_modifier/jets_from_fluid.json
 80ea5be3cd96bab3627379c2b473b8f2ee1a888d data/casting/recipe/equipment_modifier/knockback_from_item.json
 3e540a683870b6fb9bba00e00f43a296d6a4e615 data/casting/recipe/equipment_modifier/lava_walker_from_item.json
 4e47bf964f96ada9381e4246eae7e103531ac659 data/casting/recipe/equipment_modifier/lifesteal_from_fluid_and_item.json

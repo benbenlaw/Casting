@@ -75,15 +75,15 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
         @Override
         public int getSlotLimit(int slot) {
-            return slot == 1 ? 1 : super.getSlotLimit(slot);
+            return 64;
         }
 
         @Override
         protected int getStackLimit(int slot, ItemStack stack) {
-            if(slot == 1 && stack.is(CastingTags.Items.MOLDS)) {
+            if(slot == UPGRADE_ITEM_SLOT && stack.is(CastingTags.Items.MOLDS)) {
                 return 1;
             }
-            if(slot == 0 ) {
+            if(slot == TOOL_SLOT ) {
                 return 1;
             }
             return 64;

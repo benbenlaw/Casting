@@ -13,6 +13,13 @@ multiblock blocks not saving contents when broken
 
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
 
+2.2.4
+Fixed Equipment Modifier not allowing for more than one item in the upgrade slot
+Fixed Jets translation
+Fixed Protection modifier crashing when taking damage
+Fixed Jets Modifier needing 8000mb of Molten Blaze instead of 720mb
+Updated Jets and Soulbound textures thanks @Yuki
+
 2.2.3
 Fixed soulbound not removing the items from the deaths
 

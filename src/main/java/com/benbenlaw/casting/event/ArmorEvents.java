@@ -324,7 +324,7 @@ public class ArmorEvents {
             ItemStack armor = player.getItemBySlot(slot);
             if (armor.isEmpty()) continue;
 
-            if ((boolean) armor.getComponents().getOrDefault(PROTECTION.dataComponent.get(), false)) {
+            if (armor.getComponents().has(PROTECTION.dataComponent.get())) {
                 int protectionLevel = (int) armor.getComponents().getOrDefault(PROTECTION.dataComponent.get(), 0);
                 totalCustomReduction += protectionLevel * EquipmentModifierConfig.percentageOfProtectionDamagePerProtectionLevel.get();
             }
