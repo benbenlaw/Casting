@@ -1,5 +1,6 @@
 package com.benbenlaw.casting.multiblock;
 
+import com.jcraft.jorbis.Block;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -9,7 +10,9 @@ import net.neoforged.neoforge.common.util.INBTSerializable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //Inspired from productive lib multiblock detector
 //https://github.com/JDKDigital/productivelib/blob/dev-1.21.0/src/main/java/cy/jdkdigital/productivelib/util/MultiBlockDetector.java
@@ -20,11 +23,13 @@ public final class MultiblockData implements INBTSerializable {
     private List<BlockPos> multiblockExtraBlocks;
     private int height;
     private int volume;
+    private final Set<BlockPos> allBlockPositions;
 
-    public MultiblockData(BlockPos controllerPos, Pair<BlockPos, BlockPos> topCorners, List<BlockPos> extraBlocks, int height, int volume) {
+    public MultiblockData(BlockPos controllerPos, Pair<BlockPos, BlockPos> topCorners, List<BlockPos> extraBlocks, Set<BlockPos> allBlockPositions, int height, int volume) {
         this.controllerPos = controllerPos;
         this.topCorners = topCorners;
         this.multiblockExtraBlocks = extraBlocks;
+        this.allBlockPositions = allBlockPositions;
         this.height = height;
         this.volume = volume;
     }
@@ -71,6 +76,10 @@ public final class MultiblockData implements INBTSerializable {
 
     public List<BlockPos> extraBlocks() {
         return multiblockExtraBlocks;
+    }
+
+    public Set<BlockPos> allBlockPositions() {
+        return allBlockPositions;
     }
 
     public int height() {

@@ -53,6 +53,8 @@ public class CastingLangProvider extends LanguageProvider {
         addChatTranslation("multiblock_controller.no_valid_block", "No valid blocks found, must be exactly 2");
         addChatTranslation("multiblock_controller.only_one_valid_block", "Only one valid block found, must be exactly 2");
         addChatTranslation("multiblock_controller.too_many_valid_blocks", "Too many valid blocks found, must be exactly 2");
+        addChatTranslation("multiblock_controller.item_spill", "Items will spill out the controller in 3 seconds unless multiblock is formed!");
+        addChatTranslation("multiblock_controller.items_dropped", "Items dropped from the controller, multiblock not formed!");
 
         //Toggle Armor Modifiers
         addChatTranslation("information.helmet_toggle", "- Toggling Helmet Modifiers");

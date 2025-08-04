@@ -26,9 +26,14 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -39,10 +44,12 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.checkerframework.checker.units.qual.A;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -113,6 +120,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
     public String errorMessage = "";
     public int enabledSlots;
     private int tickCounter = 0;
+    private int dropTimer = 0;
     private int fuelTemp = 0;
     public boolean structureValid;
     public boolean working;
@@ -124,6 +132,11 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
             (i, stack) -> i < enabledSlots,
             i -> false
     );
+    public final Map<Item, MeltingRecipe> recipeCache = new HashMap<>();
+    public boolean recipeCacheInitialized = false;
+
+    public Set<BlockPos> multiblockBlockPos = new HashSet<>();
+    public boolean structureDirty = true;
 
     public @Nullable IItemHandler getItemHandlerCapability(@Nullable Direction side) {
         return controllerItemHandler;
@@ -186,7 +199,6 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         return new MultiblockControllerMenu(container, inventory, this.getBlockPos(), data);
     }
 
-
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
@@ -203,9 +215,23 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
     public void tick() {
 
+        if (level.getGameTime() % CastingConfig.timeInTicksThatMultiblockControllerDoesAStructureCheck.get() == 0) {
+            structureDirty = true;
+        }
+
+        //Validate multiblock structure if dirty
+        if (structureDirty) {
+            validateMultiblock();
+            if (cachedMultiblockData != null) {
+                multiblockBlockPos.clear();
+                multiblockBlockPos.addAll(cachedMultiblockData.allBlockPositions());
+            }
+            structureDirty = false;
+        }
+
         //Get fuelTank for client and server
         if (++tickCounter >= 20) {
-            validateMultiblock();
+
             if (cachedMultiblockData != null) {
                 findFuelTanks(cachedMultiblockData);
                 findSolidifiers(cachedMultiblockData);
@@ -222,11 +248,18 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                     fluidHandler.setEnabledCapacity(cachedMultiblockData.volume() * 1000);
 
                 }
+            } else {
+                multiblockBlockPos.clear();
             }
         }
 
         assert level != null;
         if (!level.isClientSide()) {
+
+            if (!recipeCacheInitialized) {
+                updateRecipeCache();
+                recipeCacheInitialized = true;
+            }
 
             if (!this.getBlockState().getValue(ENABLED)) {
                 level.setBlock(worldPosition, getBlockState().setValue(WORKING, false), 3);
@@ -261,15 +294,32 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
             if (++tickCounter >= 20) {
 
+                //Warning of players disabled until a good way of doing this is found
                 if (cachedMultiblockData == null) {
                     structureValid = false;
-                } else {
 
+                    //ServerLevel serverLevel = (ServerLevel) level;
+                    //List<ServerPlayer> players = serverLevel.getPlayers(player -> player.blockPosition().closerThan(worldPosition, 8));
+
+                    if (++dropTimer == 20) {
+                        //for (ServerPlayer player : players) {
+                        //    player.sendSystemMessage(Component.translatable("chat.casting.multiblock_controller.item_spill"));
+                        //}
+                    }
+
+                    if (++dropTimer >= 80) {
+                        //for (ServerPlayer player : players) {
+                        //    player.sendSystemMessage(Component.translatable("chat.casting.multiblock_controller.items_dropped"));
+                        //}
+                        this.enabledSlots = 0;
+                        dropTimer = 0;
+                    }
+                } else {
                     structureValid = true;
                     if (enabledSlots != cachedMultiblockData.volume()) {
                         this.enabledSlots = Math.min(cachedMultiblockData.volume(), 60);
+                        dropTimer = 0;
                     }
-
                 }
             }
         }
@@ -311,25 +361,31 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         }
     }
 
+    private void updateRecipeCache() {
+        assert level != null;
+        List<RecipeHolder<MeltingRecipe>> recipes = level.getRecipeManager().getAllRecipesFor(MeltingRecipe.Type.INSTANCE);
+        recipeCache.clear();
+        for (RecipeHolder<MeltingRecipe> recipeHolder : recipes) {
+            MeltingRecipe recipe = recipeHolder.value();
+            Item inputItem = recipe.input().ingredient().getItems()[0].getItem();
+            recipeCache.put(inputItem, recipe);
+        }
+    }
+
     private void processRecipeForItem(int slotIndex, ItemStack stack) {
         assert level != null;
-        Optional<RecipeHolder<MeltingRecipe>> selectedRecipe = level.getRecipeManager()
-                .getAllRecipesFor(MeltingRecipe.Type.INSTANCE)
-                .stream()
-                .filter(recipeHolder -> recipeHolder.value().input().test(stack))
-                .findFirst();
+        MeltingRecipe selectedRecipe = recipeCache.get(stack.getItem());
 
-        if (selectedRecipe.isPresent()) {
-            MeltingRecipe recipe = selectedRecipe.get().value();
-            int fillAmount = recipe.output().getAmount();
+        if (selectedRecipe != null) {
+            int fillAmount = selectedRecipe.output().getAmount();
 
-            boolean producesExperience = recipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_PRODUCES_EXPERIENCE);
+            boolean producesExperience = selectedRecipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_PRODUCES_EXPERIENCE);
 
-            if (selectedRecipe.get().value().input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)) {
+            if (selectedRecipe.input().ingredient().getItems()[0].is(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)) {
                 fillAmount = (int) (fillAmount * CastingConfig.oreMultiplier.get());
             }
 
-            FluidStack fluidStack = new FluidStack(selectedRecipe.get().value().output().getFluid(), fillAmount);
+            FluidStack fluidStack = new FluidStack(selectedRecipe.output().getFluid(), fillAmount);
             FluidStack experienceFluidStack = getFluidStack("molten_experience", EXPERIENCE_CREATED);
 
             if (fluidHandler.fill(fluidStack, IFluidHandler.FluidAction.SIMULATE) < fillAmount) {
@@ -338,7 +394,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                 return;
             }
 
-            if (hasEnoughFuel(selectedRecipe.get().value().meltingTemp())) {
+            if (hasEnoughFuel(selectedRecipe.meltingTemp())) {
                 maxProgress[slotIndex] = setNewMaxProgress();
                 progress[slotIndex]++;
                 level.setBlock(worldPosition, this.getBlockState().setValue(MultiblockControllerBlock.WORKING, true), 3);
@@ -437,7 +493,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
     private void identifyMultiblockExtraBlocks(MultiblockData data, Predicate<BlockState> filter, Consumer<BlockEntity> entityConsumer) {
 
-        if(level ==null) return;
+        if (level == null) return;
 
         data.extraBlocks().forEach(pos -> {
             BlockEntity entity = level.getBlockEntity(pos);
@@ -464,6 +520,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                     }
                 });
     }
+
     public void findValves(MultiblockData cachedMultiblockData) {
         identifyMultiblockExtraBlocks(cachedMultiblockData, state -> state.is(CastingBlocks.MULTIBLOCK_VALVE.get()),
                 entity -> {
@@ -473,6 +530,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                     }
                 });
     }
+
     public void findMixers(MultiblockData cachedMultiblockData) {
         identifyMultiblockExtraBlocks(cachedMultiblockData, state -> state.is(CastingBlocks.MULTIBLOCK_MIXER.get()),
                 entity -> {
@@ -482,6 +540,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                     }
                 });
     }
+
     public void findRegulators(MultiblockData cachedMultiblockData) {
 
         regulatorCount = 0;
@@ -548,7 +607,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         }
 
         ListTag allowedItemsList = new ListTag();
-        for(Map.Entry<Integer, Item> entry : allowedItems.entrySet()) {
+        for (Map.Entry<Integer, Item> entry : allowedItems.entrySet()) {
             CompoundTag entryTag = new CompoundTag();
             entryTag.putInt("slot", entry.getKey());
             ResourceLocation itemID = BuiltInRegistries.ITEM.getKey(entry.getValue());
@@ -594,7 +653,6 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                 allowedItems.put(slot, item);
             }
         }
-
 
         super.loadAdditional(compoundTag, provider);
     }

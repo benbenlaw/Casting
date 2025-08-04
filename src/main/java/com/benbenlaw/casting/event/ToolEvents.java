@@ -1,8 +1,11 @@
 package com.benbenlaw.casting.event;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.block.entity.multiblock.MultiblockControllerBlockEntity;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
+import com.benbenlaw.casting.multiblock.MultiblockData;
 import com.benbenlaw.casting.util.BeheadingHeadMap;
+import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.util.FakePlayerUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -78,6 +81,27 @@ public class ToolEvents {
     }
 
     @SubscribeEvent
+    public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+        Entity entity = event.getEntity();
+        assert entity != null;
+        Level level = entity.level();
+        BlockPos pos = event.getPos();
+        BlockState state = event.getPlacedBlock();
+
+        if (!level.isClientSide()) {
+            if (state.is(CastingTags.Blocks.CONTROLLER_ALL)) {
+                BlockPos.betweenClosedStream(pos.offset(-16, -16, -16), pos.offset(16, 16, 16))
+                        .forEach(block -> {
+                            BlockEntity blockEntity = level.getBlockEntity(block);
+                            if (blockEntity instanceof MultiblockControllerBlockEntity controller) {
+                                controller.structureDirty = true;
+                            }
+                        });
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
         Direction face = lastHitDirectionMap.getOrDefault(player.getUUID(), Direction.DOWN);
@@ -85,6 +109,21 @@ public class ToolEvents {
         BlockPos pos = event.getPos();
         BlockState state = event.getState();
         ItemStack tool = player.getMainHandItem();
+
+        if (!level.isClientSide()) {
+            if (state.is(CastingTags.Blocks.CONTROLLER_ALL)) {
+                BlockPos.betweenClosedStream(pos.offset(-16, -16, -16), pos.offset(16, 16, 16))
+                        .forEach(block -> {
+                            BlockEntity blockEntity = level.getBlockEntity(block);
+                            if (blockEntity instanceof MultiblockControllerBlockEntity controller) {
+                                controller.structureDirty = true;
+                            }
+                        });
+            }
+        }
+
+
+
 
         boolean isSilkTouch = tool.getComponents().keySet().contains(SILK_TOUCH.dataComponent.get());
         boolean isFortune = tool.getComponents().keySet().contains(FORTUNE.dataComponent.get());

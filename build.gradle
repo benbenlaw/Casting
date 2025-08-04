@@ -116,6 +116,10 @@ dependencies {
     compileOnly "curse.maven:observable-509575:5733591"
     runtimeOnly "curse.maven:observable-509575:5733591"
 
+    //spark
+    compileOnly "curse.maven:spark-361579:6225208"
+    runtimeOnly "curse.maven:spark-361579:6225208"
+
     //arch
     compileOnly "curse.maven:architectury-api-419699:5786327"
     runtimeOnly "curse.maven:architectury-api-419699:5786327"

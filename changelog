@@ -11,7 +11,22 @@ config for adding tools to a tier of tools
 look at performance
 multiblock blocks not saving contents when broken
 
+//MUST FIXES
+Mutliblock controller when full of items that cannot be smelted causes massive performance hit
+Same thing with the simple controller
+Solidifiers also laggy
+
+269 big mutliblock
+
+
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
+
+2.2.5
+Multiblock controller now removes its slot when the mulitblock become invalid
+When the multiblock controller is invalid you will have 4 seconds to re validate the mutliblock before the inventory is dumped in world
+Dramatically improved performance of the multiblock controller.
+Dramatically improved performance of the controller.
+
 
 2.2.4
 Fixed Equipment Modifier not allowing for more than one item in the upgrade slot

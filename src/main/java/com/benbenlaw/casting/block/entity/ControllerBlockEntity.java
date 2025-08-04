@@ -25,6 +25,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
@@ -41,7 +42,9 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import static net.neoforged.neoforge.fluids.FluidStack.isSameFluidSameComponents;
@@ -270,6 +273,8 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
             i -> i == 1
     );
 
+    private final Map<Item, MeltingRecipe> recipeCache = new HashMap<>();
+    private boolean recipeCacheInitialized = false;
 
     public @Nullable IItemHandler getItemHandlerCapability(@Nullable Direction side) {
         return controllerItemHandler;
@@ -314,6 +319,18 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
         };
     }
 
+    private void updateRecipeCache() {
+        assert level != null;
+        recipeCache.clear();
+        List<RecipeHolder<MeltingRecipe>> recipes = level.getRecipeManager().getAllRecipesFor(MeltingRecipe.Type.INSTANCE);
+
+        for (RecipeHolder<MeltingRecipe> recipeHolder : recipes) {
+            MeltingRecipe recipe = recipeHolder.value();
+            for (ItemStack stack : recipe.input().ingredient().getItems()) {
+                recipeCache.put(stack.getItem(), recipe); // Map all input items to the recipe
+            }
+        }
+    }
 
     @Override
     public Component getDisplayName() {
@@ -401,18 +418,10 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
         assert level != null;
         if (level.isClientSide()) return;
 
-        RecipeInput inventory = new RecipeInput() {
-            @Override
-            public ItemStack getItem(int index) {
-                return itemHandler.getStackInSlot(index);
-            }
-
-            @Override
-            public int size() {
-                return itemHandler.getSlots();
-            }
-        };
-
+        if (!recipeCacheInitialized) {
+            updateRecipeCache();
+            recipeCacheInitialized = true;
+        }
 
         if (level.getGameTime() % 20 == 0) {
             drainTanksIntoValidBlocks();
@@ -420,37 +429,31 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
         }
 
         boolean isPowered = false;
-        boolean powerStateChanged = false;
-
-        List<RecipeHolder<MeltingRecipe>> recipes =
-                level.getRecipeManager().getRecipesFor(MeltingRecipe.Type.INSTANCE, inventory, level);
 
         for (int i = 0; i < 15; i++) {
             ItemStack stack = itemHandler.getStackInSlot(i);
+
             if (stack.isEmpty()) {
                 resetProgress(i);
                 continue;
             }
 
-            RecipeHolder<MeltingRecipe> match = recipes.stream()
-                    .filter(r -> r.value().input().test(stack))
-                    .findFirst()
-                    .orElse(null);
+            MeltingRecipe recipe = recipeCache.get(stack.getItem());
 
-            if (match == null) {
+            if (recipe == null || !recipe.input().test(stack)) {
                 resetProgress(i);
                 continue;
             }
 
-            FluidStack output = match.value().output();
+            FluidStack output = recipe.output();
 
-            if (!canFitFluidInAnyTank(output) || !hasEnoughFuel(level.getBlockEntity(worldPosition), match.value().meltingTemp())) {
+            if (!canFitFluidInAnyTank(output) || !hasEnoughFuel(level.getBlockEntity(worldPosition), recipe.meltingTemp())) {
                 resetProgress(i);
                 continue;
             }
 
             isPowered = true;
-            maxProgress[i] = setNewMaxProgress(fuelTemp, match.value().meltingTemp());
+            maxProgress[i] = setNewMaxProgress(fuelTemp, recipe.meltingTemp());
             progress[i]++;
 
             if (progress[i] >= maxProgress[i]) {
@@ -478,6 +481,7 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
             sync();
         }
     }
+
 
 
     private void drainTanksIntoValidBlocks() {

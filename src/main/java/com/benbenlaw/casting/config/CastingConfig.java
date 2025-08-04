@@ -10,6 +10,7 @@ public class CastingConfig {
     public static final ModConfigSpec.ConfigValue<Integer> experienceGivenWhenMeltingAValidOre;
     public static final ModConfigSpec.ConfigValue<Integer> maxMultiblockControllerHeldItems;
     public static final ModConfigSpec.ConfigValue<Integer> maxMultiblockControllerHeldFluid;
+    public static final ModConfigSpec.ConfigValue<Integer> timeInTicksThatMultiblockControllerDoesAStructureCheck;
 
 
     static {
@@ -29,6 +30,9 @@ public class CastingConfig {
 
         maxMultiblockControllerHeldFluid = BUILDER.comment("The total mb that can be stores in multiblock controller, default = 1000000")
                 .defineInRange("Max Multiblock Controller Held Items", 1000000, 1, 512);
+
+        timeInTicksThatMultiblockControllerDoesAStructureCheck = BUILDER.comment("The time in ticks that the multiblock controller does a structure check, Multiblock validation is done when blocks are placed near the mutliblock, this check is just to confirm that the blocks are still present, default = 600 (30 seconds)")
+                .defineInRange("Time In Ticks That Multiblock Controller Does A Structure Check", 600, 20, Integer.MAX_VALUE);
 
 
 

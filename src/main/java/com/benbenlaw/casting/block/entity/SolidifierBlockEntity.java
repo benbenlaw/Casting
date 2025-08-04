@@ -164,6 +164,8 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
             i -> i == 1
     );
 
+    public RecipeHolder<SolidifierRecipe> cachedRecipe = null;
+
     public @Nullable IItemHandler getItemHandlerCapability(@Nullable Direction side) {
         return solidifierItemHandler;
     }
@@ -200,6 +202,40 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
                 return 2;
             }
         };
+    }
+
+    private boolean isRecipeStillValid(@NotNull RecipeHolder<SolidifierRecipe> holder) {
+        SolidifierRecipe recipe = holder.value();
+        return recipe.mold().test(itemHandler.getStackInSlot(0))
+                && hasEnoughFluid(recipe.fluid())
+                && hasCorrectInputAmount(recipe.mold())
+                && hasOutputSpaceMaking(this, recipe);
+    }
+
+    private void handleRecipeTick(SolidifierRecipe recipe) {
+        FluidStack output = recipe.fluid();
+        progress++;
+
+        if (progress >= maxProgress) {
+            extractFluid(output, output.getAmount());
+
+            if (!itemHandler.getStackInSlot(0).is(CastingTags.Items.MOLDS)) {
+                itemHandler.getStackInSlot(0).shrink(recipe.mold().count());
+            }
+
+            ItemStack currentOutput = itemHandler.getStackInSlot(1);
+            ItemStack result = new ItemStack(recipe.output().getItems()[0].getItem(), recipe.output().count());
+            if (currentOutput.isEmpty()) {
+                itemHandler.setStackInSlot(1, result);
+            } else {
+                currentOutput.grow(result.getCount());
+            }
+
+            setChanged();
+            useFuel(this);
+            resetProgress();
+            sync();
+        }
     }
 
 
@@ -282,63 +318,49 @@ public class SolidifierBlockEntity extends BlockEntity implements MenuProvider, 
     }
 
     public void tick() {
-        assert level != null;
-        if (!level.isClientSide()) {
-            RecipeInput inventory = new RecipeInput() {
-                @Override
-                public @NotNull ItemStack getItem(int index) {
-                    return itemHandler.getStackInSlot(index);
-                }
+        if (level == null || level.isClientSide()) return;
 
-                @Override
-                public int size() {
-                    return itemHandler.getSlots();
-                }
-            };
+        sync();
+        fuelInformation(level.getBlockEntity(this.worldPosition));
 
-            sync();
-            fuelInformation(level.getBlockEntity(this.worldPosition));
+        if (itemHandler.getStackInSlot(0).isEmpty()) {
+            resetProgress();
+            cachedRecipe = null;
+            return;
+        }
 
-            if (itemHandler.getStackInSlot(0).isEmpty()) {
-                resetProgress();
+        RecipeInput inventory = new RecipeInput() {
+            @Override
+            public @NotNull ItemStack getItem(int index) {
+                return itemHandler.getStackInSlot(index);
+            }
+
+            @Override
+            public int size() {
+                return itemHandler.getSlots();
+            }
+        };
+
+        // === Use cache if valid ===
+        if (cachedRecipe != null && isRecipeStillValid(cachedRecipe)) {
+            handleRecipeTick(cachedRecipe.value());
+            return;
+        }
+
+        // === Else, search for recipe ===
+        for (RecipeHolder<SolidifierRecipe> recipeHolder :
+                level.getRecipeManager().getRecipesFor(SolidifierRecipe.Type.INSTANCE, inventory, level)) {
+            if (isRecipeStillValid(recipeHolder)) {
+                cachedRecipe = recipeHolder;
+                handleRecipeTick(recipeHolder.value());
                 return;
             }
-
-            boolean foundMatch = false;
-
-            for (RecipeHolder<SolidifierRecipe> recipeHolder : level.getRecipeManager().getRecipesFor(SolidifierRecipe.Type.INSTANCE, inventory, level)) {
-                SolidifierRecipe recipe = recipeHolder.value();
-                if (recipe.mold().test(itemHandler.getStackInSlot(0)) && hasEnoughFluid(recipe.fluid()) && hasCorrectInputAmount(recipe.mold())) {
-                    FluidStack output = recipe.fluid();
-
-                    if (hasOutputSpaceMaking(this, recipe)) {
-                        progress++;
-
-                        if (progress >= maxProgress) {
-                            extractFluid(output, output.getAmount());
-
-                            if (!itemHandler.getStackInSlot(0).is(CastingTags.Items.MOLDS)) {
-                                itemHandler.getStackInSlot(0).shrink(recipe.mold().count());
-                            }
-                            itemHandler.setStackInSlot(1, new ItemStack(recipe.output().getItems()[0].getItem(), recipe.output().count() + itemHandler.getStackInSlot(1).getCount()));
-                            setChanged();
-                            useFuel(this);
-                            resetProgress();
-                            sync();
-                        }
-                        foundMatch = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!foundMatch) {
-                resetProgress();
-            }
         }
+
+        // No match found
+        resetProgress();
+        cachedRecipe = null;
     }
-
-
 
     private boolean hasCorrectInputAmount(SizedIngredient mold) {
         return itemHandler.getStackInSlot(0).getCount() >= mold.count();

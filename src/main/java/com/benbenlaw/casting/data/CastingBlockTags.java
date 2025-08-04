@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -36,6 +37,15 @@ public class CastingBlockTags extends BlockTagsProvider {
         //Water Walker
         tag(CastingTags.Blocks.EFFECTED_BY_WATER_WALKER)
                 .add(Blocks.WATER);
+
+        //All Controller Blocks
+        tag(CastingTags.Blocks.CONTROLLER_ALL)
+                .addTag(CastingTags.Blocks.CONTROLLER_FLOORS)
+                .addTag(CastingTags.Blocks.CONTROLLER_WALLS)
+                .addTag(CastingTags.Blocks.CONTROLLER_EXTRA_BLOCKS)
+                .addTag(CastingTags.Blocks.CONTROLLER_TANKS)
+                .add(CastingBlocks.MULTIBLOCK_CONTROLLER.get());
+
 
         //Controller Floors
         tag(CastingTags.Blocks.CONTROLLER_FLOORS)

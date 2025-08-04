@@ -10,7 +10,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 //TODO Move to core
 
 //Inspired from productive lib multiblock detector
@@ -104,7 +107,18 @@ public class CoreMultiblockDetector {
             }
         }
 
-        return new MultiblockData(controllerPos, topCorners, extraValidBlocks, height, volume);
+        Set<BlockPos> allBlockPositions = BlockPos.betweenClosedStream(
+                topCorners.getFirst().relative(Objects.requireNonNull(controllerDirection.getOpposite()))
+                        .relative(controllerDirection.getCounterClockWise()).below(height -1),
+                topCorners.getSecond().relative(controllerDirection).relative(controllerDirection.getClockWise()).below(height - 1))
+                .map(BlockPos::immutable)
+                .collect(Collectors.toSet());
+
+        allBlockPositions.add(controllerPos);
+
+
+
+        return new MultiblockData(controllerPos, topCorners, extraValidBlocks, allBlockPositions, height, volume);
     }
 
 
