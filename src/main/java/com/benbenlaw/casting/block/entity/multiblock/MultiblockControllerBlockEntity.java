@@ -365,10 +365,13 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         assert level != null;
         List<RecipeHolder<MeltingRecipe>> recipes = level.getRecipeManager().getAllRecipesFor(MeltingRecipe.Type.INSTANCE);
         recipeCache.clear();
+
         for (RecipeHolder<MeltingRecipe> recipeHolder : recipes) {
             MeltingRecipe recipe = recipeHolder.value();
-            Item inputItem = recipe.input().ingredient().getItems()[0].getItem();
-            recipeCache.put(inputItem, recipe);
+            for (ItemStack itemStack : recipe.input().ingredient().getItems()) {
+                Item inputItem = itemStack.getItem();
+                recipeCache.put(inputItem, recipe);
+            }
         }
     }
 

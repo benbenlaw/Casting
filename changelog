@@ -21,6 +21,10 @@ Solidifiers also laggy
 
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
 
+2.2.6
+Casting now out of alpha for 2.0.0 onward changes
+Fixed Multiblock Controller not reading tags correctly in recipe cache
+
 2.2.5
 Multiblock controller now removes its slot when the mulitblock become invalid
 When the multiblock controller is invalid you will have 4 seconds to re validate the mutliblock before the inventory is dumped in world
