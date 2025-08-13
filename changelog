@@ -21,6 +21,9 @@ Solidifiers also laggy
 
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
 
+2.2.7
+Fixed casting deleting Resource Blocks from BBL Core
+
 2.2.6
 Casting now out of alpha for 2.0.0 onward changes
 Fixed Multiblock Controller not reading tags correctly in recipe cache

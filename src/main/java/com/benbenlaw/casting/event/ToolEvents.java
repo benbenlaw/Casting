@@ -6,6 +6,7 @@ import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.multiblock.MultiblockData;
 import com.benbenlaw.casting.util.BeheadingHeadMap;
 import com.benbenlaw.casting.util.CastingTags;
+import com.benbenlaw.core.block.UnbreakableResourceBlock;
 import com.benbenlaw.core.util.FakePlayerUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -122,9 +123,6 @@ public class ToolEvents {
             }
         }
 
-
-
-
         boolean isSilkTouch = tool.getComponents().keySet().contains(SILK_TOUCH.dataComponent.get());
         boolean isFortune = tool.getComponents().keySet().contains(FORTUNE.dataComponent.get());
         boolean isAutoSmelt = tool.getComponents().keySet().contains(AUTO_SMELT.dataComponent.get());
@@ -134,7 +132,6 @@ public class ToolEvents {
         boolean requiresCastingOverrides = isMagnet || isExcavation || isSilkTouch || isFortune || isAutoSmelt;
 
         if (!level.isClientSide() && requiresCastingOverrides) {
-            //event.setCanceled(true);
 
             // Excavation
             if(!tool.isCorrectToolForDrops(state)) {
@@ -232,10 +229,14 @@ public class ToolEvents {
             state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
         }
 
-        level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+        if (state.getBlock() instanceof UnbreakableResourceBlock) {
+            level.setBlock(pos, state, Block.UPDATE_ALL);
+        } else {
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+            level.destroyBlock(pos, true, player);
 
-        //This is causing double sounds above line prevents it but i dont know the side effects of this good luck
-        level.destroyBlock(pos, true, player);
+        }
+
 
         //Drop Experience
         if (blockExperience > 0) {
