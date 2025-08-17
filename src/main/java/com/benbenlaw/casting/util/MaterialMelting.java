@@ -13,7 +13,7 @@ public enum MaterialMelting {
     PLATES(CommonTags.ResourceType.PLATES, 90),
     DUSTS(CommonTags.ResourceType.DUSTS, 90),
     GEARS(CommonTags.ResourceType.GEARS, 360),
-    RODS(CommonTags.ResourceType.RODS, 90),
+    RODS(CommonTags.ResourceType.RODS, 45),
     GEMS(CommonTags.ResourceType.GEMS, 90),
     WIRES(CommonTags.ResourceType.WIRES, 45);
 

@@ -38,6 +38,7 @@ import static com.benbenlaw.casting.data.recipes.FluidStackHelper.fluidList;
 import static com.benbenlaw.casting.data.recipes.FluidStackHelper.getFluidStack;
 import static com.benbenlaw.casting.fluid.CastingFluids.FLUIDS_MAP;
 import static com.benbenlaw.casting.item.EquipmentModifier.*;
+import static com.benbenlaw.casting.util.MaterialMelting.WIRES;
 
 public class CastingRecipeProvider extends RecipeProvider {
 

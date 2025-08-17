@@ -21,6 +21,12 @@ Solidifiers also laggy
 
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
 
+2.2.9
+Fixed rod recipes using a full ingot of material instead of half an ingot
+
+2.2.8
+Added the most stupid workaround to make unbreakable blocks work correctly
+
 2.2.7
 Fixed casting deleting Resource Blocks from BBL Core
 

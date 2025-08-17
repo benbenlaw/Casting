@@ -73,8 +73,8 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //BBL Core
-    compileOnly "curse.maven:bbl-core-1135181:6547046"
-    runtimeOnly "curse.maven:bbl-core-1135181:6547046"
+    compileOnly "curse.maven:bbl-core-1135181:6888972"
+    runtimeOnly "curse.maven:bbl-core-1135181:6888972"
 
     //Construction Sticks
     compileOnly "curse.maven:construction-sticks-1156098:6641229"
@@ -127,6 +127,14 @@ dependencies {
     //Kotlin for Forge
     compileOnly "curse.maven:kotlin-for-forge-351264:6497906"
     runtimeOnly "curse.maven:kotlin-for-forge-351264:6497906"
+
+    //KubeJS
+    compileOnly "curse.maven:kubejs-238086:5631423"
+    runtimeOnly "curse.maven:kubejs-238086:5631423"
+
+    //Rhino
+    compileOnly "curse.maven:rhino-416294:5650008"
+    runtimeOnly "curse.maven:rhino-416294:5650008"
 
     compileOnly "org.appliedenergistics:guideme:${project.guideme_version}:api"
     runtimeOnly "org.appliedenergistics:guideme:${project.guideme_version}"
