@@ -4,10 +4,10 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.entity.multiblock.MultiblockControllerBlockEntity;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.multiblock.MultiblockData;
-import com.benbenlaw.casting.screen.util.BlockInformation;
 import com.benbenlaw.casting.util.BeheadingHeadMap;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.block.UnbreakableResourceBlock;
+import com.benbenlaw.core.util.BlockInformation;
 import com.benbenlaw.core.util.FakePlayerUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -64,6 +64,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import java.util.*;
 
 import static com.benbenlaw.casting.item.EquipmentModifier.*;
+import static com.benbenlaw.core.event.UnbreakableBlockReplaceEvent.blockInformationMap;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
 
@@ -134,7 +135,14 @@ public class ToolEvents {
 
         boolean requiresCastingOverrides = isMagnet || isExcavation || isSilkTouch || isFortune || isAutoSmelt;
 
+
         if (!level.isClientSide() && requiresCastingOverrides) {
+
+            if (state.getBlock() instanceof UnbreakableResourceBlock) {
+                event.setCanceled(true);
+                breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt);
+                return;
+            }
 
             // Excavation
             if(!tool.isCorrectToolForDrops(state)) {
@@ -185,20 +193,11 @@ public class ToolEvents {
         // Silk Touch
         if (isSilkTouch && isToggleableModifierActive(tool)) {
             fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
-            //if (state.getBlock() instanceof UnbreakableResourceBlock) {
-            //    drops = UnbreakableResourceBlock.getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
-            //} else {
-                drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
-            //}
+            drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         } else if (isFortune) {
             int fortuneLevel = (int) tool.getComponents().getOrDefault(FORTUNE.dataComponent.get(), 0);
             fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
-
-            //if (state.getBlock() instanceof UnbreakableResourceBlock) {
-            //    drops = UnbreakableResourceBlock.getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
-            //} else {
-                drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
-            //}
+            drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         }
 
         if (drops.isEmpty()) {
@@ -242,15 +241,14 @@ public class ToolEvents {
         }
 
         if (state.getBlock() instanceof UnbreakableResourceBlock) {
-            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-            //long delay = 1 + Objects.requireNonNull(level.getServer()).getTickCount();
-            //blockInformationMap.put(pos, new BlockInformation(state, level, delay));
+            long delay = 10 + Objects.requireNonNull(level.getServer()).getTickCount();
+            blockInformationMap.put(pos, new BlockInformation(state, level, delay));
+            level.setBlock(pos, Blocks.BARRIER.defaultBlockState(), Block.UPDATE_ALL);
         } else {
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
             level.destroyBlock(pos, true, player);
 
         }
-
 
         //Drop Experience
         if (blockExperience > 0) {
@@ -260,6 +258,19 @@ public class ToolEvents {
 
         //Damage Tool
         tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+    }
+
+    public static void breakUnbreakableBlock(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
+        ItemStack fakeItemStack = tool.copy();
+
+        if (state.getBlock() instanceof UnbreakableResourceBlock unbreakableResourceBlock) {
+            unbreakableResourceBlock.playerDestroy(level, player, pos, state, blockEntity, fakeItemStack);
+
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+            long delay = 10 + Objects.requireNonNull(level.getServer()).getTickCount();
+            blockInformationMap.put(pos, new BlockInformation(state, level, delay));
+            level.setBlock(pos, Blocks.BARRIER.defaultBlockState(), Block.UPDATE_ALL);
+        }
     }
 
     //Magnet Modifier Check for block drops
