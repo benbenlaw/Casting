@@ -70,6 +70,25 @@ import static com.benbenlaw.casting.item.EquipmentModifier.*;
 public class ToolEvents {
 
     public static final Map<UUID, Direction> lastHitDirectionMap = new HashMap<>();
+    public static final Map<BlockPos, BlockInformation> blockInformationMap = new HashMap<>();
+
+    @SubscribeEvent
+    public static void onServerTick(ServerTickEvent.Post event) {
+        if (blockInformationMap.isEmpty()) return;
+
+        for (Map.Entry<BlockPos, BlockInformation> entry : blockInformationMap.entrySet()) {
+            BlockPos pos = entry.getKey();
+            BlockInformation blockInfo = entry.getValue();
+            Level level = blockInfo.level();
+
+            if (level.isClientSide()) continue;
+
+            if (Objects.requireNonNull(level.getServer()).getTickCount() >= blockInfo.tickPlace()) {
+                level.setBlockAndUpdate(pos, blockInfo.state());
+                blockInformationMap.remove(pos);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
@@ -242,12 +261,15 @@ public class ToolEvents {
         }
 
         if (state.getBlock() instanceof UnbreakableResourceBlock) {
-            level.setBlock(pos, state, Block.UPDATE_ALL);
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+            long delay = 1 + Objects.requireNonNull(level.getServer()).getTickCount();
+            blockInformationMap.put(pos, new BlockInformation(state, level, delay));
         } else {
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
             level.destroyBlock(pos, true, player);
 
         }
+
 
         //Drop Experience
         if (blockExperience > 0) {
