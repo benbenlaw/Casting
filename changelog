@@ -21,6 +21,9 @@ Solidifiers also laggy
 
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
 
+2.2.12
+Replace delay is no done inside core not casting
+
 2.2.11
 Re added the slight delay to avoid generating loot twice for unbreakable blocks
 
