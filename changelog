@@ -21,6 +21,9 @@ Solidifiers also laggy
 
 UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
 
+2.2.10
+Simplified logic for unbreakable blocks casting now only replaces the block if it is unbreakable
+
 2.2.9
 Fixed rod recipes using a full ingot of material instead of half an ingot
 
