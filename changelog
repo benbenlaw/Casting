@@ -6,20 +6,13 @@ fishing rods support for tool modifiers (1.22)
 Add experience to melting recipe (1.22), maybe even expand melting to allow multiple fluids from a single item
 Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
-
-config for adding tools to a tier of tools
-look at performance
 multiblock blocks not saving contents when broken
 
-//MUST FIXES
-Mutliblock controller when full of items that cannot be smelted causes massive performance hit
-Same thing with the simple controller
-Solidifiers also laggy
-
-269 big mutliblock
-
-
-UPDATE CASTING TO RELEASES WHEN EQUIPMENT AND CUSTOM TIERS ARE WORKING FULLY
+2.2.14
+Disabled debug messages from equipment modifier
+Added Error message when the mixer has no space to create an alloy, shows in the controller
+Added tooltip above an off multiblock explaining to turn it on and lower GUI scale if you cannot see the button
+Jets, Night Vision and Water Breathing modifier can now have there damage disabled in the config
 
 2.2.13
 Final tweaks for unbreakable blocks

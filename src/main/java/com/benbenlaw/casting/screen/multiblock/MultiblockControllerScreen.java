@@ -112,15 +112,15 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
             renderTickRate(guiGraphics, mouseX, mouseY, x, y);
         }
 
+        //
+
         //Filter Button
         guiGraphics.blit(TEXTURE, x + 41, y - 17, 177, 54, 20, 18);
         renderFilterTooltip(guiGraphics, mouseX, mouseY, x, y);
 
         //Regulator Button
-
         guiGraphics.blit(TEXTURE, x + 61, y - 17, 177, 72, 20, 18);
         renderRegularTooltip(guiGraphics, mouseX, mouseY, x, y);
-
 
         //Progress bar
         renderProgressBars(guiGraphics, x, y);
@@ -154,7 +154,7 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
         }
 
         renderProgressBars(guiGraphics, x, y);
-
+        renderOnMessage(guiGraphics, mouseX, mouseY, x, y);
         // *** IMPORTANT: Reset shader color before rendering tooltips ***
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -274,6 +274,14 @@ public class MultiblockControllerScreen extends AbstractContainerScreen<Multiblo
     private void renderNoTank(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
         if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 107,  114, 16, 45)) {
             guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.multiblock_controller.no_fuel_tank").withStyle(ChatFormatting.RED), mouseX, mouseY);
+        }
+    }
+
+    private void renderOnMessage(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if (!this.menu.blockEntity.getBlockState().getValue(MultiblockControllerBlock.ENABLED)) {
+            if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 3, 3, 169, 158)) {
+                guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.multiblock_controller.off"), mouseX, mouseY);
+            }
         }
     }
 

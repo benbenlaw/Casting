@@ -106,7 +106,8 @@ public class ArmorEvents {
         boolean isNightVision = (boolean) player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(NIGHT_VISION.dataComponent.get(), false);
         if (isNightVision && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.HEAD))) {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 22, 0, false, false));
-            if (player.tickCount % EquipmentModifierConfig.timeForDamageOnNightVision.get() == 0) {
+            int damageInterval = EquipmentModifierConfig.timeForDamageOnNightVision.get();
+            if (damageInterval > 0 && player.tickCount % damageInterval == 0) {
                 player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, player, EquipmentSlot.HEAD);
             }
         }
@@ -115,7 +116,8 @@ public class ArmorEvents {
         boolean isWaterBreathing = (boolean) player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(WATER_BREATHING.dataComponent.get(), false);
         if (isWaterBreathing && player.isUnderWater()) {
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 22, 0, false, false));
-            if (player.tickCount % EquipmentModifierConfig.timeForDamageOnWaterBreathing.get() == 0) {
+            int damageInterval = EquipmentModifierConfig.timeForDamageOnWaterBreathing.get();
+            if (damageInterval > 0 && player.tickCount % damageInterval == 0) {
                 player.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, player, EquipmentSlot.HEAD);
             }
         }
@@ -285,7 +287,8 @@ public class ArmorEvents {
                         5, 0.2, 0.2, 0.2, 0.001);
             }
 
-            if (player.tickCount % 100 == 0) {
+            int damageInterval = EquipmentModifierConfig.timeForDamageOnJets.get();
+            if (damageInterval > 0 && player.tickCount % damageInterval == 0) {
                 List<EquipmentSlot> damagedSlots = new ArrayList<>();
 
                 for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {

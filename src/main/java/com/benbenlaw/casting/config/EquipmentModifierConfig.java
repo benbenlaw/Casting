@@ -33,7 +33,7 @@ public class EquipmentModifierConfig {
     public static final ModConfigSpec.ConfigValue<Integer> maxSpeedAmount;
     public static final ModConfigSpec.ConfigValue<Integer> maxFeatherFallingAmount;
     public static final ModConfigSpec.ConfigValue<Integer> maxJetsAmount;
-
+    public static final ModConfigSpec.ConfigValue<Integer> timeForDamageOnJets;
 
 
 
@@ -90,9 +90,9 @@ public class EquipmentModifierConfig {
                 .define("Percentage of Protection Damage Per Protection Level", 0.5f);
         maxStepAssistAmount = BUILDER.comment("The max amount of step assist levels that can be applied to tools, default = 1, 0 disables. Each level adds an additional 1 block to the step assist height")
                 .define("Max Step Assist Level", 1);
-        timeForDamageOnNightVision = BUILDER.comment("The time for damage on night vision, default = 600 (5 second), 20 ticks is 1 second")
+        timeForDamageOnNightVision = BUILDER.comment("The time for damage on night vision, default = 600 (5 second), 20 ticks is 1 second, 0 disables")
                 .define("Time for Damage on Night Vision", 600);
-        timeForDamageOnWaterBreathing = BUILDER.comment("The time for damage on water breathing, default = 200 (5 second), 20 ticks is 1 second")
+        timeForDamageOnWaterBreathing = BUILDER.comment("The time for damage on water breathing, default = 200 (5 second), 20 ticks is 1 second, 0 disables")
                 .define("Time for Damage on Water Breathing", 100);
         maxSpeedAmount = BUILDER.comment("The max amount of speed levels that can be applied to tools, default = 5, 0 disables. Each level adds an additional level of the speed enchantment")
                 .define("Max Speed Level", 5);
@@ -100,6 +100,8 @@ public class EquipmentModifierConfig {
                 .define("Max Feather Falling Level", 5);
         maxJetsAmount = BUILDER.comment("The max amount of jets levels that can be applied to armor, default = 5, 0 disables. Each level increases speed")
                 .define("Max Jets Level", 5);
+        timeForDamageOnJets = BUILDER.comment("The time for damage on jets, default = 200 (10 second), 20 ticks is 1 second, 0 disables")
+                .define("Time for Damage on Jets", 200);
 
 
 

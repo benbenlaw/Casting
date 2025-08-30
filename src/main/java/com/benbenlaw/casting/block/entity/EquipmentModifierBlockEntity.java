@@ -562,7 +562,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                     String tagId = id.substring(1); // remove '#' prefix
                     TagKey<Item> tag = TagKey.create(Registries.ITEM, ResourceLocation.parse(tagId));
                     if (stack.is(tag)) {
-                        System.out.println("Matched tag: " + tagId + " for " + groupKey);
+                        //System.out.println("Matched tag: " + tagId + " for " + groupKey);
                         return groupKey;
                     }
                 } else {
@@ -570,7 +570,7 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
                     ResourceLocation itemId = ResourceLocation.parse(id);
                     Item configItem = BuiltInRegistries.ITEM.get(itemId);
                     if (configItem == item) {
-                        System.out.println("Matched item: " + configItem + " for " + groupKey);
+                        //System.out.println("Matched item: " + configItem + " for " + groupKey);
                         return groupKey;
                     }
                 }

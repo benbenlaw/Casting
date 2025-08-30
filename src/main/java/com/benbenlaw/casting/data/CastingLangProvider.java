@@ -62,7 +62,8 @@ public class CastingLangProvider extends LanguageProvider {
         addChatTranslation("information.leggings_toggle", "- Toggling Leggings Modifiers");
         addChatTranslation("information.boots_toggle", "- Toggling Boots Modifiers");
 
-        //Gui Translations
+        //Gui addGUITranslation
+        addGUITranslation("multiblock_controller.off", "Turn on the Multiblock at the top left of the GUI! Can't see the button decrease your GUI scale!");
         addGUITranslation("multiblock_controller.no_fuel_tank", "No Fuel Tank Found!");
         addGUITranslation("multiblock_controller.no_controller", "No Controller Found!");
 
@@ -86,6 +87,7 @@ public class CastingLangProvider extends LanguageProvider {
         addGUITranslation("buttons.not_enough_fluid", "Not Enough Fluid in Tank!");
         addGUITranslation("buttons.no_regulators", "No Regulators detected, add for reserving space!");
         addGUITranslation("buttons.regulator_count", "Tank Partitioned: %smb for %s fluids");
+        addGUITranslation("buttons.output_full_mixer", "The output tank is full, unable to craft mixer result!");
 
         //Jei Translations
         addGUITranslation("jei.melting", "Melting");

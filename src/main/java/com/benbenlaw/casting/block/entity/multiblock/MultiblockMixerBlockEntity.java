@@ -168,7 +168,10 @@ public class MultiblockMixerBlockEntity extends SyncableBlockEntity implements M
                         controller.fluidHandler.fill(recipe.outputFluid(), IFluidHandler.FluidAction.EXECUTE);
 
                         didCraft = true;
+                        controller.errorMessage = "";
                         break;
+                    } else {
+                        controller.errorMessage = "output_full_mixer";
                     }
                 }
             }
