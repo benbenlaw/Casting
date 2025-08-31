@@ -64,6 +64,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import java.util.*;
 
 import static com.benbenlaw.casting.item.EquipmentModifier.*;
+import static com.benbenlaw.core.block.UnbreakableResourceBlock.RESTING;
 import static com.benbenlaw.core.event.UnbreakableBlockReplaceEvent.blockInformationMap;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
@@ -240,10 +241,9 @@ public class ToolEvents {
             state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
         }
 
-        if (state.getBlock() instanceof UnbreakableResourceBlock) {
-            long delay = 10 + Objects.requireNonNull(level.getServer()).getTickCount();
-            blockInformationMap.put(pos, new BlockInformation(state, level, delay));
-            level.setBlock(pos, Blocks.BARRIER.defaultBlockState(), Block.UPDATE_ALL);
+        if (state.getBlock() instanceof UnbreakableResourceBlock unbreakableResourceBlock) {
+            level.setBlock(pos, state.setValue(RESTING, true), Block.UPDATE_ALL);
+            level.scheduleTick(pos, unbreakableResourceBlock, 20);
         } else {
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
             level.destroyBlock(pos, true, player);
