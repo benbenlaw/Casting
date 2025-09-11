@@ -8,6 +8,7 @@ import com.benbenlaw.casting.recipe.MeltingRecipe;
 import com.benbenlaw.casting.screen.EquipmentModifierMenu;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.casting.util.EquipmentModifierUtils;
+import com.benbenlaw.casting.util.SidedInputOutputItemHandler;
 import com.benbenlaw.core.block.entity.handler.IInventoryHandlingBlockEntity;
 import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import net.minecraft.core.BlockPos;
@@ -55,10 +56,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static com.benbenlaw.casting.item.EquipmentModifier.EQUIPMENT_EXPERIENCE;
 import static com.benbenlaw.casting.item.EquipmentModifier.EQUIPMENT_LEVEL;
@@ -188,13 +186,18 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
     public int OUTPUT_SLOT = 2;
     public String errorMessage = "";
     public boolean isLimitMode = false;
-    private final IItemHandler equipmentModifierItemHandler = new InputOutputItemHandler(itemHandler,
-            (i, stack) -> i == 1 ,  //
-            i -> i == 2
-    );
+
 
     public @Nullable IItemHandler getItemHandlerCapability(@Nullable Direction side) {
-        return equipmentModifierItemHandler;
+        if (side == null) return itemHandler;
+
+        return new SidedInputOutputItemHandler(itemHandler, side,
+                (direction, slot, stack) -> {
+                    if (slot == TOOL_SLOT) return direction == Direction.UP;
+                    if (slot == UPGRADE_ITEM_SLOT) return direction == Direction.SOUTH || direction == Direction.EAST || direction == Direction.WEST || direction == Direction.NORTH;
+                    return false;
+                },
+                (direction, slot) -> slot == OUTPUT_SLOT);
     }
 
     public void setHandler(ItemStackHandler handler) {

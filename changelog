@@ -8,6 +8,13 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+2.2.16
+Equipment modifier now uses specific sides for inputs
+    - Top is for tools you want to modify
+    - Sides are for the modifier items
+    - All sides can be used for outputs
+This allows for full automation of the equipment modifier
+
 2.2.15
 Bumped min bbl core version to 1.3.17
 Updated to new core handling for resource blocks
