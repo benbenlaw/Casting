@@ -73,15 +73,15 @@ public class MultiblockValveBlock extends BaseEntityBlock {
         }
 
         if (!level.isClientSide()) {
-            MultiblockValveBlockEntity multiblockFuelTankBlockEntity = (MultiblockValveBlockEntity) level.getBlockEntity(blockPos);
+            MultiblockValveBlockEntity multiblockValveBlockEntity = (MultiblockValveBlockEntity) level.getBlockEntity(blockPos);
 
             //Open Menu and use bucket items
-            if (multiblockFuelTankBlockEntity instanceof MultiblockValveBlockEntity) {
-                if (multiblockFuelTankBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
+            if (multiblockValveBlockEntity instanceof MultiblockValveBlockEntity) {
+                if (multiblockValveBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
                     return InteractionResult.SUCCESS;
                 }
 
-                ContainerData data = multiblockFuelTankBlockEntity.data;
+                ContainerData data = multiblockValveBlockEntity.data;
                 player.openMenu(new SimpleMenuProvider(
                         (windowId, playerInventory, playerEntity) -> new MultiblockValveMenu(windowId, playerInventory, blockPos, data),
                         Component.translatable("block.casting.multiblock_valve")), (buf -> buf.writeBlockPos(blockPos)));

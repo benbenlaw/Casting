@@ -76,9 +76,6 @@ public class MultiblockMixerBlock extends BaseEntityBlock {
             MultiblockMixerBlockEntity multiblockMixerBlockEntity = (MultiblockMixerBlockEntity) level.getBlockEntity(blockPos);
 
             //Open Menu and use bucket items
-
-
-
             if (multiblockMixerBlockEntity instanceof MultiblockMixerBlockEntity) {
                 if (multiblockMixerBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
                     return InteractionResult.SUCCESS;
