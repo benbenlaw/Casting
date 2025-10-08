@@ -223,6 +223,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         if (structureDirty) {
             validateMultiblock();
             if (cachedMultiblockData != null) {
+
                 multiblockBlockPos.clear();
                 multiblockBlockPos.addAll(cachedMultiblockData.allBlockPositions());
             }

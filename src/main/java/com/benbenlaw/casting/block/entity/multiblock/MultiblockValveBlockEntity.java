@@ -3,6 +3,7 @@ package com.benbenlaw.casting.block.entity.multiblock;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.multiblock.MultiblockValveBlock;
+import com.benbenlaw.casting.screen.multiblock.MultiblockControllerScreen;
 import com.benbenlaw.casting.screen.multiblock.MultiblockFuelTankMenu;
 import com.benbenlaw.casting.util.MultiFluidTankSharedCapacity;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
@@ -320,8 +321,10 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
     }
 
     public boolean onPlayerUse(Player player, InteractionHand hand) {
-        if (controller != null) {
-            return FluidUtil.interactWithFluidHandler(player, hand, controller.fluidHandler);
+
+        MultiblockControllerBlockEntity controllerBlockEntity = getController();
+        if (controllerBlockEntity != null) {
+            return FluidUtil.interactWithFluidHandler(player, hand, controllerBlockEntity.fluidHandler);
         } else {
             System.out.println("Controller is null, cannot interact with fluid handler");
             return false;

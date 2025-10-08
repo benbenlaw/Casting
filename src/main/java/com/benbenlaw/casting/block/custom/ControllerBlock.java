@@ -106,22 +106,17 @@ public class ControllerBlock extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         }
 
-
-
         if (!level.isClientSide()) {
 
             ControllerBlockEntity controllerBlockEntity = (ControllerBlockEntity) level.getBlockEntity(blockPos);
 
-
             //MENU OPEN//
-
             if (controllerBlockEntity instanceof ControllerBlockEntity) {
                 ContainerData data = controllerBlockEntity.data;
                 player.openMenu(new SimpleMenuProvider(
                         (windowId, playerInventory, playerEntity) -> new SmelterMenu(windowId, playerInventory, blockPos, data),
                         Component.translatable("block.casting.controller")), (buf -> buf.writeBlockPos(blockPos)));
                 controllerBlockEntity.sync();
-
             }
             return InteractionResult.SUCCESS;
         }
