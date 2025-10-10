@@ -23,6 +23,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
@@ -628,6 +629,7 @@ public class ToolEvents {
                 if (isLooting) {
 
                     if (deadEntity instanceof WitherBoss) return;
+                    if (deadEntity instanceof EnderDragon) return;
 
                     event.setCanceled(true);
                     LootTable lootTable = Objects.requireNonNull(level.getServer()).reloadableRegistries().getLootTable(deadEntity.getLootTable());

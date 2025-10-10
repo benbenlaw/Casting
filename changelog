@@ -8,6 +8,9 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+2.2.19
+- Ender Dragons loot no longer affected by looting modifier, fixes issues when mods add loot to the dragon that isn't in the loot table
+
 2.2.18
 - More fixed to valve not allow players to interact with it
 
