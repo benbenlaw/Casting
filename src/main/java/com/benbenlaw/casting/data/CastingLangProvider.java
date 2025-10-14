@@ -68,7 +68,7 @@ public class CastingLangProvider extends LanguageProvider {
         addGUITranslation("multiblock_controller.no_controller", "No Controller Found!");
 
         addGUITranslation("buttons.no_off", "On/Off Button");
-        addGUITranslation("buttons.fluid", "Filter: Empty, Click to on fluid to filter");
+        addGUITranslation("buttons.fluid", "Filter: Empty, Click to cycle fluids");
         addGUITranslation("buttons.remove_fluid", "Filter: %s, Click to remove");
         addGUITranslation("buttons.no_alloy", "Filter: Empty, Click to cycle");
         addGUITranslation("buttons.cycle_valid_alloy", "Filter: %s, Click to cycle, Found %s Alloys");
@@ -88,6 +88,7 @@ public class CastingLangProvider extends LanguageProvider {
         addGUITranslation("buttons.no_regulators", "No Regulators detected, add for reserving space!");
         addGUITranslation("buttons.regulator_count", "Tank Partitioned: %smb for %s fluids");
         addGUITranslation("buttons.output_full_mixer", "The output tank is full, unable to craft mixer result!");
+        addGUITranslation("buttons.remove_fluid_right_click", "Filter: %s, Right Click to remove");
 
         //Jei Translations
         addGUITranslation("jei.melting", "Melting");

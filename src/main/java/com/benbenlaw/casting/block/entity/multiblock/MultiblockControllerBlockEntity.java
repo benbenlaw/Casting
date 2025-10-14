@@ -298,20 +298,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
                 //Warning of players disabled until a good way of doing this is found
                 if (cachedMultiblockData == null) {
                     structureValid = false;
-
-                    //ServerLevel serverLevel = (ServerLevel) level;
-                    //List<ServerPlayer> players = serverLevel.getPlayers(player -> player.blockPosition().closerThan(worldPosition, 8));
-
-                    if (++dropTimer == 20) {
-                        //for (ServerPlayer player : players) {
-                        //    player.sendSystemMessage(Component.translatable("chat.casting.multiblock_controller.item_spill"));
-                        //}
-                    }
-
                     if (++dropTimer >= 80) {
-                        //for (ServerPlayer player : players) {
-                        //    player.sendSystemMessage(Component.translatable("chat.casting.multiblock_controller.items_dropped"));
-                        //}
                         this.enabledSlots = 0;
                         dropTimer = 0;
                     }

@@ -35,6 +35,8 @@ public class MultiblockSolidifierScreen extends AbstractContainerScreen<Multiblo
     private static final ResourceLocation TEXTURE =
             ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, "textures/gui/multiblock_solidifier_gui.png");
 
+    private int selectedFluidIndex = 0;
+
     public MultiblockSolidifierScreen(MultiblockSolidifierMenu menu, Inventory inventory, Component component) {
         super(menu, inventory, component);
         this.level = menu.level;
@@ -129,39 +131,24 @@ public class MultiblockSolidifierScreen extends AbstractContainerScreen<Multiblo
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
         boolean handled = super.mouseClicked(mouseX, mouseY, mouseButton);
 
-        int widgetX = leftPos + 35;
-        int widgetY = topPos + 21;
         int widgetWidth = 34;
         int widgetHeight = 45;
 
-        if (menu.blockEntity.controller != null && menu.blockEntity.controller.fluidHandler != null) {
-            if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, widgetX, widgetY, 0, 0, widgetWidth, widgetHeight)) {
+        if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 41, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
+
+            if (mouseButton == 0) {
                 List<FluidStack> fluids = this.menu.blockEntity.controller.fluidHandler.getFluids();
-                int totalCapacity = this.menu.blockEntity.controller.fluidHandler.getTankCapacity(1);
-                int yOffset = widgetY + widgetHeight;
+                selectedFluidIndex = (selectedFluidIndex + 1) % fluids.size();
+                String selectedFluid = fluids.get(selectedFluidIndex).getFluid().toString();
+                PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+            }
 
-                for (FluidStack fluid : fluids) {
-                    if (fluid.isEmpty()) continue;
-
-                    int fluidAmount = fluid.getAmount();
-                    float ratio = (float) fluidAmount / totalCapacity;
-                    int height = Math.max(1, (int) (ratio * widgetHeight));
-                    int top = yOffset - height;
-
-                    if (mouseY >= top && mouseY <= yOffset) {
-                        PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload(fluid.getFluid().toString(), menu.blockEntity.getBlockPos()));
-                        handled = true;
-                        break;
-                    }
-                    yOffset -= height;
-                }
+            if (mouseButton == 1) {
+                PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
             }
         }
 
-        if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 41, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
-            //System.out.println("fluid area");
-            PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
-        }
+
 
         return handled;
     }
@@ -197,7 +184,7 @@ public class MultiblockSolidifierScreen extends AbstractContainerScreen<Multiblo
             if (fluidName.contains(Component.nullToEmpty("Air"))) {
                 guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.fluid"), mouseX, mouseY);
             } else {
-                guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.remove_fluid", fluidName), mouseX, mouseY);
+                guiGraphics.renderTooltip(this.font, Component.translatable("gui.casting.buttons.remove_fluid_right_click", fluidName), mouseX, mouseY);
 
             }
 

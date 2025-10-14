@@ -153,9 +153,7 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
         }
 
         if (MouseUtil.isMouseOver(mouseX, mouseY, leftPos + 6, topPos + 36, 16, 16)) {
-
             PacketDistributor.sendToServer(new LockSolidifierPayload(menu.blockEntity.getBlockPos()));
-
         }
 
 

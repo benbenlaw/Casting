@@ -38,16 +38,6 @@ public class MultiblockMixerScreen extends AbstractContainerScreen<MultiblockMix
     public MultiblockMixerScreen(MultiblockMixerMenu menu, Inventory inventory, Component component) {
         super(menu, inventory, component);
         this.level = menu.level;
-
-        //for (Direction direction : Direction.values()) {
-        //    BlockEntity adjacentEntity = level.getBlockEntity(menu.blockEntity.getBlockPos().relative(direction));
-        //    if (adjacentEntity instanceof TankBlockEntity tankBlockEntity) {
-        //        fuelTankEntity = level.getBlockEntity(tankBlockEntity.getBlockPos());
-        //        break;
-        //    } else {
-        //        fuelTankEntity = null;
-        //    }
-        //}
     }
 
     @Override

@@ -64,6 +64,7 @@ public record ClearTankPacket() {
                     controllerBlockEntity.sync();
                 }
             }
+            controllerBlockEntity.sync();
         }
 
         if (blockEntity instanceof MixerBlockEntity mixerBlockEntity) {
@@ -96,6 +97,7 @@ public record ClearTankPacket() {
                     mixerBlockEntity.OUTPUT_TANK.getFluid().setAmount(0);
                     mixerBlockEntity.sync();
                 }
+                mixerBlockEntity.sync();
             }
         }
 

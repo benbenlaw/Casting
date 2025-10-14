@@ -217,11 +217,11 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
         assert level != null;
 
         if (controller != null && controller.isRemoved()) {
+            controller.fluidHandler = null;
             controller = null;
         }
 
         if (!level.isClientSide()) {
-            sync();
 
             BlockState state = getBlockState();
             if (state.getValue(MultiblockValveBlock.WORKING)) {
@@ -240,12 +240,6 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
 
     public void setControllerPos(BlockPos controllerPos) {
         this.controllerPos = controllerPos;
-        this.controller = null;
-
-        if (level != null) {
-            setChanged();
-            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
-        }
     }
 
     public void setSelectedFluid(String fluid) {

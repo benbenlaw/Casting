@@ -25,6 +25,7 @@ public record ValveSelectedFluidPacket() {
 
         if (blockEntity instanceof MultiblockValveBlockEntity valveBlockEntity) {
             valveBlockEntity.setSelectedFluid(payload.fluid());
+            valveBlockEntity.sync();
         }
     }
 }

@@ -63,8 +63,9 @@ public record FluidMoverPacket() {
                 }
             }
 
-            // If a valid tank is selected, perform the fluid transfer
             transferFluidBetweenTankAndItem(selectedTank, carriedItem, player, isOutputTank);
+            mixerBlockEntity.sync();
+
         }
 
         if (blockEntity instanceof ControllerBlockEntity controllerBlockEntity) {
@@ -83,8 +84,9 @@ public record FluidMoverPacket() {
                 }
 
             }
-
             transferFluidBetweenTankAndItem(selectedTank, carriedItem, player, isOutputTank);
+            controllerBlockEntity.sync();
+
         }
 
         if (blockEntity instanceof SolidifierBlockEntity solidifierBlockEntity) {
@@ -96,7 +98,7 @@ public record FluidMoverPacket() {
                 player.sendSystemMessage(Component.literal("Invalid tank number!"));
                 return;
             }
-
+            solidifierBlockEntity.sync();
             transferFluidBetweenTankAndItem(selectedTank, carriedItem, player, isOutputTank);
         }
 
@@ -109,8 +111,9 @@ public record FluidMoverPacket() {
                 player.sendSystemMessage(Component.literal("Invalid tank number!"));
                 return;
             }
-
             transferFluidBetweenTankAndItem(selectedTank, carriedItem, player, isOutputTank);
+            equipmentModifierBlockEntity.sync();
+
         }
 
 
