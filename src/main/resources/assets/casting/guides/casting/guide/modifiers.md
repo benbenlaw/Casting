@@ -11,7 +11,7 @@ item_ids:
 
 # Equipment Modifiers
 
-Casting also adds the Equipment Modifiers Block. This allows you to use both items or fluids or both to modify your tools and armor. The Equipment Modifiers Block can be used to add modifiers to your tools and armor, such as adding more durability, speed, or even special abilities.
+Casting also adds the Equipment Modifiers Block. This allows you to use items, fluids, or both to modify your tools and armor. The Equipment Modifiers Block can be used to add modifiers to your tools and armor, such as adding more durability, speed, or even special abilities.
 
 # Getting Started
 
