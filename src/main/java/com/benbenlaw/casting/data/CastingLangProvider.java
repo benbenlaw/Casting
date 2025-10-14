@@ -63,7 +63,7 @@ public class CastingLangProvider extends LanguageProvider {
         addChatTranslation("information.boots_toggle", "- Toggling Boots Modifiers");
 
         //Gui addGUITranslation
-        addGUITranslation("multiblock_controller.off", "Turn on the Multiblock at the top left of the GUI! Can't see the button decrease your GUI scale!");
+        addGUITranslation("multiblock_controller.off", "Turn on the Multiblock at the top left of the GUI! If you can't see the button decrease your GUI scale!");
         addGUITranslation("multiblock_controller.no_fuel_tank", "No Fuel Tank Found!");
         addGUITranslation("multiblock_controller.no_controller", "No Controller Found!");
 
@@ -105,7 +105,7 @@ public class CastingLangProvider extends LanguageProvider {
 
         addGUITranslation("jei.information.solidifier",   "The Solidifier is used to turn your molten resource into useful item! \n\nThis can use an optional Fuel Tank adjacent to it, cooler fluids (below 1000) in the tank will make the Solidifier faster\n\nFluid can be locked to prevent another fluids from going in, click the lock button next to the fluid tank.\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!");
         addGUITranslation("jei.information.mixer", "The Mixer can be used to mix molten fluids together! \n\nHolding Shift whilst above a certain tank and left clicking will remove the fluid from the that tank!\n\nStores fluids when broken!");
-        addGUITranslation("jei.information.controller", "The Controller can be used to melt items into there molten variants! \n\nThis needs a Fuel Tank to work, the Fuel Tank must contain a Fuel that is hot enough to melt the item, Hotter fluids melt faster\n\nHolding Shift whilst above a certain tank and left clicking will remove the fluid from the that tank!\n\nStores fluids when broken!");
+        addGUITranslation("jei.information.controller", "The Controller can be used to melt items into their molten variants! \n\nThis needs a Fuel Tank to work. The Fuel Tank must contain a Fuel that is hot enough to melt the item, Hotter fluids melt faster\n\nHolding Shift whilst above a certain tank and left clicking will remove the fluid from the that tank!\n\nStores fluids when broken!");
         addGUITranslation("jei.information.tank", "The Tank stores the fuel used in the Controller to melt items!\n\nCan also be used with the Solidifier colder fluids in the tank makes the Solidifier faster \n\nStores fluids when broken!");
         addGUITranslation("jei.information.equipment_modifier", "Used to apply modifiers to your equipment!, Your first modifier will add Level 1 to your equipment additional modifiers require an additional level. Use your tools to Level Up and get more modifier slots.\n\nUsing a Repairing Mold will allow you to repair Equipment using its molten variants! \n\nSearch Equipment Modifiers in JEI to view the modifiers!\n\nPlace the right items and or fluids in the Equipment Modifier then add a valid piece of Equipment to add that effect!\n\nHolding Shift whilst above the tank and left clicking will remove the fluid from the tank!\n\nStores fluids when broken!");
         addGUITranslation("jei.information.fluid_mover", "Used to move fluids between tanks, Holds up to 8000mb of a single fluid. \n\nClick on a tank to collect fluid and click on another tank to add!\n\nWill try to fill the selected tank before collecting fluids!");
@@ -175,13 +175,13 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.knockback", "Gives a tool Knockback up to level %s");
         addTooltipTranslation("information.lifesteal", "Gives a tool Lifesteal, restores health when damaging enemies up to level %s");
         addTooltipTranslation("information.looting", "Gives a tool Looting up to level %s");
-        addTooltipTranslation("information.magnet", "Gives armor Magnet, attracts items to the player up to level, block drops also enter the players inventory %s");
+        addTooltipTranslation("information.magnet", "Gives armor Magnet, attracts items to the player up to level %s, block drops also enter the player's inventory");
         addTooltipTranslation("information.protection", "Gives armor Protection up to level %s");
         addTooltipTranslation("information.repairing", "Gives a tool Repairing up to level %s");
         addTooltipTranslation("information.sharpness", "Gives a tool Sharpness up to level %s");
         addTooltipTranslation("information.silk_touch", "Gives a tool Silk Touch up to level %s");
         addTooltipTranslation("information.step_assist", "Gives armor Step Assist, allows the player to step up blocks up to level %s");
-        addTooltipTranslation("information.teleporting", "Gives a tool Teleporting, allows the tool to teleport you to far away blocks away up to level %s. Costs 5 durability per teleport.");
+        addTooltipTranslation("information.teleporting", "Gives a tool Teleporting, allows the tool to teleport you to far away blocks up to level %s. Costs 5 durability per teleport");
         addTooltipTranslation("information.torch_placing", "Allows the tool to place torches on right click up to level %s");
         addTooltipTranslation("information.unbreaking", "Gives a tool Unbreaking up to level %s");
         addTooltipTranslation("information.water_walker", "Gives armor Water Walker, allows the player to walk on water up to level %s");
@@ -189,7 +189,7 @@ public class CastingLangProvider extends LanguageProvider {
         addTooltipTranslation("information.speed", "Gives armor Speed, allows the player to move faster up to level %s");
         addTooltipTranslation("information.water_breathing", "Gives armor Water Breathing, allows the player to breathe underwater");
         addTooltipTranslation("information.night_vision", "Gives armor Night Vision, allows the player to see in the dark");
-        addTooltipTranslation("information.flight", "Gives armor Flight, allows the player to as if in creative");
+        addTooltipTranslation("information.flight", "Gives armor Creative Flight");
         addTooltipTranslation("information.feather_falling", "Gives armor Feather Falling, each level adds 10%% damage reduction from falling up to level %s");
         addTooltipTranslation("information.soulbound", "Returns the item to the player after death");
         addTooltipTranslation("information.jets", "Gives armor Jets, allows the player to jet up in the air, up to level %s");

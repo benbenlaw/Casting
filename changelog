@@ -12,6 +12,7 @@ multiblock blocks not saving contents when broken
 - Fixed syncing issues with simple blocks when using the fluid mover
 - Multiblock Solidifier and Multiblock valve fluid selection now uses same as the multiblock mixer, click buckets to cycle through fluids and right click to clear
 - Multiblock valve should no longer flash its fluid contents
+- Merged pull request #18 from cmoates (grammatical error in the guide me)
 
 2.2.19
 - Ender Dragons loot no longer affected by looting modifier, fixes issues when mods add loot to the dragon that isn't in the loot table
