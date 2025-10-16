@@ -44,6 +44,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -377,7 +378,8 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
             }
 
             FluidStack fluidStack = new FluidStack(selectedRecipe.output().getFluid(), fillAmount);
-            FluidStack experienceFluidStack = getFluidStack("molten_experience", EXPERIENCE_CREATED);
+            Fluid fluidString = BuiltInRegistries.FLUID.get(ResourceLocation.parse(CastingConfig.experienceFluid.get()));
+            FluidStack experienceFluidStack = new FluidStack(fluidString, EXPERIENCE_CREATED);
 
             if (fluidHandler.fill(fluidStack, IFluidHandler.FluidAction.SIMULATE) < fillAmount) {
                 resetProgress(slotIndex);

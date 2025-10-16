@@ -318,7 +318,7 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
 
         MultiblockControllerBlockEntity controllerBlockEntity = getController();
         if (controllerBlockEntity != null) {
-            return FluidUtil.interactWithFluidHandler(player, hand, controllerBlockEntity.fluidHandler);
+            return FluidUtil.interactWithFluidHandler(player, hand, getFilteredFluidHandler(null));
         } else {
             System.out.println("Controller is null, cannot interact with fluid handler");
             return false;

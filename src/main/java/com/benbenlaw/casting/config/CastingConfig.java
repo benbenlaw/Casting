@@ -8,6 +8,7 @@ public class CastingConfig {
     public static final ModConfigSpec SPEC;
     public static final ModConfigSpec.ConfigValue<Double> oreMultiplier;
     public static final ModConfigSpec.ConfigValue<Integer> experienceGivenWhenMeltingAValidOre;
+    public static final ModConfigSpec.ConfigValue<String> experienceFluid;
     public static final ModConfigSpec.ConfigValue<Integer> maxMultiblockControllerHeldItems;
     public static final ModConfigSpec.ConfigValue<Integer> maxMultiblockControllerHeldFluid;
     public static final ModConfigSpec.ConfigValue<Integer> timeInTicksThatMultiblockControllerDoesAStructureCheck;
@@ -24,6 +25,9 @@ public class CastingConfig {
 
         experienceGivenWhenMeltingAValidOre = BUILDER.comment("The amount of experience given when melting a valid ore in the casting:melting_produces_experience tag, default = 25")
                         .define("Experience Given When Melting A Valid Ore", 25);
+
+        experienceFluid = BUILDER.comment("The fluid used for experience, default = casting:molten_experience")
+                .define("Experience Fluid", "casting:molten_experience");
 
         maxMultiblockControllerHeldItems = BUILDER.comment("The maximum number of items that can be held in the multiblock controller, default = 60")
                 .defineInRange("Max Multiblock Controller Held Items", 60, 1, 512);

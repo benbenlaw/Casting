@@ -97,6 +97,7 @@ public class ArmorEvents {
                         }
                     } else {
                         itemEntity.setItem(stack);
+
                     }
                 }
             }
