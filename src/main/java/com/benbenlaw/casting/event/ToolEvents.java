@@ -147,8 +147,7 @@ public class ToolEvents {
             }
 
             // Excavation
-            if(!tool.isCorrectToolForDrops(state)) {
-                breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt);
+            if(!tool.isCorrectToolForDrops(state) && state.requiresCorrectToolForDrops()) {
                 return;
             }
 

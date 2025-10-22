@@ -8,6 +8,9 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+2.2.22
+- Fixed stupid ben mistake not checking the tool for casting based drops no more mining diamond ore with a fortune 5 wooden pickaxe
+
 2.2.21
 - Mutliblock valve now respects the set fluid filter, setting the fluid is the only way to take that fluid out of the multiblock with a bucket like item
 - Experience fluid can now be set in the config, improves compatibility with mods that add experience fluid
