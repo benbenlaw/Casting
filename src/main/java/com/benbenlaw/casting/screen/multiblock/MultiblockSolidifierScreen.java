@@ -4,8 +4,6 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.multiblock.MultiblockSolidifierBlock;
 import com.benbenlaw.casting.network.payload.OnOffButtonPayload;
 import com.benbenlaw.casting.network.payload.SolidifierSelectedFluidPayload;
-import com.benbenlaw.casting.network.payload.ValveSelectedFluidPayload;
-import com.benbenlaw.casting.screen.SolidifierScreen;
 import com.benbenlaw.casting.screen.util.FluidStackStackWidget;
 import com.benbenlaw.casting.screen.util.MultiFluidStackWidget;
 import com.benbenlaw.core.screen.util.CoreButtons;
