@@ -81,9 +81,12 @@ public class SolidifierRecipeCategory implements IRecipeCategory<SolidifierRecip
         List<Stream<ItemStack>> ingredients = List.of(Arrays.stream(recipe.output().getItems())).reversed();
         List<ItemStack> items = ingredients.stream().flatMap(stream -> stream).toList();
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 40, 2).addFluidStack(recipe.fluid().getFluid(), 1000)
+        builder.addSlot(RecipeIngredientRole.INPUT, 40, 2).addFluidStack(recipe.fluid().getFluid(), recipe.fluid().getAmount())
                 .addRichTooltipCallback((slot, tooltip) ->
                         tooltip.add(Component.literal(recipe.fluid().getAmount() + " mB").withStyle(ChatFormatting.GOLD)));
+
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 40, 2).addFluidStack(recipe.fluid().getFluid(), 1000);
+
 
         builder.addSlot(RecipeIngredientRole.CATALYST, 4, 2).addIngredients(VanillaTypes.ITEM_STACK, Arrays.asList(recipe.mold().getItems()));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 113, 2).addItemStack(recipe.output().getItems()[0]);

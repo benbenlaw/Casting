@@ -84,7 +84,7 @@ public class MeltingRecipeCategory implements IRecipeCategory<MeltingRecipe> {
             amount = (int) (recipe.output().getAmount() * CastingConfig.oreMultiplier.get());
 
             int finalAmount1 = amount;
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 2).addFluidStack(recipe.output().getFluid(), 1000)
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 2).addFluidStack(recipe.output().getFluid(), finalAmount1)
                     .addRichTooltipCallback((slot, tooltip) ->
                             tooltip.add(Component.translatable("gui.casting.jei.multiblock_controller_output", finalAmount1).withStyle(ChatFormatting.GOLD)))
                     .addRichTooltipCallback((slot, tooltip) ->
@@ -92,16 +92,19 @@ public class MeltingRecipeCategory implements IRecipeCategory<MeltingRecipe> {
                     .addRichTooltipCallback((slot, tooltip) ->
                             tooltip.add(Component.translatable("gui.casting.jei.melting_temp", recipe.meltingTemp()).withStyle(ChatFormatting.GOLD)));
 
+            builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 50, 2).addFluidStack(recipe.output().getFluid(), 1000);
 
 
         } else {
 
             int finalAmount2 = amount;
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 2).addFluidStack(recipe.output().getFluid(), 1000)
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 2).addFluidStack(recipe.output().getFluid(), finalAmount2)
                     .addRichTooltipCallback((slot, tooltip) ->
                             tooltip.add(Component.literal(finalAmount2 + "mB").withStyle(ChatFormatting.GOLD)))
                     .addRichTooltipCallback((slot, tooltip) ->
                             tooltip.add(Component.translatable("gui.casting.jei.melting_temp", recipe.meltingTemp()).withStyle(ChatFormatting.GOLD)));
+
+            builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 50, 2).addFluidStack(recipe.output().getFluid(), 1000);
         }
 
 

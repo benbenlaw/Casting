@@ -19,6 +19,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -74,6 +75,7 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
         assert controller != null;
         return controller.itemHandler;
     }
+
     public @Nullable IItemHandler getItemHandlerCapability(@Nullable Direction side) {
         if (controller == null && controllerPos != null && level != null) {
             BlockEntity be = level.getBlockEntity(controllerPos);
@@ -82,11 +84,42 @@ public class MultiblockValveBlockEntity extends SyncableBlockEntity implements M
             }
         }
 
-        if (controller != null) {
-            return controller.controllerItemHandler;
-        } else {
-            return null;
-        }
+        if (controller == null) return null;
+
+        return new IItemHandler() {
+            @Override
+            public int getSlots() {
+                if (controller == null) return 0;
+                return controller.controllerItemHandler.getSlots();
+            }
+
+            @Override
+            public ItemStack getStackInSlot(int slot) {
+                return controller.controllerItemHandler.getStackInSlot(slot);
+            }
+
+            @Override
+            public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                return controller.controllerItemHandler.insertItem(slot, stack, simulate);
+            }
+
+            @Override
+            public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                if (slot < 0 || slot >= controller.solidifierItemHandlers.size()) return ItemStack.EMPTY;
+                IItemHandler solidifierHandler = controller.solidifierItemHandlers.get(slot);
+                return solidifierHandler.extractItem(1, amount, simulate); // only slot 1
+            }
+
+            @Override
+            public int getSlotLimit(int slot) {
+                return controller.controllerItemHandler.getSlotLimit(slot);
+            }
+
+            @Override
+            public boolean isItemValid(int slot, ItemStack stack) {
+                return controller.controllerItemHandler.isItemValid(slot, stack);
+            }
+        };
     }
 
     public IFluidHandler getFilteredFluidHandler(Direction side) {

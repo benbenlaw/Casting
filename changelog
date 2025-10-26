@@ -8,6 +8,10 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+2.2.23
+- Update JEI integration to actually move the correct amount of fluid when creating recipe patterns for ae2 and refined storage
+- Multiblock valve can now extract from all connected solidifiers output slots, guide book updated to reflect this change
+
 2.2.22
 - Fixed stupid ben mistake not checking the tool for casting based drops no more mining diamond ore with a fortune 5 wooden pickaxe
 

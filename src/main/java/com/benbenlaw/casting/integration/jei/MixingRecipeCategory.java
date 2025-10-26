@@ -93,18 +93,22 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 
             int finalIndex = index;
             builder.addSlot(RecipeIngredientRole.INPUT, 3 + xOffset, yOffset)
-                    .addFluidStack(recipe.getAllFluids().get(i).getFluid(), 1000)
+                    .addFluidStack(recipe.getAllFluids().get(i).getFluid(), recipe.getAllFluids().get(finalIndex).getAmount())
                     .addRichTooltipCallback((slot, tooltip) ->
                             tooltip.add(Component.literal(recipe.getAllFluids().get(finalIndex).getAmount() + " mB").withStyle(ChatFormatting.GOLD)))
                     .setBackground(JEICastingPlugin.slotDrawable, -1, -1);
+
+            builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 3 + xOffset, yOffset).addFluidStack(recipe.getAllFluids().get(i).getFluid(), 1000);
         }
 
         FluidStack output = recipe.outputFluid().copy();
         if (!output.isEmpty()) {
             builder.addSlot(RecipeIngredientRole.OUTPUT, 140, 11)
-                    .addFluidStack(output.getFluid(), 1000)
+                    .addFluidStack(output.getFluid(), output.getAmount())
                     .addRichTooltipCallback((slot, tooltip) ->
                             tooltip.add(Component.literal(output.getAmount() + " mB").withStyle(ChatFormatting.GOLD)));
+
+            builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 140, 11).addFluidStack(output.getFluid(), 1000);
         }
     }
 

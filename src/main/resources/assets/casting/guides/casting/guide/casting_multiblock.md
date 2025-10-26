@@ -62,7 +62,7 @@ Multiblock Coolant Tanks provide cooling for the Multiblock Solidifiers, these s
 
 # Multiblock Valve
 
-The Multiblock Valve is an input and output for fluids. Can be filtered to only allow certain fluids to be inserted and extracted from it. The Multiblock Valve can also be used to fill the controller with items. 
+The Multiblock Valve can be used to input and output fluids from the controller, the valve can be filtered to only allow the filtered fluid in and out of that valve. The valve can also be used to pipe items into the controller as well as output the items from all solidifiers in the multiblock  
 
 # Multiblock Mixer
 
@@ -70,4 +70,4 @@ Controlled alloying of fluids! The Multiblock Mixer can detect which alloys it c
 
 # Multiblock Regulator
 
-For each of these placed in the wall of a multiblock it will reserve part of the tanks for fluids. EG having 3 in th2 multiblock will allow for up to 3 different fluids to be stored inside in equal amounts, recipes that create another fluid will not run. No Regulators keepo original behaviour
+For each of these placed in the wall of a multiblock it will reserve part of the tanks for fluids. EG having 3 in the multiblock will allow for up to 3 different fluids to be stored inside in equal amounts, recipes that create another fluid will not run. No Regulators keep original behaviour with no restrictions on fluid types and amounts.

@@ -502,14 +502,19 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
     }
 
+    public final List<IItemHandler> solidifierItemHandlers = new ArrayList<>();
 
     public void findSolidifiers(MultiblockData cachedMultiblockData) {
+
+        solidifierItemHandlers.clear();
+
         identifyMultiblockExtraBlocks(cachedMultiblockData, state -> state.is(CastingBlocks.MULTIBLOCK_SOLIDIFIER.get()),
                 entity -> {
                     if (entity instanceof MultiblockSolidifierBlockEntity solidifier) {
                         solidifier.setControllerBlockEntity(this);
                         solidifier.setControllerPos(this.worldPosition);
                         solidifier.setCoolantTank(coolantTank);
+                        solidifierItemHandlers.add(solidifier.getItemStackHandler());
                     }
                 });
     }

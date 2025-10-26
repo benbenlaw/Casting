@@ -136,6 +136,14 @@ dependencies {
     compileOnly "curse.maven:rhino-416294:5650008"
     runtimeOnly "curse.maven:rhino-416294:5650008"
 
+    //applied-energistics-2
+    compileOnly "curse.maven:applied-energistics-2-223794:7027323"
+    runtimeOnly "curse.maven:applied-energistics-2-223794:7027323"
+
+    //ae2-jei-integration
+    compileOnly "curse.maven:ae2-jei-integration-1074338:5748513"
+    runtimeOnly "curse.maven:ae2-jei-integration-1074338:5748513"
+
     compileOnly "org.appliedenergistics:guideme:${project.guideme_version}:api"
     runtimeOnly "org.appliedenergistics:guideme:${project.guideme_version}"
 
