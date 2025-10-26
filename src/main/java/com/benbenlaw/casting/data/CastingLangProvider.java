@@ -69,7 +69,7 @@ public class CastingLangProvider extends LanguageProvider {
 
         addGUITranslation("buttons.no_off", "On/Off Button");
         addGUITranslation("buttons.fluid", "Filter: Empty, Click to cycle fluids");
-        addGUITranslation("buttons.remove_fluid", "Filter: %s, Click to remove");
+        addGUITranslation("buttons.remove_fluid", "Filter: %s, Shift Click to remove filter");
         addGUITranslation("buttons.no_alloy", "Filter: Empty, Click to cycle");
         addGUITranslation("buttons.cycle_valid_alloy", "Filter: %s, Click to cycle, Found %s Alloys");
         addGUITranslation("buttons.not_hot_enough", "Current fuel not hot enough for at least one item");

@@ -117,15 +117,25 @@ public class MultiblockValveScreen extends AbstractContainerScreen<MultiblockVal
         int widgetHeight = 45;
 
         if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 20, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
-            if (mouseButton == 0) {
-                List<FluidStack> fluids = this.menu.blockEntity.controller.fluidHandler.getFluids();
-                selectedFluidIndex = (selectedFluidIndex + 1) % fluids.size();
-                String selectedFluid = fluids.get(selectedFluidIndex).getFluid().toString();
-                PacketDistributor.sendToServer(new ValveSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+
+            List<FluidStack> fluids = this.menu.blockEntity.controller.fluidHandler.getFluids();
+
+            if (MultiblockValveScreen.hasShiftDown()) {
+                selectedFluidIndex = 0;
+                PacketDistributor.sendToServer(new ValveSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
             }
 
-            if (mouseButton == 1) {
-                PacketDistributor.sendToServer(new ValveSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
+            else if (!fluids.isEmpty()) {
+                if (mouseButton == 0) {
+                    selectedFluidIndex = (selectedFluidIndex + 1) % fluids.size();
+                    String selectedFluid = fluids.get(selectedFluidIndex).getFluid().toString();
+                    PacketDistributor.sendToServer(new ValveSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+                }
+                else if (mouseButton == 1) {
+                    selectedFluidIndex = (selectedFluidIndex - 1 + fluids.size()) % fluids.size();
+                    String selectedFluid = fluids.get(selectedFluidIndex).getFluid().toString();
+                    PacketDistributor.sendToServer(new ValveSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+                }
             }
         }
         return handled;

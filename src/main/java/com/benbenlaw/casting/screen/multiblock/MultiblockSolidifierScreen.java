@@ -4,6 +4,8 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.multiblock.MultiblockSolidifierBlock;
 import com.benbenlaw.casting.network.payload.OnOffButtonPayload;
 import com.benbenlaw.casting.network.payload.SolidifierSelectedFluidPayload;
+import com.benbenlaw.casting.network.payload.ValveSelectedFluidPayload;
+import com.benbenlaw.casting.screen.SolidifierScreen;
 import com.benbenlaw.casting.screen.util.FluidStackStackWidget;
 import com.benbenlaw.casting.screen.util.MultiFluidStackWidget;
 import com.benbenlaw.core.screen.util.CoreButtons;
@@ -136,20 +138,26 @@ public class MultiblockSolidifierScreen extends AbstractContainerScreen<Multiblo
 
         if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 41, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
 
-            if (mouseButton == 0) {
-                List<FluidStack> fluids = this.menu.blockEntity.controller.fluidHandler.getFluids();
-                selectedFluidIndex = (selectedFluidIndex + 1) % fluids.size();
-                String selectedFluid = fluids.get(selectedFluidIndex).getFluid().toString();
-                PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
-            }
+            List<FluidStack> fluids = this.menu.blockEntity.controller.fluidHandler.getFluids();
 
-            if (mouseButton == 1) {
+            if (MultiblockSolidifierScreen.hasShiftDown()) {
+                selectedFluidIndex = 0;
                 PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
             }
+
+            else if (!fluids.isEmpty()) {
+                if (mouseButton == 0) {
+                    selectedFluidIndex = (selectedFluidIndex + 1) % fluids.size();
+                    String selectedFluid = fluids.get(selectedFluidIndex).getFluid().toString();
+                    PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+                }
+                else if (mouseButton == 1) {
+                    selectedFluidIndex = (selectedFluidIndex - 1 + fluids.size()) % fluids.size();
+                    String selectedFluid = fluids.get(selectedFluidIndex).getFluid().toString();
+                    PacketDistributor.sendToServer(new SolidifierSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+                }
+            }
         }
-
-
-
         return handled;
     }
 

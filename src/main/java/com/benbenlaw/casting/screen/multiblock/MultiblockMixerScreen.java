@@ -4,6 +4,7 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.multiblock.MultiblockMixerBlock;
 import com.benbenlaw.casting.network.payload.MixerSelectedFluidPayload;
 import com.benbenlaw.casting.network.payload.OnOffButtonPayload;
+import com.benbenlaw.casting.network.payload.ValveSelectedFluidPayload;
 import com.benbenlaw.casting.screen.util.MultiFluidStackWidget;
 import com.benbenlaw.core.screen.util.CoreButtons;
 import com.benbenlaw.core.util.MouseUtil;
@@ -104,26 +105,34 @@ public class MultiblockMixerScreen extends AbstractContainerScreen<MultiblockMix
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
         boolean handled = super.mouseClicked(mouseX, mouseY, mouseButton);
 
-        int widgetX = leftPos + 71;
-        int widgetY = topPos + 20;
         int widgetWidth = 34;
         int widgetHeight = 46;
 
-        List<String> availableAlloys = menu.blockEntity.availableAlloys;
 
         if (menu.blockEntity.controller != null) {
             if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 20, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
 
-                if (!availableAlloys.isEmpty()) {
+                List<String> availableAlloys = menu.blockEntity.availableAlloys;
 
-                    selectedFluidIndex = (selectedFluidIndex + 1) % availableAlloys.size();
-                    String selectedFluid = availableAlloys.get(selectedFluidIndex);
-                    PacketDistributor.sendToServer(new MixerSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+                if (MultiblockMixerScreen.hasShiftDown()) {
+                    selectedFluidIndex = 0;
+                    PacketDistributor.sendToServer(new MixerSelectedFluidPayload("minecraft:empty", menu.blockEntity.getBlockPos()));
+                }
+
+                else if (!availableAlloys.isEmpty()) {
+                    if (mouseButton == 0) {
+                        selectedFluidIndex = (selectedFluidIndex + 1) % availableAlloys.size();
+                        String selectedFluid = availableAlloys.get(selectedFluidIndex);
+                        PacketDistributor.sendToServer(new MixerSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+                    }
+                    else if (mouseButton == 1) {
+                        selectedFluidIndex = (selectedFluidIndex - 1 + availableAlloys.size()) % availableAlloys.size();
+                        String selectedFluid = availableAlloys.get(selectedFluidIndex);
+                        PacketDistributor.sendToServer(new MixerSelectedFluidPayload(selectedFluid, menu.blockEntity.getBlockPos()));
+                    }
                 }
             }
         }
-
-
         return handled;
     }
 
