@@ -3,15 +3,19 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "include": [
+                "casting:fluids"
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "casting:solidifier"
         }
       ],
       "rolls": 1.0

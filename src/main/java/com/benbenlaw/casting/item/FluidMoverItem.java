@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,15 +24,17 @@ public class FluidMoverItem extends Item {
     public void appendHoverText(ItemStack itemStack, @NotNull TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
 
         if (Screen.hasShiftDown()) {
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE)) {
-                String fluidAsString = itemStack.get(CastingDataComponents.FLUID_TYPE);
-                int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
-                assert fluidAsString != null;
-                FluidType fluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString)).getFluidType();
-                components.add(Component.literal("Contains: ").append(fluidAmount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+            if (itemStack.has(CastingDataComponents.FLUIDS)) {
+                List<FluidStack> fluids = itemStack.get(CastingDataComponents.FLUIDS);
+                assert fluids != null;
+                FluidType fluid = fluids.getFirst().getFluidType();
+                int fluidAmount = fluids.getFirst().getAmount();
+                components.add(Component.literal("Fluids: ").withStyle(ChatFormatting.BLUE));
+                components.add(Component.literal("- ").append(fluidAmount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+
             }
         } else {
-            components.add(Component.translatable("tooltips.blocks.with_fluid.shift").withStyle(ChatFormatting.BLUE));
+            components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
 
         super.appendHoverText(itemStack, context, components, flag);

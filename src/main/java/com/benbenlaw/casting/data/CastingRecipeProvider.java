@@ -1,5 +1,6 @@
 package com.benbenlaw.casting.data;
 
+import appeng.api.ids.AEItemIds;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.data.recipes.*;
@@ -12,6 +13,7 @@ import com.benbenlaw.core.tag.ModdedTagBuilder;
 import com.benbenlaw.core.tag.ResourceNames;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -52,6 +54,40 @@ public class CastingRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "casting:smelting/black_brick");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BRICKS), RecipeCategory.MISC, new ItemStack(CastingBlocks.BLACK_BRICKS.get()), 0.5f, 200)
                 .unlockedBy("has_brick", has(Items.BRICK)).save(consumer, "casting:smelting/black_bricks");
+
+        //Shapeless
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.TANK, 1)
+                .requires(CastingBlocks.TANK)
+                .unlockedBy("has_brick", has(CastingBlocks.TANK)).save(consumer, "casting:clear_fluids/tank");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.CONTROLLER, 1)
+                .requires(CastingBlocks.CONTROLLER)
+                .unlockedBy("has_brick", has(CastingBlocks.CONTROLLER)).save(consumer, "casting:clear_fluids/controller");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.SOLIDIFIER, 1)
+                .requires(CastingBlocks.SOLIDIFIER)
+                .unlockedBy("has_brick", has(CastingBlocks.SOLIDIFIER)).save(consumer, "casting:clear_fluids/solidifier");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.MIXER, 1)
+                .requires(CastingBlocks.MIXER)
+                .unlockedBy("has_brick", has(CastingBlocks.MIXER)).save(consumer, "casting:clear_fluids/mixer");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.EQUIPMENT_MODIFIER, 1)
+                .requires(CastingBlocks.EQUIPMENT_MODIFIER)
+                .unlockedBy("has_brick", has(CastingBlocks.EQUIPMENT_MODIFIER)).save(consumer, "casting:clear_fluids/equipment_modifier");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.MULTIBLOCK_COOLANT_TANK, 1)
+                .requires(CastingBlocks.MULTIBLOCK_COOLANT_TANK)
+                .unlockedBy("has_brick", has(CastingBlocks.MULTIBLOCK_COOLANT_TANK)).save(consumer, "casting:clear_fluids/multiblock_coolant_tank");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.MULTIBLOCK_FUEL_TANK, 1)
+                .requires(CastingBlocks.MULTIBLOCK_FUEL_TANK)
+                .unlockedBy("has_brick", has(CastingBlocks.MULTIBLOCK_FUEL_TANK)).save(consumer, "casting:clear_fluids/multiblock_fuel_tank");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CastingBlocks.MULTIBLOCK_CONTROLLER, 1)
+                .requires(CastingBlocks.MULTIBLOCK_CONTROLLER)
+                .unlockedBy("has_brick", has(CastingBlocks.MULTIBLOCK_CONTROLLER)).save(consumer, "casting:clear_fluids/multiblock_controller");
+
 
         //Multiblock Crafting
         createSimpleSolidifierRecipe(getFluidStack("molten_black_brick", 4000), CastingBlocks.CONTROLLER.toStack(),
@@ -262,16 +298,66 @@ public class CastingRecipeProvider extends RecipeProvider {
         }
 
         // Quartz enriched iron (Refined Storage)
-        createSimpleMeltingRecipe(getFluidStack("molten_quartz_enriched_iron", 90), ModdedTagBuilder.createNeoFabricItemTag("ingots/quartz_enriched_iron"),
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz_enriched_iron", 90), BuiltInRegistries.ITEM.get(ResourceLocation.parse("refinedstorage:quartz_enriched_iron")),
                 FluidData.getTempByName("molten_quartz_enriched_iron"), "quartz_enriched_iron/from_ingot", consumer);
 
         createSimpleSolidifierRecipe(getFluidStack("molten_quartz_enriched_iron", 90), CastingTags.Items.INGOT_MOLD,
-                ModdedTagBuilder.createNeoFabricItemTag("ingots/quartz_enriched_iron"), "quartz_enriched_iron/ingot", consumer);
-
+                BuiltInRegistries.ITEM.get(ResourceLocation.parse("refinedstorage:quartz_enriched_iron")), "quartz_enriched_iron/ingot", consumer);
 
         createSimpleMixingRecipe(fluidList(
                         getFluidStack("molten_iron", 270), getFluidStack("molten_quartz", 250)),
                 getFluidStack("molten_quartz_enriched_iron", 360), "molten_quartz_enriched_iron", consumer);
+
+        // Quartz enriched copper (Refined Storage)
+        createSimpleMeltingRecipe(getFluidStack("molten_quartz_enriched_copper", 90), BuiltInRegistries.ITEM.get(ResourceLocation.parse("refinedstorage:quartz_enriched_copper")),
+                FluidData.getTempByName("molten_quartz_enriched_copper"), "quartz_enriched_copper/from_ingot", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_quartz_enriched_copper", 90), CastingTags.Items.INGOT_MOLD,
+                BuiltInRegistries.ITEM.get(ResourceLocation.parse("refinedstorage:quartz_enriched_copper")), "quartz_enriched_copper/ingot", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_copper", 270), getFluidStack("molten_quartz", 250)),
+                getFluidStack("molten_quartz_enriched_copper", 360), "molten_quartz_enriched_copper", consumer);
+
+        // AE2 Certus Quartz
+        createSimpleMeltingRecipe(getFluidStack("molten_certus_quartz", 250), BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:certus_quartz_crystal")),
+                FluidData.getTempByName("molten_certus_quartz"), "certus_quartz/from_certus_quartz", consumer);
+
+        createSimpleMeltingRecipe(getFluidStack("molten_certus_quartz", 1000), ModdedTagBuilder.createNeoFabricItemTag("storage_blocks/certus_quartz"),
+                FluidData.getTempByName("molten_certus_quartz"), "certus_quartz/from_block", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_certus_quartz", 250), CastingTags.Items.GEM_MOLD,
+                BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:certus_quartz_crystal")), "certus_quartz/crystal", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_certus_quartz", 1000), CastingTags.Items.BLOCK_MOLD,
+                ModdedTagBuilder.createNeoFabricItemTag("storage_blocks/certus_quartz"), "certus_quartz/block", consumer);
+
+        // AE2 Fluix
+        createSimpleMeltingRecipe(getFluidStack("molten_fluix", 250), ModdedTagBuilder.createNeoFabricItemTag("gems/fluix"),
+                FluidData.getTempByName("molten_fluix"), "fluix/from_fluix", consumer);
+
+        createSimpleMeltingRecipe(getFluidStack("molten_fluix", 1000), BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:fluix_block")),
+                FluidData.getTempByName("molten_fluix"), "fluix/from_block", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_fluix", 250), CastingTags.Items.GEM_MOLD,
+                ModdedTagBuilder.createNeoFabricItemTag("gems/fluix"), "fluix/crystal", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_fluix", 1000), CastingTags.Items.BLOCK_MOLD,
+                BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:fluix_block")), "fluix/block", consumer);
+
+        createSimpleMixingRecipe(fluidList(
+                        getFluidStack("molten_certus_quartz", 250), getFluidStack("molten_redstone", 90), getFluidStack("molten_charged_certus_quartz", 250)),
+                getFluidStack("molten_fluix", 500), "fluix", consumer);
+
+        // AE2 Charged Certus Quartz
+        createSimpleMeltingRecipe(getFluidStack("molten_charged_certus_quartz", 250), BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:charged_certus_quartz_crystal")),
+                FluidData.getTempByName("molten_charged_certus_quartz"), "charged_certus_quartz/from_charged_certus_quartz", consumer);
+
+        createSimpleSolidifierRecipe(getFluidStack("molten_charged_certus_quartz", 250), CastingTags.Items.GEM_MOLD,
+                BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:charged_certus_quartz_crystal")), "charged_certus_quartz/crystal", consumer);
+
+
+
 
         // Experience
         createSimpleSolidifierRecipe(getFluidStack("molten_experience", 100), Items.GLASS_BOTTLE.getDefaultInstance(),
@@ -501,7 +587,7 @@ public class CastingRecipeProvider extends RecipeProvider {
                 getFluidStack("molten_lumium", 360), "lumium", consumer);
 
         createSimpleMixingRecipe(fluidList(
-                        getFluidStack("molten_redstone", 90), getFluidStack("molten_iron", 90), getFluidStack("molten_copper_alloy", 1000)),
+                        getFluidStack("molten_redstone", 90), getFluidStack("molten_iron", 90), getFluidStack("molten_copper_alloy", 90)),
                 getFluidStack("molten_conductive_alloy", 90), "conductive_alloy", consumer);
 
         createSimpleMixingRecipe(fluidList(
@@ -520,6 +606,14 @@ public class CastingRecipeProvider extends RecipeProvider {
                         getFluidStack("molten_debris", 360), getFluidStack("molten_gold", 360)),
                 getFluidStack("molten_netherite", 90), "netherite", consumer);
 
+        //Mod Specific Compat non Resource based
+
+        //RS
+        createSimpleSolidifierRecipe(getFluidStack("molten_quartz_enriched_iron", 810), Tags.Items.STONES,
+                BuiltInRegistries.ITEM.get(ResourceLocation.parse("refinedstorage:machine_casing")), "compat/rs/machine_casting", consumer);
+
+        //createSimpleSolidifierRecipe(getFluidStack("molten_quartz_enriched_iron", 810), Tags.Items.STONES,
+        //        BuiltInRegistries.ITEM.get(ResourceLocation.parse("refinedstorage:machine_casing")), "compat/rs/machine_casting", consumer);
 
     }
 
@@ -531,12 +625,15 @@ public class CastingRecipeProvider extends RecipeProvider {
 
     public void createSimpleMeltingRecipe(FluidStack output, ItemLike input, int temp, String recipeID, RecipeOutput consumer) {
 
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(input.asItem());
+
         MeltingRecipeBuilder.meltingRecipesBuilder(new SizedIngredient(Ingredient.of(input), 1),
                         output, temp)
                 .unlockedBy("has_item", has(input))
-                .save(consumer.withConditions(new ItemExistsCondition(String.valueOf(input.asItem()))),
+                .save(consumer.withConditions(new ItemExistsCondition(itemId.toString())),
                         "casting:melting/" + recipeID);
     }
+
 
     public void createSimpleMeltingRecipe(FluidStack output, TagKey<Item> input, int temp, String recipeID, RecipeOutput consumer) {
 
@@ -549,11 +646,14 @@ public class CastingRecipeProvider extends RecipeProvider {
 
     public void createSimpleSolidifierRecipe(FluidStack output, TagKey<Item> mold, ItemLike input, String recipeID, RecipeOutput consumer) {
 
-        SolidifierRecipeBuilder.solidifierRecipesBuilder(new SizedIngredient(Ingredient.of(mold), 1),
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(input.asItem());
+
+        SolidifierRecipeBuilder.solidifierRecipesBuilder(
+                        new SizedIngredient(Ingredient.of(mold), 1),
                         new SizedIngredient(Ingredient.of(input), 1),
                         output)
                 .unlockedBy("has_item", has(input))
-                .save(consumer.withConditions(new ItemExistsCondition(String.valueOf(input.asItem()))),
+                .save(consumer.withConditions(new ItemExistsCondition(itemId.toString())),
                         "casting:solidifier/" + recipeID);
     }
 
@@ -567,13 +667,17 @@ public class CastingRecipeProvider extends RecipeProvider {
                         "casting:solidifier/" + recipeID);
     }
 
+
     public void createSimpleSolidifierRecipe(FluidStack output, ItemStack mold, ItemLike input, String recipeID, RecipeOutput consumer) {
 
-        SolidifierRecipeBuilder.solidifierRecipesBuilder(new SizedIngredient(Ingredient.of(mold), 1),
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(input.asItem());
+
+        SolidifierRecipeBuilder.solidifierRecipesBuilder(
+                        new SizedIngredient(Ingredient.of(mold), 1),
                         new SizedIngredient(Ingredient.of(input), 1),
                         output)
                 .unlockedBy("has_item", has(input))
-                .save(consumer.withConditions(new ItemExistsCondition(String.valueOf(input.asItem()))),
+                .save(consumer.withConditions(new ItemExistsCondition(itemId.toString())),
                         "casting:solidifier/" + recipeID);
     }
 

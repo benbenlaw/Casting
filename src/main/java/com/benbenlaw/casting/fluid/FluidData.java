@@ -16,9 +16,15 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
 
         //Refined Storage
         fluidList.add(new FluidData("molten_quartz_enriched_iron", "block/molten_still", "block/molten_flow", 0xFF9d9c9a, 1000));
+        fluidList.add(new FluidData("molten_quartz_enriched_copper", "block/molten_still", "block/molten_flow", 0xFFEB8669, 1000));
 
         //Actually Additions
         fluidList.add(new FluidData("molten_black_quartz", "block/molten_still", "block/molten_flow", 0xFF586e75, 1000));
+
+        //AE2
+        fluidList.add(new FluidData("molten_certus_quartz", "block/molten_still", "block/molten_flow", 0xFFaae6fc, 1000));
+        fluidList.add(new FluidData("molten_charged_certus_quartz", "block/molten_still", "block/molten_flow", 0xFFd7fcfc, 1000));
+        fluidList.add(new FluidData("molten_fluix", "block/molten_still", "block/molten_flow", 0xFF262a53, 1000));
 
         //Vanilla
         fluidList.add(new FluidData("molten_iron", "block/molten_still", "block/molten_flow", 0xFFd5d5d5, 1000));

@@ -3,6 +3,7 @@ package com.benbenlaw.casting.block.entity.multiblock;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.multiblock.MultiblockCoolantTankBlock;
+import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.screen.multiblock.MultiblockCoolantTankMenu;
 import com.benbenlaw.casting.util.SingleFluidTank;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
@@ -12,6 +13,7 @@ import com.benbenlaw.core.util.FakePlayerUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -36,6 +38,8 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class MultiblockCoolantTankBlockEntity extends SyncableBlockEntity implements MenuProvider, IInventoryHandlingBlockEntity {
 
@@ -188,5 +192,24 @@ public class MultiblockCoolantTankBlockEntity extends SyncableBlockEntity implem
 
     public boolean onPlayerUse(Player player, InteractionHand hand) {
         return FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+        super.collectImplicitComponents(builder);
+
+        FluidStack fluid = this.fluidHandler.getFluid();
+        if (!fluid.isEmpty()) {
+            builder.set(CastingDataComponents.FLUIDS, List.of(fluid.copy()));
+        }
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentInput input) {
+        super.applyImplicitComponents(input);
+        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
+        if (fluids != null && !fluids.isEmpty()) {
+            this.fluidHandler.setFluid(fluids.getFirst().copy());
+        }
     }
 }

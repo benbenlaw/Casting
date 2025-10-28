@@ -1,11 +1,8 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:tag_empty",
-        "tag": "c:ingots/quartz_enriched_iron"
-      }
+      "type": "neoforge:item_exists",
+      "item": "refinedstorage:quartz_enriched_iron"
     }
   ],
   "type": "casting:solidifier",
@@ -19,6 +16,6 @@
   },
   "output": {
     "count": 1,
-    "tag": "c:ingots/quartz_enriched_iron"
+    "item": "refinedstorage:quartz_enriched_iron"
   }
 }

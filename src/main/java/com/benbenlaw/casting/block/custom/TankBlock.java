@@ -59,31 +59,36 @@ public class TankBlock extends BaseEntityBlock {
             Fluid tankFluid = tankEntity.getFluidStack().getFluid();
             int tankFluidAmount = tankEntity.getFluidStack().getAmount();
 
-            if (itemStack.get(CastingDataComponents.FLUID_TYPE) != null && itemStack.get(CastingDataComponents.FLUID_AMOUNT) != null) {
-                Fluid itemFluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(Objects.requireNonNull(itemStack.get(CastingDataComponents.FLUID_TYPE))));
-                int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
+            if (itemStack.get(CastingDataComponents.FLUIDS) != null) {
+                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
+                assert fluidStacks != null;
+                Fluid itemFluid = fluidStacks.getFirst().getFluid();
+                int fluidAmount = fluidStacks.getFirst().getAmount();
                 if (tankFluid.isSame(itemFluid) || tankFluid == Fluids.EMPTY) {
                     int space = tankEntity.FLUID_TANK.getSpace();
                     int amountToTransfer = Math.min(space, fluidAmount); // Ensure we don't transfer more than the tank can hold
                     tankEntity.FLUID_TANK.fill(new FluidStack(itemFluid, amountToTransfer), IFluidHandler.FluidAction.EXECUTE);
-                    itemStack.set(CastingDataComponents.FLUID_AMOUNT, fluidAmount - amountToTransfer);
+
+                    int remainingFluidAmount = fluidAmount - amountToTransfer;
+                    itemStack.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(itemFluid, remainingFluidAmount)));
+
                     if (fluidAmount - amountToTransfer == 0) {
-                        itemStack.remove(CastingDataComponents.FLUID_TYPE);
-                        itemStack.remove(CastingDataComponents.FLUID_AMOUNT);
+                        itemStack.remove(CastingDataComponents.FLUIDS);
                     }
                     return ItemInteractionResult.SUCCESS;
                 }
             }
 
-            if (itemStack.get(CastingDataComponents.FLUID_TYPE) == null || itemStack.get(CastingDataComponents.FLUID_AMOUNT) == null) {
+            if (itemStack.get(CastingDataComponents.FLUIDS) == null) {
                 if (tankFluid != Fluids.EMPTY) {
-                    int currentFluidAmountInItem = itemStack.get(CastingDataComponents.FLUID_AMOUNT) != null ? itemStack.get(CastingDataComponents.FLUID_AMOUNT) : 0;
+                    List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
+
+                    int currentFluidAmountInItem = fluidStacks != null ? fluidStacks.getFirst().getAmount() : 0;
                     int remainingSpaceInItem = 8000 - currentFluidAmountInItem;
                     int amountToExtract = Math.min(tankFluidAmount, remainingSpaceInItem);
                     if (amountToExtract > 0) {
                         FluidStack extractedFluid = tankEntity.FLUID_TANK.drain(amountToExtract, IFluidHandler.FluidAction.EXECUTE);
-                        itemStack.set(CastingDataComponents.FLUID_TYPE, BuiltInRegistries.FLUID.getKey(extractedFluid.getFluid()).toString());
-                        itemStack.set(CastingDataComponents.FLUID_AMOUNT, extractedFluid.getAmount());
+                        itemStack.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(Objects.requireNonNull(extractedFluid).getFluid(), currentFluidAmountInItem + extractedFluid.getAmount())));
                         return ItemInteractionResult.SUCCESS;
                     }
                 }
@@ -101,50 +106,25 @@ public class TankBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity entity, ItemStack itemStack) {
-        super.setPlacedBy(level, blockPos, blockState, entity, itemStack);
-
-        if (itemStack.has(CastingDataComponents.FLUID_TYPE) && itemStack.has(CastingDataComponents.FLUID_AMOUNT)) {
-            String fluidAsString = itemStack.get(CastingDataComponents.FLUID_TYPE);
-            assert fluidAsString != null;
-            Fluid fluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString));
-            int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
-            TankBlockEntity tankEntity = (TankBlockEntity) level.getBlockEntity(blockPos);
-            tankEntity.setFluid(new FluidStack(fluid, fluidAmount));
-        }
-    }
-
-
-    @Override
-    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack stack) {
-        if (entity instanceof TankBlockEntity tankEntity) {
-
-            if (tankEntity.getFluidStack().getFluid() != Fluids.EMPTY && tankEntity.getFluidStack().getAmount() > 0 ){
-                ItemStack itemStackWithFluid = new ItemStack(this);
-                itemStackWithFluid.set(CastingDataComponents.FLUID_TYPE, tankEntity.getFluidStack().getFluid().getFluidType().toString());
-                itemStackWithFluid.set(CastingDataComponents.FLUID_AMOUNT, tankEntity.getFluidStack().getAmount());
-                popResource(level, pos, itemStackWithFluid);
-            } else {
-                popResource(level, pos, this.asItem().getDefaultInstance());
-            }
-        }
-        super.playerDestroy(level, player, pos, state, entity, stack);
-    }
-
-    @Override
     public void appendHoverText(ItemStack itemStack, Item.@NotNull TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
 
         if (Screen.hasShiftDown()) {
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE)) {
-                String fluidAsString = itemStack.get(CastingDataComponents.FLUID_TYPE);
-                int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
-                assert fluidAsString != null;
-                FluidType fluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString)).getFluidType();
-                components.add(Component.literal("Contains: ").append(fluidAmount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+
+            if (itemStack.has(CastingDataComponents.FLUIDS)) {
+                components.add(Component.literal("Fluids:").withStyle(ChatFormatting.BLUE));
+
+                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
+
+                assert fluidStacks != null;
+                for (FluidStack fluidStack : fluidStacks) {
+                    FluidType fluid = fluidStack.getFluid().getFluidType();
+                    int amount = fluidStack.getAmount();
+                    components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                }
             }
         }
 
-        else if (itemStack.has(CastingDataComponents.FLUID_TYPE)) {
+        else {
             components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
 

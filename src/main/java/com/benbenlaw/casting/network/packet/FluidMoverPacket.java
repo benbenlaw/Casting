@@ -20,6 +20,9 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+
+import java.util.List;
+
 @Deprecated(since = "2.0.0")
 public record FluidMoverPacket() {
 
@@ -123,12 +126,12 @@ public record FluidMoverPacket() {
         int itemMaxCapacity = 8000;  // Max fluid capacity for the item
 
         // Check if the carried item has fluid (attempt to empty the item into the tank first)
-        if (carriedItem.get(CastingDataComponents.FLUID_TYPE) != null) {
-            String fluidAsString = carriedItem.get(CastingDataComponents.FLUID_TYPE);
-            assert fluidAsString != null;
+        if (carriedItem.get(CastingDataComponents.FLUIDS) != null) {
+            List<FluidStack> fluids = carriedItem.get(CastingDataComponents.FLUIDS);
 
-            Fluid carriedFluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString));
-            int carriedAmount = carriedItem.get(CastingDataComponents.FLUID_AMOUNT);
+            assert fluids != null;
+            Fluid carriedFluid = fluids.getFirst().getFluid();
+            int carriedAmount = fluids.getFirst().getAmount();
 
             // Ensure we're not trying to add fluid to the output tank
             if (!isOutputTank) {
@@ -141,14 +144,13 @@ public record FluidMoverPacket() {
                     if (amountToTransfer > 0) {
                         // Transfer the fluid from the item to the tank
                         tank.fill(new FluidStack(carriedFluid, amountToTransfer), IFluidHandler.FluidAction.EXECUTE);
-
                         // Reduce the fluid amount in the carried item
-                        carriedItem.set(CastingDataComponents.FLUID_AMOUNT, carriedAmount - amountToTransfer);
+                        int remainingAmount = carriedAmount - amountToTransfer;
+                        carriedItem.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(carriedFluid, remainingAmount)));
 
                         // If the item is empty after the transfer, clear the fluid data
-                        if (carriedItem.get(CastingDataComponents.FLUID_AMOUNT) <= 0) {
-                            carriedItem.remove(CastingDataComponents.FLUID_TYPE);
-                            carriedItem.remove(CastingDataComponents.FLUID_AMOUNT);
+                        if (carriedItem.get(CastingDataComponents.FLUIDS.get()).getFirst().isEmpty()) {
+                            carriedItem.remove(CastingDataComponents.FLUIDS);
                         }
                         return; // End the method if we successfully transferred fluid to the tank
                     }
@@ -164,21 +166,20 @@ public record FluidMoverPacket() {
         if (!tank.isEmpty()) {
             FluidStack currentFluidInTank = tank.getFluid();
 
-            if (carriedItem.get(CastingDataComponents.FLUID_TYPE) == null) {
+            if (carriedItem.get(CastingDataComponents.FLUIDS) == null) {
                 // Transfer fluid from the tank to the item if the item has no fluid
                 int transferAmount = Math.min(currentFluidInTank.getAmount(), itemMaxCapacity); // Limit by item max capacity
-                carriedItem.set(CastingDataComponents.FLUID_TYPE, currentFluidInTank.getFluid().getFluidType().toString());
-                carriedItem.set(CastingDataComponents.FLUID_AMOUNT, transferAmount);
+                carriedItem.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(currentFluidInTank.getFluid(), transferAmount)));
 
                 // Reduce or empty the tank after transfer
                 tank.setFluid(new FluidStack(currentFluidInTank.getFluid(), currentFluidInTank.getAmount() - transferAmount));
 
-            } else if (carriedItem.get(CastingDataComponents.FLUID_TYPE) != null) {
-                String fluidAsString = carriedItem.get(CastingDataComponents.FLUID_TYPE);
-                assert fluidAsString != null;
+            } else if (carriedItem.get(CastingDataComponents.FLUIDS) != null) {
 
-                Fluid carriedFluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString));
-                int carriedAmount = carriedItem.get(CastingDataComponents.FLUID_AMOUNT);
+                List<FluidStack> fluids = carriedItem.get(CastingDataComponents.FLUIDS);
+                assert fluids != null;
+                Fluid carriedFluid = fluids.getFirst().getFluid();
+                int carriedAmount = fluids.getFirst().getAmount();
 
                 // Check if the carried fluid matches the fluid in the tank
                 if (carriedFluid.equals(currentFluidInTank.getFluid())) {
@@ -189,7 +190,8 @@ public record FluidMoverPacket() {
                     int amountToTransfer = Math.min(currentTankAmount, remainingCapacity);
 
                     if (amountToTransfer > 0) {
-                        carriedItem.set(CastingDataComponents.FLUID_AMOUNT, carriedAmount + amountToTransfer);
+                        int newCarriedAmount = carriedAmount + amountToTransfer;
+                        carriedItem.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(carriedFluid, newCarriedAmount)));
 
                         // Reduce the fluid in the tank
                         tank.setFluid(new FluidStack(currentFluidInTank.getFluid(), currentTankAmount - amountToTransfer));

@@ -45,7 +45,7 @@ The Solidifier allows molten fluids to me molded into whatever items you need. T
 
 # Fluid Mover
 
-The fluid mover allows you to move fluids around from inside a machines GUI. The Fluid Mover cannot place fluids into the output of a GUI. It can also be used in world on Fuel Tanks to extract and insert fluids
+The fluid mover allows you to move fluids around from inside a machines GUI. The Fluid Mover cannot place fluids into the output of a GUI. It can also be used in world on Fuel Tanks to extract and insert fluids. Note the fluid mover only works on SIMPLE casting machines not the MULTIBLOCK ones.
 
 <Row>
   <Recipe id="casting:fluid_mover" />

@@ -241,6 +241,39 @@ public class MultiFluidTankSharedCapacity implements IFluidHandler {
         return drained;
     }
 
+    public void setFluids(List<FluidStack> newFluids) {
+        this.fluids.clear();
+
+        if (newFluids == null || newFluids.isEmpty()) {
+            onContentsChanged();
+            return;
+        }
+
+        int totalAdded = 0;
+        int typesAdded = 0;
+
+        for (FluidStack stack : newFluids) {
+            if (stack == null || stack.isEmpty()) continue;
+
+            if (regulationEnabled && typesAdded >= maxFluidTypes) break;
+
+            int spaceLeft = enabledCapacity - totalAdded;
+            if (spaceLeft <= 0) break;
+
+            int amountToAdd = Math.min(stack.getAmount(), spaceLeft);
+            if (amountToAdd <= 0) break;
+
+            FluidStack copy = stack.copy();
+            copy.setAmount(amountToAdd);
+            this.fluids.add(copy);
+
+            totalAdded += amountToAdd;
+            typesAdded++;
+        }
+
+        onContentsChanged();
+    }
+
     public void readFromNBT(HolderLookup.Provider provider, Tag nbt) {
         if (nbt instanceof CompoundTag compoundTag) {
             this.fluids.clear();

@@ -1,14 +1,22 @@
 package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.block.CastingBlocks;
+import com.benbenlaw.casting.item.CastingDataComponents;
 import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.packs.VanillaBlockLoot;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jetbrains.annotations.NotNull;
 
+import javax.naming.Context;
 import java.util.Set;
 
 public class CastingLootTableProvider extends VanillaBlockLoot {
@@ -20,9 +28,9 @@ public class CastingLootTableProvider extends VanillaBlockLoot {
     protected void generate() {
 
         this.dropSelf(CastingBlocks.BLACK_BRICKS.get());
-        this.dropSelf(CastingBlocks.MULTIBLOCK_CONTROLLER.get());
-        this.dropSelf(CastingBlocks.MULTIBLOCK_FUEL_TANK.get());
-        this.dropSelf(CastingBlocks.MULTIBLOCK_COOLANT_TANK.get());
+        dropWithFluidComponent(CastingBlocks.MULTIBLOCK_CONTROLLER.get());
+        dropWithFluidComponent(CastingBlocks.MULTIBLOCK_FUEL_TANK.get());
+        dropWithFluidComponent(CastingBlocks.MULTIBLOCK_COOLANT_TANK.get());
         this.dropSelf(CastingBlocks.MULTIBLOCK_SOLIDIFIER.get());
         this.dropSelf(CastingBlocks.MULTIBLOCK_VALVE.get());
         this.dropSelf(CastingBlocks.MULTIBLOCK_MIXER.get());
@@ -30,13 +38,22 @@ public class CastingLootTableProvider extends VanillaBlockLoot {
         this.dropSelf(CastingBlocks.MULTIBLOCK_REGULATOR.get());
 
         //OG Casting
-        this.dropOther(CastingBlocks.CONTROLLER.get(), Items.AIR);
-        this.dropOther(CastingBlocks.TANK.get(), Items.AIR);
-        this.dropOther(CastingBlocks.SOLIDIFIER.get(), Items.AIR);
-        this.dropOther(CastingBlocks.MIXER.get(), Items.AIR);
         this.dropSelf(CastingBlocks.MIXER_WHISK.get());
-        this.dropOther(CastingBlocks.EQUIPMENT_MODIFIER.get(), Items.AIR);
+        dropWithFluidComponent(CastingBlocks.CONTROLLER.get());
+        dropWithFluidComponent(CastingBlocks.SOLIDIFIER.get());
+        dropWithFluidComponent(CastingBlocks.MIXER.get());
+        dropWithFluidComponent(CastingBlocks.TANK.get());
+        dropWithFluidComponent(CastingBlocks.EQUIPMENT_MODIFIER.get());
 
+    }
+
+    private void dropWithFluidComponent(Block block) {
+        this.add(block, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(block)
+                                .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                        .include(CastingDataComponents.FLUIDS.get())))));
     }
 
 

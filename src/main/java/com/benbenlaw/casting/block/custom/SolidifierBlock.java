@@ -128,55 +128,27 @@ public class SolidifierBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity entity, ItemStack itemStack) {
-        super.setPlacedBy(level, blockPos, blockState, entity, itemStack);
-
-        if (itemStack.has(CastingDataComponents.FLUID_TYPE) && itemStack.has(CastingDataComponents.FLUID_AMOUNT)) {
-            String fluidAsString = itemStack.get(CastingDataComponents.FLUID_TYPE);
-            assert fluidAsString != null;
-            Fluid fluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString));
-            int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
-            SolidifierBlockEntity solidifierBlockEntity = (SolidifierBlockEntity) level.getBlockEntity(blockPos);
-            assert solidifierBlockEntity != null;
-            solidifierBlockEntity.setFluid(new FluidStack(fluid, fluidAmount));
-        }
-    }
-
-
-    @Override
-    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack stack) {
-        if (entity instanceof SolidifierBlockEntity solidifierBlockEntity) {
-
-            if (solidifierBlockEntity.getFluidStack().getFluid() != Fluids.EMPTY && solidifierBlockEntity.getFluidStack().getAmount() > 0 ){
-                ItemStack itemStackWithFluid = new ItemStack(this);
-                itemStackWithFluid.set(CastingDataComponents.FLUID_TYPE, solidifierBlockEntity.getFluidStack().getFluid().getFluidType().toString());
-                itemStackWithFluid.set(CastingDataComponents.FLUID_AMOUNT, solidifierBlockEntity.getFluidStack().getAmount());
-                popResource(level, pos, itemStackWithFluid);
-            } else {
-                popResource(level, pos, this.asItem().getDefaultInstance());
-            }
-        }
-        super.playerDestroy(level, player, pos, state, entity, stack);
-    }
-
-    @Override
     public void appendHoverText(ItemStack itemStack, Item.@NotNull TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
 
         if (Screen.hasShiftDown()) {
 
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE)) {
-                String fluidAsString = itemStack.get(CastingDataComponents.FLUID_TYPE);
-                int fluidAmount = itemStack.get(CastingDataComponents.FLUID_AMOUNT);
-                assert fluidAsString != null;
-                FluidType fluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString)).getFluidType();
-                components.add(Component.literal("Contains: ").append(fluidAmount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+            if (itemStack.has(CastingDataComponents.FLUIDS)) {
+                components.add(Component.literal("Fluids:").withStyle(ChatFormatting.BLUE));
+
+                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
+
+                assert fluidStacks != null;
+                for (FluidStack fluidStack : fluidStacks) {
+                    FluidType fluid = fluidStack.getFluid().getFluidType();
+                    int amount = fluidStack.getAmount();
+                    components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                }
             }
         }
 
-        else if (itemStack.has(CastingDataComponents.FLUID_TYPE)) {
+        else {
             components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
-
         super.appendHoverText(itemStack, context, components, flag);
 
     }

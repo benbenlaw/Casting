@@ -1,13 +1,18 @@
 package com.benbenlaw.casting.block.entity;
 
+import com.benbenlaw.casting.item.CastingDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,6 +21,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -23,6 +29,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Objects;
 
 public class TankBlockEntity extends BlockEntity {
@@ -162,6 +169,25 @@ public class TankBlockEntity extends BlockEntity {
         FLUID_TANK.readFromNBT(provider, compoundTag.getCompound("fluidTank"));
         super.loadAdditional(compoundTag, provider);
 
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+        super.collectImplicitComponents(builder);
+
+        FluidStack fluid = this.FLUID_TANK.getFluid();
+        if (!fluid.isEmpty()) {
+            builder.set(CastingDataComponents.FLUIDS, List.of(fluid.copy()));
+        }
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentInput input) {
+        super.applyImplicitComponents(input);
+        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
+        if (fluids != null && !fluids.isEmpty()) {
+            this.FLUID_TANK.setFluid(fluids.getFirst().copy());
+        }
     }
 
     public boolean onPlayerUse(Player player, InteractionHand hand) {

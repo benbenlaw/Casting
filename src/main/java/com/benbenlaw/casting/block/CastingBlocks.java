@@ -63,7 +63,7 @@ public class CastingBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
                     .noOcclusion()));
     public static final DeferredBlock<Block> EQUIPMENT_MODIFIER = registerBlock("equipment_modifier",
-            () -> new EquipmentlModifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
+            () -> new EquipmentModifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.STONE)
                     .noOcclusion()));
 
 

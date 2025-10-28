@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.block.entity;
 
 import com.benbenlaw.casting.config.ModifierSetsConfig;
+import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.CastingItems;
 import com.benbenlaw.casting.item.EquipmentModifier;
 import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
@@ -15,6 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -657,9 +659,6 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
         }
     }
 
-
-
-
     private boolean hasEnoughFluid(FluidStack output) {
         if (output == null || output.isEmpty()) {
             return false;
@@ -672,6 +671,25 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
         return tankAmount >= output.getAmount() &&
                 TANK.getFluid().getFluid() == output.getFluid();
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+        super.collectImplicitComponents(builder);
+
+        FluidStack fluid = this.TANK.getFluid();
+        if (!fluid.isEmpty()) {
+            builder.set(CastingDataComponents.FLUIDS, List.of(fluid.copy()));
+        }
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentInput input) {
+        super.applyImplicitComponents(input);
+        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
+        if (fluids != null && !fluids.isEmpty()) {
+            this.TANK.setFluid(fluids.getFirst().copy());
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.block.entity;
 
 import com.benbenlaw.casting.block.CastingBlocks;
+import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.recipe.FuelRecipe;
 import com.benbenlaw.casting.recipe.MixingRecipe;
 import com.benbenlaw.casting.screen.MixerMenu;
@@ -8,6 +9,7 @@ import com.benbenlaw.core.recipe.NoInventoryRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -679,5 +681,37 @@ public class MixerBlockEntity extends BlockEntity implements MenuProvider {
             }
         }
         return false;
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+        super.collectImplicitComponents(builder);
+
+        List<FluidStack> fluids = List.of(
+                this.TANK_1.getFluid(),
+                this.TANK_2.getFluid(),
+                this.TANK_3.getFluid(),
+                this.TANK_4.getFluid(),
+                this.TANK_5.getFluid(),
+                this.TANK_6.getFluid(),
+                this.OUTPUT_TANK.getFluid()
+        );
+
+        builder.set(CastingDataComponents.FLUIDS, fluids);
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentInput input) {
+        super.applyImplicitComponents(input);
+        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
+        if (fluids != null) {
+            this.TANK_1.setFluid(fluids.get(0).copy());
+            this.TANK_2.setFluid(fluids.get(1).copy());
+            this.TANK_3.setFluid(fluids.get(2).copy());
+            this.TANK_4.setFluid(fluids.get(3).copy());
+            this.TANK_5.setFluid(fluids.get(4).copy());
+            this.TANK_6.setFluid(fluids.get(5).copy());
+            this.OUTPUT_TANK.setFluid(fluids.get(6).copy());
+        }
     }
 }

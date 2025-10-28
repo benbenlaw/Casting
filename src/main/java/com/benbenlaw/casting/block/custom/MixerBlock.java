@@ -127,164 +127,27 @@ public class MixerBlock extends BaseEntityBlock {
         return InteractionResult.FAIL;
     }
 
-    @Override
-    public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity entity, ItemStack itemStack) {
-        super.setPlacedBy(level, blockPos, blockState, entity, itemStack);
-
-        if (level.getBlockEntity(blockPos) instanceof MixerBlockEntity mixerBlockEntity) {
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_1) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_1)) {
-                String fluidAsString1 = itemStack.get(CastingDataComponents.FLUID_TYPE_1);
-                Fluid fluid1 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString1));
-                int fluidAmount1 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_1);
-                mixerBlockEntity.setFluid1(new FluidStack(fluid1, fluidAmount1));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_2) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_2)) {
-                String fluidAsString2 = itemStack.get(CastingDataComponents.FLUID_TYPE_2);
-                Fluid fluid2 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString2));
-                int fluidAmount2 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_2);
-                mixerBlockEntity.setFluid2(new FluidStack(fluid2, fluidAmount2));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_3) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_3)) {
-                String fluidAsString3 = itemStack.get(CastingDataComponents.FLUID_TYPE_3);
-                Fluid fluid3 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString3));
-                int fluidAmount3 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_3);
-                mixerBlockEntity.setFluid3(new FluidStack(fluid3, fluidAmount3));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_4) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_4)) {
-                String fluidAsString4 = itemStack.get(CastingDataComponents.FLUID_TYPE_4);
-                Fluid fluid4 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString4));
-                int fluidAmount4 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_4);
-                mixerBlockEntity.setFluid4(new FluidStack(fluid4, fluidAmount4));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_5) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_5)) {
-                String fluidAsString5 = itemStack.get(CastingDataComponents.FLUID_TYPE_5);
-                Fluid fluid5 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString5));
-                int fluidAmount5 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_5);
-                mixerBlockEntity.setFluid5(new FluidStack(fluid5, fluidAmount5));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_6) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_6)) {
-                String fluidAsString6 = itemStack.get(CastingDataComponents.FLUID_TYPE_6);
-                Fluid fluid6 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString6));
-                int fluidAmount6 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_6);
-                mixerBlockEntity.setFluid6(new FluidStack(fluid6, fluidAmount6));
-            }
-
-            if (itemStack.has(CastingDataComponents.OUTPUT_FLUID_1) && itemStack.has(CastingDataComponents.OUTPUT_FLUID_AMOUNT_1)) {
-                String outputFluidAsString = itemStack.get(CastingDataComponents.OUTPUT_FLUID_1);
-                Fluid outputFluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(outputFluidAsString));
-                int outputFluidAmount = itemStack.get(CastingDataComponents.OUTPUT_FLUID_AMOUNT_1);
-                mixerBlockEntity.setOutputFluid(new FluidStack(outputFluid, outputFluidAmount));
-            }
-        }
-    }
-
-
-
-    @Override
-    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity entity, ItemStack stack) {
-        if (entity instanceof MixerBlockEntity mixerBlockEntity) {
-
-            ItemStack itemStackWithFluids = new ItemStack(this);
-
-            if (mixerBlockEntity.getFluidStack1().getFluid() != Fluids.EMPTY && mixerBlockEntity.getFluidStack1().getAmount() > 0) {
-                itemStackWithFluids.set(CastingDataComponents.FLUID_TYPE_1, mixerBlockEntity.getFluidStack1().getFluid().getFluidType().toString());
-                itemStackWithFluids.set(CastingDataComponents.FLUID_AMOUNT_1, mixerBlockEntity.getFluidStack1().getAmount());
-            }
-            if (mixerBlockEntity.getFluidStack2().getFluid() != Fluids.EMPTY && mixerBlockEntity.getFluidStack2().getAmount() > 0) {
-                itemStackWithFluids.set(CastingDataComponents.FLUID_TYPE_2, mixerBlockEntity.getFluidStack2().getFluid().getFluidType().toString());
-                itemStackWithFluids.set(CastingDataComponents.FLUID_AMOUNT_2, mixerBlockEntity.getFluidStack2().getAmount());
-            }
-            if (mixerBlockEntity.getFluidStack3().getFluid() != Fluids.EMPTY && mixerBlockEntity.getFluidStack3().getAmount() > 0) {
-                itemStackWithFluids.set(CastingDataComponents.FLUID_TYPE_3, mixerBlockEntity.getFluidStack3().getFluid().getFluidType().toString());
-                itemStackWithFluids.set(CastingDataComponents.FLUID_AMOUNT_3, mixerBlockEntity.getFluidStack3().getAmount());
-            }
-            if (mixerBlockEntity.getFluidStack4().getFluid() != Fluids.EMPTY && mixerBlockEntity.getFluidStack4().getAmount() > 0) {
-                itemStackWithFluids.set(CastingDataComponents.FLUID_TYPE_4, mixerBlockEntity.getFluidStack4().getFluid().getFluidType().toString());
-                itemStackWithFluids.set(CastingDataComponents.FLUID_AMOUNT_4, mixerBlockEntity.getFluidStack4().getAmount());
-            }
-            if (mixerBlockEntity.getFluidStack5().getFluid() != Fluids.EMPTY && mixerBlockEntity.getFluidStack5().getAmount() > 0) {
-                itemStackWithFluids.set(CastingDataComponents.FLUID_TYPE_5, mixerBlockEntity.getFluidStack5().getFluid().getFluidType().toString());
-                itemStackWithFluids.set(CastingDataComponents.FLUID_AMOUNT_5, mixerBlockEntity.getFluidStack5().getAmount());
-            }
-            if (mixerBlockEntity.getFluidStack6().getFluid() != Fluids.EMPTY && mixerBlockEntity.getFluidStack6().getAmount() > 0) {
-                itemStackWithFluids.set(CastingDataComponents.FLUID_TYPE_6, mixerBlockEntity.getFluidStack6().getFluid().getFluidType().toString());
-                itemStackWithFluids.set(CastingDataComponents.FLUID_AMOUNT_6, mixerBlockEntity.getFluidStack6().getAmount());
-            }
-            if (mixerBlockEntity.getOutputFluid().getFluid() != Fluids.EMPTY && mixerBlockEntity.getOutputFluid().getAmount() > 0) {
-                itemStackWithFluids.set(CastingDataComponents.OUTPUT_FLUID_1, mixerBlockEntity.getOutputFluid().getFluid().getFluidType().toString());
-                itemStackWithFluids.set(CastingDataComponents.OUTPUT_FLUID_AMOUNT_1, mixerBlockEntity.getOutputFluid().getAmount());
-            }
-            popResource(level, pos, itemStackWithFluids);
-
-        } else {
-            popResource(level, pos, this.asItem().getDefaultInstance());
-        }
-
-        super.playerDestroy(level, player, pos, state, entity, stack);
-    }
-
 
     @Override
     public void appendHoverText(ItemStack itemStack, @NotNull Item.TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
 
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
 
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_1) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_1)) {
-                String fluidAsString1 = itemStack.get(CastingDataComponents.FLUID_TYPE_1);
-                int fluidAmount1 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_1);
-                FluidType fluid1 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString1)).getFluidType();
-                components.add(Component.literal("Tank 1 Contains: ").append(fluidAmount1 + "mb ").append(Component.translatable(fluid1.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-            }
+            if (itemStack.has(CastingDataComponents.FLUIDS)) {
+                components.add(Component.literal("Fluids:").withStyle(ChatFormatting.BLUE));
 
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_2) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_2)) {
-                String fluidAsString2 = itemStack.get(CastingDataComponents.FLUID_TYPE_2);
-                int fluidAmount2 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_2);
-                FluidType fluid2 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString2)).getFluidType();
-                components.add(Component.literal("Tank 2 Contains: ").append(fluidAmount2 + "mb ").append(Component.translatable(fluid2.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-            }
+                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
 
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_3) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_3)) {
-                String fluidAsString3 = itemStack.get(CastingDataComponents.FLUID_TYPE_3);
-                int fluidAmount3 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_3);
-                FluidType fluid3 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString3)).getFluidType();
-                components.add(Component.literal("Tank 3 Contains: ").append(fluidAmount3 + "mb ").append(Component.translatable(fluid3.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_4) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_4)) {
-                String fluidAsString4 = itemStack.get(CastingDataComponents.FLUID_TYPE_4);
-                int fluidAmount4 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_4);
-                FluidType fluid4 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString4)).getFluidType();
-                components.add(Component.literal("Tank 4 Contains: ").append(fluidAmount4 + "mb ").append(Component.translatable(fluid4.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_5) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_5)) {
-                String fluidAsString5 = itemStack.get(CastingDataComponents.FLUID_TYPE_5);
-                int fluidAmount5 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_5);
-                FluidType fluid5 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString5)).getFluidType();
-                components.add(Component.literal("Tank 5 Contains: ").append(fluidAmount5 + "mb ").append(Component.translatable(fluid5.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-            }
-
-            if (itemStack.has(CastingDataComponents.FLUID_TYPE_6) && itemStack.has(CastingDataComponents.FLUID_AMOUNT_6)) {
-                String fluidAsString6 = itemStack.get(CastingDataComponents.FLUID_TYPE_6);
-                int fluidAmount6 = itemStack.get(CastingDataComponents.FLUID_AMOUNT_6);
-                FluidType fluid6 = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(fluidAsString6)).getFluidType();
-                components.add(Component.literal("Tank 6 Contains: ").append(fluidAmount6 + "mb ").append(Component.translatable(fluid6.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-            }
-
-            if (itemStack.has(CastingDataComponents.OUTPUT_FLUID_1) && itemStack.has(CastingDataComponents.OUTPUT_FLUID_AMOUNT_1)) {
-                String outputFluidAsString = itemStack.get(CastingDataComponents.OUTPUT_FLUID_1);
-                int outputFluidAmount = itemStack.get(CastingDataComponents.OUTPUT_FLUID_AMOUNT_1);
-                FluidType outputFluid = BuiltInRegistries.FLUID.get(ResourceLocation.tryParse(outputFluidAsString)).getFluidType();
-                components.add(Component.literal("Output Tank Contains: ").append(outputFluidAmount + "mb ").append(Component.translatable(outputFluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                assert fluidStacks != null;
+                for (FluidStack fluidStack : fluidStacks) {
+                    FluidType fluid = fluidStack.getFluid().getFluidType();
+                    int amount = fluidStack.getAmount();
+                    components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                }
             }
         }
-        else if (itemStack.has(CastingDataComponents.FLUID_TYPE_1)) {
+
+        else {
             components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
 

@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-21T09:45:13.8359944	Tags for minecraft:fluid mod id casting
+// 1.21.1	2025-10-28T09:03:51.6937945	Tags for minecraft:fluid mod id casting
 a0180619fbf98291dcb53dfaa0e4dac895afbffd data/c/tags/fluid/chilled_water.json
 4b5f9cfc42b372d1de1abebf0a981daf6a11a2fd data/c/tags/fluid/iced_water.json
 079289e049dd083bc8a5856acb4834e538937339 data/c/tags/fluid/molten_aluminum.json
@@ -7,6 +7,8 @@ a0180619fbf98291dcb53dfaa0e4dac895afbffd data/c/tags/fluid/chilled_water.json
 b73c788ef020160dc67a2cc97b9058f98ed13317 data/c/tags/fluid/molten_blaze.json
 e506a4f87256c178ff81d006531b1ac8788b826e data/c/tags/fluid/molten_brass.json
 f926520f710f287ebb9f96fc75c1843efaea8298 data/c/tags/fluid/molten_bronze.json
+1e98887eec5cea5bdd90fd82e3c5422986770b09 data/c/tags/fluid/molten_certus_quartz.json
+e3c4a81ff278594ffc69dd20e931772781ff3cb8 data/c/tags/fluid/molten_charged_certus_quartz.json
 fd659f563713579cd6e73de4c0034a0631fbffc0 data/c/tags/fluid/molten_coal.json
 6759aceb117cb7c8b207a3cfb9131567c063c412 data/c/tags/fluid/molten_conductive_alloy.json
 f1a50847956408d69225b1188c53c3df7d520365 data/c/tags/fluid/molten_constantan.json
@@ -23,6 +25,7 @@ daf0f56534530f6814ea71d3d6e2783c37fde05a data/c/tags/fluid/molten_end_steel.json
 31a06f1ea396aa4802c57de6be7b462aaae3a5bf data/c/tags/fluid/molten_end_stone.json
 5cc102f6cbe2ce5d1fa805d455a57d4fd55518ad data/c/tags/fluid/molten_energetic_alloy.json
 de8ae30eb0d8f53c72ef45c57c82eed8a1d3883b data/c/tags/fluid/molten_experience.json
+abf83fa5b4c406b0f817913a2ed9f87eee8d07d5 data/c/tags/fluid/molten_fluix.json
 a7a621986d6cc4c66ef1a384807dd1c115545293 data/c/tags/fluid/molten_glass.json
 e2a9fcb992991c19f6ae0f13714f97659f15476f data/c/tags/fluid/molten_glowstone.json
 f718834b77da343b6bb840f7e0f5913edd50c591 data/c/tags/fluid/molten_gold.json
@@ -40,6 +43,7 @@ a44441aae02947764f69a849e027770e28662ed8 data/c/tags/fluid/molten_peridot.json
 7ce9fb81ce073ad035dc653dc2ba7fc26c43a2cd data/c/tags/fluid/molten_platinum.json
 69f78642304b3a74324a7ce6ce3fc6137354d1c2 data/c/tags/fluid/molten_pulsating_alloy.json
 c034f068ac8915c2c045aab649d1e0825662d051 data/c/tags/fluid/molten_quartz.json
+d0bd71b66ac5c0bdedfa5c0d9a20ebd48be07fde data/c/tags/fluid/molten_quartz_enriched_copper.json
 2b9c585814c5126dda6cb097a295adb5725b1014 data/c/tags/fluid/molten_quartz_enriched_iron.json
 417fd040173e1c45f8e1e1a699b9171a0682c953 data/c/tags/fluid/molten_redstone.json
 ab953512fbf6c291d4d0014d231786b06b8eb9f0 data/c/tags/fluid/molten_redstone_alloy.json

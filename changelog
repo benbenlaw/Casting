@@ -8,6 +8,21 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+2.3.0
+- Updated NeoForge to 21.1.204
+- Fixed Molten Conductive Alloy recipe using too much copper alloy in its recipe
+- Fixed Quartz Enriched Iron recipe as tag is not in the Refined Storage mod
+- Added Machine Casing recipe for RS
+- Added Quartz Enriched Copper from RS
+- Added molten certus quartz, charged certus quartz and fluix, molten fluix can be mixed in controller from molten certus quartz, molten charged certus quartz and molten redstone
+- Fixed Fluid Mover tooltips
+- Changed how storing fluids when in item form, removed all number fluids data components and unified all under the FLUIDS component,
+    this should improve compatibility with mod that do not register both fluids types and fluids. Now storing as FluidStacks not string and int. Confirmed to work
+    with Just Dire Things and probably Oritech now as well
+- Simple Casting blocks with fluid tanks now use loot tables correctly follow vanilla standards
+- Muiltiblock Coolant Tank, Fuel Tank and Controller now retain there fluids when broken
+- Add blocks that now store fluids when broken can now be crafted back into a empty version
+
 2.2.24
 - Multiblock Valve, Mixer and Solidifier now cycle though fluids forward and backwards using left and right click respectively. Clearing the fluid is done by shift clicking
 - Fixed crashing when Multiblock Valve, Mixer or Solidifier have no filter options

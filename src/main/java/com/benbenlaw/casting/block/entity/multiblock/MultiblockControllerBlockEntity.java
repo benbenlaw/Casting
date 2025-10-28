@@ -5,6 +5,7 @@ import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.multiblock.MultiblockControllerBlock;
 import com.benbenlaw.casting.config.CastingConfig;
 import com.benbenlaw.casting.fluid.FluidData;
+import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.multiblock.CoreMultiblockDetector;
 import com.benbenlaw.casting.multiblock.MultiblockData;
 import com.benbenlaw.casting.recipe.FuelRecipe;
@@ -20,6 +21,7 @@ import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -655,6 +657,24 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         super.loadAdditional(compoundTag, provider);
     }
 
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+        super.collectImplicitComponents(builder);
+
+        List<FluidStack> fluid = this.fluidHandler.getFluids();
+        if (!fluid.isEmpty()) {
+            builder.set(CastingDataComponents.FLUIDS, fluid);
+        }
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentInput input) {
+        super.applyImplicitComponents(input);
+        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
+        if (fluids != null && !fluids.isEmpty()) {
+            this.fluidHandler.setFluids(fluids);
+        }
+    }
 }
 
 

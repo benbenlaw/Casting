@@ -1,11 +1,8 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:tag_empty",
-        "tag": "c:ingots/quartz_enriched_iron"
-      }
+      "type": "neoforge:item_exists",
+      "item": "refinedstorage:quartz_enriched_iron"
     }
   ],
   "criteria": {
@@ -13,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#c:ingots/quartz_enriched_iron"
+            "items": "refinedstorage:quartz_enriched_iron"
           }
         ]
       },
