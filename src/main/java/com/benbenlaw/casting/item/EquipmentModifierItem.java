@@ -88,7 +88,6 @@ public class EquipmentModifierItem extends Item {
                 components.add(Component.literal(displayName).withStyle(color));
             }
 
-
         } else {
             components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
