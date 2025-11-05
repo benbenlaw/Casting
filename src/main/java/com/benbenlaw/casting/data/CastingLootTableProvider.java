@@ -13,6 +13,8 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,7 +40,6 @@ public class CastingLootTableProvider extends VanillaBlockLoot {
         this.dropSelf(CastingBlocks.MULTIBLOCK_REGULATOR.get());
 
         //OG Casting
-        this.dropSelf(CastingBlocks.MIXER_WHISK.get());
         dropWithFluidComponent(CastingBlocks.CONTROLLER.get());
         dropWithFluidComponent(CastingBlocks.SOLIDIFIER.get());
         dropWithFluidComponent(CastingBlocks.MIXER.get());
@@ -52,7 +53,7 @@ public class CastingLootTableProvider extends VanillaBlockLoot {
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1))
                         .add(LootItem.lootTableItem(block)
-                                .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
                                         .include(CastingDataComponents.FLUIDS.get())))));
     }
 

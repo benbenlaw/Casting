@@ -4,6 +4,7 @@ import com.benbenlaw.casting.config.ModifierSetsConfig;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.casting.util.ValidToolTypesForToolModifiers;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -43,7 +44,7 @@ public class EquipmentModifierItem extends Item {
         boolean requireShiftToToggleTooltip = stack.is(CastingTags.Items.CAN_BE_TOGGLED_WITH_SHIFT);
         boolean keybindToToggle = stack.is(CastingTags.Items.CAN_BE_TOGGLED_WITH_KEYBIND);
 
-        if (Screen.hasShiftDown()) {
+        if (Minecraft.getInstance().hasShiftDown()) {
 
             components.add(Component.translatable(tooltip, maxLevel.get()).withStyle(ChatFormatting.YELLOW));
 

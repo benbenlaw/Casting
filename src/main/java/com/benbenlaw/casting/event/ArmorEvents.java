@@ -62,7 +62,7 @@ public class ArmorEvents {
         }
 
         if (totalSpeedLevel > 0) {
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 22, totalSpeedLevel, false, false));
+            player.addEffect(new MobEffectInstance(MobEffects.SPEED, 22, totalSpeedLevel, false, false));
         }
 
         //Step Assist
@@ -74,7 +74,11 @@ public class ArmorEvents {
         }
 
         //Magnet
-        for (ItemStack armorItem : player.getArmorSlots()) {
+
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (slot.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
+
+            ItemStack armorItem = player.getItemBySlot(slot);
             if (armorItem.getComponents().keySet().contains(MAGNET.dataComponent.get()) && isToggleableModifierActive(armorItem)) {
 
                 int range = (int) armorItem.getComponents().getOrDefault(MAGNET.dataComponent.get(), 0);
@@ -153,7 +157,7 @@ public class ArmorEvents {
         boolean isWaterWalker = (boolean) player.getItemBySlot(EquipmentSlot.FEET).getComponents().getOrDefault
                 (EquipmentModifier.WATER_WALKER.dataComponent.get(), false);
 
-        float playerBob = player.bob;
+        //float playerBob = player;
 
         if (isWaterWalker && !player.isShiftKeyDown() && isToggleableModifierActive(player.getItemBySlot(EquipmentSlot.FEET))) {
             BlockPos pos = player.blockPosition();
@@ -201,8 +205,8 @@ public class ArmorEvents {
 
                 if (isBob) {
                     float f = Math.min(0.1F, (float) player.getDeltaMovement().horizontalDistance());
-                    playerBob += (f - playerBob) * 0.7F;
-                    player.bob = playerBob;
+                    //playerBob += (f - playerBob) * 0.7F;
+                    //player = playerBob;
                 }
             }
         }
@@ -259,8 +263,8 @@ public class ArmorEvents {
 
                 if (isBob) {
                     float f = Math.min(0.1F, (float) player.getDeltaMovement().horizontalDistance());
-                    playerBob += (f - playerBob) * 0.7F;
-                    player.bob = playerBob;
+                    //playerBob += (f - playerBob) * 0.7F;
+                    //player.bob = playerBob;
                 }
             }
         }
@@ -276,9 +280,9 @@ public class ArmorEvents {
             }
         }
 
-        boolean jumpHeld = player.getPersistentData().getBoolean("casting_is_jumping");
+        boolean jumpHeld = player.getPersistentData().getBooleanOr("casting_is_jumping", false);
 
-        if (totalJetLevel > 0 && jumpHeld && !player.isInWaterOrBubble()) {
+        if (totalJetLevel > 0 && jumpHeld && !player.isInWater()) {
             player.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 1, totalJetLevel, false, false));
             player.setOnGround(false);
             player.fallDistance = 0;

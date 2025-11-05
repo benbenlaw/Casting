@@ -8,6 +8,17 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+3.0.0
+TODO
+- Fluid Mover implementation
+- In World Rendering of fluids in tanks and fluids in items
+- Data gen bucket models
+- Work out new event for block highlighter for excavation modifier
+- Where is player.bob gone??? armor events
+- AUTO SMELT needs stupid recipe cache stuff because no access to recipes
+- Tool Events isMiningTool only checking pickaxes need to change/ see if needed
+- toHolder in ToolEvents
+
 2.3.0
 - Updated NeoForge to 21.1.204
 - Fixed Molten Conductive Alloy recipe using too much copper alloy in its recipe

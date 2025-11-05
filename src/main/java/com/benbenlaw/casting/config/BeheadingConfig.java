@@ -1,12 +1,15 @@
 package com.benbenlaw.casting.config;
 
 import com.benbenlaw.casting.util.BeheadingHeadMap;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BeheadingConfig {
 
@@ -45,7 +48,7 @@ public class BeheadingConfig {
                 ResourceLocation entityId = ResourceLocation.parse(parts[0].trim());
                 ResourceLocation itemId = ResourceLocation.parse(parts[1].trim());
 
-                Item item = BuiltInRegistries.ITEM.get(itemId);
+                Item item = BuiltInRegistries.ITEM.getValue(itemId);
                 //Add the item to the head map
                 BeheadingHeadMap.register(entityId, () -> item);
             } else {

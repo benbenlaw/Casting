@@ -19,30 +19,31 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RenderHighlightEvent;
+import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent;
 
 import java.util.List;
 
 import static com.benbenlaw.casting.event.ToolEvents.isToggleableModifierActive;
 import static com.benbenlaw.casting.item.EquipmentModifier.EXCAVATION;
 
+
+/*
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = Casting.MOD_ID ,value = Dist.CLIENT)
 public class ExcavationOutlineRenderer {
 
     @SubscribeEvent
-    public static void onBlockHighlight(RenderHighlightEvent.Block event) {
+    public static void onBlockHighlight(ExtractBlockOutlineRenderStateEvent event) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
 
         ItemStack tool = mc.player.getMainHandItem();
         if (!isExcavationTool(tool)) return;
 
-        HitResult target = event.getTarget();
-        if (!(target instanceof BlockHitResult blockHit)) return;
+        BlockHitResult target = event.getHitResult();
 
-        BlockPos origin = blockHit.getBlockPos();
-        Direction face = blockHit.getDirection();
+        BlockPos origin = target.getBlockPos();
+        Direction face = target.getDirection();
         int excavationLevel = (int) tool.getComponents().getOrDefault(EXCAVATION.dataComponent.get(), 0);
 
         List<BlockPos> excavationPlane = ToolEvents.getExcavationPlane(origin, face, excavationLevel);
@@ -75,3 +76,5 @@ public class ExcavationOutlineRenderer {
 
 
 }
+
+ */

@@ -6,8 +6,6 @@ import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.multiblock.MultiblockData;
 import com.benbenlaw.casting.util.BeheadingHeadMap;
 import com.benbenlaw.casting.util.CastingTags;
-import com.benbenlaw.core.block.UnbreakableResourceBlock;
-import com.benbenlaw.core.util.BlockInformation;
 import com.benbenlaw.core.util.FakePlayerUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,6 +18,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -65,8 +64,6 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import java.util.*;
 
 import static com.benbenlaw.casting.item.EquipmentModifier.*;
-import static com.benbenlaw.core.block.UnbreakableResourceBlock.RESTING;
-import static com.benbenlaw.core.event.UnbreakableBlockReplaceEvent.blockInformationMap;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
 
@@ -140,11 +137,6 @@ public class ToolEvents {
 
         if (!level.isClientSide() && requiresCastingOverrides) {
 
-            if (state.getBlock() instanceof UnbreakableResourceBlock) {
-                event.setCanceled(true);
-                breakBlockWithCasting(level, player, pos, tool, isSilkTouch, isFortune, isAutoSmelt);
-                return;
-            }
 
             // Excavation
             if(!tool.isCorrectToolForDrops(state) && state.requiresCorrectToolForDrops()) {
@@ -193,11 +185,11 @@ public class ToolEvents {
 
         // Silk Touch
         if (isSilkTouch && isToggleableModifierActive(tool)) {
-            fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
+            //fakeItemStack.enchant(toHolder(level, Enchantments.SILK_TOUCH), 1);
             drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         } else if (isFortune) {
             int fortuneLevel = (int) tool.getComponents().getOrDefault(FORTUNE.dataComponent.get(), 0);
-            fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
+            //fakeItemStack.enchant(toHolder(level, Enchantments.FORTUNE), fortuneLevel);
             drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         }
 
@@ -205,23 +197,23 @@ public class ToolEvents {
             drops = getLootDrops(state, blockEntity, pos, player, fakeItemStack, level);
         }
 
-        // Auto Smelt
-        if (isAutoSmelt && isToggleableModifierActive(tool)) {
-            List<ItemStack> smeltingDrops = new ArrayList<>();
-            for (ItemStack drop : drops) {
-                SingleRecipeInput container = new SingleRecipeInput(drop);
-                List<RecipeHolder<SmeltingRecipe>> smeltingRecipe = level.getRecipeManager().getRecipesFor(RecipeType.SMELTING, container, level);
-                if (!smeltingRecipe.isEmpty()) {
-                    ItemStack result = smeltingRecipe.getFirst().value().getResultItem(level.registryAccess());
-                    ItemStack smeltedStack = result.copy();
-                    smeltedStack.setCount(drop.getCount());
-                    smeltingDrops.add(smeltedStack);
-                } else {
-                    smeltingDrops.add(drop);
-                }
-            }
-            drops = smeltingDrops;
-        }
+        //// Auto Smelt
+        //if (isAutoSmelt && isToggleableModifierActive(tool)) {
+        //    List<ItemStack> smeltingDrops = new ArrayList<>();
+        //    for (ItemStack drop : drops) {
+        //        SingleRecipeInput container = new SingleRecipeInput(drop);
+        //        List<RecipeHolder<SmeltingRecipe>> smeltingRecipe = level.getRecipeManager().getRecipesFor(RecipeType.SMELTING, container, level);
+        //        if (!smeltingRecipe.isEmpty()) {
+        //            ItemStack result = smeltingRecipe.getFirst().value().getResultItem(level.registryAccess());
+        //            ItemStack smeltedStack = result.copy();
+        //            smeltedStack.setCount(drop.getCount());
+        //            smeltingDrops.add(smeltedStack);
+        //        } else {
+        //            smeltingDrops.add(drop);
+        //        }
+        //    }
+        //    drops = smeltingDrops;
+        //}
 
         //Deal with drops
         for (ItemStack drop : drops) {
@@ -241,14 +233,11 @@ public class ToolEvents {
             state.getBlock().playerDestroy(level, player, pos, state, blockEntity, tool);
         }
 
-        if (state.getBlock() instanceof UnbreakableResourceBlock unbreakableResourceBlock) {
-            level.setBlock(pos, state.setValue(RESTING, true), Block.UPDATE_ALL);
-            level.scheduleTick(pos, unbreakableResourceBlock, 20);
-        } else {
-            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-            level.destroyBlock(pos, true, player);
 
-        }
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+        level.destroyBlock(pos, true, player);
+
+
 
         //Drop Experience
         if (blockExperience > 0) {
@@ -260,21 +249,8 @@ public class ToolEvents {
         tool.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
     }
 
-    public static void breakUnbreakableBlock(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
-        ItemStack fakeItemStack = tool.copy();
-
-        if (state.getBlock() instanceof UnbreakableResourceBlock unbreakableResourceBlock) {
-            unbreakableResourceBlock.playerDestroy(level, player, pos, state, blockEntity, fakeItemStack);
-
-            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-            long delay = 10 + Objects.requireNonNull(level.getServer()).getTickCount();
-            blockInformationMap.put(pos, new BlockInformation(state, level, delay));
-            level.setBlock(pos, Blocks.BARRIER.defaultBlockState(), Block.UPDATE_ALL);
-        }
-    }
 
     //Magnet Modifier Check for block drops
-
     public static boolean isToggleableModifierActive(ItemStack tool) {
         if (!tool.getComponents().has(TOGGLEABLE_MODIFIERS.get())) {
             return true;
@@ -291,7 +267,11 @@ public class ToolEvents {
     }
 
     public static boolean hasMagnetArmor(Player player) {
-        for (ItemStack armorItem : player.getArmorSlots()) {
+
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (slot.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
+
+            ItemStack armorItem = player.getItemBySlot(slot);
             if (armorItem.getComponents().keySet().contains(MAGNET.dataComponent.get())) {
                 return true;
             }
@@ -300,7 +280,7 @@ public class ToolEvents {
     }
 
     public static boolean hasMiningItem(ItemStack tool) {
-        return tool.getItem() instanceof TieredItem;
+        return tool.is(ItemTags.PICKAXES);
     }
 
     //Get loot drops from a block
@@ -543,7 +523,7 @@ public class ToolEvents {
                 tool.set(TOGGLEABLE_MODIFIERS.get(), true);
             }
 
-            player.sendSystemMessage(Component.literal("Toggled Modifiers: " + tool.get(TOGGLEABLE_MODIFIERS.get())));
+            player.displayClientMessage(Component.literal("Toggled Modifiers: " + tool.get(TOGGLEABLE_MODIFIERS.get())), false);
         }
 
         boolean isTeleporting = tool.getComponents().keySet().contains(TELEPORTING.dataComponent.get());
@@ -631,10 +611,10 @@ public class ToolEvents {
                     if (deadEntity instanceof EnderDragon) return;
 
                     event.setCanceled(true);
-                    LootTable lootTable = Objects.requireNonNull(level.getServer()).reloadableRegistries().getLootTable(deadEntity.getLootTable());
+                    LootTable lootTable = Objects.requireNonNull(level.getServer()).reloadableRegistries().getLootTable(deadEntity.getLootTable().get());
                     int lootingLevel = (int) stack.getComponents().getOrDefault(LOOTING.dataComponent.get(), 0);
                     ItemStack fakeItemStack = stack.copy();
-                    fakeItemStack.enchant(toHolder(level, Enchantments.LOOTING), lootingLevel);
+                    //fakeItemStack.enchant(toHolder(level, Enchantments.LOOTING), lootingLevel);
 
                     loot = getMobLootDrops(deadEntity, (Player) killer, damageSource, fakeItemStack, lootTable, level);
                 }
@@ -680,7 +660,7 @@ public class ToolEvents {
             } else if (hitDir == Direction.DOWN) {
                 targetPos = Vec3.atCenterOf(hitPos.below()).subtract(0, 0.5, 0);
             } else {
-                Vec3 faceOffset = Vec3.atLowerCornerOf(hitDir.getNormal()).scale(1);
+                Vec3 faceOffset = Vec3.atLowerCornerOf(hitDir.getUnitVec3i()).scale(1);
                 targetPos = Vec3.atCenterOf(hitPos).add(faceOffset).subtract(0, 1.5, 0);
             }
 
@@ -691,7 +671,7 @@ public class ToolEvents {
             if (level.getBlockState(teleportPos).isAir() && level.getBlockState(teleportPos.above()).isAir()) {
                 player.teleportTo(targetPos.x, targetPos.y, targetPos.z);
                 level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 1.0F);
-                player.getCooldowns().addCooldown(tool.getItem(), EquipmentModifierConfig.cooldownForTeleporting.get());
+                player.getCooldowns().addCooldown(tool, EquipmentModifierConfig.cooldownForTeleporting.get());
                 tool.hurtAndBreak(5, player, EquipmentSlot.MAINHAND);
 
                 // Spawn particles
@@ -737,8 +717,8 @@ public class ToolEvents {
     }
 
 
-    public static Holder<Enchantment> toHolder(Level level, ResourceKey<Enchantment> enchantment) {
-        return level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(enchantment);
-    }
+    //public static Holder<Enchantment> toHolder(Level level, ResourceKey<Enchantment> enchantment) {
+    //    return level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(enchantment);
+    //}
 
 }

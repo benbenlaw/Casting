@@ -15,6 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 @OnlyIn(Dist.CLIENT)
@@ -30,7 +31,7 @@ public class ClientEvents {
         boolean isJumping = jumpKey.isDown();
 
         if (isJumping != lastState) {
-            PacketDistributor.sendToServer(new JetJumpPacket(isJumping));
+            ClientPacketDistributor.sendToServer(new JetJumpPacket(isJumping));
             lastState = isJumping;
         }
     }
@@ -55,7 +56,7 @@ public class ClientEvents {
             return;
         }
 
-        PacketDistributor.sendToServer(new ToggleArmorModifiersPayload(armorSlot));
+        ClientPacketDistributor.sendToServer(new ToggleArmorModifiersPayload(armorSlot));
 
     }
 

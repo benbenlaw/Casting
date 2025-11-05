@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.data.recipes;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
 import com.benbenlaw.casting.recipe.FuelRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
@@ -8,11 +9,14 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -56,21 +60,20 @@ public class FuelRecipeBuilder implements RecipeBuilder {
         return ItemStack.EMPTY.getItem();
     }
 
-    public void save(@NotNull RecipeOutput recipeOutput) {
-        this.save(recipeOutput, ResourceLocation.fromNamespaceAndPath(Casting.MOD_ID, "fuel/" +
-                BuiltInRegistries.FLUID.getKey(this.fluid.getFluid()).getPath()));
+    @Override
+    public void save(@NotNull RecipeOutput recipeOutput, @NotNull String id) {
+        this.save(recipeOutput, ResourceKey.create(Registries.RECIPE, Casting.rl("fuel/" + id)));
     }
 
     @Override
-    public void save(@NotNull RecipeOutput recipeOutput, @NotNull ResourceLocation id) {
+    public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
         Advancement.Builder builder = Advancement.Builder.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
-                .rewards(AdvancementRewards.Builder.recipe(id))
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
+                .rewards(AdvancementRewards.Builder.recipe(resourceKey))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(builder::addCriterion);
         FuelRecipe fuelRecipe = new FuelRecipe(this.fluid, this.temp, this.duration);
-        recipeOutput.accept(id, fuelRecipe, builder.build(id.withPrefix("recipes/fuel/")));
+        recipeOutput.accept(resourceKey, fuelRecipe, builder.build(resourceKey.location().withPrefix("recipes/fuel/")));
 
     }
-
 }

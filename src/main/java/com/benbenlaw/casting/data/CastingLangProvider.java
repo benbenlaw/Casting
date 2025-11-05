@@ -9,7 +9,7 @@ import static com.benbenlaw.casting.fluid.CastingFluids.FLUIDS_MAP;
 
 public class CastingLangProvider extends LanguageProvider {
 
-    public CastingLangProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+    public CastingLangProvider(PackOutput output) {
         super(output, Casting.MOD_ID, "en_us");
     }
 

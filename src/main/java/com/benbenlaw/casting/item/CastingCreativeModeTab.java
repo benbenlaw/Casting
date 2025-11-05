@@ -40,7 +40,6 @@ public class CastingCreativeModeTab {
                 output.accept(CastingBlocks.SOLIDIFIER.asItem());
                 output.accept(CastingBlocks.CONTROLLER.asItem());
                 output.accept(CastingBlocks.MIXER.asItem());
-                output.accept(CastingBlocks.MIXER_WHISK.asItem());
                 output.accept(CastingBlocks.TANK.asItem());
                 output.accept(CastingBlocks.EQUIPMENT_MODIFIER.asItem());
 

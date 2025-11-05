@@ -2,9 +2,6 @@ package com.benbenlaw.casting;
 
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.CastingBlockEntities;
-import com.benbenlaw.casting.block.entity.client.MultiblockCoolantTankBlockEntityRenderer;
-import com.benbenlaw.casting.block.entity.client.MultiblockFuelTankBlockEntityRenderer;
-import com.benbenlaw.casting.block.entity.client.TankBlockEntityRenderer;
 import com.benbenlaw.casting.config.BeheadingConfig;
 import com.benbenlaw.casting.config.CastingConfig;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
@@ -17,6 +14,7 @@ import com.benbenlaw.casting.screen.*;
 import com.benbenlaw.casting.screen.multiblock.*;
 import com.benbenlaw.casting.util.CastingColorHandler;
 import com.benbenlaw.casting.util.KeyBinds;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -81,6 +79,10 @@ public class Casting {
 
         //  ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, ConfigFile.SPEC, "smelting.toml");
 
+    }
+
+    public static ResourceLocation rl(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
     public void registerCapabilities(RegisterCapabilitiesEvent event) {

@@ -6,27 +6,34 @@ import com.benbenlaw.casting.item.CastingItems;
 import com.benbenlaw.casting.item.EquipmentModifier;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.tag.ModdedTagBuilder;
+import com.benbenlaw.core.tag.ResourceMaterial;
 import com.benbenlaw.core.tag.ResourceNames;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 import static com.benbenlaw.casting.fluid.CastingFluids.FLUIDS_MAP;
 
 public class CastingItemTags extends ItemTagsProvider {
 
-    CastingItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blockTags, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, blockTags.contentsGetter(), Casting.MOD_ID, existingFileHelper);
+    CastingItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider, Casting.MOD_ID);
     }
 
     @Override
@@ -132,26 +139,26 @@ public class CastingItemTags extends ItemTagsProvider {
 
         //Melting Output Amount Effected
         tag(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED)
-                .addTag(ModdedTagBuilder.createNeoFabricItemTag("ores"))
-                .addTag(ModdedTagBuilder.createNeoFabricItemTag("raw_materials"))
+                .addTag(createNeoFabricItemTag("ores"))
+                .addTag(createNeoFabricItemTag("raw_materials"))
                 .add(Items.ANCIENT_DEBRIS)
         ;
 
         //Melting Produces Experience
         tag(CastingTags.Items.MELTING_PRODUCES_EXPERIENCE)
-                .addTag(ModdedTagBuilder.createNeoFabricItemTag("ores"))
-                .addTag(ModdedTagBuilder.createNeoFabricItemTag("raw_materials"))
+                .addTag(createNeoFabricItemTag("ores"))
+                .addTag(createNeoFabricItemTag("raw_materials"))
                 .add(Items.ANCIENT_DEBRIS)
         ;
 
-        for (String resource : ResourceNames.getAllResourceNames()) {
-            String rawStorageBlock = "storage_blocks/raw_" + resource.toLowerCase(Locale.ROOT);
-            tag(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED).addOptionalTag(ModdedTagBuilder.createNeoFabricItemTag(rawStorageBlock));
+        for (ResourceMaterial resource : ResourceMaterial.values()) {
+            String rawStorageBlock = "storage_blocks/raw_" + resource.toString().toLowerCase(Locale.ROOT);
+            tag(CastingTags.Items.MELTING_OUTPUT_AMOUNT_EFFECTED).addOptionalTag(createNeoFabricItemTag(rawStorageBlock));
         }
+    }
 
-
-
-
-
+    public static TagKey<Item> createNeoFabricItemTag(String path) {
+        return ItemTags.create(Objects.requireNonNull(ResourceLocation.tryParse(
+                String.valueOf(ResourceLocation.fromNamespaceAndPath("c", path)))));
     }
 }

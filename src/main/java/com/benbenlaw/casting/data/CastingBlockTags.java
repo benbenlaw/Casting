@@ -4,6 +4,7 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -17,8 +18,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class CastingBlockTags extends BlockTagsProvider {
 
-    CastingBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, Casting.MOD_ID, existingFileHelper);
+    CastingBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider, Casting.MOD_ID);
     }
 
     @Override
@@ -27,12 +28,12 @@ public class CastingBlockTags extends BlockTagsProvider {
         //Lava Walker
         tag(CastingTags.Blocks.EFFECTED_BY_LAVA_WALKER)
                 .add(Blocks.LAVA)
-                .addOptional(ResourceLocation.parse("netherdepthsupgrade:warped_seagrass"))
-                .addOptional(ResourceLocation.parse("netherdepthsupgrade:tall_warped_seagrass"))
-                .addOptional(ResourceLocation.parse("netherdepthsupgrade:warped_kelp_plant"))
-                .addOptional(ResourceLocation.parse("netherdepthsupgrade:crimson_seagrass"))
-                .addOptional(ResourceLocation.parse("netherdepthsupgrade:tall_crimson_seagrass"))
-                .addOptional(ResourceLocation.parse("netherdepthsupgrade:crimson_kelp_plant"));
+                .addOptional(BuiltInRegistries.BLOCK.getValue(ResourceLocation.parse("netherdepthsupgrade:warped_seagrass")))
+                .addOptional(BuiltInRegistries.BLOCK.getValue(ResourceLocation.parse("netherdepthsupgrade:tall_warped_seagrass")))
+                .addOptional(BuiltInRegistries.BLOCK.getValue(ResourceLocation.parse("netherdepthsupgrade:warped_kelp_plant")))
+                .addOptional(BuiltInRegistries.BLOCK.getValue(ResourceLocation.parse("netherdepthsupgrade:crimson_seagrass")))
+                .addOptional(BuiltInRegistries.BLOCK.getValue(ResourceLocation.parse("netherdepthsupgrade:tall_crimson_seagrass")))
+                .addOptional(BuiltInRegistries.BLOCK.getValue(ResourceLocation.parse("netherdepthsupgrade:crimson_kelp_plant")));
 
         //Water Walker
         tag(CastingTags.Blocks.EFFECTED_BY_WATER_WALKER)
@@ -92,7 +93,6 @@ public class CastingBlockTags extends BlockTagsProvider {
                 .add(CastingBlocks.MIXER.get())
                 .add(CastingBlocks.EQUIPMENT_MODIFIER.get())
                 .add(CastingBlocks.CONTROLLER.get())
-                .add(CastingBlocks.MIXER_WHISK.get())
 
 
         ;

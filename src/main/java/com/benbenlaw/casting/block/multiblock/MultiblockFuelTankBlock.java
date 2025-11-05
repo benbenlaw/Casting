@@ -4,6 +4,7 @@ import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.entity.multiblock.MultiblockFuelTankBlockEntity;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.screen.multiblock.MultiblockFuelTankMenu;
+import com.benbenlaw.core.block.SyncableBlock;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -36,7 +37,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MultiblockFuelTankBlock extends BaseEntityBlock {
+public class MultiblockFuelTankBlock extends SyncableBlock {
 
     public static final MapCodec<MultiblockFuelTankBlock> CODEC = simpleCodec(MultiblockFuelTankBlock::new);
     public static final IntegerProperty LIGHT_LEVEL = IntegerProperty.create("light_level", 0, 15);
@@ -62,43 +63,6 @@ public class MultiblockFuelTankBlock extends BaseEntityBlock {
     @Override
     protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
-    }
-
-    @Override
-    public void onRemove(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof MultiblockFuelTankBlockEntity) {
-                ((MultiblockFuelTankBlockEntity) blockEntity).drops();
-            }
-        }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, Item.@NotNull TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
-
-        if (Screen.hasShiftDown()) {
-
-            if (itemStack.has(CastingDataComponents.FLUIDS)) {
-                components.add(Component.literal("Fluids:").withStyle(ChatFormatting.BLUE));
-
-                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
-
-                assert fluidStacks != null;
-                for (FluidStack fluidStack : fluidStacks) {
-                    FluidType fluid = fluidStack.getFluid().getFluidType();
-                    int amount = fluidStack.getAmount();
-                    components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-                }
-            }
-        }
-
-        else {
-            components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
-        }
-        super.appendHoverText(itemStack, context, components, flag);
-
     }
 
     @Override

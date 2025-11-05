@@ -4,6 +4,7 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.config.EquipmentModifierConfig;
 import com.benbenlaw.casting.item.CastingItems;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -27,7 +28,7 @@ public class EquipmentModifiersTooltip {
         ItemStack stack = event.getItemStack();
         if (stack.is(CastingItems.REPAIRING_MOLD.get())) {
 
-            if (Screen.hasShiftDown()) {
+            if (Minecraft.getInstance().hasShiftDown()) {
 
                 event.getToolTip().add(Component.translatable("tooltips.casting.stats.repairing_mold").withStyle(ChatFormatting.YELLOW));
             } else {
@@ -76,7 +77,7 @@ public class EquipmentModifiersTooltip {
 
         boolean hasEffects = hasJets || hasSoulbound || hasFeatherFalling || hasFlight || hasWalterWalker || hasLavaWalker || hasSpeed || hasWaterBreathing || hasNightVision || hasEquipmentLevel || hasStepAssist || hasProtection || hasMagnet || hasTeleporting || hasExcavation || hasIgnite || hasLifesteal || hasKnockback || hasBeheading || hasSharpness || hasLooting || hasAutoSmelt || hasTorchPlacing || hasRepairing || hasUnbreaking || hasFortune || hasEfficiency || hasSilkTouch;
 
-        if (Screen.hasShiftDown() && (hasEffects)) {
+        if (Minecraft.getInstance().hasShiftDown() && (hasEffects)) {
 
             int index = 1;
             int toolLevel = (int) tool.getComponents().getOrDefault(EQUIPMENT_LEVEL.dataComponent.get(), 0);

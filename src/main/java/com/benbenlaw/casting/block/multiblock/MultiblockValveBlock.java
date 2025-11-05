@@ -1,9 +1,9 @@
 package com.benbenlaw.casting.block.multiblock;
 
-import com.benbenlaw.casting.block.CastingBlockStateProperties;
 import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.entity.multiblock.MultiblockValveBlockEntity;
 import com.benbenlaw.casting.screen.multiblock.MultiblockValveMenu;
+import com.benbenlaw.core.block.SyncableBlock;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -12,57 +12,26 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MultiblockValveBlock extends BaseEntityBlock {
+public class MultiblockValveBlock extends SyncableBlock {
 
     public static final MapCodec<MultiblockValveBlock> CODEC = simpleCodec(MultiblockValveBlock::new);
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty WORKING = CastingBlockStateProperties.WORKING;
-    public static final BooleanProperty ENABLED = CastingBlockStateProperties.ENABLED;
 
-    public MultiblockValveBlock(Properties properties) {
-        super(properties);
-    }
-
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(WORKING, false).setValue(ENABLED, false);
-    }
-
-    @Override
-    public @NotNull BlockState rotate(BlockState blockState, Rotation pRotation) {
-        return blockState.setValue(FACING, pRotation.rotate(blockState.getValue(FACING))).setValue(WORKING, blockState.getValue(WORKING)).setValue(ENABLED, blockState.getValue(ENABLED));
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, WORKING, ENABLED);
-    }
-    @Override
-    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+    public @NotNull MapCodec<MultiblockValveBlock> codec() {
         return CODEC;
     }
 
-    @Override
-    protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
-        return RenderShape.MODEL;
+    public MultiblockValveBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
