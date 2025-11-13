@@ -113,6 +113,7 @@ public class MultiblockMixerScreen extends AbstractContainerScreen<MultiblockMix
             if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 20, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
 
                 List<String> availableAlloys = menu.blockEntity.availableAlloys;
+                if (availableAlloys == null) return handled;
 
                 if (MultiblockMixerScreen.hasShiftDown()) {
                     selectedFluidIndex = 0;

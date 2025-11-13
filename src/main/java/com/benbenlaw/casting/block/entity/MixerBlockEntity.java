@@ -208,49 +208,54 @@ public class MixerBlockEntity extends BlockEntity implements MenuProvider {
     public boolean onPlayerUse(Player player, InteractionHand hand) {
         ItemStack heldItem = player.getItemInHand(hand);
 
-        // Check if the held item is a valid container
         if (heldItem.isEmpty()) {
             return false;
         }
 
-        // Attempt to fill the container from the output tank
-        FluidActionResult result = FluidUtil.tryFillContainer(heldItem, OUTPUT_TANK, 1000, null, true);
+        // Make a copy of one bucket if the stack size > 1
+        ItemStack singleContainer = heldItem.copy();
+        singleContainer.setCount(1);
+
+        // Try to fill a single container
+        FluidActionResult result = FluidUtil.tryFillContainer(singleContainer, OUTPUT_TANK, 1000, null, true);
+
         if (result.isSuccess()) {
             ItemStack filledContainer = result.getResult();
 
-            // Check if the filled container is different from the held item
-            if (!ItemStack.matches(heldItem, filledContainer)) {
-                // Replace the held item with the filled container
-                player.setItemInHand(hand, filledContainer);
-                return true;
+            // Only consume one bucket from the stack
+            heldItem.shrink(1);
+
+            // If the player still has items in hand, add the filled container to their inventory
+            if (!player.addItem(filledContainer)) {
+                // Drop it if inventory is full
+                player.drop(filledContainer, false);
             }
+
+            return true;
         }
 
+        // Handle input tanks as before
         FluidTank[] inputTanks = new FluidTank[]{TANK_1, TANK_2, TANK_3, TANK_4, TANK_5, TANK_6};
 
-        // Check if the held item contains a fluid that's already full in one of the tanks
         if (FluidUtil.getFluidContained(heldItem).isPresent()) {
             FluidStack fluidInBucket = FluidUtil.getFluidContained(heldItem).get();
 
             for (FluidTank tank : inputTanks) {
                 if (isSameFluidSameComponents(tank.getFluid(), fluidInBucket)) {
-                    // Check if the tank is full
                     if (tank.getFluidAmount() >= tank.getCapacity()) {
-                        // Prevent the operation if the tank is already full of the same fluid
-                        return false;
+                        return false; // Tank is full
                     }
                 }
             }
         }
 
-        // Attempt to interact with the fluid handlers if the tank was not full
+        // Try to fill tanks (input)
         for (FluidTank tank : inputTanks) {
             if (FluidUtil.interactWithFluidHandler(player, hand, tank)) {
                 return true;
             }
         }
 
-        // If no interaction was successful, return false
         return false;
     }
 

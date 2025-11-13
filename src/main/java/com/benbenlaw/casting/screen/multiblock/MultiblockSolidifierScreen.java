@@ -136,7 +136,9 @@ public class MultiblockSolidifierScreen extends AbstractContainerScreen<Multiblo
 
         if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, leftPos + 41, topPos - 17, 0, 0, widgetWidth, widgetHeight)) {
 
+            if (this.menu.blockEntity.controller == null) return handled;
             List<FluidStack> fluids = this.menu.blockEntity.controller.fluidHandler.getFluids();
+            if (fluids == null) return handled;
 
             if (MultiblockSolidifierScreen.hasShiftDown()) {
                 selectedFluidIndex = 0;

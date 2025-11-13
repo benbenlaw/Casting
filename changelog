@@ -8,6 +8,10 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+2.3.1
+- Added null checks to multiblock valve, solidiifer and mixer when trying to toggle fluids when the controller is null
+- Fixed Simple Mixer consuming all empty stacked buckets when used on the output tank
+
 2.3.0
 - Updated NeoForge to 21.1.204
 - Fixed Molten Conductive Alloy recipe using too much copper alloy in its recipe
