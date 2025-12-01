@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.block.entity;
 
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -177,16 +178,16 @@ public class TankBlockEntity extends BlockEntity {
 
         FluidStack fluid = this.FLUID_TANK.getFluid();
         if (!fluid.isEmpty()) {
-            builder.set(CastingDataComponents.FLUIDS, List.of(fluid.copy()));
+            builder.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(fluid.copy())));
         }
     }
 
     @Override
     protected void applyImplicitComponents(DataComponentInput input) {
         super.applyImplicitComponents(input);
-        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
-        if (fluids != null && !fluids.isEmpty()) {
-            this.FLUID_TANK.setFluid(fluids.getFirst().copy());
+        FluidListComponent component = input.get(CastingDataComponents.FLUIDS);
+        if (component != null && !component.fluids().isEmpty()) {
+            this.FLUID_TANK.setFluid(component.fluids().get(0).copy());
         }
     }
 

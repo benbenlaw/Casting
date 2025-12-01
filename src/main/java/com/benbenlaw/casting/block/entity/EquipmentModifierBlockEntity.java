@@ -4,6 +4,7 @@ import com.benbenlaw.casting.config.ModifierSetsConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.CastingItems;
 import com.benbenlaw.casting.item.EquipmentModifier;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.benbenlaw.casting.recipe.EquipmentModifierRecipe;
 import com.benbenlaw.casting.recipe.MeltingRecipe;
 import com.benbenlaw.casting.screen.EquipmentModifierMenu;
@@ -679,17 +680,18 @@ public class EquipmentModifierBlockEntity extends BlockEntity implements MenuPro
 
         FluidStack fluid = this.TANK.getFluid();
         if (!fluid.isEmpty()) {
-            builder.set(CastingDataComponents.FLUIDS, List.of(fluid.copy()));
+            builder.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(fluid.copy())));
         }
     }
 
     @Override
     protected void applyImplicitComponents(DataComponentInput input) {
         super.applyImplicitComponents(input);
-        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
-        if (fluids != null && !fluids.isEmpty()) {
-            this.TANK.setFluid(fluids.getFirst().copy());
+        FluidListComponent component = input.get(CastingDataComponents.FLUIDS);
+        if (component != null && !component.fluids().isEmpty()) {
+            this.TANK.setFluid(component.fluids().get(0).copy());
         }
     }
+
 
 }

@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,15 +15,19 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CastingDataComponents {
 
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, Casting.MOD_ID);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<FluidStack>>> FLUIDS =
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<FluidListComponent>> FLUIDS =
             COMPONENTS.register("fluids", () ->
-                    DataComponentType.<List<FluidStack>>builder().persistent(FluidStack.OPTIONAL_CODEC.listOf()).networkSynchronized(FluidStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list())).build());
-
+                    DataComponentType.<FluidListComponent>builder()
+                            .persistent(FluidListComponent.CODEC)
+                            .networkSynchronized(FluidListComponent.STREAM_CODEC)
+                            .cacheEncoding()
+                            .build());
 
 
 }

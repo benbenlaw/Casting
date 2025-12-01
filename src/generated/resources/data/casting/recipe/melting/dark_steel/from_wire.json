@@ -14,8 +14,7 @@
     "tag": "c:wires/dark_steel"
   },
   "meltingTemp": 1000,
-  "output": {
-    "amount": 45,
+  "output": {    "amount": 45,
     "id": "casting:molten_dark_steel"
   }
 }

@@ -59,7 +59,7 @@ public class CastingBlockEntities {
 
 
     //Capability Registration (Item Handler)
-    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+    public static void  registerCapabilities(RegisterCapabilitiesEvent event) {
 
         //Controller
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,

@@ -4,6 +4,7 @@ import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.entity.TankBlockEntity;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.CastingItems;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -59,40 +60,54 @@ public class TankBlock extends BaseEntityBlock {
             Fluid tankFluid = tankEntity.getFluidStack().getFluid();
             int tankFluidAmount = tankEntity.getFluidStack().getAmount();
 
-            if (itemStack.get(CastingDataComponents.FLUIDS) != null) {
-                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
-                assert fluidStacks != null;
-                Fluid itemFluid = fluidStacks.getFirst().getFluid();
-                int fluidAmount = fluidStacks.getFirst().getAmount();
+            FluidListComponent component = itemStack.get(CastingDataComponents.FLUIDS);
+
+            if (component != null) {
+                List<FluidStack> fluidStacks = component.fluids();
+                assert !fluidStacks.isEmpty();
+                Fluid itemFluid = fluidStacks.get(0).getFluid();
+                int fluidAmount = fluidStacks.get(0).getAmount();
+
                 if (tankFluid.isSame(itemFluid) || tankFluid == Fluids.EMPTY) {
                     int space = tankEntity.FLUID_TANK.getSpace();
-                    int amountToTransfer = Math.min(space, fluidAmount); // Ensure we don't transfer more than the tank can hold
+                    int amountToTransfer = Math.min(space, fluidAmount);
                     tankEntity.FLUID_TANK.fill(new FluidStack(itemFluid, amountToTransfer), IFluidHandler.FluidAction.EXECUTE);
 
                     int remainingFluidAmount = fluidAmount - amountToTransfer;
-                    itemStack.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(itemFluid, remainingFluidAmount)));
-
-                    if (fluidAmount - amountToTransfer == 0) {
+                    if (remainingFluidAmount > 0) {
+                        itemStack.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(new FluidStack(itemFluid, remainingFluidAmount))));
+                    } else {
                         itemStack.remove(CastingDataComponents.FLUIDS);
                     }
                     return ItemInteractionResult.SUCCESS;
                 }
             }
 
-            if (itemStack.get(CastingDataComponents.FLUIDS) == null) {
+            if (component == null) {
                 if (tankFluid != Fluids.EMPTY) {
-                    List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
+                    int currentFluidAmountInItem = 0;
+                    List<FluidStack> fluidStacksInItem = null;
 
-                    int currentFluidAmountInItem = fluidStacks != null ? fluidStacks.getFirst().getAmount() : 0;
+                    FluidListComponent maybeComponent = itemStack.get(CastingDataComponents.FLUIDS);
+                    if (maybeComponent != null) {
+                        fluidStacksInItem = maybeComponent.fluids();
+                        currentFluidAmountInItem = fluidStacksInItem.isEmpty() ? 0 : fluidStacksInItem.get(0).getAmount();
+                    }
+
                     int remainingSpaceInItem = 8000 - currentFluidAmountInItem;
                     int amountToExtract = Math.min(tankFluidAmount, remainingSpaceInItem);
                     if (amountToExtract > 0) {
                         FluidStack extractedFluid = tankEntity.FLUID_TANK.drain(amountToExtract, IFluidHandler.FluidAction.EXECUTE);
-                        itemStack.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(Objects.requireNonNull(extractedFluid).getFluid(), currentFluidAmountInItem + extractedFluid.getAmount())));
-                        return ItemInteractionResult.SUCCESS;
+                        if (extractedFluid != null) {
+                            itemStack.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(
+                                    new FluidStack(extractedFluid.getFluid(), currentFluidAmountInItem + extractedFluid.getAmount())
+                            )));
+                            return ItemInteractionResult.SUCCESS;
+                        }
                     }
                 }
             }
+
 
         }
         else {
@@ -113,13 +128,16 @@ public class TankBlock extends BaseEntityBlock {
             if (itemStack.has(CastingDataComponents.FLUIDS)) {
                 components.add(Component.literal("Fluids:").withStyle(ChatFormatting.BLUE));
 
-                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
+                FluidListComponent component = itemStack.get(CastingDataComponents.FLUIDS);
 
-                assert fluidStacks != null;
-                for (FluidStack fluidStack : fluidStacks) {
-                    FluidType fluid = fluidStack.getFluid().getFluidType();
-                    int amount = fluidStack.getAmount();
-                    components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                if (component != null) {
+                    List<FluidStack> fluidStacks = component.fluids();
+
+                    for (FluidStack fluidStack : fluidStacks) {
+                        FluidType fluid = fluidStack.getFluid().getFluidType();
+                        int amount = fluidStack.getAmount();
+                        components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                    }
                 }
             }
         }

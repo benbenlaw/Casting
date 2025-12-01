@@ -2,6 +2,7 @@ package com.benbenlaw.casting.block.entity;
 
 import com.benbenlaw.casting.block.custom.ControllerBlock;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.benbenlaw.casting.recipe.FuelRecipe;
 import com.benbenlaw.casting.recipe.MeltingRecipe;
 import com.benbenlaw.casting.screen.SmelterMenu;
@@ -785,20 +786,22 @@ public class ControllerBlockEntity extends BlockEntity implements MenuProvider, 
                 this.TANK_4.getFluid()
         );
 
-        builder.set(CastingDataComponents.FLUIDS, fluids);
+        builder.set(CastingDataComponents.FLUIDS, new FluidListComponent(fluids));
     }
 
     @Override
     protected void applyImplicitComponents(DataComponentInput input) {
         super.applyImplicitComponents(input);
-        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
-        if (fluids != null) {
-            this.TANK_1.setFluid(fluids.get(0).copy());
-            this.TANK_2.setFluid(fluids.get(1).copy());
-            this.TANK_3.setFluid(fluids.get(2).copy());
-            this.TANK_4.setFluid(fluids.get(3).copy());
+        FluidListComponent component = input.get(CastingDataComponents.FLUIDS);
+        if (component != null) {
+            List<FluidStack> fluids = component.fluids();
+            if (fluids.size() >= 4) {
+                this.TANK_1.setFluid(fluids.get(0).copy());
+                this.TANK_2.setFluid(fluids.get(1).copy());
+                this.TANK_3.setFluid(fluids.get(2).copy());
+                this.TANK_4.setFluid(fluids.get(3).copy());
+            }
         }
-
-
     }
+
 }

@@ -8,6 +8,10 @@ Update melting recipes to have more than one output (1.22)
 Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
 multiblock blocks not saving contents when broken
 
+2.3.2
+- Change to a custom data component for fluids when blocks are as a item, this will improve compatibility with mods that add custom fluid containers
+- You old fluid containers may no longer work correctly, craft to reset, No blocks in world will be effected this is purely a change to the item storage
+
 2.3.1
 - Added null checks to multiblock valve, solidiifer and mixer when trying to toggle fluids when the controller is null
 - Fixed Simple Mixer consuming all empty stacked buckets when used on the output tank

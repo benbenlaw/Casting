@@ -4,6 +4,7 @@ import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.multiblock.MultiblockFuelTankBlock;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.benbenlaw.casting.screen.multiblock.MultiblockFuelTankMenu;
 import com.benbenlaw.casting.util.SingleFluidTank;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
@@ -200,16 +201,17 @@ public class MultiblockFuelTankBlockEntity extends SyncableBlockEntity implement
 
         FluidStack fluid = this.fluidHandler.getFluid();
         if (!fluid.isEmpty()) {
-            builder.set(CastingDataComponents.FLUIDS, List.of(fluid.copy()));
+            builder.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(fluid.copy())));
         }
     }
 
     @Override
     protected void applyImplicitComponents(DataComponentInput input) {
         super.applyImplicitComponents(input);
-        List<FluidStack> fluids = input.get(CastingDataComponents.FLUIDS);
-        if (fluids != null && !fluids.isEmpty()) {
-            this.fluidHandler.setFluid(fluids.getFirst().copy());
+        FluidListComponent component = input.get(CastingDataComponents.FLUIDS);
+        if (component != null && !component.fluids().isEmpty()) {
+            this.fluidHandler.setFluid(component.fluids().get(0).copy());
         }
     }
+
 }

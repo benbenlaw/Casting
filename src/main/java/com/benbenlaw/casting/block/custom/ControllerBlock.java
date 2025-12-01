@@ -3,6 +3,7 @@ package com.benbenlaw.casting.block.custom;
 import com.benbenlaw.casting.block.entity.CastingBlockEntities;
 import com.benbenlaw.casting.block.entity.ControllerBlockEntity;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.benbenlaw.casting.screen.SmelterMenu;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
@@ -131,13 +132,15 @@ public class ControllerBlock extends BaseEntityBlock {
             if (itemStack.has(CastingDataComponents.FLUIDS)) {
                 components.add(Component.literal("Fluids:").withStyle(ChatFormatting.BLUE));
 
-                List<FluidStack> fluidStacks = itemStack.get(CastingDataComponents.FLUIDS);
-
-                assert fluidStacks != null;
-                for (FluidStack fluidStack : fluidStacks) {
-                    FluidType fluid = fluidStack.getFluid().getFluidType();
-                    int amount = fluidStack.getAmount();
-                    components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                FluidListComponent component = itemStack.get(CastingDataComponents.FLUIDS);
+                if (component != null) {
+                    List<FluidStack> fluidStacks = component.fluids();
+                    assert fluidStacks != null;
+                    for (FluidStack fluidStack : fluidStacks) {
+                        FluidType fluid = fluidStack.getFluid().getFluidType();
+                        int amount = fluidStack.getAmount();
+                        components.add(Component.literal("- ").append(amount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                    }
                 }
             }
         }

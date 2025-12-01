@@ -155,6 +155,7 @@ dependencies {
     compileOnly "org.appliedenergistics:guideme:${project.guideme_version}:api"
     runtimeOnly "org.appliedenergistics:guideme:${project.guideme_version}"
 
+
 }
 
 tasks.withType(ProcessResources).configureEach {

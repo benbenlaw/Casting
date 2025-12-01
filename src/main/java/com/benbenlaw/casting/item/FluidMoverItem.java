@@ -1,5 +1,6 @@
 package com.benbenlaw.casting.item;
 
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -24,20 +25,21 @@ public class FluidMoverItem extends Item {
     public void appendHoverText(ItemStack itemStack, @NotNull TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
 
         if (Screen.hasShiftDown()) {
-            if (itemStack.has(CastingDataComponents.FLUIDS)) {
-                List<FluidStack> fluids = itemStack.get(CastingDataComponents.FLUIDS);
-                assert fluids != null;
-                FluidType fluid = fluids.getFirst().getFluidType();
-                int fluidAmount = fluids.getFirst().getAmount();
-                components.add(Component.literal("Fluids: ").withStyle(ChatFormatting.BLUE));
-                components.add(Component.literal("- ").append(fluidAmount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
-
+            FluidListComponent component = itemStack.get(CastingDataComponents.FLUIDS);
+            if (component != null) {
+                List<FluidStack> fluids = component.fluids();
+                if (!fluids.isEmpty()) {
+                    FluidType fluid = fluids.get(0).getFluidType();
+                    int fluidAmount = fluids.get(0).getAmount();
+                    components.add(Component.literal("Fluids: ").withStyle(ChatFormatting.BLUE));
+                    components.add(Component.literal("- ").append(fluidAmount + "mb ").append(Component.translatable(fluid.getDescriptionId())).withStyle(ChatFormatting.GREEN));
+                }
             }
         } else {
             components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
         }
 
         super.appendHoverText(itemStack, context, components, flag);
-
     }
+
 }

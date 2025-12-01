@@ -5,6 +5,7 @@ import com.benbenlaw.casting.block.entity.EquipmentModifierBlockEntity;
 import com.benbenlaw.casting.block.entity.MixerBlockEntity;
 import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.benbenlaw.casting.network.payload.FluidMoverPayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -118,41 +119,31 @@ public record FluidMoverPacket() {
             equipmentModifierBlockEntity.sync();
 
         }
-
-
-
     }
     private void transferFluidBetweenTankAndItem(FluidTank tank, ItemStack carriedItem, Player player, boolean isOutputTank) {
-        int itemMaxCapacity = 8000;  // Max fluid capacity for the item
+        int itemMaxCapacity = 8000;
 
-        // Check if the carried item has fluid (attempt to empty the item into the tank first)
         if (carriedItem.get(CastingDataComponents.FLUIDS) != null) {
-            List<FluidStack> fluids = carriedItem.get(CastingDataComponents.FLUIDS);
+            FluidListComponent component = carriedItem.get(CastingDataComponents.FLUIDS);
+            List<FluidStack> fluids = component.fluids();
 
-            assert fluids != null;
-            Fluid carriedFluid = fluids.getFirst().getFluid();
-            int carriedAmount = fluids.getFirst().getAmount();
+            Fluid carriedFluid = fluids.get(0).getFluid();
+            int carriedAmount = fluids.get(0).getAmount();
 
-            // Ensure we're not trying to add fluid to the output tank
             if (!isOutputTank) {
-                // If the tank is empty or contains the same fluid as the carried item
                 if (tank.isEmpty() || tank.getFluid().getFluid().equals(carriedFluid)) {
-                    // Calculate the available space in the tank
                     int availableTankSpace = tank.getCapacity() - tank.getFluidAmount();
-                    int amountToTransfer = Math.min(carriedAmount, availableTankSpace); // Amount we can transfer to the tank
+                    int amountToTransfer = Math.min(carriedAmount, availableTankSpace);
 
                     if (amountToTransfer > 0) {
-                        // Transfer the fluid from the item to the tank
                         tank.fill(new FluidStack(carriedFluid, amountToTransfer), IFluidHandler.FluidAction.EXECUTE);
-                        // Reduce the fluid amount in the carried item
                         int remainingAmount = carriedAmount - amountToTransfer;
-                        carriedItem.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(carriedFluid, remainingAmount)));
+                        carriedItem.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(new FluidStack(carriedFluid, remainingAmount))));
 
-                        // If the item is empty after the transfer, clear the fluid data
-                        if (carriedItem.get(CastingDataComponents.FLUIDS.get()).getFirst().isEmpty()) {
+                        if (carriedItem.get(CastingDataComponents.FLUIDS).fluids().get(0).isEmpty()) {
                             carriedItem.remove(CastingDataComponents.FLUIDS);
                         }
-                        return; // End the method if we successfully transferred fluid to the tank
+                        return;
                     }
                 } else {
                     player.sendSystemMessage(Component.literal("Fluid types don't match!"));
@@ -162,49 +153,35 @@ public record FluidMoverPacket() {
             }
         }
 
-        // If the carried item is empty (no fluid) or we finished emptying it, try to fill it from the tank
         if (!tank.isEmpty()) {
             FluidStack currentFluidInTank = tank.getFluid();
 
             if (carriedItem.get(CastingDataComponents.FLUIDS) == null) {
-                // Transfer fluid from the tank to the item if the item has no fluid
-                int transferAmount = Math.min(currentFluidInTank.getAmount(), itemMaxCapacity); // Limit by item max capacity
-                carriedItem.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(currentFluidInTank.getFluid(), transferAmount)));
-
-                // Reduce or empty the tank after transfer
+                int transferAmount = Math.min(currentFluidInTank.getAmount(), itemMaxCapacity);
+                carriedItem.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(new FluidStack(currentFluidInTank.getFluid(), transferAmount))));
                 tank.setFluid(new FluidStack(currentFluidInTank.getFluid(), currentFluidInTank.getAmount() - transferAmount));
+            } else {
+                FluidListComponent component = carriedItem.get(CastingDataComponents.FLUIDS);
+                List<FluidStack> fluids = component.fluids();
+                Fluid carriedFluid = fluids.get(0).getFluid();
+                int carriedAmount = fluids.get(0).getAmount();
 
-            } else if (carriedItem.get(CastingDataComponents.FLUIDS) != null) {
-
-                List<FluidStack> fluids = carriedItem.get(CastingDataComponents.FLUIDS);
-                assert fluids != null;
-                Fluid carriedFluid = fluids.getFirst().getFluid();
-                int carriedAmount = fluids.getFirst().getAmount();
-
-                // Check if the carried fluid matches the fluid in the tank
                 if (carriedFluid.equals(currentFluidInTank.getFluid())) {
-                    int remainingCapacity = itemMaxCapacity - carriedAmount; // Remaining capacity in the item
+                    int remainingCapacity = itemMaxCapacity - carriedAmount;
                     int currentTankAmount = currentFluidInTank.getAmount();
-
-                    // Determine how much fluid can be transferred
                     int amountToTransfer = Math.min(currentTankAmount, remainingCapacity);
 
                     if (amountToTransfer > 0) {
                         int newCarriedAmount = carriedAmount + amountToTransfer;
-                        carriedItem.set(CastingDataComponents.FLUIDS, List.of(new FluidStack(carriedFluid, newCarriedAmount)));
-
-                        // Reduce the fluid in the tank
+                        carriedItem.set(CastingDataComponents.FLUIDS, new FluidListComponent(List.of(new FluidStack(carriedFluid, newCarriedAmount))));
                         tank.setFluid(new FluidStack(currentFluidInTank.getFluid(), currentTankAmount - amountToTransfer));
                     }
-
                 } else {
                     player.sendSystemMessage(Component.literal("Fluid types don't match!"));
                 }
             }
         }
     }
-
-
 
 
 
