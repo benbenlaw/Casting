@@ -346,7 +346,7 @@ public class CastingRecipeProvider extends RecipeProvider {
                 BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:fluix_block")), "fluix/block", consumer);
 
         createSimpleMixingRecipe(fluidList(
-                        getFluidStack("molten_certus_quartz", 250), getFluidStack("molten_redstone", 90), getFluidStack("molten_charged_certus_quartz", 250)),
+                        getFluidStack("molten_quartz", 250), getFluidStack("molten_redstone", 90), getFluidStack("molten_charged_certus_quartz", 250)),
                 getFluidStack("molten_fluix", 500), "fluix", consumer);
 
         // AE2 Charged Certus Quartz

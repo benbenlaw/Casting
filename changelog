@@ -1,12 +1,18 @@
 Changelog BBL Casting
 
 // TODO //
-Make item show there contents (1.22)
-fishing rods support for tool modifiers (1.22)
-Add experience to melting recipe (1.22), maybe even expand melting to allow multiple fluids from a single item
-Update melting recipes to have more than one output (1.22)
-Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(1.22)
+Make item show there contents (26.1)
+fishing rods support for tool modifiers (26.1)
+Add experience to melting recipe (26.1), maybe even expand melting to allow multiple fluids from a single item
+Update melting recipes to have more than one output (26.1)
+Molten recipes for items that are built eg iron door to molten iron and clock to molten gold and redstone ect(26.1)
 multiblock blocks not saving contents when broken
+Use SizedFluidIngredient for recipes that use fluids (26.1)
+Modifiers should use a enchantment like feature to be completely data driven (26.1)
+
+2.3.3
+- Experience now tagged as c:experience for better mod compatibility
+- Fluix recipe now uses quartz not certus quartz
 
 2.3.2
 - Change to a custom data component for fluids when blocks are as a item, this will improve compatibility with mods that add custom fluid containers

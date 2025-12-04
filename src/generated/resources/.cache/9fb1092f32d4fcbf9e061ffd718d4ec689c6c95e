@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-28T11:40:38.3024978	Recipes
+// 1.21.1	2025-12-04T11:01:28.6858679	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -1582,7 +1582,7 @@ e32adfd1412b14a5ccce82239c38fc81410586e6 data/casting/recipe/mixer/bronze.json
 a8fb9ab69707202d8a27626dab5d2eb634b94cbb data/casting/recipe/mixer/enderium.json
 542f514d72100d88b5da9b6358307a76b4f573a4 data/casting/recipe/mixer/end_steel.json
 cb8ce27d209ae7d3ed7c4f8dadeccbcdbee21962 data/casting/recipe/mixer/energetic_alloy.json
-4306de2e54e30aadce70e3c33385950d42d9c586 data/casting/recipe/mixer/fluix.json
+8d036a470db1d199b8b6f5912c69f2d904aabd58 data/casting/recipe/mixer/fluix.json
 9752e350e8a1e54fa602fa34a7dcadea985cd808 data/casting/recipe/mixer/invar.json
 077394bbd425d66d6f5869d335ac016c79027659 data/casting/recipe/mixer/lumium.json
 207ae913e128f70b80553c9b08378f06d40e2103 data/casting/recipe/mixer/molten_quartz_enriched_copper.json

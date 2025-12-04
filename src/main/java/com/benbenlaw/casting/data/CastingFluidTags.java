@@ -1,12 +1,15 @@
 package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.data.recipes.FluidStackHelper;
+import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.core.tag.ModdedTagBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,5 +36,7 @@ public class CastingFluidTags extends FluidTagsProvider {
             tag(tag).add(entry.getValue().getFluid());
             tag(tag).add(entry.getValue().getFlowingFluid());
         }
+
+        tag(Tags.Fluids.EXPERIENCE).add(FluidStackHelper.getFluidStack("molten_experience", 1).getFluid());
     }
 }
