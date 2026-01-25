@@ -624,11 +624,10 @@ public class ToolEvents {
 
             if (!level.isClientSide() && requiresCastingOverrides) {
 
-                //Looting
-                if (isLooting) {
+                boolean bossLoot = deadEntity instanceof WitherBoss || deadEntity instanceof EnderDragon;
 
-                    if (deadEntity instanceof WitherBoss) return;
-                    if (deadEntity instanceof EnderDragon) return;
+                //Looting
+                if (isLooting && !bossLoot) {
 
                     event.setCanceled(true);
                     LootTable lootTable = Objects.requireNonNull(level.getServer()).reloadableRegistries().getLootTable(deadEntity.getLootTable());

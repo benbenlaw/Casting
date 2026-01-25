@@ -39,7 +39,6 @@ public class SolidifierRecipeBuilder implements RecipeBuilder {
     }
 
 
-
     @Override
     public @NotNull RecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
         this.criteria.put(name, criterion);

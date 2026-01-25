@@ -31,15 +31,15 @@ public class CastingLangProvider extends LanguageProvider {
         addItemTranslation("fluid_mover", "Fluid Mover");
 
         //Blocks
-        addBlockTranslation("multiblock_controller", "Multiblock Controller (BETA)");
-        addBlockTranslation("multiblock_fuel_tank", "Multiblock Fuel Tank (BETA)");
-        addBlockTranslation("multiblock_coolant_tank", "Multiblock Coolant Tank (BETA)");
-        addBlockTranslation("multiblock_solidifier", "Multiblock Solidifier (BETA)");
+        addBlockTranslation("multiblock_controller", "Multiblock Controller");
+        addBlockTranslation("multiblock_fuel_tank", "Multiblock Fuel Tank");
+        addBlockTranslation("multiblock_coolant_tank", "Multiblock Coolant Tank");
+        addBlockTranslation("multiblock_solidifier", "Multiblock Solidifier");
         addBlockTranslation("black_bricks", "Black Bricks");
-        addBlockTranslation("black_brick_glass", "Black Brick Glass (BETA)");
-        addBlockTranslation("multiblock_valve", "Multiblock Valve (BETA)");
-        addBlockTranslation("multiblock_mixer", "Multiblock Mixer  (BETA)");
-        addBlockTranslation("multiblock_regulator", "Multiblock Regulator (BETA)");
+        addBlockTranslation("black_brick_glass", "Black Brick Glass");
+        addBlockTranslation("multiblock_valve", "Multiblock Valve");
+        addBlockTranslation("multiblock_mixer", "Multiblock Mixer ");
+        addBlockTranslation("multiblock_regulator", "Multiblock Regulator");
 
         //OG Casting
         addBlockTranslation("controller", "Simple Controller");

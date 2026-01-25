@@ -10,6 +10,18 @@ multiblock blocks not saving contents when broken
 Use SizedFluidIngredient for recipes that use fluids (26.1)
 Modifiers should use a enchantment like feature to be completely data driven (26.1)
 
+2.3.6
+- Multiblock Solidifier now uses .noOcclusion, fixed issues with custom models not rendering correctly
+- Added Ender Dragon Head to the beheading drops
+- Tweaked looting modifier to not exit early from the loop which prevent behead effect from being applied to ender dragon and wither boss mobs
+- Disabled log messages about null tanks
+
+2.3.5
+- Fixed version number in mod info
+
+2.3.4
+- Removed BETA tags from multiblock blocks in preparation for Submerged 2
+
 2.3.3
 - Experience now tagged as c:experience for better mod compatibility
 - Fluix recipe now uses quartz not certus quartz

@@ -34,7 +34,7 @@ public class CastingBlocks {
                     .lightLevel(state -> state.getValue(MultiblockCoolantTankBlock.LIGHT_LEVEL)).noOcclusion()));
 
     public static final DeferredBlock<Block> MULTIBLOCK_SOLIDIFIER = registerBlock("multiblock_solidifier",
-            () -> new MultiblockSolidifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE)));
+            () -> new MultiblockSolidifierBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE).noOcclusion()));
     public static final DeferredBlock<Block> BLACK_BRICKS = registerBlock("black_bricks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE)));
     public static final DeferredBlock<Block> BLACK_BRICK_GLASS = registerBlock("black_brick_glass",

@@ -29,6 +29,7 @@ public class BeheadingConfig {
                                 "minecraft:creeper=minecraft:creeper_head",
                                 "minecraft:wither_skeleton=minecraft:wither_skeleton_skull",
                                 "minecraft:player=minecraft:player_head",
+                                "minecraft:ender_dragon=minecraft:dragon_head",
                                 "minecraft:enderman=enderio:enderman_head"
                         ),
                         obj -> obj instanceof String && ((String) obj).contains("=")

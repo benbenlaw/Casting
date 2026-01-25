@@ -423,7 +423,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
         fuelTemp = 0;
 
         if (fuelTank == null) {
-            System.out.println("Fuel tank is null");
+            //System.out.println("Fuel tank is null");
             return false;
         }
         if (level != null) {
@@ -451,7 +451,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
     private int setNewMaxProgress() {
 
         if (fuelTank == null) {
-            System.out.println("Fuel tank is null");
+            //System.out.println("Fuel tank is null");
             return CONTROLLER_MAX_PROGRESS;
         }
         if (level != null) {
@@ -469,7 +469,7 @@ public class MultiblockControllerBlockEntity extends SyncableBlockEntity impleme
 
     private void useFuel() {
         if (fuelTank == null) {
-            System.out.println("Fuel tank is null");
+            //System.out.println("Fuel tank is null");
             return;
         }
         if (level != null) {
