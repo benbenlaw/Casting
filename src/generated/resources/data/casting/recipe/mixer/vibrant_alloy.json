@@ -8,6 +8,10 @@
     {
       "amount": 90,
       "id": "casting:molten_energetic_alloy"
+    },
+    {
+      "amount": 250,
+      "id": "casting:molten_glowstone"
     }
   ],
   "output": {

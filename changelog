@@ -10,6 +10,10 @@ multiblock blocks not saving contents when broken
 Use SizedFluidIngredient for recipes that use fluids (26.1)
 Modifiers should use a enchantment like feature to be completely data driven (26.1)
 
+2.3.7
+- Updated recipes for Ender IO 8.1.0
+- Molten Copper Alloy is now removed
+
 2.3.6
 - Multiblock Solidifier now uses .noOcclusion, fixed issues with custom models not rendering correctly
 - Added Ender Dragon Head to the beheading drops

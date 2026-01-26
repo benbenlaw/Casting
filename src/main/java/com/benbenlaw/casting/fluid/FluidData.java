@@ -85,7 +85,6 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
         fluidList.add(new FluidData("molten_dark_steel", "block/molten_still", "block/molten_flow", 0xFF646068, 1000));
         fluidList.add(new FluidData("molten_pulsating_alloy", "block/molten_still", "block/molten_flow", 0xFF8bf9af, 1000));
         fluidList.add(new FluidData("molten_conductive_alloy", "block/molten_still", "block/molten_flow", 0xFFeed4b9, 1000));
-        fluidList.add(new FluidData("molten_copper_alloy", "block/molten_still", "block/molten_flow", 0xFF653f23, 1000));
         fluidList.add(new FluidData("molten_vibrant_alloy", "block/molten_still", "block/molten_flow", 0xFFfcfadf, 1000));
         fluidList.add(new FluidData("molten_energetic_alloy", "block/molten_still", "block/molten_flow", 0xFFf5a84f, 1000));
         fluidList.add(new FluidData("molten_redstone_alloy", "block/molten_still", "block/molten_flow", 0xFFfa976d, 1000));

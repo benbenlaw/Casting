@@ -543,7 +543,7 @@ public class CastingRecipeProvider extends RecipeProvider {
                 getFluidStack("molten_brass", 360), "brass", consumer);
 
         createSimpleMixingRecipe(fluidList(
-                        getFluidStack("molten_ender", 250),getFluidStack("molten_energetic_alloy", 90)),
+                        getFluidStack("molten_ender", 250),getFluidStack("molten_energetic_alloy", 90),getFluidStack("molten_glowstone", 250)),
                 getFluidStack("molten_vibrant_alloy", 90), "vibrant_alloy", consumer);
 
         createSimpleMixingRecipe(fluidList(
@@ -551,19 +551,19 @@ public class CastingRecipeProvider extends RecipeProvider {
                 getFluidStack("molten_obsidian", 1000), "obsidian", consumer);
 
         createSimpleMixingRecipe(fluidList(
-                        getFluidStack("molten_silicon", 250), getFluidStack("molten_redstone", 90)),
+                        getFluidStack("molten_copper", 90), getFluidStack("molten_redstone", 90)),
                 getFluidStack("molten_redstone_alloy", 90), "redstone_alloy", consumer);
 
         createSimpleMixingRecipe(fluidList(
                         getFluidStack("molten_ender", 250), getFluidStack("molten_iron", 90)),
-                getFluidStack("molten_pulsating_alloy", 90), "pulsating_alloy", consumer);
+                getFluidStack("molten_pulsating_alloy", 180), "pulsating_alloy", consumer);
 
         createSimpleMixingRecipe(fluidList(
                         getFluidStack("molten_lead", 270), getFluidStack("molten_platinum", 90), getFluidStack("molten_ender", 500)),
                 getFluidStack("molten_enderium", 360), "enderium", consumer);
 
         createSimpleMixingRecipe(fluidList(
-                        getFluidStack("molten_iron", 90), getFluidStack("molten_coal", 160), getFluidStack("molten_obsidian", 1000)),
+                        getFluidStack("molten_iron", 90), getFluidStack("molten_coal", 80), getFluidStack("molten_obsidian", 1000)),
                 getFluidStack("molten_dark_steel", 90), "dark_steel", consumer);
 
         createSimpleMixingRecipe(fluidList(
@@ -587,7 +587,7 @@ public class CastingRecipeProvider extends RecipeProvider {
                 getFluidStack("molten_lumium", 360), "lumium", consumer);
 
         createSimpleMixingRecipe(fluidList(
-                        getFluidStack("molten_redstone", 90), getFluidStack("molten_iron", 90), getFluidStack("molten_copper_alloy", 90)),
+                        getFluidStack("molten_copper", 90), getFluidStack("molten_iron", 90)),
                 getFluidStack("molten_conductive_alloy", 90), "conductive_alloy", consumer);
 
         createSimpleMixingRecipe(fluidList(
@@ -599,7 +599,7 @@ public class CastingRecipeProvider extends RecipeProvider {
                 getFluidStack("molten_electrum", 180), "electrum", consumer);
 
         createSimpleMixingRecipe(fluidList(
-                        getFluidStack("molten_redstone", 90), getFluidStack("molten_gold", 90), getFluidStack("molten_glowstone", 250)),
+                        getFluidStack("molten_redstone", 90), getFluidStack("molten_gold", 90), getFluidStack("molten_conductive_alloy", 90)),
                 getFluidStack("molten_energetic_alloy", 90), "energetic_alloy", consumer);
 
         createSimpleMixingRecipe(fluidList(

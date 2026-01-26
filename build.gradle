@@ -84,7 +84,7 @@ dependencies {
     compileOnly "curse.maven:building-gadgets-298187:5968587"
     runtimeOnly "curse.maven:building-gadgets-298187:5968587"
 
-    //Ender IO
+    //Ender IO (this is using an older version as the newest version data gen is broken, recipe are updated for the latest ender io version)
     compileOnly "curse.maven:enderio-64578:5771156"
     runtimeOnly "curse.maven:enderio-64578:5771156"
 

@@ -10,8 +10,8 @@
       "id": "casting:molten_gold"
     },
     {
-      "amount": 250,
-      "id": "casting:molten_glowstone"
+      "amount": 90,
+      "id": "casting:molten_conductive_alloy"
     }
   ],
   "output": {

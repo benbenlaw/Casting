@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-04T11:01:28.6858679	Recipes
+// 1.21.1	2026-01-26T11:02:21.408284	Recipes
 42fdfe43393bd9fb28c7e3a8f0c5fd360dd62d58 data/casting/advancement/recipes/coolant/coolant/chilled_water.json
 5a2942e64c0e7619cf00e75f3297e458f9e2d354 data/casting/advancement/recipes/coolant/coolant/iced_water.json
 3e0ddb196cbfc477f0f8acf37cda3036f7f77692 data/casting/advancement/recipes/coolant/coolant/molten_diamond.json
@@ -1574,14 +1574,14 @@ ed085ec51a265d05eaee9713d2e7b577a92301b9 data/casting/recipe/melting/zinc/from_w
 1dde37e2d86791f842f33a5a4a3896e66873aeac data/casting/recipe/mixer.json
 7138333a8b9bd725311c28766a6a280189f7ad86 data/casting/recipe/mixer/brass.json
 e32adfd1412b14a5ccce82239c38fc81410586e6 data/casting/recipe/mixer/bronze.json
-9c76c21e19302dbc66e94d46d5de134404205645 data/casting/recipe/mixer/conductive_alloy.json
+e17b608418a8895b555478c0834c63ef9ec5813c data/casting/recipe/mixer/conductive_alloy.json
 357fc30caf0aafae6b2c3ae879a6df2a84b78665 data/casting/recipe/mixer/constantan.json
 276802ec77b6c215b3bc5a95ec29e05bd7b3c348 data/casting/recipe/mixer/copper_alloy.json
-307f9bc4f1722538469f9abbb941700bafe00bae data/casting/recipe/mixer/dark_steel.json
+7c0a41a98e8bd79445e592235f48abf946fc1103 data/casting/recipe/mixer/dark_steel.json
 9aaddb5afc5636d490e07a341bb6d323c3eff106 data/casting/recipe/mixer/electrum.json
 a8fb9ab69707202d8a27626dab5d2eb634b94cbb data/casting/recipe/mixer/enderium.json
 542f514d72100d88b5da9b6358307a76b4f573a4 data/casting/recipe/mixer/end_steel.json
-cb8ce27d209ae7d3ed7c4f8dadeccbcdbee21962 data/casting/recipe/mixer/energetic_alloy.json
+8c30410b8e654eb5ece7abb96b7949bc1d3d7bd1 data/casting/recipe/mixer/energetic_alloy.json
 8d036a470db1d199b8b6f5912c69f2d904aabd58 data/casting/recipe/mixer/fluix.json
 9752e350e8a1e54fa602fa34a7dcadea985cd808 data/casting/recipe/mixer/invar.json
 077394bbd425d66d6f5869d335ac016c79027659 data/casting/recipe/mixer/lumium.json
@@ -1589,13 +1589,13 @@ cb8ce27d209ae7d3ed7c4f8dadeccbcdbee21962 data/casting/recipe/mixer/energetic_all
 ac84012bf70cb16e0829658bac858dfc11b1b19a data/casting/recipe/mixer/molten_quartz_enriched_iron.json
 c58f37c1a7b08c5983856ede0e5b8d95dc280adb data/casting/recipe/mixer/netherite.json
 93fea06bfbd45e56a430214dbf9f5d3d20e08c36 data/casting/recipe/mixer/obsidian.json
-cceda13fe644fe62cd414d6c9b5094e1a3ba8757 data/casting/recipe/mixer/pulsating_alloy.json
-ebb7330907ef4f48d62dd7fac8514cf27e5fb67b data/casting/recipe/mixer/redstone_alloy.json
+b10f2d8b1c204582efa6d6514a94fcc6f048bc5b data/casting/recipe/mixer/pulsating_alloy.json
+250482681f5c8f1de6979370a4f9c1fef51dadf7 data/casting/recipe/mixer/redstone_alloy.json
 07759b96a89d00305fa91c76230e471526f8ed53 data/casting/recipe/mixer/signalum.json
 cd6a5bf9bedf118131f23e812d17b2784370a8cd data/casting/recipe/mixer/soularium.json
 aba6ba5423a1a25c68cf2d2487c51c3a73bc90e4 data/casting/recipe/mixer/steel.json
 5dfcddf7f5282a4559b5ad602bd6dbf18e6c73db data/casting/recipe/mixer/super_coolant.json
-4c4f7ea1e0bf58552f91f546c48d8b412f9ced8b data/casting/recipe/mixer/vibrant_alloy.json
+8c09a73c4549b8bf052c44bc39947379b4bf1301 data/casting/recipe/mixer/vibrant_alloy.json
 d560b4007744737e34ab5339bfb1e3485b563d15 data/casting/recipe/mixer_whisk.json
 497a777e2bfeb209e32fa44019588a297842dd18 data/casting/recipe/multiblock_regulator.json
 4bf4f51f4cc1c2031776a16d593b533ad5e40e91 data/casting/recipe/nugget_mold.json
