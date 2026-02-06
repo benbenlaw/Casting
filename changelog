@@ -10,6 +10,9 @@ multiblock blocks not saving contents when broken
 Use SizedFluidIngredient for recipes that use fluids (26.1)
 Modifiers should use a enchantment like feature to be completely data driven (26.1)
 
+2.3.9
+- Removed test casting recipe
+
 2.3.8
 - Fixed bucket and fluid tags referancing molten copper alloy which has been removed
 
