@@ -33,7 +33,7 @@ public class CastingLootTableProvider extends VanillaBlockLoot {
         this.dropSelf(CastingBlocks.BLACK_BRICKS.get());
         this.dropSelf(CastingBlocks.BLACK_BRICK_GLASS.get());
         this.dropWithFluidComponent(CastingBlocks.CONTROLLER.get());
-        this.dropWithFluidComponent(CastingBlocks.SOLIDIFIER.get());
+        this.dropWithFluidComponentAndMolds(CastingBlocks.SOLIDIFIER.get());
         this.dropWithFluidComponent(CastingBlocks.MIXER.get());
         this.dropWithFluidComponent(CastingBlocks.TANK.get());
     }
@@ -46,6 +46,17 @@ public class CastingLootTableProvider extends VanillaBlockLoot {
                         .add(LootItem.lootTableItem(block)
                                 .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
                                         .include(CastingDataComponents.FLUIDS.get())))));
+    }
+    private void dropWithFluidComponentAndMolds(Block block) {
+        this.add(block, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(block)
+                                .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+                                        .include(CastingDataComponents.STORED_MOLDS.get()))
+                                .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+                                        .include(CastingDataComponents.FLUIDS.get()))
+                        )));
     }
 
 

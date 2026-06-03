@@ -166,8 +166,11 @@
   "jei.casting.melting_temp": "Melting Temp: %s",
   "jei.casting.mixing": "Mixing",
   "jei.casting.solidifier": "Solidifier",
+  "tooltip.casting.empty": "Empty",
+  "tooltip.casting.empty_filter": "Empty Filter",
   "tooltip.casting.experience_ball": "Right click to consume and gain experience",
   "tooltip.casting.fluids_header": "Fluids:",
+  "tooltip.casting.molds_header": "Molds:",
   "tooltip.casting.no_coolant": "No Tank adjacent. Place and fill with coolant to speed up the solidifier!",
   "tooltip.casting.no_fuel": "No Tank adjacent. place and fill with fuel to start melting!"
 }

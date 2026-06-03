@@ -21,7 +21,7 @@ public class CastingCapabilities {
 
         //Solidifier
         event.registerBlockEntity(Capabilities.Item.BLOCK, CastingBlockEntities.SOLIDIFIER_BLOCK_ENTITY.get(),
-                (blockEntity, side) -> blockEntity.getItemCapability());
+                (blockEntity, side) -> blockEntity.getItemHandler());
 
         event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.SOLIDIFIER_BLOCK_ENTITY.get(),
                 (blockEntity, side) -> blockEntity.getFluidCapability());

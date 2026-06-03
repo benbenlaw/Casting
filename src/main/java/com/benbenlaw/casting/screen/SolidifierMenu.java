@@ -27,12 +27,15 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
     protected Player player;
     protected BlockPos blockPos;
 
+    private int moldPage = 0;
+    private static final int MOLDS_PER_PAGE = 5;
+
     public SolidifierMenu(int containerID, Inventory inventory, FriendlyByteBuf extraData) {
         this(containerID, inventory, extraData.readBlockPos(), new SimpleContainerData(4));
     }
 
     public SolidifierMenu(int containerID, Inventory inventory, BlockPos blockPos, ContainerData data) {
-        super(CastingMenuTypes.SOLIDIFIER_MENU.get(), containerID, inventory, blockPos, 3);
+        super(CastingMenuTypes.SOLIDIFIER_MENU.get(), containerID, inventory, blockPos, 7);
         this.player = inventory.player;
         this.blockPos = blockPos;
         this.level = inventory.player.level();
@@ -40,7 +43,7 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
         this.blockEntity = (SolidifierBlockEntity) this.level.getBlockEntity(blockPos);
 
         assert blockEntity != null;
-        this.addSlot(new InputSlot(blockEntity.getInputHandler(), blockEntity.getInputHandler()::set, 0, 44, 35) {
+        this.addSlot(new InputSlot(blockEntity.getItemHandler(), blockEntity.getItemHandler()::set, 0, 44, 20) {
             @Override
             public int getMaxStackSize(ItemStack stack) {
                 int maxStackSize = 64;
@@ -51,7 +54,16 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
             }
         });
 
-        this.addSlot(new ResultSlot(blockEntity.getOutputHandler(), blockEntity.getOutputHandler()::set, 0, 116, 35));
+        for (int i = 0; i < 5; i++) {
+            this.addSlot(new PagedMoldSlot(
+                    this,
+                    i,
+                    44 + i * 18,
+                    51
+            ));
+        }
+
+        this.addSlot(new ResultSlot(blockEntity.getItemHandler(), blockEntity.getItemHandler()::set, 1, 116, 20));
 
         SimpleContainer fluidFilterContainer = new SimpleContainer(1);
         this.addSlot(new FilterFluidSlot(fluidFilterContainer, blockEntity.getFilterFluidHandler(), 0, 8, 20));
@@ -90,5 +102,18 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
         int progressArrowSize = 24;
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+
+    public int getMaxMoldPage() {
+        int size = blockEntity.getStoredMolds().size();
+        return Math.max(0, (size - 1) / MOLDS_PER_PAGE);
+    }
+
+    public void setMoldPage(int page) {
+        this.moldPage = Math.max(0, Math.min(page, getMaxMoldPage()));
+    }
+
+    public int getMoldPage() {
+        return moldPage;
     }
 }

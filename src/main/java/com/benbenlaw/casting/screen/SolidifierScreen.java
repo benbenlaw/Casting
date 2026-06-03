@@ -1,35 +1,109 @@
 package com.benbenlaw.casting.screen;
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.block.entity.ControllerBlockEntity;
-import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
+import com.benbenlaw.casting.network.packet.ChangeMoldPagePacket;
 import com.benbenlaw.core.Core;
 import com.benbenlaw.core.screen.util.DurationTooltip;
 import com.benbenlaw.core.screen.util.FluidRenderingUtils;
-import com.benbenlaw.core.util.MouseUtil;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.transfer.fluid.FluidResource;
-import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
-import net.neoforged.neoforge.transfer.fluid.FluidUtil;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.item.ItemUtil;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
 
     private static final Identifier TEXTURE = Casting.identifier("textures/gui/solidifier_gui.png");
     private static final Identifier PROGRESS_ARROW = Core.identifier("progress_arrow");
 
+    private final List<ItemStack> molds = new ArrayList<>();
+    private final List<Integer> moldSlotIndices = new ArrayList<>();
+    private int page = 0;
+
     public SolidifierScreen(SolidifierMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        populateMolds();
+        ItemStack currentInput = ItemUtil.getStack(
+                menu.blockEntity.getItemHandler(), 0);
+        if (!currentInput.isEmpty()) {
+            for (int i = 0; i < molds.size(); i++) {
+                if (ItemStack.isSameItemSameComponents(molds.get(i), currentInput)) {
+                    page = i;
+                    break;
+                }
+            }
+        }
+
+        addRenderableWidget(Button.builder(Component.literal("<"), b -> {
+            int max = menu.getMaxMoldPage();
+
+            page--;
+            if (page < 0) page = max;
+
+            ClientPacketDistributor.sendToServer(
+                    new ChangeMoldPagePacket(menu.blockEntity.getBlockPos(), page)
+            );
+
+            menu.setMoldPage(page);
+        }).bounds(x + 32, y + 54, 10, 10).build());
+
+        addRenderableWidget(Button.builder(Component.literal(">"), b -> {
+            int max = menu.getMaxMoldPage();
+
+            page++;
+            if (page > max) page = 0;
+
+            ClientPacketDistributor.sendToServer(
+                    new ChangeMoldPagePacket(menu.blockEntity.getBlockPos(), page)
+            );
+
+            menu.setMoldPage(page);
+        }).bounds(x + 134, y + 54, 10, 10).build());
+
+
+    }
+
+    public void populateMolds() {
+        ResourceHandler<ItemResource> moldHandler = menu.blockEntity.getStoredMolds();
+
+        molds.clear();
+        moldSlotIndices.clear();
+
+        for (int i = 0; i < moldHandler.size(); i++) {
+            ItemStack stack = ItemUtil.getStack(moldHandler, i);
+            if (!stack.isEmpty()) {
+                molds.add(stack);
+                moldSlotIndices.add(i);
+            }
+        }
+
+        if (molds.isEmpty()) {
+            page = 0;
+            return;
+        }
+
+        if (page >= molds.size()) {
+            page = 0;
+        }
     }
 
     @Override
@@ -42,9 +116,9 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
 
         if (menu.isCrafting()) {
-            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_ARROW, 24, 16, 0, 0, x + 76, y + 34, menu.getScaledProgress() + 1, 16);
+            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_ARROW, 24, 16, 0, 0,
+                    x + 76, y + 19, menu.getScaledProgress() + 1, 16);
         }
-        renderTankTextures(guiGraphics, x, y);
     }
 
     @Override
@@ -54,58 +128,18 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        DurationTooltip.renderDurationTooltip(guiGraphics, mouseX, mouseY, x, y, 161, 5, menu.data.get(0), menu.data.get(1));
-        renderTankTooltips(guiGraphics, x, y, mouseX, mouseY);
-    }
+        guiGraphics.text(font, Component.translatable("Stored Molds"), x + 44, y + 40, 0xFF404040, false);
 
-    private void renderTankTextures(GuiGraphicsExtractor guiGraphics, int x, int y) {
-        drawTankFluid(guiGraphics, menu.blockEntity.getInputFluidHandler(), 0, x + 8, y + 44, 16, 23);
+        DurationTooltip.renderDurationTooltip(guiGraphics, mouseX, mouseY, x, y, 161, 5,
+                menu.data.get(0), menu.data.get(1));
 
-        drawTankFluid(guiGraphics, menu.blockEntity.getFilterFluidHandler(), 0, x + 8, y + 20, 16, 16);
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getInputFluidHandler(), 0, x, y,
+                8, 44, 23, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty"));
 
-        var fuelTank = SolidifierBlockEntity.getActiveFuelTank(menu.level, menu.blockPos);
-        if (fuelTank != null) {
-            drawTankFluid(guiGraphics, fuelTank.getInputFluidHandler(), 0, x + 152, y + 51, 16, 16);
-        }
-    }
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFilterFluidHandler(), 0, x, y,
+                8, 20, 16, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty_filter"));
 
-    private void drawTankFluid(GuiGraphicsExtractor guiGraphics, Object handler, int slot, int x, int y, int width, int height) {
-        var fluidHandler = (net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler) handler;
-        var stack = FluidUtil.getStack(fluidHandler, slot);
-
-        if (!stack.isEmpty()) {
-            int capacity = fluidHandler.getCapacityAsInt(slot, FluidResource.of(stack));
-            int displayLevel = (int) ((float) stack.getAmount() / (float) capacity * (float) height);
-            FluidRenderingUtils.renderFluidStack(guiGraphics, stack, x, y + height - displayLevel, width, displayLevel, 0, 0);
-        }
-    }
-
-    private void renderTankTooltips(GuiGraphicsExtractor guiGraphics, int x, int y, int mouseX, int mouseY) {
-        drawTankTooltip(guiGraphics, menu.blockEntity.getInputFluidHandler(), 0, x + 8, y + 44, 16, 23, mouseX, mouseY, "Empty");
-        drawTankTooltip(guiGraphics, menu.blockEntity.getFilterFluidHandler(), 0, x + 8, y + 20, 16, 16, mouseX, mouseY, "Empty Filter");
-
-        var fuelTank = SolidifierBlockEntity.getActiveFuelTank(menu.level, menu.blockPos);
-        if (fuelTank != null) {
-            drawTankTooltip(guiGraphics, fuelTank.getInputFluidHandler(), 0, x + 152, y + 51, 16, 16, mouseX, mouseY, "Empty");
-        } else if (MouseUtil.isMouseOver(mouseX, mouseY, x + 152, y + 51, 16, 16)) {
-            Component text = Component.translatable("tooltip.casting.no_coolant");
-            List<ClientTooltipComponent> components = List.of(ClientTooltipComponent.create(text.getVisualOrderText()));
-            guiGraphics.tooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
-        }
-    }
-
-    private void drawTankTooltip(GuiGraphicsExtractor guiGraphics, Object handler, int slot, int x, int y, int width, int height, int mouseX, int mouseY, String emptyName) {
-        var fluidHandler = (FluidStacksResourceHandler) handler;
-        var stack = FluidUtil.getStack(fluidHandler, slot);
-
-        if (mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height) {
-            if (stack.isEmpty()) {
-                Component text = Component.literal(emptyName);
-                List<ClientTooltipComponent> components = List.of(ClientTooltipComponent.create(text.getVisualOrderText()));
-                guiGraphics.tooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
-            } else {
-                FluidRenderingUtils.renderFluidStackTooltip(guiGraphics, stack, fluidHandler, slot, x, y, width, height, mouseX, mouseY);
-            }
-        }
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.fuelStack, 4000, x, y,
+                152, 51, 16, 16, mouseX, mouseY, Component.translatable("tooltip.casting.no_coolant"));
     }
 }

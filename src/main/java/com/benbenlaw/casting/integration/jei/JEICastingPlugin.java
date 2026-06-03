@@ -117,7 +117,7 @@ public class JEICastingPlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(ControllerScreen.class, 106, 34, 24, 16, MeltingRecipeCategory.RECIPE_TYPE);
         registration.addRecipeClickArea(MixerScreen.class, 117, 34, 24, 16, MixingRecipeCategory.RECIPE_TYPE);
-        registration.addRecipeClickArea(SolidifierScreen.class, 76, 34, 24, 16, SolidifierRecipeCategory.RECIPE_TYPE);
+        registration.addRecipeClickArea(SolidifierScreen.class, 76, 19, 24, 16, SolidifierRecipeCategory.RECIPE_TYPE);
 
         registration.addGhostIngredientHandler(SolidifierScreen.class, new GhostFilter<>());
         registration.addGhostIngredientHandler(MixerScreen.class, new GhostFilter<>());

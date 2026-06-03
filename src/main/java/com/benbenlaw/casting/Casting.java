@@ -10,6 +10,7 @@ import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.item.CastingCreativeModeTab;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.CastingItems;
+import com.benbenlaw.casting.network.CastingMessages;
 import com.benbenlaw.casting.recipe.CastingRecipeTypes;
 import com.benbenlaw.casting.screen.CastingMenuTypes;
 import com.benbenlaw.casting.screen.ControllerScreen;
@@ -60,6 +61,11 @@ public class Casting {
 
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::networkingSetup);
+    }
+
+    public void networkingSetup(RegisterPayloadHandlersEvent event) {
+        CastingMessages.registerNetworking(event);
     }
 
     public void registerCapabilities(RegisterCapabilitiesEvent event) {

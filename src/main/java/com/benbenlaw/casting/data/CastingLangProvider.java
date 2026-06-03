@@ -47,8 +47,12 @@ public class CastingLangProvider extends LanguageProvider {
 
         //Tooltip
         add("tooltip.casting.fluids_header", "Fluids:");
+        add("tooltip.casting.molds_header", "Molds:");
         add("tooltip.casting.no_fuel", "No Tank adjacent. place and fill with fuel to start melting!");
         add("tooltip.casting.no_coolant", "No Tank adjacent. Place and fill with coolant to speed up the solidifier!");
+        add("tooltip.casting.empty_filter", "Empty Filter");
+        add("tooltip.casting.empty", "Empty");
+
         add("tooltip.casting.experience_ball", "Right click to consume and gain experience");
 
         add("jei.casting.information.solidifier", "The Solidifier is a used to transform fluids into items often using molds. \n\n"

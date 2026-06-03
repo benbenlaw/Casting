@@ -10,6 +10,13 @@
             {
               "function": "minecraft:copy_components",
               "include": [
+                "casting:stored_molds"
+              ],
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_components",
+              "include": [
                 "casting:fluids"
               ],
               "source": "block_entity"

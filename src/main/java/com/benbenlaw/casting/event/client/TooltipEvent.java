@@ -24,29 +24,62 @@ public class TooltipEvent {
         ItemStack stack = event.getItemStack();
 
         TooltipUtil.addShiftTooltip(stack, event, CastingItems.EXPERIENCE_BALL.get(), "tooltip.casting.experience_ball");
+        FluidListComponent fluidListComponent = stack.get(CastingDataComponents.FLUIDS.get());
 
-        if (stack.has(CastingDataComponents.FLUIDS.get())) {
-            FluidListComponent fluidListComponent = stack.get(CastingDataComponents.FLUIDS.get());
+        if (fluidListComponent != null) {
 
-            if (fluidListComponent == null || fluidListComponent.fluids().isEmpty()) return;
+            boolean hasFluids = fluidListComponent.fluids().stream().anyMatch(f -> !f.isEmpty());
 
-            if (Minecraft.getInstance().hasShiftDown()) {
-                event.getToolTip().add(Component.translatable("tooltip.casting.fluids_header")
-                        .withStyle(ChatFormatting.BLUE));
+            if (hasFluids) {
 
-                for (FluidStack fluid : fluidListComponent.fluids()) {
-                    if (!fluid.isEmpty()) {
-                        Component fluidLine = Component.literal(" - ")
-                                .append(Component.literal(fluid.getAmount() + "mB "))
-                                .append(fluid.getHoverName())
-                                .withStyle(ChatFormatting.BLUE);
+                if (Minecraft.getInstance().hasShiftDown()) {
+                    event.getToolTip().add(Component.translatable("tooltip.casting.fluids_header").withStyle(ChatFormatting.BLUE));
 
-                        event.getToolTip().add(fluidLine);
+                    for (FluidStack fluid : fluidListComponent.fluids()) {
+                        if (fluid.isEmpty()) continue;
+
+                        event.getToolTip().add(
+                                Component.literal(" - ")
+                                        .append(Component.literal(fluid.getAmount() + "mB "))
+                                        .append(fluid.getHoverName())
+                                        .withStyle(ChatFormatting.BLUE)
+                        );
                     }
+
+                } else {
+                    event.getToolTip().add(Component.translatable("tooltip.bblcore.shift") .withStyle(ChatFormatting.YELLOW));
                 }
-            } else {
-                event.getToolTip().add(Component.translatable("tooltip.bblcore.shift")
-                        .withStyle(ChatFormatting.YELLOW));
+            }
+        }
+
+        List<ItemStack> molds = stack.get(CastingDataComponents.STORED_MOLDS.get());
+
+        if (molds != null) {
+
+            boolean hasMolds = molds.stream().anyMatch(m -> !m.isEmpty());
+
+            if (hasMolds) {
+
+                if (Minecraft.getInstance().hasShiftDown()) {
+
+                    event.getToolTip().add(Component.translatable("tooltip.casting.molds_header").withStyle(ChatFormatting.GOLD));
+
+                    for (ItemStack mold : molds) {
+                        if (mold.isEmpty()) continue;
+
+                        event.getToolTip().add(
+                                Component.literal(" - ")
+                                        .append(mold.getHoverName())
+                                        .withStyle(ChatFormatting.GOLD)
+                        );
+                    }
+
+                } else {
+                    event.getToolTip().add(
+                            Component.translatable("tooltip.bblcore.shift")
+                                    .withStyle(ChatFormatting.YELLOW)
+                    );
+                }
             }
         }
     }

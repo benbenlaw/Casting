@@ -24,5 +24,8 @@ The top left slot is the filter slot, if empty allows any fluid to enter the sol
   <ImportStructure src="assets/structures/solidifier.nbt" />
 </GameScene>
 
+### Mold Storage
+The Solidifier can store up to 20 different molds. To add a mold to the solidifier you can either right-click on the solidifier with the mold in hand or add inside the Solidifier Screen in the Stored Molds section. Once a mold is added to the solidifier it will be stored in the solidifier even if it is broken and placed again. Molds can be moved from the Stored Molds section to the input slot to be used in recipes.
+
 ### Troubleshooting
 If the solidifier is not solidifying make sure you are using the correct mold and have enough of the molten fluid in the solidifier tank

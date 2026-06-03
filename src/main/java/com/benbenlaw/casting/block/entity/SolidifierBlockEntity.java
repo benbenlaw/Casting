@@ -6,18 +6,16 @@ import com.benbenlaw.casting.block.custom.SolidifierBlock;
 import com.benbenlaw.casting.config.CastingConfig;
 import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.util.FluidListComponent;
-import com.benbenlaw.casting.recipe.custom.MixingRecipe;
 import com.benbenlaw.casting.recipe.custom.SolidifierRecipe;
 import com.benbenlaw.casting.screen.SolidifierMenu;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
 import com.benbenlaw.core.block.entity.handler.fluid.FilterFluidHandler;
 import com.benbenlaw.core.block.entity.handler.fluid.InputFluidHandler;
-import com.benbenlaw.core.block.entity.handler.item.CombinedItemHandler;
-import com.benbenlaw.core.block.entity.handler.item.InputItemHandler;
-import com.benbenlaw.core.block.entity.handler.item.OutputItemHandler;
+import com.benbenlaw.core.block.entity.handler.item.SyncableItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.network.chat.Component;
@@ -38,14 +36,17 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemUtil;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
+import java.util.List;
 import java.util.OptionalInt;
 
 public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuProvider, FluidAccepting {
@@ -55,10 +56,14 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
     private int progress = 0;
     private OptionalInt temperature = OptionalInt.empty();
 
-    private final InputItemHandler inputHandler = new InputItemHandler(this, 1, (i, stack) -> i == 0);
+    private final SyncableItemHandler inventory = new SyncableItemHandler(this, 2,(i, stack) -> i == 0, i -> i == 1);
     private final InputFluidHandler inputFluidHandler = new InputFluidHandler(this, 1, 8000, (i, stack) -> i == 0);
-    private final OutputItemHandler outputHandler = new OutputItemHandler(this, 1, i -> i == 0);
+    private final SyncableItemHandler storedMolds = new SyncableItemHandler(this, 20, (i, stack) ->false, i -> false);
     private FilterFluidHandler filterFluidHandler = new FilterFluidHandler(this, 1);
+    public FluidStack fuelStack = FluidStack.EMPTY;
+
+    private static final int INPUT_SLOT = 0;
+    private static final int OUTPUT_SLOT = 1;
 
     public SolidifierBlockEntity(BlockPos pos, BlockState state) {
         super(CastingBlockEntities.SOLIDIFIER_BLOCK_ENTITY.get(), pos, state);
@@ -95,9 +100,17 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
 
         boolean isRunning = level.getBlockState(worldPosition).getValue(SolidifierBlock.RUNNING);
 
+
         TankBlockEntity activeFuelTank = getActiveFuelTank(level, worldPosition);
+        if (activeFuelTank != null && level.getGameTime() % 20 == 0) {
+            fuelStack = FluidUtil.getStack(activeFuelTank.getInputFluidHandler(), 0);
+            sync();
+        } else {
+            fuelStack = FluidStack.EMPTY;
+        }
         int currentTemp = activeFuelTank != null ? activeFuelTank.getFuelTemp().orElse(20) : 20;
         this.temperature = activeFuelTank != null ? OptionalInt.of(currentTemp) : OptionalInt.empty();
+
 
         if (!isRunning) {
             updateWorkingState(false);
@@ -112,7 +125,7 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         boolean changed = false;
         boolean isCurrentlyWorking = false;
 
-        ItemStack inputStack = ItemUtil.getStack(inputHandler, 0);
+        ItemStack inputStack = ItemUtil.getStack(inventory, INPUT_SLOT);
         RecipeHolder<SolidifierRecipe> recipeHolder = getRecipe();
 
         if (canFillBucket(inputStack)) {
@@ -189,22 +202,31 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         ItemStack fullBucket = new ItemStack(fluidInTank.getFluid().getBucket());
         if (fullBucket.is(Items.AIR)) return false;
 
-        try (Transaction tx = Transaction.open(null)) {
-            long inserted = outputHandler.insertInternalReturn(0, ItemResource.of(fullBucket), 1, tx);
-            return inserted == 1;
-        }
+        return inventory.runInternal(() -> {
+            try (Transaction tx = Transaction.openRoot()) {
+                long inserted = inventory.insert(
+                        OUTPUT_SLOT,
+                        ItemResource.of(fullBucket),
+                        1,
+                        tx
+                );
+                return inserted == 1;
+            }
+        });
     }
 
     private void executeBucketFill() {
         FluidStack fluidInTank = FluidUtil.getStack(inputFluidHandler, 0);
         ItemStack fullBucket = new ItemStack(fluidInTank.getFluid().getBucket());
 
-        try (Transaction tx = Transaction.open(null)) {
-            inputFluidHandler.extractInternal(0, FluidResource.of(fluidInTank), 1000, tx);
-            inputHandler.extractInternal(0, ItemResource.of(new ItemStack(Items.BUCKET)), 1, tx);
-            outputHandler.insertInternal(0, ItemResource.of(fullBucket), 1, tx);
-            tx.commit();
-        }
+        inventory.runInternal(() -> {
+            try (Transaction tx = Transaction.openRoot()) {
+                inputFluidHandler.extractInternal(0, FluidResource.of(fluidInTank), 1000, tx);
+                inventory.extract(INPUT_SLOT, ItemResource.of(new ItemStack(Items.BUCKET)), 1, tx);
+                inventory.insert(OUTPUT_SLOT, ItemResource.of(fullBucket), 1, tx);
+                tx.commit();
+            }
+        });
     }
 
     public static @Nullable TankBlockEntity getActiveFuelTank(Level level, BlockPos worldPosition) {
@@ -221,18 +243,23 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
     }
 
     private void executeSolidifying(SolidifierRecipe recipe) {
-        try (Transaction tx = Transaction.open(null)) {
+
+        try (Transaction tx = Transaction.openRoot()) {
             FluidStack inTank = FluidUtil.getStack(inputFluidHandler, 0);
 
-            if (!inputHandler.getResource(0).is(CastingTags.Items.MOLDS)) {
-                inputHandler.extractInternal(0, ItemResource.of(ItemUtil.getStack(inputHandler, 0)), recipe.mold().count(), tx);
+            if (!ItemUtil.getStack(inventory, INPUT_SLOT).is((CastingTags.Items.MOLDS))) {
+                inventory.runInternal(() -> {
+                    inventory.extract(INPUT_SLOT, inventory.getResource(INPUT_SLOT), recipe.mold().count(), tx);
+                });
             }
 
             inputFluidHandler.extractInternal(0, FluidResource.of(inTank), recipe.fluid().amount(), tx);
 
             ItemStack result = getStackFromSized(recipe.output());
             if (!result.isEmpty()) {
-                outputHandler.insertInternal(0, ItemResource.of(result), result.getCount(), tx);
+                inventory.runInternal(() -> {
+                    inventory.insert(OUTPUT_SLOT, ItemResource.of(result), result.getCount(), tx);
+                });
             }
             tx.commit();
         }
@@ -256,11 +283,18 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
     private boolean canFormOutput(SolidifierRecipe recipe) {
         ItemStack recipeOutput = getStackFromSized(recipe.output());
         if (recipeOutput.isEmpty()) return false;
-        try (Transaction tx = Transaction.open(null)) {
-            long inserted = outputHandler.insertInternalReturn(
-                    0, ItemResource.of(recipeOutput), recipeOutput.getCount(), tx);
-            return inserted == recipeOutput.getCount();
-        }
+
+        return inventory.runInternal(() -> {
+            try (Transaction tx = Transaction.openRoot()) {
+                long inserted = inventory.insert(
+                        OUTPUT_SLOT,
+                        ItemResource.of(recipeOutput),
+                        recipeOutput.getCount(),
+                        tx
+                );
+                return inserted == recipeOutput.getCount();
+            }
+        });
     }
 
     private ItemStack getStackFromSized(SizedIngredient sizedIngredient) {
@@ -273,7 +307,7 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
     private RecipeHolder<SolidifierRecipe> getRecipe() {
         if (level == null || level.getServer() == null) return null;
 
-        ItemStack mold = ItemUtil.getStack(inputHandler, 0);
+        ItemStack mold = ItemUtil.getStack(inventory, INPUT_SLOT);
         FluidStack fluid = FluidUtil.getStack(inputFluidHandler, 0);
 
         if (mold.isEmpty() || fluid.isEmpty()) return null;
@@ -295,15 +329,84 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
     }
 
     public boolean onPlayerUse(Player player, InteractionHand hand) {
+
+        ItemStack stack = player.getItemInHand(hand);
+
+        if (stack.is(CastingTags.Items.MOLDS)) {
+
+            for (int i = 0; i < storedMolds.size(); i++) {
+                ItemStack existing = ItemUtil.getStack(storedMolds, i);
+
+                if (!existing.isEmpty() && ItemStack.isSameItemSameComponents(existing, stack)) {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < storedMolds.size(); i++) {
+                if (storedMolds.getResource(i).isEmpty()) {
+
+                    int slot = i;
+
+                    storedMolds.runInternal(() -> {
+                        try (Transaction tx = Transaction.open(null)) {
+
+                            int inserted = storedMolds.insert(slot, ItemResource.of(stack), 1, tx);
+
+                            if (inserted > 0) {
+                                stack.shrink(1);
+                                tx.commit();
+                                return true;
+                            }
+
+                            return false;
+                        }
+                    });
+
+                    return true;
+                }
+            }
+
+            return true;
+        }
+
+        if (player.isCrouching() && stack.isEmpty()) {
+            for (int i = 0; i < storedMolds.size(); i++) {
+                if (!storedMolds.getResource(i).isEmpty()) {
+                    int slot = i;
+                    storedMolds.runInternal(() -> {
+                        try (Transaction tx = Transaction.open(null)) {
+                            ItemStack stored = ItemUtil.getStack(storedMolds, slot);
+                            if (stored.isEmpty()) {
+                                return false;
+                            }
+                            int extracted = storedMolds.extract(slot, ItemResource.of(stored), 1, tx);
+                            if (extracted > 0) {
+                                player.addItem(stored.copyWithCount(1));
+                                tx.commit();
+                                return true;
+                            }
+
+                            return false;
+                        }
+                    });
+
+                    return true;
+                }
+            }
+
+            return true;
+        }
+
         return FluidUtil.interactWithFluidHandler(player, hand, this.worldPosition, inputFluidHandler);
     }
 
     @Override
     protected void saveAdditional(ValueOutput output) {
-        inputHandler.serialize(output.child("input"));
+        inventory.serialize(output.child("inventory"));
         inputFluidHandler.serialize(output.child("inputFluid"));
-        outputHandler.serialize(output.child("output"));
         filterFluidHandler.serialize(output.child("filterFluid"));
+        storedMolds.serialize(output.child("storedMolds"));
+        output.store("fluid", FluidStack.OPTIONAL_CODEC, fuelStack);
         output.putInt("progress", progress);
         output.putInt("maxProgress", maxProgress);
 
@@ -314,10 +417,11 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
 
     @Override
     protected void loadAdditional(ValueInput input) {
-        inputHandler.deserialize(input.childOrEmpty("input"));
+        inventory.deserialize(input.childOrEmpty("inventory"));
         inputFluidHandler.deserialize(input.childOrEmpty("inputFluid"));
-        outputHandler.deserialize(input.childOrEmpty("output"));
         filterFluidHandler.deserialize(input.childOrEmpty("filterFluid"));
+        storedMolds.deserialize(input.childOrEmpty("storedMolds"));
+        fuelStack = input.read("fluid", FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY);
         progress = input.getIntOr("progress", 0);
         maxProgress = input.getIntOr("maxProgress", CastingConfig.defaultSolidifierSpeed.get());
 
@@ -327,12 +431,14 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         super.loadAdditional(input);
     }
 
-    public InputItemHandler getInputHandler() { return inputHandler; }
+    public ItemStacksResourceHandler getItemHandler() {
+        return inventory;
+    }
+
     public InputFluidHandler getInputFluidHandler() { return inputFluidHandler; }
-    public OutputItemHandler getOutputHandler() { return outputHandler; }
-    public ResourceHandler<ItemResource> getItemCapability() { return new CombinedItemHandler(inputHandler, outputHandler); }
     public ResourceHandler<FluidResource> getFluidCapability() { return inputFluidHandler; }
     public FilterFluidHandler getFilterFluidHandler() { return filterFluidHandler; }
+    public SyncableItemHandler getStoredMolds() { return storedMolds; }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int container, @NonNull Inventory inventory, @NonNull Player player) {
@@ -346,14 +452,24 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
 
     @Override
     public void preRemoveSideEffects(@NonNull BlockPos pos, @NonNull BlockState state) {
-        dropInventoryContents(inputHandler);
-        dropInventoryContents(outputHandler);
+        dropInventoryContents(inventory);
     }
 
     @Override
     protected void collectImplicitComponents(DataComponentMap.@NonNull Builder builder) {
         super.collectImplicitComponents(builder);
         builder.set(CastingDataComponents.FLUIDS.get(), FluidListComponent.fromHandlers(inputFluidHandler));
+
+        NonNullList<ItemStack> items = storedMolds.copyToList();
+        NonNullList<ItemStack> filledItems = NonNullList.create();
+        for (ItemStack stack : items) {
+            if (!stack.isEmpty()) {
+                ItemStack copy = stack.copy();
+                filledItems.add(copy);
+            }
+        }
+
+        builder.set(CastingDataComponents.STORED_MOLDS.get(), filledItems);
     }
 
     @Override
@@ -362,6 +478,17 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         FluidListComponent component = components.get(CastingDataComponents.FLUIDS.get());
         if (component != null) {
             component.applyToHandlers(inputFluidHandler);
+        }
+        List<ItemStack> molds = components.get(CastingDataComponents.STORED_MOLDS.get());
+        if (molds != null) {
+            molds.forEach(stack -> {
+                for (int i = 0; i < storedMolds.size(); i++) {
+                    if (storedMolds.getResource(i).isEmpty()) {
+                        storedMolds.set(i, ItemResource.of(stack), stack.count());
+                        break;
+                    }
+                }
+            });
         }
     }
 
