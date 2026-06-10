@@ -5,7 +5,7 @@ navigation:
     parent: index.md
     position: 30
 item_ids:
-    - 'casting:solidifier'
+    - 'casting:mixer'
 
 ---
 

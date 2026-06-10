@@ -4,11 +4,6 @@ navigation:
     icon: 'casting:controller'
     parent: index.md
     position: 5
-item_ids:
-    - 'casting:controller'
-    - 'casting:mixer'
-    - 'casting:solidifier'
-
 ---
 
 # Logistics
