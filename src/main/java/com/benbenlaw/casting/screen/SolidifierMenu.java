@@ -31,7 +31,7 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
     private static final int MOLDS_PER_PAGE = 5;
 
     public SolidifierMenu(int containerID, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerID, inventory, extraData.readBlockPos(), new SimpleContainerData(4));
+        this(containerID, inventory, extraData.readBlockPos(), new SimpleContainerData(3));
     }
 
     public SolidifierMenu(int containerID, Inventory inventory, BlockPos blockPos, ContainerData data) {
@@ -73,6 +73,9 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
 
     @Override
     public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
+
+        System.out.println("clicked");
+
         if (slotId >= 0 && slotId < slots.size()) {
             if (this.slots.get(slotId) instanceof FilterFluidSlot filterSlot) {
 
@@ -87,8 +90,9 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
                 }
                 return;
             }
-            super.clicked(slotId, button, clickType, player);
         }
+
+        super.clicked(slotId, button, clickType, player);
     }
 
     public boolean isCrafting() {
