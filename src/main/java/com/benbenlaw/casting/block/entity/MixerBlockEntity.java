@@ -27,8 +27,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidStackTemplate;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.neoforged.neoforge.transfer.CombinedResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandler;
@@ -43,7 +41,34 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
     private int maxProgress = CastingConfig.defaultMixerSpeed.get();
     private int progress = 0;
 
-    private final InputFluidHandler inputFluidHandler = new InputFluidHandler(this, 4, 8000, (i, stack) -> i <= 3);
+    private final InputFluidHandler inputFluidHandler = new InputFluidHandler(this, 4, 8000, (i, stack) -> i <= 3) {
+        @Override
+        public boolean isValid(int index, FluidResource resource) {
+            if (!super.isValid(index, resource)) {
+                return false;
+            }
+
+            if (!resource.isEmpty() && isFluidInAnotherSlot(index, resource)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        private boolean isFluidInAnotherSlot(int index, FluidResource resource) {
+            for (int i = 0; i < size(); i++) {
+                if (i == index) continue;
+
+                FluidResource other = getResource(i);
+                if (!other.isEmpty() && other.equals(resource)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    };
+
     private final OutputFluidHandler outputFluidHandler = new OutputFluidHandler(this, 1, 16000, i -> i == 0);
     private FilterFluidHandler filterFluidHandler = new FilterFluidHandler(this, 4);
 

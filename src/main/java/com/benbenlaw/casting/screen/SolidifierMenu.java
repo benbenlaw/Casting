@@ -74,8 +74,6 @@ public class SolidifierMenu extends SimpleAbstractContainerMenu {
     @Override
     public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
 
-        System.out.println("clicked");
-
         if (slotId >= 0 && slotId < slots.size()) {
             if (this.slots.get(slotId) instanceof FilterFluidSlot filterSlot) {
 
