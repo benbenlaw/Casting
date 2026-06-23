@@ -1,6 +1,6 @@
 package com.benbenlaw.casting.block.entity;
 
-import com.benbenlaw.core.block.entity.handler.fluid.OutputFluidHandler;
+import com.benbenlaw.core.block.entity.handler.fluid.SyncableFluidHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -12,12 +12,14 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public interface FluidSending {
 
-    OutputFluidHandler sendingHandler();
+    SyncableFluidHandler fluidHandler();
+
+    int[] sendingTanks();
 
     default void tickResourceSending(Level level, BlockPos pos) {
         if (level == null || level.isClientSide()) return;
 
-        OutputFluidHandler myHandler = sendingHandler();
+        SyncableFluidHandler myHandler = fluidHandler();
 
         for (Direction direction : Direction.values()) {
             BlockPos neighborPos = pos.relative(direction);
@@ -27,38 +29,42 @@ public interface FluidSending {
                 var neighborInput = accepting.receivingHandler();
                 var neighborFilter = accepting.getFilter();
 
-                if (neighborInput != null) {
-                    for (int i = 0; i < myHandler.size(); i++) {
+                if (neighborInput == null) continue;
 
-                        while (true) {
-                            FluidStack myStack = FluidUtil.getStack(myHandler, i);
-                            if (myStack.isEmpty()) break;
+                for (int tank : sendingTanks()) {
 
-                            long totalMoved = 0;
+                    while (true) {
+                        FluidStack myStack = FluidUtil.getStack(myHandler, tank);
+                        if (myStack.isEmpty()) break;
 
-                            try (Transaction tx = Transaction.open(null)) {
-                                for (int j = 0; j < neighborInput.size(); j++) {
-                                    if (neighborFilter != null) {
-                                        FluidStack filterStack = FluidUtil.getStack(neighborFilter, j);
-                                        if (!filterStack.isEmpty() && !FluidStack.isSameFluidSameComponents(myStack, filterStack)) {
-                                            continue;
-                                        }
-                                    }
+                        long totalMoved = 0;
 
-                                    long moved = neighborInput.insert(j, FluidResource.of(myStack), myStack.getAmount(), tx);
+                        try (Transaction tx = Transaction.open(null)) {
+                            for (int j = 0; j < neighborInput.size(); j++) {
 
-                                    if (moved > 0) {
-                                        myHandler.extract(i, FluidResource.of(myStack), (int) moved, tx);
-                                        totalMoved = moved;
-                                        break;
+                                if (neighborFilter != null) {
+                                    FluidStack filterStack = FluidUtil.getStack(neighborFilter, j);
+                                    if (!filterStack.isEmpty()
+                                            && !FluidStack.isSameFluidSameComponents(myStack, filterStack)) {
+                                        continue;
                                     }
                                 }
 
-                                if (totalMoved > 0) {
-                                    tx.commit();
-                                } else {
-                                    break; // No valid slots found for this fluid in this neighbor
+                                int inserted = neighborInput.insert(j, FluidResource.of(myStack), myStack.getAmount(), tx);
+                                if (inserted <= 0) continue;
+
+                                int extracted = myHandler.extract(tank, FluidResource.of(myStack), inserted, tx);
+
+                                if (extracted > 0) {
+                                    totalMoved = extracted;
+                                    break;
                                 }
+                            }
+
+                            if (totalMoved > 0) {
+                                tx.commit();
+                            } else {
+                                break;
                             }
                         }
                     }

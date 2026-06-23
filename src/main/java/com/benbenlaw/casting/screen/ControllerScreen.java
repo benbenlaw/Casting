@@ -39,6 +39,7 @@ public class ControllerScreen extends AbstractContainerScreen<ControllerMenu> {
 
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
 
+
         if (menu.isCrafting()) {
             for (int i = 0; i < 15; i++) {
                 int scaledHeight = menu.getScaledProgress(i);
@@ -56,7 +57,7 @@ public class ControllerScreen extends AbstractContainerScreen<ControllerMenu> {
                     if (i >= 5) xPos += 5;
                     if (i >= 10) xPos += 5;
 
-                    guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, Core.identifier("duration_icon"), x + xPos, y - 5, 10, 10);
+                    //guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, Core.identifier("duration_icon"), x + xPos, y - 5, 10, 10);
                 }
             }
         }
@@ -69,81 +70,21 @@ public class ControllerScreen extends AbstractContainerScreen<ControllerMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        renderTankTextures(guiGraphics, x, y, mouseX, mouseY);
-
-        renderDurationTooltips(guiGraphics, x, y, mouseX, mouseY);
-        renderTankTooltips(guiGraphics, x, y, mouseX, mouseY);
         if (ControllerBlockEntity.getActiveFuelTank(menu.level, menu.blockPos) != null) {
-            FluidRenderingUtils.renderFluid(guiGraphics,
-                    Objects.requireNonNull(ControllerBlockEntity.getActiveFuelTank(menu.level, menu.blockPos)).getInputFluidHandler(), 0, x, y, 110, 51, 16, 16, mouseX, mouseY);
-        } else if (MouseUtil.isMouseOver(mouseX, mouseY, x + 110, y + 51, 16, 16)) {
-            Component text = Component.translatable("tooltip.casting.no_fuel");
-            List<ClientTooltipComponent> components = List.of(ClientTooltipComponent.create(text.getVisualOrderText()));
-            guiGraphics.tooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
+            FluidRenderingUtils.renderFluid(guiGraphics, Objects.requireNonNull(ControllerBlockEntity.getActiveFuelTank(menu.level, menu.blockPos)).getFluidHandler(), 0, x, y,
+                    110, 51, 16, 16, mouseX, mouseY, Component.translatable("tooltip.casting.no_fuel"));
         }
-    }
 
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFluidHandler(), 0, x, y,
+                134, 18, 23, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty"));
 
-    private void renderDurationTooltips(GuiGraphicsExtractor guiGraphics, int x, int y, int mouseX, int mouseY) {
-        for (int i = 0; i < 15; i++) {
-            if (menu.data.get(i) > 0) {
-                int xPos = 8 + (i * 10);
-                if (i >= 5) xPos += 5;
-                if (i >= 10) xPos += 5;
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFluidHandler(), 1, x, y,
+                152, 18, 23, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty"));
 
-                if (mouseX >= x + xPos && mouseX < x + xPos + 10 && mouseY >= y - 5 && mouseY < y + 5) {
-                    Component text = Component.translatable("tooltip.core.duration_tooltip", menu.data.get(i), menu.data.get(i + 15));
-                    guiGraphics.tooltip(this.font, List.of(ClientTooltipComponent.create(text.getVisualOrderText())), mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
-                }
-            }
-        }
-    }
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFluidHandler(), 2, x, y,
+                134, 45, 23, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty"));
 
-    private void renderTankTextures(GuiGraphicsExtractor guiGraphics, int x, int y, int mouseX, int mouseY) {
-
-        drawTankFluid(guiGraphics, 0, x + 134, y + 18, 16, 23);
-        drawTankFluid(guiGraphics, 1, x + 152, y + 18, 16, 23);
-        drawTankFluid(guiGraphics, 2, x + 134, y + 45, 16, 23);
-        drawTankFluid(guiGraphics, 3, x + 152, y + 45, 16, 23);
-    }
-
-    private void drawTankFluid(GuiGraphicsExtractor guiGraphics, int slot, int x, int y, int width, int height) {
-        var stack = FluidUtil.getStack(menu.blockEntity.getOutputFluidHandler(), slot);
-        if (!stack.isEmpty()) {
-
-            int capacity = menu.blockEntity.getOutputFluidHandler().getCapacityAsInt(slot, net.neoforged.neoforge.transfer.fluid.FluidResource.of(stack));
-            int displayLevel = (int)((float)stack.getAmount() / (float)capacity * (float)height);
-
-            FluidRenderingUtils.renderFluidStack(guiGraphics, stack, x, y + height - displayLevel, width, displayLevel, 0, 0);
-        }
-    }
-
-    private void renderTankTooltips(GuiGraphicsExtractor guiGraphics, int x, int y, int mouseX, int mouseY) {
-        drawTankTooltip(guiGraphics, 0, x + 134, y + 18, 16, 23, mouseX, mouseY);
-        drawTankTooltip(guiGraphics, 1, x + 152, y + 18, 16, 23, mouseX, mouseY);
-        drawTankTooltip(guiGraphics, 2, x + 134, y + 45, 16, 23, mouseX, mouseY);
-        drawTankTooltip(guiGraphics, 3, x + 152, y + 45, 16, 23, mouseX, mouseY);
-    }
-
-    private void drawTankTooltip(GuiGraphicsExtractor guiGraphics, int slot, int x, int y, int width, int height, int mouseX, int mouseY) {
-        var stack = FluidUtil.getStack(menu.blockEntity.getOutputFluidHandler(), slot);
-
-        if (mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height) {
-
-            if (stack.isEmpty()) {
-                Component text = Component.literal("Empty");
-                List<ClientTooltipComponent> components = List.of(ClientTooltipComponent.create(text.getVisualOrderText()));
-                guiGraphics.tooltip(
-                        this.font,
-                        components,
-                        mouseX,
-                        mouseY,
-                        DefaultTooltipPositioner.INSTANCE,
-                        null
-                );
-            } else {
-                FluidRenderingUtils.renderFluidStackTooltip(guiGraphics, stack, menu.blockEntity.getOutputFluidHandler(), slot, x, y, width, height, mouseX, mouseY);
-            }
-        }
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFluidHandler(), 3, x, y,
+                134, 45, 23, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty"));
     }
 }

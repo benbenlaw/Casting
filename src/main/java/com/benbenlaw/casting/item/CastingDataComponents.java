@@ -2,6 +2,7 @@ package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.item.util.FluidListComponent;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -30,5 +31,9 @@ public class CastingDataComponents {
                             .networkSynchronized(ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()))
                             .cacheEncoding()
                             .build());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FLUID_MANAGER_SELECTED_FLUID =
+            COMPONENTS.register("fluid_manager_selected_fluid", () ->
+                    DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build());
 
 }

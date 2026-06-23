@@ -128,12 +128,12 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        guiGraphics.text(font, Component.translatable("Stored Molds"), x + 44, y + 40, 0xFF404040, false);
+        guiGraphics.text(font, Component.translatable("tooltip.casting.storage_molds"), x + 44, y + 40, 0xFF404040, false);
 
         DurationTooltip.renderDurationTooltip(guiGraphics, mouseX, mouseY, x, y, 161, 5,
                 menu.data.get(0), menu.data.get(1));
 
-        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getInputFluidHandler(), 0, x, y,
+        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFluidHandler(), 0, x, y,
                 8, 44, 23, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty"));
 
         FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFilterFluidHandler(), 0, x, y,

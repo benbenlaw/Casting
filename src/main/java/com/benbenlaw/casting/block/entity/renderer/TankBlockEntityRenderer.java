@@ -31,8 +31,8 @@ public class TankBlockEntityRenderer implements BlockEntityRenderer<TankBlockEnt
         ModelFeatureRenderer.CrumblingOverlay breakProgress) {
         BlockEntityRenderer.super.extractRenderState(blockEntity, renderState, partialTick, cameraPosition, breakProgress);
 
-        renderState.fluidStack = FluidUtil.getStack(blockEntity.getInputFluidHandler(), 0);
-        renderState.tankCapacity = blockEntity.getInputFluidHandler().getCapacityAsInt(0, FluidResource.of(FluidUtil.getStack(blockEntity.getInputFluidHandler(), 0)));
+        renderState.fluidStack = FluidUtil.getStack(blockEntity.getFluidHandler(), 0);
+        renderState.tankCapacity = blockEntity.getFluidHandler().getCapacityAsInt(0, FluidResource.of(FluidUtil.getStack(blockEntity.getFluidHandler(), 0)));
     }
 
     @Override

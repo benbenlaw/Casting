@@ -86,6 +86,16 @@ public class CastingRecipeProvider extends RecipeProvider {
         shapeless(RecipeCategory.MISC, CastingBlocks.MIXER).requires(CastingBlocks.MIXER).unlockedBy("has_mixer", has(CastingBlocks.MIXER)).save(output);
         shapeless(RecipeCategory.MISC, CastingBlocks.TANK).requires(CastingBlocks.TANK).unlockedBy("has_tank", has(CastingBlocks.TANK)).save(output);
 
+        //Fluid Manager
+        shaped(RecipeCategory.MISC, CastingItems.FLUID_MANAGER, 1)
+                .pattern(" AA")
+                .pattern(" BA")
+                .pattern("A  ")
+                .define('A', CastingItems.BLACK_BRICK)
+                .define('B', CastingBlocks.BLACK_BRICK_GLASS)
+                .unlockedBy("has_clay", has(CastingItems.BLACK_BRICK))
+                .save(output, "casting:crafting/fluid_manager");
+
         //Black Bricks
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(Items.CLAY_BALL), RecipeCategory.MISC, CookingBookCategory.MISC, CastingItems.BLACK_BRICK, 0.1f, 100)
                 .unlockedBy("has_clay", has(Items.CLAY))

@@ -2,6 +2,7 @@ package com.benbenlaw.casting.block.custom;
 
 import com.benbenlaw.casting.block.CastingBlockEntities;
 import com.benbenlaw.casting.block.entity.ControllerBlockEntity;
+import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
 import com.benbenlaw.core.block.SyncableBlock;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -35,6 +36,9 @@ public class ControllerBlock extends CastingBlock {
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
             if (entity instanceof ControllerBlockEntity entity1) {
+                if (entity1.onPlayerUse(player, player.getUsedItemHand())) {
+                    return InteractionResult.SUCCESS;
+                }
                 player.openMenu(new SimpleMenuProvider(entity1, entity1.getDisplayName()), pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
@@ -42,7 +46,6 @@ public class ControllerBlock extends CastingBlock {
         }
         return InteractionResult.SUCCESS;
     }
-
     @Override
     public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new ControllerBlockEntity(pos, state);

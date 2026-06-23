@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.event;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.block.CastingBlockEntities;
 import com.benbenlaw.casting.event.client.ClientRecipeCache;
 import com.benbenlaw.casting.recipe.CastingRecipeTypes;
 import com.benbenlaw.casting.recipe.custom.FuelRecipe;
@@ -12,6 +13,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 
@@ -20,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @EventBusSubscriber(modid = Casting.MOD_ID)
-public class RecipeEvents {
+public class CastingEvents {
 
     @SubscribeEvent
     public static void onDataPackSync(OnDatapackSyncEvent event) {
@@ -69,6 +72,33 @@ public class RecipeEvents {
             fuelRecipeMap.put(recipeHolder.id().identifier(), recipeHolder.value());
         }
         ClientRecipeCache.setCachedFuelRecipes(fuelRecipeMap);
+
+    }
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+
+        //Controller
+        event.registerBlockEntity(Capabilities.Item.BLOCK, CastingBlockEntities.CONTROLLER_BLOCK_ENTITY.get(),
+                (blockEntity, side) -> blockEntity.getItemHandler());
+
+        event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.CONTROLLER_BLOCK_ENTITY.get(),
+                (blockEntity, side) -> blockEntity.getFluidHandler());
+
+        //Solidifier
+        event.registerBlockEntity(Capabilities.Item.BLOCK, CastingBlockEntities.SOLIDIFIER_BLOCK_ENTITY.get(),
+                (blockEntity, side) -> blockEntity.getItemHandler());
+
+        event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.SOLIDIFIER_BLOCK_ENTITY.get(),
+                (blockEntity, side) -> blockEntity.getFluidHandler());
+
+        //Mixer
+        event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.MIXER_BLOCK_ENTITY.get(),
+                (blockEntity, side) -> blockEntity.getFluidHandler());
+
+        //Tank
+        event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.TANK_BLOCK_ENTITY.get(),
+                (blockEntity, side) -> blockEntity.getFluidHandler());
 
     }
 

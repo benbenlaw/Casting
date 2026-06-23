@@ -44,6 +44,7 @@ public class CastingLangProvider extends LanguageProvider {
 
         addItemTranslation("black_brick", "Black Brick");
         addItemTranslation("experience_ball", "Experience Ball");
+        addItemTranslation("fluid_manager", "Fluid Manager");
 
         //Tooltip
         add("tooltip.casting.fluids_header", "Fluids:");
@@ -52,6 +53,8 @@ public class CastingLangProvider extends LanguageProvider {
         add("tooltip.casting.no_coolant", "No Tank adjacent. Place and fill with coolant to speed up the solidifier!");
         add("tooltip.casting.empty_filter", "Empty Filter");
         add("tooltip.casting.empty", "Empty");
+        add("tooltip.casting.storage_molds", "Stored Molds");
+        add("tooltip.casting.fluid", "Selected: %s");
 
         add("tooltip.casting.experience_ball", "Right click to consume and gain experience");
 

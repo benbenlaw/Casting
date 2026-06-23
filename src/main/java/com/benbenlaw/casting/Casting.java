@@ -2,7 +2,6 @@ package com.benbenlaw.casting;
 
 import com.benbenlaw.casting.block.CastingBlockEntities;
 import com.benbenlaw.casting.block.CastingBlocks;
-import com.benbenlaw.casting.block.CastingCapabilities;
 import com.benbenlaw.casting.block.entity.renderer.TankBlockEntityRenderer;
 import com.benbenlaw.casting.block.entity.renderer.TankSpecialRenderer;
 import com.benbenlaw.casting.config.CastingConfig;
@@ -59,17 +58,12 @@ public class Casting {
 
         modContainer.registerConfig(ModConfig.Type.COMMON, CastingConfig.SPEC, "bbl/casting/common.toml");
 
-        modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::networkingSetup);
     }
 
     public void networkingSetup(RegisterPayloadHandlersEvent event) {
         CastingMessages.registerNetworking(event);
-    }
-
-    public void registerCapabilities(RegisterCapabilitiesEvent event) {
-        CastingCapabilities.registerCapabilities(event);
     }
 
     public void commonSetup(RegisterPayloadHandlersEvent event) {

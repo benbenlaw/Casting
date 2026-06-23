@@ -25,5 +25,8 @@ public class CastingItems {
 
     public static final DeferredItem<Item> EXPERIENCE_BALL = ITEMS.registerItem("experience_ball",
             ExperienceBallItem::new, properties -> properties.stacksTo(16));
+
+    public static final DeferredItem<Item> FLUID_MANAGER = ITEMS.registerItem("fluid_manager",
+            FluidMoverItem::new, properties -> properties.stacksTo(1).component(CastingDataComponents.FLUID_MANAGER_SELECTED_FLUID, 0));
 }
 

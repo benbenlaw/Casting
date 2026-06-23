@@ -1,15 +1,16 @@
 package com.benbenlaw.casting.block.entity;
 
-import com.benbenlaw.core.block.entity.handler.fluid.FilterFluidHandler;
-import com.benbenlaw.core.block.entity.handler.fluid.InputFluidHandler;
+import com.benbenlaw.core.block.entity.handler.fluid.SyncableFluidHandler;
 
 import javax.annotation.Nullable;
 
 public interface FluidAccepting {
 
-    InputFluidHandler receivingHandler();
+    SyncableFluidHandler receivingHandler();
 
-    default @Nullable FilterFluidHandler getFilter() {
+    int[] acceptingTanks();
+
+    default @Nullable SyncableFluidHandler getFilter() {
         return null;
     }
 

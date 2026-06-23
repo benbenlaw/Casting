@@ -3,15 +3,18 @@ package com.benbenlaw.casting.block.entity;
 import com.benbenlaw.casting.block.CastingBlockEntities;
 import com.benbenlaw.casting.block.custom.TankBlock;
 import com.benbenlaw.casting.item.CastingDataComponents;
+import com.benbenlaw.casting.item.FluidMoverItem;
 import com.benbenlaw.casting.item.util.FluidListComponent;
 import com.benbenlaw.casting.recipe.custom.FuelRecipe;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
 import com.benbenlaw.core.block.entity.handler.fluid.InputFluidHandler;
+import com.benbenlaw.core.block.entity.handler.fluid.SyncableFluidHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,14 +23,16 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
+import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jspecify.annotations.NonNull;
 
 import java.util.OptionalInt;
 
 public class TankBlockEntity extends SyncableBlockEntity{
 
-    private final InputFluidHandler inputFluidHandler = new InputFluidHandler(this, 1, 4000, (i, stack) -> i == 0);
+    private final SyncableFluidHandler fluidInventory = new SyncableFluidHandler(this, 1, 4000, (i, stack) -> i == 0, i -> i == 0);
 
     public TankBlockEntity(BlockPos pos, BlockState state) {
         super(CastingBlockEntities.TANK_BLOCK_ENTITY.get(), pos, state);
@@ -41,7 +46,7 @@ public class TankBlockEntity extends SyncableBlockEntity{
     }
 
     public OptionalInt getFuelTemp() {
-        FluidStack stack = FluidUtil.getStack(inputFluidHandler, 0);
+        FluidStack stack = FluidUtil.getStack(fluidInventory, 0);
         if (stack.isEmpty()) return OptionalInt.empty();
 
         RecipeHolder<FuelRecipe> fuelRecipe = getFuel(level, stack);
@@ -50,11 +55,8 @@ public class TankBlockEntity extends SyncableBlockEntity{
         return OptionalInt.of(fuelRecipe.value().temp());
     }
 
-    public InputFluidHandler getInputFluidHandler() {
-        return inputFluidHandler;
-    }
-    public ResourceHandler<FluidResource> getFluidCapability() {
-        return inputFluidHandler;
+    public FluidStacksResourceHandler getFluidHandler() {
+        return fluidInventory;
     }
 
     public static RecipeHolder<FuelRecipe> getFuel(Level level, FluidStack stack) {
@@ -75,14 +77,14 @@ public class TankBlockEntity extends SyncableBlockEntity{
 
     @Override
     protected void saveAdditional(ValueOutput output) {
-        inputFluidHandler.serialize(output.child("tankContent"));
+        fluidInventory.serialize(output.child("fluidInventory"));
         super.saveAdditional(output);
     }
 
 
     @Override
     protected void loadAdditional(ValueInput input) {
-        inputFluidHandler.deserialize(input.childOrEmpty("tankContent"));
+        fluidInventory.deserialize(input.childOrEmpty("fluidInventory"));
         super.loadAdditional(input);
     }
 
@@ -92,13 +94,25 @@ public class TankBlockEntity extends SyncableBlockEntity{
     }
 
     public boolean onPlayerUse(Player player, InteractionHand hand) {
-        return FluidUtil.interactWithFluidHandler(player, hand, this.worldPosition, inputFluidHandler);
+        ItemStack stack = player.getItemInHand(hand);
+
+        if (stack.getItem() instanceof FluidMoverItem) {
+            return FluidMoverItem.onBlockInteract(stack, fluidInventory, new int[]{0}, new int[]{0});
+        }
+
+        try (Transaction tx = Transaction.open(null)) {
+            boolean result = FluidUtil.interactWithFluidHandler(player, hand, this.worldPosition, fluidInventory, tx);
+            if (result) {
+                tx.commit();
+            }
+            return result;
+        }
     }
 
     @Override
     protected void collectImplicitComponents(DataComponentMap.@NonNull Builder builder) {
         super.collectImplicitComponents(builder);
-        builder.set(CastingDataComponents.FLUIDS.get(), FluidListComponent.fromHandlers(inputFluidHandler));
+        builder.set(CastingDataComponents.FLUIDS.get(), FluidListComponent.fromHandlers(fluidInventory));
     }
 
     @Override
@@ -106,7 +120,7 @@ public class TankBlockEntity extends SyncableBlockEntity{
         super.applyImplicitComponents(components);
         FluidListComponent component = components.get(CastingDataComponents.FLUIDS.get());
         if (component != null) {
-            component.applyToHandlers(inputFluidHandler);
+            component.applyToHandlers(fluidInventory);
         }
     }
 }
