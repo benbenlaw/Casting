@@ -8,7 +8,7 @@
   "melting_temp": 1000,
   "mold": {
     "count": 1,
-    "ingredient": "casting:block_mold"
+    "ingredient": "casting:ingot_mold"
   },
   "output": {
     "count": 1,
