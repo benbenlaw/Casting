@@ -84,6 +84,17 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         simpleSolidifierRecipe(Items.COAL, getFluidIngredient("molten_coal", 80),
                 CastingItems.GEM_MOLD, "coal/coal", ResourceType.GEMS, getTempFromFluid("molten_coal"));
 
+        simpleSolidifierRecipe(Items.COAL, getFluidIngredient("molten_coal", 720),
+                CastingItems.BLOCK_MOLD, "coal/coal_block", ResourceType.STORAGE_BLOCKS, getTempFromFluid("molten_coal"));
+
+
+        simpleMeltingRecipe(List.of(getFluidStack("molten_coal", 80)), Items.COAL,
+                "coal/coal", ResourceType.INGOTS, getTempFromFluid("molten_coal"));
+
+        simpleMeltingRecipe(List.of(getFluidStack("molten_coal", 720)), Blocks.COAL_BLOCK,
+                "coal/coal_block", ResourceType.STORAGE_BLOCKS, getTempFromFluid("molten_coal"));
+
+
         //Obsidian
         simpleMeltingRecipe(List.of(getFluidStack("molten_obsidian", 1000)), Blocks.OBSIDIAN,
                 "obsidian/obsidian", ResourceType.STORAGE_BLOCKS, getTempFromFluid("molten_obsidian"));
@@ -362,7 +373,7 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         ProcessingType type = processing.resourceType();
 
         int baseMb = processing.mbPerSingleItem();
-        int temp = processing.temp(); // Get the temperature from your data
+        int temp = processing.temp();
         Fluid fluid = CastingFluids.FLUIDS_MAP.get(fluidName).getFluid();
 
         Item mold = getMainMold(type);
@@ -379,7 +390,10 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         processBoth(materialName, ResourceType.WIRES, baseMb / 2, 1, CastingItems.WIRE_MOLD.get(), fluid, temp);
         processBoth(materialName, ResourceType.SHARDS, baseMb, 1, CastingItems.SHARD_MOLD.get(), fluid, temp);
 
-        //Melting Ores and Raw Materials
+        if (type.getResourceType() != ResourceType.DUSTS) {
+            processBoth(materialName, ResourceType.DUSTS, baseMb, 1, CastingItems.DUST_MOLD.get(), fluid, temp);
+        }
+
         int oreAmount = (int) (baseMb * 1.5);
         generateOreMeltingRecipe(materialName, ResourceType.ORES, oreAmount, fluid, temp, "ores");
         generateOreMeltingRecipe(materialName, ResourceType.RAW_MATERIALS, oreAmount, fluid, temp, "raw_materials");

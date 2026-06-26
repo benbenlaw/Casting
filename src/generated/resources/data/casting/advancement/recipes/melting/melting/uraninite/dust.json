@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/uraninite"
+      }
+    }
+  ],
+  "criteria": {
+    "has_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dusts/uraninite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:melting/uraninite/dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:melting/uraninite/dust"
+    ]
+  },
+  "sends_telemetry_event": true
+}

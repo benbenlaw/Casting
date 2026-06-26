@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/enderium"
+      }
+    }
+  ],
+  "criteria": {
+    "has_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dusts/enderium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:melting/enderium/dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:melting/enderium/dust"
+    ]
+  },
+  "sends_telemetry_event": true
+}

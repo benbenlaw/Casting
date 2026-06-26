@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/quartz_enriched_copper"
+      }
+    }
+  ],
+  "criteria": {
+    "has_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dusts/quartz_enriched_copper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:melting/quartz_enriched_copper/dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:melting/quartz_enriched_copper/dust"
+    ]
+  },
+  "sends_telemetry_event": true
+}

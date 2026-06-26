@@ -1,4 +1,4 @@
-// 26.1.2	2026-06-23T09:28:31.9307631	casting Processing Recipes
+// 26.1.2	2026-06-26T09:15:39.6730515	casting Processing Recipes
 6cf7daa5e446d262d0b513ba376716ae43524819 data/casting/advancement/recipes/fuel/fuel/blaze.json
 519547486eb3fbbb51b3460ed5c7a9695e33e52f data/casting/advancement/recipes/fuel/fuel/chilled_water.json
 3bac6b66e74a81f8f22540209612ceca3658333e data/casting/advancement/recipes/fuel/fuel/coal.json
@@ -9,6 +9,7 @@ be503974a6376b567404f9af74d01f68fd829735 data/casting/advancement/recipes/fuel/f
 553dddab249254b4da51b20c5c0dacb11a2dd9fc data/casting/advancement/recipes/fuel/fuel/uranium.json
 498640f6c45effcd6343792d3ed69f33e68d07bf data/casting/advancement/recipes/fuel/fuel/water.json
 afc2cf1c0ab0882a181d4b1203c9a37dd921afff data/casting/advancement/recipes/melting/melting/allthemodium/block.json
+5885151bc89f904d8ef299b73d970b99000a2d11 data/casting/advancement/recipes/melting/melting/allthemodium/dust.json
 e977b841f20d625ab56b3cf1eed54e8b5908c76e data/casting/advancement/recipes/melting/melting/allthemodium/gear.json
 b3e81aaf778ba146aec02068c887ad79fb7aabb6 data/casting/advancement/recipes/melting/melting/allthemodium/ingot.json
 a475c8c8e5cb093e3a404941cb5e87485d78ca22 data/casting/advancement/recipes/melting/melting/allthemodium/nugget.json
@@ -19,6 +20,7 @@ f7cca9e3a0da520a5d8dddb9a001f40e2f1e270b data/casting/advancement/recipes/meltin
 8bb57df64db7f1112cd44fdbb110b549faa1ac7f data/casting/advancement/recipes/melting/melting/allthemodium/shard.json
 5f0c1568422ea72ae40a04f4b664203a9df820e4 data/casting/advancement/recipes/melting/melting/allthemodium/wire.json
 76638feea3b73c1320652b6b303554c4da8d0839 data/casting/advancement/recipes/melting/melting/aluminum/block.json
+5e1f55277e3276a795573219a1b71ec8524240bf data/casting/advancement/recipes/melting/melting/aluminum/dust.json
 b6e9e63718a0d585e86caab25d44bdf8fe76b05b data/casting/advancement/recipes/melting/melting/aluminum/gear.json
 4348de96639786695373b28aff06e8e6a6a789e3 data/casting/advancement/recipes/melting/melting/aluminum/ingot.json
 52cc339d9f00f2e4876dda9f87b0bc55166ea5a6 data/casting/advancement/recipes/melting/melting/aluminum/nugget.json
@@ -34,6 +36,7 @@ df450c0c56b128de600fcb348b5f01b43f096f59 data/casting/advancement/recipes/meltin
 2e68c754043b6747fac944896954f6fd230cac6a data/casting/advancement/recipes/melting/melting/black_brick/clay.json
 75ebe43853d76c541e2ce06293a237a8060a0eca data/casting/advancement/recipes/melting/melting/black_brick/clay_ball.json
 7bda90c1e62d4ac84d532b281753b3a6e630cf51 data/casting/advancement/recipes/melting/melting/black_quartz/block.json
+9ee2c4b28cf84af89ba2a59daa16a429bb19720d data/casting/advancement/recipes/melting/melting/black_quartz/dust.json
 215ec4a24c964af0c8efd77711b1dc90c0d85fe8 data/casting/advancement/recipes/melting/melting/black_quartz/gear.json
 e2313a626763fe5a3f2211bb8b28fb6143af9fa6 data/casting/advancement/recipes/melting/melting/black_quartz/gem.json
 70468819eb80a2a6d2bf610ded41f7ee9f953429 data/casting/advancement/recipes/melting/melting/black_quartz/nugget.json
@@ -44,6 +47,7 @@ f433ae7aed785153e127a6d5cb1b0ac8f8893d4b data/casting/advancement/recipes/meltin
 b12f8bd106ce61b8f3eb28da473138249d4a1c97 data/casting/advancement/recipes/melting/melting/black_quartz/shard.json
 e257a240d8f8495a52d40a1ccf8fd2bf3527f33a data/casting/advancement/recipes/melting/melting/black_quartz/wire.json
 a453df749a9f1801e484449088a007e1ab9fc755 data/casting/advancement/recipes/melting/melting/brass/block.json
+e517e8cda894d68c3e447deee74f0d57e0b50c1d data/casting/advancement/recipes/melting/melting/brass/dust.json
 727538d49de889442bb42c5ceaa155314ad6a1aa data/casting/advancement/recipes/melting/melting/brass/gear.json
 80f124330ac6a30408520a087e13ddd7722c2dda data/casting/advancement/recipes/melting/melting/brass/ingot.json
 d9ca8645d22b537f2f52522fa9b8ab128a420ac5 data/casting/advancement/recipes/melting/melting/brass/nugget.json
@@ -54,6 +58,7 @@ de0cc552351c2f00c9d79a80c8371933bb1d6f84 data/casting/advancement/recipes/meltin
 89e73114c34403e3fe004446106ba7db7a9556c6 data/casting/advancement/recipes/melting/melting/brass/shard.json
 76518056f99f5f718bae50a0596a8145bc840d95 data/casting/advancement/recipes/melting/melting/brass/wire.json
 02831f973f77c4de14e94f99190b6a99a877801e data/casting/advancement/recipes/melting/melting/bronze/block.json
+e6533dd039c0b60c25207fd911a867ed9ff45c60 data/casting/advancement/recipes/melting/melting/bronze/dust.json
 9b159f206c06fab781d7a5140807a4143a3a1c30 data/casting/advancement/recipes/melting/melting/bronze/gear.json
 c36b90e7aed50a63234a790a0dbc85a1c14cb9e7 data/casting/advancement/recipes/melting/melting/bronze/ingot.json
 0634b7c6e7c61bd288871b5730d4281e4430e4d5 data/casting/advancement/recipes/melting/melting/bronze/nugget.json
@@ -64,6 +69,7 @@ ee3918a4d7193e0bdf95cb968e5cefb485fd99ad data/casting/advancement/recipes/meltin
 9ed37e715d3f8d7b0a0efecebc302c18d1023623 data/casting/advancement/recipes/melting/melting/bronze/shard.json
 bfb7400908c3a01e281386c080b860b9eea7ee76 data/casting/advancement/recipes/melting/melting/bronze/wire.json
 ce1d50cab69e1ff7688c76eed941f3a9e5501750 data/casting/advancement/recipes/melting/melting/certus_quartz/block.json
+2c041198e4589c652f92bcb09e3d661cc6002e20 data/casting/advancement/recipes/melting/melting/certus_quartz/dust.json
 86627cd07ca55bcfb9e11230c8f7366a5072c764 data/casting/advancement/recipes/melting/melting/certus_quartz/gear.json
 837e14c083c9ee0d6b92c9c998165cdf3b41e10e data/casting/advancement/recipes/melting/melting/certus_quartz/gem.json
 534a2920172da296ea008d8f26f97415d567ca4a data/casting/advancement/recipes/melting/melting/certus_quartz/nugget.json
@@ -74,6 +80,7 @@ d4736fc07205de6a49ab878e46c3a205947eed1f data/casting/advancement/recipes/meltin
 dc7b7b6be8b02c0e573f78e8fdf28a9d0c23f8c2 data/casting/advancement/recipes/melting/melting/certus_quartz/shard.json
 a74730f1d326591cfd570002415065b6792fd42a data/casting/advancement/recipes/melting/melting/certus_quartz/wire.json
 fe3ca04ff14cb0cfd76467ce3f2fc50e7dd7067e data/casting/advancement/recipes/melting/melting/charged_certus_quartz/block.json
+d31e84b2eb6bef24eb68b2a7220b142eb875637f data/casting/advancement/recipes/melting/melting/charged_certus_quartz/dust.json
 84bb0386bb6605f30cb4483af318427244562be7 data/casting/advancement/recipes/melting/melting/charged_certus_quartz/gear.json
 5b19e205c7713d6705386827b0ce689fd901c846 data/casting/advancement/recipes/melting/melting/charged_certus_quartz/gem.json
 92db2b7efd9068aba766e1d91d773094a7d49b1f data/casting/advancement/recipes/melting/melting/charged_certus_quartz/nugget.json
@@ -86,6 +93,9 @@ ed9c9fab1ad883b40bccec648fc1e898427f0a1f data/casting/advancement/recipes/meltin
 ae11aec56524c6050990078a0181cc12468d33c4 data/casting/advancement/recipes/melting/melting/chilled_water/snow.json
 f0f67e27727b27ec3094cff0d07e4a521629501f data/casting/advancement/recipes/melting/melting/chilled_water/snow_ball.json
 70c1d6b549391bb2dc264f0b88354bbe9ee2b775 data/casting/advancement/recipes/melting/melting/coal/block.json
+66feae9d044f01096e2a3653411e7272dc50cf7e data/casting/advancement/recipes/melting/melting/coal/coal.json
+a72db5914fa52ee858e0ee6ab877a4da33217e1b data/casting/advancement/recipes/melting/melting/coal/coal_block.json
+13619c3907031e74b82931dcbc5c0503dc6e10f2 data/casting/advancement/recipes/melting/melting/coal/dust.json
 2ffdfa5a809320b039d31a784a02e984eef49e98 data/casting/advancement/recipes/melting/melting/coal/gear.json
 cf964795e33147f0c9bbb44d18e9bdf73fc110fd data/casting/advancement/recipes/melting/melting/coal/gem.json
 c9c24ae24f7fc0adb32a50abea96e8dbb14c42b9 data/casting/advancement/recipes/melting/melting/coal/nugget.json
@@ -96,6 +106,7 @@ e52882789329a788effd7e74f6c46f81c23e6899 data/casting/advancement/recipes/meltin
 ea893532717d4908315b9f5cccf442087700f224 data/casting/advancement/recipes/melting/melting/coal/shard.json
 55fa7f07e64e1b06ac606c3ad843e93734454be0 data/casting/advancement/recipes/melting/melting/coal/wire.json
 c3b630f39ffe418b05cf850227a54be444a0cd5c data/casting/advancement/recipes/melting/melting/conductive_alloy/block.json
+0b4b42d1fa2eefd91a4ec7d64f5d5edd48a4ec04 data/casting/advancement/recipes/melting/melting/conductive_alloy/dust.json
 ad4e90f8785d07f94fd6444fd7f14943d6acde61 data/casting/advancement/recipes/melting/melting/conductive_alloy/gear.json
 16606d1ce6d4bde77d2b944a37fa47b2146e625f data/casting/advancement/recipes/melting/melting/conductive_alloy/ingot.json
 5b6f9c73bdef8fad7102c0bfd3917425a660b76e data/casting/advancement/recipes/melting/melting/conductive_alloy/nugget.json
@@ -106,6 +117,7 @@ ad4e90f8785d07f94fd6444fd7f14943d6acde61 data/casting/advancement/recipes/meltin
 644682f97dbb8c0885b16d39cdf85c49a7663813 data/casting/advancement/recipes/melting/melting/conductive_alloy/shard.json
 b98aa88a230f1f8a23500ee419aef9e044a29e64 data/casting/advancement/recipes/melting/melting/conductive_alloy/wire.json
 2e29ce266def33ddb06347da3067a5cd6e22abb9 data/casting/advancement/recipes/melting/melting/constantan/block.json
+9e93208442cb1031caaab30dbf4d35f20d8c0822 data/casting/advancement/recipes/melting/melting/constantan/dust.json
 2749e8cb5d17f031275a9f1eadd54f131d4af838 data/casting/advancement/recipes/melting/melting/constantan/gear.json
 4cca8993b9a4a95adffcaa2163aab61ac32533be data/casting/advancement/recipes/melting/melting/constantan/ingot.json
 06573a70386c29267543c3af3373e72c3c566817 data/casting/advancement/recipes/melting/melting/constantan/nugget.json
@@ -116,6 +128,7 @@ e63dd933a3eaabd1c3733fd7b2d4789fb61a2183 data/casting/advancement/recipes/meltin
 f44c7b26a230556436a70591a706438f302f6c1f data/casting/advancement/recipes/melting/melting/constantan/shard.json
 88299377c0720d46d144564f9c22ce2a6d7b308a data/casting/advancement/recipes/melting/melting/constantan/wire.json
 0675d2fdca3ff7aa7fd18482aeccd346a51037b5 data/casting/advancement/recipes/melting/melting/copper/block.json
+22f2da83f59fc0957a6954c1c5845d4b6bd98ffe data/casting/advancement/recipes/melting/melting/copper/dust.json
 aecc40a4cb8aa661018ba36fe1d06f732649fc2a data/casting/advancement/recipes/melting/melting/copper/gear.json
 e5fd22a8ef2cb6849fb18f5f9286f4b79afd28db data/casting/advancement/recipes/melting/melting/copper/ingot.json
 827f2c187a271b8252791d2258b7cff24195c39e data/casting/advancement/recipes/melting/melting/copper/nugget.json
@@ -126,6 +139,7 @@ c66cf6d8fde7b0b9c9ff8535d1e7c6c11aa0722c data/casting/advancement/recipes/meltin
 05653a487b5eb431d24212bbd49fb56b0d2f4018 data/casting/advancement/recipes/melting/melting/copper/shard.json
 58ba46a3f2110a1b8a4fa298e83cd2ee23826628 data/casting/advancement/recipes/melting/melting/copper/wire.json
 771c086cefc4d20bf386518b673a1f2d44db4f18 data/casting/advancement/recipes/melting/melting/dark_steel/block.json
+609080afeac11942205feb971836e3acf9e77cbb data/casting/advancement/recipes/melting/melting/dark_steel/dust.json
 a3ff279da09f76af15b29b1fce0b4a3d833d0067 data/casting/advancement/recipes/melting/melting/dark_steel/gear.json
 86cbf4fdf6289eb5d3f73d673b9fae1b96d14d72 data/casting/advancement/recipes/melting/melting/dark_steel/ingot.json
 d4b7884acdbe288a000fa5247c7fbd7d7dd4d869 data/casting/advancement/recipes/melting/melting/dark_steel/nugget.json
@@ -136,6 +150,7 @@ fb5e94544dea6f693835dd1d67998810e06829c4 data/casting/advancement/recipes/meltin
 25e7533747a8a114dba07eb75b877768e456c5cd data/casting/advancement/recipes/melting/melting/dark_steel/shard.json
 956d627809c9987a170746d71d152ff746a7b285 data/casting/advancement/recipes/melting/melting/dark_steel/wire.json
 1a8f1140b05e2d5a6f900b9a606b5c2a4aa06773 data/casting/advancement/recipes/melting/melting/debris/block.json
+6f25a39506cefd994d4178ab8bafc0bcb1bd20ae data/casting/advancement/recipes/melting/melting/debris/dust.json
 9b10d08e512709ca0926cee1ba853c7ae84b9d4a data/casting/advancement/recipes/melting/melting/debris/gear.json
 ec0384b3f9b7f6e94c214dc6babad5a6f03a403f data/casting/advancement/recipes/melting/melting/debris/ingot.json
 86966516d72ff9e4fb8bbdd9db45b91c4687038d data/casting/advancement/recipes/melting/melting/debris/nugget.json
@@ -146,6 +161,7 @@ fd6506f31a9cd8de10727b1acda33b8f43abda74 data/casting/advancement/recipes/meltin
 812d8007786811ea5d18f11b44dc673acae6929b data/casting/advancement/recipes/melting/melting/debris/shard.json
 9bcbf2ce293ed967002dd4699cadf6853c84b742 data/casting/advancement/recipes/melting/melting/debris/wire.json
 152806ec77e2e71b83792137f1cade322ccd7eb8 data/casting/advancement/recipes/melting/melting/diamond/block.json
+843d3d7309d7f59d9870eb70add4822243403f35 data/casting/advancement/recipes/melting/melting/diamond/dust.json
 ef099d701dd7ed0b8fb6f6b7e1454eff6491436c data/casting/advancement/recipes/melting/melting/diamond/gear.json
 913debb255d55bcba2cf6585f3aac38e15cbf82f data/casting/advancement/recipes/melting/melting/diamond/gem.json
 b0bf21aca5d63a330fceb3bf15f733097040fef3 data/casting/advancement/recipes/melting/melting/diamond/nugget.json
@@ -156,6 +172,7 @@ bd7d261cbd66df19af3abebe28bed2b794d54cb7 data/casting/advancement/recipes/meltin
 fde5cba8a5a57ecb72f8e4a1b6c86b209e2e0217 data/casting/advancement/recipes/melting/melting/diamond/shard.json
 5d1bbf245739e95814dbbe1de837cfa5618d603c data/casting/advancement/recipes/melting/melting/diamond/wire.json
 28005b48b3709b9e32aea9dbf8cb0096f95b650d data/casting/advancement/recipes/melting/melting/electrum/block.json
+bbcdd6ffa6f4da124c697d8130dcb091fc7d7534 data/casting/advancement/recipes/melting/melting/electrum/dust.json
 d3c21d0e4fc1c7ca9744bc2c8713274f34a61d25 data/casting/advancement/recipes/melting/melting/electrum/gear.json
 4ce7771e8747f3a53a7f53ee447e0ec97f466890 data/casting/advancement/recipes/melting/melting/electrum/ingot.json
 f2e664fc0ea7bffeb4e85a917bc49d9494f7de6e data/casting/advancement/recipes/melting/melting/electrum/nugget.json
@@ -166,6 +183,7 @@ cdf39efb245dd18975537e2f520d7b7939562955 data/casting/advancement/recipes/meltin
 42623dd8220e4ae71a96cf9625490900aec02552 data/casting/advancement/recipes/melting/melting/electrum/shard.json
 057639101ce560a8f5111e701ab50922d9a30565 data/casting/advancement/recipes/melting/melting/electrum/wire.json
 193adcdac64084399b07dbbfd5bf09ac6d9c2140 data/casting/advancement/recipes/melting/melting/emerald/block.json
+bbc74cb335975824a760ddb9c88828267f2294a7 data/casting/advancement/recipes/melting/melting/emerald/dust.json
 66e4c693037fa9161b5a2077c4f7d2b1885a938f data/casting/advancement/recipes/melting/melting/emerald/gear.json
 36089a5bc26b0ff6f35a4869c3ebf41124407a5e data/casting/advancement/recipes/melting/melting/emerald/gem.json
 13e7e3d4d442cff432eaae556ca17d4610d6ce80 data/casting/advancement/recipes/melting/melting/emerald/nugget.json
@@ -176,6 +194,7 @@ c1b988a7090141dc9a2a230e12247fecbca6b302 data/casting/advancement/recipes/meltin
 27c30fbce086d3ecf919e8605855d5677f070232 data/casting/advancement/recipes/melting/melting/emerald/shard.json
 67f2984e1fa043a281f5f885455d825cfa15a515 data/casting/advancement/recipes/melting/melting/emerald/wire.json
 3f5df74b8b0eaec58c26d1b8cb1a0a24fc20e461 data/casting/advancement/recipes/melting/melting/enderium/block.json
+c40c9c47f9141a2a858b01da9c816a68ac150121 data/casting/advancement/recipes/melting/melting/enderium/dust.json
 79f128dfbedf3642afd384d8ee4a399b10bf163d data/casting/advancement/recipes/melting/melting/enderium/gear.json
 06b263d0d17505df9f12a565e80b2a9a74e7afe6 data/casting/advancement/recipes/melting/melting/enderium/ingot.json
 9c22004b95be0a5a6a05e9829ca93ce0d8747700 data/casting/advancement/recipes/melting/melting/enderium/nugget.json
@@ -187,6 +206,7 @@ b2a493000f59489740f6157cac481a33c3b49943 data/casting/advancement/recipes/meltin
 ab7ba4f608d14086ff7704e9f99885c625f760ed data/casting/advancement/recipes/melting/melting/enderium/wire.json
 309d804678f816cba63389ee5def44bae3eb817d data/casting/advancement/recipes/melting/melting/ender/pearl.json
 ebe2257fc8c22a05ff6fa53c2d69acbda230207d data/casting/advancement/recipes/melting/melting/end_steel/block.json
+5a17f2dd793077c5f2483a67da1e4c7d1eed27de data/casting/advancement/recipes/melting/melting/end_steel/dust.json
 1fb07872d27595e6b4a373024b2961520e63a784 data/casting/advancement/recipes/melting/melting/end_steel/gear.json
 2c5e790606a5d7730f3a2583916833b8e85ef537 data/casting/advancement/recipes/melting/melting/end_steel/ingot.json
 92bfb720653dc49898ffd505658b0400d03a2f9a data/casting/advancement/recipes/melting/melting/end_steel/nugget.json
@@ -198,6 +218,7 @@ bd57d8dfc1f76b6a029c493959ed70d8bc812d5d data/casting/advancement/recipes/meltin
 c9c06c9b1b7fb14eb6a0218539bcbbe36d074273 data/casting/advancement/recipes/melting/melting/end_steel/wire.json
 cc1b734a094f3d2cdd028676b72c3f578c1f4dba data/casting/advancement/recipes/melting/melting/end_stone/end_stone.json
 fc1ea272e5952301205a2644883102c2bc04fa36 data/casting/advancement/recipes/melting/melting/energetic_alloy/block.json
+ee5971be22cf0cf30b6b6bf2437bdd63c3a1ad69 data/casting/advancement/recipes/melting/melting/energetic_alloy/dust.json
 379490c4497d7a3df96d0034e22f3df7f6774b87 data/casting/advancement/recipes/melting/melting/energetic_alloy/gear.json
 9e9ce3f4390079089626e46ff030a310c12d1ec2 data/casting/advancement/recipes/melting/melting/energetic_alloy/ingot.json
 32c2d4b9ef24af07c7a2e0574b488dbf03835f0e data/casting/advancement/recipes/melting/melting/energetic_alloy/nugget.json
@@ -208,6 +229,7 @@ d74e7481c7a0f3b61b6b67c82eb06a4dc7662c9a data/casting/advancement/recipes/meltin
 abd67856fe77b9ee4b2e12158ffea5db92c72af2 data/casting/advancement/recipes/melting/melting/energetic_alloy/shard.json
 82b9a5c9784e6e3ad1101f6e88e67806adf66904 data/casting/advancement/recipes/melting/melting/energetic_alloy/wire.json
 7b878f9b3a96e7a91a2377334cfa44563e2c451a data/casting/advancement/recipes/melting/melting/fluix/block.json
+49c9a5cf5ce3644c081db33b2d9a5e3a19a3aa3c data/casting/advancement/recipes/melting/melting/fluix/dust.json
 d60b930daec8386506680d5a78dc5cc71f9c65ff data/casting/advancement/recipes/melting/melting/fluix/gear.json
 b6dcb93527535459db01a0c66b32c544faae9554 data/casting/advancement/recipes/melting/melting/fluix/gem.json
 f321bdffd81a8b25d6ab58bf40666ce65fe7b861 data/casting/advancement/recipes/melting/melting/fluix/nugget.json
@@ -229,6 +251,7 @@ add4df8c809c16b3b9422aa77c7a19ddb958f378 data/casting/advancement/recipes/meltin
 bb9d489be83d0c4c14e1ca3b7ad9c73de4503393 data/casting/advancement/recipes/melting/melting/glowstone/shard.json
 7f3158064275c3ae5c43eac8840b704f525fb30d data/casting/advancement/recipes/melting/melting/glowstone/wire.json
 67c894100d744b0b0293e74ce31b30add03fba0b data/casting/advancement/recipes/melting/melting/gold/block.json
+29685fedd8d944451b125d2372442a20ef7cf2a3 data/casting/advancement/recipes/melting/melting/gold/dust.json
 62e17e95188b740c5ba30d4fbb71143da5f38ee7 data/casting/advancement/recipes/melting/melting/gold/gear.json
 b538f5547e89758ae9d29651da4316e5fe1d90d7 data/casting/advancement/recipes/melting/melting/gold/ingot.json
 3652da7c8c436eeb28bba2c46794610a3d78961b data/casting/advancement/recipes/melting/melting/gold/nugget.json
@@ -242,6 +265,7 @@ c0efd7e605db8f9dfaa3c188a3fb701f88ddba83 data/casting/advancement/recipes/meltin
 f1fcc1c1b720e43a652b31c1c846b5a584942f3e data/casting/advancement/recipes/melting/melting/iced_water/ice.json
 77b80113945cfa7ddf6b05bd6e520daa7c984f51 data/casting/advancement/recipes/melting/melting/iced_water/packed_ice.json
 835da1f24ead6896c4857fcd8fcc218a3b0b7c2c data/casting/advancement/recipes/melting/melting/invar/block.json
+94fde12f0be3d540868c2e3f6a87564f4f7cfc95 data/casting/advancement/recipes/melting/melting/invar/dust.json
 f49a22c26725b4e372233717eeadc826aa965287 data/casting/advancement/recipes/melting/melting/invar/gear.json
 c5400d779981092fe4dba46e92583665d554abf8 data/casting/advancement/recipes/melting/melting/invar/ingot.json
 d40a7ca40fd872cbb3c6177db4dfe25593a68d5d data/casting/advancement/recipes/melting/melting/invar/nugget.json
@@ -252,6 +276,7 @@ b5870fae7800bddfc83d653e4e322e511c6450ce data/casting/advancement/recipes/meltin
 c95fee1dda5ca6ab0787b64225d963d9da1d4aaf data/casting/advancement/recipes/melting/melting/invar/shard.json
 2b9368cd9a1b4782bc91cae22520fedf0a88ac7b data/casting/advancement/recipes/melting/melting/invar/wire.json
 6e6e338e5b3f66cad58afeb1e040f7d2bae6ae12 data/casting/advancement/recipes/melting/melting/iridium/block.json
+45fbc8b754720943c1ac4f514794044ffd781c2b data/casting/advancement/recipes/melting/melting/iridium/dust.json
 c317020a3f9830fcb65bfdea93a908cf5d1b7e8e data/casting/advancement/recipes/melting/melting/iridium/gear.json
 0ffe2eafab7dcad4212401a33e3d55c46696d6d1 data/casting/advancement/recipes/melting/melting/iridium/ingot.json
 d04daa725c158991e90ac7d93ed70d4ec49a8668 data/casting/advancement/recipes/melting/melting/iridium/nugget.json
@@ -262,6 +287,7 @@ f8cb6c29fef2460ad4ca7ccd2fb7fb17cf648587 data/casting/advancement/recipes/meltin
 4f4cb65c9cad03691cd57d29e1f0c480a0791b7f data/casting/advancement/recipes/melting/melting/iridium/shard.json
 09ab9f5ffcd290fac5aea671d260e01545b53eca data/casting/advancement/recipes/melting/melting/iridium/wire.json
 8c94bb8c951f284d2ebd142030ddde5dbe0c95f4 data/casting/advancement/recipes/melting/melting/iron/block.json
+b106c6c82a4239d7e2b4184bd36fd01545610092 data/casting/advancement/recipes/melting/melting/iron/dust.json
 06342fb965a56104b27a6cc8fcebe0b1e0587b1f data/casting/advancement/recipes/melting/melting/iron/gear.json
 9d8b51d1a8a6b33182524c342feb784fba67f10a data/casting/advancement/recipes/melting/melting/iron/ingot.json
 1d817ba0a3d76337bb297c96dac5e90f2a041c7e data/casting/advancement/recipes/melting/melting/iron/nugget.json
@@ -272,6 +298,7 @@ f8cb6c29fef2460ad4ca7ccd2fb7fb17cf648587 data/casting/advancement/recipes/meltin
 a89782ce6839a55551ce936cbd4676ea8177f5f1 data/casting/advancement/recipes/melting/melting/iron/shard.json
 44947c1995d7bf804bea372907fceac4f0b36c8d data/casting/advancement/recipes/melting/melting/iron/wire.json
 a2b498713163bad848fc0c0668059b58298e3712 data/casting/advancement/recipes/melting/melting/lapis/block.json
+a336796942e27c43347d038bad28b5969396260f data/casting/advancement/recipes/melting/melting/lapis/dust.json
 4c4e58d10842ef9c19f5514fa09071903d823f92 data/casting/advancement/recipes/melting/melting/lapis/gear.json
 0a80aaa4ef9c726f270b27959e1c1ae748a556f0 data/casting/advancement/recipes/melting/melting/lapis/gem.json
 4f9df7ce2e2c300cce6ddaf6c65d1530d1c7c976 data/casting/advancement/recipes/melting/melting/lapis/nugget.json
@@ -282,6 +309,7 @@ bff6be1bf939a087c7972ead78796f63dff3e71f data/casting/advancement/recipes/meltin
 35e346a7b9838c4898e5fe7a2dc5670df4f097da data/casting/advancement/recipes/melting/melting/lapis/shard.json
 b9b7de7a997a3e05fd6d06fca8f5b876341bff5d data/casting/advancement/recipes/melting/melting/lapis/wire.json
 9437813c5885c88483edeef1eaa680095c06df2a data/casting/advancement/recipes/melting/melting/lead/block.json
+a63376e2d9a5a42726a5e5c60f025baf3f89f966 data/casting/advancement/recipes/melting/melting/lead/dust.json
 c14c7b256fbaf1d19b48b30ba4f7c8bb6fe9f4ae data/casting/advancement/recipes/melting/melting/lead/gear.json
 87cc7a0a3f5ca820b75dcff2a4030d0e6f90784d data/casting/advancement/recipes/melting/melting/lead/ingot.json
 016ece8c93927265196a34348eb01dc5257627f1 data/casting/advancement/recipes/melting/melting/lead/nugget.json
@@ -292,6 +320,7 @@ ec39aa30714b482326fe2575e00f5b0c8f65bc51 data/casting/advancement/recipes/meltin
 2942ffb9b767816eb1b067c2b30722f59e6fcf59 data/casting/advancement/recipes/melting/melting/lead/shard.json
 ed8ed6b7ac9495595181748ad77aca659491b6e6 data/casting/advancement/recipes/melting/melting/lead/wire.json
 41ac7e9dc1f5d71f6e569610f7382b406384534b data/casting/advancement/recipes/melting/melting/lumium/block.json
+cf6fe87233a0392819d57c07826b8b291ec30196 data/casting/advancement/recipes/melting/melting/lumium/dust.json
 d43bc984ae54b35cd3095611d75ac01e70d7a666 data/casting/advancement/recipes/melting/melting/lumium/gear.json
 c38bbb1fefbf609d92098bb5b293e9c6560ce901 data/casting/advancement/recipes/melting/melting/lumium/ingot.json
 56a70695081d7d74af3bdf63417578f15ad429ca data/casting/advancement/recipes/melting/melting/lumium/nugget.json
@@ -302,6 +331,7 @@ bbd8ca6d706e35d610872fe614099e7d612ae086 data/casting/advancement/recipes/meltin
 08c592e73ee200bfa8672abc5e4e9b98ab18377c data/casting/advancement/recipes/melting/melting/lumium/shard.json
 9e0179afe06ed0a76fa9133b012dca21796cba81 data/casting/advancement/recipes/melting/melting/lumium/wire.json
 adfee287e2a0d183a9a419851aa16e0dff547092 data/casting/advancement/recipes/melting/melting/monazite/block.json
+cb161449a0e61e571bf1f48667a3da65f455fcc7 data/casting/advancement/recipes/melting/melting/monazite/dust.json
 d5accf5409cccdef980f46328a63aa065e0476bc data/casting/advancement/recipes/melting/melting/monazite/gear.json
 78d6d5ab5128ded5c84dcee8aa6c5b66f7bd3476 data/casting/advancement/recipes/melting/melting/monazite/gem.json
 f41a111792658120a0c20f1ef9a3b64970a3049f data/casting/advancement/recipes/melting/melting/monazite/nugget.json
@@ -312,6 +342,7 @@ f41a111792658120a0c20f1ef9a3b64970a3049f data/casting/advancement/recipes/meltin
 7848585960c96fd5b99575888d999b64c0ca4fd6 data/casting/advancement/recipes/melting/melting/monazite/shard.json
 01769161925b6122dc0cc5573cab3c5f436ddffe data/casting/advancement/recipes/melting/melting/monazite/wire.json
 69ab741cd7195c18a21e00ad686ae893c8dbe7c5 data/casting/advancement/recipes/melting/melting/netherite/block.json
+f331b8c32ee3e7a5cdc97861bd2574b03643cb8a data/casting/advancement/recipes/melting/melting/netherite/dust.json
 d1ae1551d57fd3c4708d878b9f7b37eaf2cc99b9 data/casting/advancement/recipes/melting/melting/netherite/gear.json
 320f79c081952e2e6a286668ce397c7fa9b7f652 data/casting/advancement/recipes/melting/melting/netherite/ingot.json
 eca81147769bc64cbf30e7fec7dadbded9b2c46a data/casting/advancement/recipes/melting/melting/netherite/nugget.json
@@ -322,6 +353,7 @@ eca81147769bc64cbf30e7fec7dadbded9b2c46a data/casting/advancement/recipes/meltin
 7fbd6e5a938a5f4c740661763a8a28c09d2d9145 data/casting/advancement/recipes/melting/melting/netherite/shard.json
 73d35a2e5d644c03d35c0107908e1ea0f2afbc4a data/casting/advancement/recipes/melting/melting/netherite/wire.json
 c182a39bbde479d91ace06efde40856f3466c4e4 data/casting/advancement/recipes/melting/melting/nickel/block.json
+85ce66c8cc65ab67248bfef42b9f995afe2373e9 data/casting/advancement/recipes/melting/melting/nickel/dust.json
 14ce3c7c2ee310f2228776909ce52e9a51a06a41 data/casting/advancement/recipes/melting/melting/nickel/gear.json
 cebfb3e47fca7cfc98b88e4e991cd208ca1d4de7 data/casting/advancement/recipes/melting/melting/nickel/ingot.json
 992de082b6eaf7a369e7a1aabfc625fb0007097b data/casting/advancement/recipes/melting/melting/nickel/nugget.json
@@ -333,6 +365,7 @@ fd34e190bfbf39958197533cc79891a6d43d5ca9 data/casting/advancement/recipes/meltin
 749d6e8c02b408e72f9b9882fc95cb04003269d9 data/casting/advancement/recipes/melting/melting/nickel/wire.json
 e12966956154bac2aa0649bce9f3ee0a3bde60f1 data/casting/advancement/recipes/melting/melting/obsidian/obsidian.json
 431e877d35af40058f4fab7808cded65798b7fc3 data/casting/advancement/recipes/melting/melting/osmium/block.json
+cbdb21fa5d3e5b41290563b92b97d24442df8b09 data/casting/advancement/recipes/melting/melting/osmium/dust.json
 8ebbce6ddbdf08196e93a297b64c1e75394ba5a1 data/casting/advancement/recipes/melting/melting/osmium/gear.json
 89a70629e902042053190c8528f2fb335d645179 data/casting/advancement/recipes/melting/melting/osmium/ingot.json
 594ba38540cb1eae9875c28c39d47a94cf70c8e4 data/casting/advancement/recipes/melting/melting/osmium/nugget.json
@@ -343,6 +376,7 @@ d05facea9c6c7d23e9dcae605c2a3008cbf3f0fb data/casting/advancement/recipes/meltin
 f87c6cb6b177d4c3ae83ec127cd6130dbffca622 data/casting/advancement/recipes/melting/melting/osmium/shard.json
 1c0b74ad4e9412acdd9460d5036bb17a09172ca5 data/casting/advancement/recipes/melting/melting/osmium/wire.json
 4316b9eda7748e9bdee87331be31ecb0e8ac00de data/casting/advancement/recipes/melting/melting/peridot/block.json
+2110b398ee4227aabd2ac1bf622bdd38402a47ed data/casting/advancement/recipes/melting/melting/peridot/dust.json
 a5e8ee58be7eb5b9616cc5e96d4aa886618cfd66 data/casting/advancement/recipes/melting/melting/peridot/gear.json
 07ba1df33121d53b71d0f94377ef902c9fc6f0c8 data/casting/advancement/recipes/melting/melting/peridot/gem.json
 6570af105a554f3310a01e5fed38a237c00e977b data/casting/advancement/recipes/melting/melting/peridot/nugget.json
@@ -353,6 +387,7 @@ c917e309e3c001269f2416859ae98cc8ba47cfc6 data/casting/advancement/recipes/meltin
 c1610835fdc5168adc1814d996b60d21e7ab1473 data/casting/advancement/recipes/melting/melting/peridot/shard.json
 cbb9a8aa3a99c184a1227c0bc961e398f2b69492 data/casting/advancement/recipes/melting/melting/peridot/wire.json
 33a5d230eb22f4b576af931d9187dac997be0a7d data/casting/advancement/recipes/melting/melting/platinum/block.json
+9e9fc4872ac8d4ad0cffa5f3b430e2a113f33d99 data/casting/advancement/recipes/melting/melting/platinum/dust.json
 23cf4b044e6345b1ad570f0152c7d970d13ce3a7 data/casting/advancement/recipes/melting/melting/platinum/gear.json
 f9d0668b70f3983f7c1e9ebb6c44c829c3bb914e data/casting/advancement/recipes/melting/melting/platinum/ingot.json
 64e1f4dbb4d1f7046961b957f3bad3c624a0bece data/casting/advancement/recipes/melting/melting/platinum/nugget.json
@@ -363,6 +398,7 @@ f81ac6fa43e33ff2bac58d81665a6ad0f83d45b3 data/casting/advancement/recipes/meltin
 9bf1e3f0ffef6d54d658e2b6c5aa55e671c047ac data/casting/advancement/recipes/melting/melting/platinum/shard.json
 41f895eaa3d1feab325e4e60432f394fdb452f1a data/casting/advancement/recipes/melting/melting/platinum/wire.json
 9db48591773bd26a1777010881d703e305ffab89 data/casting/advancement/recipes/melting/melting/pulsating_alloy/block.json
+65a545e5eec407b3f1ac8fec0f634f80dbe8854a data/casting/advancement/recipes/melting/melting/pulsating_alloy/dust.json
 c350a15d16f4b6fa4778802714d368b565a0cd36 data/casting/advancement/recipes/melting/melting/pulsating_alloy/gear.json
 b16790b5b737f6544b843a12d060853c37bfa90e data/casting/advancement/recipes/melting/melting/pulsating_alloy/ingot.json
 8384db7e7627e9247ee1eff5b672395ae55fb63e data/casting/advancement/recipes/melting/melting/pulsating_alloy/nugget.json
@@ -373,6 +409,7 @@ ab6bf012936b3dfd6d38ee6e8159a35bf8707ef0 data/casting/advancement/recipes/meltin
 f3685a744ef503d059148c35b2033aebec35c0ec data/casting/advancement/recipes/melting/melting/pulsating_alloy/shard.json
 efacf151611f48ef582da400bb49b48ca0261015 data/casting/advancement/recipes/melting/melting/pulsating_alloy/wire.json
 03f75d4e7b410d534d4c28a7a6a7ceb8502ac9b9 data/casting/advancement/recipes/melting/melting/quartz/block.json
+d5cdc68fec633495f48dfcba19b0379b554b6a1c data/casting/advancement/recipes/melting/melting/quartz/dust.json
 593f098f23c8cc87d0dc96bdd87473cad754ec2c data/casting/advancement/recipes/melting/melting/quartz/gear.json
 74460323cc36a0bf9cf47fd9def4890b59c3cd35 data/casting/advancement/recipes/melting/melting/quartz/gem.json
 76a789b064d1ee6ccf0c7f6a7198c316ae6d9e3d data/casting/advancement/recipes/melting/melting/quartz/nugget.json
@@ -383,6 +420,7 @@ e463d86de64706f1429cae95b93b42886aed3121 data/casting/advancement/recipes/meltin
 d30c9f80f61ccc122eb5a72784876929a796cccb data/casting/advancement/recipes/melting/melting/quartz/shard.json
 b83a5d2018fbfd9694b990125ecaec17b87ace31 data/casting/advancement/recipes/melting/melting/quartz/wire.json
 91c906b06b04fe9774c01f245b1e3f302fc8b370 data/casting/advancement/recipes/melting/melting/quartz_enriched_copper/block.json
+39ba8861b8d8cf469610ffeffddfb00bd3397c75 data/casting/advancement/recipes/melting/melting/quartz_enriched_copper/dust.json
 5c4fdec68905a836fb862fae9838b73a977b7b91 data/casting/advancement/recipes/melting/melting/quartz_enriched_copper/gear.json
 e28c29b9367385f82066b9b3b0776bfb15ccddd2 data/casting/advancement/recipes/melting/melting/quartz_enriched_copper/ingot.json
 b9bced4ebcc67e7f32e9d2005413f9e7e528afe6 data/casting/advancement/recipes/melting/melting/quartz_enriched_copper/nugget.json
@@ -393,6 +431,7 @@ ce86cb8ed04bb0d73c67f33b0e7da08db912821e data/casting/advancement/recipes/meltin
 a3783a4f03bdb7254d0752266db63e92eee7ac10 data/casting/advancement/recipes/melting/melting/quartz_enriched_copper/shard.json
 0c7041ebcd8fe91965e3b622f2072881360b8b90 data/casting/advancement/recipes/melting/melting/quartz_enriched_copper/wire.json
 f0c31793fab562e8ebdc7b8897e2ae85aaa4fc9e data/casting/advancement/recipes/melting/melting/quartz_enriched_iron/block.json
+afaad4e43ab6c5483a8d92c91142be21052f03a0 data/casting/advancement/recipes/melting/melting/quartz_enriched_iron/dust.json
 68d85c125565f64aecc594e412b41466eeaaa374 data/casting/advancement/recipes/melting/melting/quartz_enriched_iron/gear.json
 618978722624ac6de755b27a84a32cd9929e5404 data/casting/advancement/recipes/melting/melting/quartz_enriched_iron/ingot.json
 e3689b2ba7eee969b26e14fdc9f1a15ee2d810d1 data/casting/advancement/recipes/melting/melting/quartz_enriched_iron/nugget.json
@@ -413,6 +452,7 @@ c89d73b231c6d6418547819603df7af63387563c data/casting/advancement/recipes/meltin
 0e0b5a0f776ed6120c03cd78ac3dcb83f266b471 data/casting/advancement/recipes/melting/melting/redstone/shard.json
 256b7f6348b1b98dbe529b0b73f4bfb113dc6b9a data/casting/advancement/recipes/melting/melting/redstone/wire.json
 a1dba8d336acc3543c459b8faa831ee647ec1a3a data/casting/advancement/recipes/melting/melting/ruby/block.json
+c8d326b6214eea52036b5562b4ba1619456362f2 data/casting/advancement/recipes/melting/melting/ruby/dust.json
 f3783c3bf9d23495a4da7152a3ad30c8f4002121 data/casting/advancement/recipes/melting/melting/ruby/gear.json
 f34e24a26ab897d5f0636f8a34495a5b020862c4 data/casting/advancement/recipes/melting/melting/ruby/gem.json
 0d6d2666f70a7cec4166250a5323215cff53bd5a data/casting/advancement/recipes/melting/melting/ruby/nugget.json
@@ -423,6 +463,7 @@ ddba76a578b95a1996f4d6d448d3e580728cc63c data/casting/advancement/recipes/meltin
 bad6ff8bc88b90c5c974a7562807ac96f4eb4187 data/casting/advancement/recipes/melting/melting/ruby/shard.json
 253d1a533ca6d7ef7d0d0c0d4a43b8027d5444d5 data/casting/advancement/recipes/melting/melting/ruby/wire.json
 30f0b6d58d3153406b940eb9f1eec9254de4b591 data/casting/advancement/recipes/melting/melting/sapphire/block.json
+3a9af57caa73416c967568ce9d94d2f991ea78fe data/casting/advancement/recipes/melting/melting/sapphire/dust.json
 c077e45451c45f5b05138a93ccf758c8f8e24eb3 data/casting/advancement/recipes/melting/melting/sapphire/gear.json
 37a7b3337d871f07dba737b3885041009da93bfe data/casting/advancement/recipes/melting/melting/sapphire/gem.json
 54207d95a352d3f62c0d838fc9dc0f2b0f6e2af6 data/casting/advancement/recipes/melting/melting/sapphire/nugget.json
@@ -433,6 +474,7 @@ b680cb24322f400d35456c57661c3445a326b7f3 data/casting/advancement/recipes/meltin
 91ba8f8ad559f5a2e805eecd542cf52943cd71f4 data/casting/advancement/recipes/melting/melting/sapphire/shard.json
 f76900795767e7addd14b0c489c116655409e067 data/casting/advancement/recipes/melting/melting/sapphire/wire.json
 675a3fd5b4a8b5aec7adb930f41cdc790271f9db data/casting/advancement/recipes/melting/melting/signalum/block.json
+534246ef80f6a23c603ccf2dd9f6ac34214f9f66 data/casting/advancement/recipes/melting/melting/signalum/dust.json
 c8a3cd324779212536ad7010b6a7c8aaf067844c data/casting/advancement/recipes/melting/melting/signalum/gear.json
 d6f40e8159545c2de390ccd71f5b039d5791798f data/casting/advancement/recipes/melting/melting/signalum/ingot.json
 56f5737fb4a6cad323f84a62e2cca53f83fe1c7f data/casting/advancement/recipes/melting/melting/signalum/nugget.json
@@ -443,6 +485,7 @@ b2e5684d95a160373b60f027cafef1d5a89dbd69 data/casting/advancement/recipes/meltin
 45ef21db85dffb2f311f31fb6736ff735bf5bf83 data/casting/advancement/recipes/melting/melting/signalum/shard.json
 8d36e51f8909cd7420987f636a83300d0998006e data/casting/advancement/recipes/melting/melting/signalum/wire.json
 36a581c5c7ca5ed62c4f3fb9fa06ed01ddd98f2c data/casting/advancement/recipes/melting/melting/silicon/block.json
+a78c5812e54be22a323716c28002646efae386d7 data/casting/advancement/recipes/melting/melting/silicon/dust.json
 c15d436f2851146da4820f5ae1e31b7ad4d7d77f data/casting/advancement/recipes/melting/melting/silicon/gear.json
 40ff9d8929f109784304f3e828a64e9cdd677af4 data/casting/advancement/recipes/melting/melting/silicon/ingot.json
 7cd5aa782a87a5024bd20034b115f39a117a88f6 data/casting/advancement/recipes/melting/melting/silicon/nugget.json
@@ -453,6 +496,7 @@ d88ba35abac7b88d0db9f7694883ee780c8e2588 data/casting/advancement/recipes/meltin
 3055276b85ad2216985701e9149891e1ded8c761 data/casting/advancement/recipes/melting/melting/silicon/shard.json
 dc61321afadb080aae25db96993b304d7af45264 data/casting/advancement/recipes/melting/melting/silicon/wire.json
 62dba60001f93e88ab2821f3c8f288941afe3383 data/casting/advancement/recipes/melting/melting/silver/block.json
+08db3299990de2e29a9427b88f1f9fd4ce47d7ef data/casting/advancement/recipes/melting/melting/silver/dust.json
 87cd1afc823cf4d98364e86bf1ed26650fd711ec data/casting/advancement/recipes/melting/melting/silver/gear.json
 4493c8120b68fba9bc6382461a7a5c555a07541c data/casting/advancement/recipes/melting/melting/silver/ingot.json
 4b80c460d2116ddbd0cd532f1956e7bc36b1150a data/casting/advancement/recipes/melting/melting/silver/nugget.json
@@ -463,6 +507,7 @@ aaf9298fdc8daad5f8137a0e5d0a3e0afcd25619 data/casting/advancement/recipes/meltin
 d00e2d2713fc65c2ebcf1f3b6752ce265df3fddd data/casting/advancement/recipes/melting/melting/silver/shard.json
 c69eaa758daf2a07d56ac18ae006e27501bc5543 data/casting/advancement/recipes/melting/melting/silver/wire.json
 316a110b2a2581d85ad417a3a97649d87f063d7a data/casting/advancement/recipes/melting/melting/soularium/block.json
+768973029b625283bd334e2ff9f4ce9c0296047f data/casting/advancement/recipes/melting/melting/soularium/dust.json
 f4935232df7f92e129c5b7020e042933ad0ef606 data/casting/advancement/recipes/melting/melting/soularium/gear.json
 80cdfc618b5296d1e9bb1f0580c1188925355c34 data/casting/advancement/recipes/melting/melting/soularium/ingot.json
 471f3371fdf093ab32ad7f42d8b44a8c88ab8253 data/casting/advancement/recipes/melting/melting/soularium/nugget.json
@@ -474,6 +519,7 @@ af6b3d438da450bb19aaeb98464bf5b872ecaeb3 data/casting/advancement/recipes/meltin
 e9b9c87c91a4e12b9d3bfb61d386570f1f485577 data/casting/advancement/recipes/melting/melting/soularium/wire.json
 2464b90ed38693bab614cff7bbe23ab6c9966078 data/casting/advancement/recipes/melting/melting/soul/soul_sand.json
 6398819d759d329ec84e2adf72339ac2121c4489 data/casting/advancement/recipes/melting/melting/steel/block.json
+7fe880de85aa76fe7fb526a08feee3ab2c41dd12 data/casting/advancement/recipes/melting/melting/steel/dust.json
 ec441ff9d1e7b20af1158775f3d925b476eb051c data/casting/advancement/recipes/melting/melting/steel/gear.json
 d3f76930021ec21019eca29fb2e42ca0bb16622f data/casting/advancement/recipes/melting/melting/steel/ingot.json
 c69e9bc90aec6ca42a6af9990d8f208a1dcaf176 data/casting/advancement/recipes/melting/melting/steel/nugget.json
@@ -486,6 +532,7 @@ b98e3a4cb6d71072a40325cb47c90274ffcb33df data/casting/advancement/recipes/meltin
 0931b250035e6e470a17f15d221137bbd3656b93 data/casting/advancement/recipes/melting/melting/stone/cobblestone.json
 a7d8141f824d73693ae353f7095cca57debf2a14 data/casting/advancement/recipes/melting/melting/stone/stone.json
 8ebd0a0f34d9a41ad6a5c0d44b1dad933b035d2d data/casting/advancement/recipes/melting/melting/tin/block.json
+6ca9939b46ed94d1ea9c2487c310a165120e352a data/casting/advancement/recipes/melting/melting/tin/dust.json
 0e213e324af4143a6d1e98e37694e082f7112328 data/casting/advancement/recipes/melting/melting/tin/gear.json
 3f7af9099b7c77859a9e29de17fc5df6d7d066a2 data/casting/advancement/recipes/melting/melting/tin/ingot.json
 1891edfe6af8c17c0e7f970ebb26195e676c33a2 data/casting/advancement/recipes/melting/melting/tin/nugget.json
@@ -496,6 +543,7 @@ de24d3e30caa900e99235d3ea4753621376770c3 data/casting/advancement/recipes/meltin
 2766468fd300748dfae2e33108a92395d5bbb131 data/casting/advancement/recipes/melting/melting/tin/shard.json
 136aab9543b8b1df5d6c1d9f5f93bfd2fcd2bc72 data/casting/advancement/recipes/melting/melting/tin/wire.json
 96ebf51a5693d252d0e38bcb70bf13e700517296 data/casting/advancement/recipes/melting/melting/titanium/block.json
+883354b9ee21734a6a6cac2f79369960e4573aa0 data/casting/advancement/recipes/melting/melting/titanium/dust.json
 e41fb5080b3e46a4c8771f3d83b6f1cf1729a8da data/casting/advancement/recipes/melting/melting/titanium/gear.json
 1d953efb8f26e3c565657b7e9fb30d8fc1b1c5a8 data/casting/advancement/recipes/melting/melting/titanium/ingot.json
 e379a450e1a10a277e00a902c7d7ec348906c23d data/casting/advancement/recipes/melting/melting/titanium/nugget.json
@@ -506,6 +554,7 @@ ecc849b2b636ac2669ec12b96a437f613aef7f5c data/casting/advancement/recipes/meltin
 bd58e84ac741dea50f23aca1d630f90a5c3c6541 data/casting/advancement/recipes/melting/melting/titanium/shard.json
 36e00ed03ce3426f0c482d3945bcb1fe8dedb894 data/casting/advancement/recipes/melting/melting/titanium/wire.json
 a8d1361041b4a9d1a3724711bbec52a2273b5c38 data/casting/advancement/recipes/melting/melting/topaz/block.json
+8ceed0ac718b306d74d3e6261386963ad6b3f9f8 data/casting/advancement/recipes/melting/melting/topaz/dust.json
 b4d4021fddf6f68c6eb9fd2613eaff3803e63133 data/casting/advancement/recipes/melting/melting/topaz/gear.json
 da21b0675b7cb8390f4d123e2927465bf1665049 data/casting/advancement/recipes/melting/melting/topaz/gem.json
 3edbc1cb00fad4b20792d765540ad4e362185951 data/casting/advancement/recipes/melting/melting/topaz/nugget.json
@@ -516,6 +565,7 @@ dcc41aca5260570124f3d413089888aa03f1773b data/casting/advancement/recipes/meltin
 47d5179218b4659995197a76ea443b3236c1acba data/casting/advancement/recipes/melting/melting/topaz/shard.json
 eee90663f3777719c5ad906d11ab0df1f051ea11 data/casting/advancement/recipes/melting/melting/topaz/wire.json
 4d8914a10fcd21feff65722b635c68bc5eda6d32 data/casting/advancement/recipes/melting/melting/tungsten/block.json
+e4a6345089479c1a5d99cca140043ea94f8e251c data/casting/advancement/recipes/melting/melting/tungsten/dust.json
 16405485f399584b20ab9bff8b7be9c3a9112623 data/casting/advancement/recipes/melting/melting/tungsten/gear.json
 599b58b7f4678f68c57d3cfe5ef36245a70e464c data/casting/advancement/recipes/melting/melting/tungsten/ingot.json
 bf4afaac284fc8a57aced2dbf39cfa2cc71f109c data/casting/advancement/recipes/melting/melting/tungsten/nugget.json
@@ -526,6 +576,7 @@ f355e84c3ed6200ab73dc6b90374d0267156f62f data/casting/advancement/recipes/meltin
 ef6f305154e119f2aa49e12fa9c863e370e73268 data/casting/advancement/recipes/melting/melting/tungsten/shard.json
 8144e934a5bc20342136c1fb9b280ab378729f52 data/casting/advancement/recipes/melting/melting/tungsten/wire.json
 4e35d854eeccb0908ce825b531765f3a0414b341 data/casting/advancement/recipes/melting/melting/unobtainium/block.json
+122a64d060dbfee8e625997aac86bfb0ab94a641 data/casting/advancement/recipes/melting/melting/unobtainium/dust.json
 2101fb893cab2c09f9729a1a60214d7b775a7de7 data/casting/advancement/recipes/melting/melting/unobtainium/gear.json
 c640155523856d7b21763b411939c409bca19e16 data/casting/advancement/recipes/melting/melting/unobtainium/ingot.json
 9a8175228e1304672efaed907b27537ec2633c82 data/casting/advancement/recipes/melting/melting/unobtainium/nugget.json
@@ -536,6 +587,7 @@ c897f30e95c400546cc49a35a913cd893477466e data/casting/advancement/recipes/meltin
 16e5806c47e7e189d5c06e37b728dcf511978dc7 data/casting/advancement/recipes/melting/melting/unobtainium/shard.json
 1b1ba6e75d254c72f5a2dae3ff71d25c87aacadf data/casting/advancement/recipes/melting/melting/unobtainium/wire.json
 0a9e9035620e991554c28654c8534d87bbdb6da2 data/casting/advancement/recipes/melting/melting/uraninite/block.json
+6df9487f50977ebe9620e6f8162aaefd89e7fedc data/casting/advancement/recipes/melting/melting/uraninite/dust.json
 5d620f44a2af36ac25a7d0206a862d49d9cb9349 data/casting/advancement/recipes/melting/melting/uraninite/gear.json
 28ad5a1465adc92607de9d0c4759cb7441d5e1d7 data/casting/advancement/recipes/melting/melting/uraninite/gem.json
 38b8274e76164f5b9bcab6f3ee2fdc1cd7758777 data/casting/advancement/recipes/melting/melting/uraninite/nugget.json
@@ -546,6 +598,7 @@ a43452b4dcf6cd4b3bec36a99b425bce2c234d86 data/casting/advancement/recipes/meltin
 296571250aabdcd97ee83a44eb70743e27ac245e data/casting/advancement/recipes/melting/melting/uraninite/shard.json
 17b1f9f152b0e1d5f73e336506d93d20a7b049a8 data/casting/advancement/recipes/melting/melting/uraninite/wire.json
 cc64085b0b8bfe8148722c5a010c86ce2d93ee45 data/casting/advancement/recipes/melting/melting/uranium/block.json
+f7945948f9078dd0435a7aaf6d55f477c4083b3e data/casting/advancement/recipes/melting/melting/uranium/dust.json
 b670c9316d2b716566cda1b235515eb606e4895a data/casting/advancement/recipes/melting/melting/uranium/gear.json
 41492b6ee06a9e7e4a1a47100766aa17d7a059cc data/casting/advancement/recipes/melting/melting/uranium/ingot.json
 b5412601d4e38161a7b737c9d60e9bcc5c5790b8 data/casting/advancement/recipes/melting/melting/uranium/nugget.json
@@ -556,6 +609,7 @@ bfb07229d3ed85e29f1029c29399441d825b4156 data/casting/advancement/recipes/meltin
 d543ac3517d61ee90803e4d6bc01ab4d6daf4a34 data/casting/advancement/recipes/melting/melting/uranium/shard.json
 9dfd883d071575e0a8b5e2f7646d452b73c58881 data/casting/advancement/recipes/melting/melting/uranium/wire.json
 318876b321746df8ec524c3d6d5a8ddc0ed6d987 data/casting/advancement/recipes/melting/melting/vibranium/block.json
+5a9e2bde2cab74704957d67bdc3c46ad9154551c data/casting/advancement/recipes/melting/melting/vibranium/dust.json
 65093c7e03435595c0f548d1142618631b07642b data/casting/advancement/recipes/melting/melting/vibranium/gear.json
 49d80a1b8fdaf72b812b767b257a5b61ee0c7b8e data/casting/advancement/recipes/melting/melting/vibranium/ingot.json
 418e1a83f548efc8fe199d89069c18588ebb9f22 data/casting/advancement/recipes/melting/melting/vibranium/nugget.json
@@ -566,6 +620,7 @@ e47262fea6186e3c8c762d5a5989ed49bd203826 data/casting/advancement/recipes/meltin
 0a74292ffa510a0fe58768662be7656d40c03002 data/casting/advancement/recipes/melting/melting/vibranium/shard.json
 1800892d4fb05b18cc20a3089e1bd8957950248a data/casting/advancement/recipes/melting/melting/vibranium/wire.json
 d3a90746dca394e55385f35172dff98f296f8938 data/casting/advancement/recipes/melting/melting/vibrant_alloy/block.json
+2fb5857bc589ad367b845d43759eeec916a70af0 data/casting/advancement/recipes/melting/melting/vibrant_alloy/dust.json
 86672c4ad0b0260f130b50a366fa09445aebb912 data/casting/advancement/recipes/melting/melting/vibrant_alloy/gear.json
 68c4b078dc92cad2c59550b2166c1aeb1cdd5f12 data/casting/advancement/recipes/melting/melting/vibrant_alloy/ingot.json
 6efeead51fa6c7bd300b86343414d5f1ea1544cc data/casting/advancement/recipes/melting/melting/vibrant_alloy/nugget.json
@@ -576,6 +631,7 @@ df338c3c12b48f0b411280893cc62b8081cb10c3 data/casting/advancement/recipes/meltin
 14a67d5e81fae786061bb5dcb303f3e44afc2e1c data/casting/advancement/recipes/melting/melting/vibrant_alloy/shard.json
 7fbb95b35bf49e3002a23656c17f20224df2303c data/casting/advancement/recipes/melting/melting/vibrant_alloy/wire.json
 4dcdb76e9738348c3752f3a6f34f974e78b398df data/casting/advancement/recipes/melting/melting/zinc/block.json
+1ec69065be3a0563aba7922a67bd1da77ee7adab data/casting/advancement/recipes/melting/melting/zinc/dust.json
 e0747b8ecc37d65ee8a73c6212897d75c6f4cd24 data/casting/advancement/recipes/melting/melting/zinc/gear.json
 a0e878d1d6c16b9acd95c874fcdd14f29490fdda data/casting/advancement/recipes/melting/melting/zinc/ingot.json
 4d976744098b137dadb6645413ac981b36eb1de8 data/casting/advancement/recipes/melting/melting/zinc/nugget.json
@@ -608,6 +664,7 @@ ee67cba47230f4c36a593e515396bd39c8440df1 data/casting/advancement/recipes/mixing
 47a5c0dfe10affcc4b81bda0bf0e1ca6ca74416b data/casting/advancement/recipes/mixing/mixing/super_coolantalloy.json
 16d026c913d4b484ef014614ee9b02f166d99b29 data/casting/advancement/recipes/mixing/mixing/vibrant_alloyalloy.json
 8519fbb2a81591fb84c0261abcb8dee45777631e data/casting/advancement/recipes/solidifier/solidifier/allthemodium/block.json
+bf5e94614ebf98aa031f177cb360f277c07fe503 data/casting/advancement/recipes/solidifier/solidifier/allthemodium/dust.json
 0ff4230acff34e57fdc606a5b2e812f027e63555 data/casting/advancement/recipes/solidifier/solidifier/allthemodium/gear.json
 b44d9b0f711bfb1132ed85fb79bda98caf1a1c50 data/casting/advancement/recipes/solidifier/solidifier/allthemodium/ingot.json
 a0f2e62642e3198c5947c6d57d3b495ec4dac595 data/casting/advancement/recipes/solidifier/solidifier/allthemodium/nugget.json
@@ -616,6 +673,7 @@ e65f3794789dcb044c1cc4a8b66035b9bcc12b75 data/casting/advancement/recipes/solidi
 60d860f5926f28b1bfd68bb4f706fb6b4295ac69 data/casting/advancement/recipes/solidifier/solidifier/allthemodium/shard.json
 4f5b438f6dc668e50cd23256ac6fb51b89e81232 data/casting/advancement/recipes/solidifier/solidifier/allthemodium/wire.json
 774b97e08c92a6fe7a67ba23c7a32cc4c1a4abea data/casting/advancement/recipes/solidifier/solidifier/aluminum/block.json
+031322dca6c5b10687b4bead09863e1ac53ebfc4 data/casting/advancement/recipes/solidifier/solidifier/aluminum/dust.json
 00ffb141563f7b8c0a5b256185218115a97b0963 data/casting/advancement/recipes/solidifier/solidifier/aluminum/gear.json
 f59931a917d0c525d1cf1ab26ff39564f53db8f3 data/casting/advancement/recipes/solidifier/solidifier/aluminum/ingot.json
 9056bda432fa3555ffba61d16e3103a3dd0d50b5 data/casting/advancement/recipes/solidifier/solidifier/aluminum/nugget.json
@@ -627,6 +685,7 @@ d483078c86960350f0e75b6d42327a1a3c56c2e6 data/casting/advancement/recipes/solidi
 27a00fff253deb73c89c3fb746356b851b5b4545 data/casting/advancement/recipes/solidifier/solidifier/black_brick/block.json
 10af5b8982b53ca11af0b1649ed2c55c15cfda9e data/casting/advancement/recipes/solidifier/solidifier/black_brick/brick.json
 fa4fa96902670f36ee3f866182a502e9d5a4c219 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/block.json
+b631564768b1a4aaf172dcac6cadb9c52edc8ad5 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/dust.json
 d2af66b6f30920fdd2f5a9a851e5064ade12e85d data/casting/advancement/recipes/solidifier/solidifier/black_quartz/gear.json
 d30e2bb3a98a3804f639a87a607c90763ad0a423 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/gem.json
 34ea396248b243e9ddb584468e79034a76338483 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/nugget.json
@@ -635,6 +694,7 @@ feabaef20ea5ffa4294f5241f1a29fa3c8332336 data/casting/advancement/recipes/solidi
 d14d39e1b245417dec271bc1bbb02e0b34ae64e7 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/shard.json
 be3b92a832914799817dbf3b3023c4ca87c89441 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/wire.json
 a217414ba3740a1013699e6e788f64af04ea2399 data/casting/advancement/recipes/solidifier/solidifier/brass/block.json
+64d93560d927529040a039d951ae261ebdf0e6eb data/casting/advancement/recipes/solidifier/solidifier/brass/dust.json
 07dae639d46304ed7823531ee6e5a917e167b729 data/casting/advancement/recipes/solidifier/solidifier/brass/gear.json
 4b41f717c5fc8f8e2301cb08e55d17d3938419fb data/casting/advancement/recipes/solidifier/solidifier/brass/ingot.json
 1ab364c0e2a95e9bcfc97c38842aa210878b3da0 data/casting/advancement/recipes/solidifier/solidifier/brass/nugget.json
@@ -643,6 +703,7 @@ a357cd6dfd5bf9156a88e3c2c521e938f1639cc5 data/casting/advancement/recipes/solidi
 24f3ba056433bfa0986bfdad951bafe31a013d8a data/casting/advancement/recipes/solidifier/solidifier/brass/shard.json
 defcae3f4c8543f9f37685931e313b5263a7c023 data/casting/advancement/recipes/solidifier/solidifier/brass/wire.json
 74af0ace9a535d9dfa5886f3dfd82027d0e0cd5c data/casting/advancement/recipes/solidifier/solidifier/bronze/block.json
+4fd16cfe43f723b65df2328e1102e01dcada8d27 data/casting/advancement/recipes/solidifier/solidifier/bronze/dust.json
 2a023a27798cee27f8f082f077ce705bec9248f6 data/casting/advancement/recipes/solidifier/solidifier/bronze/gear.json
 0d47b07ed5b5dce54e0df2380ef686adf5966635 data/casting/advancement/recipes/solidifier/solidifier/bronze/ingot.json
 a681094f19638b9c0adfd00f06015070e22ddd59 data/casting/advancement/recipes/solidifier/solidifier/bronze/nugget.json
@@ -651,6 +712,7 @@ a681094f19638b9c0adfd00f06015070e22ddd59 data/casting/advancement/recipes/solidi
 07d8217e4318934f51571dfa2f16a46b6f41a9f2 data/casting/advancement/recipes/solidifier/solidifier/bronze/shard.json
 f85023cab9839a5737c6b13f6691e6cc4fd26118 data/casting/advancement/recipes/solidifier/solidifier/bronze/wire.json
 83c7fb1feb9e981c2a889d8fa7309f95df2d8030 data/casting/advancement/recipes/solidifier/solidifier/certus_quartz/block.json
+57cb57bf4b9f4806670f0109803482af1d7ade9a data/casting/advancement/recipes/solidifier/solidifier/certus_quartz/dust.json
 df386e79d06468b6f523da574b027a602e215db2 data/casting/advancement/recipes/solidifier/solidifier/certus_quartz/gear.json
 346b74682c29689494f6670cef62dee7ae6c2a31 data/casting/advancement/recipes/solidifier/solidifier/certus_quartz/gem.json
 7304d63bd8fa9173da5c416d697c2cf179479070 data/casting/advancement/recipes/solidifier/solidifier/certus_quartz/nugget.json
@@ -659,6 +721,7 @@ af7a94a34f3e27eac0336b48e9b740622136be13 data/casting/advancement/recipes/solidi
 647c227c54d41b3c8375056287559a842d83987b data/casting/advancement/recipes/solidifier/solidifier/certus_quartz/shard.json
 243dd3a76323fe6bb1853480122b0dfe34a771f8 data/casting/advancement/recipes/solidifier/solidifier/certus_quartz/wire.json
 6503e70f96428109807495bc39e3afc26732cee1 data/casting/advancement/recipes/solidifier/solidifier/charged_certus_quartz/block.json
+8630f01c7b4cdf8b68c7d7b69126c72a004e5bdd data/casting/advancement/recipes/solidifier/solidifier/charged_certus_quartz/dust.json
 82b68a3abfbcb227165a08f99b871b23d2657f55 data/casting/advancement/recipes/solidifier/solidifier/charged_certus_quartz/gear.json
 3c82688e47760f6054701f669b63b184ebf618ad data/casting/advancement/recipes/solidifier/solidifier/charged_certus_quartz/gem.json
 92fb874266ad5344ac912448b80061ea6fafafc7 data/casting/advancement/recipes/solidifier/solidifier/charged_certus_quartz/nugget.json
@@ -668,6 +731,8 @@ ca5cfee3583f30439d5b9e8eb9d96e4258f88d8e data/casting/advancement/recipes/solidi
 0238b449ae0505d9f8dc398991577e5ef4ed57c6 data/casting/advancement/recipes/solidifier/solidifier/charged_certus_quartz/wire.json
 a62c698560887fa5bacb16b137abfbd380fb0f68 data/casting/advancement/recipes/solidifier/solidifier/coal/block.json
 d0a995d82a8231ec56887ff6ae4d4b80cb28dbc4 data/casting/advancement/recipes/solidifier/solidifier/coal/coal.json
+d6a3c2a2ba7e1a8efaa03066db522678cfed196e data/casting/advancement/recipes/solidifier/solidifier/coal/coal_block.json
+b483a62da48e97f63d53b20c02ea117262ba5218 data/casting/advancement/recipes/solidifier/solidifier/coal/dust.json
 4e1bfb531f629d76915832204e7ceac4d6421b12 data/casting/advancement/recipes/solidifier/solidifier/coal/gear.json
 b73baf99388fb1eae3a8b40d2686e895f5cb2ebd data/casting/advancement/recipes/solidifier/solidifier/coal/gem.json
 56c88d61680ef13319029292174762635b108401 data/casting/advancement/recipes/solidifier/solidifier/coal/nugget.json
@@ -676,6 +741,7 @@ e9de5589d01232e9b17067cb8755c62d61b89a50 data/casting/advancement/recipes/solidi
 2727fa8fb0b1fd0011338ada17670416a6574740 data/casting/advancement/recipes/solidifier/solidifier/coal/shard.json
 3c04023da0d5a535c781fe4809c7cc8614a0043f data/casting/advancement/recipes/solidifier/solidifier/coal/wire.json
 cc861a7d9d15fa5b6de891eafd8fe117326acf0b data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/block.json
+baaa54667956e49c4e8c26629731bfa159fc23ea data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/dust.json
 bc7475ab227b73170b6e89217debb62386314495 data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/gear.json
 f32a231d25d55ea9a49268f54384ebc85988fc2e data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/ingot.json
 fbaa7f49d5868879181f78163f17fd4490e2173c data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/nugget.json
@@ -684,6 +750,7 @@ fbaa7f49d5868879181f78163f17fd4490e2173c data/casting/advancement/recipes/solidi
 c2f9103d8246564bea605a35b751ee9c67725675 data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/shard.json
 78d22959dbd850c5f1e45c013334de2f309e825a data/casting/advancement/recipes/solidifier/solidifier/conductive_alloy/wire.json
 a2ffb194f132af8e27c04e43f289ec89aa9908b3 data/casting/advancement/recipes/solidifier/solidifier/constantan/block.json
+75407eec11f93d130fc0bc048038b986d9b150ac data/casting/advancement/recipes/solidifier/solidifier/constantan/dust.json
 36434bdde266ad097d0f57de339b8df12cf096a6 data/casting/advancement/recipes/solidifier/solidifier/constantan/gear.json
 8214ae51ab1362f6663c74d72c559de95447b29e data/casting/advancement/recipes/solidifier/solidifier/constantan/ingot.json
 f6ba8042c1d1e2f252b141a63b9af019c883105a data/casting/advancement/recipes/solidifier/solidifier/constantan/nugget.json
@@ -692,6 +759,7 @@ f6ba8042c1d1e2f252b141a63b9af019c883105a data/casting/advancement/recipes/solidi
 11b7f081098e6da418dff197170cc273b4600fc4 data/casting/advancement/recipes/solidifier/solidifier/constantan/shard.json
 ae681444d71517afe1ad15ee63b458c7709d30ed data/casting/advancement/recipes/solidifier/solidifier/constantan/wire.json
 32e5ad9c154f4c88cbfa147aa0110367fc4390f9 data/casting/advancement/recipes/solidifier/solidifier/copper/block.json
+66787810e119b7a724081568f4faa889c36add38 data/casting/advancement/recipes/solidifier/solidifier/copper/dust.json
 0e1b80dbb44910a13aca6bb28f92cb8ab94082e8 data/casting/advancement/recipes/solidifier/solidifier/copper/gear.json
 a55f3bda0f574d7efd0fa1fbe1f13465f4b7d222 data/casting/advancement/recipes/solidifier/solidifier/copper/ingot.json
 bed46f1c366ae9535900ff3910c9c75a7dc5ac27 data/casting/advancement/recipes/solidifier/solidifier/copper/nugget.json
@@ -700,6 +768,7 @@ bed46f1c366ae9535900ff3910c9c75a7dc5ac27 data/casting/advancement/recipes/solidi
 94069041442a031c4c7e2b1140b7a9f3b9a4a8ce data/casting/advancement/recipes/solidifier/solidifier/copper/shard.json
 8aa678d13eaa51ee7c95dd1cb6c6812d1f17935a data/casting/advancement/recipes/solidifier/solidifier/copper/wire.json
 ec9bfab6270c012c59a073bda669686d9e3d5078 data/casting/advancement/recipes/solidifier/solidifier/dark_steel/block.json
+15c9549084920a1cebe9885d848cc82017f464c1 data/casting/advancement/recipes/solidifier/solidifier/dark_steel/dust.json
 220674ae123ba7d2b2f208bffa05e1ac8eff393e data/casting/advancement/recipes/solidifier/solidifier/dark_steel/gear.json
 f6ea25c2c766b86724e33ae9293f59f682d91fde data/casting/advancement/recipes/solidifier/solidifier/dark_steel/ingot.json
 258319502fad8e57943fda91990946b7af7570e4 data/casting/advancement/recipes/solidifier/solidifier/dark_steel/nugget.json
@@ -708,6 +777,7 @@ a4e36cc0338f47ba28d12f18e441bd7c1f3904cd data/casting/advancement/recipes/solidi
 f10377eff4fadca4ee8b6fb119349e001fe7d501 data/casting/advancement/recipes/solidifier/solidifier/dark_steel/shard.json
 8e4a4e55447b8e51ebb2e8d4dd55a20d0892fdc3 data/casting/advancement/recipes/solidifier/solidifier/dark_steel/wire.json
 2d2e30472b5cfcefd35830a9c1f0ae5488f72f02 data/casting/advancement/recipes/solidifier/solidifier/debris/block.json
+e1d68b2675440e54f7601ded37fcd3e1e54cbf2d data/casting/advancement/recipes/solidifier/solidifier/debris/dust.json
 6002db9a84c9e007bdeff2715c5e0abdb284b3b8 data/casting/advancement/recipes/solidifier/solidifier/debris/gear.json
 11792036547c099673e2c34720a48d8ea436d81e data/casting/advancement/recipes/solidifier/solidifier/debris/ingot.json
 fee2611a52b3280b7ba8a002c5961d4611c9307d data/casting/advancement/recipes/solidifier/solidifier/debris/nugget.json
@@ -716,6 +786,7 @@ b45a43c2f745ec0cd0c8dfa4a91e71cb2315762e data/casting/advancement/recipes/solidi
 2c30d26cc0f31267266d6fc82182eced15b9b7bc data/casting/advancement/recipes/solidifier/solidifier/debris/shard.json
 a79be3f5b73ee8ca905dd09f43b8f2e68aa7777c data/casting/advancement/recipes/solidifier/solidifier/debris/wire.json
 de5300560f3061f0d95c55668f714d08bc7c39e5 data/casting/advancement/recipes/solidifier/solidifier/diamond/block.json
+67d44ba9669b22a0cdf9882da74ce44e4755e6c7 data/casting/advancement/recipes/solidifier/solidifier/diamond/dust.json
 a936727457120486c4fe2c8e87a1ee14358df965 data/casting/advancement/recipes/solidifier/solidifier/diamond/gear.json
 e395bd39bf36ec6de2b1615f44f95b734f87bf3e data/casting/advancement/recipes/solidifier/solidifier/diamond/gem.json
 d181dd391cbf9c54993b2a02f7ae12f1131c3daa data/casting/advancement/recipes/solidifier/solidifier/diamond/nugget.json
@@ -724,6 +795,7 @@ d4e4ea570aa6f75a7e95e0b3f2e5e52ec44b3d4d data/casting/advancement/recipes/solidi
 cf1df358b6d28a1c433edd15424b963a070f20e0 data/casting/advancement/recipes/solidifier/solidifier/diamond/shard.json
 e8b227408eb0e6145c2ad2a463d6821772a4a3a8 data/casting/advancement/recipes/solidifier/solidifier/diamond/wire.json
 fcd626b9362a559397e1b2bdd03ebdee1a193f20 data/casting/advancement/recipes/solidifier/solidifier/electrum/block.json
+d38f0c0401eaa0fdf2231b45f41a4fae820267be data/casting/advancement/recipes/solidifier/solidifier/electrum/dust.json
 a15e08df5caba64a52c8b53ae1ff734a51e0a5bd data/casting/advancement/recipes/solidifier/solidifier/electrum/gear.json
 ca053b4f863e301af2ef40cabeb1378918187a23 data/casting/advancement/recipes/solidifier/solidifier/electrum/ingot.json
 cfd99d914700862293380011f7d3a2e613074df6 data/casting/advancement/recipes/solidifier/solidifier/electrum/nugget.json
@@ -732,6 +804,7 @@ cfd99d914700862293380011f7d3a2e613074df6 data/casting/advancement/recipes/solidi
 b60fc37cbf6a6ce06d5177280af5b3cf6e19b6e1 data/casting/advancement/recipes/solidifier/solidifier/electrum/shard.json
 f7418ff22585fb1e86e1030a3bc426f72ccf7ea0 data/casting/advancement/recipes/solidifier/solidifier/electrum/wire.json
 c84862e0121a75ea76d79a5857549a2aff191993 data/casting/advancement/recipes/solidifier/solidifier/emerald/block.json
+27db198e427bb8bbf8a2338f6e7e6bba262db80c data/casting/advancement/recipes/solidifier/solidifier/emerald/dust.json
 cf7b61eb67c0ddb9b6b9b4f74134288a4b9a3214 data/casting/advancement/recipes/solidifier/solidifier/emerald/gear.json
 4ae89e03001ba1107d68baf6a78311a366f2ca4a data/casting/advancement/recipes/solidifier/solidifier/emerald/gem.json
 a904c876f28e206baf850b665240d971d3e02286 data/casting/advancement/recipes/solidifier/solidifier/emerald/nugget.json
@@ -740,6 +813,7 @@ b8df45fb3a0afbdab72e210642401fe376630067 data/casting/advancement/recipes/solidi
 40fee6130f1fcc62c3aaa4ae9e0f68a2a95c490e data/casting/advancement/recipes/solidifier/solidifier/emerald/shard.json
 330f82ba33b2ba894c57759427d0b95e5adad7e8 data/casting/advancement/recipes/solidifier/solidifier/emerald/wire.json
 0f7821dc1a9a29b8a5d853e34c1e522a3d3b6c1d data/casting/advancement/recipes/solidifier/solidifier/enderium/block.json
+03cedc0a6cc8b16e97e05ac55714e3e9f6fe7324 data/casting/advancement/recipes/solidifier/solidifier/enderium/dust.json
 f0927c75f8fc8cae084c5536ba0065eb0cc8e601 data/casting/advancement/recipes/solidifier/solidifier/enderium/gear.json
 77a95613923c903f37d9fd92a49c7f2cfc4d6e54 data/casting/advancement/recipes/solidifier/solidifier/enderium/ingot.json
 f7de4e068d8b7f20681ccae9a37cde4fae0144aa data/casting/advancement/recipes/solidifier/solidifier/enderium/nugget.json
@@ -749,6 +823,7 @@ e4bd68f4c01b5e186acb846d6a255a7b726e539d data/casting/advancement/recipes/solidi
 9d18114f33427c72bc56eb976cee105211173a33 data/casting/advancement/recipes/solidifier/solidifier/enderium/wire.json
 d566ab8873ebe24000ebb8c16a0cc7a8f894758d data/casting/advancement/recipes/solidifier/solidifier/ender/pearl.json
 67895c2f7dfd8a1e9ae4f50acbbdd1ab8cbc99a6 data/casting/advancement/recipes/solidifier/solidifier/end_steel/block.json
+62b278bce1dae545041951c3c72683531e8be029 data/casting/advancement/recipes/solidifier/solidifier/end_steel/dust.json
 10284b9ae9f60e81a16933f75f763af56d45a528 data/casting/advancement/recipes/solidifier/solidifier/end_steel/gear.json
 8b920504f3cb4c77cf865808979183d46da1d4d0 data/casting/advancement/recipes/solidifier/solidifier/end_steel/ingot.json
 36d0a4810ba39508967bc13cddb26c22843beb76 data/casting/advancement/recipes/solidifier/solidifier/end_steel/nugget.json
@@ -758,6 +833,7 @@ bc2329bea6473fb8791c24589392c159b3036c97 data/casting/advancement/recipes/solidi
 ee4a6d14e267e31eb586ef0860b3908d3e991023 data/casting/advancement/recipes/solidifier/solidifier/end_steel/wire.json
 16079385b7fe42d20ec9de942f49f06842cfe933 data/casting/advancement/recipes/solidifier/solidifier/end_stone/block.json
 f3aa11b359bfe3f0f2295418b185f75ac1168c93 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/block.json
+5a0376c72a987eabf9c282962237078916907b3b data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/dust.json
 0db05b1c087bca896541fc382889959daf6a1724 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/gear.json
 7cab193ff4c498f53f6a7b040a0b32fc628a90d6 data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/ingot.json
 f79b5e2dc7beec7236d4bea443b7aed203c6303e data/casting/advancement/recipes/solidifier/solidifier/energetic_alloy/nugget.json
@@ -768,6 +844,7 @@ f79b5e2dc7beec7236d4bea443b7aed203c6303e data/casting/advancement/recipes/solidi
 c332e2c3ad0dcdb3f184b732f77cb1d9b881c700 data/casting/advancement/recipes/solidifier/solidifier/experience/ball.json
 1739c57fdc98e9a85d043ab5838ae81f05b3b1a2 data/casting/advancement/recipes/solidifier/solidifier/experience/bottle.json
 93740d72b37682fd2b7045921072828202ae0532 data/casting/advancement/recipes/solidifier/solidifier/fluix/block.json
+de8a7c8bf49101ed5d89a0126bc3105928f25c69 data/casting/advancement/recipes/solidifier/solidifier/fluix/dust.json
 bb45fd6a300711145f8fa7e08f1168786dbb0f6c data/casting/advancement/recipes/solidifier/solidifier/fluix/gear.json
 a1fdbb26ddf170ad694f377ee84c9efe90bb1e28 data/casting/advancement/recipes/solidifier/solidifier/fluix/gem.json
 ad2e7cea0ae8020a31f6eac8d07d3704a0f2d775 data/casting/advancement/recipes/solidifier/solidifier/fluix/nugget.json
@@ -785,6 +862,7 @@ e3d8245c96a0f7eb44d8994d195c1b21e8f03fc2 data/casting/advancement/recipes/solidi
 fa1030785c47f99499c077597d465375320d65e7 data/casting/advancement/recipes/solidifier/solidifier/glowstone/shard.json
 f932561a74e6c528d2f84bd984a2a1bdf720e09a data/casting/advancement/recipes/solidifier/solidifier/glowstone/wire.json
 d83329d7c64053e1a2f56be8bf0ee229a85ac7b2 data/casting/advancement/recipes/solidifier/solidifier/gold/block.json
+debbd562150fdb6ff624cc69bf663386f137fe2c data/casting/advancement/recipes/solidifier/solidifier/gold/dust.json
 01e42a4e32f53129a29a651acf932220bfc79e76 data/casting/advancement/recipes/solidifier/solidifier/gold/gear.json
 fc32bc65d01fa47497fa5bcb08590d05f10c51b5 data/casting/advancement/recipes/solidifier/solidifier/gold/ingot.json
 073caeeed1943dc155c5580ed5bed76d90c3d25a data/casting/advancement/recipes/solidifier/solidifier/gold/nugget.json
@@ -793,6 +871,7 @@ f3075d8eef2d4ba652b06edde366cbc29e10d240 data/casting/advancement/recipes/solidi
 dc2b753880a719f1011183948ab3b4e301e8a4e2 data/casting/advancement/recipes/solidifier/solidifier/gold/shard.json
 7093410d543791d69b5fc928cf44d756bfe93845 data/casting/advancement/recipes/solidifier/solidifier/gold/wire.json
 a52b576ad2d75206b0a2e940d44d6108185419e8 data/casting/advancement/recipes/solidifier/solidifier/invar/block.json
+95fdb08b27537bf3542884e389ae66d2ff529099 data/casting/advancement/recipes/solidifier/solidifier/invar/dust.json
 2a68fa3dc0c7453b9a888b558a13c0ff7c822cd3 data/casting/advancement/recipes/solidifier/solidifier/invar/gear.json
 edb4d37b0a43dfb9920f6e0e2a5da2ad8fc730e8 data/casting/advancement/recipes/solidifier/solidifier/invar/ingot.json
 c9647b1735ddb3973b488188fd9e1324745ba9a6 data/casting/advancement/recipes/solidifier/solidifier/invar/nugget.json
@@ -801,6 +880,7 @@ a967e60e890c96d291ee54788d7a753d22516de5 data/casting/advancement/recipes/solidi
 dd14b55927bdff9ac35f50c077e95f214c42011d data/casting/advancement/recipes/solidifier/solidifier/invar/shard.json
 51e0499c22e050a52ff96512cfdc20fdb379f015 data/casting/advancement/recipes/solidifier/solidifier/invar/wire.json
 7f7c09e8ed2a2eb26c51b8487b6a84845e2ced02 data/casting/advancement/recipes/solidifier/solidifier/iridium/block.json
+a1104a678800b88ad531b54bf3c6879cfad72593 data/casting/advancement/recipes/solidifier/solidifier/iridium/dust.json
 00022b86d04a2fbca9e9ef242ae411b8d16d8489 data/casting/advancement/recipes/solidifier/solidifier/iridium/gear.json
 dbf44c1754a0d47dd356f80fa4001c20c581bc1b data/casting/advancement/recipes/solidifier/solidifier/iridium/ingot.json
 b92473369f1d7b081c6c9b56eebf253b405d097c data/casting/advancement/recipes/solidifier/solidifier/iridium/nugget.json
@@ -809,6 +889,7 @@ c1dfda4c7e640f55340c4b6c5f0fbe5fbcdeed67 data/casting/advancement/recipes/solidi
 89b49755602f7f6afc3d792d81274b888ae4eaec data/casting/advancement/recipes/solidifier/solidifier/iridium/shard.json
 193b1ba2c722ee35cb49865d854df79ffbca5cdc data/casting/advancement/recipes/solidifier/solidifier/iridium/wire.json
 009565f16c66395662ad906e3ad3063d9a89709b data/casting/advancement/recipes/solidifier/solidifier/iron/block.json
+cc2982a157fdb7be34c19cc03fd50ae1e3b7115e data/casting/advancement/recipes/solidifier/solidifier/iron/dust.json
 ff33633a1cb456060d5a02832ef8e7e449955921 data/casting/advancement/recipes/solidifier/solidifier/iron/gear.json
 ff78673291a0ef8387965aa903d40c03c3c97525 data/casting/advancement/recipes/solidifier/solidifier/iron/ingot.json
 c846a27a847bfb5ba6a7ff470739bfd017d38422 data/casting/advancement/recipes/solidifier/solidifier/iron/nugget.json
@@ -817,6 +898,7 @@ e506f115914143ce61a0c9ac45238fa85147c0b1 data/casting/advancement/recipes/solidi
 b0a8ec109a980a9fe329a581b59f3adfb809aeab data/casting/advancement/recipes/solidifier/solidifier/iron/shard.json
 41b92c7bbb641d410832e13e1e995b5194271478 data/casting/advancement/recipes/solidifier/solidifier/iron/wire.json
 64776772e79a8b128a90a4f0565eacb88014937f data/casting/advancement/recipes/solidifier/solidifier/lapis/block.json
+b924bf2b6b36a75680fb8c4521e0b7feb4f73b49 data/casting/advancement/recipes/solidifier/solidifier/lapis/dust.json
 0e71a6683efc6f6846b7898850ad5140059af99b data/casting/advancement/recipes/solidifier/solidifier/lapis/gear.json
 478d7e6c975ea0a9d29142418454ca1d32694856 data/casting/advancement/recipes/solidifier/solidifier/lapis/gem.json
 7b1ce79d269fe45416cdf4eaf793884cad0ac6ba data/casting/advancement/recipes/solidifier/solidifier/lapis/nugget.json
@@ -825,6 +907,7 @@ b0a8ec109a980a9fe329a581b59f3adfb809aeab data/casting/advancement/recipes/solidi
 b400f8ec351238d5f94193ab4befaba41775beba data/casting/advancement/recipes/solidifier/solidifier/lapis/shard.json
 a2f6d50ce43308f2a91bbf8dda3ae15a8173350d data/casting/advancement/recipes/solidifier/solidifier/lapis/wire.json
 c670b8be884a75a6ac11aa6259fc8d50e7735f19 data/casting/advancement/recipes/solidifier/solidifier/lead/block.json
+3d05fd9f46ef05daca929410f3deb8415f635649 data/casting/advancement/recipes/solidifier/solidifier/lead/dust.json
 ac5fea17e65a72a2493d1c6969d5e27765430010 data/casting/advancement/recipes/solidifier/solidifier/lead/gear.json
 e3f25fb668c61ed3850fc0faea7258a0b87547a1 data/casting/advancement/recipes/solidifier/solidifier/lead/ingot.json
 7e72a90906ebff5fab7d13b8bc9d71d4e125b1bc data/casting/advancement/recipes/solidifier/solidifier/lead/nugget.json
@@ -833,6 +916,7 @@ e3f25fb668c61ed3850fc0faea7258a0b87547a1 data/casting/advancement/recipes/solidi
 1322202bbcec8ef217d18e94abcfb76977f35902 data/casting/advancement/recipes/solidifier/solidifier/lead/shard.json
 fa7edcbf0dd7aa4809417f2df2df1741e79e79ad data/casting/advancement/recipes/solidifier/solidifier/lead/wire.json
 e1c828a9dcba1de2832903b10c73788bc67daaae data/casting/advancement/recipes/solidifier/solidifier/lumium/block.json
+eaf806c0af47ce27fa2af28e175cc75b8adaaa32 data/casting/advancement/recipes/solidifier/solidifier/lumium/dust.json
 e26b785a3643c4376c3b89c234b93d673d4aabf1 data/casting/advancement/recipes/solidifier/solidifier/lumium/gear.json
 c46609b6830e1e822cbe51b011c5e7a289339584 data/casting/advancement/recipes/solidifier/solidifier/lumium/ingot.json
 86877dc35e16b7bc93988671dc304aec5f71ba37 data/casting/advancement/recipes/solidifier/solidifier/lumium/nugget.json
@@ -841,6 +925,7 @@ db0c202c4fd6b7819b886795b40a12b44495999a data/casting/advancement/recipes/solidi
 eb2ebcbc05428de85f1ac6c5670155795932984e data/casting/advancement/recipes/solidifier/solidifier/lumium/shard.json
 f800740830f3d6103915ca47fb395ff3a1a30312 data/casting/advancement/recipes/solidifier/solidifier/lumium/wire.json
 228ef9cbd91ee56fb3a7786546c8dc9b2d7ddb49 data/casting/advancement/recipes/solidifier/solidifier/monazite/block.json
+4866f67436abf0cdb50eb70f679026c6b56d4c86 data/casting/advancement/recipes/solidifier/solidifier/monazite/dust.json
 d0d79d8b15dad1b5ec62631e5a5fa28a0b4af113 data/casting/advancement/recipes/solidifier/solidifier/monazite/gear.json
 3ed1f9c044f048767286f855489b47f427034b8e data/casting/advancement/recipes/solidifier/solidifier/monazite/gem.json
 cdae3b06888607e4e700fb63e628c5e61762232a data/casting/advancement/recipes/solidifier/solidifier/monazite/nugget.json
@@ -849,6 +934,7 @@ cdae3b06888607e4e700fb63e628c5e61762232a data/casting/advancement/recipes/solidi
 2e25618bd3edcc151e63d03093d0f26a107e69c9 data/casting/advancement/recipes/solidifier/solidifier/monazite/shard.json
 d267ab937b6d90026a9edbbf9dcb5aa31d43558e data/casting/advancement/recipes/solidifier/solidifier/monazite/wire.json
 ad94e897ca0ddb38041022028cb99f6eac74ad8a data/casting/advancement/recipes/solidifier/solidifier/netherite/block.json
+63a476c40fcdc3ee1fefcba0dbf2e2bd4599246b data/casting/advancement/recipes/solidifier/solidifier/netherite/dust.json
 a1f6dbebaa4aefad91dac3f0eb1173d0d17a83fe data/casting/advancement/recipes/solidifier/solidifier/netherite/gear.json
 86f7d7b68a8ddf1ca1d493c92a49405f39dae87d data/casting/advancement/recipes/solidifier/solidifier/netherite/ingot.json
 308d63c941584a2b961870e681d7185c2ad06e20 data/casting/advancement/recipes/solidifier/solidifier/netherite/nugget.json
@@ -857,6 +943,7 @@ dbf48262a4f0ca2c2a251511eda3369454347847 data/casting/advancement/recipes/solidi
 b67825c14d526d231e9c54f8d44a51aac16f445d data/casting/advancement/recipes/solidifier/solidifier/netherite/shard.json
 6a418eecd7f039a3853791570bf02b3a45174911 data/casting/advancement/recipes/solidifier/solidifier/netherite/wire.json
 f901892672f6c70711f5e4fbfa86d0b079d21d5f data/casting/advancement/recipes/solidifier/solidifier/nickel/block.json
+b500979e3d37620194b90f27c7b4198dbd83649e data/casting/advancement/recipes/solidifier/solidifier/nickel/dust.json
 1d471dd327d08e67063c3c3c4c65e911b7e2d1aa data/casting/advancement/recipes/solidifier/solidifier/nickel/gear.json
 e5702f2857e4892974c943b67cfc20ab4fcfacf5 data/casting/advancement/recipes/solidifier/solidifier/nickel/ingot.json
 7144bfedcc25e64165137e7a7041e1ceb380e4cb data/casting/advancement/recipes/solidifier/solidifier/nickel/nugget.json
@@ -866,6 +953,7 @@ f0127e873b3867e24b9450d0c71f81940007d42e data/casting/advancement/recipes/solidi
 fafc9fb66139a9490789f3e46abbc01219746428 data/casting/advancement/recipes/solidifier/solidifier/nickel/wire.json
 62ae0e2aae49997180b3b44b5164bd68aa10f8fe data/casting/advancement/recipes/solidifier/solidifier/obsidian/block.json
 3e85766988932d589c489543cf2e90673f1f43be data/casting/advancement/recipes/solidifier/solidifier/osmium/block.json
+75ce85b4ffb007a7cf10897767fdbca5e8c02bba data/casting/advancement/recipes/solidifier/solidifier/osmium/dust.json
 c748eaa1fa444ed29f7fbdf3ec8c8c76e782fa91 data/casting/advancement/recipes/solidifier/solidifier/osmium/gear.json
 0d28c48530ff58f689d1657494abf3e8d8e0c501 data/casting/advancement/recipes/solidifier/solidifier/osmium/ingot.json
 682855db5b69d49b019f4454875c4a76b0a8f14f data/casting/advancement/recipes/solidifier/solidifier/osmium/nugget.json
@@ -874,6 +962,7 @@ c748eaa1fa444ed29f7fbdf3ec8c8c76e782fa91 data/casting/advancement/recipes/solidi
 cd610b2b1776029db039f7c097aab9ec276cfb4a data/casting/advancement/recipes/solidifier/solidifier/osmium/shard.json
 76c507e9b3e8772970ff9b39ce9df1abc5c29310 data/casting/advancement/recipes/solidifier/solidifier/osmium/wire.json
 d1de1b97fd4fafcd7a1deca300e09de991329e09 data/casting/advancement/recipes/solidifier/solidifier/peridot/block.json
+c35126b1f12abfb11817f1da641ad40e6b80353d data/casting/advancement/recipes/solidifier/solidifier/peridot/dust.json
 4af786e211e9b06ed52e90498d0687a165c15d4f data/casting/advancement/recipes/solidifier/solidifier/peridot/gear.json
 a1db88a070494d5fb535bfc0489ea822683e3b6d data/casting/advancement/recipes/solidifier/solidifier/peridot/gem.json
 bb2c881824a42b7011c1f85a929bf6fafc2c9c6c data/casting/advancement/recipes/solidifier/solidifier/peridot/nugget.json
@@ -882,6 +971,7 @@ cc4dd0ef2f5c8fb74c0120e461c66f8487093e41 data/casting/advancement/recipes/solidi
 91054dfc6be9907932cc82e3022f6b166d4993ad data/casting/advancement/recipes/solidifier/solidifier/peridot/shard.json
 de011725b2753ceb3dffc0013a14669d3c148cd2 data/casting/advancement/recipes/solidifier/solidifier/peridot/wire.json
 d77700587960f581f89a6d4957cf212bcbd84b9f data/casting/advancement/recipes/solidifier/solidifier/platinum/block.json
+66f442cea0d904839906cc43ef0f9b0ee737789b data/casting/advancement/recipes/solidifier/solidifier/platinum/dust.json
 724b938580d32fdd91ca81de081186afa1340f0e data/casting/advancement/recipes/solidifier/solidifier/platinum/gear.json
 88a6a0d12ac50c1cb8621aa69d584835885bf5a8 data/casting/advancement/recipes/solidifier/solidifier/platinum/ingot.json
 2c2aaa0d8ce06da7326b2cec564320b034f7a822 data/casting/advancement/recipes/solidifier/solidifier/platinum/nugget.json
@@ -890,6 +980,7 @@ c4382e77250a8c0f4b60cdc658847789cb4ecbae data/casting/advancement/recipes/solidi
 e20bb48d089ae50ff5b4c0add314582c564f9408 data/casting/advancement/recipes/solidifier/solidifier/platinum/shard.json
 9a55be3272c49bfec0e1eef4151e25229ec047cd data/casting/advancement/recipes/solidifier/solidifier/platinum/wire.json
 2b495f27e740a1d5827d9c5e43aa94ceba847901 data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/block.json
+833330d4bec34e2598651ab8f58342c31d396a21 data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/dust.json
 6db8d545070153e6b475e3902f96efd04a34927c data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/gear.json
 de97082707fbb0d05efd8c54a0818f0cf2a0c738 data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/ingot.json
 8ea4f069415eb06aa76c2ef7f78bea1d899ea6e5 data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/nugget.json
@@ -898,6 +989,7 @@ de97082707fbb0d05efd8c54a0818f0cf2a0c738 data/casting/advancement/recipes/solidi
 7b1bb4cadf9497e2bdadbbee4d2abd540c696928 data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/shard.json
 27533c090c64fe99c565d6c39abf99752ff63b82 data/casting/advancement/recipes/solidifier/solidifier/pulsating_alloy/wire.json
 e4639fd5b42030d41118d9abb01ef8d2383ce1e1 data/casting/advancement/recipes/solidifier/solidifier/quartz/block.json
+6dbeea19d9ddcb194dbc1954f3c8459360bc722c data/casting/advancement/recipes/solidifier/solidifier/quartz/dust.json
 194f235898f6f8a8d9804f875def136a49d11103 data/casting/advancement/recipes/solidifier/solidifier/quartz/gear.json
 b9dfd80c17350fa271165d7ca08c344d7cdac056 data/casting/advancement/recipes/solidifier/solidifier/quartz/gem.json
 4ccf1d9cbb234b043764596a1380abb5027a9087 data/casting/advancement/recipes/solidifier/solidifier/quartz/nugget.json
@@ -906,6 +998,7 @@ d2412dce6dd2250d649bc13b7a690ef6092789f1 data/casting/advancement/recipes/solidi
 767cdb055e0ee352c1ccb9d9ce3f3658ac753ce3 data/casting/advancement/recipes/solidifier/solidifier/quartz/shard.json
 b9e500fa0a48c10a45f959f2a97428ad6dcb1a75 data/casting/advancement/recipes/solidifier/solidifier/quartz/wire.json
 5a647adea7acda8f32e923c8a3d4c597cf74ce8a data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_copper/block.json
+18d82ce974b0bb6b563b4853c3c0179efde32ab3 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_copper/dust.json
 c055fa1a34b7d0e29376a65559c4caf3c4ed41db data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_copper/gear.json
 b09d5596b20ea29d90643400bc5791bfda6f67be data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_copper/ingot.json
 f18ca382a9e2f4f86bdd55524d604764bf2f0e99 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_copper/nugget.json
@@ -914,6 +1007,7 @@ f18ca382a9e2f4f86bdd55524d604764bf2f0e99 data/casting/advancement/recipes/solidi
 f564999e38ad77ca747d161aafff1500c0fe28e9 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_copper/shard.json
 eb411779765aed10e5998c2ab743348a996ef11a data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_copper/wire.json
 6cdbaf54dc08cb9102936032e98462a79851f552 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/block.json
+5cce200e55ecbafd70ce42b42d1e093eec3c15d5 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/dust.json
 b7471fca83f0faf233a104d402b82d80f2df445b data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/gear.json
 42b90ca6be7bce531a3bf61b5904be504fbfb7b4 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/ingot.json
 a1cab20c8ab2f6593f107df59620514d88e4adb5 data/casting/advancement/recipes/solidifier/solidifier/quartz_enriched_iron/nugget.json
@@ -930,6 +1024,7 @@ aa0978b8a48e60505bfefa6fe35be9e9253cf480 data/casting/advancement/recipes/solidi
 29ad757bd153aca2d784bd829a400b85748609ab data/casting/advancement/recipes/solidifier/solidifier/redstone/shard.json
 1d3b798cd7c688d717a9b547f0f824374221ebfb data/casting/advancement/recipes/solidifier/solidifier/redstone/wire.json
 362d79153e4ebb5326cad139b6f5a4513b073321 data/casting/advancement/recipes/solidifier/solidifier/ruby/block.json
+6ba236ea75e5fa95b8e331239d58fa91e804f0d0 data/casting/advancement/recipes/solidifier/solidifier/ruby/dust.json
 8744668f56a9076750d81459102210e64d18af61 data/casting/advancement/recipes/solidifier/solidifier/ruby/gear.json
 37fb3b2f65964a3c63bd464007353428d2d42588 data/casting/advancement/recipes/solidifier/solidifier/ruby/gem.json
 dc8c565ba3760262ab70e6f0cce5c9ad75da8cc3 data/casting/advancement/recipes/solidifier/solidifier/ruby/nugget.json
@@ -938,6 +1033,7 @@ d7f0f2fc04e2ee41ba2d7ce57cf73d9453ed33de data/casting/advancement/recipes/solidi
 357d43455a3603dd2fc6850ffdb53ee76530deac data/casting/advancement/recipes/solidifier/solidifier/ruby/shard.json
 87abcc31ecadd2082a2fd90093f513c4ad726271 data/casting/advancement/recipes/solidifier/solidifier/ruby/wire.json
 7aad025358ccc8b84cd85648d1c00a3db02a6eca data/casting/advancement/recipes/solidifier/solidifier/sapphire/block.json
+8012fba9686821bd1536da18456abc14d34f8584 data/casting/advancement/recipes/solidifier/solidifier/sapphire/dust.json
 257865254f66d1011f260a5dfd09e0f48130ef88 data/casting/advancement/recipes/solidifier/solidifier/sapphire/gear.json
 39f969edec363ff86bea25e6afc16f378f56464f data/casting/advancement/recipes/solidifier/solidifier/sapphire/gem.json
 cac7f1aafa104f8a7dc64af04e8630fa3019ee80 data/casting/advancement/recipes/solidifier/solidifier/sapphire/nugget.json
@@ -946,6 +1042,7 @@ c5a34bc845b78040dd39552cd79da80c341e9ce2 data/casting/advancement/recipes/solidi
 e9bf99f61ca1557e04b43a4db8006ac882df5771 data/casting/advancement/recipes/solidifier/solidifier/sapphire/shard.json
 354ed7ff3d1546daeccc120d4b973808189d5e0c data/casting/advancement/recipes/solidifier/solidifier/sapphire/wire.json
 87db6d9ea5759c4503c6d0ecf2633ebee47153f8 data/casting/advancement/recipes/solidifier/solidifier/signalum/block.json
+f4a3d39458a69d2f5eac2d372a7453e7a2ca2618 data/casting/advancement/recipes/solidifier/solidifier/signalum/dust.json
 acef0770907ff89201dd80ab3c31c819a606c649 data/casting/advancement/recipes/solidifier/solidifier/signalum/gear.json
 95002141fe301885c10b57e5ab6b1d11418d8018 data/casting/advancement/recipes/solidifier/solidifier/signalum/ingot.json
 bbbd78797b4e923f21d493e38635e03d5d16aaa9 data/casting/advancement/recipes/solidifier/solidifier/signalum/nugget.json
@@ -954,6 +1051,7 @@ b3ca7535d6bb97fd7d3be3e44c412f351a114691 data/casting/advancement/recipes/solidi
 f6ae668c10e1425ccb28bb0d35b81a9e3199fbd3 data/casting/advancement/recipes/solidifier/solidifier/signalum/shard.json
 812fc9ff9eb611fff399164ec23880459e67914c data/casting/advancement/recipes/solidifier/solidifier/signalum/wire.json
 b82a8f3da4f36b1702818c41c94d0c54ad91ce53 data/casting/advancement/recipes/solidifier/solidifier/silicon/block.json
+c1048d8132b7c85619654ffd8bb8e6543a499040 data/casting/advancement/recipes/solidifier/solidifier/silicon/dust.json
 77972f4123fae23c0dab0b666e47d7e9a6ab9a00 data/casting/advancement/recipes/solidifier/solidifier/silicon/gear.json
 291aa2c262ce008f9fd1d4cdf61b4eca5ee35810 data/casting/advancement/recipes/solidifier/solidifier/silicon/ingot.json
 e05cece5467b3d0a7074227bd09f11feb85acb67 data/casting/advancement/recipes/solidifier/solidifier/silicon/nugget.json
@@ -963,6 +1061,7 @@ a4dfccf8439be86d6a498c3840dfe8316c5e474f data/casting/advancement/recipes/solidi
 56afc863287f8f1b4250b2d916557c2a66eb099d data/casting/advancement/recipes/solidifier/solidifier/silicon/silicon.json
 ef039a0a07a20b3da6400f6c79db191abd3ecfe9 data/casting/advancement/recipes/solidifier/solidifier/silicon/wire.json
 4399fbd68177b30be44db509d4149898f6339b18 data/casting/advancement/recipes/solidifier/solidifier/silver/block.json
+ded5ac2a720552c4bb5a68af53fddef9bffb697f data/casting/advancement/recipes/solidifier/solidifier/silver/dust.json
 156b24df50be35e4749e16efcfb2e63f972e4653 data/casting/advancement/recipes/solidifier/solidifier/silver/gear.json
 8103e4ececba36811885edf9b38c17ef34e19ffe data/casting/advancement/recipes/solidifier/solidifier/silver/ingot.json
 ab61957320d86f270bf1fdc9478b796b5e4b0491 data/casting/advancement/recipes/solidifier/solidifier/silver/nugget.json
@@ -971,6 +1070,7 @@ eb7e9af6abdf1ef212aa517fd3aba661916116fd data/casting/advancement/recipes/solidi
 a7cb506d968e5a894eaf6b9e64b04e29a7552f64 data/casting/advancement/recipes/solidifier/solidifier/silver/shard.json
 8f9af9c8d3c6709770d470e40c89da5b591a8f12 data/casting/advancement/recipes/solidifier/solidifier/silver/wire.json
 9375e3829bc9c946683f26d21550f222c9be7ff4 data/casting/advancement/recipes/solidifier/solidifier/soularium/block.json
+ebe2f37f4c2a2620c7039c89986e23700bcd2f7d data/casting/advancement/recipes/solidifier/solidifier/soularium/dust.json
 f9d557ceca9a5acd2f9b118cc3bf167a624cc37e data/casting/advancement/recipes/solidifier/solidifier/soularium/gear.json
 65e890414b680dded81f3f1f8e7ec77bdf4f5779 data/casting/advancement/recipes/solidifier/solidifier/soularium/ingot.json
 869436b3c559aa6ea0a8b7fe6a6546f255f88542 data/casting/advancement/recipes/solidifier/solidifier/soularium/nugget.json
@@ -980,6 +1080,7 @@ bd8d7f06c46dee7564659c29360c5ca032738f91 data/casting/advancement/recipes/solidi
 008db7d9df01a4dab1cdd8627a9b149151367037 data/casting/advancement/recipes/solidifier/solidifier/soularium/wire.json
 38876b1da2f49c91a8239134734d6060e94f05a9 data/casting/advancement/recipes/solidifier/solidifier/soul/block.json
 e6218cd34d648ba10bc7fa6b7de198936f7233d7 data/casting/advancement/recipes/solidifier/solidifier/steel/block.json
+01ed0a2768bbb0d005fe29b5d0d655480fc7ad08 data/casting/advancement/recipes/solidifier/solidifier/steel/dust.json
 bfa83a39d92f8e0b22d8e5c3829df1da7551f897 data/casting/advancement/recipes/solidifier/solidifier/steel/gear.json
 131b9a9980135011de0c2de1ec2389d025444304 data/casting/advancement/recipes/solidifier/solidifier/steel/ingot.json
 7a1fe9787f64f8b9055bf6c08ac83702460f4cec data/casting/advancement/recipes/solidifier/solidifier/steel/nugget.json
@@ -989,6 +1090,7 @@ ace289b1896c4bd45b895f99242bc3f687b09063 data/casting/advancement/recipes/solidi
 39e4eef966a3d13ecd6c2d4a546d18388fc56027 data/casting/advancement/recipes/solidifier/solidifier/steel/wire.json
 13b19cca226f3a5bb4d00de164de91be8bef74c9 data/casting/advancement/recipes/solidifier/solidifier/stone/block.json
 9167f7613dc6ae54f9f6bfd693f82419df0a1e1b data/casting/advancement/recipes/solidifier/solidifier/tin/block.json
+bf0709f1c818c3bf30177577b7d0f42982a3ec2c data/casting/advancement/recipes/solidifier/solidifier/tin/dust.json
 d5d28d4d8e0e42b720c1224bf65420f9124549c1 data/casting/advancement/recipes/solidifier/solidifier/tin/gear.json
 2bec46a06e1704d2ca4ac2066d6b6994abfea3f0 data/casting/advancement/recipes/solidifier/solidifier/tin/ingot.json
 79130fec793d9a004ccb232378b62fcf521fa812 data/casting/advancement/recipes/solidifier/solidifier/tin/nugget.json
@@ -997,6 +1099,7 @@ f13cdf5c6fbf1aa4b0dfddbfbe0182d74db74b6a data/casting/advancement/recipes/solidi
 e41434cdb4f41082da1de4d11b7241bcbd043f41 data/casting/advancement/recipes/solidifier/solidifier/tin/shard.json
 e24f5e0d8c56f7e354ede83c51d941cd5bafc56a data/casting/advancement/recipes/solidifier/solidifier/tin/wire.json
 291f6517eb50f729b88d28b2a2181dbbc1c934af data/casting/advancement/recipes/solidifier/solidifier/titanium/block.json
+9d38073efc4907ceeef8cb837e6d938b7738af11 data/casting/advancement/recipes/solidifier/solidifier/titanium/dust.json
 09904043710bd313fa7bbccf0825f5533c6a3e50 data/casting/advancement/recipes/solidifier/solidifier/titanium/gear.json
 f56c202862d42d0ba2ca27b52c8d6a6d4fec6ab7 data/casting/advancement/recipes/solidifier/solidifier/titanium/ingot.json
 4421873cae5d1303ab535efe949fe2fd096510a8 data/casting/advancement/recipes/solidifier/solidifier/titanium/nugget.json
@@ -1005,6 +1108,7 @@ aae2f2b5c42df7e4434ffe9de2f97c6dd8b5dbd1 data/casting/advancement/recipes/solidi
 6175c2a338d1a78269cf4d71893134b4ccbda659 data/casting/advancement/recipes/solidifier/solidifier/titanium/shard.json
 5bdbe3e2b8425235a30d3981de632beef050bc6a data/casting/advancement/recipes/solidifier/solidifier/titanium/wire.json
 43e3ce3c653bc398dc9f0ffb7a8b54d03699fde6 data/casting/advancement/recipes/solidifier/solidifier/topaz/block.json
+fa02bed4bed1d0b74a51ce4bd8770e5f9fcdf6d8 data/casting/advancement/recipes/solidifier/solidifier/topaz/dust.json
 b12fd2c4f86b6b7f991f4918dbc400fffde12569 data/casting/advancement/recipes/solidifier/solidifier/topaz/gear.json
 f3839250913aa85c793ce2e67a1b63bbe677a148 data/casting/advancement/recipes/solidifier/solidifier/topaz/gem.json
 9d1ff88d864bec193b1527a36fbe590ab4ddccd6 data/casting/advancement/recipes/solidifier/solidifier/topaz/nugget.json
@@ -1013,6 +1117,7 @@ ff2abd232e26259446a9c4f8ae0fcf7cae31f89f data/casting/advancement/recipes/solidi
 89e2d99567c4b6217aadda1ff9df723aa2e33055 data/casting/advancement/recipes/solidifier/solidifier/topaz/shard.json
 b729f4c1f5e6efab379a435713fed14232309ab9 data/casting/advancement/recipes/solidifier/solidifier/topaz/wire.json
 3a9cad380737de6aa1aa9c846eb28a3eef2a08c7 data/casting/advancement/recipes/solidifier/solidifier/tungsten/block.json
+b29017b4ca16f15dca863038a767ef15eebb7a56 data/casting/advancement/recipes/solidifier/solidifier/tungsten/dust.json
 51bb9e1550a5564405d5bc9ea56cb9c366c5310e data/casting/advancement/recipes/solidifier/solidifier/tungsten/gear.json
 d5129cfb484cc7c8c4330b98793745bed551f535 data/casting/advancement/recipes/solidifier/solidifier/tungsten/ingot.json
 89d73e6d5e866de6dca89feba9845a1da2cca97b data/casting/advancement/recipes/solidifier/solidifier/tungsten/nugget.json
@@ -1021,6 +1126,7 @@ f7f9c3c3fb38254b45f071547237c66970cfc27a data/casting/advancement/recipes/solidi
 75aeaf8e23bb111bb054ce17ed540b54c66dc1a3 data/casting/advancement/recipes/solidifier/solidifier/tungsten/shard.json
 db74c8dc75eb63faac6b524ad9c10e37c6f0c09f data/casting/advancement/recipes/solidifier/solidifier/tungsten/wire.json
 06aa603d6a56032fdf97c28137aed8adebe0fb0f data/casting/advancement/recipes/solidifier/solidifier/unobtainium/block.json
+71e402b321e11bce4dff2b047320bfaf91894605 data/casting/advancement/recipes/solidifier/solidifier/unobtainium/dust.json
 ca142f835d797b77bc387972266a988cdd54aca1 data/casting/advancement/recipes/solidifier/solidifier/unobtainium/gear.json
 fe8a6a97be1ae4b61a1b7887ece702846ed9fa1d data/casting/advancement/recipes/solidifier/solidifier/unobtainium/ingot.json
 84bd531fc4c674593b9e549939d8deb16f8c8e2b data/casting/advancement/recipes/solidifier/solidifier/unobtainium/nugget.json
@@ -1029,6 +1135,7 @@ c8c5296c068fdd430383bf75f120a0effb9ecc70 data/casting/advancement/recipes/solidi
 a28747e5503c9cddacfa14d2cbbbb5e5fc8da696 data/casting/advancement/recipes/solidifier/solidifier/unobtainium/shard.json
 753c5935ed4d91a99e87b4a4059291b811a1e9e5 data/casting/advancement/recipes/solidifier/solidifier/unobtainium/wire.json
 f8e30c8d149a2016dd0b436c6c4a014c2e0c2aca data/casting/advancement/recipes/solidifier/solidifier/uraninite/block.json
+2229b6003a6258836e269e63277c7ad278e89d1e data/casting/advancement/recipes/solidifier/solidifier/uraninite/dust.json
 bcf25aed14b75c47cb88c4c68aaa9c86c3d81ffb data/casting/advancement/recipes/solidifier/solidifier/uraninite/gear.json
 cf91fe9de955647e87d54c54d08402d73242e64d data/casting/advancement/recipes/solidifier/solidifier/uraninite/gem.json
 418e2dc3601e93206e718ed4e679f85183ac06c7 data/casting/advancement/recipes/solidifier/solidifier/uraninite/nugget.json
@@ -1037,6 +1144,7 @@ b976649a881c077ad9dc0f8088fe8e77516a0677 data/casting/advancement/recipes/solidi
 1377520c8071f04afee8e78a4aef40bd270a24b9 data/casting/advancement/recipes/solidifier/solidifier/uraninite/shard.json
 4a36e366532d755b85a4846757be2150a10ed767 data/casting/advancement/recipes/solidifier/solidifier/uraninite/wire.json
 b1fd034710ed1e8d970416e95131a656bc55a3eb data/casting/advancement/recipes/solidifier/solidifier/uranium/block.json
+465660c42e8f38bc3814d6d4afdc787599a84303 data/casting/advancement/recipes/solidifier/solidifier/uranium/dust.json
 0f3cb84f51d814310350e4dbec2caf678a2e3273 data/casting/advancement/recipes/solidifier/solidifier/uranium/gear.json
 a7bf47198c4d0a16b1b44741b53b1c366dfd2158 data/casting/advancement/recipes/solidifier/solidifier/uranium/ingot.json
 ddb110b9574ea0bf8bbfdb16e2fe4a823cf1a519 data/casting/advancement/recipes/solidifier/solidifier/uranium/nugget.json
@@ -1045,6 +1153,7 @@ e251330c1dacf2b86020fbe949d6321d195b3552 data/casting/advancement/recipes/solidi
 1f787a24c393ae63689ff6ccd40d4161d837ef42 data/casting/advancement/recipes/solidifier/solidifier/uranium/shard.json
 a954a43287c3be9b85f29edc9f55787d7ac0ac44 data/casting/advancement/recipes/solidifier/solidifier/uranium/wire.json
 b163287ea2d2ea57d5472161f57b30d4732bb047 data/casting/advancement/recipes/solidifier/solidifier/vibranium/block.json
+9301654588d99af5c4aa53fd0ce82689d67ede8e data/casting/advancement/recipes/solidifier/solidifier/vibranium/dust.json
 4afffb8b87119ccbc58c8ff725fdb90d0f7180c6 data/casting/advancement/recipes/solidifier/solidifier/vibranium/gear.json
 ae1c2ceab9f03a0e504a8401b282cd4054e49021 data/casting/advancement/recipes/solidifier/solidifier/vibranium/ingot.json
 8c7943645b8892c9651269c24ec308fb586a3720 data/casting/advancement/recipes/solidifier/solidifier/vibranium/nugget.json
@@ -1053,6 +1162,7 @@ a13a6686e079b942c7bb70dd6ffc3711fd85006d data/casting/advancement/recipes/solidi
 72807462676575534232695533f53505b5682d3b data/casting/advancement/recipes/solidifier/solidifier/vibranium/shard.json
 dafd52c9a0a382f412838a24366469906debf4fb data/casting/advancement/recipes/solidifier/solidifier/vibranium/wire.json
 c5d64701a5126d96642952a87cbdee46f9a820c5 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/block.json
+d22832d54f1b33a821fd2b88eaa4261dbf3bc755 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/dust.json
 1c40ed80ff10bde40a059b770a2f96a1dbe389a1 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/gear.json
 801f6fabd516061f860357ca9444d4bf39b06b03 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/ingot.json
 09594a5e7f44657aa5e747472624dc584d969c17 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/nugget.json
@@ -1061,6 +1171,7 @@ d6700ee62fb6873d9a5a8a6ab5deb6294a10b49e data/casting/advancement/recipes/solidi
 06407f73f3bb4178d1672f5a4b8eb24d48c3b5a4 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/shard.json
 7e3c56f4cf1aa77106f59129337f380376f0f592 data/casting/advancement/recipes/solidifier/solidifier/vibrant_alloy/wire.json
 adb54cf844685a2717612161002bfeb4420ae987 data/casting/advancement/recipes/solidifier/solidifier/zinc/block.json
+cf8029c97c7c58356b6258981c53e9ea389d9c96 data/casting/advancement/recipes/solidifier/solidifier/zinc/dust.json
 ff3b45f33dc25a066f80a448256299a151834bb0 data/casting/advancement/recipes/solidifier/solidifier/zinc/gear.json
 646ab6b780014953e15bc7ddefbd28021e5ffcd1 data/casting/advancement/recipes/solidifier/solidifier/zinc/ingot.json
 eb352a8d9be17f9932f2dda688420d18d855ee12 data/casting/advancement/recipes/solidifier/solidifier/zinc/nugget.json
@@ -1078,6 +1189,7 @@ b7fc4b679fdf8d9d9c2a74b77127dd5857216794 data/casting/recipe/fuel/super_coolant.
 99ccbd11bd68198872650ee86df188e22a7f69d3 data/casting/recipe/fuel/uranium.json
 779a73f205d3cd871620d98b6a2b971f6589f0f9 data/casting/recipe/fuel/water.json
 dc93e345f08e44c4c948a3f51f24fdd948bdfd99 data/casting/recipe/melting/allthemodium/block.json
+da57fa08473f45b882e4a50ba942f24d19c87c03 data/casting/recipe/melting/allthemodium/dust.json
 0632c9519f8c92a3b3433e5d99ed129ca8b12092 data/casting/recipe/melting/allthemodium/gear.json
 97debe9a2919f85dc0842884f11c4e357f5354e4 data/casting/recipe/melting/allthemodium/ingot.json
 0fa30bb9d0e108829e9bf8f40e22502e1f13d6d0 data/casting/recipe/melting/allthemodium/nugget.json
@@ -1088,6 +1200,7 @@ dc93e345f08e44c4c948a3f51f24fdd948bdfd99 data/casting/recipe/melting/allthemodiu
 ca78ccda682d2eca7cea01b6c7f898e38a6192e4 data/casting/recipe/melting/allthemodium/shard.json
 1ddd71bf10cdce7cf4ff741ec08083f6dfb70d62 data/casting/recipe/melting/allthemodium/wire.json
 b3cdd898fd053e4f9fa03766fb7fac9ba0d29d55 data/casting/recipe/melting/aluminum/block.json
+9580e8532b9b70930797462ed717bb3ac41551c8 data/casting/recipe/melting/aluminum/dust.json
 dbb7d4109d50002125b1858333c1d6b88c52e986 data/casting/recipe/melting/aluminum/gear.json
 d50f7f5174d685779d4fce9d88eb53c19fa42274 data/casting/recipe/melting/aluminum/ingot.json
 9ea1f39c9cad02384626ec13c5c1b4bb76ea9eed data/casting/recipe/melting/aluminum/nugget.json
@@ -1103,6 +1216,7 @@ c11a0a9f78a8acb3be2bda2c6a194d48d0c396dd data/casting/recipe/melting/black_brick
 f48a9e730cd79d16a3a0c1e6f6fde98910eddb25 data/casting/recipe/melting/black_brick/clay.json
 13affa141f179630147038cfeefcaa3b9b79bd1b data/casting/recipe/melting/black_brick/clay_ball.json
 022c884a45d04c0cb1aad6b7e9be3f780adb5fc4 data/casting/recipe/melting/black_quartz/block.json
+bc802da811cf334e7588bb8cafd559732c031c3e data/casting/recipe/melting/black_quartz/dust.json
 83f5ebea1ceca33a5647f18a13ae44f95dc97c3f data/casting/recipe/melting/black_quartz/gear.json
 526928a934e72805be5eb4beba36630ed80307f8 data/casting/recipe/melting/black_quartz/gem.json
 d3cf5c546fa63a4fc58027fe343c36a0525d722a data/casting/recipe/melting/black_quartz/nugget.json
@@ -1113,6 +1227,7 @@ d3cf5c546fa63a4fc58027fe343c36a0525d722a data/casting/recipe/melting/black_quart
 132ec08b95a8e16b2b9aba072652a41dcd89cb50 data/casting/recipe/melting/black_quartz/shard.json
 e6ccdd5cd990a7b07b70df3ad1156a12e8ffe68d data/casting/recipe/melting/black_quartz/wire.json
 5df0448546c793dbcc80a44a2d64b02413b1dc1b data/casting/recipe/melting/brass/block.json
+c5ba877954967e2b21c3184f5a9e3a450d6f07e3 data/casting/recipe/melting/brass/dust.json
 d530b85f99789cda4efa4486c82a8dc4b4303c84 data/casting/recipe/melting/brass/gear.json
 138d49b3405fa10db87db714ac0a95b408d243cf data/casting/recipe/melting/brass/ingot.json
 459ea50b6227734ab8556092dd6be8e03624fa57 data/casting/recipe/melting/brass/nugget.json
@@ -1123,6 +1238,7 @@ a4b14e895b0640e7025e75d2739a459324bd9a83 data/casting/recipe/melting/brass/ores.
 b882a1d8ea28d3e2d48d86692899d8dde910faec data/casting/recipe/melting/brass/shard.json
 1ffcd271d55cbe403661d8b6d9b828744ba4b811 data/casting/recipe/melting/brass/wire.json
 d1e6b1d1bd32e604327cb96b33fe06cedce2d8b7 data/casting/recipe/melting/bronze/block.json
+1cd15e6a195ce7b0f5f03a6c870c7f8405c5453e data/casting/recipe/melting/bronze/dust.json
 c4d520ff891ce33ca6c4496444f59a58f330f309 data/casting/recipe/melting/bronze/gear.json
 cdab00dd6d17ba39491f16c39c85adb19dbb2340 data/casting/recipe/melting/bronze/ingot.json
 3ba173fc48319a4c891f5c3d11d6790d6dc4a04f data/casting/recipe/melting/bronze/nugget.json
@@ -1133,6 +1249,7 @@ e5eb642be1476ea2a87588a0d5c8022774a4793e data/casting/recipe/melting/bronze/plat
 fde208a796f7410dd6f5421ff21526460a48e8ee data/casting/recipe/melting/bronze/shard.json
 a2968d44a744ba2305e9bb197ce1723a495e3c8b data/casting/recipe/melting/bronze/wire.json
 a4cf853250c0817cb1cee02c1a49b8b3e11b4466 data/casting/recipe/melting/certus_quartz/block.json
+619d7b00951a689d15cd03fbc3438ad697dce0fa data/casting/recipe/melting/certus_quartz/dust.json
 5f26b4f48a176cc810d887e97464068a12fd8d0e data/casting/recipe/melting/certus_quartz/gear.json
 0131d86ab6b2c2174aebde96f5d6dfb5e71a040a data/casting/recipe/melting/certus_quartz/gem.json
 f3298966591c4f1b0a3121702e0e9f7a5e452886 data/casting/recipe/melting/certus_quartz/nugget.json
@@ -1143,6 +1260,7 @@ b948b6cdef9db09f6f51c3f6eac1b74f1b49e58a data/casting/recipe/melting/certus_quar
 b6f7636d6386f2a467023d0cf61fa9b8b2196516 data/casting/recipe/melting/certus_quartz/shard.json
 b613454932b5192d2563df684e4bd65180ef0e13 data/casting/recipe/melting/certus_quartz/wire.json
 744f8971da7488ed60a99e2a8c5d4faf53728f59 data/casting/recipe/melting/charged_certus_quartz/block.json
+610ac36a203765291e6ad3fde1801731933e4b6e data/casting/recipe/melting/charged_certus_quartz/dust.json
 604e089cc942cbcce16de547e003c6ae7f73c731 data/casting/recipe/melting/charged_certus_quartz/gear.json
 7c78b54ea98173c10601d274976506d668534fa4 data/casting/recipe/melting/charged_certus_quartz/gem.json
 a69413d8cea74314eccb9ffc416e956e165052a9 data/casting/recipe/melting/charged_certus_quartz/nugget.json
@@ -1155,6 +1273,9 @@ a69413d8cea74314eccb9ffc416e956e165052a9 data/casting/recipe/melting/charged_cer
 d4f0fe628ca6b2b609d8c1a7c0313ae9be4ce991 data/casting/recipe/melting/chilled_water/snow.json
 a0022ceab7dcfaad3cf40c1f289e1a3c3321cff0 data/casting/recipe/melting/chilled_water/snow_ball.json
 541423c5ed220c19f99c90e864a9673a78c92a8a data/casting/recipe/melting/coal/block.json
+105e0b19d94c81cdc364a5fdaff98484224aef63 data/casting/recipe/melting/coal/coal.json
+3c34a25867177a8832b2a6f8fe9ba2b31e4977d0 data/casting/recipe/melting/coal/coal_block.json
+a468bbb00b58851ee91357214dce280eeae7f9d6 data/casting/recipe/melting/coal/dust.json
 95b9c8449dbc096b2c97b4f7c0bb0eeb528f47d3 data/casting/recipe/melting/coal/gear.json
 824973c68f8a9db8e95baacb1959cec1419ed6c1 data/casting/recipe/melting/coal/gem.json
 86098c4b21984829cbb999d2fa436ce815acc293 data/casting/recipe/melting/coal/nugget.json
@@ -1165,6 +1286,7 @@ fdabeefb68004c54e58005dbb07edc1c9343c369 data/casting/recipe/melting/coal/rod.js
 873efa96ea051f973dc8bf3bd77862b10d684b5a data/casting/recipe/melting/coal/shard.json
 c50af1c69e4594ef27f8acafbccd1b2539b2f8db data/casting/recipe/melting/coal/wire.json
 ae83789095d7a9ba2fc79ef0abcf8bf761e94ddc data/casting/recipe/melting/conductive_alloy/block.json
+d297320e33790eb65af0bd68f8c5e66ea2d590b8 data/casting/recipe/melting/conductive_alloy/dust.json
 3442a4fb0705612237f7b53adaf9269b3727cfdf data/casting/recipe/melting/conductive_alloy/gear.json
 ba025d4853f90d4675ef95e223a3a68027897f19 data/casting/recipe/melting/conductive_alloy/ingot.json
 a71575b4f748a6abcd4a8c9550fd21cf9fad8fe2 data/casting/recipe/melting/conductive_alloy/nugget.json
@@ -1175,6 +1297,7 @@ ccf68e35c39baf99bb15f0c74fcf9426787f12b9 data/casting/recipe/melting/conductive_
 f9678e23a8c24b94184d9b2120ee81ad9d136f8b data/casting/recipe/melting/conductive_alloy/shard.json
 6f214cb6f6742df905296838a5afbaaad0faf764 data/casting/recipe/melting/conductive_alloy/wire.json
 91131983ecf81e35439a92a990f1ce54f23e66ff data/casting/recipe/melting/constantan/block.json
+483ae179233c8c96007783cf21578b48e85f9c9e data/casting/recipe/melting/constantan/dust.json
 ee0cd383092ea8f3874aa247490e3e093e178d06 data/casting/recipe/melting/constantan/gear.json
 8310d6810c90d06ec229f3a976d163a3a067db5b data/casting/recipe/melting/constantan/ingot.json
 8ac49920446acd56e89949a0188e56e6ed8342cf data/casting/recipe/melting/constantan/nugget.json
@@ -1185,6 +1308,7 @@ cc3411381be13f5bb3e4547af9b61f7ef1c8ba6c data/casting/recipe/melting/constantan/
 e7997e59f1bd0323c57c03ac9a4fdf2b9ce51c94 data/casting/recipe/melting/constantan/shard.json
 6f60833374b25522b317b136498b6454c00fbd2b data/casting/recipe/melting/constantan/wire.json
 798bd0260b4a9e02b7e9727d9d0db8c11151cfea data/casting/recipe/melting/copper/block.json
+9255e4ddcb8f82c6f03e638fc744f01bb39c2da3 data/casting/recipe/melting/copper/dust.json
 5e58df186ce026126e5cd28085d2cea2044abdde data/casting/recipe/melting/copper/gear.json
 66bea8293910543400902e8eaefb437c540e4be4 data/casting/recipe/melting/copper/ingot.json
 b6d581f157f43a0d4da3254d79b4fefcccb41f0c data/casting/recipe/melting/copper/nugget.json
@@ -1195,6 +1319,7 @@ b6d581f157f43a0d4da3254d79b4fefcccb41f0c data/casting/recipe/melting/copper/nugg
 49eb1a6e3e0cc3996024074d53176ca1af425479 data/casting/recipe/melting/copper/shard.json
 23113524da5c630e6a9c7731ec0de39d8b94f42d data/casting/recipe/melting/copper/wire.json
 f2c41d3db822abb0af74624d8312f4df867ecf63 data/casting/recipe/melting/dark_steel/block.json
+7e5fe500db8908e8278cd5d57944ee40f7e7b842 data/casting/recipe/melting/dark_steel/dust.json
 c4fffadb47aa2fc6c40ac1d76773a6c02ecd9d8a data/casting/recipe/melting/dark_steel/gear.json
 648b275be190ec5605ec002f035478d3bcae630b data/casting/recipe/melting/dark_steel/ingot.json
 a5153d541dff6186b022b25b09848ba8fa793651 data/casting/recipe/melting/dark_steel/nugget.json
@@ -1205,6 +1330,7 @@ a5153d541dff6186b022b25b09848ba8fa793651 data/casting/recipe/melting/dark_steel/
 db5112841a62cf5f4abc6ef87bad539dc97bbcfe data/casting/recipe/melting/dark_steel/shard.json
 1cd72cacfe74687761d4f9d5f50f755c0824000a data/casting/recipe/melting/dark_steel/wire.json
 036b6c78fcca466d6998c9135bda7b392d3fe3c2 data/casting/recipe/melting/debris/block.json
+8d76df3a265f71595ae816d4d6000a41b4ae64a9 data/casting/recipe/melting/debris/dust.json
 55a7ab02cd75469827fb4a1cdbc0611c21cde912 data/casting/recipe/melting/debris/gear.json
 53e02ee1ae3e87aadb92d39f9202a6160f1fe59c data/casting/recipe/melting/debris/ingot.json
 3697fa7f615862756901109fcd93388f1cc4ec7f data/casting/recipe/melting/debris/nugget.json
@@ -1215,6 +1341,7 @@ ddd8e7487faa2ff59bbc6be7c11444c1776f07ef data/casting/recipe/melting/debris/plat
 0a17591de020d5bf9330a6f8a41663581ca2e831 data/casting/recipe/melting/debris/shard.json
 bb74a1a2435d45193f2e1785261c74c6210a285e data/casting/recipe/melting/debris/wire.json
 4ed2d2e6cd1173830651d6280784d97bb663cf5c data/casting/recipe/melting/diamond/block.json
+488e92d863973c17006ad3e1f87c88cd7aed06e3 data/casting/recipe/melting/diamond/dust.json
 7b3bda2ab5b4d91988469a353718fd9e8ddedb32 data/casting/recipe/melting/diamond/gear.json
 070e287581f57f7fb58d10f7f3c9c50cfdb4e14c data/casting/recipe/melting/diamond/gem.json
 15d8f2001893ed91c0c05f4248623545d3e93a64 data/casting/recipe/melting/diamond/nugget.json
@@ -1225,6 +1352,7 @@ f4dbd136fc9438eef2ea6e105c392cd9f2fee0a4 data/casting/recipe/melting/diamond/rod
 f342e588b95a30fda2ea7638fa64aeb4a0a5f827 data/casting/recipe/melting/diamond/shard.json
 f28d55181d68a3da6173588a11a7cdccc299a773 data/casting/recipe/melting/diamond/wire.json
 3baaf5922f1150e3fa12a35d59199c2dbfbe1498 data/casting/recipe/melting/electrum/block.json
+4dfec42925b797353770289fd8556faa17bc6374 data/casting/recipe/melting/electrum/dust.json
 c861482c97888e76d527f2aeecc6db5f3f679e40 data/casting/recipe/melting/electrum/gear.json
 87821b42960ae5dc539498799c6530279e7b6517 data/casting/recipe/melting/electrum/ingot.json
 a541b34af6ddc12fe94f967b37177ed24dfb98ff data/casting/recipe/melting/electrum/nugget.json
@@ -1235,6 +1363,7 @@ db2f13326170276c801beb214af7ad977f01f62b data/casting/recipe/melting/electrum/ra
 106c03f4790169624062e432027f73496e3d1dec data/casting/recipe/melting/electrum/shard.json
 ae6fe5ce612644d170ce99ee7f2a340deb3ec8dd data/casting/recipe/melting/electrum/wire.json
 7bae7598a0fe28c746f151204ea44958a42ba011 data/casting/recipe/melting/emerald/block.json
+953d36c29bd75f888e591de370e2933f58a957c9 data/casting/recipe/melting/emerald/dust.json
 d4303d6375abcafae808e81e588ed7c32704d146 data/casting/recipe/melting/emerald/gear.json
 761453ece78b51296efe095abdb390228f62203d data/casting/recipe/melting/emerald/gem.json
 77ef8f6c49c5c5b0599bd3226efc99191aba48a1 data/casting/recipe/melting/emerald/nugget.json
@@ -1245,6 +1374,7 @@ b10973f197346ca5d95e11d34dba7edb22e934bf data/casting/recipe/melting/emerald/ore
 1db0c9e22f2f4bd834a28cc3d704921ffe1dceef data/casting/recipe/melting/emerald/shard.json
 c982377dc751227b74482a93d99f723aa6fa05a4 data/casting/recipe/melting/emerald/wire.json
 1d8a5323cc30527ae24aa91d9c8b3c443824f9fd data/casting/recipe/melting/enderium/block.json
+8440425cba2355e7542f4342ce8d99f221c8c9bb data/casting/recipe/melting/enderium/dust.json
 8eac079d090b932f6ea4fd6d00259b0e328cefd2 data/casting/recipe/melting/enderium/gear.json
 e5d9f88e53f67cad4f923c65940a8034a7070e40 data/casting/recipe/melting/enderium/ingot.json
 09f4b242cb28147d798ac9cdad04cbff1b8a007b data/casting/recipe/melting/enderium/nugget.json
@@ -1256,6 +1386,7 @@ a3bd1446bead61d172a3d1fd90766b5472b4b718 data/casting/recipe/melting/enderium/pl
 2264cdb4a7a1c2fb01d4156267edb0f1ad7ca786 data/casting/recipe/melting/enderium/wire.json
 c851b89f816fdd500f060eb0deb5303c3a08f7d6 data/casting/recipe/melting/ender/pearl.json
 e7a81cee326aebf3ae3da4a90877ee906e44c877 data/casting/recipe/melting/end_steel/block.json
+85fdaf1b6f746df097661fb43e5e4e79235f2c88 data/casting/recipe/melting/end_steel/dust.json
 e056726a2dcfdad5f5f11ce860f789ce29b21daa data/casting/recipe/melting/end_steel/gear.json
 484c30ad56bc263c063a8e74ab8e4b75c893a0e1 data/casting/recipe/melting/end_steel/ingot.json
 dbad882e246e044c81699c4cf828521f7d5e03ea data/casting/recipe/melting/end_steel/nugget.json
@@ -1267,6 +1398,7 @@ dbad882e246e044c81699c4cf828521f7d5e03ea data/casting/recipe/melting/end_steel/n
 e0efdc78cf5de1f5230d441f5aac117bf139680c data/casting/recipe/melting/end_steel/wire.json
 ed2581e1e5e818d74a0828e8114746b2a5e63c89 data/casting/recipe/melting/end_stone/end_stone.json
 464156bc44ba625779cf398ae74ffa51f5779d3c data/casting/recipe/melting/energetic_alloy/block.json
+0a7a59ef5ea46ae9581203277633e464bc69eb18 data/casting/recipe/melting/energetic_alloy/dust.json
 033d53c9850d0669fe8921917fdeb6f731bf9b71 data/casting/recipe/melting/energetic_alloy/gear.json
 8315e4ead95834b17f35a5d67be2f6005a4fe744 data/casting/recipe/melting/energetic_alloy/ingot.json
 a15c5aae8bb11cd7a486cc383042c9c40ac7e29c data/casting/recipe/melting/energetic_alloy/nugget.json
@@ -1277,6 +1409,7 @@ f2ed3c6eb9dd73e44d32b534d0ccdc368cdc6fdd data/casting/recipe/melting/energetic_a
 490a356dcb1a49a9073f2f8206d26aa47e423564 data/casting/recipe/melting/energetic_alloy/shard.json
 34ede7793b207b974108478691c3f861e6cc28e6 data/casting/recipe/melting/energetic_alloy/wire.json
 188a49ffe4d369b1a404bc64121466d5e1935aa4 data/casting/recipe/melting/fluix/block.json
+e46a698b498146b5e85014479e14dae20a100c5f data/casting/recipe/melting/fluix/dust.json
 1d4c58ab735a18d39388c987532f544f9aad2372 data/casting/recipe/melting/fluix/gear.json
 7cfc6dcd07c36a7c7e5a1a691bda41eeda2a74b3 data/casting/recipe/melting/fluix/gem.json
 99ac7d39fe16de675757a7f40ccbb5872f865bc5 data/casting/recipe/melting/fluix/nugget.json
@@ -1298,6 +1431,7 @@ ec94bb191fd6b505c75e6433680ee0e70de273bf data/casting/recipe/melting/glowstone/r
 7b45d11bea70deb79dc9b69a3d4a73d1f21ef54a data/casting/recipe/melting/glowstone/shard.json
 d0d19b80f63529ac020bd594da5bb6caefdb0402 data/casting/recipe/melting/glowstone/wire.json
 c97a6aff4947139261366129a6cd8abfb21ba749 data/casting/recipe/melting/gold/block.json
+fb2a030a0f59909a040d3f4bfd3145bfaeba3f6f data/casting/recipe/melting/gold/dust.json
 23b45d9bb5b67e0232606ead5f47e64677d17c42 data/casting/recipe/melting/gold/gear.json
 986ecc34bb55edb3ff8fb4d0393f36a64b558d3a data/casting/recipe/melting/gold/ingot.json
 79f5871bcaf107ec865e390aad23bc257991a93e data/casting/recipe/melting/gold/nugget.json
@@ -1311,6 +1445,7 @@ d7cf92a373b32cf6f9e799a1c263fdaac3257b20 data/casting/recipe/melting/iced_water/
 b6cf3cc5359f2e8e686db5d428be962e65e15942 data/casting/recipe/melting/iced_water/ice.json
 ecfb81ec6510b6a5df455ed50f52c58a6f940415 data/casting/recipe/melting/iced_water/packed_ice.json
 6a023aabe52926c7013c4d261bd0aa229dd64d6d data/casting/recipe/melting/invar/block.json
+01686f19c3eb2843511b7fb84b2bd006703e2c67 data/casting/recipe/melting/invar/dust.json
 f2197da661cad8637d11093e7aca3ad82b69eba8 data/casting/recipe/melting/invar/gear.json
 8c5e447dc215e4b500ebcc4d945dfa75a6f3cea6 data/casting/recipe/melting/invar/ingot.json
 909dab9223fc9b871b15e4048d1e4e694f8d89b0 data/casting/recipe/melting/invar/nugget.json
@@ -1321,6 +1456,7 @@ c61fd2ff14e139c03b5092de5c931fc07159960e data/casting/recipe/melting/invar/plate
 cbb75c0fdb0b41c7b7b0916116e5bf195c948e49 data/casting/recipe/melting/invar/shard.json
 481b4c829685af92f70d55eef9b3cff711f1ad73 data/casting/recipe/melting/invar/wire.json
 28f0dfbbe88c2d15c45589ccb1d910f3b0a05e95 data/casting/recipe/melting/iridium/block.json
+dfd11be03bd463543bb8bdb48294c179e1099b7c data/casting/recipe/melting/iridium/dust.json
 4fcc77deaf94265c41b49c1e8eb57a57f2f170c7 data/casting/recipe/melting/iridium/gear.json
 72c012d1a73bd84165447445a1f3fc6a737857eb data/casting/recipe/melting/iridium/ingot.json
 78003f4eb9f8ad215d1e6a3efcc9f7fbb27fbfb6 data/casting/recipe/melting/iridium/nugget.json
@@ -1331,6 +1467,7 @@ e0e36517832ff2f970b965024d1dffa1b0e46483 data/casting/recipe/melting/iridium/raw
 d4a4157eb5ce9b11c4482f244d6e97f648ea52ca data/casting/recipe/melting/iridium/shard.json
 d759852bfc07823596176497b5003f72459812cc data/casting/recipe/melting/iridium/wire.json
 6256aa02035a280c173de9de77d25a10591014f4 data/casting/recipe/melting/iron/block.json
+6f915d7109e875a2a190303541089301a3e4e8d0 data/casting/recipe/melting/iron/dust.json
 b9db9794e574b7591ed09c115ebb41877d0410d9 data/casting/recipe/melting/iron/gear.json
 6b7420dfd010653ea66370503166910e8f8e648f data/casting/recipe/melting/iron/ingot.json
 c12f612b0da98b539bd9ebcbe29ba5ad201b2985 data/casting/recipe/melting/iron/nugget.json
@@ -1341,6 +1478,7 @@ d0e46806ad543d17433a064754bfe6d710ccd882 data/casting/recipe/melting/iron/raw_ma
 e7d83fc44403462a7655e3702ddd1de8fb050540 data/casting/recipe/melting/iron/shard.json
 b87a81cf897753d70790179bfc1f70ef98704418 data/casting/recipe/melting/iron/wire.json
 3e334ed901d47bd98191168d9dde5c52ffc03c79 data/casting/recipe/melting/lapis/block.json
+434ad37b635ff033396dc769f2508b05017f3a2b data/casting/recipe/melting/lapis/dust.json
 2c79ebe602cd62ae2b0ba79e5baf03b2da0e3e5f data/casting/recipe/melting/lapis/gear.json
 a56baa3774fb3f6a0fa8697f5ed827163932338c data/casting/recipe/melting/lapis/gem.json
 2e1cf2a09222c3c8f085baf52e9eacfad73f8e9c data/casting/recipe/melting/lapis/nugget.json
@@ -1351,6 +1489,7 @@ bc9a3daf9a6f0c32577cf2125bc540e9c522a595 data/casting/recipe/melting/lapis/rod.j
 f3ac3ca6a28e40c88fecb1e06c11b851bccef426 data/casting/recipe/melting/lapis/shard.json
 0acab0f2172ff39a70cdae6551241b353372cd6d data/casting/recipe/melting/lapis/wire.json
 6946110b2e0c45d2e9f6de1c9bb8dd919293b9ba data/casting/recipe/melting/lead/block.json
+933f34c994d2281aaf2d68dd54d3fcb58736abcd data/casting/recipe/melting/lead/dust.json
 9738873ef480b381d645e1322785a9928de02b8d data/casting/recipe/melting/lead/gear.json
 76638baba58398da2a20511e13c4ce8eed355fdc data/casting/recipe/melting/lead/ingot.json
 2d217913153ab85e9435e0c1ee77d9cb61610768 data/casting/recipe/melting/lead/nugget.json
@@ -1361,6 +1500,7 @@ a9e8f70b611a6b22f7981e965cbb0fc9879c4e50 data/casting/recipe/melting/lead/rod.js
 17577ec22d72a74efaa58d6b7c730ffe543da460 data/casting/recipe/melting/lead/shard.json
 15abcbcb493fc3aca1332bf0e530f17287c1a452 data/casting/recipe/melting/lead/wire.json
 505f55a4f15996598f5fb203008d444d42ea6ad7 data/casting/recipe/melting/lumium/block.json
+35d34f0c1ecffaab475af1bb6aee4be5dd14eab2 data/casting/recipe/melting/lumium/dust.json
 2d1e62c36cebfe90b20446014e7d7cb8850c7f2c data/casting/recipe/melting/lumium/gear.json
 d6dc0b44e390c5ac97e34d0b888dc16ca4c83cb2 data/casting/recipe/melting/lumium/ingot.json
 ad482adfadc03e4962c04ac70541411598536969 data/casting/recipe/melting/lumium/nugget.json
@@ -1371,6 +1511,7 @@ ad482adfadc03e4962c04ac70541411598536969 data/casting/recipe/melting/lumium/nugg
 74ebef6dce2a18f18bdd4c6edf8371be853607ed data/casting/recipe/melting/lumium/shard.json
 791b8c2da37e442638e0a019199a82b15ca28069 data/casting/recipe/melting/lumium/wire.json
 544bb2fe9a94bb69b4dfbb116d18457a343afb1e data/casting/recipe/melting/monazite/block.json
+1eef53d4113b8c8e8785e48fc9ca30b3be44168f data/casting/recipe/melting/monazite/dust.json
 b9c05263c527ed18221d2f8abc1e0baa3723ffbc data/casting/recipe/melting/monazite/gear.json
 c886aaf32b53bae11eb84b5f7187cf4f4b352818 data/casting/recipe/melting/monazite/gem.json
 7181bac39f5e959d41a161953a5a16fe5d247a01 data/casting/recipe/melting/monazite/nugget.json
@@ -1381,6 +1522,7 @@ ad8cc3468ede4f2c5e414900fc2b11ad484cb323 data/casting/recipe/melting/monazite/ra
 451129bdd3defbd9330f9c186ee753f78b2aad6a data/casting/recipe/melting/monazite/shard.json
 fdb6014adc22a21632ef35ad01d44888949b5011 data/casting/recipe/melting/monazite/wire.json
 d07fc9d451f5399acd84d9cfafe13ebb89004705 data/casting/recipe/melting/netherite/block.json
+3619cfbcd4456de1da2eb2dd4776581e10e1682a data/casting/recipe/melting/netherite/dust.json
 37bf100d214ef4122e3556468105b80208f08ecd data/casting/recipe/melting/netherite/gear.json
 27100e5c0a81ca8d959574e22096ef174390f027 data/casting/recipe/melting/netherite/ingot.json
 0c2954c65cd0d1d251a20a19884f8ccf1ca8a420 data/casting/recipe/melting/netherite/nugget.json
@@ -1391,6 +1533,7 @@ d6475e0a4ac8f3af09901c2221240bf69786caac data/casting/recipe/melting/netherite/r
 25aca76eccebac1c09b5830fa2ce46e2bdea475e data/casting/recipe/melting/netherite/shard.json
 d71c79b9f96b794f95893cd17c4a73f55b084374 data/casting/recipe/melting/netherite/wire.json
 521948b3e894bf672d94585ffb63fd6e71932d5b data/casting/recipe/melting/nickel/block.json
+556ee8f2c48ed0f1d2acf2329b0257f726062166 data/casting/recipe/melting/nickel/dust.json
 e3716e0325ee56fd58e4945991d4f0bd449eb283 data/casting/recipe/melting/nickel/gear.json
 74dff6a6e7f25d05c7f1ac9adaf5cbae6e2d4607 data/casting/recipe/melting/nickel/ingot.json
 d6be5537877809471c2a955f12160e013b6d308d data/casting/recipe/melting/nickel/nugget.json
@@ -1402,6 +1545,7 @@ ba6f531872c8ccf6c9ee013462f5f5e7d569c940 data/casting/recipe/melting/nickel/shar
 4740b99e8b2d44e3a5cb90f2616d8e2cf068bbae data/casting/recipe/melting/nickel/wire.json
 bb34a53c0e3b9ddfce9cd62770289f7e184f6fd7 data/casting/recipe/melting/obsidian/obsidian.json
 ab68b15cf2c0386b35f423756744030925ca86ac data/casting/recipe/melting/osmium/block.json
+2c016c0e42f1000912dad024258a3386733f4f9c data/casting/recipe/melting/osmium/dust.json
 5325f58cbdbf8baa6c520ad73279ad2f634a70dc data/casting/recipe/melting/osmium/gear.json
 c60b1e8568f88991efb0ca1a2ee88074987e5af5 data/casting/recipe/melting/osmium/ingot.json
 cd899f4f5b39a7907f3bff368b553ad973db33d0 data/casting/recipe/melting/osmium/nugget.json
@@ -1412,6 +1556,7 @@ cd899f4f5b39a7907f3bff368b553ad973db33d0 data/casting/recipe/melting/osmium/nugg
 ab2555498488cc842a0277e022fc1c2cd877cd2e data/casting/recipe/melting/osmium/shard.json
 3f0caaa74ec6afd12d2de02b7d3ff435f1f289de data/casting/recipe/melting/osmium/wire.json
 8791adf261d944c92134504e21c862b9195522aa data/casting/recipe/melting/peridot/block.json
+8aa9ab91e45cdf5066bbbd73f19a2bb64d3088b0 data/casting/recipe/melting/peridot/dust.json
 40f835aef155437e6656f6b17a4d6b791fd93308 data/casting/recipe/melting/peridot/gear.json
 f86f868aaaead9b9a40c1eb18dfdfd2c52db10dd data/casting/recipe/melting/peridot/gem.json
 7115f72dede06c261f9afe747730beb89c7d6d2b data/casting/recipe/melting/peridot/nugget.json
@@ -1422,6 +1567,7 @@ b48560ce9394c9f498c90d9e7edf39f66cb9e263 data/casting/recipe/melting/peridot/rod
 2348747b7a7100dda35c2da7eec053e206a654ac data/casting/recipe/melting/peridot/shard.json
 b4390fd1dd9bed30b20be6d5081500304901dc38 data/casting/recipe/melting/peridot/wire.json
 b62e49f88b1562a3a5da10e5bb4ba803fdc0bd83 data/casting/recipe/melting/platinum/block.json
+c1c0172ed69436407c320fb3491ab8142503d898 data/casting/recipe/melting/platinum/dust.json
 89bc24f211934ce713aded1c59a5d69313e19d47 data/casting/recipe/melting/platinum/gear.json
 eeb4ad64f9d652e28553f006dbd2e92502a45c71 data/casting/recipe/melting/platinum/ingot.json
 6b897b2d63c80f343fdcec448152d8a40bd159ee data/casting/recipe/melting/platinum/nugget.json
@@ -1432,6 +1578,7 @@ eeb4ad64f9d652e28553f006dbd2e92502a45c71 data/casting/recipe/melting/platinum/in
 d5e191503528c25504ab97479ff51726159a4054 data/casting/recipe/melting/platinum/shard.json
 893332a8dc05f7241e92734264abc4a575979f43 data/casting/recipe/melting/platinum/wire.json
 64a3e1a421d985aa0a820412ed3f1b1a7220fd42 data/casting/recipe/melting/pulsating_alloy/block.json
+80b0376c717e260fa4c889496d584f276ed6c80f data/casting/recipe/melting/pulsating_alloy/dust.json
 385393b3fbba271bdd118263d32c6d2df995140c data/casting/recipe/melting/pulsating_alloy/gear.json
 c8171083da3379521620eca6001ac2ff85a4b9c6 data/casting/recipe/melting/pulsating_alloy/ingot.json
 135fdcd4f88dc93f68aaa6bf9142e695d149ea09 data/casting/recipe/melting/pulsating_alloy/nugget.json
@@ -1442,6 +1589,7 @@ d8bbc825e447dca9b96a5259158b2202538ee72a data/casting/recipe/melting/pulsating_a
 40b6f2a6e251afbc0dd826266d7703e45b1d1255 data/casting/recipe/melting/pulsating_alloy/shard.json
 10a0ddd01cddf56911409c2c860e6e69ec4e86c3 data/casting/recipe/melting/pulsating_alloy/wire.json
 76ef2776371564c67c40d0fce55cb1b526b355ef data/casting/recipe/melting/quartz/block.json
+96aceefd2cffe962e331fb24e4d70b04c86eb4e1 data/casting/recipe/melting/quartz/dust.json
 6a7d76fe82fb2ed3bb19013cff72bcaf41794252 data/casting/recipe/melting/quartz/gear.json
 9c588b612372c87939d7678aa580161888d20315 data/casting/recipe/melting/quartz/gem.json
 b540e6ff9c616daba92a263ce5a9b90cac9a7f51 data/casting/recipe/melting/quartz/nugget.json
@@ -1452,6 +1600,7 @@ afe3bb09c022b5c18a64a0d7cc0596ab04cfa0a3 data/casting/recipe/melting/quartz/raw_
 840f73b4167a5b4fda2917601125f8dc6ad54792 data/casting/recipe/melting/quartz/shard.json
 54d3eec0c120b2a57af826df995f333c0f684c09 data/casting/recipe/melting/quartz/wire.json
 0babd418e8f41681b34613f9e1347536d55e613b data/casting/recipe/melting/quartz_enriched_copper/block.json
+5ee17a62a8c1efa8cf45dd1fae0bd80f9e396331 data/casting/recipe/melting/quartz_enriched_copper/dust.json
 7e79456da968d72b64031225b97feebc3dadb7be data/casting/recipe/melting/quartz_enriched_copper/gear.json
 09b18b1a24f845a0ec736cffd0772ddb3ed1f236 data/casting/recipe/melting/quartz_enriched_copper/ingot.json
 b1648b7280175a0fbc286425edd18ddb908da266 data/casting/recipe/melting/quartz_enriched_copper/nugget.json
@@ -1462,6 +1611,7 @@ c14ea453baf586de58ae5af3d38ec06d78ad94a2 data/casting/recipe/melting/quartz_enri
 939997b2da3786c70ce18585ad8134dd27bafc5a data/casting/recipe/melting/quartz_enriched_copper/shard.json
 facfd8c7873d57509ca27efe2d246f5ea3c495e4 data/casting/recipe/melting/quartz_enriched_copper/wire.json
 079ac68b721b5fcb08228ddd75dcb1fcc4cf6fdd data/casting/recipe/melting/quartz_enriched_iron/block.json
+326d52abbb0be67e5f18784f85416fe4b5c4fd5e data/casting/recipe/melting/quartz_enriched_iron/dust.json
 2c5313a56facab635232564f4d196b86724a4e90 data/casting/recipe/melting/quartz_enriched_iron/gear.json
 b2af4407e7569c94270864443bb787d6dabe0367 data/casting/recipe/melting/quartz_enriched_iron/ingot.json
 2edb93f3dc32fc881d38732b542e6f6fa33b07f0 data/casting/recipe/melting/quartz_enriched_iron/nugget.json
@@ -1482,6 +1632,7 @@ f37c3172bc7a1463658db6f8972111c685a1908e data/casting/recipe/melting/redstone/or
 ab000246cee05e8350d7893a7cddd824ca2c679e data/casting/recipe/melting/redstone/shard.json
 c646ce5d48563fa4439b0a8560b8e706b63545ee data/casting/recipe/melting/redstone/wire.json
 13aa33dacb42f56fde7bd6bab3cc095edfe32d51 data/casting/recipe/melting/ruby/block.json
+b77fdc86a6e952b7080e82ba1f3944b8c8cc1825 data/casting/recipe/melting/ruby/dust.json
 ad372b8f97182e3ed5f67c772f7423ab83153232 data/casting/recipe/melting/ruby/gear.json
 b8f025acbb05b9d0debd68816775040b759f193f data/casting/recipe/melting/ruby/gem.json
 4bfc3f90df46bc6194d560992c0e819726bdab5a data/casting/recipe/melting/ruby/nugget.json
@@ -1492,6 +1643,7 @@ b3eebfa603607c92852da87fa6587db31516e354 data/casting/recipe/melting/ruby/plate.
 1af8d49125be8910048b186353de6a37dbf48147 data/casting/recipe/melting/ruby/shard.json
 7b77110f0d5d2abfc18d425750eea5d6cef3a9a6 data/casting/recipe/melting/ruby/wire.json
 b9984786434d2ddc520e4f5e8b013f82a49a91ab data/casting/recipe/melting/sapphire/block.json
+3712684c2cbe2e48f45720eb580a858c45702cb1 data/casting/recipe/melting/sapphire/dust.json
 621328c7e12a9b15e7704d0cef570ac70be3d6f6 data/casting/recipe/melting/sapphire/gear.json
 f69cc19d514a8eb0c5229a8651ee544a30129711 data/casting/recipe/melting/sapphire/gem.json
 403787f16c417af23011cd4f1d6baca7f5ced52d data/casting/recipe/melting/sapphire/nugget.json
@@ -1502,6 +1654,7 @@ fba287eccee7b6a189a9bb36f8542a7d838128cf data/casting/recipe/melting/sapphire/ro
 3e763d9b1602755b5f046b0d51032b6527b5ea37 data/casting/recipe/melting/sapphire/shard.json
 452e807300ea751cf219f374ef29381fcb562650 data/casting/recipe/melting/sapphire/wire.json
 ac6b27eac313ae3cd74f31eed5ca3dfbc1222555 data/casting/recipe/melting/signalum/block.json
+65fbc98014c2b7e32070e51a0e5c5c4a7eb752bf data/casting/recipe/melting/signalum/dust.json
 bd4e7e3b16c2b89e21d96e1ef96a468f2fbe7aa6 data/casting/recipe/melting/signalum/gear.json
 1876bd0f8cda2681d15d38096f3b08794aa6258a data/casting/recipe/melting/signalum/ingot.json
 ef83c7220e17b9c16fe6a3eb7b8030427ed74f6b data/casting/recipe/melting/signalum/nugget.json
@@ -1512,6 +1665,7 @@ f3fdf5ff92018e6b037cd3feff671166ad256c90 data/casting/recipe/melting/signalum/ro
 e8459062e38684bc8eea40ca270caad505480a37 data/casting/recipe/melting/signalum/shard.json
 abd9cb30825ad13e7f873d9fc2dc994396f0e376 data/casting/recipe/melting/signalum/wire.json
 a18d366bf6eb66e4230e258ea85408d59a7a9715 data/casting/recipe/melting/silicon/block.json
+2cf24fd3c69ee728d710acb10bdfb52d2e705567 data/casting/recipe/melting/silicon/dust.json
 d8372da6158aae99ab62e8cec9edcd6beed652fb data/casting/recipe/melting/silicon/gear.json
 e6f58d14a8f65cac9429bea79fce146326ef289c data/casting/recipe/melting/silicon/ingot.json
 0e8889b6de8305d9361f3da2c1745c02af76c4f4 data/casting/recipe/melting/silicon/nugget.json
@@ -1522,6 +1676,7 @@ c031a1164f5cfdaf22c6afd194575f42e052afc6 data/casting/recipe/melting/silicon/rod
 df73a30971988e71b6d52a8e7c743e3de1d4d54a data/casting/recipe/melting/silicon/shard.json
 f000f116df91fa4265fda7f4408055839a75a240 data/casting/recipe/melting/silicon/wire.json
 20f1c4c3a7facaa51d01af65a441325193d3f895 data/casting/recipe/melting/silver/block.json
+b2a7fb2ce35777a2984c4f57ddbfb929ddbee68a data/casting/recipe/melting/silver/dust.json
 8b12b87ea1744fe3d7c8d805a4059abbca6b15bc data/casting/recipe/melting/silver/gear.json
 ffc78d38a683c87c9bb719762f2382c288ff0463 data/casting/recipe/melting/silver/ingot.json
 0f951a30ed975c8ecbad38bda4e1badec638d2e7 data/casting/recipe/melting/silver/nugget.json
@@ -1532,6 +1687,7 @@ b903e214a571e215eae6bb3f8f56735340611ed3 data/casting/recipe/melting/silver/rod.
 cc999247e1330f16955e633decb32f7219baed23 data/casting/recipe/melting/silver/shard.json
 3e670c29a6399f715f2c9db3badd803ef647f4ca data/casting/recipe/melting/silver/wire.json
 31ef9df4b71a9f443a1ef0654d18f36ffcb83d1e data/casting/recipe/melting/soularium/block.json
+0ca8a7baffbb1b6afe9a1507e2761aaf1c4d2352 data/casting/recipe/melting/soularium/dust.json
 09c9b4a9a276c9ca9734d7fadcc485b7664b7a49 data/casting/recipe/melting/soularium/gear.json
 f53d818f5a5433cf555d47b1be3a3420ebf3e320 data/casting/recipe/melting/soularium/ingot.json
 01d8273fe4fa0d78bd4ae4f7f21cf903c9644cc7 data/casting/recipe/melting/soularium/nugget.json
@@ -1543,6 +1699,7 @@ f72092e535eb2ad1b56484d39a911addd421c70d data/casting/recipe/melting/soularium/r
 a38a01a2b61932f92df0a6f78315dff88d7159df data/casting/recipe/melting/soularium/wire.json
 3f2293f48d2241900862055877aea0db26bbbf60 data/casting/recipe/melting/soul/soul_sand.json
 12424d0cafe5d85161b15bd2a1febd3657be0a29 data/casting/recipe/melting/steel/block.json
+8b141f092e1548336a42f42b443d15e64d77be31 data/casting/recipe/melting/steel/dust.json
 26042dbf440f5ca923c9efbc177455e9fccd80c0 data/casting/recipe/melting/steel/gear.json
 4a002e4552d98cf6695fbe4919dfe30ca8b21303 data/casting/recipe/melting/steel/ingot.json
 c6628d6eecd1be0c8732feecba36d6a0c4757101 data/casting/recipe/melting/steel/nugget.json
@@ -1555,6 +1712,7 @@ f379d1f5ad7c1a985fe3e02a60e0052fad9fb2ab data/casting/recipe/melting/steel/wire.
 630baec9c0d4bcfe90c419f9015322cdefbcfba5 data/casting/recipe/melting/stone/cobblestone.json
 6e27f59b14a5a0c3b1ac2e61eca6a26afaa80192 data/casting/recipe/melting/stone/stone.json
 83548d42d06da430f296282045522f93d151d540 data/casting/recipe/melting/tin/block.json
+b2caf68e591534e371b8b01ec6a829a3aba570ac data/casting/recipe/melting/tin/dust.json
 cf6947123eec76132b0f01b63b17313f06707465 data/casting/recipe/melting/tin/gear.json
 276a6a278769728b2e7c09edd9c0a374f0fe3a58 data/casting/recipe/melting/tin/ingot.json
 b560b06f044022036ea0fbe79eb850ca74edb6f0 data/casting/recipe/melting/tin/nugget.json
@@ -1565,6 +1723,7 @@ b560b06f044022036ea0fbe79eb850ca74edb6f0 data/casting/recipe/melting/tin/nugget.
 bc8b50677a1e237c0b3af70077dcb18c919c282d data/casting/recipe/melting/tin/shard.json
 7d93f22f0275d4c4b07970b332e31ac272633298 data/casting/recipe/melting/tin/wire.json
 c2ef4cd545fc67186bd85beb2b5911d2e9f3e825 data/casting/recipe/melting/titanium/block.json
+45e967cc8a5a455f1ad6fe163c360f1575c8467d data/casting/recipe/melting/titanium/dust.json
 1f5c310c154c7244a3b1f52bb3449aaafae88e67 data/casting/recipe/melting/titanium/gear.json
 e69b013d9045eb23cd1700d0a42f9e9af188a9e5 data/casting/recipe/melting/titanium/ingot.json
 ef95042aed84aacd9e98b67a951e1a5364f11480 data/casting/recipe/melting/titanium/nugget.json
@@ -1575,6 +1734,7 @@ d5a242d684e8feec0fc2b6bf40ee7f0b69c594f1 data/casting/recipe/melting/titanium/ro
 dcf3cec2a4e9c870848d77b4d8c3cbc33c9f8409 data/casting/recipe/melting/titanium/shard.json
 8355e092c2b1ee07259e2a20fab12e678818fa6e data/casting/recipe/melting/titanium/wire.json
 42db7987297cf63d02679c677202a7b3494d985f data/casting/recipe/melting/topaz/block.json
+43c5a07d117889cec0bff8bff55397dd0be3ed38 data/casting/recipe/melting/topaz/dust.json
 4c902f7f061e48bfc8c48a0373c3779c4f0d58b6 data/casting/recipe/melting/topaz/gear.json
 eb2d813fc3354373b5badcb60db42b32c2fcee21 data/casting/recipe/melting/topaz/gem.json
 fb7f12d46cfec2c5f97262b99b21c9a5b9016c3a data/casting/recipe/melting/topaz/nugget.json
@@ -1585,6 +1745,7 @@ b3013c7d04f2e1c255c5a2ad0b0c3b87f6666fbf data/casting/recipe/melting/topaz/plate
 1d8d10a96d045161782f41a0aecd93412e5ef2f9 data/casting/recipe/melting/topaz/shard.json
 b689efb6d586c4f27a6c1aa85261bd8c4eddfd44 data/casting/recipe/melting/topaz/wire.json
 09c58754d93c9faf4a568eddc6ea8b6398ff0016 data/casting/recipe/melting/tungsten/block.json
+3036986928df152ba666dfcc3aa97a9541fc88ed data/casting/recipe/melting/tungsten/dust.json
 2f69b0781d429cc0df02741e7de784b53f996d58 data/casting/recipe/melting/tungsten/gear.json
 85a0371bb3ecbc15b082aef7883e5c9b9762e287 data/casting/recipe/melting/tungsten/ingot.json
 b3f7e97578541de88d40d6554878af35eca7cc10 data/casting/recipe/melting/tungsten/nugget.json
@@ -1595,6 +1756,7 @@ c8cf4954362b07dcb75e5b1636df671559d337ca data/casting/recipe/melting/tungsten/ro
 7cd3d29d4bc51678e160418cc38e434fd5d03b5e data/casting/recipe/melting/tungsten/shard.json
 5d4024a0943f602a3001dbc0d99ac3f9ca86fc7d data/casting/recipe/melting/tungsten/wire.json
 41030181d4f6309117ac88ae86296d32c1b37db8 data/casting/recipe/melting/unobtainium/block.json
+2cc88c897b212e926e428b3ef92e520e3162a909 data/casting/recipe/melting/unobtainium/dust.json
 136c752fb6df138d0297e4da368684c4086787c4 data/casting/recipe/melting/unobtainium/gear.json
 606eaeab3cece40698f5551024e42983cf29a0b5 data/casting/recipe/melting/unobtainium/ingot.json
 d4bc094d6cd48b5042cbf24da557957f4aa8a7bd data/casting/recipe/melting/unobtainium/nugget.json
@@ -1605,6 +1767,7 @@ d4bc094d6cd48b5042cbf24da557957f4aa8a7bd data/casting/recipe/melting/unobtainium
 dfce75ae2ff893b936a8545429bedd3f5fe80ae9 data/casting/recipe/melting/unobtainium/shard.json
 cfe9fde8bf61ad1f591ef299cb48dff41381c74b data/casting/recipe/melting/unobtainium/wire.json
 b0374cffc88234f430e1764b897ce1f58645aece data/casting/recipe/melting/uraninite/block.json
+9a31b1f53427f4ac245eca115409e3e2f0150667 data/casting/recipe/melting/uraninite/dust.json
 5a3c0b9c0f18a4e20171f381078104cdc93ba249 data/casting/recipe/melting/uraninite/gear.json
 b8392eff75d46ce187d5428211dacaf5eebbdb1c data/casting/recipe/melting/uraninite/gem.json
 086d92fe90069c42a48a816e34702405fc139f5e data/casting/recipe/melting/uraninite/nugget.json
@@ -1615,6 +1778,7 @@ b5fd0be53dacbe1bfac17e96ac8106437582a3f5 data/casting/recipe/melting/uraninite/p
 f196e89e91044acdfbcc82c29dde0d240eadcb9e data/casting/recipe/melting/uraninite/shard.json
 04c997012a4f879cebbfcc270347ae2e241a8190 data/casting/recipe/melting/uraninite/wire.json
 66afefee2b935301f56cc0ff71de7d22ab7d26e8 data/casting/recipe/melting/uranium/block.json
+e2cddab4a38a5f1a17224997321a025ebeefd661 data/casting/recipe/melting/uranium/dust.json
 df341f0ef70602e6ca4f20124ef7d6c7f4b38bdf data/casting/recipe/melting/uranium/gear.json
 437b4df5f8cef7a7d86c0d8971d4ae172e33ff57 data/casting/recipe/melting/uranium/ingot.json
 e253f5577e821a7c92ff7bc283c36c8369741898 data/casting/recipe/melting/uranium/nugget.json
@@ -1625,6 +1789,7 @@ d3d0f9d65ae0aea664538fd543e29670db32f254 data/casting/recipe/melting/uranium/raw
 1bae4d3b0349eed67e151e8e8cae5d41f30d5c57 data/casting/recipe/melting/uranium/shard.json
 f15c88eb0a2eba34031db1f800de31b668d8f59d data/casting/recipe/melting/uranium/wire.json
 bff76e35c41c4a942fa23af2fe69096c64f49a91 data/casting/recipe/melting/vibranium/block.json
+4e0402103a8ed7463c6fcc993772274d79b24e2a data/casting/recipe/melting/vibranium/dust.json
 9e3a2cc70fa8f7e22e83b8fcc97a9b1f2f2d080d data/casting/recipe/melting/vibranium/gear.json
 d2d2e506a94d13ef4fa8bc93a4000c58cbde0c5d data/casting/recipe/melting/vibranium/ingot.json
 7b6f59f835848183b5a9a2716c58dbd96574d444 data/casting/recipe/melting/vibranium/nugget.json
@@ -1635,6 +1800,7 @@ ec4d7115525cf3f5b3426d004b96230516772a68 data/casting/recipe/melting/vibranium/r
 b673ceaedefb9bb2868b67485067b4cb0a3853ca data/casting/recipe/melting/vibranium/shard.json
 97ed75fc6738e848000a8f4de79d257eaeaa1dbd data/casting/recipe/melting/vibranium/wire.json
 39778360b2bd1933f33f5a9b86fe57f95d29ed91 data/casting/recipe/melting/vibrant_alloy/block.json
+f664038a6434716be14b452de570439d701ffe41 data/casting/recipe/melting/vibrant_alloy/dust.json
 4c09afd0af667c00c21db7a57382234ed82a8499 data/casting/recipe/melting/vibrant_alloy/gear.json
 1b7db319d5974cccf995747fb09463efec6d3133 data/casting/recipe/melting/vibrant_alloy/ingot.json
 efd15f68e366bb6b27fa7b8a4db5a7d54ee318d8 data/casting/recipe/melting/vibrant_alloy/nugget.json
@@ -1645,6 +1811,7 @@ fb4d1e41be3c66e9fca8e1e7d0192f00789cbfad data/casting/recipe/melting/vibrant_all
 bc9809ec3f5beb1b6583481ad5f00691bf850f5f data/casting/recipe/melting/vibrant_alloy/shard.json
 34128caa18356e03eb0e94ea527787fe4ecb9d3c data/casting/recipe/melting/vibrant_alloy/wire.json
 6aa28803285ff345bdcf782fd0d361badd9aacb4 data/casting/recipe/melting/zinc/block.json
+a004b6ed569274615459a57b81ec0e40fce81ac8 data/casting/recipe/melting/zinc/dust.json
 dc94e496e424e227c39fdb0015a87a99381bf42f data/casting/recipe/melting/zinc/gear.json
 1155c6d77e0c60c8e2ea701c4022b48ebe734017 data/casting/recipe/melting/zinc/ingot.json
 1e7433c39d5330456a92cbf5be46cb01f1d7f121 data/casting/recipe/melting/zinc/nugget.json
@@ -1677,6 +1844,7 @@ e1f7cd4bfd32e744738873d2692651364ea5c75e data/casting/recipe/mixing/soulariumall
 a301224aeca7605f20fe7c42d3accb106f903dc1 data/casting/recipe/mixing/super_coolantalloy.json
 9295649fa89a199a5df74ab151aa790c2de68e2e data/casting/recipe/mixing/vibrant_alloyalloy.json
 a34b702e8362c74e1f9da997affabd29889207d4 data/casting/recipe/solidifier/allthemodium/block.json
+daf126ec20a113ddbad45781444cce0a27dde131 data/casting/recipe/solidifier/allthemodium/dust.json
 83fb539724ba200f710d1cce30eedfb5cf2850a0 data/casting/recipe/solidifier/allthemodium/gear.json
 1d6eeac544c681f7c141678b7e1bcdfef2da6ddc data/casting/recipe/solidifier/allthemodium/ingot.json
 77f73e314a20383f7663b637dea2edba46029b48 data/casting/recipe/solidifier/allthemodium/nugget.json
@@ -1685,6 +1853,7 @@ b805deaa4837f160c5d4f6f807864c0a370e98b0 data/casting/recipe/solidifier/allthemo
 43c98cb18bfaa91eb9b2f8b459dc2016cba8da66 data/casting/recipe/solidifier/allthemodium/shard.json
 8908a64a6e92ee8dd0324f2cd1f1a60ea03008c6 data/casting/recipe/solidifier/allthemodium/wire.json
 6880b52e97b5c5f4adaa3900d85ef6935330a934 data/casting/recipe/solidifier/aluminum/block.json
+d9313665dba96e7ce911c46b3d7da0b10de045db data/casting/recipe/solidifier/aluminum/dust.json
 3585588fb75dfdddb369a52ab4dda32f980c2e5b data/casting/recipe/solidifier/aluminum/gear.json
 903fa2c9552621d1eab7b868aadcdc4f2fdfbb10 data/casting/recipe/solidifier/aluminum/ingot.json
 815283694bc9bd8c7daaeb977bbd5e227fa0a015 data/casting/recipe/solidifier/aluminum/nugget.json
@@ -1696,6 +1865,7 @@ c386d262ebb09a5c09eeba7d16e104e0aa375005 data/casting/recipe/solidifier/amethyst
 1541f24635f07154bb0f0828209e8a2d9b62945b data/casting/recipe/solidifier/black_brick/block.json
 a83e4f1773878e055f673178b1f455a31cb1c12a data/casting/recipe/solidifier/black_brick/brick.json
 4e7fcbeb6271a752d773ee7ec4c88373165b9a07 data/casting/recipe/solidifier/black_quartz/block.json
+95aff1a665c7b816f5db04e185cfad602427678e data/casting/recipe/solidifier/black_quartz/dust.json
 51016c3ef828208a093ded49744e668bf88f4bd1 data/casting/recipe/solidifier/black_quartz/gear.json
 78ae967d5edd8f1f07e38aec2e474c4e4eba014d data/casting/recipe/solidifier/black_quartz/gem.json
 339449f1560e400dd5c8ea7615d96e8c861b8d50 data/casting/recipe/solidifier/black_quartz/nugget.json
@@ -1704,6 +1874,7 @@ b4e25a1d138fd8245f354b39da924f05e45dce35 data/casting/recipe/solidifier/black_qu
 0758220e7d6bf9db893d1a79674456c6a30f99c3 data/casting/recipe/solidifier/black_quartz/shard.json
 edab816b127bb1b3dcd528f28cd1fb003ab2aa8c data/casting/recipe/solidifier/black_quartz/wire.json
 3b9581784b72e6ea45ce65629e2a1c9f34bc1ed1 data/casting/recipe/solidifier/brass/block.json
+5efd95bde56cbd18bd9e2fe8af3d5af5a8dde295 data/casting/recipe/solidifier/brass/dust.json
 ba68b112463aa4c927f927c810336f64b1cddd90 data/casting/recipe/solidifier/brass/gear.json
 d98d6598d7cb8dfcdaf6a3991a67f2a47b99d612 data/casting/recipe/solidifier/brass/ingot.json
 5f94add5a29cba3755f222f416754798995f4349 data/casting/recipe/solidifier/brass/nugget.json
@@ -1712,6 +1883,7 @@ a9a00c89992b2d1aa18a113b1405275a29b8bf74 data/casting/recipe/solidifier/brass/ro
 1888a82341a5042297dc0f21180db43f18015b53 data/casting/recipe/solidifier/brass/shard.json
 947caff94a962a594915fc3cfb0fce7177799ffd data/casting/recipe/solidifier/brass/wire.json
 5d1abf4c55d092dfccfec465cb43acf997b9ef93 data/casting/recipe/solidifier/bronze/block.json
+3e59452ce1fb0110ff823e392e403d7fa13ce840 data/casting/recipe/solidifier/bronze/dust.json
 4dd98f1c12e915b9259b2afb8ceece05b3a84e86 data/casting/recipe/solidifier/bronze/gear.json
 45a7b2d840853acf400799f234cab57f2efa145b data/casting/recipe/solidifier/bronze/ingot.json
 f37dc0f71deca67fae0f5c2e6937da4f7ed0c4f0 data/casting/recipe/solidifier/bronze/nugget.json
@@ -1720,6 +1892,7 @@ db865dfe9835aff05ed081d4ee861f43e121fe6f data/casting/recipe/solidifier/bronze/r
 8949a6664be23667dec9370b478695d55ca34db9 data/casting/recipe/solidifier/bronze/shard.json
 6bc75817f0113c2eebf867f67309ee6dccf335c2 data/casting/recipe/solidifier/bronze/wire.json
 db491cb852740fcb9f9178a8c6a3ae94b2de20d6 data/casting/recipe/solidifier/certus_quartz/block.json
+9538c506566fcc9a5c7aab18f1a2db5c0c96d6be data/casting/recipe/solidifier/certus_quartz/dust.json
 ae2b811d013c6b40dc2d4c8b313bc93d03562b7d data/casting/recipe/solidifier/certus_quartz/gear.json
 a03654749906ba9bfe8f4df076f862b5799ae480 data/casting/recipe/solidifier/certus_quartz/gem.json
 46c472b10eed3a1b2d001766d73148cbdf057d68 data/casting/recipe/solidifier/certus_quartz/nugget.json
@@ -1728,6 +1901,7 @@ a03654749906ba9bfe8f4df076f862b5799ae480 data/casting/recipe/solidifier/certus_q
 b5a15993f65737fbd167946688bb47e94cee0e94 data/casting/recipe/solidifier/certus_quartz/shard.json
 3c2351bbe360d51dc41a133ecd78f6390a3cc9a8 data/casting/recipe/solidifier/certus_quartz/wire.json
 5a907517b71d1fac056d07e26044eb8f507aa896 data/casting/recipe/solidifier/charged_certus_quartz/block.json
+ad75d44dcb9da30ee224157d229edc7269be18c0 data/casting/recipe/solidifier/charged_certus_quartz/dust.json
 f8c85280dc89d9397f0b7d984797a89595b8260e data/casting/recipe/solidifier/charged_certus_quartz/gear.json
 98e2c60139cdd2d3bb06e5a4c6fe640f6cd45b88 data/casting/recipe/solidifier/charged_certus_quartz/gem.json
 5a200a952d73c48cba5711e83d3d46ee0e9160df data/casting/recipe/solidifier/charged_certus_quartz/nugget.json
@@ -1737,6 +1911,8 @@ b96f675d89c97ac469ac35f9b7ef97fc5795151d data/casting/recipe/solidifier/charged_
 17c4e75ea1c45b21e9187bdc9f5dfbc00645f33c data/casting/recipe/solidifier/charged_certus_quartz/wire.json
 a29e5ff024d9e5658f56e304c07d868c319d1f5d data/casting/recipe/solidifier/coal/block.json
 017d514666bd84935f3d39b9687422cba3447a85 data/casting/recipe/solidifier/coal/coal.json
+39594f557b54134455919eee88e87bfcff46bfef data/casting/recipe/solidifier/coal/coal_block.json
+b45e2efc6f30c82908970ef8211b166aa7010e1f data/casting/recipe/solidifier/coal/dust.json
 30245af8f67962b058c176cd3df14c0ce29b6a0d data/casting/recipe/solidifier/coal/gear.json
 078ade0398a07d07d25a98f1e896fe1724acda59 data/casting/recipe/solidifier/coal/gem.json
 be62235e0e74f506a8ed21e153df1af1ce5824d6 data/casting/recipe/solidifier/coal/nugget.json
@@ -1745,6 +1921,7 @@ b48facb8629a3c8afea0b519c180ca3bc936445a data/casting/recipe/solidifier/coal/rod
 c27933b2853ba624482563bb3a4cf8e2716b2781 data/casting/recipe/solidifier/coal/shard.json
 dfcc40e6f4b37abd382539e720ec5f89a87f5946 data/casting/recipe/solidifier/coal/wire.json
 d3c505b13ed2b0d097da46d90b014993344555d6 data/casting/recipe/solidifier/conductive_alloy/block.json
+b47084f6d997d5a31683a2335a9dff272a7bc422 data/casting/recipe/solidifier/conductive_alloy/dust.json
 15a206b1771df65fb85d0acc203674f85a091795 data/casting/recipe/solidifier/conductive_alloy/gear.json
 9252cfde4bb5605f56a88c7e05944fff8d4037a5 data/casting/recipe/solidifier/conductive_alloy/ingot.json
 b56abcbd823579047a1b2d004f432a7c794ffe54 data/casting/recipe/solidifier/conductive_alloy/nugget.json
@@ -1753,6 +1930,7 @@ a87756649446c49a3b9d84cde307f07b9557d983 data/casting/recipe/solidifier/conducti
 fbdda90f81bd820a74eb85fdac23ee103b9b6a59 data/casting/recipe/solidifier/conductive_alloy/shard.json
 14668f2b64b65ea3a430c8bbdcc554c41989f0a7 data/casting/recipe/solidifier/conductive_alloy/wire.json
 40e67e6c32fc4dda146cfcbe44338c1c7e60796c data/casting/recipe/solidifier/constantan/block.json
+7e69492693685bf224db8ff33d8de2dcc4b6d4c7 data/casting/recipe/solidifier/constantan/dust.json
 942cfb824c362d29988b3150af44e252a4013e80 data/casting/recipe/solidifier/constantan/gear.json
 f675b6a41fc6106aba37df8bc988d24bf125412e data/casting/recipe/solidifier/constantan/ingot.json
 18081532064513942109ab3c763f82f833b10299 data/casting/recipe/solidifier/constantan/nugget.json
@@ -1761,6 +1939,7 @@ fedfeba84ef6427173bc29dea92af0db5ad443a5 data/casting/recipe/solidifier/constant
 710738bb89f008a873bceae924779d5eb562b3c8 data/casting/recipe/solidifier/constantan/shard.json
 c7a2946385a8dcfb696d63159c0c2650212fb818 data/casting/recipe/solidifier/constantan/wire.json
 d08556b1a39ee508e8386dda93e45b47a9c9380b data/casting/recipe/solidifier/copper/block.json
+f0de4fd21f68662238f11aef02d1a6ea8b89b4e6 data/casting/recipe/solidifier/copper/dust.json
 e5de6046452785a456d0ba33631fa3b155c56d77 data/casting/recipe/solidifier/copper/gear.json
 e34553184e600d70cec5dcf4cb9745fcf97f6d5d data/casting/recipe/solidifier/copper/ingot.json
 4229f0a60f8d3277023edac5b29f61081201d586 data/casting/recipe/solidifier/copper/nugget.json
@@ -1769,6 +1948,7 @@ e2fbeefa415fa610a44e021125b059320bf6ffdb data/casting/recipe/solidifier/copper/r
 d07f727b16a12c7b2728ffa7f530a9c537c83427 data/casting/recipe/solidifier/copper/shard.json
 8dc6231dff7b87dc607f44d2e83697ecef7f6b00 data/casting/recipe/solidifier/copper/wire.json
 0a6731ee2d6d60b6ff962531015b27803e1ba6c2 data/casting/recipe/solidifier/dark_steel/block.json
+209d2d68eea1b3df96db3f220995639d23e161d7 data/casting/recipe/solidifier/dark_steel/dust.json
 a5db1a1bffbab9316eb5019720bbbf6565ba7c0c data/casting/recipe/solidifier/dark_steel/gear.json
 1a21a214ad83474684c20e8d1a4721691a9190ae data/casting/recipe/solidifier/dark_steel/ingot.json
 2cb7484a0d48bc382aae5c9305a413e561b0b449 data/casting/recipe/solidifier/dark_steel/nugget.json
@@ -1777,6 +1957,7 @@ fec304d3725a3405715fc1f9602e2554f2ba1479 data/casting/recipe/solidifier/dark_ste
 c91ab35177441a257568a2137c03eb26791357a7 data/casting/recipe/solidifier/dark_steel/shard.json
 ca3bbfe283647aef5aeb71b62a11272b0923943e data/casting/recipe/solidifier/dark_steel/wire.json
 391ff877ad769635f8428ce6556be09e26b2cbf2 data/casting/recipe/solidifier/debris/block.json
+26bedb68a4fea20495cba9d712099fddd6854ab2 data/casting/recipe/solidifier/debris/dust.json
 464c161eb5964c9f73041faa36ca8eedc0cb5bcd data/casting/recipe/solidifier/debris/gear.json
 70a22ab90988c26b144b789ad8f3d87baae64779 data/casting/recipe/solidifier/debris/ingot.json
 80c1e6a88bef49f0a1dac68dc341da2e0ccb83b8 data/casting/recipe/solidifier/debris/nugget.json
@@ -1785,6 +1966,7 @@ e786d4fb11a76edd0e39f1f1e58bdd309289b197 data/casting/recipe/solidifier/debris/p
 307cd82bc7a61c2ca803e03029995660c1c30021 data/casting/recipe/solidifier/debris/shard.json
 2a0ea9ae8420de6da5235fee5b33cdd121b22625 data/casting/recipe/solidifier/debris/wire.json
 f59a039268234e3f6152e1de8804a8ebc8daaa31 data/casting/recipe/solidifier/diamond/block.json
+637a7b9bca32f58ef9e8c041e0a4d1872542e85e data/casting/recipe/solidifier/diamond/dust.json
 bd190ace9c625940a3995d584fc545ecc4000980 data/casting/recipe/solidifier/diamond/gear.json
 6738c73bf2d5020674af6bd0e4d01c4ca9d98036 data/casting/recipe/solidifier/diamond/gem.json
 cb2809cc775b191e1a98787423729466d5bac26c data/casting/recipe/solidifier/diamond/nugget.json
@@ -1793,6 +1975,7 @@ eace85ca26ccffd30d83e58d072cc33884996509 data/casting/recipe/solidifier/diamond/
 b06ab417669144fceb3cdfc0abb609edb868d819 data/casting/recipe/solidifier/diamond/shard.json
 ad7de530465a856dfc37ef2afb00a0b63e4d46ce data/casting/recipe/solidifier/diamond/wire.json
 3487526fb38235315771a8580df631db70c57827 data/casting/recipe/solidifier/electrum/block.json
+59af572e294f0ff76ae489fbe96e810c02ba02c4 data/casting/recipe/solidifier/electrum/dust.json
 673c118aa85d64848d0220c14f9c227d64bcee96 data/casting/recipe/solidifier/electrum/gear.json
 501e17cc1e1cf3166a8cd19feaf67a52f945b87e data/casting/recipe/solidifier/electrum/ingot.json
 f3943110b9aa5de18daa4ca215e1e1d5c078c8b8 data/casting/recipe/solidifier/electrum/nugget.json
@@ -1801,6 +1984,7 @@ f3943110b9aa5de18daa4ca215e1e1d5c078c8b8 data/casting/recipe/solidifier/electrum
 f1146f08c49092052497d97a831344830c16b2ab data/casting/recipe/solidifier/electrum/shard.json
 e8fa719364a5e7ff610ac7a77545db5c7952ef26 data/casting/recipe/solidifier/electrum/wire.json
 5cc5566ef802092aacb4745de08ec224b1fb7245 data/casting/recipe/solidifier/emerald/block.json
+d183b9abb55050b4c80f3a76a722160bc6af770e data/casting/recipe/solidifier/emerald/dust.json
 a120021f3aaae0fb3ba574bd2953f620cde1c3e4 data/casting/recipe/solidifier/emerald/gear.json
 d405ef0c33df444d929f5e57e937d1bf10459c97 data/casting/recipe/solidifier/emerald/gem.json
 4a2fa5ca8e90056d8e80ed99d6a2f0f214a67fd6 data/casting/recipe/solidifier/emerald/nugget.json
@@ -1809,6 +1993,7 @@ fafc31e2e53da5a5944c144f6d70bd2fe7e3e81b data/casting/recipe/solidifier/emerald/
 385a979ab27830001e8e990d1e3ce87f7a4faf9f data/casting/recipe/solidifier/emerald/shard.json
 569ca5517d3b7140ceaf92c001b6dd0f63cf963a data/casting/recipe/solidifier/emerald/wire.json
 434d95c58b429e6d5b2f898414329f71557e0874 data/casting/recipe/solidifier/enderium/block.json
+548b1eafdbd5111502fa001536c5187cf1a3af3b data/casting/recipe/solidifier/enderium/dust.json
 06dc953ddc962d321ffebdaa7feff200d581208a data/casting/recipe/solidifier/enderium/gear.json
 8c057dff6ab1733b97ccdc315f6ecae32711c003 data/casting/recipe/solidifier/enderium/ingot.json
 ee0dbcee192f33c191f67afdaff72d7f18556438 data/casting/recipe/solidifier/enderium/nugget.json
@@ -1818,6 +2003,7 @@ fbf66127b79559a03dd4c63716ff399e3e4c20db data/casting/recipe/solidifier/enderium
 ca20559693f7eb318dd595b2517bc8be854b322f data/casting/recipe/solidifier/enderium/wire.json
 b6372fc0ef54d369dda3bd674f3fc0e5b2078575 data/casting/recipe/solidifier/ender/pearl.json
 473cc725d27b13a539ef7d2eed979e607dfe1be5 data/casting/recipe/solidifier/end_steel/block.json
+7edee7af2e256dc9291d4deff0f33721f2c15d04 data/casting/recipe/solidifier/end_steel/dust.json
 0bc09123491c74b05ec33838460053623ace8533 data/casting/recipe/solidifier/end_steel/gear.json
 d3a388defc9e6e36ab80acf8153510fa7f4e1d12 data/casting/recipe/solidifier/end_steel/ingot.json
 990523c4c424a37fa8ef529c61f364647e5afa80 data/casting/recipe/solidifier/end_steel/nugget.json
@@ -1827,6 +2013,7 @@ a38521630b5e922ef01798f58da4821982efb202 data/casting/recipe/solidifier/end_stee
 3ac2624646318946299efd43e92ef8f72b11af49 data/casting/recipe/solidifier/end_steel/wire.json
 ae1d93af9134b2cf2870f9d1a1ed40398f80c0dd data/casting/recipe/solidifier/end_stone/block.json
 80725a1147dc009ab0fa6446f31d040416ea0a95 data/casting/recipe/solidifier/energetic_alloy/block.json
+db189c1c0ed80330212c5f5c2047c4dd45ef155d data/casting/recipe/solidifier/energetic_alloy/dust.json
 59035c3851fcd6a151d8efdfdbbd1726a5cf7e0b data/casting/recipe/solidifier/energetic_alloy/gear.json
 aabd6ef1ba2d46361ba79872ff7b257e20f3994f data/casting/recipe/solidifier/energetic_alloy/ingot.json
 fd5829c597eb6c610f50a720e37a7d51be45816c data/casting/recipe/solidifier/energetic_alloy/nugget.json
@@ -1837,6 +2024,7 @@ c71f2c5d4435b6815fad7c7ffa3ed673997ff411 data/casting/recipe/solidifier/energeti
 21c3bb6938d711dd14dabbf772689651e806b119 data/casting/recipe/solidifier/experience/ball.json
 4c13271ba4738dc03b8d572bf73c37e782038d29 data/casting/recipe/solidifier/experience/bottle.json
 efe6c71ab3d291c874356c7dc3dfd2edd49b0cb1 data/casting/recipe/solidifier/fluix/block.json
+a3c541c96c5042561720821a4ba38f2a2b1e081b data/casting/recipe/solidifier/fluix/dust.json
 007d19cb294dc346c39772bbc36ef11879da3a95 data/casting/recipe/solidifier/fluix/gear.json
 0282dd5bd9d64e6e6375cebd84649bbfb3973630 data/casting/recipe/solidifier/fluix/gem.json
 e70c63d7d11aec8fc05ed1c17c2360a6ce598978 data/casting/recipe/solidifier/fluix/nugget.json
@@ -1854,6 +2042,7 @@ e714a5c77ae09adc6365e6191581c0100583c05b data/casting/recipe/solidifier/glowston
 9b69463f7a3afddc7e30dca719972bca4a5cc950 data/casting/recipe/solidifier/glowstone/shard.json
 8d94b805a7238b2c74772fe095f406c5d3ae0164 data/casting/recipe/solidifier/glowstone/wire.json
 69cea3df541809c4c7c271a30a0dd7329e8db111 data/casting/recipe/solidifier/gold/block.json
+d4e976c213c4a2cb98c608a71e85f531bac9292d data/casting/recipe/solidifier/gold/dust.json
 377a6681f270726eac16aecacb9f3e19d6b20ad1 data/casting/recipe/solidifier/gold/gear.json
 82bb403eb02993891a0a7df065a9391b8996f6d4 data/casting/recipe/solidifier/gold/ingot.json
 19faa4899caec34676a3a1d4e73f91109a988e82 data/casting/recipe/solidifier/gold/nugget.json
@@ -1862,6 +2051,7 @@ ed9aad69dfbac3e6a751657df2ab9949418f9ced data/casting/recipe/solidifier/gold/rod
 a9a6ecdaf4cab91971ccd29f8301173218724718 data/casting/recipe/solidifier/gold/shard.json
 d52085a5881a732700ec5b7cc9ae6fb3c117811e data/casting/recipe/solidifier/gold/wire.json
 f8da4293ee530ba6c47b7d8a40e39f1cf0672e2e data/casting/recipe/solidifier/invar/block.json
+c2c9ca87640da46c5fc0e99d3d61df20c3514f83 data/casting/recipe/solidifier/invar/dust.json
 d46028876ad1c8625ad1ddcb08f6c58e5bbe6176 data/casting/recipe/solidifier/invar/gear.json
 a5a716107312c3daa96d8707d4813e46985a486b data/casting/recipe/solidifier/invar/ingot.json
 996b75f3ed7b91737993a2b1da08756c0a588b0e data/casting/recipe/solidifier/invar/nugget.json
@@ -1870,6 +2060,7 @@ a5a716107312c3daa96d8707d4813e46985a486b data/casting/recipe/solidifier/invar/in
 c29c0d97fd4bb9adaf03a1cfee82f34f175d05b9 data/casting/recipe/solidifier/invar/shard.json
 d5f294a52a4097ac147e26c9a694397cbef981fe data/casting/recipe/solidifier/invar/wire.json
 b57afa3ccfbfe66f8652b1a9dfb593af7678b8af data/casting/recipe/solidifier/iridium/block.json
+8a4f2c09ee83cf76f698eb0288a9c897dbd2ffb4 data/casting/recipe/solidifier/iridium/dust.json
 4dd57fe1d784c2746d1b3b7d81e74d8f2e7981b5 data/casting/recipe/solidifier/iridium/gear.json
 b802e732a7b0af12663b3fd0c6f340a2da08e3db data/casting/recipe/solidifier/iridium/ingot.json
 72cf8ca5fc71fe8cc1baf8455e0281ff5ece521c data/casting/recipe/solidifier/iridium/nugget.json
@@ -1878,6 +2069,7 @@ e275bdf983aa4a02fda5b12b3acb9c93e9431241 data/casting/recipe/solidifier/iridium/
 eb622cc2629f71fa1a3d8e7b9605f68914ee9b70 data/casting/recipe/solidifier/iridium/shard.json
 16d7b7cd9558585c8980b5bd3b1b8b6c845e5dca data/casting/recipe/solidifier/iridium/wire.json
 f1ff418b8b30d3798df609e4e91ee83ec1c5f9f9 data/casting/recipe/solidifier/iron/block.json
+de379bb345f467f41d8ff90b63591600562a1e83 data/casting/recipe/solidifier/iron/dust.json
 8c461df97a3e7308fa596963882cd80c516eb663 data/casting/recipe/solidifier/iron/gear.json
 83b3398533aacee27150503f67f963af3d90158a data/casting/recipe/solidifier/iron/ingot.json
 342c93bbf7b1719d52abcac7dd670217e5dc2d7a data/casting/recipe/solidifier/iron/nugget.json
@@ -1886,6 +2078,7 @@ f52181b2fb10e353f73f9ee4e887be4bbc4d2af7 data/casting/recipe/solidifier/iron/rod
 c0d2d00dd7b4d9cc8ae8b110898e3a1b783c8aec data/casting/recipe/solidifier/iron/shard.json
 3658ac07df59248ecd98ccee0a4a01c166c766fa data/casting/recipe/solidifier/iron/wire.json
 a6396e8a7080a7bad98e44f103765ca49705ca33 data/casting/recipe/solidifier/lapis/block.json
+9ba411b51c206556a2c7a9c7554a299c7a8a0c60 data/casting/recipe/solidifier/lapis/dust.json
 e53a7f4e699ce49ed30ee04136272d5743040024 data/casting/recipe/solidifier/lapis/gear.json
 4b34e3ab4abc5aad21eacd4c1534116090b9d1e1 data/casting/recipe/solidifier/lapis/gem.json
 b2b6de5f5f74557644b1746a3e99d4af5a184f5d data/casting/recipe/solidifier/lapis/nugget.json
@@ -1894,6 +2087,7 @@ a5685712c43394f5e0f37141375660a9b6c53b42 data/casting/recipe/solidifier/lapis/pl
 669183b732cfcdca87d0c3ab35e1b5ccb536e8d5 data/casting/recipe/solidifier/lapis/shard.json
 05edfb1e0a856a8c603213bf7a9a5259415b9d2c data/casting/recipe/solidifier/lapis/wire.json
 944e6254122d2bb36773a5a391f5de6aef8302b8 data/casting/recipe/solidifier/lead/block.json
+41ef8f1552357c49dd953e6967b40a6208a5b690 data/casting/recipe/solidifier/lead/dust.json
 8b1d941242ac22da9398564c48ad922d44651970 data/casting/recipe/solidifier/lead/gear.json
 425aff324d02ed0a4000e941ce6a537475c0dd7e data/casting/recipe/solidifier/lead/ingot.json
 2454ff63c889313dca181ee24d3bec489be7ef72 data/casting/recipe/solidifier/lead/nugget.json
@@ -1902,6 +2096,7 @@ d38cbb066264227343dd14b3ee4aab67324aae48 data/casting/recipe/solidifier/lead/pla
 5fbb85fa465641ce87e9f98e478d77aa504bef9d data/casting/recipe/solidifier/lead/shard.json
 d66ae932a98f86266e2b176edacc36b2808030a1 data/casting/recipe/solidifier/lead/wire.json
 996fcf7357090f32ad96fd0f16f64cb12783199f data/casting/recipe/solidifier/lumium/block.json
+5e4eb5e453706a3f9fd852b385283635c3c965fe data/casting/recipe/solidifier/lumium/dust.json
 bf8d7af627fde625b0da072fc3231e545f1b30c3 data/casting/recipe/solidifier/lumium/gear.json
 f9c91b8e6d1622bdc05404a9af2ee24f7bda4096 data/casting/recipe/solidifier/lumium/ingot.json
 f043522b2325f2d7208e79a159cba003e840d1d6 data/casting/recipe/solidifier/lumium/nugget.json
@@ -1910,6 +2105,7 @@ df825d6d1469d758b0e93eaae21d5c353e52558b data/casting/recipe/solidifier/lumium/p
 926ad639ba93661b485f434e347345b345e02f0d data/casting/recipe/solidifier/lumium/shard.json
 25a464a1705931ce14152bf2597ade8243d00bd8 data/casting/recipe/solidifier/lumium/wire.json
 1e7974fc3e3df7f64e3a98233307b30ebe8dae8f data/casting/recipe/solidifier/monazite/block.json
+2421ccfc9aa7b609ce6c40b9074ad6b5b6aaa79d data/casting/recipe/solidifier/monazite/dust.json
 58e80f4bca6f6c281bdb4cabe808d33df0f743a7 data/casting/recipe/solidifier/monazite/gear.json
 17ea35c912effcc5895a2a26b5776ab3f1f0a922 data/casting/recipe/solidifier/monazite/gem.json
 3de615f99be150903f553e1645605566fb06b0d0 data/casting/recipe/solidifier/monazite/nugget.json
@@ -1918,6 +2114,7 @@ eb7ec9577e861b93ce6d5472bf41ca6351de22d7 data/casting/recipe/solidifier/monazite
 f96b31bc5ee3a524fe6b179100c40c44e80b1a7d data/casting/recipe/solidifier/monazite/shard.json
 9b3beb3d3e55698f4322ce71ee22c6d8dbe801c2 data/casting/recipe/solidifier/monazite/wire.json
 e2fefd86c34bdb4ea97086cb879b955e35280fdb data/casting/recipe/solidifier/netherite/block.json
+b70e37b298c3f4d1abd70a56d8ad2685e866f555 data/casting/recipe/solidifier/netherite/dust.json
 0a6a1ced034df99fb7a99991c7503505c53e93ee data/casting/recipe/solidifier/netherite/gear.json
 75b5ee7d8a7140ccac8d896ce9360525f469ff91 data/casting/recipe/solidifier/netherite/ingot.json
 e491a5b573908af43b9903fb19d0e0286730d468 data/casting/recipe/solidifier/netherite/nugget.json
@@ -1926,6 +2123,7 @@ c5cf4ddb000cc96389643b593c7d60d72e1aa50e data/casting/recipe/solidifier/netherit
 0ab5be5c70caa4c7e603881ed36b00e9afd8a6ca data/casting/recipe/solidifier/netherite/shard.json
 8313511352ccf53259615c5dd6ef7d8c9b7096f3 data/casting/recipe/solidifier/netherite/wire.json
 535ff92dcd79121bf350268479fbc3ca3297d98e data/casting/recipe/solidifier/nickel/block.json
+37ed6e617c752fb6b57d00e0ffd88ea2b3d8752d data/casting/recipe/solidifier/nickel/dust.json
 18e9b797b394815075c6f6206e43454028434a1a data/casting/recipe/solidifier/nickel/gear.json
 03d559c8fd4d31413e060d10068fed7d6eb54325 data/casting/recipe/solidifier/nickel/ingot.json
 edf3237da5e8e8b728be686f14ef38c4cf1a500e data/casting/recipe/solidifier/nickel/nugget.json
@@ -1935,6 +2133,7 @@ c2dc0528ba5627c9c732821447196823c8309807 data/casting/recipe/solidifier/nickel/r
 73c7a48b48eff041cd5a8a824393a57e04e56b5b data/casting/recipe/solidifier/nickel/wire.json
 8da02a70fe408a6d8a66c0ab48fcfc865af9ab10 data/casting/recipe/solidifier/obsidian/block.json
 f8a75117eb7785096f270680c77f6c7b3e7eafd5 data/casting/recipe/solidifier/osmium/block.json
+5c847149ad6057f6c62f960cd1aeb9d079aed2d8 data/casting/recipe/solidifier/osmium/dust.json
 75d2daf631ab585e9072ee0c6cce305839355691 data/casting/recipe/solidifier/osmium/gear.json
 deab745ff743e0adb1fa83e0bd0fafb416e19d1a data/casting/recipe/solidifier/osmium/ingot.json
 8b2d521a749b9fd31b8a1874db03daa93d52a230 data/casting/recipe/solidifier/osmium/nugget.json
@@ -1943,6 +2142,7 @@ a40f5ae17a79862c8ea53eeb43a8dbe09967f6b2 data/casting/recipe/solidifier/osmium/r
 035ffa4c44627414e2c50ee324ef09d8d5faf892 data/casting/recipe/solidifier/osmium/shard.json
 70233a2f92e3c863f524e0c2ddbe6b170e9a2bbb data/casting/recipe/solidifier/osmium/wire.json
 2826a91dca6eae5d17d2e0742d03de1a0a655e60 data/casting/recipe/solidifier/peridot/block.json
+c1387414c71c0dab4dd40857f65bf683e7d25003 data/casting/recipe/solidifier/peridot/dust.json
 304eec1cee8e70212eba5bd31c0304245b6e9636 data/casting/recipe/solidifier/peridot/gear.json
 6a66e1e00f4839d6682c6792b339aea793872d36 data/casting/recipe/solidifier/peridot/gem.json
 f5dd74701532ab3ac5f618f3885f53a382d6cc32 data/casting/recipe/solidifier/peridot/nugget.json
@@ -1951,6 +2151,7 @@ f5550f55cde685ab0597d0c5e07cb301484fcb12 data/casting/recipe/solidifier/peridot/
 5dbe2e6be17c79a3a1db860a73b5e3129f9adfe9 data/casting/recipe/solidifier/peridot/shard.json
 8303c99b0cf4923c5c76a559d62b7164d1db340e data/casting/recipe/solidifier/peridot/wire.json
 004d8fc7048a660202f4a0f84c0bf099dc444180 data/casting/recipe/solidifier/platinum/block.json
+1ec44ab3a5ad0ea86167135a67f9d79faad17def data/casting/recipe/solidifier/platinum/dust.json
 a5fde15a291ec30fff84322a476846fc57cb7a54 data/casting/recipe/solidifier/platinum/gear.json
 b0b4d389dac2991d8753b6766bc9a79964114061 data/casting/recipe/solidifier/platinum/ingot.json
 59c5a84fb5b162d39b44f9949ff66980a9bd3a81 data/casting/recipe/solidifier/platinum/nugget.json
@@ -1959,6 +2160,7 @@ b0b4d389dac2991d8753b6766bc9a79964114061 data/casting/recipe/solidifier/platinum
 1c2ede2e483523b7afff04befcb2c3e539432dbb data/casting/recipe/solidifier/platinum/shard.json
 5a436cc23ffa83a825b16f411cf6a5b3dfc60915 data/casting/recipe/solidifier/platinum/wire.json
 9da0cba5642267e81fe3ca28382570a489e1acfa data/casting/recipe/solidifier/pulsating_alloy/block.json
+6b1c54f541b7440e392a7ec911f264d5fa661129 data/casting/recipe/solidifier/pulsating_alloy/dust.json
 6138814d66b92f378782dc878ba7ccbbc5eb489a data/casting/recipe/solidifier/pulsating_alloy/gear.json
 6e53d1f5094c48b144855b4a3096aa67de6f3cf6 data/casting/recipe/solidifier/pulsating_alloy/ingot.json
 314d7796438f502ec2dba73b33b21ac95990f4a1 data/casting/recipe/solidifier/pulsating_alloy/nugget.json
@@ -1967,6 +2169,7 @@ e25996e8d3753c802b219aef0ac9d69d9be5671f data/casting/recipe/solidifier/pulsatin
 ad564fbc8966f6220b1ad2f7679b400e91cae51c data/casting/recipe/solidifier/pulsating_alloy/shard.json
 dddfb369f415d9ad5b5a2f88c1194d6ca3339214 data/casting/recipe/solidifier/pulsating_alloy/wire.json
 bb8b93d889d4e53156caed80090331ffc47ce591 data/casting/recipe/solidifier/quartz/block.json
+be4e464c423bb2e41974b688e9c9b46e7bec8e13 data/casting/recipe/solidifier/quartz/dust.json
 9482fec431d186786f17c85a7361a3c0de73a2fa data/casting/recipe/solidifier/quartz/gear.json
 389e234ebbb3de4b22bea224b10e56bfe8dae232 data/casting/recipe/solidifier/quartz/gem.json
 307f5f19011fd36ba5cb879f3fffc0e269b5ec2d data/casting/recipe/solidifier/quartz/nugget.json
@@ -1975,6 +2178,7 @@ f19d590d61d93c054fe169d5636bcfa741d5ee69 data/casting/recipe/solidifier/quartz/r
 59b95224ca22f42660059bd439213dcf6d006d2e data/casting/recipe/solidifier/quartz/shard.json
 c0c0b0be6d2901fbac8375ffd03c7ef04cf0a113 data/casting/recipe/solidifier/quartz/wire.json
 fd3287469668f4ef539510cc82f05fd71033fc90 data/casting/recipe/solidifier/quartz_enriched_copper/block.json
+430951c3ee4ddaca091f214a28837e68025a9d7a data/casting/recipe/solidifier/quartz_enriched_copper/dust.json
 c30cb91ab213ca2152a05bc1ac4efc6fe8179beb data/casting/recipe/solidifier/quartz_enriched_copper/gear.json
 c0e34897a27237935650f1298d75819fcd1fc46e data/casting/recipe/solidifier/quartz_enriched_copper/ingot.json
 f80cf9be2caad18798fbaa698879fb4170256c9c data/casting/recipe/solidifier/quartz_enriched_copper/nugget.json
@@ -1983,6 +2187,7 @@ f80cf9be2caad18798fbaa698879fb4170256c9c data/casting/recipe/solidifier/quartz_e
 1cf7a23378e02af63536788db8c1ff46a387a79a data/casting/recipe/solidifier/quartz_enriched_copper/shard.json
 ff3cd02b51e033743046c373a179ff9c40ad4e56 data/casting/recipe/solidifier/quartz_enriched_copper/wire.json
 e6c3404550a24f3905c864374c3ba31cdcc00d9b data/casting/recipe/solidifier/quartz_enriched_iron/block.json
+4e9a8db13b381089d49294ee0f48ee08264dc194 data/casting/recipe/solidifier/quartz_enriched_iron/dust.json
 27ec7dac0f4778ffcee93d854f92ab5bfebd38fb data/casting/recipe/solidifier/quartz_enriched_iron/gear.json
 c812a7f607efbba96bb4bec3aaf040631ea3d435 data/casting/recipe/solidifier/quartz_enriched_iron/ingot.json
 ccdfb7d91b95d2cee10c8397826348a71b3329b7 data/casting/recipe/solidifier/quartz_enriched_iron/nugget.json
@@ -1999,6 +2204,7 @@ b3943391d6462b2fefe6379006a1c8e296ae2d76 data/casting/recipe/solidifier/redstone
 9915939784cb826d6bf5e0f7e2e41aac3fb0320b data/casting/recipe/solidifier/redstone/shard.json
 a935ae6fd93cd04a77a18ff71f512cd37b9fb5c6 data/casting/recipe/solidifier/redstone/wire.json
 b5adb7774382deeef8ab8a420d0a378af56af81e data/casting/recipe/solidifier/ruby/block.json
+2c2507fcc66ae1772be424cf60ee3266fb04395e data/casting/recipe/solidifier/ruby/dust.json
 305f7a090ede0446159344ecb0b76a896afa228a data/casting/recipe/solidifier/ruby/gear.json
 c7f4080a98a4ec4d8a5ccdc066ef4fd3ee1bc6a9 data/casting/recipe/solidifier/ruby/gem.json
 677b1296b90e8cbb36729c7c23f0b0d544af64e7 data/casting/recipe/solidifier/ruby/nugget.json
@@ -2007,6 +2213,7 @@ de4b3790f69d914d57754fedf96427545b0fa435 data/casting/recipe/solidifier/ruby/pla
 d571adf44c250b7f260dc63869a11c3f49078998 data/casting/recipe/solidifier/ruby/shard.json
 c05bb1fed71db525714482f03934ad743a990fa2 data/casting/recipe/solidifier/ruby/wire.json
 b442cfc18813de26d4c55b9d74c935ee7b96d8a5 data/casting/recipe/solidifier/sapphire/block.json
+9760a59973d240edf82f9aaea0d8af681e9d7db3 data/casting/recipe/solidifier/sapphire/dust.json
 9e36d33aced1c8398163a5b1f3078fed0b288273 data/casting/recipe/solidifier/sapphire/gear.json
 9d850d4c67a928a9d0e6d18cca156c6d78640e76 data/casting/recipe/solidifier/sapphire/gem.json
 3c611386c6b745bc5befce861570b7aadab42e7d data/casting/recipe/solidifier/sapphire/nugget.json
@@ -2015,6 +2222,7 @@ b442cfc18813de26d4c55b9d74c935ee7b96d8a5 data/casting/recipe/solidifier/sapphire
 df611d1db0476c46b1be862094cb4173fe7f244e data/casting/recipe/solidifier/sapphire/shard.json
 6384a96e3516b4f5456ee324f46b7558a90c0436 data/casting/recipe/solidifier/sapphire/wire.json
 454708f77128297413984f7d257b1575628a1335 data/casting/recipe/solidifier/signalum/block.json
+334b2bf7ece4745d17e09d900e7addd48005f781 data/casting/recipe/solidifier/signalum/dust.json
 cc356feb177ad898427271e11722195dac9ee9fe data/casting/recipe/solidifier/signalum/gear.json
 e0664f6428842137e054f8f40f26bacd09aa8488 data/casting/recipe/solidifier/signalum/ingot.json
 1dae7e344c9a4119a2f8cbc6922fd2853b7ff833 data/casting/recipe/solidifier/signalum/nugget.json
@@ -2023,6 +2231,7 @@ adf8c5c54b87edd88085adb1edf4775a23f69bbb data/casting/recipe/solidifier/signalum
 18141fd26dd2eadeccf979d2081ff1417e5dcd43 data/casting/recipe/solidifier/signalum/shard.json
 b417f5e40116400e772f277ef3e5e42ef16a722b data/casting/recipe/solidifier/signalum/wire.json
 16d0d29228fe2614e366f5865af8cfdef88f3551 data/casting/recipe/solidifier/silicon/block.json
+59179898427a233f03a10ec8c5def15e432bc2df data/casting/recipe/solidifier/silicon/dust.json
 1b7b7aa6dbfca1922e63026869160053729eb82a data/casting/recipe/solidifier/silicon/gear.json
 4d8988c3e66893e7b6b8b1e8b5c1531969673e46 data/casting/recipe/solidifier/silicon/ingot.json
 ba7c6a56b7b995218dcaba2e7dbfae697be0654e data/casting/recipe/solidifier/silicon/nugget.json
@@ -2032,6 +2241,7 @@ aea75f59713c44e6faa6a4c4205f64af1d645f73 data/casting/recipe/solidifier/silicon/
 c5263a9629569265807703f3728e06da54cf6500 data/casting/recipe/solidifier/silicon/silicon.json
 51a4832e073563f5e621ca9a154c88bbc92c4380 data/casting/recipe/solidifier/silicon/wire.json
 af21f522721958e3c001053742216a5c067bd019 data/casting/recipe/solidifier/silver/block.json
+6de62da0e67305e6e31c045812a3b3151cf43a2d data/casting/recipe/solidifier/silver/dust.json
 ee56168faa6e4562130cfdc98fa869b6e2e5478b data/casting/recipe/solidifier/silver/gear.json
 0d5858850bb8aa37257358126dd265b67e8551a7 data/casting/recipe/solidifier/silver/ingot.json
 e1f00c24cfd2ce22a9bff526b1ee55b562a6be83 data/casting/recipe/solidifier/silver/nugget.json
@@ -2040,6 +2250,7 @@ e1f00c24cfd2ce22a9bff526b1ee55b562a6be83 data/casting/recipe/solidifier/silver/n
 31035b85a728617f57bf290caa92c7235db48554 data/casting/recipe/solidifier/silver/shard.json
 c32b7a5747d5b34e057d7b5158f880b7bf148944 data/casting/recipe/solidifier/silver/wire.json
 5c8ac4736254a0ce1afa1e7069087a632dd998b7 data/casting/recipe/solidifier/soularium/block.json
+20fd766bd8e70aa0cf86154fc7af6e514922bf5d data/casting/recipe/solidifier/soularium/dust.json
 8a96729bb6da57d93ca2e57b387aadf8b84a06c0 data/casting/recipe/solidifier/soularium/gear.json
 dcb1ece600287c05837ddd8e827b41648286539b data/casting/recipe/solidifier/soularium/ingot.json
 9e3f0b5ad79d548941482ba0b9d065e1e5dfec0e data/casting/recipe/solidifier/soularium/nugget.json
@@ -2049,6 +2260,7 @@ dcb1ece600287c05837ddd8e827b41648286539b data/casting/recipe/solidifier/soulariu
 26904deac3d6ddde07c4b54967577786a7733aa1 data/casting/recipe/solidifier/soularium/wire.json
 0c278619d1b9befbe746c45e42a31c7e0113b9e4 data/casting/recipe/solidifier/soul/block.json
 62fd6c9283b906780a67d2de725d999881ab5bbe data/casting/recipe/solidifier/steel/block.json
+abc9e76b58a88b29b8b468799e7be4958ed65df3 data/casting/recipe/solidifier/steel/dust.json
 63dcc7cc2ab9b1f583d6d6b0817816d13a37e9e8 data/casting/recipe/solidifier/steel/gear.json
 563f910a58550db06b0e3c4e21e8884fa41c69a5 data/casting/recipe/solidifier/steel/ingot.json
 e877bf67acd5ad191f9f2467a5ecc18f49cf477c data/casting/recipe/solidifier/steel/nugget.json
@@ -2058,6 +2270,7 @@ ca613ceb9fec1f0cfba6f551d6f7c19d7bbdd5b7 data/casting/recipe/solidifier/steel/pl
 ddd6c17d919f3be1f762de18d5a3faf2fa3794f0 data/casting/recipe/solidifier/steel/wire.json
 5883923d8ceb7be90e2576e2c5dcebea22af5f2e data/casting/recipe/solidifier/stone/block.json
 e9a9cfc25b7298ece9fd493c096990861199698b data/casting/recipe/solidifier/tin/block.json
+1d195efdad14966aa1b1dc505e2d24bef1534ad8 data/casting/recipe/solidifier/tin/dust.json
 cadaeb279366a03771aabce0a55f2cd08e043011 data/casting/recipe/solidifier/tin/gear.json
 e25929d278b407aac31919ea1446e334fcbfd8ce data/casting/recipe/solidifier/tin/ingot.json
 a379006ce4ad1d843171763f9e8b27e2fb1cdc7e data/casting/recipe/solidifier/tin/nugget.json
@@ -2066,6 +2279,7 @@ a379006ce4ad1d843171763f9e8b27e2fb1cdc7e data/casting/recipe/solidifier/tin/nugg
 d8fb8474958e653439849bc2e1ab3074c8201d01 data/casting/recipe/solidifier/tin/shard.json
 1436789ebdd87475736a88ec7e5c2df165cab8e2 data/casting/recipe/solidifier/tin/wire.json
 90f35b8af34a7f5e8be018f5d92128a5e64be669 data/casting/recipe/solidifier/titanium/block.json
+4cf4fe01cebece07709ca77f1368fd77bf853307 data/casting/recipe/solidifier/titanium/dust.json
 c09c9736bec5bbac2702fea763d0d22fd1c6e7ad data/casting/recipe/solidifier/titanium/gear.json
 eb4ab067e263581433f5b652ff1671224d5e74ed data/casting/recipe/solidifier/titanium/ingot.json
 d69d6bfce259ce1309e484e69763c047f95c4073 data/casting/recipe/solidifier/titanium/nugget.json
@@ -2074,6 +2288,7 @@ e9b4bd521dc3e66122d148e23cb12afbc1469aa6 data/casting/recipe/solidifier/titanium
 fea3c7ced898c494cb27b19af8a0b0b6d616cd50 data/casting/recipe/solidifier/titanium/shard.json
 809603e0bb0ea37878ccd9ca0d46da06fd35fd90 data/casting/recipe/solidifier/titanium/wire.json
 91b19128ef7506eb35bb49b61918266c4c1526ea data/casting/recipe/solidifier/topaz/block.json
+faced8986e57bf81d4266ab1203dd5f2feb78241 data/casting/recipe/solidifier/topaz/dust.json
 c0d636e40ca8be474329b208cbc86347c8c7634c data/casting/recipe/solidifier/topaz/gear.json
 c6d03b37861b709ec014065cecdbbb519804b62d data/casting/recipe/solidifier/topaz/gem.json
 153477aa8062e21f3128f7a16be3806843ea8c37 data/casting/recipe/solidifier/topaz/nugget.json
@@ -2082,6 +2297,7 @@ f77c225141c2d2a5e3454c5cb84eb6412393750e data/casting/recipe/solidifier/topaz/pl
 1e6752cc9664de1d535c06da51a081ed9ce97098 data/casting/recipe/solidifier/topaz/shard.json
 bf385c6efb96d60978b9ad6b27046a50537215a1 data/casting/recipe/solidifier/topaz/wire.json
 5945f0c7395986764521b0a62b79da6ec845a037 data/casting/recipe/solidifier/tungsten/block.json
+5941693febbd642d46e06adf7b8db262fab415d5 data/casting/recipe/solidifier/tungsten/dust.json
 1103d150ede897c99a800d238bbed79ad288668a data/casting/recipe/solidifier/tungsten/gear.json
 2989966b02f5f4b9502ff6b41cf30ca576e4f15b data/casting/recipe/solidifier/tungsten/ingot.json
 77cce7220e7998368c11d034823751ffe6804e27 data/casting/recipe/solidifier/tungsten/nugget.json
@@ -2090,6 +2306,7 @@ b89914561d37d81ab10ceffb3e222e87376dc591 data/casting/recipe/solidifier/tungsten
 7f39930aaac555d8ecdc7c8ab53fa137e654a2a3 data/casting/recipe/solidifier/tungsten/shard.json
 e923642ae310837d7c171efc3356da766844d2b4 data/casting/recipe/solidifier/tungsten/wire.json
 67759729568d7a6a62ffbec0bf0f1b59bb77cf74 data/casting/recipe/solidifier/unobtainium/block.json
+5bee758e6fab74c089c367eae9ecc9d2cd19a3d9 data/casting/recipe/solidifier/unobtainium/dust.json
 daad8d7c698f8ea0258e1f203132513c51a2b103 data/casting/recipe/solidifier/unobtainium/gear.json
 b7385c29d9ae234d0886ff0c03ee593380e2a8df data/casting/recipe/solidifier/unobtainium/ingot.json
 0c07b1cce65f74d1209606ca38adc90e485881e9 data/casting/recipe/solidifier/unobtainium/nugget.json
@@ -2098,6 +2315,7 @@ a6abc763658f3a62ee2f675ea3259fb455015f8e data/casting/recipe/solidifier/unobtain
 c25f1348c7357aab9310f426a21aa82e3eaf7020 data/casting/recipe/solidifier/unobtainium/shard.json
 e7cbe1fcdf5299096a172276765aeac2291eb642 data/casting/recipe/solidifier/unobtainium/wire.json
 55c41e105695d80d362bc850dd20db3ed4176cfb data/casting/recipe/solidifier/uraninite/block.json
+f4ef9a6b907d7f396a3ea39721f6c9a13ccf9ec4 data/casting/recipe/solidifier/uraninite/dust.json
 c526ff16510b5f25f9743b2d96ff162f2c6b7886 data/casting/recipe/solidifier/uraninite/gear.json
 b833c76cb8f85691cc93777164d9ea67c4ea9979 data/casting/recipe/solidifier/uraninite/gem.json
 2900568fba642bb0d60fdb88ef5dbc196da23c85 data/casting/recipe/solidifier/uraninite/nugget.json
@@ -2106,6 +2324,7 @@ b833c76cb8f85691cc93777164d9ea67c4ea9979 data/casting/recipe/solidifier/uraninit
 90cabe9719e3ac96807ce402d2a6b93b7f596373 data/casting/recipe/solidifier/uraninite/shard.json
 afadaf9122df237603720359f34e05e380ca41bd data/casting/recipe/solidifier/uraninite/wire.json
 8425a7f95971e27cda01d2a23be8c7ec512928bd data/casting/recipe/solidifier/uranium/block.json
+12a316e35ea28bfa7bff2baa94218d3134de0854 data/casting/recipe/solidifier/uranium/dust.json
 97d76c0d89f898560e44ddc6a6452d6a771c65dc data/casting/recipe/solidifier/uranium/gear.json
 a8e5b7c85bd7ab38f31ea2feab36dc63c660e84b data/casting/recipe/solidifier/uranium/ingot.json
 66bdef60cb02173a6e6dbf88521288583d3561ac data/casting/recipe/solidifier/uranium/nugget.json
@@ -2114,6 +2333,7 @@ ed0b47da7e70d75d6557cbade677f7531584908d data/casting/recipe/solidifier/uranium/
 11dd7b640ebf59f7209bac0d6e974fcffc54acce data/casting/recipe/solidifier/uranium/shard.json
 e1b7f8facec0543df5f85bd97512609e69428414 data/casting/recipe/solidifier/uranium/wire.json
 a867875600abcdb6cea1aeec2a68ff71f086e43f data/casting/recipe/solidifier/vibranium/block.json
+450455beda15dc56810344f099b809d8decca190 data/casting/recipe/solidifier/vibranium/dust.json
 f9fbbc34a2e197ebe05f2652e60c9b2c6e1f8b6e data/casting/recipe/solidifier/vibranium/gear.json
 2cb62e1454227f40162b60bad111c76d489a8502 data/casting/recipe/solidifier/vibranium/ingot.json
 0b6c2f458851028418727944c4f45f8de53f7f3c data/casting/recipe/solidifier/vibranium/nugget.json
@@ -2122,6 +2342,7 @@ b0dd61045aa9ffb9cf80ac9cf8287d78d043bece data/casting/recipe/solidifier/vibraniu
 5ceb9c872aea7cd5773405ac34ecb886c5ab3554 data/casting/recipe/solidifier/vibranium/shard.json
 4169eb5b71a54064e54a3fd7804e46ab73b4f65c data/casting/recipe/solidifier/vibranium/wire.json
 2570a9c355e711700a75132450f5d47d20928158 data/casting/recipe/solidifier/vibrant_alloy/block.json
+f4a98e3e0f7184adc7c39653a080638d492c2756 data/casting/recipe/solidifier/vibrant_alloy/dust.json
 7697a3359b3de98c0be8450d76f140177748ceb8 data/casting/recipe/solidifier/vibrant_alloy/gear.json
 e6ebce412de8d4c5ea6ccbb85af2b0edac1d49f2 data/casting/recipe/solidifier/vibrant_alloy/ingot.json
 ddf57b7c8a24701328814e00a8d4b1aa6191ebce data/casting/recipe/solidifier/vibrant_alloy/nugget.json
@@ -2130,6 +2351,7 @@ deb56e553b67aa60587dc52b77236051be33508b data/casting/recipe/solidifier/vibrant_
 3bdb77c0028acf43b62fd6d44f939bc7d3a463be data/casting/recipe/solidifier/vibrant_alloy/shard.json
 99c8ecdd3fc640ce01c10057541c71728cec6ca7 data/casting/recipe/solidifier/vibrant_alloy/wire.json
 d68ec093c99867507f1846268aa164ce7a2b941c data/casting/recipe/solidifier/zinc/block.json
+17a649f6337f58af58342056da674c31e72dc8a2 data/casting/recipe/solidifier/zinc/dust.json
 2dd0e97c54783218e7bbc1e2f4eeea3e8d790adc data/casting/recipe/solidifier/zinc/gear.json
 61198256b8c283fe1214f7c63f5b5537ac107ef7 data/casting/recipe/solidifier/zinc/ingot.json
 33eabdb351c48c2587f48898af6d1870a98cf01e data/casting/recipe/solidifier/zinc/nugget.json

@@ -54,11 +54,7 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
                 return false;
             }
 
-            if (!resource.isEmpty() && index <= 3 && isFluidInAnotherSlot(index, resource)) {
-                return false;
-            }
-
-            return true;
+            return resource.isEmpty() || index > 3 || !isFluidInAnotherSlot(index, resource);
         }
 
         private boolean isFluidInAnotherSlot(int index, FluidResource resource) {

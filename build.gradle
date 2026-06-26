@@ -87,6 +87,8 @@ dependencies {
     runtimeOnly("curse.maven:guideme-1173950:7929350")
     //GeOre
     runtimeOnly("curse.maven:geore-530544:7966808")
+    //Classic Pipes
+    runtimeOnly("curse.maven:classic-pipes-1351745:8054946")
 
 
 }
