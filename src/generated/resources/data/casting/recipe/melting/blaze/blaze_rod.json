@@ -1,0 +1,15 @@
+{
+  "type": "casting:melting",
+  "duration_modifier": 0.4,
+  "input": {
+    "count": 1,
+    "ingredient": "minecraft:blaze_rod"
+  },
+  "melting_temp": 1400,
+  "output": [
+    {
+      "amount": 90,
+      "id": "casting:molten_blaze"
+    }
+  ]
+}

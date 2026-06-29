@@ -94,6 +94,19 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         simpleMeltingRecipe(List.of(getFluidStack("molten_coal", 720)), Blocks.COAL_BLOCK,
                 "coal/coal_block", ResourceType.STORAGE_BLOCKS, getTempFromFluid("molten_coal"));
 
+        //Blaze
+        simpleSolidifierRecipe(Items.BLAZE_POWDER, getFluidIngredient("molten_blaze", 90),
+                CastingItems.DUST_MOLD, "blaze/blaze_powder", ResourceType.DUSTS, getTempFromFluid("molten_blaze"));
+
+        simpleSolidifierRecipe(Items.BLAZE_ROD, getFluidIngredient("molten_blaze", 180),
+                CastingItems.ROD_MOLD, "blaze/blaze_rod", ResourceType.RODS, getTempFromFluid("molten_blaze"));
+
+        simpleMeltingRecipe(List.of(getFluidStack("molten_blaze", 45)), Items.BLAZE_POWDER,
+                "blaze/blaze_powder", ResourceType.DUSTS, 1200);
+
+        simpleMeltingRecipe(List.of(getFluidStack("molten_blaze", 90)), Items.BLAZE_ROD,
+                "blaze/blaze_rod", ResourceType.RODS, getTempFromFluid("molten_blaze"));
+
 
         //Obsidian
         simpleMeltingRecipe(List.of(getFluidStack("molten_obsidian", 1000)), Blocks.OBSIDIAN,

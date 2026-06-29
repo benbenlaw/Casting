@@ -1,4 +1,4 @@
-// 26.1.2	2026-06-26T09:15:39.6730515	casting Processing Recipes
+// 26.1.2	2026-06-29T09:47:22.4132336	casting Processing Recipes
 6cf7daa5e446d262d0b513ba376716ae43524819 data/casting/advancement/recipes/fuel/fuel/blaze.json
 519547486eb3fbbb51b3460ed5c7a9695e33e52f data/casting/advancement/recipes/fuel/fuel/chilled_water.json
 3bac6b66e74a81f8f22540209612ceca3658333e data/casting/advancement/recipes/fuel/fuel/coal.json
@@ -46,6 +46,8 @@ f433ae7aed785153e127a6d5cb1b0ac8f8893d4b data/casting/advancement/recipes/meltin
 801b7af0713093bdcb2ac2d4359e1ed0bc10711c data/casting/advancement/recipes/melting/melting/black_quartz/rod.json
 b12f8bd106ce61b8f3eb28da473138249d4a1c97 data/casting/advancement/recipes/melting/melting/black_quartz/shard.json
 e257a240d8f8495a52d40a1ccf8fd2bf3527f33a data/casting/advancement/recipes/melting/melting/black_quartz/wire.json
+e1b018de0885a59074eedaa77e2528ad3a5e6d58 data/casting/advancement/recipes/melting/melting/blaze/blaze_powder.json
+2c52a8e9716abcec1198af743565386bcd81bb3f data/casting/advancement/recipes/melting/melting/blaze/blaze_rod.json
 a453df749a9f1801e484449088a007e1ab9fc755 data/casting/advancement/recipes/melting/melting/brass/block.json
 e517e8cda894d68c3e447deee74f0d57e0b50c1d data/casting/advancement/recipes/melting/melting/brass/dust.json
 727538d49de889442bb42c5ceaa155314ad6a1aa data/casting/advancement/recipes/melting/melting/brass/gear.json
@@ -693,6 +695,8 @@ feabaef20ea5ffa4294f5241f1a29fa3c8332336 data/casting/advancement/recipes/solidi
 66a4392d31ebb84f1c6ae7203abef8284e7d84c9 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/rod.json
 d14d39e1b245417dec271bc1bbb02e0b34ae64e7 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/shard.json
 be3b92a832914799817dbf3b3023c4ca87c89441 data/casting/advancement/recipes/solidifier/solidifier/black_quartz/wire.json
+ee17e9b428928a4b5ac04df32c95c18be058d4a5 data/casting/advancement/recipes/solidifier/solidifier/blaze/blaze_powder.json
+47818f689ed3a1f82017f644b4c3e0207100693f data/casting/advancement/recipes/solidifier/solidifier/blaze/blaze_rod.json
 a217414ba3740a1013699e6e788f64af04ea2399 data/casting/advancement/recipes/solidifier/solidifier/brass/block.json
 64d93560d927529040a039d951ae261ebdf0e6eb data/casting/advancement/recipes/solidifier/solidifier/brass/dust.json
 07dae639d46304ed7823531ee6e5a917e167b729 data/casting/advancement/recipes/solidifier/solidifier/brass/gear.json
@@ -1226,6 +1230,8 @@ d3cf5c546fa63a4fc58027fe343c36a0525d722a data/casting/recipe/melting/black_quart
 7b7492dcdb2d5f5ad41ae6c8063c7c4ccdaf08aa data/casting/recipe/melting/black_quartz/rod.json
 132ec08b95a8e16b2b9aba072652a41dcd89cb50 data/casting/recipe/melting/black_quartz/shard.json
 e6ccdd5cd990a7b07b70df3ad1156a12e8ffe68d data/casting/recipe/melting/black_quartz/wire.json
+3301531c2f426f08e7b0bc974815b6cc7699bc97 data/casting/recipe/melting/blaze/blaze_powder.json
+88f06f1fe101727d536c7834ed3cfa4b34964627 data/casting/recipe/melting/blaze/blaze_rod.json
 5df0448546c793dbcc80a44a2d64b02413b1dc1b data/casting/recipe/melting/brass/block.json
 c5ba877954967e2b21c3184f5a9e3a450d6f07e3 data/casting/recipe/melting/brass/dust.json
 d530b85f99789cda4efa4486c82a8dc4b4303c84 data/casting/recipe/melting/brass/gear.json
@@ -1873,6 +1879,8 @@ b4e25a1d138fd8245f354b39da924f05e45dce35 data/casting/recipe/solidifier/black_qu
 9816b2640cb1f0f957bba8a95db12087ed3d70a6 data/casting/recipe/solidifier/black_quartz/rod.json
 0758220e7d6bf9db893d1a79674456c6a30f99c3 data/casting/recipe/solidifier/black_quartz/shard.json
 edab816b127bb1b3dcd528f28cd1fb003ab2aa8c data/casting/recipe/solidifier/black_quartz/wire.json
+0980222ebe90b53952628b36771ab47171b67cf3 data/casting/recipe/solidifier/blaze/blaze_powder.json
+7b28d7bfc7e442949cd7b4df68cb129984486c84 data/casting/recipe/solidifier/blaze/blaze_rod.json
 3b9581784b72e6ea45ce65629e2a1c9f34bc1ed1 data/casting/recipe/solidifier/brass/block.json
 5efd95bde56cbd18bd9e2fe8af3d5af5a8dde295 data/casting/recipe/solidifier/brass/dust.json
 ba68b112463aa4c927f927c810336f64b1cddd90 data/casting/recipe/solidifier/brass/gear.json
