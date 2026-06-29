@@ -29,14 +29,12 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
-import net.neoforged.neoforge.transfer.CombinedResourceHandler;
-import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvider, FluidSending, FluidAccepting {
 
@@ -155,6 +153,7 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
     }
 
     private void updateWorkingState(boolean working) {
+        assert level != null;
         BlockState currentState = level.getBlockState(worldPosition);
         if (currentState.getValue(CastingBlock.WORKING) != working) {
             level.setBlock(worldPosition, currentState.setValue(CastingBlock.WORKING, working), 3);
@@ -264,12 +263,12 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
 
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int container, Inventory inventory, Player player) {
+    public @Nullable AbstractContainerMenu createMenu(int container, @NonNull Inventory inventory, @NonNull Player player) {
         return new MixerMenu(container, inventory, this.worldPosition, data);
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NonNull Component getDisplayName() {
         return Component.translatable("block.casting.mixer");
     }
 
@@ -297,17 +296,17 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
     }
 
     @Override
-    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+    public void preRemoveSideEffects(@NonNull BlockPos pos, @NonNull BlockState state) {
     }
 
     @Override
-    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+    protected void collectImplicitComponents(DataComponentMap.@NonNull Builder builder) {
         super.collectImplicitComponents(builder);
         builder.set(CastingDataComponents.FLUIDS.get(), FluidListComponent.fromHandlers(fluidInventory));
     }
 
     @Override
-    protected void applyImplicitComponents(DataComponentGetter components) {
+    protected void applyImplicitComponents(@NonNull DataComponentGetter components) {
         super.applyImplicitComponents(components);
         FluidListComponent component = components.get(CastingDataComponents.FLUIDS.get());
         if (component != null) {

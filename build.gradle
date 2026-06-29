@@ -88,8 +88,9 @@ dependencies {
     //GeOre
     runtimeOnly("curse.maven:geore-530544:7966808")
     //Classic Pipes
-    runtimeOnly("curse.maven:classic-pipes-1351745:8054946")
-
+    implementation("curse.maven:classic-pipes-1351745:8054946")
+    //Ender IO
+    runtimeOnly("curse.maven:ender-io-64578:8004141")
 
 }
 
