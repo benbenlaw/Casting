@@ -4,12 +4,15 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.block.custom.CastingBlock;
 import com.benbenlaw.casting.data.custom.*;
+import com.benbenlaw.casting.fluid.CastingFluids;
 import com.benbenlaw.casting.fluid.FluidData;
+import com.benbenlaw.casting.item.CastingDataComponents;
 import com.benbenlaw.casting.item.CastingItems;
 import com.benbenlaw.casting.util.CastingTags;
 import com.benbenlaw.core.tag.CommonTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -79,6 +82,17 @@ public class CastingRecipeProvider extends RecipeProvider {
         createMoldRecipe(new ItemStackTemplate(CastingItems.BALL_MOLD.get()), TagKey.create(Registries.ITEM, Identifier.parse("c:ball_items")));
         createMoldRecipe(new ItemStackTemplate(CastingItems.WIRE_MOLD.get()), TagKey.create(Registries.ITEM, Identifier.parse("c:wires")));
         createMoldRecipe(new ItemStackTemplate(CastingItems.SHARD_MOLD.get()), TagKey.create(Registries.ITEM, Identifier.parse("c:shards")));
+
+        stonecutterRecipe(CastingItems.INGOT_MOLD.get());
+        stonecutterRecipe(CastingItems.NUGGET_MOLD.get());
+        stonecutterRecipe(CastingItems.GEAR_MOLD.get());
+        stonecutterRecipe(CastingItems.PLATE_MOLD.get());
+        stonecutterRecipe(CastingItems.ROD_MOLD.get());
+        stonecutterRecipe(CastingItems.BLOCK_MOLD.get());
+        stonecutterRecipe(CastingItems.GEM_MOLD.get());
+        stonecutterRecipe(CastingItems.BALL_MOLD.get());
+        stonecutterRecipe(CastingItems.WIRE_MOLD.get());
+        stonecutterRecipe(CastingItems.SHARD_MOLD.get());
 
         //Reset
         shapeless(RecipeCategory.MISC, CastingBlocks.CONTROLLER).requires(CastingBlocks.CONTROLLER).unlockedBy("has_controller", has(CastingBlocks.CONTROLLER)).save(output);
@@ -177,18 +191,10 @@ public class CastingRecipeProvider extends RecipeProvider {
                         "casting:molds/" + getItemName(result.item().value()) + "_from_" + path);
     }
 
-    public void createMoldRecipe(ItemStackTemplate result, ItemLike itemLike) {
+    public void stonecutterRecipe(ItemLike result) {
 
-        String path = getItemName(itemLike);
-
-        shaped(RecipeCategory.MISC, result)
-                .pattern(" A ")
-                .pattern("ABA")
-                .pattern(" A ")
-                .define('A', CastingItems.BLACK_BRICK)
-                .define('B', itemLike)
-                .group(Casting.MOD_ID)
-                .unlockedBy("has_cobblestone", has(itemLike))
-                .save(output, "casting:molds/" + getItemName(result.item().value()) + "_from_" + path);
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(CastingBlocks.BLACK_BRICKS), RecipeCategory.MISC, result, 1)
+                .unlockedBy(getHasName(CastingBlocks.BLACK_BRICKS), this.has(CastingBlocks.BLACK_BRICKS)).save(this.output, "casting:molds/stonecutter/" + getItemName(result.asItem()));
     }
+
 }

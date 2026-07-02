@@ -107,6 +107,9 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         simpleMeltingRecipe(List.of(getFluidStack("molten_blaze", 90)), Items.BLAZE_ROD,
                 "blaze/blaze_rod", ResourceType.RODS, getTempFromFluid("molten_blaze"));
 
+        //Ancient Debris
+        simpleMeltingRecipe(List.of(getFluidStack("molten_debris", 90)), Items.ANCIENT_DEBRIS,
+                "debris/ancient_debris", ResourceType.ORES, getTempFromFluid("molten_debris"));
 
         //Obsidian
         simpleMeltingRecipe(List.of(getFluidStack("molten_obsidian", 1000)), Blocks.OBSIDIAN,

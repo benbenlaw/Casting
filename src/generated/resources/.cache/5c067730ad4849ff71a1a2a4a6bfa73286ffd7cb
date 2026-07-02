@@ -1,4 +1,4 @@
-// 26.1.2	2026-06-29T09:47:22.4132336	casting Processing Recipes
+// 26.1.2	2026-07-02T11:49:56.4063973	casting Processing Recipes
 6cf7daa5e446d262d0b513ba376716ae43524819 data/casting/advancement/recipes/fuel/fuel/blaze.json
 519547486eb3fbbb51b3460ed5c7a9695e33e52f data/casting/advancement/recipes/fuel/fuel/chilled_water.json
 3bac6b66e74a81f8f22540209612ceca3658333e data/casting/advancement/recipes/fuel/fuel/coal.json
@@ -151,6 +151,7 @@ faffef9080bc0bf0918def8baccaad6091bef13a data/casting/advancement/recipes/meltin
 fb5e94544dea6f693835dd1d67998810e06829c4 data/casting/advancement/recipes/melting/melting/dark_steel/rod.json
 25e7533747a8a114dba07eb75b877768e456c5cd data/casting/advancement/recipes/melting/melting/dark_steel/shard.json
 956d627809c9987a170746d71d152ff746a7b285 data/casting/advancement/recipes/melting/melting/dark_steel/wire.json
+ce1d70759a037526b78840feb3bc5986cdcbc8ff data/casting/advancement/recipes/melting/melting/debris/ancient_debris.json
 1a8f1140b05e2d5a6f900b9a606b5c2a4aa06773 data/casting/advancement/recipes/melting/melting/debris/block.json
 6f25a39506cefd994d4178ab8bafc0bcb1bd20ae data/casting/advancement/recipes/melting/melting/debris/dust.json
 9b10d08e512709ca0926cee1ba853c7ae84b9d4a data/casting/advancement/recipes/melting/melting/debris/gear.json
@@ -1335,6 +1336,7 @@ a5153d541dff6186b022b25b09848ba8fa793651 data/casting/recipe/melting/dark_steel/
 9e566f5d898e52fb5c60871b1d367b8b511975ae data/casting/recipe/melting/dark_steel/rod.json
 db5112841a62cf5f4abc6ef87bad539dc97bbcfe data/casting/recipe/melting/dark_steel/shard.json
 1cd72cacfe74687761d4f9d5f50f755c0824000a data/casting/recipe/melting/dark_steel/wire.json
+0ef585082d104d04c77a4bcc42c2bb7fc564e5b8 data/casting/recipe/melting/debris/ancient_debris.json
 036b6c78fcca466d6998c9135bda7b392d3fe3c2 data/casting/recipe/melting/debris/block.json
 8d76df3a265f71595ae816d4d6000a41b4ae64a9 data/casting/recipe/melting/debris/dust.json
 55a7ab02cd75469827fb4a1cdbc0611c21cde912 data/casting/recipe/melting/debris/gear.json

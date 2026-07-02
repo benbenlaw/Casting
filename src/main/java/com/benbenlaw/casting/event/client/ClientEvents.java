@@ -101,12 +101,10 @@ public class ClientEvents {
                     ? (int) fluidListComponent.fluids().stream().filter(f -> !f.isEmpty()).count()
                     : 0;
 
-            // selectable range: 0..storedCount-1 are real fluids, storedCount itself is "new empty slot"
-            // (only offered if there's still room to add one)
             int maxIndex = storedCount < FluidMoverItem.MAX_FLUID_TYPES ? storedCount : storedCount - 1;
 
             int selected = stack.getOrDefault(CastingDataComponents.FLUID_MANAGER_SELECTED_FLUID.get(), 0);
-            selected = Math.min(selected, maxIndex); // clamp in case the list shrank since last selection
+            selected = Math.min(selected, maxIndex);
 
             boolean changed = false;
             if (event.getScrollDeltaY() > 0) {

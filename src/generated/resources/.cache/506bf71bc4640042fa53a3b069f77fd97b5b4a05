@@ -1,4 +1,4 @@
-// 26.1.2	2026-06-22T16:16:39.1605914	casting Recipes
+// 26.1.2	2026-07-02T11:55:39.1267958	casting Recipes
 550234ae914bc91a457f44d4b664b9021868fbcb data/casting/advancement/recipes/misc/controller.json
 36a28d0ef5f87a394c872d3c095247aad5bc598f data/casting/advancement/recipes/misc/crafting/black_bricks.json
 348be5fe5a0a9dbecaf340a4caa26afff421b94b data/casting/advancement/recipes/misc/crafting/black_brick_glass.json
@@ -22,6 +22,16 @@ e4c1878e226a879ad4b562624ebc3251d1921db6 data/casting/advancement/recipes/misc/m
 96c040d6b6013d4a276304f66e782e182ccfcfd1 data/casting/advancement/recipes/misc/molds/plate_mold_from_wooden_pressure_plates.json
 41d59d3979e6fe2e7b1956ffc7717bf9504bcee8 data/casting/advancement/recipes/misc/molds/rod_mold_from_rods.json
 b9dd1f08dd1cce85688645d4539b905c00332eb5 data/casting/advancement/recipes/misc/molds/shard_mold_from_shards.json
+f56a5b11963f7069fd8437ef80a617de0f4bd822 data/casting/advancement/recipes/misc/molds/stonecutter/ball_mold.json
+8e849b9114bfc41f498d8ab0672138ef6b197813 data/casting/advancement/recipes/misc/molds/stonecutter/block_mold.json
+b3762afac0cc7a5b1ac4cbd2dd0cdd62c063f0e3 data/casting/advancement/recipes/misc/molds/stonecutter/gear_mold.json
+b7d92ed5a19d3479be1857fcb4c9ea5af02ca9b5 data/casting/advancement/recipes/misc/molds/stonecutter/gem_mold.json
+cc6fcf540a2993a33de6830fd6221c72062d7e52 data/casting/advancement/recipes/misc/molds/stonecutter/ingot_mold.json
+83306b1bb08045d1c57156dc8e053fa13dcd43e6 data/casting/advancement/recipes/misc/molds/stonecutter/nugget_mold.json
+e1503b98e796fcbe49fe59bdfce04a40367897e6 data/casting/advancement/recipes/misc/molds/stonecutter/plate_mold.json
+999bc267aceebc40f45c2e3cb6a15ee1eaca67f1 data/casting/advancement/recipes/misc/molds/stonecutter/rod_mold.json
+8d9e2329ea4ee7843e7232ff33535ca36543eb45 data/casting/advancement/recipes/misc/molds/stonecutter/shard_mold.json
+527dde6180732b8ee32c66e619f9456621262c28 data/casting/advancement/recipes/misc/molds/stonecutter/wire_mold.json
 f6f85f8f30d191493dfd6d714614f09ba7d13c9f data/casting/advancement/recipes/misc/molds/wire_mold_from_wires.json
 92e92cb8ba70fb61ad21dc246995a178a458f0e0 data/casting/advancement/recipes/misc/smelting/black_bricks_from_clay_block.json
 40fff070759285abf833b99b090ad7124d7f4c47 data/casting/advancement/recipes/misc/smelting/black_brick_from_clay.json
@@ -50,6 +60,16 @@ aeb3f6c6df3de30ab19a11cb42d1080d8736591f data/casting/recipe/molds/ingot_mold_fr
 3ad9542850d9c7427de34cf24e70199ada530b13 data/casting/recipe/molds/plate_mold_from_wooden_pressure_plates.json
 83aca60c54ba55177c05ae43315c482c02719027 data/casting/recipe/molds/rod_mold_from_rods.json
 1814561ad17436cb072c968786e59e7c4dcee3c7 data/casting/recipe/molds/shard_mold_from_shards.json
+bbceb5577a0ff818807d4a7b7648b2e19bb904c7 data/casting/recipe/molds/stonecutter/ball_mold.json
+a3c905578cdcecf7e8cb514776934219a81b789f data/casting/recipe/molds/stonecutter/block_mold.json
+9fa1d6f88814376c2a6fce163300d9263068c455 data/casting/recipe/molds/stonecutter/gear_mold.json
+c5a8ded98d215242d4ed20ef8c818f94235a6552 data/casting/recipe/molds/stonecutter/gem_mold.json
+524c0eb288f7aec1e0d891b45871566caf676efe data/casting/recipe/molds/stonecutter/ingot_mold.json
+357b41613467bdaf13aca807a5d76e71f73d5a25 data/casting/recipe/molds/stonecutter/nugget_mold.json
+b62756838ca54d5bcd683cb1508cbffd8535da3a data/casting/recipe/molds/stonecutter/plate_mold.json
+f2da6ff24b0141ea8644c54bb1a6b6b952f27d7f data/casting/recipe/molds/stonecutter/rod_mold.json
+5fe9def53ce5e499dfccf7951d8ebb7d85c4feb8 data/casting/recipe/molds/stonecutter/shard_mold.json
+5ec0a9cc2ba782bd560c4b16eed0660713730a52 data/casting/recipe/molds/stonecutter/wire_mold.json
 aac4cf97558ff9f4520e929e3cb3a993380a6436 data/casting/recipe/molds/wire_mold_from_wires.json
 8aae7194a8072e5b58d892cac94d870589d60088 data/casting/recipe/smelting/black_bricks_from_clay_block.json
 ef1a57303cf69c3b329cfdc203d9387456adfa9c data/casting/recipe/smelting/black_brick_from_clay.json
