@@ -20,14 +20,14 @@ public class CastingFluids {
                 BaseFlowingFluid.Source, BaseFlowingFluid.Flowing, LiquidBlock, BucketItem>> FLUIDS_MAP = new HashMap<>();
 
     static {
-
         for (FluidData data : FluidData.FLUID_DEFINITIONS) {
 
             var fluid = FLUIDS.register(data.name(), (renderProperties) ->
                     renderProperties.texture(
-                            Core.identifier(data.stillTexture()),
-                            Core.identifier(data.flowTexture())
-                    ).tint(data.tint())
+                                    Core.identifier(data.stillTexture()),
+                                    Core.identifier(data.flowTexture())
+                            ).tint(data.tint())
+                            .temperature(data.fluidProduceType().temp())
             );
 
             FLUIDS_MAP.put(data.name(), fluid);
