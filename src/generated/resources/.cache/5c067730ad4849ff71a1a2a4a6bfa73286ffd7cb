@@ -1,4 +1,4 @@
-// 26.1.2	2026-07-02T11:49:56.4063973	casting Processing Recipes
+// 26.1.2	2026-07-13T12:23:58.8230417	casting Processing Recipes
 6cf7daa5e446d262d0b513ba376716ae43524819 data/casting/advancement/recipes/fuel/fuel/blaze.json
 519547486eb3fbbb51b3460ed5c7a9695e33e52f data/casting/advancement/recipes/fuel/fuel/chilled_water.json
 3bac6b66e74a81f8f22540209612ceca3658333e data/casting/advancement/recipes/fuel/fuel/coal.json
@@ -799,6 +799,7 @@ d4e4ea570aa6f75a7e95e0b3f2e5e52ec44b3d4d data/casting/advancement/recipes/solidi
 1124d8e1d46f5d20b10904f813e5b59fbfc63a0f data/casting/advancement/recipes/solidifier/solidifier/diamond/rod.json
 cf1df358b6d28a1c433edd15424b963a070f20e0 data/casting/advancement/recipes/solidifier/solidifier/diamond/shard.json
 e8b227408eb0e6145c2ad2a463d6821772a4a3a8 data/casting/advancement/recipes/solidifier/solidifier/diamond/wire.json
+52a23c8a1d8bf7ac11077d823f045b3940f40430 data/casting/advancement/recipes/solidifier/solidifier/dirt/mud.json
 fcd626b9362a559397e1b2bdd03ebdee1a193f20 data/casting/advancement/recipes/solidifier/solidifier/electrum/block.json
 d38f0c0401eaa0fdf2231b45f41a4fae820267be data/casting/advancement/recipes/solidifier/solidifier/electrum/dust.json
 a15e08df5caba64a52c8b53ae1ff734a51e0a5bd data/casting/advancement/recipes/solidifier/solidifier/electrum/gear.json
@@ -1984,6 +1985,7 @@ eace85ca26ccffd30d83e58d072cc33884996509 data/casting/recipe/solidifier/diamond/
 714cab1b0a8e2255fea06865cbbb2eba64b94ac1 data/casting/recipe/solidifier/diamond/rod.json
 b06ab417669144fceb3cdfc0abb609edb868d819 data/casting/recipe/solidifier/diamond/shard.json
 ad7de530465a856dfc37ef2afb00a0b63e4d46ce data/casting/recipe/solidifier/diamond/wire.json
+4871abb5faa669f21ce8ce97339c64a667e8e1b5 data/casting/recipe/solidifier/dirt/mud.json
 3487526fb38235315771a8580df631db70c57827 data/casting/recipe/solidifier/electrum/block.json
 59af572e294f0ff76ae489fbe96e810c02ba02c4 data/casting/recipe/solidifier/electrum/dust.json
 673c118aa85d64848d0220c14f9c227d64bcee96 data/casting/recipe/solidifier/electrum/gear.json

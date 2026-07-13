@@ -80,6 +80,10 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
 
         createCommonRecipes();
 
+        //Mud
+        simpleSolidifierRecipe(Items.MUD, new SizedFluidIngredient(FluidIngredient.of(Fluids.WATER), 250),
+                Items.DIRT, "dirt/mud", ResourceType.STORAGE_BLOCKS, 600);
+
         //Coal
         simpleSolidifierRecipe(Items.COAL, getFluidIngredient("molten_coal", 80),
                 CastingItems.GEM_MOLD, "coal/coal", ResourceType.GEMS, getTempFromFluid("molten_coal"));
