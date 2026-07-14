@@ -92,7 +92,6 @@ public class CastingModelProvider extends ModelProvider {
        //blockModels.createTrivialCube(CastingBlocks.TANK.get());
        //createTankItemModel(itemModels, CastingBlocks.TANK.get());
 
-
         blockModels.blockStateOutput.accept(
                 createSimpleBlock(
                         CastingBlocks.TANK.get(),
