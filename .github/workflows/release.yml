@@ -134,32 +134,79 @@ jobs:
     env:
       CURSEFORGE_TOKEN: ${{ secrets.TOKEN_CURSEFORGE }}
     steps:
-      - name: Skip if no CurseForge token
+      - name: Validate CurseForge config
+        id: curseforge_config
         shell: bash
         run: |
           if [[ -z "$CURSEFORGE_TOKEN" ]]; then
             echo "No CurseForge token configured. Skipping."
-            exit 0
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Download artifact
+        if: steps.curseforge_config.outputs.enabled == 'true'
         uses: actions/download-artifact@v4
         with:
           name: release-build
           path: build/libs
 
       - name: Publish to CurseForge
-        uses: Kira-NT/mc-publish@v3.3.0
-        with:
-          name: ${{ needs.build.outputs.mod_name }} - ${{ needs.build.outputs.release_tag }}
-          version: ${{ needs.build.outputs.release_tag }}
-          files: build/libs/*.jar
-          changelog: ${{ needs.build.outputs.changelog }}
-          loaders: ${{ needs.build.outputs.loader }}
-          game-versions: ${{ needs.build.outputs.minecraft_version_range }}
-          java: 25
-          curseforge-id: ${{ needs.build.outputs.curseforge_id }}
-          curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
+        if: steps.curseforge_config.outputs.enabled == 'true'
+        shell: bash
+        env:
+          PROJECT_ID: ${{ needs.build.outputs.curseforge_id }}
+          DISPLAY_NAME: ${{ needs.build.outputs.mod_name }} - ${{ needs.build.outputs.release_tag }}
+          MINECRAFT_VERSION: ${{ needs.build.outputs.minecraft_version }}
+          LOADER: ${{ needs.build.outputs.loader }}
+          JAVA_VERSION: ${{ needs.build.outputs.java_version }}
+          CHANGELOG: ${{ needs.build.outputs.changelog }}
+        run: |
+          set -euo pipefail
+
+          versions="$(curl -fsSL -H "X-Api-Token: $CURSEFORGE_TOKEN" \
+            https://minecraft.curseforge.com/api/game/versions)"
+
+          mc_id="$(jq -r --arg v "$MINECRAFT_VERSION" 'map(select(.name==$v))|.[0].id // empty' <<<"$versions")"
+          loader_id="$(jq -r --arg v "$LOADER" 'map(select((.name|ascii_downcase)==($v|ascii_downcase)))|.[0].id // empty' <<<"$versions")"
+          client_id="$(jq -r 'map(select(.name=="Client"))|.[0].id // empty' <<<"$versions")"
+          server_id="$(jq -r 'map(select(.name=="Server"))|.[0].id // empty' <<<"$versions")"
+          java_id="$(jq -r --arg v "Java $JAVA_VERSION" 'map(select(.name==$v))|.[0].id // empty' <<<"$versions")"
+
+          if [[ -z "$mc_id" ]]; then echo "No CurseForge game version for Minecraft $MINECRAFT_VERSION"; exit 1; fi
+          if [[ -z "$loader_id" ]]; then echo "No CurseForge loader id for $LOADER"; exit 1; fi
+          if [[ -z "$client_id" || -z "$server_id" ]]; then echo "Missing Client/Server environment ids"; exit 1; fi
+
+          ids=("$mc_id" "$loader_id" "$client_id" "$server_id")
+          if [[ -n "$java_id" ]]; then ids+=("$java_id"); fi
+
+          game_versions="$(printf '%s\n' "${ids[@]}" | jq -R 'tonumber' | jq -sc '.')"
+
+          metadata="$(jq -nc \
+            --arg changelog "$CHANGELOG" \
+            --arg changelog_type "markdown" \
+            --arg name "$DISPLAY_NAME" \
+            --argjson gv "$game_versions" \
+            '{changelog:$changelog, changelogType:$changelog_type, displayName:$name, gameVersions:$gv, releaseType:"release"}')"
+
+          jar="$(find build/libs -maxdepth 1 -name '*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar' | head -n1)"
+          if [[ -z "$jar" ]]; then echo "No jar found in build/libs"; exit 1; fi
+
+          body_file="$(mktemp)"
+          http_code="$(curl -sS -o "$body_file" -w '%{http_code}' \
+            -H "X-Api-Token: $CURSEFORGE_TOKEN" \
+            -F "metadata=$metadata" \
+            -F "file=@${jar}" \
+            "https://minecraft.curseforge.com/api/projects/${PROJECT_ID}/upload-file")"
+
+          if [[ "$http_code" != "200" ]]; then
+            echo "CurseForge upload failed (HTTP $http_code):"
+            cat "$body_file"
+            exit 1
+          fi
+
+          echo "Uploaded file ID: $(jq -r '.id' <"$body_file")"
 
   publish-modrinth:
     name: Publish to Modrinth

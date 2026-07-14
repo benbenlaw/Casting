@@ -88,8 +88,20 @@ public class CastingModelProvider extends ModelProvider {
 
         blockModels.createTrivialCube(CastingBlocks.BLACK_BRICKS.get());
         blockModels.createTrivialCube(CastingBlocks.BLACK_BRICK_GLASS.get());
-        blockModels.createTrivialCube(CastingBlocks.TANK.get());
+
+       //blockModels.createTrivialCube(CastingBlocks.TANK.get());
+       //createTankItemModel(itemModels, CastingBlocks.TANK.get());
+
+
+        blockModels.blockStateOutput.accept(
+                createSimpleBlock(
+                        CastingBlocks.TANK.get(),
+                        plainVariant(ModelLocationUtils.getModelLocation(CastingBlocks.TANK.get()))
+                )
+        );
+
         createTankItemModel(itemModels, CastingBlocks.TANK.get());
+
 
         //Fluids?
         for (var entry : FLUIDS_MAP.entrySet()) {
