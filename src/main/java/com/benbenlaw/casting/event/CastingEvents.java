@@ -10,6 +10,7 @@ import com.benbenlaw.casting.recipe.custom.MixingRecipe;
 import com.benbenlaw.casting.recipe.custom.SolidifierRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeMap;

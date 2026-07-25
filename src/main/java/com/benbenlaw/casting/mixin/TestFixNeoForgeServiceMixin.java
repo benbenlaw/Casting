@@ -26,6 +26,7 @@ public class TestFixNeoForgeServiceMixin {
     /**
      * @author  benbenlaw
      * @reason  temp fix fluid extraction bug with Classic Pipes
+     * @implNote  this is no longer loaded by default as now fixed in Classic Pipes
      */
     @Overwrite
     public boolean handleFluidExtraction(FluidPipeEntity pipe, BlockState pipeState, ServerLevel level,

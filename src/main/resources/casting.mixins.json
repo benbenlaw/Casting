@@ -3,7 +3,6 @@
   "package": "com.benbenlaw.casting.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "TestFixNeoForgeServiceMixin"
   ],
   "client": [
   ],
