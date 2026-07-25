@@ -2,23 +2,14 @@ package com.benbenlaw.casting.screen;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.entity.ControllerBlockEntity;
-import com.benbenlaw.core.Core;
-import com.benbenlaw.core.screen.util.DurationTooltip;
 import com.benbenlaw.core.screen.util.FluidRenderingUtils;
-import com.benbenlaw.core.util.MouseUtil;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
-import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
-import java.util.List;
 import java.util.Objects;
 
 public class ControllerScreen extends AbstractContainerScreen<ControllerMenu> {

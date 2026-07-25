@@ -6,14 +6,9 @@ import com.benbenlaw.casting.block.entity.MixerBlockEntity;
 import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
 import com.benbenlaw.casting.block.entity.TankBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
 public class CastingBlockEntities {

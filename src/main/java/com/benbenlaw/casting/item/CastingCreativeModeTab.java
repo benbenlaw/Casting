@@ -1,7 +1,6 @@
 package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.block.CastingBlocks;
 import com.benbenlaw.casting.fluid.CastingFluids;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;

@@ -2,7 +2,6 @@ package com.benbenlaw.casting.network.packet;
 
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
 import com.benbenlaw.casting.screen.SolidifierMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;

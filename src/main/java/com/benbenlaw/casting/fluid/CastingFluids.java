@@ -4,7 +4,6 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.core.Core;
 import com.benbenlaw.core.fluid.FluidDeferredRegister;
 import com.benbenlaw.core.fluid.FluidRegistryObject;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;

@@ -9,9 +9,6 @@ import com.benbenlaw.casting.recipe.custom.MeltingRecipe;
 import com.benbenlaw.casting.recipe.custom.MixingRecipe;
 import com.benbenlaw.casting.recipe.custom.SolidifierRecipe;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.monster.piglin.PiglinAi;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -104,5 +101,32 @@ public class CastingEvents {
                 (blockEntity, side) -> blockEntity.getFluidHandler());
 
     }
+
+    /*
+    @SubscribeEvent
+    public static void onRightClickOnFluidHandler(PlayerInteractEvent.RightClickBlock event) {
+
+        if (event.getItemStack().getItem() instanceof FluidMoverItem) {
+            Level level = event.getLevel();
+            BlockPos pos = event.getPos();
+            Direction face = event.getFace();
+
+            ResourceHandler<FluidResource> handler = level.getCapability(Capabilities.Fluid.BLOCK, pos, face);
+
+            if (handler != null) {
+                boolean handled = FluidMoverItem.onBlockInteract(
+                        event.getItemStack(), handler,
+
+                 inputTanks  ???
+            );
+
+                if (handled) {
+                    event.setCanceled(true);
+                    event.setCancellationResult(InteractionResult.SUCCESS);
+                }
+            }
+        }
+    }
+    */
 
 }

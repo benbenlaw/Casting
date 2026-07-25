@@ -1,6 +1,5 @@
 package com.benbenlaw.casting.item.util;
 
-import com.benbenlaw.core.block.entity.handler.fluid.OutputFluidHandler;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;

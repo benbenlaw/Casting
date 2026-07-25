@@ -1,7 +1,10 @@
 package com.benbenlaw.casting.recipe;
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.recipe.custom.*;
+import com.benbenlaw.casting.recipe.custom.FuelRecipe;
+import com.benbenlaw.casting.recipe.custom.MeltingRecipe;
+import com.benbenlaw.casting.recipe.custom.MixingRecipe;
+import com.benbenlaw.casting.recipe.custom.SolidifierRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;

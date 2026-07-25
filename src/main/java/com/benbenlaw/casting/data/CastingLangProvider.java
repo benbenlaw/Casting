@@ -1,11 +1,8 @@
 package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.Casting;
-import com.benbenlaw.casting.item.ExperienceBallItem;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.data.LanguageProvider;
-import net.neoforged.neoforge.registries.DeferredItem;
 
 import static com.benbenlaw.casting.fluid.CastingFluids.FLUIDS_MAP;
 

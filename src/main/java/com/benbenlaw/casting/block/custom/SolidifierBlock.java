@@ -2,7 +2,6 @@ package com.benbenlaw.casting.block.custom;
 
 import com.benbenlaw.casting.block.CastingBlockEntities;
 import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
-import com.benbenlaw.core.block.SyncableBlock;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;

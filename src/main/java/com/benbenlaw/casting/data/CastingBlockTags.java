@@ -2,7 +2,6 @@ package com.benbenlaw.casting.data;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.CastingBlocks;
-import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -10,7 +9,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import org.jetbrains.annotations.NotNull;
 

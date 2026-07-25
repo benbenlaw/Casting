@@ -1,7 +1,5 @@
 package com.benbenlaw.casting.fluid;
 
-import com.benbenlaw.core.tag.ResourceType;
-
 import java.util.ArrayList;
 import java.util.List;
 

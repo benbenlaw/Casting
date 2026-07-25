@@ -5,7 +5,6 @@ import com.benbenlaw.core.block.entity.handler.fluid.SyncableFluidHandler;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
@@ -120,18 +119,15 @@ public class FluidMoverItem extends Item {
         });
     }
 
-    private static boolean tryDeposit(ItemStack moverStack, SyncableFluidHandler handler, int tankSlot,
-                                      int storedSlot, FluidStack stored) {
-        return handler.runInternal(() -> {
-            try (Transaction tx = Transaction.open(null)) {
-                int inserted = handler.insert(tankSlot, FluidResource.of(stored), stored.getAmount(), tx);
-                if (inserted <= 0) return false;
+    private static boolean tryDeposit(ItemStack moverStack, SyncableFluidHandler handler, int tankSlot, int storedSlot, FluidStack stored) {
+        try (Transaction tx = Transaction.open(null)) {
+            int inserted = handler.insert(tankSlot, FluidResource.of(stored), stored.getAmount(), tx);
+            if (inserted <= 0) return false;
 
-                tx.commit();
-                int remaining = stored.getAmount() - inserted;
-                setStoredFluid(moverStack, storedSlot, remaining <= 0 ? FluidStack.EMPTY : stored.copyWithAmount(remaining));
-                return true;
-            }
-        });
+            tx.commit();
+            int remaining = stored.getAmount() - inserted;
+            setStoredFluid(moverStack, storedSlot, remaining <= 0 ? FluidStack.EMPTY : stored.copyWithAmount(remaining));
+            return true;
+        }
     }
 }
