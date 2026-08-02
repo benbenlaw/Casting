@@ -52,7 +52,15 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
                 return false;
             }
 
-            return resource.isEmpty() || index > 3 || !isFluidInAnotherSlot(index, resource);
+            if (resource.isEmpty() || index > 3) {
+                return true;
+            }
+
+            if (isFluidInAnotherSlot(index, resource)) {
+                return false;
+            }
+
+            return filterFluidHandler.matchesFluid(resource, true, false);
         }
 
         private boolean isFluidInAnotherSlot(int index, FluidResource resource) {
@@ -241,7 +249,7 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
         ItemStack stack = player.getItemInHand(hand);
 
         if (stack.getItem() instanceof FluidMoverItem) {
-            return FluidMoverItem.onBlockInteract(stack, fluidInventory, new int[]{4}, new int[]{0, 1, 2, 3});
+            return FluidMoverItem.onBlockInteract(stack, fluidInventory, filterFluidHandler, new int[]{4}, new int[]{0, 1, 2, 3});
         }
 
         try (Transaction tx = Transaction.open(null)) {
@@ -334,5 +342,10 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
     @Override
     public int[] sendingTanks() {
         return new int[] {4};
+    }
+
+    @Override
+    public FilterFluidHandler getFilter() {
+        return filterFluidHandler;
     }
 }

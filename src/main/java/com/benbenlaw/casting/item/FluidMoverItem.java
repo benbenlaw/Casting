@@ -1,6 +1,7 @@
 package com.benbenlaw.casting.item;
 
 import com.benbenlaw.casting.item.util.FluidListComponent;
+import com.benbenlaw.core.block.entity.handler.fluid.FilterFluidHandler;
 import com.benbenlaw.core.block.entity.handler.fluid.SyncableFluidHandler;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -70,6 +71,51 @@ public class FluidMoverItem extends Item {
         }
 
         return false;
+    }
+
+    public static boolean onBlockInteract(ItemStack moverStack, SyncableFluidHandler handler, FilterFluidHandler filter,
+                                          int[] outputTanks, int[] inputTanks) {
+        int selected = moverStack.getOrDefault(CastingDataComponents.FLUID_MANAGER_SELECTED_FLUID.get(), 0);
+        FluidStack stored = getStoredFluid(moverStack, selected);
+
+        for (int tank : outputTanks) {
+            if (tryCollectFromTank(moverStack, handler, tank, selected, stored)) return true;
+        }
+        for (int tank : inputTanks) {
+            if (tryCollectFromTank(moverStack, handler, tank, selected, stored)) return true;
+        }
+
+        if (!stored.isEmpty()) {
+            int[] orderedTanks = prioritizeMatchingFilteredTank(filter, inputTanks, stored);
+            for (int tank : orderedTanks) {
+                if (!isAllowedAtTank(filter, tank, stored)) continue;
+                if (tryDeposit(moverStack, handler, tank, selected, stored)) return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean isAllowedAtTank(FilterFluidHandler filter, int tank, FluidStack stack) {
+        FluidStack filterStack = filter.getFilter(tank);
+        if (filterStack.isEmpty()) return true;
+        return filter.matchesFluid(FluidResource.of(stack), filterStack);
+    }
+
+    private static int[] prioritizeMatchingFilteredTank(FilterFluidHandler filter, int[] inputTanks, FluidStack stored) {
+        for (int tank : inputTanks) {
+            FluidStack filterStack = filter.getFilter(tank);
+            if (!filterStack.isEmpty() && filter.matchesFluid(FluidResource.of(stored), filterStack)) {
+                int[] reordered = new int[inputTanks.length];
+                reordered[0] = tank;
+                int idx = 1;
+                for (int t : inputTanks) {
+                    if (t != tank) reordered[idx++] = t;
+                }
+                return reordered;
+            }
+        }
+        return inputTanks;
     }
 
     private static boolean tryCollectFromTank(ItemStack moverStack, SyncableFluidHandler handler,

@@ -2,6 +2,7 @@ package com.benbenlaw.casting.event;
 
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.block.CastingBlockEntities;
+import com.benbenlaw.casting.block.entity.FilteredFluidCapabilityHandler;
 import com.benbenlaw.casting.event.client.ClientRecipeCache;
 import com.benbenlaw.casting.recipe.CastingRecipeTypes;
 import com.benbenlaw.casting.recipe.custom.FuelRecipe;
@@ -90,43 +91,19 @@ public class CastingEvents {
                 (blockEntity, side) -> blockEntity.getItemHandler());
 
         event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.SOLIDIFIER_BLOCK_ENTITY.get(),
-                (blockEntity, side) -> blockEntity.getFluidHandler());
+                (blockEntity, side) -> new FilteredFluidCapabilityHandler(
+                        blockEntity.getFluidHandler(), blockEntity.getFilterFluidHandler(), new int[]{0}
+                ));
 
         //Mixer
         event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.MIXER_BLOCK_ENTITY.get(),
-                (blockEntity, side) -> blockEntity.getFluidHandler());
+                (blockEntity, side) -> new FilteredFluidCapabilityHandler(
+                        blockEntity.getFluidHandler(), blockEntity.getFilterFluidHandler(), new int[]{0, 1, 2, 3}
+                ));
 
         //Tank
         event.registerBlockEntity(Capabilities.Fluid.BLOCK, CastingBlockEntities.TANK_BLOCK_ENTITY.get(),
                 (blockEntity, side) -> blockEntity.getFluidHandler());
 
     }
-
-    /*
-    @SubscribeEvent
-    public static void onRightClickOnFluidHandler(PlayerInteractEvent.RightClickBlock event) {
-
-        if (event.getItemStack().getItem() instanceof FluidMoverItem) {
-            Level level = event.getLevel();
-            BlockPos pos = event.getPos();
-            Direction face = event.getFace();
-
-            ResourceHandler<FluidResource> handler = level.getCapability(Capabilities.Fluid.BLOCK, pos, face);
-
-            if (handler != null) {
-                boolean handled = FluidMoverItem.onBlockInteract(
-                        event.getItemStack(), handler,
-
-                 inputTanks  ???
-            );
-
-                if (handled) {
-                    event.setCanceled(true);
-                    event.setCancellationResult(InteractionResult.SUCCESS);
-                }
-            }
-        }
-    }
-    */
-
 }
