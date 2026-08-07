@@ -28,6 +28,7 @@ public interface FluidSending {
             if (neighbourBlockEntity instanceof FluidAccepting accepting) {
                 var neighborInput = accepting.receivingHandler();
                 var neighborFilter = accepting.getFilter();
+                int[] acceptingTanks = accepting.acceptingTanks();
 
                 if (neighborInput == null) continue;
 
@@ -40,7 +41,7 @@ public interface FluidSending {
                         long totalMoved = 0;
 
                         try (Transaction tx = Transaction.open(null)) {
-                            for (int j = 0; j < neighborInput.size(); j++) {
+                            for (int j : acceptingTanks) {
 
                                 if (neighborFilter != null) {
                                     FluidStack filterStack = FluidUtil.getStack(neighborFilter, j);
