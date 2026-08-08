@@ -519,8 +519,9 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
 
     @Override
     public int[] acceptingTanks() {
-        return new int[0];
+        return new int[]{0};
     }
+
 
     @Override
     public FilterFluidHandler getFilter() {
