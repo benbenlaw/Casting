@@ -100,7 +100,6 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
 
         boolean isRunning = level.getBlockState(worldPosition).getValue(SolidifierBlock.RUNNING);
 
-
         TankBlockEntity activeFuelTank = getActiveFuelTank(level, worldPosition);
         if (level.getGameTime() % 20 == 0) {
             if (activeFuelTank != null) {
@@ -154,7 +153,7 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
                 double finalModifier = getFinalModifier(recipe, activeFuelTank, currentTemp);
 
                 maxProgress = (int) (baseMaxProgress * finalModifier);
-                if (maxProgress < 10) maxProgress = 10;
+                if (maxProgress < 5) maxProgress = 5;
 
                 progress++;
                 changed = true;
@@ -241,14 +240,13 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         for (var dir : Direction.values()) {
             BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(dir));
             if (neighbor instanceof TankBlockEntity tank) {
-                if (!tank.getFluidHandler().getResource(0).isEmpty()) {
+                if (!tank.getFluidHandler().getResource(0).isEmpty() && tank.getFuelTemp().isPresent()) {
                     return tank;
                 }
             }
         }
         return null;
     }
-
     private void executeSolidifying(SolidifierRecipe recipe) {
 
         try (Transaction tx = Transaction.openRoot()) {

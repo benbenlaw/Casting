@@ -1,7 +1,7 @@
 {
   "type": "casting:fuel",
   "fluid": {
-    "amount": 15,
+    "amount": 35,
     "ingredient": "casting:iced_water"
   },
   "temp": 200

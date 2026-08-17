@@ -1,0 +1,17 @@
+{
+  "type": "casting:mixing",
+  "inputs": [
+    {
+      "amount": 1000,
+      "ingredient": "minecraft:lava"
+    },
+    {
+      "amount": 360,
+      "ingredient": "casting:molten_blaze"
+    }
+  ],
+  "output": {
+    "amount": 1000,
+    "id": "casting:blazing_lava"
+  }
+}

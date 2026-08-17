@@ -1,0 +1,8 @@
+{
+  "type": "casting:fuel",
+  "fluid": {
+    "amount": 10,
+    "ingredient": "casting:scorchium"
+  },
+  "temp": 2000
+}

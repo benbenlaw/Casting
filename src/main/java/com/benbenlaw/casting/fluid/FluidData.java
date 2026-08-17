@@ -10,17 +10,17 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
     static {
         List<FluidData> fluidList = new ArrayList<>();
 
-        // --- Refined Storage ---
+        // Refined Storage
         fluidList.add(new FluidData("molten_quartz_enriched_iron", "block/molten_still", "block/molten_flow", 0xFF9d9c9a,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
         fluidList.add(new FluidData("molten_quartz_enriched_copper", "block/molten_still", "block/molten_flow", 0xFFEB8669,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
 
-        // --- Actually Additions ---
+        // Actually Additions
         fluidList.add(new FluidData("molten_black_quartz", "block/molten_still", "block/molten_flow", 0xFF586e75,
                 new FluidProcessingData(1000, 250, ProcessingType.GEMS4)));
 
-        // --- AE2 ---
+        // AE2
         fluidList.add(new FluidData("molten_certus_quartz", "block/molten_still", "block/molten_flow", 0xFFaae6fc,
                 new FluidProcessingData(1000, 250, ProcessingType.GEMS4)));
         fluidList.add(new FluidData("molten_charged_certus_quartz", "block/molten_still", "block/molten_flow", 0xFFd7fcfc,
@@ -28,7 +28,7 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
         fluidList.add(new FluidData("molten_fluix", "block/molten_still", "block/molten_flow", 0xFF262a53,
                 new FluidProcessingData(1000, 250, ProcessingType.GEMS4)));
 
-        // --- AllTheModium ---
+        // AllTheModium
         fluidList.add(new FluidData("molten_allthemodium", "block/molten_still", "block/molten_flow", 0xFFFFDE26,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
         fluidList.add(new FluidData("molten_vibranium", "block/molten_still", "block/molten_flow", 0xFF00FC15,
@@ -36,7 +36,7 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
         fluidList.add(new FluidData("molten_unobtainium", "block/molten_still", "block/molten_flow", 0xFFEFB3DF,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
 
-        // --- Vanilla ---
+        // Vanilla
         fluidList.add(new FluidData("molten_iron", "block/molten_still", "block/molten_flow", 0xFFd5d5d5,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
         fluidList.add(new FluidData("molten_gold", "block/molten_still", "block/molten_flow", 0xFFfaf25e,
@@ -82,21 +82,29 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
         fluidList.add(new FluidData("molten_blaze", "block/molten_still", "block/molten_flow", 0xFFf5a100,
                 new FluidProcessingData(1400, 250, ProcessingType.CUSTOM)));
 
-        // --- Coolants ---
+        // Casting - Coolants
         fluidList.add(new FluidData("chilled_water", "block/thin_still", "block/thin_flow", 0xFF345baa,
                 new FluidProcessingData(400, 0, ProcessingType.CUSTOM)));
         fluidList.add(new FluidData("iced_water", "block/thin_still", "block/thin_flow", 0xFF5e77a3,
                 new FluidProcessingData(200, 0, ProcessingType.CUSTOM)));
         fluidList.add(new FluidData("super_coolant", "block/thin_still", "block/thin_flow", 0xFF70c1cf,
                 new FluidProcessingData(0, 0, ProcessingType.CUSTOM)));
+        fluidList.add(new FluidData("glacium", "block/molten_still", "block/molten_flow", 0xFF19f3ff,
+                new FluidProcessingData(-1000, 10, ProcessingType.CUSTOM)));
 
-        // --- Casting Mod Specific ---
+        // Casting - Fuels
+        fluidList.add(new FluidData("blazing_lava", "block/molten_still", "block/molten_flow", 0xFFff8a42,
+                new FluidProcessingData(1600, 50, ProcessingType.CUSTOM)));
+        fluidList.add(new FluidData("scorchium", "block/molten_still", "block/molten_flow", 0xFF7c000a,
+                new FluidProcessingData(2000, 10, ProcessingType.CUSTOM)));
+
+        // Casting - Fluids
         fluidList.add(new FluidData("molten_black_brick", "block/molten_still", "block/molten_flow", 0xFF646565,
                 new FluidProcessingData(1000, 250, ProcessingType.CUSTOM)));
         fluidList.add(new FluidData("molten_experience", "block/molten_still", "block/molten_flow", 0xFF7cee4b,
                 new FluidProcessingData(1000, 0, ProcessingType.CUSTOM)));
 
-        // --- Common Modded Metals/Gems ---
+        // Common Modded Metals/Gems
         fluidList.add(new FluidData("molten_ruby", "block/molten_still", "block/molten_flow", 0xFFf57fa8,
                 new FluidProcessingData(1000, 90, ProcessingType.GEMS9)));
         fluidList.add(new FluidData("molten_sapphire", "block/molten_still", "block/molten_flow", 0xFF439ef9,
@@ -137,7 +145,7 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
         fluidList.add(new FluidData("molten_tungsten", "block/molten_still", "block/molten_flow", 0xFF3D334F,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
 
-        // --- Alloys ---
+        //  Alloys 
         fluidList.add(new FluidData("molten_bronze", "block/molten_still", "block/molten_flow", 0xFF97602b,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
         fluidList.add(new FluidData("molten_electrum", "block/molten_still", "block/molten_flow", 0xFFf2ee7e,

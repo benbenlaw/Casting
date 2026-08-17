@@ -1,0 +1,8 @@
+{
+  "type": "casting:fuel",
+  "fluid": {
+    "amount": 10,
+    "ingredient": "casting:glacium"
+  },
+  "temp": -1000
+}

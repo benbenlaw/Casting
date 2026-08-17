@@ -1,0 +1,8 @@
+{
+  "type": "casting:fuel",
+  "fluid": {
+    "amount": 50,
+    "ingredient": "casting:blazing_lava"
+  },
+  "temp": 1600
+}

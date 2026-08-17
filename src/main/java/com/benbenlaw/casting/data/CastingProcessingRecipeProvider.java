@@ -326,6 +326,25 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
                         getFluidIngredient("molten_debris", 360),
                         getFluidIngredient("molten_gold", 360)));
 
+        //Scorchium
+        alloyMixingRecipes("scorchium", getFluidStack("scorchium", 360),
+                List.of(
+                        getFluidIngredient("blazing_lava", 4000),
+                        getFluidIngredient("molten_obsidian", 1000),
+                        getFluidIngredient("molten_coal", 320)));
+
+        //Blazing Lava
+        alloyMixingRecipes("blazing_lava", getFluidStack("blazing_lava", 1000),
+                List.of(
+                        new SizedFluidIngredient(FluidIngredient.of(Fluids.LAVA), 1000),
+                        getFluidIngredient("molten_blaze", 360)));
+
+        //Glacium
+        alloyMixingRecipes("glacium", getFluidStack("glacium", 1000),
+                List.of(
+                        getFluidIngredient("super_coolant", 1000),
+                        getFluidIngredient("chilled_water", 500),
+                        getFluidIngredient("iced_water", 500)));
         //Super Coolant
         alloyMixingRecipes("super_coolant", getFluidStack("super_coolant", 1000),
                 List.of(
@@ -356,12 +375,15 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("molten_coal", 25), getTempFromFluid("molten_coal")).save(output, "coal");
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("molten_uranium", 15), getTempFromFluid("molten_uranium")).save(output, "uranium");
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("molten_blaze", 25), getTempFromFluid("molten_blaze")).save(output, "blaze");
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("blazing_lava", 50), getTempFromFluid("blazing_lava")).save(output, "blazing_lava");
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("scorchium", 10), getTempFromFluid("scorchium")).save(output, "scorchium");
 
         //Fuels - Cool
-        FuelRecipeBuilder.fuelRecipesBuilder(new SizedFluidIngredient(FluidIngredient.of(Fluids.WATER), 25), 600).save(output, "water");
-        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("chilled_water", 20), getTempFromFluid("chilled_water")).save(output, "chilled_water");
-        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("iced_water", 15), getTempFromFluid("iced_water")).save(output, "iced_water");
-        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("super_coolant", 5), getTempFromFluid("super_coolant")).save(output, "super_coolant");
+        FuelRecipeBuilder.fuelRecipesBuilder(new SizedFluidIngredient(FluidIngredient.of(Fluids.WATER), 60), 600).save(output, "water");
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("chilled_water", 45), getTempFromFluid("chilled_water")).save(output, "chilled_water");
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("iced_water", 35), getTempFromFluid("iced_water")).save(output, "iced_water");
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("super_coolant", 20), getTempFromFluid("super_coolant")).save(output, "super_coolant");
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("glacium", 10), getTempFromFluid("glacium")).save(output, "glacium");
 
 
 

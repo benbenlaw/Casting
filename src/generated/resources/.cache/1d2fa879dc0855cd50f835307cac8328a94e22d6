@@ -1,8 +1,10 @@
-// 26.1.2	2026-07-14T11:10:52.6496141	Model Definitions - casting
+// 26.1.2	2026-08-17T13:55:00.773111	Model Definitions - casting
 2aa30e731299e20bfaeb5903cc0ebf7ed84c6ab3 assets/casting/blockstates/black_bricks.json
 b350b2f7bb3df5e34993e7791e783a609025c622 assets/casting/blockstates/black_brick_glass.json
+e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/blazing_lava.json
 e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/chilled_water.json
 cc797dd9774257fddcb545ed47a5c553c469bb01 assets/casting/blockstates/controller.json
+e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/glacium.json
 e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/iced_water.json
 a7ec64cf1b23a5c706f68bd4fae9da4a70875ac6 assets/casting/blockstates/mixer.json
 e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/molten_allthemodium.json
@@ -71,6 +73,7 @@ e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/molten_urani
 e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/molten_vibranium.json
 e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/molten_vibrant_alloy.json
 e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/molten_zinc.json
+e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/scorchium.json
 7536409671e71edcda76f3cd674d0e6d2983c6da assets/casting/blockstates/solidifier.json
 e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/super_coolant.json
 14e39d12d656c141a1bf986b3943b024be5a3ac6 assets/casting/blockstates/tank.json
@@ -78,6 +81,7 @@ e5a33b4a2db42195222fa1709b3d9533ac41e453 assets/casting/blockstates/super_coolan
 b22d8efffc5ec73f8f48f511a759b331e7953de1 assets/casting/items/black_brick.json
 dcebf362cf2f9103e95c7f100a2518c07e625e76 assets/casting/items/black_bricks.json
 67e87d9cded27616cdc51031fe4daa21a503140e assets/casting/items/black_brick_glass.json
+feb00d6ab2352440fb8792cbdd49f9fc7ba3521d assets/casting/items/blazing_lava_bucket.json
 d90e79da7cb86ca5d713002003f462d0a272ed27 assets/casting/items/block_mold.json
 a69bdf882782f3e84036e2030265804279ba0049 assets/casting/items/chilled_water_bucket.json
 539a00e2644afe7898eda0e4ebd1b3fca82fef13 assets/casting/items/controller.json
@@ -86,6 +90,7 @@ f080d5ff39e7a006c40f6ae4d2d8eef0adc2ef35 assets/casting/items/dust_mold.json
 2398394568bdd8612cbed6186f2a532c32b52226 assets/casting/items/fluid_manager.json
 239aa2ebba847d9f15f82e800b7b7da5f3300624 assets/casting/items/gear_mold.json
 0e42ec5ce40983a757db1964d75991ce5621ae00 assets/casting/items/gem_mold.json
+1c32fcf671857bd6d78e48cf01b184a8960de3ed assets/casting/items/glacium_bucket.json
 36a7a151f50d547acbc577d9fb0514eb243984ca assets/casting/items/iced_water_bucket.json
 2644af591b9386bd1f5a9ac5e53db07618307515 assets/casting/items/ingot_mold.json
 876d17d10fb5393ee12a4046e13c75e4eb933c16 assets/casting/items/mixer.json
@@ -158,6 +163,7 @@ fd5a97f3adde8d708fa8d9e8a8b01dbe886167cc assets/casting/items/molten_uraninite_b
 719cd3613220114fe4f1edaeb56cfcd31fc31f5a assets/casting/items/nugget_mold.json
 c4ad83fa31e53ee8b006b25bc5cb2f34b015c561 assets/casting/items/plate_mold.json
 0d35b9828023516895f324cfaf976743b3085141 assets/casting/items/rod_mold.json
+5cb5670270f6a3b3eca2128a77e6331013911d73 assets/casting/items/scorchium_bucket.json
 a93a6333ce83ecb4646b2c24bb3558445c12d5fd assets/casting/items/shard_mold.json
 0128bf899ddd95e72e990b1ef3b29870352b440e assets/casting/items/solidifier.json
 858c1a1d781c647b274815e623caeaa019456294 assets/casting/items/super_coolant_bucket.json

@@ -1,6 +1,8 @@
-// 26.1.2	2026-05-01T11:00:03.8974309	Tags for minecraft:fluid mod id casting
+// 26.1.2	2026-08-17T13:55:00.7834622	Tags for minecraft:fluid mod id casting
+7bfb70640f508a628917dc63b356044f8a5e74cf data/c/tags/fluid/blazing_lava.json
 a0180619fbf98291dcb53dfaa0e4dac895afbffd data/c/tags/fluid/chilled_water.json
 8f34d0cccf14b17cf369f6b5df5c31cc84bae6be data/c/tags/fluid/experience.json
+fdde007f512f3a1e29204b94f7ca74f08e1c4466 data/c/tags/fluid/glacium.json
 4b5f9cfc42b372d1de1abebf0a981daf6a11a2fd data/c/tags/fluid/iced_water.json
 5c830c998875e467a8d1a5085b2469774801c060 data/c/tags/fluid/molten_allthemodium.json
 079289e049dd083bc8a5856acb4834e538937339 data/c/tags/fluid/molten_aluminum.json
@@ -68,4 +70,5 @@ ee4e0723a012f53a699240330954604c2189d2f4 data/c/tags/fluid/molten_uranium.json
 1cfff22d55364e642c1e66ec758b3ad697b7c9d1 data/c/tags/fluid/molten_vibranium.json
 ee44122d11104bcd370a1759f987ea17f3a39be3 data/c/tags/fluid/molten_vibrant_alloy.json
 7b3fb3c16d2ccb365f63438453e5c1262fa7e95d data/c/tags/fluid/molten_zinc.json
+90c485763ae06d49958fc8662db9597b9775394f data/c/tags/fluid/scorchium.json
 2cfb571a0d0c5715ba95a27934d91af6e2320f1f data/c/tags/fluid/super_coolant.json

@@ -1,8 +1,8 @@
-// 26.1.2	2026-05-01T16:45:27.8634282	Tags for minecraft:item mod id casting
+// 26.1.2	2026-08-17T13:55:00.7865542	Tags for minecraft:item mod id casting
 bf57b83fbd7c739f7fde36c275c0fe26cdb0b8ac data/casting/tags/item/molds.json
 523cf825e8643e793dc1a64cd6939e6cdd4adc88 data/c/tags/item/ball_items.json
 38236b67cf98b68238695adf5a39edf921a1998c data/c/tags/item/bricks.json
-5156562fddc4b01b4ebe4270b44470f29393803f data/c/tags/item/buckets.json
+2bbae6b8e4d20eb49a082c0ae54d5fb9e564a74c data/c/tags/item/buckets.json
 b5b443005446a7c462821af2bd14b03a5178a666 data/c/tags/item/molds/ball.json
 c5b03813e61f7b4ffd00ab3a09b1def2f4e7c5e3 data/c/tags/item/molds/block.json
 046ccfb1e090314dacdeaa4b1e6894cc1a20ebfa data/c/tags/item/molds/dust.json

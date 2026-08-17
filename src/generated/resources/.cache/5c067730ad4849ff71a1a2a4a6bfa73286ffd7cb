@@ -1,10 +1,13 @@
-// 26.1.2	2026-07-13T12:23:58.8230417	casting Processing Recipes
+// 26.1.2	2026-08-17T14:20:33.9832448	casting Processing Recipes
 6cf7daa5e446d262d0b513ba376716ae43524819 data/casting/advancement/recipes/fuel/fuel/blaze.json
+22bc1b6595660b1d031fd489cab558ac3d264831 data/casting/advancement/recipes/fuel/fuel/blazing_lava.json
 519547486eb3fbbb51b3460ed5c7a9695e33e52f data/casting/advancement/recipes/fuel/fuel/chilled_water.json
 3bac6b66e74a81f8f22540209612ceca3658333e data/casting/advancement/recipes/fuel/fuel/coal.json
+346c0436f20a83dca0f4b2d1fb62c34113727783 data/casting/advancement/recipes/fuel/fuel/glacium.json
 be503974a6376b567404f9af74d01f68fd829735 data/casting/advancement/recipes/fuel/fuel/iced_water.json
 50795fab16f743748d9c3e51ab002defdb8d1532 data/casting/advancement/recipes/fuel/fuel/lava.json
 3c0ce06c99f138f9c33eb3deb73f49655077acc5 data/casting/advancement/recipes/fuel/fuel/obsidian.json
+7e12426b4f6d12c770aca683f59a0a12ed3f7779 data/casting/advancement/recipes/fuel/fuel/scorchium.json
 63e6212c66a75aa805d3316e720d52612576c411 data/casting/advancement/recipes/fuel/fuel/super_coolant.json
 553dddab249254b4da51b20c5c0dacb11a2dd9fc data/casting/advancement/recipes/fuel/fuel/uranium.json
 498640f6c45effcd6343792d3ed69f33e68d07bf data/casting/advancement/recipes/fuel/fuel/water.json
@@ -644,6 +647,7 @@ daf2b87fb5a964a3ddf6d4baf65c3e90d4e2a4dd data/casting/advancement/recipes/meltin
 669de88076de563a231258af94a6126b0244b001 data/casting/advancement/recipes/melting/melting/zinc/rod.json
 fdd519abdd64f708cfb6b41d4cdf9ea4bba374a4 data/casting/advancement/recipes/melting/melting/zinc/shard.json
 40d949fc2c1b951e73cffff29883e2f085cf2fa7 data/casting/advancement/recipes/melting/melting/zinc/wire.json
+caa869d572f1683ce844b658f0504631498a2619 data/casting/advancement/recipes/mixing/mixing/blazing_lavaalloy.json
 440b0461c4f16026016844ea4dae4b52c6009dec data/casting/advancement/recipes/mixing/mixing/brassalloy.json
 e761c8727b73da05f479685a8d025416c16ded97 data/casting/advancement/recipes/mixing/mixing/bronzealloy.json
 a69cc4533dbb58c4fd445ba50b5788436e44a8f4 data/casting/advancement/recipes/mixing/mixing/conductive_alloyalloy.json
@@ -654,6 +658,7 @@ f6193fad77d6695f7dd7e7c82f26af420c5fec69 data/casting/advancement/recipes/mixing
 85277cafab9368936b880d7403c92e04822ece03 data/casting/advancement/recipes/mixing/mixing/end_steelalloy.json
 8f2bfc6110aae69797584ba31a6ee21c538912d0 data/casting/advancement/recipes/mixing/mixing/energetic_alloyalloy.json
 7e9b9e0520fae2cac1a19c90d075d1e555cb2eb3 data/casting/advancement/recipes/mixing/mixing/fluixalloy.json
+f86a47bf308dd29078fdc56a159753af5fbf3b5e data/casting/advancement/recipes/mixing/mixing/glaciumalloy.json
 7d9e2e7773444271b5b909bff3196d3cc68827c3 data/casting/advancement/recipes/mixing/mixing/invaralloy.json
 883e663b09cc8ebfad278dfb41d1bb552ce16dc8 data/casting/advancement/recipes/mixing/mixing/lumiumalloy.json
 eca0e2534a9d812116cd50f0ef0814fd05ec6053 data/casting/advancement/recipes/mixing/mixing/netheritealloy.json
@@ -661,6 +666,7 @@ eca0e2534a9d812116cd50f0ef0814fd05ec6053 data/casting/advancement/recipes/mixing
 7fe30336a054a6bc9d9188d53257bcd215687230 data/casting/advancement/recipes/mixing/mixing/pulsating_ironalloy.json
 85a01eebd2ec4a0af5be0f407271299edf978c3a data/casting/advancement/recipes/mixing/mixing/quartz_enriched_copperalloy.json
 cbc88bb28e22078b9142c5bcb8142ad1400c74bd data/casting/advancement/recipes/mixing/mixing/quartz_enriched_ironalloy.json
+7121362ac70b4bc86c87a0a5f350112ff5b29ab3 data/casting/advancement/recipes/mixing/mixing/scorchiumalloy.json
 ee67cba47230f4c36a593e515396bd39c8440df1 data/casting/advancement/recipes/mixing/mixing/signalumalloy.json
 7da569ab7ebfdc101e83bb200b7c8414b50be879 data/casting/advancement/recipes/mixing/mixing/soulariumalloy.json
 009312020bc57430d449f7a886f24b5375a723fa data/casting/advancement/recipes/mixing/mixing/steelalloy.json
@@ -1186,14 +1192,17 @@ eb352a8d9be17f9932f2dda688420d18d855ee12 data/casting/advancement/recipes/solidi
 943af08c22f7513b3261232be897495d320a361e data/casting/advancement/recipes/solidifier/solidifier/zinc/shard.json
 fdc826b1ecde1dc5975e02607d12d486af369978 data/casting/advancement/recipes/solidifier/solidifier/zinc/wire.json
 d84cb145a27c8086de510c1f623ef566798840ad data/casting/recipe/fuel/blaze.json
-cb8fa066050543078e33063c9b41252b65a0691b data/casting/recipe/fuel/chilled_water.json
+d4e7cf43b4c9ed1e8ab01f0ea621eb8affd7db5d data/casting/recipe/fuel/blazing_lava.json
+5e1c43ba92caea7c10fcc2ffd391efd877796243 data/casting/recipe/fuel/chilled_water.json
 2a26f42c93bd815a27ff28f03cf2bd224750a183 data/casting/recipe/fuel/coal.json
-885beed78c6be7df19a806bbf12e84aac4315cc8 data/casting/recipe/fuel/iced_water.json
+48065bbcfed1e0b0dbb62874b71803e04c93328d data/casting/recipe/fuel/glacium.json
+30d721068441d05e18469480811e4c573a25a1c1 data/casting/recipe/fuel/iced_water.json
 769a2969b0c6283f4f474497720bf43d4517868f data/casting/recipe/fuel/lava.json
 776ff06b24b07093c844c8164b7af647fc8ccd64 data/casting/recipe/fuel/obsidian.json
-b7fc4b679fdf8d9d9c2a74b77127dd5857216794 data/casting/recipe/fuel/super_coolant.json
+0467d1b28066598847095cd0dca9acd72993dcaf data/casting/recipe/fuel/scorchium.json
+bd0178f2adf31976390c7df3b5314892b440b56f data/casting/recipe/fuel/super_coolant.json
 99ccbd11bd68198872650ee86df188e22a7f69d3 data/casting/recipe/fuel/uranium.json
-779a73f205d3cd871620d98b6a2b971f6589f0f9 data/casting/recipe/fuel/water.json
+6fe4d7224967a6be23c2e7ceceac584b369aa82f data/casting/recipe/fuel/water.json
 dc93e345f08e44c4c948a3f51f24fdd948bdfd99 data/casting/recipe/melting/allthemodium/block.json
 da57fa08473f45b882e4a50ba942f24d19c87c03 data/casting/recipe/melting/allthemodium/dust.json
 0632c9519f8c92a3b3433e5d99ed129ca8b12092 data/casting/recipe/melting/allthemodium/gear.json
@@ -1830,6 +1839,7 @@ e32552871e49b69006dd974a0dcf1fa38f58eb13 data/casting/recipe/melting/zinc/plate.
 a0b75dd43db5aaeb0c5f885c87569f05e6032409 data/casting/recipe/melting/zinc/rod.json
 adb4bcefcca63461d8d7156c74b5be70f168dcf3 data/casting/recipe/melting/zinc/shard.json
 44736d9c3c69cfd16a90420a7081dd81783e8420 data/casting/recipe/melting/zinc/wire.json
+3236bdb65d4c7595c257629972df26e5bbcf8d3d data/casting/recipe/mixing/blazing_lavaalloy.json
 7d068e6c12518191c496815324ec3bea0bc04602 data/casting/recipe/mixing/brassalloy.json
 c12ad8264fa94e8fda6e0ac38c5df19bd56994cd data/casting/recipe/mixing/bronzealloy.json
 419ac317c99dd424f2db3ae5f6eaf2d8aacb669c data/casting/recipe/mixing/conductive_alloyalloy.json
@@ -1840,6 +1850,7 @@ c74d3554bac0f9b0da9acf7c474319e312c3a18b data/casting/recipe/mixing/dark_steelal
 157217953d19424af7af935638cf191f363b264f data/casting/recipe/mixing/end_steelalloy.json
 5acc3b11b6147394b0f681e1c786a436ff417a8b data/casting/recipe/mixing/energetic_alloyalloy.json
 8c1026b0f6707f02550766ca3db5831048b482ea data/casting/recipe/mixing/fluixalloy.json
+c9b26131abf266e46754e4826c4893d9f4573eaa data/casting/recipe/mixing/glaciumalloy.json
 173d9c8d0baf78f447372bb8bd8a5984f99b1415 data/casting/recipe/mixing/invaralloy.json
 885fae2c05d8a946944ddd757ec379a4472016aa data/casting/recipe/mixing/lumiumalloy.json
 99896bddffff568b999c794ff5a7b82020daf13b data/casting/recipe/mixing/netheritealloy.json
@@ -1847,6 +1858,7 @@ c74d3554bac0f9b0da9acf7c474319e312c3a18b data/casting/recipe/mixing/dark_steelal
 5339d71b0a5ec8ef1c551c0fdc8ac27e93c02e85 data/casting/recipe/mixing/pulsating_ironalloy.json
 c0549c57dc5c8a7d63e51d130f858b328f2289d8 data/casting/recipe/mixing/quartz_enriched_copperalloy.json
 02ee18f6c6390d3506963538b95ba5150fd2f6f0 data/casting/recipe/mixing/quartz_enriched_ironalloy.json
+18be7a10a2c41345cd34cdd8fa78a768dea60822 data/casting/recipe/mixing/scorchiumalloy.json
 500f5ae5377538c7ec6af63f86eeb91d596de987 data/casting/recipe/mixing/signalumalloy.json
 e1f7cd4bfd32e744738873d2692651364ea5c75e data/casting/recipe/mixing/soulariumalloy.json
 174de14e32f2991cf534d2f0c8c42312ff3d2329 data/casting/recipe/mixing/steelalloy.json

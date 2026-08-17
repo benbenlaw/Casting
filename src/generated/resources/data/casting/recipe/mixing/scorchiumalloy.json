@@ -1,0 +1,21 @@
+{
+  "type": "casting:mixing",
+  "inputs": [
+    {
+      "amount": 4000,
+      "ingredient": "casting:blazing_lava"
+    },
+    {
+      "amount": 1000,
+      "ingredient": "casting:molten_obsidian"
+    },
+    {
+      "amount": 320,
+      "ingredient": "casting:molten_coal"
+    }
+  ],
+  "output": {
+    "amount": 360,
+    "id": "casting:scorchium"
+  }
+}

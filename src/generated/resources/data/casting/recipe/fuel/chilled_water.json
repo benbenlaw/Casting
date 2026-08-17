@@ -1,7 +1,7 @@
 {
   "type": "casting:fuel",
   "fluid": {
-    "amount": 20,
+    "amount": 45,
     "ingredient": "casting:chilled_water"
   },
   "temp": 400
