@@ -1,4 +1,4 @@
-// 26.1.2	2026-08-17T13:55:00.7834622	Tags for minecraft:fluid mod id casting
+// 26.1.2	2026-08-20T16:01:29.054932	Tags for minecraft:fluid mod id casting
 7bfb70640f508a628917dc63b356044f8a5e74cf data/c/tags/fluid/blazing_lava.json
 a0180619fbf98291dcb53dfaa0e4dac895afbffd data/c/tags/fluid/chilled_water.json
 8f34d0cccf14b17cf369f6b5df5c31cc84bae6be data/c/tags/fluid/experience.json
@@ -10,6 +10,7 @@ fdde007f512f3a1e29204b94f7ca74f08e1c4466 data/c/tags/fluid/glacium.json
 33df9821493518a0d78d65933bfffe9f84400311 data/c/tags/fluid/molten_black_brick.json
 5c78be8528f10368edd7e7a7c610a2b296e6f2f3 data/c/tags/fluid/molten_black_quartz.json
 b73c788ef020160dc67a2cc97b9058f98ed13317 data/c/tags/fluid/molten_blaze.json
+3108f39096596657735562eebbd1f7280f4fab0e data/c/tags/fluid/molten_blazing_crystal.json
 e506a4f87256c178ff81d006531b1ac8788b826e data/c/tags/fluid/molten_brass.json
 f926520f710f287ebb9f96fc75c1843efaea8298 data/c/tags/fluid/molten_bronze.json
 1e98887eec5cea5bdd90fd82e3c5422986770b09 data/c/tags/fluid/molten_certus_quartz.json
@@ -28,6 +29,7 @@ aaf0f557d1d280599373cca8b5365f8ec20fcebd data/c/tags/fluid/molten_emerald.json
 daf0f56534530f6814ea71d3d6e2783c37fde05a data/c/tags/fluid/molten_end_steel.json
 31a06f1ea396aa4802c57de6be7b462aaae3a5bf data/c/tags/fluid/molten_end_stone.json
 5cc102f6cbe2ce5d1fa805d455a57d4fd55518ad data/c/tags/fluid/molten_energetic_alloy.json
+90184ce042458df584a2a1ce47e6b7e006e93b19 data/c/tags/fluid/molten_energized_steel.json
 de8ae30eb0d8f53c72ef45c57c82eed8a1d3883b data/c/tags/fluid/molten_experience.json
 abf83fa5b4c406b0f817913a2ed9f87eee8d07d5 data/c/tags/fluid/molten_fluix.json
 a7a621986d6cc4c66ef1a384807dd1c115545293 data/c/tags/fluid/molten_glass.json
@@ -42,6 +44,8 @@ ae23d7480bd6fce08630ee0e547916a2871c1f8e data/c/tags/fluid/molten_lapis.json
 c99b663b43bab106bcadc8347986a1332203f8e5 data/c/tags/fluid/molten_monazite.json
 ca97872ebca04fd23287b15f6c1931b9b5fa1cef data/c/tags/fluid/molten_netherite.json
 3b511d2d3f675484648238e7e43a09955cdb0478 data/c/tags/fluid/molten_nickel.json
+9116f9e58d81f2defa32fff7e8dfcfba80552d97 data/c/tags/fluid/molten_niotic_crystal.json
+885e39bbf3fdecfe7898fd2f5af700795a4fe727 data/c/tags/fluid/molten_nitro_crystal.json
 7c0eaee74c25a99b255334c01ef31f611baa7809 data/c/tags/fluid/molten_obsidian.json
 412bb46e8220c23a8475bc39974950bf0fe2fff7 data/c/tags/fluid/molten_osmium.json
 a44441aae02947764f69a849e027770e28662ed8 data/c/tags/fluid/molten_peridot.json
@@ -51,6 +55,9 @@ c034f068ac8915c2c045aab649d1e0825662d051 data/c/tags/fluid/molten_quartz.json
 d0bd71b66ac5c0bdedfa5c0d9a20ebd48be07fde data/c/tags/fluid/molten_quartz_enriched_copper.json
 2b9c585814c5126dda6cb097a295adb5725b1014 data/c/tags/fluid/molten_quartz_enriched_iron.json
 417fd040173e1c45f8e1e1a699b9171a0682c953 data/c/tags/fluid/molten_redstone.json
+ab953512fbf6c291d4d0014d231786b06b8eb9f0 data/c/tags/fluid/molten_redstone_alloy.json
+6cd4859818f22152af680cb8644fcb8dc526178d data/c/tags/fluid/molten_refined_glowstone.json
+bd60318d71ca51474417b96d546c1ea4e5732216 data/c/tags/fluid/molten_refined_obsidian.json
 7fb57327b9053883bcad3db605d1051dcc6ba802 data/c/tags/fluid/molten_ruby.json
 bb545ddd5693ceebe0673e87b33694d09a15b069 data/c/tags/fluid/molten_sapphire.json
 8bdaa915ea4c8bc716bbe64714fc538dc29bac1b data/c/tags/fluid/molten_signalum.json
@@ -58,6 +65,7 @@ a7acd0dc11399a59db16ac9b57c01437f7ad06b8 data/c/tags/fluid/molten_silicon.json
 bba0cc94d160e4d60de437f030ce50109f3ef71d data/c/tags/fluid/molten_silver.json
 9e104f403a381302df15dd84b91992183721e105 data/c/tags/fluid/molten_soul.json
 88a0bb0841d57611a3de5a358c9e343102002a11 data/c/tags/fluid/molten_soularium.json
+49564c1f532f5190a2fe7fbf22c63868f1696b99 data/c/tags/fluid/molten_spirited_crystal.json
 d092dab2136d15b61dfd435ab79c3d14e88d7b38 data/c/tags/fluid/molten_steel.json
 842fcaf2bbfe45e31bc5d8ff9bb3bd279a65fcf3 data/c/tags/fluid/molten_stone.json
 f7753ec64480619e126d5872ff1e698af15b8128 data/c/tags/fluid/molten_tin.json

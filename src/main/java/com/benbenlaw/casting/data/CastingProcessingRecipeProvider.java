@@ -261,6 +261,12 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
                         getFluidIngredient("molten_energetic_alloy", 90),
                         getFluidIngredient("molten_glowstone", 250)));
 
+        //Redstone Alloy
+        alloyMixingRecipes("redstone_alloy", getFluidStack("molten_redstone_alloy", 90),
+                List.of(
+                        getFluidIngredient("molten_redstone", 90),
+                        getFluidIngredient("molten_copper", 90)));
+
         //Signalum
         alloyMixingRecipes("signalum", getFluidStack("molten_signalum", 360),
                 List.of(
@@ -376,6 +382,7 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("molten_uranium", 15), getTempFromFluid("molten_uranium")).save(output, "uranium");
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("molten_blaze", 25), getTempFromFluid("molten_blaze")).save(output, "blaze");
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("blazing_lava", 50), getTempFromFluid("blazing_lava")).save(output, "blazing_lava");
+        FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("molten_blazing_crystal", 50), getTempFromFluid("molten_blazing_crystal")).save(output, "molten_blazing_crystal");
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("scorchium", 10), getTempFromFluid("scorchium")).save(output, "scorchium");
 
         //Fuels - Cool
@@ -384,9 +391,6 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("iced_water", 35), getTempFromFluid("iced_water")).save(output, "iced_water");
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("super_coolant", 20), getTempFromFluid("super_coolant")).save(output, "super_coolant");
         FuelRecipeBuilder.fuelRecipesBuilder(getFluidIngredient("glacium", 10), getTempFromFluid("glacium")).save(output, "glacium");
-
-
-
     }
 
     public void createCommonRecipes() {

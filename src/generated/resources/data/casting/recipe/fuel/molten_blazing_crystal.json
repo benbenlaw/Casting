@@ -1,0 +1,8 @@
+{
+  "type": "casting:fuel",
+  "fluid": {
+    "amount": 50,
+    "ingredient": "casting:molten_blazing_crystal"
+  },
+  "temp": 1600
+}

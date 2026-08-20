@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:rods/blazing_crystal"
+      }
+    }
+  ],
+  "type": "casting:melting",
+  "duration_modifier": 0.4,
+  "input": {
+    "count": 1,
+    "ingredient": "#c:rods/blazing_crystal"
+  },
+  "melting_temp": 1600,
+  "output": [
+    {
+      "amount": 45,
+      "id": "casting:molten_blazing_crystal"
+    }
+  ]
+}

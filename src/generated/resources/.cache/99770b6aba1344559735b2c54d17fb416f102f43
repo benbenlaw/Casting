@@ -1,8 +1,13 @@
-// 26.1.2	2026-08-17T13:55:00.7865542	Tags for minecraft:item mod id casting
+// 26.1.2	2026-08-20T16:48:19.1114435	Tags for minecraft:item mod id casting
 bf57b83fbd7c739f7fde36c275c0fe26cdb0b8ac data/casting/tags/item/molds.json
 523cf825e8643e793dc1a64cd6939e6cdd4adc88 data/c/tags/item/ball_items.json
 38236b67cf98b68238695adf5a39edf921a1998c data/c/tags/item/bricks.json
-2bbae6b8e4d20eb49a082c0ae54d5fb9e564a74c data/c/tags/item/buckets.json
+17b49dfb8a8f97779644c6a505ed1671f006bef4 data/c/tags/item/buckets.json
+199bbf9c519ad069148932a0f1278be8ab596efd data/c/tags/item/gems/blazing_crystal.json
+65cdc17cafab1da5749a7dabb351590f55a2f553 data/c/tags/item/gems/niotic_crystal.json
+088256db812335a0f1d0a986cda3e17c13de3ea7 data/c/tags/item/gems/nitro_crystal.json
+6030dfd0e67987a6ea5fe5ff16581f835c2198fc data/c/tags/item/gems/spirited_crystal.json
+50e1f73982977166eb4b93b56c8b475c78ad52a3 data/c/tags/item/ingots/energized_steel.json
 b5b443005446a7c462821af2bd14b03a5178a666 data/c/tags/item/molds/ball.json
 c5b03813e61f7b4ffd00ab3a09b1def2f4e7c5e3 data/c/tags/item/molds/block.json
 046ccfb1e090314dacdeaa4b1e6894cc1a20ebfa data/c/tags/item/molds/dust.json
@@ -15,5 +20,10 @@ a1b71944075bcc841153139d092cef8e7aac2f51 data/c/tags/item/molds/nugget.json
 d1d989caa4a013c44c64b0e31f52449455c142d7 data/c/tags/item/molds/shards.json
 3f5fe81976ac535ee0ed76c613fa59c8552e489d data/c/tags/item/molds/wire.json
 c31fff4e389c90e49e80aa377623a4356a59dd6e data/c/tags/item/shards.json
+5a129f0441dd86ebb728bc543a5cf92c1e881c0b data/c/tags/item/storage_blocks/blazing_crystal.json
+be22319803d617893e141fcfec01a76b26109432 data/c/tags/item/storage_blocks/energized_steel.json
 2e32a7b83e54ddce24aaeff94c215bb46e0c6628 data/c/tags/item/storage_blocks/glowstone.json
+ce5bcb39c2b698c0f14dba9f1ad67ed8d934320a data/c/tags/item/storage_blocks/niotic_crystal.json
+fd8c945fd9c9cbb24ce9ced1ca79ec858c030d71 data/c/tags/item/storage_blocks/nitro_crystal.json
 fbb0fe25e25b7fd86df64c2f168425efedf11710 data/c/tags/item/storage_blocks/quartz.json
+d46a48cc8763369e163b42d248ece7906674c1ae data/c/tags/item/storage_blocks/spirited_crystal.json

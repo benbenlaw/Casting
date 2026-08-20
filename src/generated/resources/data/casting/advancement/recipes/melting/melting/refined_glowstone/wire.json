@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:wires/refined_glowstone"
+      }
+    }
+  ],
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:melting/refined_glowstone/wire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:wires/refined_glowstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wire"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:melting/refined_glowstone/wire"
+    ]
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:wires/energized_steel"
+      }
+    }
+  ],
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:melting/energized_steel/wire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:wires/energized_steel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wire"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:melting/energized_steel/wire"
+    ]
+  },
+  "sends_telemetry_event": true
+}

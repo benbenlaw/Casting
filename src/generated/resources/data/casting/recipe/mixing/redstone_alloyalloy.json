@@ -1,0 +1,17 @@
+{
+  "type": "casting:mixing",
+  "inputs": [
+    {
+      "amount": 90,
+      "ingredient": "casting:molten_redstone"
+    },
+    {
+      "amount": 90,
+      "ingredient": "casting:molten_copper"
+    }
+  ],
+  "output": {
+    "amount": 90,
+    "id": "casting:molten_redstone_alloy"
+  }
+}

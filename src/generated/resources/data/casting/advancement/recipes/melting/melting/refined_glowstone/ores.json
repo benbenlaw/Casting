@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/refined_glowstone"
+      }
+    }
+  ],
+  "criteria": {
+    "has_ores": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:ores/refined_glowstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:melting/refined_glowstone/ores"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ores"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:melting/refined_glowstone/ores"
+    ]
+  },
+  "sends_telemetry_event": true
+}

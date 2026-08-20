@@ -4,6 +4,7 @@ import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.item.CastingItems;
 import com.benbenlaw.casting.util.CastingTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
@@ -42,6 +43,17 @@ public class CastingItemTags extends ItemTagsProvider {
                 .add(Items.AMETHYST_SHARD)
                 .addOptionalTag(TagKey.create(Registries.ITEM, Identifier.parse("geore:geore_shards")))
         ;
+
+        tag(CastingTags.Items.ENERGIZED_STEEL).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:steel_energized")));
+        tag(CastingTags.Items.ENERGIZED_STEEL_BLOCK).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:energized_steel_block")));
+        tag(CastingTags.Items.BLAZING_CRYSTAL).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:crystal_blazing")));
+        tag(CastingTags.Items.BLAZING_CRYSTAL_BLOCK).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:blazing_crystal_block")));
+        tag(CastingTags.Items.NIOTIC_CRYSTAL).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:crystal_niotic")));
+        tag(CastingTags.Items.NIOTIC_CRYSTAL_BLOCK).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:niotic_crystal_block")));
+        tag(CastingTags.Items.SPIRITED_CRYSTAL).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:crystal_spirited")));
+        tag(CastingTags.Items.SPIRITED_CRYSTAL_BLOCK).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:spirited_crystal_block")));
+        tag(CastingTags.Items.NITRO_CRYSTAL).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:crystal_nitro")));
+        tag(CastingTags.Items.NITRO_CRYSTAL_BLOCK).addOptional(BuiltInRegistries.ITEM.getValue(Identifier.parse("powah:nitro_crystal_block")));
 
 
         //Bricks

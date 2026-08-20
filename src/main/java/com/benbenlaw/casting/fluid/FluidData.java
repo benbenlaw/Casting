@@ -178,6 +178,22 @@ public record FluidData(String name, String stillTexture, String flowTexture, in
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
         fluidList.add(new FluidData("molten_energetic_alloy", "block/molten_still", "block/molten_flow", 0xFFf5a84f,
                 new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
+        fluidList.add(new FluidData("molten_redstone_alloy", "block/molten_still", "block/molten_flow", 0xFFF66951,
+                new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
+        fluidList.add(new FluidData("molten_energized_steel", "block/molten_still", "block/molten_flow", 0xFFD0B28C,
+                new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
+        fluidList.add(new FluidData("molten_blazing_crystal", "block/molten_still", "block/molten_flow", 0xFFF49600,
+                new FluidProcessingData(1600, 90, ProcessingType.GEMS9)));
+        fluidList.add(new FluidData("molten_niotic_crystal", "block/molten_still", "block/molten_flow", 0xFF00E3FC,
+                new FluidProcessingData(1000, 90, ProcessingType.GEMS9)));
+        fluidList.add(new FluidData("molten_spirited_crystal", "block/molten_still", "block/molten_flow", 0xFF90FF69,
+                new FluidProcessingData(1000, 90, ProcessingType.GEMS9)));
+        fluidList.add(new FluidData("molten_nitro_crystal", "block/molten_still", "block/molten_flow", 0xFF970000,
+                new FluidProcessingData(1000, 90, ProcessingType.GEMS9)));
+        fluidList.add(new FluidData("molten_refined_glowstone", "block/molten_still", "block/molten_flow", 0xFFECD836,
+                new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
+        fluidList.add(new FluidData("molten_refined_obsidian", "block/molten_still", "block/molten_flow", 0xFF7A65A3,
+                new FluidProcessingData(1000, 90, ProcessingType.INGOT9)));
 
         FLUID_DEFINITIONS = fluidList;
     }

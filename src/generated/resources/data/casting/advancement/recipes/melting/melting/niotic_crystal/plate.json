@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/niotic_crystal"
+      }
+    }
+  ],
+  "criteria": {
+    "has_plate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:plates/niotic_crystal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "casting:melting/niotic_crystal/plate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_plate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "casting:melting/niotic_crystal/plate"
+    ]
+  },
+  "sends_telemetry_event": true
+}

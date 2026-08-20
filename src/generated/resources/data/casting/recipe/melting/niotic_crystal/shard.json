@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "geore:geore_shards/niotic_crystal"
+      }
+    }
+  ],
+  "type": "casting:melting",
+  "duration_modifier": 0.5,
+  "input": {
+    "count": 1,
+    "ingredient": "#geore:geore_shards/niotic_crystal"
+  },
+  "melting_temp": 1000,
+  "output": [
+    {
+      "amount": 90,
+      "id": "casting:molten_niotic_crystal"
+    }
+  ]
+}

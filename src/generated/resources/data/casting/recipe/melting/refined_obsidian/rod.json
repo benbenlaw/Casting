@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:rods/refined_obsidian"
+      }
+    }
+  ],
+  "type": "casting:melting",
+  "duration_modifier": 0.4,
+  "input": {
+    "count": 1,
+    "ingredient": "#c:rods/refined_obsidian"
+  },
+  "melting_temp": 1000,
+  "output": [
+    {
+      "amount": 45,
+      "id": "casting:molten_refined_obsidian"
+    }
+  ]
+}

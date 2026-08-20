@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:gears/spirited_crystal"
+      }
+    }
+  ],
+  "type": "casting:melting",
+  "duration_modifier": 1.2,
+  "input": {
+    "count": 1,
+    "ingredient": "#c:gears/spirited_crystal"
+  },
+  "melting_temp": 1000,
+  "output": [
+    {
+      "amount": 360,
+      "id": "casting:molten_spirited_crystal"
+    }
+  ]
+}

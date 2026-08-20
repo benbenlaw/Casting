@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:storage_blocks/spirited_crystal"
+      }
+    }
+  ],
+  "type": "casting:melting",
+  "duration_modifier": 2.5,
+  "input": {
+    "count": 1,
+    "ingredient": "#c:storage_blocks/spirited_crystal"
+  },
+  "melting_temp": 1000,
+  "output": [
+    {
+      "amount": 810,
+      "id": "casting:molten_spirited_crystal"
+    }
+  ]
+}

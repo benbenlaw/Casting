@@ -47,6 +47,19 @@ public class CastingTags{
         public static final TagKey<Item> CAN_BE_TOGGLED_WITH_KEYBIND = tag(Casting.MOD_ID, "can_be_toggled_with_keybind");
         public static final TagKey<Item> EQUIPMENT_MODIFIERS = tag(Casting.MOD_ID, "equipment_modifiers");
 
+        public static final TagKey<Item> ENERGIZED_STEEL = commonTag("ingots/energized_steel");
+        public static final TagKey<Item> ENERGIZED_STEEL_BLOCK = commonTag("storage_blocks/energized_steel");
+        public static final TagKey<Item> BLAZING_CRYSTAL = commonTag("gems/blazing_crystal");
+        public static final TagKey<Item> BLAZING_CRYSTAL_BLOCK = commonTag("storage_blocks/blazing_crystal");
+        public static final TagKey<Item> NIOTIC_CRYSTAL = commonTag("gems/niotic_crystal");
+        public static final TagKey<Item> NIOTIC_CRYSTAL_BLOCK = commonTag("storage_blocks/niotic_crystal");
+        public static final TagKey<Item> SPIRITED_CRYSTAL = commonTag("gems/spirited_crystal");
+        public static final TagKey<Item> SPIRITED_CRYSTAL_BLOCK = commonTag("storage_blocks/spirited_crystal");
+        public static final TagKey<Item> NITRO_CRYSTAL = commonTag("gems/nitro_crystal");
+        public static final TagKey<Item> NITRO_CRYSTAL_BLOCK = commonTag("storage_blocks/nitro_crystal");
+
+
+
     }
 
 
