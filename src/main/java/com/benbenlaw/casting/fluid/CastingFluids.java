@@ -16,20 +16,37 @@ public class CastingFluids {
     public static final FluidDeferredRegister FLUIDS = new FluidDeferredRegister(Casting.MOD_ID);
 
     public static final Map<String, FluidRegistryObject<FluidDeferredRegister.CoreFluidTypes,
-                BaseFlowingFluid.Source, BaseFlowingFluid.Flowing, LiquidBlock, BucketItem>> FLUIDS_MAP = new HashMap<>();
+            BaseFlowingFluid.Source, BaseFlowingFluid.Flowing, LiquidBlock, BucketItem>> FLUIDS_MAP = new HashMap<>();
 
     static {
         for (FluidData data : FluidData.FLUID_DEFINITIONS) {
 
-            var fluid = FLUIDS.register(data.name(), (renderProperties) ->
-                    renderProperties.texture(
-                                    Core.identifier(data.stillTexture()),
-                                    Core.identifier(data.flowTexture())
-                            ).tint(data.tint())
-                            .temperature(data.fluidProduceType().temp())
-            );
+            if (data.name().contains("molten")) {
+                var fluid = FLUIDS.register(data.name(), (renderProperties) ->
+                        renderProperties.texture(
+                                        Core.identifier(data.stillTexture()),
+                                        Core.identifier(data.flowTexture())
+                                ).tint(data.tint())
+                                .temperature(data.fluidProduceType().temp()).moveLikeLava()
+                );
+                FLUIDS_MAP.put(data.name(), fluid);
+            } 
 
-            FLUIDS_MAP.put(data.name(), fluid);
+            else {
+                var fluid = FLUIDS.register(data.name(), (renderProperties) ->
+                        renderProperties.texture(
+                                        Core.identifier(data.stillTexture()),
+                                        Core.identifier(data.flowTexture())
+                                ).tint(data.tint())
+                                .temperature(data.fluidProduceType().temp()).moveLikeWater()
+                );
+                FLUIDS_MAP.put(data.name(), fluid);
+
+            }
+
+
+
+
         }
     }
 
