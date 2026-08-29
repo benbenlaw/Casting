@@ -1,4 +1,4 @@
-// 26.1.2	2026-08-20T16:01:29.0319319	casting Processing Recipes
+// 26.1.2	2026-08-29T11:17:38.3428413	casting Processing Recipes
 6cf7daa5e446d262d0b513ba376716ae43524819 data/casting/advancement/recipes/fuel/fuel/blaze.json
 22bc1b6595660b1d031fd489cab558ac3d264831 data/casting/advancement/recipes/fuel/fuel/blazing_lava.json
 519547486eb3fbbb51b3460ed5c7a9695e33e52f data/casting/advancement/recipes/fuel/fuel/chilled_water.json
@@ -841,7 +841,6 @@ ca5cfee3583f30439d5b9e8eb9d96e4258f88d8e data/casting/advancement/recipes/solidi
 0238b449ae0505d9f8dc398991577e5ef4ed57c6 data/casting/advancement/recipes/solidifier/solidifier/charged_certus_quartz/wire.json
 a62c698560887fa5bacb16b137abfbd380fb0f68 data/casting/advancement/recipes/solidifier/solidifier/coal/block.json
 d0a995d82a8231ec56887ff6ae4d4b80cb28dbc4 data/casting/advancement/recipes/solidifier/solidifier/coal/coal.json
-d6a3c2a2ba7e1a8efaa03066db522678cfed196e data/casting/advancement/recipes/solidifier/solidifier/coal/coal_block.json
 b483a62da48e97f63d53b20c02ea117262ba5218 data/casting/advancement/recipes/solidifier/solidifier/coal/dust.json
 4e1bfb531f629d76915832204e7ceac4d6421b12 data/casting/advancement/recipes/solidifier/solidifier/coal/gear.json
 b73baf99388fb1eae3a8b40d2686e895f5cb2ebd data/casting/advancement/recipes/solidifier/solidifier/coal/gem.json
@@ -2195,7 +2194,6 @@ b96f675d89c97ac469ac35f9b7ef97fc5795151d data/casting/recipe/solidifier/charged_
 17c4e75ea1c45b21e9187bdc9f5dfbc00645f33c data/casting/recipe/solidifier/charged_certus_quartz/wire.json
 a29e5ff024d9e5658f56e304c07d868c319d1f5d data/casting/recipe/solidifier/coal/block.json
 017d514666bd84935f3d39b9687422cba3447a85 data/casting/recipe/solidifier/coal/coal.json
-39594f557b54134455919eee88e87bfcff46bfef data/casting/recipe/solidifier/coal/coal_block.json
 b45e2efc6f30c82908970ef8211b166aa7010e1f data/casting/recipe/solidifier/coal/dust.json
 30245af8f67962b058c176cd3df14c0ce29b6a0d data/casting/recipe/solidifier/coal/gear.json
 078ade0398a07d07d25a98f1e896fe1724acda59 data/casting/recipe/solidifier/coal/gem.json

@@ -81,10 +81,6 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
         simpleSolidifierRecipe(Items.COAL, getFluidIngredient("molten_coal", 80),
                 CastingItems.GEM_MOLD, "coal/coal", ResourceType.GEMS, getTempFromFluid("molten_coal"));
 
-        simpleSolidifierRecipe(Items.COAL, getFluidIngredient("molten_coal", 720),
-                CastingItems.BLOCK_MOLD, "coal/coal_block", ResourceType.STORAGE_BLOCKS, getTempFromFluid("molten_coal"));
-
-
         simpleMeltingRecipe(List.of(getFluidStack("molten_coal", 80)), Items.COAL,
                 "coal/coal", ResourceType.INGOTS, getTempFromFluid("molten_coal"));
 
