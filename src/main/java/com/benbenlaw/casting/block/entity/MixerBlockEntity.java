@@ -24,6 +24,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -41,6 +42,10 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
     private final ContainerData data;
     private int maxProgress = CastingConfig.defaultMixerSpeed.get();
     private int progress = 0;
+
+    private RecipeHolder<MixingRecipe> cachedRecipe = null;
+    private boolean recipeDirty = true;
+    private RecipeManager lastRecipeManager = null;
 
     private final SyncableFluidHandler fluidInventory = new SyncableFluidHandler(this, 5, 8000,
             (i, stack) -> i <= 3,
@@ -75,8 +80,15 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
 
             return false;
         }
-    };
 
+        @Override
+        protected void onContentsChanged(int index, FluidStack previousContents) {
+            if (index <= 3) {
+                recipeDirty = true;
+            }
+            super.onContentsChanged(index, previousContents);
+        }
+    };
 
     private final FilterFluidHandler filterFluidHandler = new FilterFluidHandler(this, 4);
 
@@ -123,7 +135,8 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
         }
 
         RecipeHolder<MixingRecipe> recipeHolder = getRecipe();
-        boolean changed = false;
+        boolean progressChanged = false;
+        boolean contentsChanged = false;
         boolean isCurrentlyWorking = false;
 
         if (recipeHolder != null) {
@@ -132,30 +145,29 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
             if (canFormOutput(recipe)) {
                 isCurrentlyWorking = true;
                 this.progress++;
-                changed = true;
+                progressChanged = true;
 
                 if (this.progress >= this.maxProgress) {
                     executeMixing(recipe);
                     this.progress = 0;
+                    contentsChanged = true;
                 }
-            } else {
-                if (this.progress > 0) {
-                    this.progress = 0;
-                    changed = true;
-                }
-            }
-        } else {
-            if (this.progress > 0) {
+            } else if (this.progress > 0) {
                 this.progress = 0;
-                changed = true;
+                progressChanged = true;
             }
+        } else if (this.progress > 0) {
+            this.progress = 0;
+            progressChanged = true;
         }
 
         updateWorkingState(isCurrentlyWorking);
         this.tickResourceSending(level, worldPosition);
 
-        if (changed) {
+        if (progressChanged || contentsChanged) {
             setChanged();
+        }
+        if (contentsChanged) {
             sync();
         }
     }
@@ -212,23 +224,31 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
     private RecipeHolder<MixingRecipe> getRecipe() {
         if (level == null || level.getServer() == null) return null;
 
-        return level.getServer().getRecipeManager()
-                .recipeMap()
-                .values()
-                .stream()
-                .filter(holder -> holder.value().getType() == MixingRecipe.TYPE)
-                .map(holder -> (RecipeHolder<MixingRecipe>) holder)
-                .filter(holder -> {
-                    MixingRecipe recipe = holder.value();
-                    for (SizedFluidIngredient required : recipe.fluids()) {
-                        if (!hasFluidSatisfyingIngredient(required)) {
-                            return false;
-                        }
-                    }
-                    return true;
-                })
-                .findFirst()
-                .orElse(null);
+        RecipeManager recipeManager = level.getServer().getRecipeManager();
+        if (!recipeDirty && recipeManager == lastRecipeManager) {
+            return cachedRecipe;
+        }
+
+        RecipeHolder<MixingRecipe> found = null;
+        for (var holder : recipeManager.recipeMap().byType(MixingRecipe.TYPE)) {
+            MixingRecipe recipe = holder.value();
+            boolean allSatisfied = true;
+            for (SizedFluidIngredient required : recipe.fluids()) {
+                if (!hasFluidSatisfyingIngredient(required)) {
+                    allSatisfied = false;
+                    break;
+                }
+            }
+            if (allSatisfied) {
+                found = holder;
+                break;
+            }
+        }
+
+        cachedRecipe = found;
+        recipeDirty = false;
+        lastRecipeManager = recipeManager;
+        return cachedRecipe;
     }
 
     private boolean hasFluidSatisfyingIngredient(SizedFluidIngredient required) {
@@ -318,7 +338,6 @@ public class MixerBlockEntity extends SyncableBlockEntity implements MenuProvide
         super.applyImplicitComponents(components);
         FluidListComponent component = components.get(CastingDataComponents.FLUIDS.get());
         if (component != null) {
-            System.out.println(component.fluids());
             component.applyToHandlers(fluidInventory);
         }
     }

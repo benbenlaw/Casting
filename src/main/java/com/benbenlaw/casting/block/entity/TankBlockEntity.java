@@ -15,6 +15,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -27,9 +28,22 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.OptionalInt;
 
-public class TankBlockEntity extends SyncableBlockEntity{
+public class TankBlockEntity extends SyncableBlockEntity {
 
-    private final SyncableFluidHandler fluidInventory = new SyncableFluidHandler(this, 1, 4000, (i, stack) -> i == 0, i -> i == 0);
+    private final SyncableFluidHandler fluidInventory = new SyncableFluidHandler(this, 1, 4000, (i, stack) -> i == 0, i -> i == 0) {
+        @Override
+        protected void onContentsChanged(int index, FluidStack previousContents) {
+            FluidStack current = FluidUtil.getStack(this, index);
+            if (!FluidStack.isSameFluidSameComponents(current, previousContents)) {
+                fuelRecipeDirty = true;
+            }
+            super.onContentsChanged(index, previousContents);
+        }
+    };
+
+    private RecipeHolder<FuelRecipe> cachedFuelRecipe = null;
+    private boolean fuelRecipeDirty = true;
+    private RecipeManager lastRecipeManager = null;
 
     public TankBlockEntity(BlockPos pos, BlockState state) {
         super(CastingBlockEntities.TANK_BLOCK_ENTITY.get(), pos, state);
@@ -44,12 +58,28 @@ public class TankBlockEntity extends SyncableBlockEntity{
 
     public OptionalInt getFuelTemp() {
         FluidStack stack = FluidUtil.getStack(fluidInventory, 0);
-        if (stack.isEmpty()) return OptionalInt.empty();
+        if (stack.isEmpty()) {
+            cachedFuelRecipe = null;
+            fuelRecipeDirty = false;
+            return OptionalInt.empty();
+        }
 
-        RecipeHolder<FuelRecipe> fuelRecipe = getFuel(level, stack);
-        if (fuelRecipe == null) return OptionalInt.empty();
+        if (level != null && level.getServer() != null) {
+            RecipeManager current = level.getServer().getRecipeManager();
+            if (current != lastRecipeManager) {
+                fuelRecipeDirty = true;
+                lastRecipeManager = current;
+            }
+        }
 
-        return OptionalInt.of(fuelRecipe.value().temp());
+        if (fuelRecipeDirty) {
+            cachedFuelRecipe = getFuel(level, stack);
+            fuelRecipeDirty = false;
+        }
+
+        if (cachedFuelRecipe == null) return OptionalInt.empty();
+
+        return OptionalInt.of(cachedFuelRecipe.value().temp());
     }
 
     public FluidStacksResourceHandler getFluidHandler() {
@@ -59,17 +89,10 @@ public class TankBlockEntity extends SyncableBlockEntity{
     public static RecipeHolder<FuelRecipe> getFuel(Level level, FluidStack stack) {
         if (level == null || level.getServer() == null || stack.isEmpty()) return null;
 
-        return level.getServer().getRecipeManager()
-                .recipeMap()
-                .values()
-                .stream()
-                .filter(holder -> holder.value().getType() == FuelRecipe.TYPE)
-                .map(holder -> (RecipeHolder<FuelRecipe>) holder)
-                .filter(holder -> {
-                    return holder.value().fluid().ingredient().test(stack);
-                })
-                .findFirst()
-                .orElse(null);
+        for (RecipeHolder<FuelRecipe> holder : level.getServer().getRecipeManager().recipeMap().byType(FuelRecipe.TYPE)) {
+            if (holder.value().fluid().ingredient().test(stack)) return holder;
+        }
+        return null;
     }
 
     @Override

@@ -95,6 +95,8 @@ dependencies {
     runtimeOnly("curse.maven:powah-rearchitected-633483:8025339")
     //Cloth Config
     implementation("curse.maven:cloth-config-348521:7817583")
+    //Observable
+    runtimeOnly("curse.maven:observable-remake-1639360:8589511")
 }
 
 tasks.withType(ProcessResources).configureEach {

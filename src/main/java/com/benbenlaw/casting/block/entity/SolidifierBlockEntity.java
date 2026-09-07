@@ -29,6 +29,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,6 +47,7 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
@@ -56,9 +58,22 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
     private int progress = 0;
     private OptionalInt temperature = OptionalInt.empty();
 
-    private final SyncableItemHandler inventory = new SyncableItemHandler(this, 2,(i, stack) -> i == 0, i -> i == 1);
+    private List<RecipeHolder<SolidifierRecipe>> cachedMoldCandidates = List.of();
+    private boolean moldCacheDirty = true;
+    private RecipeManager lastRecipeManager = null;
+
+    private final SyncableItemHandler inventory = new SyncableItemHandler(this, 2, (i, stack) -> i == 0, i -> i == 1) {
+        @Override
+        protected void onContentsChanged(int index, ItemStack previousContents) {
+            if (index == INPUT_SLOT) {
+                moldCacheDirty = true;
+            }
+            super.onContentsChanged(index, previousContents);
+        }
+    };
+
     private final SyncableFluidHandler fluidInventory = new SyncableFluidHandler(this, 1, 8000, (i, stack) -> i == 0, i -> i == 0);
-    private final SyncableItemHandler storedMolds = new SyncableItemHandler(this, 20, (i, stack) ->false, i -> false);
+    private final SyncableItemHandler storedMolds = new SyncableItemHandler(this, 20, (i, stack) -> false, i -> false);
     private FilterFluidHandler filterFluidHandler = new FilterFluidHandler(this, 1);
     public FluidStack fuelStack = FluidStack.EMPTY;
 
@@ -101,17 +116,8 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         boolean isRunning = level.getBlockState(worldPosition).getValue(SolidifierBlock.RUNNING);
 
         TankBlockEntity activeFuelTank = getActiveFuelTank(level, worldPosition);
-        if (level.getGameTime() % 20 == 0) {
-            if (activeFuelTank != null) {
-                fuelStack = FluidUtil.getStack(activeFuelTank.getFluidHandler(), 0);
-                sync();
-            } else {
-                fuelStack = FluidStack.EMPTY;
-            }
-        }
         int currentTemp = activeFuelTank != null ? activeFuelTank.getFuelTemp().orElse(20) : 20;
         this.temperature = activeFuelTank != null ? OptionalInt.of(currentTemp) : OptionalInt.empty();
-
 
         if (!isRunning) {
             updateWorkingState(false);
@@ -123,7 +129,8 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
             return;
         }
 
-        boolean changed = false;
+        boolean progressChanged = false;
+        boolean contentsChanged = false;
         boolean isCurrentlyWorking = false;
 
         ItemStack inputStack = ItemUtil.getStack(inventory, INPUT_SLOT);
@@ -131,15 +138,14 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
 
         if (canFillBucket(inputStack)) {
             isCurrentlyWorking = true;
-
             maxProgress = 20;
-
             progress++;
-            changed = true;
+            progressChanged = true;
 
             if (progress >= maxProgress) {
                 executeBucketFill();
                 progress = 0;
+                contentsChanged = true;
             }
         }
 
@@ -150,31 +156,64 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
                 isCurrentlyWorking = true;
 
                 int baseMaxProgress = CastingConfig.defaultSolidifierSpeed.get();
+                boolean fuelBenefited = activeFuelTank != null && currentTemp < recipe.meltingTemp();
                 double finalModifier = getFinalModifier(recipe, activeFuelTank, currentTemp);
 
                 maxProgress = (int) (baseMaxProgress * finalModifier);
                 if (maxProgress < 5) maxProgress = 5;
 
-                progress++;
-                changed = true;
+                FluidStack coolantStack = fuelBenefited
+                        ? FluidUtil.getStack(activeFuelTank.getFluidHandler(), 0)
+                        : FluidStack.EMPTY;
 
-                if (progress >= maxProgress) {
-                    executeSolidifying(recipe);
-                    progress = 0;
+                boolean coolantEmpty = fuelBenefited && coolantStack.isEmpty();
+
+                if (coolantEmpty) {
+                    if (progress > 0) {
+                        progress = 0;
+                        progressChanged = true;
+                    }
+                } else {
+                    if (progress < maxProgress) {
+                        progress++;
+                        progressChanged = true;
+                    }
+
+                    if (progress >= maxProgress) {
+                        if (!fuelBenefited) {
+                            executeSolidifying(recipe, null, false);
+                            progress = 0;
+                            contentsChanged = true;
+                        } else {
+                            var fuelRecipeHolder = TankBlockEntity.getFuel(level, coolantStack);
+                            int requiredAmount = fuelRecipeHolder != null
+                                    ? fuelRecipeHolder.value().fluid().amount()
+                                    : 100;
+
+                            if (coolantStack.getAmount() >= requiredAmount) {
+                                executeSolidifying(recipe, activeFuelTank, true);
+                                progress = 0;
+                                contentsChanged = true;
+                            }
+                            // else: coolant present but below required amount — hold at maxProgress
+                        }
+                    }
                 }
             } else if (progress > 0) {
                 progress = 0;
-                changed = true;
+                progressChanged = true;
             }
         } else if (progress > 0) {
             progress = 0;
-            changed = true;
+            progressChanged = true;
         }
 
         updateWorkingState(isCurrentlyWorking);
 
-        if (changed) {
+        if (progressChanged || contentsChanged) {
             setChanged();
+        }
+        if (contentsChanged) {
             sync();
         }
     }
@@ -220,19 +259,18 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         FluidStack fluidInTank = FluidUtil.getStack(fluidInventory, 0);
         ItemStack fullBucket = new ItemStack(fluidInTank.getFluid().getBucket());
 
-        inventory.runInternal(() -> {
-            try (Transaction tx = Transaction.openRoot()) {
+        try (Transaction tx = Transaction.open(null)) {
+            inventory.runInternal(() -> {
                 inventory.extract(INPUT_SLOT, ItemResource.of(new ItemStack(Items.BUCKET)), 1, tx);
                 inventory.insert(OUTPUT_SLOT, ItemResource.of(fullBucket), 1, tx);
-                tx.commit();
-            }
-        });
+            });
 
-        inventory.runInternal(() -> {
-            try (Transaction tx = Transaction.openRoot()) {
+            fluidInventory.runInternal(() -> {
                 fluidInventory.extract(0, FluidResource.of(fluidInTank), 1000, tx);
-            }
-        });
+            });
+
+            tx.commit();
+        }
     }
 
     public static @Nullable TankBlockEntity getActiveFuelTank(Level level, BlockPos worldPosition) {
@@ -247,12 +285,27 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
         }
         return null;
     }
-    private void executeSolidifying(SolidifierRecipe recipe) {
 
-        try (Transaction tx = Transaction.openRoot()) {
+    public static @Nullable TankBlockEntity getAdjacentFuelTank(Level level, BlockPos worldPosition) {
+        if (level == null) return null;
+        for (var dir : Direction.values()) {
+            BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(dir));
+            if (neighbor instanceof TankBlockEntity tank) {
+                if (!tank.getFluidHandler().getResource(0).isEmpty()) {
+                    return tank;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void executeSolidifying(SolidifierRecipe recipe, @Nullable TankBlockEntity fuelTank, boolean consumeFuel) {
+        boolean fuelDrained = false;
+
+        try (Transaction tx = Transaction.open(null)) {
             FluidStack inTank = FluidUtil.getStack(fluidInventory, 0);
 
-            if (!ItemUtil.getStack(inventory, INPUT_SLOT).is((CastingTags.Items.MOLDS))) {
+            if (!ItemUtil.getStack(inventory, INPUT_SLOT).is(CastingTags.Items.MOLDS)) {
                 inventory.runInternal(() -> {
                     inventory.extract(INPUT_SLOT, inventory.getResource(INPUT_SLOT), recipe.mold().count(), tx);
                 });
@@ -262,6 +315,20 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
                 fluidInventory.extract(0, FluidResource.of(inTank), recipe.fluid().amount(), tx);
             });
 
+            if (consumeFuel && fuelTank != null) {
+                SyncableFluidHandler fuelHandler = (SyncableFluidHandler) fuelTank.getFluidHandler();
+                FluidStack fuelInTank = FluidUtil.getStack(fuelHandler, 0);
+                var fuelRecipeHolder = TankBlockEntity.getFuel(level, fuelInTank);
+
+                if (fuelRecipeHolder != null) {
+                    int amountToDrain = fuelRecipeHolder.value().fluid().amount();
+                    fuelHandler.runInternal(() -> {
+                        fuelHandler.extract(0, FluidResource.of(fuelInTank), amountToDrain, tx);
+                    });
+                    fuelDrained = true;
+                }
+            }
+
             ItemStack result = getStackFromSized(recipe.output());
             if (!result.isEmpty()) {
                 inventory.runInternal(() -> {
@@ -269,6 +336,11 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
                 });
             }
             tx.commit();
+        }
+
+        if (fuelDrained) {
+            fuelTank.setChanged();
+            fuelTank.sync();
         }
     }
 
@@ -319,22 +391,27 @@ public class SolidifierBlockEntity extends SyncableBlockEntity implements MenuPr
 
         if (mold.isEmpty() || fluid.isEmpty()) return null;
 
-        return level.getServer().getRecipeManager()
-                .recipeMap()
-                .values()
-                .stream()
-                .filter(holder -> holder.value().getType() == SolidifierRecipe.TYPE)
-                .map(holder -> (RecipeHolder<SolidifierRecipe>) holder)
-                .filter(holder -> {
-                    SolidifierRecipe recipe = holder.value();
-                    return recipe.mold().test(mold) &&
-                            recipe.fluid().ingredient().test(fluid) &&
-                            fluid.getAmount() >= recipe.fluid().amount();
-                })
-                .findFirst()
-                .orElse(null);
-    }
+        RecipeManager recipeManager = level.getServer().getRecipeManager();
+        if (moldCacheDirty || recipeManager != lastRecipeManager) {
+            List<RecipeHolder<SolidifierRecipe>> candidates = new ArrayList<>();
+            for (var holder : recipeManager.recipeMap().byType(SolidifierRecipe.TYPE)) {
+                if (holder.value().mold().test(mold)) {
+                    candidates.add(holder);
+                }
+            }
+            cachedMoldCandidates = candidates;
+            moldCacheDirty = false;
+            lastRecipeManager = recipeManager;
+        }
 
+        for (var holder : cachedMoldCandidates) {
+            SolidifierRecipe recipe = holder.value();
+            if (recipe.fluid().ingredient().test(fluid) && fluid.getAmount() >= recipe.fluid().amount()) {
+                return holder;
+            }
+        }
+        return null;
+    }
     public boolean onPlayerUse(Player player, InteractionHand hand) {
 
         ItemStack stack = player.getItemInHand(hand);

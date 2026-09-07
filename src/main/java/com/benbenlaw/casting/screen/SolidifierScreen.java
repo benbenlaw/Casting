@@ -1,6 +1,8 @@
 package com.benbenlaw.casting.screen;
 
 import com.benbenlaw.casting.Casting;
+import com.benbenlaw.casting.block.entity.SolidifierBlockEntity;
+import com.benbenlaw.casting.block.entity.TankBlockEntity;
 import com.benbenlaw.casting.network.packet.ChangeMoldPagePacket;
 import com.benbenlaw.core.Core;
 import com.benbenlaw.core.screen.util.DurationTooltip;
@@ -14,6 +16,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemUtil;
@@ -139,7 +142,13 @@ public class SolidifierScreen extends AbstractContainerScreen<SolidifierMenu> {
         FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.getFilterFluidHandler(), 0, x, y,
                 8, 20, 16, 16, mouseX, mouseY, Component.translatable("tooltip.casting.empty_filter"));
 
-        FluidRenderingUtils.renderFluid(guiGraphics, menu.blockEntity.fuelStack, 4000, x, y,
-                152, 51, 16, 16, mouseX, mouseY, Component.translatable("tooltip.casting.no_coolant"));
+        TankBlockEntity coolantTank = SolidifierBlockEntity.getAdjacentFuelTank(menu.blockEntity.getLevel(), menu.blockEntity.getBlockPos());
+        if (coolantTank != null) {
+            FluidRenderingUtils.renderFluid(guiGraphics, coolantTank.getFluidHandler(), 0, x, y,
+                    152, 51, 16, 16, mouseX, mouseY, Component.translatable("tooltip.casting.no_coolant"));
+        } else {
+            FluidRenderingUtils.renderFluid(guiGraphics, FluidStack.EMPTY, 4000, x, y,
+                    152, 51, 16, 16, mouseX, mouseY, Component.translatable("tooltip.casting.no_coolant"));
+        }
     }
 }

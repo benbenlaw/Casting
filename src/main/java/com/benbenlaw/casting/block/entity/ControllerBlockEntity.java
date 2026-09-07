@@ -29,6 +29,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,6 +47,7 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
 
@@ -57,11 +59,27 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
     private int[] maxProgress = new int[15];
     private OptionalInt temperature = OptionalInt.empty();
 
+    private final RecipeHolder<MeltingRecipe>[] cachedSlotRecipes = new RecipeHolder[15];
+    private final boolean[] slotRecipeDirty = new boolean[15];
+    private RecipeManager lastRecipeManager = null;
+
+    {
+        Arrays.fill(slotRecipeDirty, true);
+    }
+
     private final SyncableItemHandler inventory = new SyncableItemHandler(this, 15,
             (i, stack) -> i >= 0 && i <= 14, i -> i == 15) {
         @Override
         protected int getCapacity(int index, ItemResource resource) {
             return 1;
+        }
+
+        @Override
+        protected void onContentsChanged(int index, ItemStack previousContents) {
+            if (index >= 0 && index < slotRecipeDirty.length) {
+                slotRecipeDirty[index] = true;
+            }
+            super.onContentsChanged(index, previousContents);
         }
     };
 
@@ -100,6 +118,8 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
     public void tick() {
         if (level == null || level.isClientSide()) return;
 
+        refreshRecipeCachesIfNeeded();
+
         boolean isRunning = level.getBlockState(worldPosition).getValue(ControllerBlock.RUNNING);
 
         TankBlockEntity activeFuelTank = getActiveFuelTank(level, worldPosition);
@@ -110,9 +130,9 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
             return;
         }
 
-
         int currentTemp = temperature.getAsInt();
-        boolean changed = false;
+        boolean progressChanged = false;
+        boolean contentsChanged = false;
         boolean isWorking = false;
 
         for (int i = 0; i < 15; i++) {
@@ -121,12 +141,12 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
             if (stack.isEmpty()) {
                 if (progress[i] > 0) {
                     progress[i] = 0;
-                    changed = true;
+                    progressChanged = true;
                 }
                 continue;
             }
 
-            RecipeHolder<MeltingRecipe> recipeHolder = getRecipeForSlot(stack);
+            RecipeHolder<MeltingRecipe> recipeHolder = getRecipeForSlot(i, stack);
 
             if (recipeHolder != null) {
                 MeltingRecipe recipe = recipeHolder.value();
@@ -145,24 +165,28 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
                     if (canFitFluids(recipe.output())) {
                         isWorking = true;
                         progress[i]++;
-                        changed = true;
+                        progressChanged = true;
 
                         if (progress[i] >= maxProgress[i]) {
                             executeMelting(i, recipe, activeFuelTank);
                             progress[i] = 0;
+                            contentsChanged = true;
                         }
                     }
                 } else if (progress[i] > 0) {
                     progress[i] = 0;
-                    changed = true;
+                    progressChanged = true;
                 }
             }
         }
 
         updateWorkingState(isWorking);
         this.tickResourceSending(level, worldPosition);
-        if (changed) {
+
+        if (progressChanged || contentsChanged) {
             setChanged();
+        }
+        if (contentsChanged) {
             sync();
         }
     }
@@ -181,7 +205,7 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
     }
 
     private void executeMelting(int slot, MeltingRecipe recipe, TankBlockEntity fuelTank) {
-        FluidStack fuelStack = FluidUtil.getStack(fuelTank.getFluidHandler(),0);
+        FluidStack fuelStack = FluidUtil.getStack(fuelTank.getFluidHandler(), 0);
 
         if (fuelStack.isEmpty()) return;
 
@@ -190,10 +214,9 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
 
         int amountToConsume = fuelRecipe.value().fluid().amount();
 
-
         try (Transaction tx = Transaction.open(null)) {
             inventory.runInternal(() -> {
-                        inventory.extract(slot, ItemResource.of(inventory.getResource(slot).toStack()), recipe.input().count(), tx);
+                inventory.extract(slot, ItemResource.of(inventory.getResource(slot).toStack()), recipe.input().count(), tx);
             });
 
             fuelTank.getFluidHandler().extract(0, fuelTank.getFluidHandler().getResource(0), amountToConsume, tx);
@@ -209,7 +232,9 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
 
             tx.commit();
         }
-        sync();
+
+        fuelTank.setChanged();
+        fuelTank.sync();
     }
 
     private void updateWorkingState(boolean working) {
@@ -269,13 +294,31 @@ public class ControllerBlockEntity extends SyncableBlockEntity implements MenuPr
         }
     }
 
-    private RecipeHolder<MeltingRecipe> getRecipeForSlot(ItemStack stack) {
+    private void refreshRecipeCachesIfNeeded() {
+        if (level == null || level.getServer() == null) return;
+        RecipeManager current = level.getServer().getRecipeManager();
+        if (current != lastRecipeManager) {
+            Arrays.fill(slotRecipeDirty, true);
+            lastRecipeManager = current;
+        }
+    }
+
+    private RecipeHolder<MeltingRecipe> getRecipeForSlot(int slot, ItemStack stack) {
         if (level == null || level.getServer() == null || stack.isEmpty()) return null;
-        return level.getServer().getRecipeManager().recipeMap().values().stream()
-                .filter(holder -> holder.value().getType() == MeltingRecipe.TYPE)
-                .map(holder -> (RecipeHolder<MeltingRecipe>) holder)
-                .filter(holder -> holder.value().input().test(stack))
-                .findFirst().orElse(null);
+
+        if (slotRecipeDirty[slot]) {
+            RecipeHolder<MeltingRecipe> found = null;
+            for (RecipeHolder<MeltingRecipe> holder : level.getServer().getRecipeManager().recipeMap().byType(MeltingRecipe.TYPE)) {
+                if (holder.value().input().test(stack)) {
+                    found = holder;
+                    break;
+                }
+            }
+            cachedSlotRecipes[slot] = found;
+            slotRecipeDirty[slot] = false;
+        }
+
+        return cachedSlotRecipes[slot];
     }
 
     @Override
