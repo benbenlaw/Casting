@@ -1,9 +1,10 @@
-// 26.1.2	2026-08-20T16:48:19.1114435	Tags for minecraft:item mod id casting
+// 26.1.2	2026-09-08T10:34:55.7540283	Tags for minecraft:item mod id casting
 bf57b83fbd7c739f7fde36c275c0fe26cdb0b8ac data/casting/tags/item/molds.json
 523cf825e8643e793dc1a64cd6939e6cdd4adc88 data/c/tags/item/ball_items.json
 38236b67cf98b68238695adf5a39edf921a1998c data/c/tags/item/bricks.json
 17b49dfb8a8f97779644c6a505ed1671f006bef4 data/c/tags/item/buckets.json
 199bbf9c519ad069148932a0f1278be8ab596efd data/c/tags/item/gems/blazing_crystal.json
+a6452ad4ba80786eaeda9154a928fe156db75c70 data/c/tags/item/gems/charged_certus_quartz.json
 65cdc17cafab1da5749a7dabb351590f55a2f553 data/c/tags/item/gems/niotic_crystal.json
 088256db812335a0f1d0a986cda3e17c13de3ea7 data/c/tags/item/gems/nitro_crystal.json
 6030dfd0e67987a6ea5fe5ff16581f835c2198fc data/c/tags/item/gems/spirited_crystal.json

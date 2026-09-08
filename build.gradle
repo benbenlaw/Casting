@@ -97,6 +97,10 @@ dependencies {
     implementation("curse.maven:cloth-config-348521:7817583")
     //Observable
     runtimeOnly("curse.maven:observable-remake-1639360:8589511")
+    //AE2
+    implementation("curse.maven:applied-energistics-2-223794:8129795")
+    //Guide ME
+    implementation("curse.maven:guideme-1173950:8204880")
 }
 
 tasks.withType(ProcessResources).configureEach {

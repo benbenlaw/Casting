@@ -1,5 +1,6 @@
 package com.benbenlaw.casting.data;
 
+import appeng.core.definitions.AEItems;
 import com.benbenlaw.casting.Casting;
 import com.benbenlaw.casting.item.CastingItems;
 import com.benbenlaw.casting.util.CastingTags;
@@ -95,6 +96,7 @@ public class CastingItemTags extends ItemTagsProvider {
         //Processing Tags
         tag(TagKey.create(Registries.ITEM, Identifier.parse("c:storage_blocks/glowstone"))).add(Blocks.GLOWSTONE.asItem());
         tag(TagKey.create(Registries.ITEM, Identifier.parse("c:storage_blocks/quartz"))).add(Blocks.QUARTZ_BLOCK.asItem());
+        tag(TagKey.create(Registries.ITEM, Identifier.parse("c:gems/charged_certus_quartz"))).add(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.get());
 
     }
 }
