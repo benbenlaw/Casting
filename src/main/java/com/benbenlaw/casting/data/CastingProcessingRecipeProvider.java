@@ -16,11 +16,13 @@ import com.benbenlaw.core.tag.ResourceType;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -39,6 +41,7 @@ import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -150,8 +153,17 @@ public class CastingProcessingRecipeProvider extends RecipeProvider {
                 CastingItems.BALL_MOLD, "ender/pearl", ResourceType.GEMS, getTempFromFluid("molten_ender"));
 
         //Silicon
-        simpleSolidifierRecipe(Items.SAND, getFluidIngredient("molten_silicon", 250),
-                CastingItems.BALL_MOLD, "silicon/silicon", ResourceType.GEMS, getTempFromFluid("molten_silicon"));
+        TagKey<Item> siliconTag = TagKey.create(Registries.ITEM, Identifier.parse("c:silicon"));
+
+        SolidifierRecipeBuilder.solidifierRecipesBuilder(SizedIngredient.of(CastingItems.BALL_MOLD.asItem(), 1), new SizedIngredient(tag(siliconTag), 1), getFluidIngredient("molten_silicon", 250),
+                getTempFromFluid("molten_silicon"), Optional.empty()).save(output.withConditions(new NotCondition(new TagEmptyCondition<>(siliconTag))), "silicon/silicon");
+
+        List<FluidStackTemplate> silicon = new ArrayList<>();
+        silicon.add(new FluidStackTemplate(BuiltInRegistries.FLUID.getValue(Casting.identifier("molten_silicon")), 250));
+
+        MeltingRecipeBuilder.meltingRecipesBuilder(new SizedIngredient(tag(siliconTag), 1), silicon,
+                getTempFromFluid("molten_silicon"), Optional.empty()).save(output.withConditions(new NotCondition(new TagEmptyCondition<>(siliconTag))), "silicon/silicon");
+
 
         //Experience
         simpleSolidifierRecipe(CastingItems.EXPERIENCE_BALL, getFluidIngredient("molten_experience", 1000),

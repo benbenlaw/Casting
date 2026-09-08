@@ -1,4 +1,4 @@
-// 26.1.2	2026-08-29T11:17:38.3428413	casting Processing Recipes
+// 26.1.2	2026-09-08T11:05:41.6632991	casting Processing Recipes
 6cf7daa5e446d262d0b513ba376716ae43524819 data/casting/advancement/recipes/fuel/fuel/blaze.json
 22bc1b6595660b1d031fd489cab558ac3d264831 data/casting/advancement/recipes/fuel/fuel/blazing_lava.json
 519547486eb3fbbb51b3460ed5c7a9695e33e52f data/casting/advancement/recipes/fuel/fuel/chilled_water.json
@@ -578,6 +578,7 @@ afadd0852d98101923d47b10bcd60068df7fdd7b data/casting/advancement/recipes/meltin
 d88ba35abac7b88d0db9f7694883ee780c8e2588 data/casting/advancement/recipes/melting/melting/silicon/raw_materials.json
 61c901864b8554fa6f5ddc50d0f9367611f6084c data/casting/advancement/recipes/melting/melting/silicon/rod.json
 3055276b85ad2216985701e9149891e1ded8c761 data/casting/advancement/recipes/melting/melting/silicon/shard.json
+4f25b1296f26716d30e9b0bad40ed817a1bf62be data/casting/advancement/recipes/melting/melting/silicon/silicon.json
 dc61321afadb080aae25db96993b304d7af45264 data/casting/advancement/recipes/melting/melting/silicon/wire.json
 62dba60001f93e88ab2821f3c8f288941afe3383 data/casting/advancement/recipes/melting/melting/silver/block.json
 08db3299990de2e29a9427b88f1f9fd4ce47d7ef data/casting/advancement/recipes/melting/melting/silver/dust.json
@@ -1222,7 +1223,7 @@ e05cece5467b3d0a7074227bd09f11feb85acb67 data/casting/advancement/recipes/solidi
 a4dfccf8439be86d6a498c3840dfe8316c5e474f data/casting/advancement/recipes/solidifier/solidifier/silicon/plate.json
 12f215710e88547635985230f339e7e7ae8dae81 data/casting/advancement/recipes/solidifier/solidifier/silicon/rod.json
 644b222c63bb3e4a62d371839020bd095ec2f91a data/casting/advancement/recipes/solidifier/solidifier/silicon/shard.json
-56afc863287f8f1b4250b2d916557c2a66eb099d data/casting/advancement/recipes/solidifier/solidifier/silicon/silicon.json
+0bdd96ba7f006168aff129542d7f4625b16abc62 data/casting/advancement/recipes/solidifier/solidifier/silicon/silicon.json
 ef039a0a07a20b3da6400f6c79db191abd3ecfe9 data/casting/advancement/recipes/solidifier/solidifier/silicon/wire.json
 4399fbd68177b30be44db509d4149898f6339b18 data/casting/advancement/recipes/solidifier/solidifier/silver/block.json
 ded5ac2a720552c4bb5a68af53fddef9bffb697f data/casting/advancement/recipes/solidifier/solidifier/silver/dust.json
@@ -1931,6 +1932,7 @@ fdac9329fc3a088d0ec94f185e1e78f16bfbd230 data/casting/recipe/melting/silicon/ore
 e367973915d3514d9c8e0df42474e803c2591b54 data/casting/recipe/melting/silicon/raw_materials.json
 c031a1164f5cfdaf22c6afd194575f42e052afc6 data/casting/recipe/melting/silicon/rod.json
 df73a30971988e71b6d52a8e7c743e3de1d4d54a data/casting/recipe/melting/silicon/shard.json
+d628ae4e3f6e363938c1716f1b3958b03dac9b1d data/casting/recipe/melting/silicon/silicon.json
 f000f116df91fa4265fda7f4408055839a75a240 data/casting/recipe/melting/silicon/wire.json
 20f1c4c3a7facaa51d01af65a441325193d3f895 data/casting/recipe/melting/silver/block.json
 b2a7fb2ce35777a2984c4f57ddbfb929ddbee68a data/casting/recipe/melting/silver/dust.json
@@ -2575,7 +2577,7 @@ ba7c6a56b7b995218dcaba2e7dbfae697be0654e data/casting/recipe/solidifier/silicon/
 aea75f59713c44e6faa6a4c4205f64af1d645f73 data/casting/recipe/solidifier/silicon/plate.json
 23b2efafb1193b0473d872453c161725e9391b0e data/casting/recipe/solidifier/silicon/rod.json
 46e46ce5a77b0faf63e94effd876683680ff38ab data/casting/recipe/solidifier/silicon/shard.json
-c5263a9629569265807703f3728e06da54cf6500 data/casting/recipe/solidifier/silicon/silicon.json
+30a6b0944c0fd0fe175d4819ef4f57b005b485a1 data/casting/recipe/solidifier/silicon/silicon.json
 51a4832e073563f5e621ca9a154c88bbc92c4380 data/casting/recipe/solidifier/silicon/wire.json
 af21f522721958e3c001053742216a5c067bd019 data/casting/recipe/solidifier/silver/block.json
 6de62da0e67305e6e31c045812a3b3151cf43a2d data/casting/recipe/solidifier/silver/dust.json

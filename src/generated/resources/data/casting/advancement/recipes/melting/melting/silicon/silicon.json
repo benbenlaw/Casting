@@ -11,7 +11,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "casting:solidifier/silicon/silicon"
+        "recipe": "casting:melting/silicon/silicon"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -23,7 +23,7 @@
   ],
   "rewards": {
     "recipes": [
-      "casting:solidifier/silicon/silicon"
+      "casting:melting/silicon/silicon"
     ]
   },
   "sends_telemetry_event": true

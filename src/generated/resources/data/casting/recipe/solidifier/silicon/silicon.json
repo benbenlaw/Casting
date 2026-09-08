@@ -1,6 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:silicon"
+      }
+    }
+  ],
   "type": "casting:solidifier",
-  "duration_modifier": 0.5,
   "fluid": {
     "amount": 250,
     "ingredient": "casting:molten_silicon"
@@ -12,6 +20,6 @@
   },
   "output": {
     "count": 1,
-    "ingredient": "minecraft:sand"
+    "ingredient": "#c:silicon"
   }
 }
